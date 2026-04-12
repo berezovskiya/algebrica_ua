@@ -1,0 +1,16 @@
+# Python scripts
+*.py
+__pycache__/
+
+# Logs
+*.txt
+
+# Android
+*.apk
+android-app/
+
+# Claude
+.claude/
+
+# macOS
+.DS_Store
