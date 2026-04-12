@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Парні та непарні функції — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Парні та непарні функції</h1>
+        <time>2025-02-24</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps pb-steps-no-margin"><h2>Поведінка функції</h2>
+<p>При аналізі поведінки <a href="functions.html">функції</a> корисно дослідити, чи виявляє функція симетрію відносно координатних осей. У цьому контексті функції можуть бути класифіковані як <strong>парні</strong>, що мають симетрію відносно \(y\)-осі, або <strong>непарні</strong>, що мають симетрію відносно початку координат. Загалом, функція може бути:</p>
+<ul>
+<li>парною</li>
+<li>непарною</li>
+<li>ні парною, ні непарною</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30 pb-steps"><h2>Парна функція</h2>
+<p>Більш конкретно, припустимо, що ми маємо функцію \( f(x): \mathbb{R} \rightarrow \mathbb{R} \), і нехай \( D \subseteq \mathbb{R} \) буде її <a href="determining-the-domain-of-a-function.html">областю визначення</a>. Функція \( f \) називається <strong>парною</strong>, якщо виконується наступна умова:</p>
+<p>\[
+f(x) = f(-x) \quad \text{для всіх } x \in D
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="351" height="278" src="../images/even-odd-functions-1.png" alt="" class="wp-image-15398" style="width:351px" srcset="../images/even-odd-functions-1.png 351w, https://algebrica.org/wp-content/uploads/resources/images/even-odd-functions-1-300x238.png 300w" sizes="(max-width: 351px) 100vw, 351px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Як показано на рисунку, функція \( f(x) = x^2 \) є <a href="parabola.html">параболою</a>, симетричною відносно \(y\)-осі. Загалом, функції вигляду \( f(x) = x^4 \), \( x^6 \), або більш загально \( x^{2n} \), де показник степеня є парним, є прикладами парних функцій.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="838" height="504" src="../images/even-odd-functions-2-1.png" alt="" class="wp-image-15447" style="width:419px" srcset="../images/even-odd-functions-2-1.png 838w, https://algebrica.org/wp-content/uploads/resources/images/even-odd-functions-2-1-300x180.png 300w, https://algebrica.org/wp-content/uploads/resources/images/even-odd-functions-2-1-768x462.png 768w" sizes="(max-width: 838px) 100vw, 838px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Іншим прикладом парної функції є <a href="cosine-function.html">функція косинуса</a>. Це періодична функція з періодом \( 2\pi \), і її графік симетричний відносно \(y\)-осі. Фактично, легко перевірити, що:
+\[ \cos(\pi) = \cos(-\pi) = -1 \]</p>
+<p>Ще однією парною функцією є <a href="absolute-value-function.html">функція модуля</a>.</p>
+<hr>
+<p>Більш загально, розглядаючи сімейство функцій вигляду \(f(x) = x^{n}\) з \(n \in \mathbb{N},\) парність функції повністю визначається показником степеня: функція поводиться як парна функція, коли \(n\) є парним <a href="integers.html">цілим числом</a>, тоді як вона поводиться як непарна функція, коли \(n\) є непарним.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Визначений інтеграл парної функції</h2>
+<p>Одним із корисних наслідків того, що функція є парною, є спрощення, яке це дозволяє у <a href="definite-integrals.html">визначених інтегралах</a> на симетричних проміжках. Якщо \( f(x) \) є <a href="continuous-functions.html">неперервною</a> та парною функцією, то її графік симетричний відносно \(y\)-осі.</p>
+<p>Ця симетрія безпосередньо впливає на те, як ми обчислюємо визначені інтеграли на проміжках вигляду \([ -a, a ]\). Зокрема, виконується наступна тотожність:</p>
+<p>\[
+\int_{-a}^{a} f(x),dx = 2\int_0^a f(x),dx
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="660" height="522" src="../images/definite-integrals-5.png" alt="" class="wp-image-9358" style="width:330px" srcset="../images/definite-integrals-5.png 660w, https://algebrica.org/wp-content/uploads/resources/images/definite-integrals-5-300x237.png 300w" sizes="(max-width: 660px) 100vw, 660px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Тобто, загальна площа під кривою від \(-a\) до \(a\) становить просто двічі площу від 0 до (a). Це працює тому, що частина графіка на від'ємній стороні \(x\)-осі є дзеркальним відображенням позитивної сторони і дає таке саме значення інтеграла.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Непарна функція</h2>
+<p>Припустимо, що ми маємо функцію \( f(x): \mathbb{R} \rightarrow \mathbb{R} \), і нехай \( D \subseteq \mathbb{R} \) буде її областю визначення. Функція \( f \) називається <strong>непарною</strong>, якщо виконується наступна умова:</p>
+<p>\[
+f(-x) = -f(x) \quad \text{для всіх } x \in D
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="682" height="434" src="../images/even-odd-functions-3.png" alt="" class="wp-image-15442" style="width:341px" srcset="../images/even-odd-functions-3.png 682w, https://algebrica.org/wp-content/uploads/resources/images/even-odd-functions-3-300x191.png 300w" sizes="(max-width: 682px) 100vw, 682px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Як показано на рисунку, функція \( f(x) = x^3 \) симетрична відносно початку координат. Функції вигляду \( f(x) = x^3 \), \( x^5 \), або загальніше \( x^{2n+1} \), де показник степеня є непарним, є прикладами непарних функцій.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="908" height="512" src="../images/even-odd-functions-4-1.png" alt="" class="wp-image-15452" style="width:454px" srcset="../images/even-odd-functions-4-1.png 908w, https://algebrica.org/wp-content/uploads/resources/images/even-odd-functions-4-1-300x169.png 300w, https://algebrica.org/wp-content/uploads/resources/images/even-odd-functions-4-1-768x433.png 768w" sizes="(max-width: 908px) 100vw, 908px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Іншим прикладом непарної функції є <a href="sine-function.html">функція синус</a>. Вона є періодичною функцією з періодом \( 2\pi \), і її графік симетричний відносно початку координат. Власне, легко перевірити, що:<br>
+\[
+\sin(-\pi) = -\sin(\pi) = 0
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Визначений інтеграл непарної функції</h2>
+<p>У випадку непарної функції площа на проміжку \( [-a, 0] \) рівна за величиною, але протилежна за знаком площі на проміжку \( [0, a] \). Отже, визначений інтеграл дорівнює:</p>
+<p>\[
+\int_{-a}^{a} f(x) \, dx = 0
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="458" src="../images/definite-integrals-6.png" alt="" class="wp-image-9363" style="width:306px" srcset="../images/definite-integrals-6.png 612w, https://algebrica.org/wp-content/uploads/resources/images/definite-integrals-6-300x225.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>В обох ситуаціях площа, обмежена графіком \( f(x) \) та \( x \)-віссю на проміжку \( [-a, a] \), задається як:</p>
+<p>\[
+S = \int_{0}^{a} |f(x)| \, dx
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse pb-steps mb-x-30"><h2>Єдина функція, яка є одночасно парною та непарною</h2>
+<p>Функція \( f(x) = 0 \) є єдиною функцією, яка є одночасно парною та непарною, оскільки вона задовольняє як \( f(-x) = f(x) \), так і \( f(-x) = -f(x) \) для всіх \( x \in \mathbb{R} \). Власне, якби функція була одночасно парною та непарною, ми б мали:</p>
+<ul>
+<li>\(f(-x) = f(x)\), коли функція парна.</li>
+<li>\(f(-x) = -f(x)\), коли функція непарна.</li>
+</ul>
+<p>Таким чином, нульова функція є єдиним випадком, що задовольняє обидві властивості.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section"><h2>Властивості</h2>
+<ul>
+<li>Сума двох парних функцій є парною.</li>
+<li>Добуток парної функції на сталу є парною функцією.</li>
+<li>Добуток двох парних функцій є парною функцією.</li>
+<li><a href="derivatives.html">Похідна</a> парної функції є непарною функцією.</li>
+<li>Сума двох непарних функцій є непарною.</li>
+<li>Добуток непарної функції на сталу є непарною функцією.</li>
+<li>Добуток двох непарних функцій є парною функцією.</li>
+<li>Похідна непарної функції є парною функцією.</li>
+<li>Добуток парної та непарної функцій є непарною функцією.</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке парна функція?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Парна функція задовольняє умову f(-x) = f(x) для всіх x в її області визначення. Її графік симетричний відносно осі y."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке непарна функція?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Непарна функція задовольняє умову f(-x) = -f(x) для всіх x в її області визначення. Її графік симетричний відносно початку координат."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи може функція бути одночасно парною та непарною?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Єдиною функцією, яка є одночасно парною та непарною, є нульова функція, f(x) = 0."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що відбувається при інтегруванні парної або непарної функції на [-a, a]?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Для парної функції інтеграл від -a до a дорівнює подвоєному інтегралу від 0 до a. Для непарної функції інтеграл від -a до a дорівнює нулю."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="even-and-odd-functions.html">algebrica.org/even-and-odd-functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

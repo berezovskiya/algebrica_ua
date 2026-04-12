@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Геометрична прогресія — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Послідовності</span>
+    </nav>
+    <article>
+        <h1>Геометрична прогресія</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+
+<div class="wp-block-group pb-section pb-steps mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Що таке геометрична прогресія</h2>
+<p><a href="sequences.html">Послідовність</a> \( a_n \) називається <strong>геометричною прогресією</strong> (або геометричною послідовністю), якщо вона складається з чисел, розташованих таким чином, що відношення будь-якого члена до попереднього є сталим. Вона характеризується членами вигляду:</p>
+<p>\[
+a_1, a_2, \ldots, a_n \quad \text{with} \quad \frac{a_n}{a_{n-1}} = r
+\]</p>
+<ul>
+<li>За домовленістю, перший член геометричної прогресії зазвичай індексується з \( n = 1 \).</li>
+<li>\( r \) позначає відношення між двома послідовними членами геометричної прогресії і називається знаменником прогресії.</li>
+<li>Якщо \( r &gt; 1 \), прогресія є зростаючою (<a href="exponential-function.html">експоненціально</a>).</li>
+<li>Якщо \( 0 &lt; r &lt; 1 \), прогресія є спадною до нуля.</li>
+<li>Якщо \( r = 1 \), прогресія є сталою.</li>
+<li>Якщо \( r &lt; 0 \), прогресія знакозмінна.</li>
+</ul>
+<p>Розглянемо, наприклад, послідовність із загальним членом:</p>
+<p>\[a_n = 3 \cdot 2^{n-1}\]</p>
+<p>Ця послідовність є геометричною прогресією, що починається з 3, де кожен член отримується множенням попереднього на \( r = 2 \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="602" height="294" src="../images/geometri-sequence-1.png" alt="" class="wp-image-15678" style="width:301px" srcset="../images/geometri-sequence-1.png 602w, https://algebrica.org/wp-content/uploads/resources/images/geometri-sequence-1-300x147.png 300w" sizes="(max-width: 602px) 100vw, 602px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><hr>
+<p>Геометрична прогресія також може бути визначена рекурсивно, тобто кожен член визначається через попередній. Рекурсивне означення має вигляд:</p>
+<p>\[
+\begin{cases}
+a_1 = a \\[0.5em]
+a_n = a_{n-1} \cdot r \quad \text{for } n \geq 2
+\end{cases}
+\]</p>
+<ul>
+<li>\( a \in \mathbb{R} \) — перший член,</li>
+<li>\( r \in \mathbb{R} \) — знаменник прогресії,</li>
+<li>\( a_n \) — загальний член послідовності.</li>
+</ul>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="788" height="490" src="../images/geometri-sequence-2-1.png" alt="" class="wp-image-15750" style="width:394px" srcset="../images/geometri-sequence-2-1.png 788w, https://algebrica.org/wp-content/uploads/resources/images/geometri-sequence-2-1-300x187.png 300w, https://algebrica.org/wp-content/uploads/resources/images/geometri-sequence-2-1-768x478.png 768w" sizes="(max-width: 788px) 100vw, 788px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Геометрична прогресія демонструє характерну закономірність експоненціального зростання, де відношення між послідовними членами залишається сталим, що призводить до швидкого збільшення (або зменшення) величини.</p>
+<h5><a href="arithmetic-sequence.html">Арифметична прогресія</a>, натомість, демонструє характерну закономірність лінійного зростання, де різниця між послідовними членами залишається сталою, що призводить до рівномірного збільшення (або зменшення) з часом.</h5>
+<hr>
+<p>У геометричній прогресії кожен член \( a_n \) отримується множенням першого члена \( a_1 \) на знаменник \( r \), піднесений до степеня \( (n - 1) \). Це дає загальну формулу для \( n \)-го члена:</p>
+<p>\[
+a_n = a_1 \cdot r^{n &#8211; 1} \quad \text{for } n \geq 1
+\]</p>
+<p>Ця формула дозволяє обчислити будь-який член послідовності безпосередньо, без знання чи перелічення всіх попередніх.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Ключова різниця між явною формою та рекурсивною формою послідовності полягає в тому, як визначається кожен член:</p>
+<ul>
+<li>
+<p>У явній формі кожен член \( a_n \) безпосередньо визначається як функція від \( n \).<br>
+Можна обчислити будь-який член незалежно, без потреби знати попередні.</p>
+</li>
+<li>
+<p>У рекурсивній формі кожен член \( a_n \) визначається через один або кілька попередніх членів послідовності. Щоб обчислити певний член, спочатку потрібно знати попередні.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><p><strong>Приклад</strong></p>
+<p>Визначимо геометричну послідовність з першим членом \( a_1 = 2 \) та знаменником ( r = 3 ). Використаємо формулу:</p>
+<p>\[
+a_n = a_1 \cdot r^{n &#8211; 1}
+\]</p>
+<p>Підставимо значення:</p>
+<p>\[
+a_n = 2 \cdot 3^{n - 1}
+\]</p>
+<p>Тепер обчислимо перші кілька членів:</p>
+<ul>
+<li>\( a_1 = 2 \)</li>
+<li>\( a_2 = 2 \cdot 3^1 = 6 \)</li>
+<li>\( a_3 = 2 \cdot 3^2 = 18 \)</li>
+<li>\( a_4 = 2 \cdot 3^3 = 54 \)</li>
+<li>\( a_5 = 2 \cdot 3^4 = 162 \)</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Результуюча послідовність:
+\[
+2,\ 6,\ 18,\ 54,\ 162,\ \dots
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Сума \( n \) членів геометричної прогресії</h2>
+<p>Сума \( S_n \) перших \( n \) членів \( a_1, a_2, \dots, a_n \) геометричної прогресії задається формулою:</p>
+<p>\[
+S_n = a_1 \cdot \frac{1 &#8211; r^n}{1 &#8211; r} \quad \text{for } r \neq 1
+\]</p>
+<p>Ця формула дозволяє швидко обчислити загальну суму скінченного числа членів геометричної прогресії. Наприклад, розглянемо геометричну прогресію:</p>
+<p>\[
+2,\ 4,\ 8,\ 16,\ 32
+\]</p>
+<p>Ми хочемо обчислити суму перших 5 членів (\( n = 5 \)). Використовуючи формулу, маємо:</p>
+<p>\[
+S_5 = 2 \cdot \frac{1 - 2^5}{1 - 2} = 2 \cdot \frac{1 - 32}{-1} = 2 \cdot 31 = 62
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section pb-steps"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Граничне поводження геометричної послідовності</h2>
+<p>Щодо <a href="limits.html">границь</a> геометричної послідовності, спостерігаємо наступне поводження:</p>
+<ul>
+<li>Вона розбігається до \( +\infty \), якщо \( r &gt; 1 \).</li>
+<li>Вона є сталою (тобто \( a_n = a_0 \) для кожного \( n \in \mathbb{N} \)), якщо \( q = 1 \), і тому \(\lim_{n \to +\infty} a_n = a_0 = 1.\)</li>
+<li>Вона є нескінченно малою, якщо \( |r| &lt; 1 \), тобто члени наближаються до нуля.</li>
+<li>Вона є осцилюючою (нерегулярною), якщо \( r \leq -1 \), через знакозмінність та необмежене зростання.</li>
+</ul>
+<hr>
+<p>Раніше показана прогресія:</p>
+<p>\[
+a_n = 2 \cdot 3^{n &#8211; 1}
+\]</p>
+<p>розбігається, оскільки знаменник між її членами дорівнює \( r = 3 \), що задовольняє умову \( r &gt; 1 \). У результаті члени зростають експоненціально і прямують до \( +\infty \) при зростанні \( n )\.</p>
+<hr>
+<p>Розглянемо, наприклад, геометричну прогресію, показану на рисунку:</p>
+<p>\[
+a_n = (-2)^{n - 1}
+\]</p>
+<p>Розкладаючи послідовність, спостерігаємо, що знаменник дорівнює \( r = -2 \), що задовольняє умову \( r \leq -1 \). У результаті послідовність демонструє нерегулярне осцилюючу поведінку, змінюючи знак кожного члена, тоді як абсолютні значення зростають експоненціально.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="874" height="542" src="../images/geometri-sequence-3-2.png" alt="" class="wp-image-15748" style="width:437px" srcset="../images/geometri-sequence-3-2.png 874w, https://algebrica.org/wp-content/uploads/resources/images/geometri-sequence-3-2-300x186.png 300w, https://algebrica.org/wp-content/uploads/resources/images/geometri-sequence-3-2-768x476.png 768w" sizes="(max-width: 874px) 100vw, 874px" /></figure>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке геометрична прогресія?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Геометрична прогресія — це послідовність чисел, в якій кожен член отримується множенням попереднього на сталу величину, яка називається знаменником прогресії."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як знайти n-й член геометричної прогресії?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "n-й член геометричної прогресії можна знайти за формулою an = a1 * r^(n-1), де a1 — перший член, а r — знаменник прогресії."
+      }
+    }
+  ]
+}
+</script>
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="geometric-sequence.html">algebrica.org/geometric-sequence</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

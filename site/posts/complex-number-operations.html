@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Операції з комплексними числами — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Комплексні числа</span>
+    </nav>
+    <article>
+        <h1>Операції з комплексними числами</h1>
+        <time>2025-02-05</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-24" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Метод                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="complex-numbers-introduction.html">Комплексні числа</a>, <a href="properties-of-real-numbers.html">Властивості дійсних чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-24");
+            var dataset = {"name":"root","children":[{"name":"operations","children":[{"name":"addition"},{"name":"subtraction"},{"name":"multiplication"},{"name":"division"},{"name":"reciprocal"},{"name":"conjugate division"},{"name":"closure"}]},{"name":"tools","children":[{"name":"complex conjugate"},{"name":"modulus"},{"name":"argument"},{"name":"absolute value"},{"name":"inverse"},{"name":"norm"}]},{"name":"geometry","children":[{"name":"vector form"},{"name":"polar form"},{"name":"rotation"},{"name":"scaling"},{"name":"angle"},{"name":"distance"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Вступ</h2>
+<p><a href="complex-numbers-introduction.html">Комплексним числом</a> \( z \) називають вираз вигляду \( z = a + bi \), де \( a \) та \( b \) є <a href="properties-of-real-numbers.html">дійсними числами</a>, а \( i \) — уявною одиницею, що характеризується визначальним відношенням \( i^2 = -1 \).</p>
+<p>Дійсне число \( a \) називається дійсною частиною \( z \) і позначається \( \operatorname{Re}(z) \). Дійсне число \( b \) називається уявною частиною і позначається \( \operatorname{Im}(z) \). Множина всіх комплексних чисел визначається наступним чином:</p>
+<p>\[
+\mathbb{C} := \{\, z = a + bi \mid a,\, b \in \mathbb{R} \,\}
+\]</p>
+<p>Кожне дійсне число \( a \in \mathbb{R} \) можна ототожнити з комплексним числом \( a + 0i \), тому \( \mathbb{R} \) природно вкладається в \( \mathbb{C} \) як підполе.</p>
+<hr>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><p>Множина \( \mathbb{C} \), оснащена операціями додавання та множення, визначеними в наступних розділах, утворює поле. Перед розглядом кожної операції окремо, корисно нагадати аксіоми поля, що керують арифметикою комплексних чисел.</p>
+<ul>
+<li>
+<p>Замкненість: для будь-яких \( z_1, z_2 \in \mathbb{C} \), сума \( z_1 + z_2 \) та добуток \( z_1 \cdot z_2 \) також належать до \( \mathbb{C} \).</p>
+</li>
+<li>
+<p>Комутативність та асоціативність: додавання та множення є комутативними та асоціативними, за цілкою аналогією з \( \mathbb{R} \).</p>
+</li>
+<li>
+<p>Нейтральні елементи: число \( 0 = 0 + 0i \) є нейтральним елементом за додаванням, а \( 1 = 1 + 0i \) — нейтральним елементом за множенням.</p>
+</li>
+<li>
+<p>Протилежний елемент: для кожного \( z = a + bi \) протилежним елементом є \( -z = -a &#8211; bi \), і маємо \( z + (-z) = 0 \).</p>
+</li>
+<li>
+<p>Обернений елемент: для кожного \( z \neq 0 \) існує єдиний \( z^{-1} \in \mathbb{C} \), такий що \( z \cdot z^{-1} = 1 \). Його явний вигляд виведено в розділі про ділення нижче.</p>
+</li>
+<li>
+<p>Дистрибутивність: для всіх \( z_1, z_2, z_3 \in \mathbb{C} \) виконується наступна тотожність:
+\[
+z_1 \cdot (z_2 + z_3) = z_1 \cdot z_2 + z_1 \cdot z_3
+\]</p>
+</li>
+</ul>
+<p>Дві структурні властивості відрізняють \( \mathbb{C} \) від \( \mathbb{R} \). На відміну від \( \mathbb{R} \), поле \( \mathbb{C} \) не є впорядкованим полем: на \( \mathbb{C} \) не існує цілком порядку, сумісного з його польовими операціями, і тому такі вирази, як \( z_1 &lt; z_2 \), є невизначеними для загальних комплексних чисел.</p>
+<p>Ще більш визначним є те, що \( \mathbb{C} \) є алгебраїчно замкненим: кожен несталий <a href="polynomials.html">поліном</a> з коефіцієнтами в \( \mathbb{C} \) має принаймні один корінь у \( \mathbb{C} \). Цей результат, відомий як <a href="roots-of-a-polynomial.html">основна теорема алгебри</a>, не має аналога в \( \mathbb{R} \), де поліноми, такі як \( x^2 + 1 \), не мають <a href="roots-of-a-polynomial.html">дійсних коренів</a>.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Сума та різниця комплексних чисел</h2>
+<p>Сума та різниця двох комплексних чисел визначаються покомпонентно, шляхом окремих операцій над дійсними та уявними частинами. Нехай задано \( z_1 = a + bi \) та \( z_2 = c + di \), тоді визначення мають наступний вигляд.</p>
+<p>\[
+z_1 + z_2 = (a + c) + (b + d)i
+\]
+\[
+z_1 &#8211; z_2 = (a &#8211; c) + (b &#8211; d)i
+\]</p>
+<hr>
+<p>Нехай \( z_1 = 2 &#8211; 3i \) та \( z_2 = 3 + 5i \). Щоб обчислити \( z_1 &#8211; z_2 \), ми віднімаємо дійсні частини та уявні частини окремо. Віднімання \( z_2 \) еквівалентне додаванню протилежного елемента \( -z_2 = -3 &#8211; 5i \), тому операція зводиться до покомпонентного віднімання.</p>
+<p>\[
+\begin{align}
+z_1 - z_2 &amp;= (2 - 3i) - (3 + 5i) \\[6pt]
+&amp;= (2 - 3) + (-3 - 5)i \\[6pt]
+&amp;= -1 - 8i
+\end{align}
+\]</p>
+<p>Нехай \( z_1 = -4 + 2i \) та \( z_2 = 6 &#8211; 7i \). Щоб обчислити \( z_1 + z_2 \), ми додаємо дійсні частини та уявні частини окремо, оскільки додавання в \( \mathbb{C} \) за визначенням діє покомпонентно.</p>
+<p>\[
+\begin{align}
+z_1 + z_2 &amp;= (-4 + 2i) + (6 &#8211; 7i) \\[6pt]
+&amp;= (-4 + 6) + (2 &#8211; 7)i \\[6pt]
+&amp;= 2 &#8211; 5i
+\end{align}
+\]</p>
+<h6>Сума та різниця комплексних чисел успадковують від структури поля \( \mathbb{C} \) всі алгебраїчні властивості, що виконуються в \( \mathbb{R} \): комутативність, асоціативність та дистрибутивність відносно множення.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><hr>
+<p>З геометричної точки зору комплексні числа можна інтерпретувати як <a href="vectors.html">вектори</a> на комплексній площині, де горизонтальна вісь представляє дійну частину, а вертикальна вісь — уявну частину. Дано два комплексні числа \( z_1 \) та \( z_2 \), представлені як вектори з початку координат; їхня сума \( z_1 + z_2 \) відповідає додаванню векторів за правилом паралелограма.</p>
+<ul>
+<li>
+<p>Вектор, що відповідає \( z_2 \), переноситься так, щоб його початок збігався з кінцем вектора, що відповідає \( z_1 \).</p>
+</li>
+<li>
+<p>Вектор, проведений від початку координат до нового кінця, представляє отримане комплексне число \( z_1 + z_2 \).</p>
+</li>
+</ul>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="806" height="442" src="../images/complex-numbers-sum.png" alt="Sum and difference of complex numbers." class="wp-image-22253" style="width:403px" title="Sum and difference of complex numbers." srcset="../images/complex-numbers-sum.png 806w, https://algebrica.org/wp-content/uploads/resources/images/complex-numbers-sum-300x165.png 300w, https://algebrica.org/wp-content/uploads/resources/images/complex-numbers-sum-768x421.png 768w" sizes="(max-width: 806px) 100vw, 806px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Ці дві конструкції разом забезпечують повну геометричну інтерпретацію додавання та віднімання на комплексній площині.</p>
+<p>Різниця \( z_1 - z_2 \) отримується шляхом додавання \( z_1 \) до протилежного елемента \( -z_2 \), вектор якого є відображенням \( z_2 \) відносно початку координат. Геометрично \( z_1 - z_2 \) відповідає вектору від кінця \( z_2 \) до кінця \( z_1 \), коли обидва вектори виходять з початку координат.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section  alignCenterMathjax mb-x-30"><h2>Добуток комплексних чисел</h2>
+<p>Добуток двох комплексних чисел визначається шляхом застосування розподільного закону та фундаментального співвідношення \( i^2 = -1 \). Дано \( z_1 = a + bi \) та \( z_2 = c + di \); розкриття добутку дає наступне.</p>
+<p>\[
+(a + bi)(c + di) = (ac - bd) + (ad + bc)i
+\]</p>
+<p>Цю формулу не обов'язково запам'ятовувати як правило: вона є просто результатом розподільного множення та підстановки \( i^2 = -1 \), як показано в прикладах нижче.</p>
+<p>Важливою властивістю множення в \( \mathbb{C} \) є мультиплікативність модуля. Нагадаємо, що <a href="complex-numbers-introduction.html">модуль</a> \( z = a + bi \) визначається як \( |z| = \sqrt{a^2 + b^2} \); можна перевірити, що для будь-яких \( z_1, z_2 \in \mathbb{C} \) виконується наступна тотожність.</p>
+<p>\[
+|z_1 \cdot z_2| = |z_1| \cdot |z_2|
+\]</p>
+<p>Це означає, що множення масштабує модулі двох множників. Та сама тотожність поширюється на ділення: для будь-яких \( z_1, z_2 \in \mathbb{C} \) при \( z_2 \neq 0 \) маємо наступне.</p>
+<p>\[
+\left|\frac{z_1}{z_2}\right| = \frac{|z_1|}{|z_2|}
+\]</p>
+<p>Геометричне значення обох тотожностей стає повністю прозорим у <a href="complex-numbers-trigonometric-form.html">тригонометричному представленні</a>, де при множенні аргументи додаються, а при діленні — віднімаються.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Властивості комплексного спряженого числа</h2>
+<p>Комплексне <a href="complex-numbers-introduction.html">спряжене число</a> задовольняє кільком алгебраїчним тотожностям, що випливають безпосередньо з його означення. Нехай \( z, z_1, z_2 \in \mathbb{C} \). Операція спряження є інволюцією, що означає, що її подвійне застосування повертає початкове число:</p>
+<p>\[
+\overline{\overline{z}} = z
+\]</p>
+<p>Спряження сумісне з додаванням, відніманням та множенням у наступному сенсі:</p>
+<p>\[
+\overline{z_1 + z_2} = \overline{z_1} + \overline{z_2}
+\]
+\[
+\overline{z_1 &#8211; z_2} = \overline{z_1} - \overline{z_2}
+\]
+\[
+\overline{z_1 \cdot z_2} = \overline{z_1} \cdot \overline{z_2}
+\]</p>
+<p>Ці тотожності показують, що спряження є автоморфізмом поля \( \mathbb{C}. \) Воно зберігає алгебраїчну структуру поля, залишаючи незмінним кожен елемент \( \mathbb{R}.\) Нарешті, добуток комплексного числа на його спряжене число дає квадрат модуля, що є невипадковою дійсною величиною.</p>
+<p>\[
+z \cdot \overline{z} = a^2 + b^2 = |z|^2
+\]</p>
+<p>Ця остання тотожність є ключовим кроком в обчисленні як оберненого елемента, так і частки комплексних чисел: множення знаменника на його спряжене число дає дійсне число \( |z|^2, \) на яке потім можна поділити, не залишаючи уявної частини.</p>
+<h6>Автоморфізм поля — це бієктивне відображення поля в самого себе, яке зберігає додавання та множення. Спряження задовольняє цій умові, і оскільки воно залишає незмінним кожне дійсне число, воно є автоморфізмом \( \mathbb{C} \) над \( \mathbb{R} \).</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section  alignCenterMathjax mb-x-30"><h2>Ділення комплексних чисел</h2>
+<p>Щоб поділити два комплексних числа, ми множимо і чисельник, і знаменник на комплексне спряжене до знаменника. Це усуває уявну частину зі знаменника і зводить частку до стандартного вигляду. Дано \( z_1 = a + bi \) та \( z_2 = c + di \), де \( z_2 \neq 0 \); спряжене до знаменника число має вигляд \( \overline{z_2} = c - di \), і процедура починається наступним чином.</p>
+<p>\[
+\frac{a + bi}{c + di} = \frac{(a + bi)(c - di)}{(c + di)(c - di)}
+\]</p>
+<p>Оскільки \( (c + di)(c - di) = c^2 + d^2 \), що є строго додатнім дійсним числом, коли \( z_2 \neq 0 \), частка зводиться до наступного явного вигляду.</p>
+<p>\[
+\frac{a + bi}{c + di} = \frac{ac + bd}{c^2 + d^2} + \frac{bc - ad}{c^2 + d^2}\,i
+\]</p>
+<p>Як і у випадку з множенням, цю замкнену форму не обов'язково запам'ятовувати: більш повчальним є множення на спряжене число безпосередньо в кожному окремому випадку.</p>
+<hr>
+<p>Нехай \( z_1 = 5 + 3i \) та \( z_2 = 2 &#8211; i \). Щоб обчислити частку \( z_1 / z_2 \), ми множимо і чисельник, і знаменник на спряжене до знаменника число, яке дорівнює \( \overline{z_2} = 2 + i \). Оскільки ми множимо на \( \overline{z_2} / \overline{z_2} = 1 \), значення виразу не змінюється, тоді як знаменник стає додатнім дійсним числом.</p>
+<p>\[
+\begin{align}
+\frac{5 + 3i}{2 - i} &amp;= \frac{(5 + 3i)(2 + i)}{(2 &#8211; i)(2 + i)} \\[6pt]
+&amp;= \frac{10 + 5i + 6i + 3i^2}{4 + 1} \\[6pt]
+&amp;= \frac{10 + 11i + 3(-1)}{5} \\[6pt]
+&amp;= \frac{7 + 11i}{5} \\[6pt]
+&amp;= \frac{7}{5} + \frac{11}{5}\,i
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section  alignCenterMathjax mb-x-30"><h2>Обернене до комплексного числа</h2>
+<p>Оберненим до ненульового комплексного числа \( z = a + bi \) є мультиплікативний обернений елемент \( z^{-1} \), визначений умовою \( z \cdot z^{-1} = 1 \). Це особливий випадок ділення з чисельником, що дорівнює \( 1 \), і обчислюється за тією ж технікою: множенням чисельника та знаменника на спряжене число \( \overline{z} = a - bi \). Загальна формула має наступний вигляд.</p>
+<p>\[
+z^{-1} = \frac{1}{a + bi} = \frac{a - bi}{a^2 + b^2} = \frac{a}{a^2 + b^2} &#8211; \frac{b}{a^2 + b^2}\,i
+\]</p>
+<hr>
+<p>Нехай \( z = 3 &#8211; 2i \). Щоб обчислити \( z^{-1} \), ми множимо чисельник і знаменник на спряжене число \( \overline{z} = 3 + 2i \). Знаменник стає \( |z|^2 = 3^2 + 2^2 = 13 \), що є додатнім дійсним числом, тому вираз зводиться до стандартного комплексного числа.</p>
+<p>\[
+\begin{align}
+\frac{1}{3 - 2i} &amp;= \frac{3 + 2i}{(3 &#8211; 2i)(3 + 2i)} \\[6pt]
+&amp;= \frac{3 + 2i}{9 + 4} \\[6pt]
+&amp;= \frac{3 + 2i}{13} \\[6pt]
+&amp;= \frac{3}{13} + \frac{2}{13}\,i
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Множення та ділення в тригонометричній формі</h2>
+<p>Операції множення та ділення набувають особливо прозорої геометричної інтерпретації, коли комплексні числа виражені в тригонометричній або експоненціальній формі. Розглянемо наступні комплексні числа:
+\[ z_1 = r_1(\cos\theta_1 + i\sin\theta_1) \]
+\[ z_2 = r_2(\cos\theta_2 + i\sin\theta_2) \]</p>
+<p>Їхній добуток і частка мають наступний вигляд:</p>
+<p>\[
+z_1 \cdot z_2 = r_1 r_2 \bigl(\cos(\theta_1 + \theta_2) + i\sin(\theta_1 + \theta_2)\bigr)
+\]
+\[
+\frac{z_1}{z_2} = \frac{r_1}{r_2} \bigl(\cos(\theta_1 &#8211; \theta_2) + i\sin(\theta_1 - \theta_2)\bigr)
+\]</p>
+<p>Отже, множення масштабує модулі та додає аргументи, тоді як ділення ділить модулі та віднімає аргументи. Ця геометрична структура повністю прихована в алгебраїчній формі \( a + bi \) і стає помітною лише в <a href="complex-numbers-trigonometric-form.html">тригонометричному</a> та <a href="complex-numbers-exponential-form.html">експоненціальному</a> представленнях комплексних чисел.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Як додати два комплексних числа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб додати два комплексних числа, потрібно окремо додати їхні дійсні частини та уявні частини. Наприклад, (a + bi) + (c + di) = (a + c) + (b + d)i."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як обчислити різницю між двома комплексними числами?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб відняти два комплексних числа, потрібно окремо відняти їхні дійсні частини та уявні частини. Наприклад, (a + bi) - (c + di) = (a - c) + (b - d)i."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як помножити два комплексних числа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб помножити два комплексних числа, застосуйте розподільну властивість і пам'ятайте, що i² = -1. Наприклад, (a + bi) * (c + di) = (ac - bd) + (ad + bc)i."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як поділити два комплексних числа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб поділити два комплексних числа, помножте чисельник і знаменник на спряжене до знаменника число. Наприклад, (a + bi) / (c + di) = [(a + bi) * (c - di)] / [(c + di) * (c - di)] = [(ac + bd) + (bc - ad)i] / (c² + d²)."
+      }
+    },
+     {
+      "@type": "Question",
+      "name": "Як обчислити обернене до комплексного числа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Оберненим до комплексного числа z = a + bi є 1/z = (a - bi) / (a² + b²). Це отримується шляхом множення чисельника та знаменника на комплексне спряжене до початкового числа."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="complex-number-operations.html">algebrica.org/complex-number-operations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

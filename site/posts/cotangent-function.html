@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функція котангенса — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Функція котангенса</h1>
+        <time>2025-02-25</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Функція котангенс</h2>
+<p>Функція котангенс \( f(x) = \cot(x) \) кожному куту \( x \), вираженому в радіанах, присвоює відповідне значення <a href="tangent-and-cotangent.html">котангенса</a>. Її графіком є періодична крива з періодом \( \pi \), яка має вертикальні <a href="asymptotes.html">асимптоти</a> в точках, де синус \( x \) дорівнює нулю, а саме при \( x = k\pi \) для \( k \in \mathbb{Z} \). Функція \( f(x) = \cot(x) \) має <a href="determining-the-domain-of-a-function.html">область визначення</a>, що складається з усіх дійсних чисел, за винятком цих точок, а її область значень — усі дійсні числа.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="812" height="430" src="../images/cotangent-chart-1.png" alt="" class="wp-image-6581" style="width:406px" srcset="../images/cotangent-chart-1.png 812w, https://algebrica.org/wp-content/uploads/resources/images/cotangent-chart-1-300x159.png 300w, https://algebrica.org/wp-content/uploads/resources/images/cotangent-chart-1-768x407.png 768w" sizes="(max-width: 812px) 100vw, 812px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><ul>
+<li>Область визначення: \( { x \in \mathbb{R} : x \neq k\pi \text{ для всіх } k \in \mathbb{Z} } \)</li>
+<li>Область значень: \( y \in \mathbb{R} \)</li>
+<li>Періодичність: періодична за \( x \) з періодом \( \pi \)</li>
+<li>Парність: непарна, \( \cot(-x) = -\cot(x) \)</li>
+</ul>
+<hr>
+<ul>
+<li>Котангенс \( x \) визначається як відношення <a href="sine-and-cosine.html">косинуса до синуса</a> кута \( x \).
+\[
+\cot(x) = \frac{\cos(x)}{\sin(x)}
+\]</li>
+</ul>
+<hr>
+<ul>
+<li>Корені: \( x = \frac{\pi}{2} + \pi n, \quad n \in \mathbb{Z} \)</li>
+<li>Головний корінь: \( x = \frac{\pi}{2} \)</li>
+</ul>
+<hr>
+<ul>
+<li>
+<p>Помітні границі:</p>
+<p>\[
+\lim\limits_{x \to 0} x \cot(x) = 1
+\]</p>
+<p>\[
+\lim_{x\to0^+} \cot(x) = +\infty \quad \text{та} \quad \lim_{x\to0^-} \cot(x) = -\infty
+\]</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Функція є <a href="continuous-functions.html">неперервною</a> та диференційовною на своїй області визначення.</li>
+<li><a href="derivatives.html">Похідна</a>:
+\[
+\frac{d}{dx} \cot(x) = -\csc^2(x)
+\]</li>
+</ul>
+<hr>
+<ul>
+<li><a href="indefinite-integrals.html">Невизначений інтеграл</a>:
+\[
+\int \cot(x) dx = \ln |\sin(x)| + c
+\]</li>
+</ul>
+<h5>Вичерпний огляд тригонометричних інтегралів, разом із найкориснішими методами перетворення та підстановки для розв'язання складніших випадків, доступний на сторінці про <a href="integral-of-trigonometric-functions.html">інтеграли тригонометричних функцій</a>.</h5>
+<hr>
+<ul>
+<li>Альтернативна форма функції \( \cot(x) \) з використанням уявних чисел задається формулою Ейлера. Тут \( e^{ix} \) — це <a href="exponential-function.html">показникова функція</a> з основою \( e \), а \( i \) — <a href="complex-numbers-introduction.html">уявна</a> одиниця. Виразивши синус і косинус як
+\[
+\sin(x) = \frac{e^{ix} &#8211; e^{-ix}}{2i} \quad \text{та} \quad \cos(x) = \frac{e^{ix} + e^{-ix}}{2} \] ми отримаємо функцію котангенса як
+\[
+\cot(x) = \frac{\cos(x)}{\sin(x)} = i \frac{e^{ix} + e^{-ix}}{e^{ix} &#8211; e^{-ix}}.
+\]</li>
+</ul>
+</div>
+</div></div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="cotangent-function.html">algebrica.org/cotangent-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

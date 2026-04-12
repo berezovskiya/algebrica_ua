@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Середнє гармонійне — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теорія ймовірностей та статистика</span>
+    </nav>
+    <article>
+        <h1>Середнє гармонійне</h1>
+        <time>2025-05-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section pb-steps mb-x-30 alignCenterMathjax"><h2>Що таке середнє гармонійне?</h2>
+<p><strong>Середнє гармонійне</strong> належить до ширшої родини степеневих <a href="introduction-to-the-mean.html">середніх</a> і відіграє особливу роль, коли дані, що аналізуються, комбінуються обернено, а не адитивно. Замість додавання спостережень воно бере обернене значення кожного, обчислює їх середнє арифметичне, а потім бере обернене значення результату.</p>
+<p>Це середнє особливо доречне при усередненні швидкостей, відношень або темпів, таких як швидкість, вартість за одиницю або продуктивність — випадки, коли менші значення чинять сильніший вплив на загальний баланс. Тоді як <a href="arithmetic-mean.html">середнє арифметичне</a> надає більшої ваги більшим <a href="types-of-numbers.html">числам</a>, середнє гармонійне підкреслює внесок менших, надаючи точнішу картину, коли дані змінюються обернено відносно фіксованої суми.</p>
+<hr>
+<p>У загальній формі середнє гармонійне виражається як:</p>
+<p>\[
+M_{-1} = \frac{n}{\displaystyle\sum_{i=1}^{n} \frac{1}{x_i}}
+\]</p>
+<p>де \(x_1, x_2, \ldots, x_n\) — спостережувані додатні значення, а \(n\) — загальна кількість елементів у наборі даних.</p>
+<ul>
+<li>Середнє гармонійне надає більшої ваги меншим значенням, що робить його придатним для наборів даних, заснованих на швидкостях або пропорційних величинах.</li>
+<li>Воно може бути обчислене лише для додатних, ненульових значень, оскільки передбачає обчислення оберненого значення кожного спостереження.</li>
+<li>Воно завжди менше або дорівнює <a href="geometric-mean.html">середньому геометричному</a>, яке, в свою чергу, менше або дорівнює середньому арифметичному.</li>
+<li>Коли дані представляють рівномірні виміри роботи або відстані, пройденої з різними швидкостями, середнє гармонійне виражає справжню середню швидкість точніше, ніж інші середні.</li>
+</ul>
+<h5>Середнє гармонійне часто позначається як \( M_{-1} \), оскільки воно являє собою окремий випадок у <a href="introduction-to-the-mean.html">родині середніх Гельдера</a> (або степеневих середніх), що відповідає показнику ( s = -1 ).</h5>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 1</h2>
+<p>Щоб зрозуміти, як середнє гармонійне працює на практиці, розглянемо просту ситуацію з середньою швидкістю. Уявіть автомобіль, який рухається по дорозі, розділеній на два рівних відрізки:</p>
+<ul>
+<li>На першій половині автомобіль рухається зі швидкістю 60 км/год.</li>
+<li>На другій половині він рухається швидше — 90 км/год.</li>
+</ul>
+<p>Хоча відстань однакова, час, витрачений на кожну частину подорожі, різний. Оскільки менша швидкість потребує більше часу, вона має більший вплив на загальне середнє. Тому використання середнього арифметичного \((75 \text{ km/h})\) дало б хибний результат — правильним підходом є середнє гармонійне.</p>
+<p>Підставляючи два значення швидкості у формулу, отримаємо:</p>
+<p>\[
+M_{-1} = \frac{2}{\frac{1}{60} + \frac{1}{90}} = \frac{2}{\frac{5}{180}} = \frac{360}{5} = 72
+\]</p>
+<h5>Середнє гармонійне точно відображає справжню середню швидкість, коли відстані рівні, оскільки воно враховує додатковий час, витрачений на менших швидкостях. Його формулювання відображає обернену залежність між змінними, визнаючи, що час змінюється обернено пропорційно до швидкості. По суті, середнє гармонійне описує баланс у даних, заснованих на швидкостях або пропорціях, пропонуючи точну та незміщену міру, коли значення, що усереднюються, представляють продуктивність, ефективність або швидкість, а не прямі величини.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, середня гармонійна швидкість для подорожі становить:</p>
+<p>\[
+M_h = 72 \text{ km/h}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline pb-table-to-content"><h2>Приклад 2</h2>
+<p>Розглянемо сценарій з машиною, яка працює з різними темпами виробництва протягом п’яти рівних часових періодів. Кожен період має однакову тривалість, але темп випуску, виміряний в одиницях на хвилину, змінюється через різну ефективність або умови навантаження.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Період</th>
+<th style="text-align:center">Темп (одиниць/хвилину)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">15</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">9</td>
+</tr>
+</tbody>
+</table>
+<p>Оскільки кожен інтервал має однакову тривалість, правильний спосіб знайти загальний середній темп — через середнє гармонійне, а не арифметичне. Це пояснюється тим, що повільніші періоди мають сильніший вплив на кінцевий результат, відображаючи обернену залежність між часом і темпом.</p>
+<p>Підставляючи спостережувані значення, отримаємо:</p>
+<p>\[
+\begin{align}
+M_{-1} &amp;= \frac{5}{\frac{1}{10} + \frac{1}{12} + \frac{1}{8} + \frac{1}{15} + \frac{1}{9}} \\[3pt]
+&amp;= \frac{5}{0.1 + 0.0833 + 0.125 + 0.0667 + 0.1111} \\[8pt]
+&amp;= \frac{5}{0.4861} \approx 10.29
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, середній гармонійний темп виробництва приблизно дорівнює:</p>
+<p>\[
+M_{-1} \approx 10.3 \text{ units per minute}
+\]</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When should the harmonic mean be used?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The harmonic mean is appropriate when averaging rates, ratios, or speeds over equal distances or time intervals. It is especially useful when the data represent quantities such as velocity, cost per unit, or efficiency — cases where smaller values have a greater impact on the overall average."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the harmonic mean smaller than the arithmetic mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The harmonic mean gives more weight to smaller values because it is based on the reciprocals of the observations. As a result, slower or smaller quantities reduce the overall average more significantly. For any positive dataset, the following relationship always holds: harmonic mean ≤ geometric mean ≤ arithmetic mean."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the harmonic mean be calculated if one of the values is zero or negative?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The harmonic mean can only be calculated for positive, non-zero values because it involves taking the reciprocal of each observation. If any value is zero or negative, the formula becomes undefined or loses its intended meaning."
+      }
+    }
+  ]
+}
+</script>
+
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="harmonic-mean.html">algebrica.org/harmonic-mean</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

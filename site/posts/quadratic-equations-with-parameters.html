@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квадратні рівняння з параметрами — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Квадратні рівняння з параметрами</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-12" style="height:460px;min-height:460px;max-height:460px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:460px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-12");
+            var dataset = {"name":"root","children":[{"name":"структура","children":[{"name":"квадратична форма"},{"name":"коефіцієнти параметрів"},{"name":"умова параметрів"},{"name":"модель параболи"},{"name":"провідний коефіцієнт"},{"name":"стандартна форма"}]},{"name":"аналіз","children":[{"name":"дискримінант"},{"name":"аналіз знаків"},{"name":"інтервали параметрів"},{"name":"дійсні корені"},{"name":"комплексні корені"},{"name":"подвійний корінь"}]},{"name":"властивості","children":[{"name":"поведінка коренів"},{"name":"варіація параметрів"},{"name":"два дійсні корені"},{"name":"подвійний корінь"},{"name":"комплексні корені"},{"name":"добуток коренів"},{"name":"відношення Вієта"},{"name":"нерівність параметрів"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 460;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Означення</h2>
+<p><a href="quadratic-equations.html">Квадратні рівняння</a> зазвичай вводяться в їхній класичній формі, де всі коефіцієнти є фіксованими дійсними числами. Стандартний вираз слугує базовою моделлю для кожного рівняння другого степеня:
+\[
+a x^{2} + b x + c = 0
+\]</p>
+<p>Ключові ідеї квадратних рівнянь тісно пов'язані з геометрією <a href="parabola.html">параболи</a> та поведінкою <a href="quadratic-formula.html">дискримінанта</a>. Ці елементи визначають, як вигинається графік, де лежить його вершина і чи має рівняння два дійсні розв'язання, один повторений корінь або пару <a href="quadratic-equations-with-complex-solutions.html">комплексних коренів</a>.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="512" src="../images/quadratic-equations-params-6.png" alt="" class="wp-image-26026" style="width:306px" title="Graph of a parabola defined by a quadratic equation." srcset="../images/quadratic-equations-params-6.png 612w, https://algebrica.org/wp-content/uploads/resources/images/quadratic-equations-params-6-300x251.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Однак у багатьох ситуаціях коефіцієнти не є сталими, а залежать від зовнішньої величини, яку ми розглядаємо як параметр. Замість того, щоб бути фіксованими, числа \( a \), \( b \) та \( c \) стають функціями дійсного параметра \( k \). Таким чином, параметричне квадратне рівняння можна записати в більш загальній формі:</p>
+<p>\[
+a(k)\,x^{2} + b(k)\,x + c(k) = 0
+\]
+\[
+a(k) \ne 0
+\]</p>
+<p>Умова \( a(k) \ne 0\) запобігає перетворенню рівняння на <a href="linear-equations-with-parameters.html">лінійне рівняння з параметрами</a> при зміні параметра, гарантуючи, що воно зберігає структуру квадратного рівняння для всіх допустимих значень \( k \).</p>
+<h6>Ця сторінка присвячена квадратному випадку. Для ширшого обговорення параметричних рівнянь різних степенів див. <a href="equations-with-parameters.html">рівняння з параметрами</a>.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Роль дискримінанта</h2>
+<p>Дискримінант дозволяє зрозуміти, як поводяться розв'язання квадратного рівняння. Коли коефіцієнти залежать від параметра, ця ідея залишається незмінною, але сам дискримінант стає функцією цього параметра. Виходячи з коефіцієнтів \( a(k) \), \( b(k) \) та \( c(k) \), ми отримаємо:</p>
+<p>\[
+\Delta(k) = b(k)^{2} &#8211; 4\,a(k)\,c(k)
+\]</p>
+<p>Записаний в такій формі, дискримінант дає уявлення про те, що відбувається з коренями для кожного значення \( k \). Його знак повідомляє нам усе необхідне:</p>
+<ul>
+<li>Коли \( \Delta(k) &gt; 0 \), рівняння має два різні дійсні розв'язання.</li>
+<li>Коли \( \Delta(k) = 0 \), рівняння має одне дійсне розв'язання, яке є подвійним коренем.</li>
+<li>Коли \( \Delta(k) &lt; 0 \), рівняння має два <a href="quadratic-equations-with-complex-solutions.html">комплексно-спряжених розв'язання</a>.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Почнемо з дуже простого випадку та розглянемо квадратне рівняння:
+\[
+x^{2} + kx + 1 = 0
+\]</p>
+<p>Цей приклад є корисним, оскільки кожен коефіцієнт залежить від параметра \( k \) простим чином:</p>
+<p>\[
+a(k) = 1 \qquad b(k) = k \qquad c(k) = 1
+\]</p>
+<p>Перед аналізом коренів корисно згадати, як визначається дискримінант у загальному випадку. Для квадратного рівняння в стандартній формі дискримінант дорівнює:</p>
+<p>\[
+\Delta = b^{2} &#8211; 4ac
+\]</p>
+<p>і його знак визначає характер розв'язань. Тепер дослідимо, як змінюється дискримінант, коли коефіцієнти залежать від параметра \(k\). Підставивши \( a(k) \), \( b(k) \) та \( c(k) \) у ту саму формулу, ми отримаємо:</p>
+<p>\[
+\Delta(k) = b(k)^{2} - 4\,a(k)\,c(k)
+\]</p>
+<p>Вираз спрощується до:</p>
+<p>\[
+\Delta(k) = k^{2} &#8211; 4
+\]</p>
+<p>Щоб зрозуміти, коли існують дійсні розв'язання, ми дослідимо <a href="quadratic-inequalities.html">квадратну нерівність</a>:</p>
+<p>\[
+k^{2} &#8211; 4 \ge 0
+\]</p>
+<p>Її розв'язання дає два окремі проміжки:</p>
+<p>\[
+k \le -2
+\quad\text{або}\quad
+k \ge 2
+\]</p>
+<p>Для цих значень параметра дискримінант є додатним, і квадратне рівняння має два різні дійсні корені. У граничних точках \( k = \pm 2 \) дискримінант стає рівним нулю, і рівняння має один повторений розв'язок. Коли:</p>
+<p>\[
+-2 &lt; k &lt; 2
+\]</p>
+<p>дискримінант є від'ємним, і рівняння більше не має дійсних коренів. Замість цього воно дає пару комплексних спряжених розв'язань. Наступна таблиця узагальнює <a href="sign-analysis-in-inequalities.html">аналіз знаків</a> виразів \(k - 2\), \(k + 2\) та їхнього добутку, підкреслюючи, як змінюється знак на трьох проміжках, визначених критичними точками \(k = -2\) та \(k = 2\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign mt-x-20 mb-x-30"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ -2 \]</th>
+<th style="text-align:center">\[ 2 \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( k - 2 &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( k + 2 &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( (k - 2)(k + 2) &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Коли корені виявляються дійсними, корисно мати для них явний вираз.<br>
+Застосувавши формулу коренів квадратного рівняння до цього конкретного сімейства, два дійсних розв'язання можна записати у замкненій формі як</p>
+<p>\[
+x = \frac{-k \pm \sqrt{k^{2} - 4}}{2}
+\]</p>
+<p>Цей вираз прямо показує, як кожен корінь залежить від параметра \(k\), і дозволяє дослідити, як розв'язання рухаються вздовж дійсної прямої при зміні \(k\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>З аналізу вище випливають такі остаточні результати:</p>
+<ul>
+<li>Якщо \( k &lt; -2 \) або \( k &gt; 2 \), рівняння має два дійсні та різні розв'язання.</li>
+<li>Якщо \( k = \pm 2 \), існує один дійсний подвійний корінь.</li>
+<li>Якщо \( -2 &lt; k &lt; 2 \), рівняння має два комплексних спряжених розв'язання.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Геометрична інтерпретація зміни параметрів</h2>
+<p>Повертаючись до квадратного рівняння, використаного в прикладі 1, також корисно розглянути, як змінюється графік відповідної параболи при зміні параметра \(k\). Кожному значенню \(k\) ми можемо поставити у відповідність <a href="parabola.html">параболу</a>:</p>
+<p>\[
+y = x^{2} + kx + 1
+\]</p>
+<p>отже, аналіз коренів еквівалентний дослідженню того, де ця крива перетинає вісь x. У міру зміни параметра все сімейство парабол зміщується плавним і передбачуваним чином. Один зі способів описати цю еволюцію — дослідити, що відбувається у трьох ключових режимах параметра.</p>
+<hr>
+<p>Коли \(|k|\) стає дуже великим (\(k \to +\infty\) або \(k \to -\infty\)), лінійний член \(kx\) домінує у виразі, і два корені значно віддаляються один від одного. Простий <a href="asymptotes.html">асимптотичний</a> аргумент показує, що один корінь прямує до \(0\), тоді як інший поводиться приблизно як \(-k\). Геометрично це означає, що точки перетину розходяться: одна залишається близько до початку координат, а інша віддаляється все далі вздовж від'ємної осі. Парабола стає все більш нахиленою на вигляд.</p>
+<hr>
+<p>При критичних значеннях \(k = \pm 2\) дискримінант стає рівним нулю. Це відповідає моменту, коли парабола торкається осі x рівно в одній точці. У цих випадках графік має єдину точку дотику, рівняння має один повторюваний корінь, а вершина лежить точно на осі.</p>
+<hr>
+<p>На проміжку \(-2 &lt; k &lt; 2\) дискримінант від'ємний, тому рівняння не має дійсних розв'язань. З геометричної точки зору це означає, що парабола взагалі не перетинає вісь x. Оскільки старший коефіцієнт є додатним, парабола завжди відкрита вгору, і в цій області параметрів вершина лежить строго вище осі x. Як результат, вся крива залишається по один бік від осі, що відображає той факт, що розв'язання переходять у комплексну площину.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Тепер розглянемо приклад, дещо складніший за попередній. Розглянемо квадратне рівняння, що залежить від параметра:</p>
+<p>\[
+(a + 2)x^{2} + (3a - 1)x + (a - 4) = 0
+a \neq -2
+\]</p>
+<p>де умова \(a \neq -2\) гарантує, що коефіцієнт при \(x^{2}\) не перетворюється на нуль, тому вираз залишається справжнім квадратним рівнянням для кожного допустимого значення параметра. Наша мета — визначити, при яких значеннях \(a\) рівняння має два різні дійсні розв'язання. Як зазвичай, це залежить від знака <a href="quadratic-formula.html">дискримінанта</a>. Щоб уникнути плутанини з параметром \(a\), позначимо коефіцієнти даного квадратного рівняння як \(A\), \(B\), \(C\), так що загальна формула має вигляд:</p>
+<p>\[
+\Delta = B^{2} &#8211; 4AC
+\]</p>
+<p>Підставимо коефіцієнти даного квадратного рівняння і отримаємо:</p>
+<p>\[
+\Delta(a) = (3a - 1)^{2} - 4(a + 2)(a - 4)
+\]</p>
+<hr>
+<p>Розкриваючи дві частини, наводячи лише основні проміжні кроки, спочатку обчислимо квадрат:</p>
+<p>\[
+(3a - 1)^{2} = 9a^{2} - 6a + 1
+\]</p>
+<p>Потім добуток, що містить квадратні та сталі коефіцієнти:</p>
+<p>\[
+(a + 2)(a - 4) = a^{2} - 2a - 8
+\]</p>
+<p>Підставивши ці вирази назад у дискримінант і згрупувавши подібні доданки, отримаємо спрощену форму:</p>
+<p>\[
+\Delta(a) = 5a^{2} + 2a + 33
+\]</p>
+<hr>
+<p>Це квадратна функція від \(a\) з додатним старшим коефіцієнтом. Щоб зрозуміти, чи може вона бути рівною нулю або бути від'ємною, дослідимо її дискримінант:</p>
+<p>\[
+2^{2} &#8211; 4 \cdot 5 \cdot 33 = 4 &#8211; 660 &lt; 0
+\]</p>
+<p>Оскільки це значення є від'ємним, парабола, що відповідає виразу (5a^{2} + 2a + 33), ніколи не перетинає горизонтальну вісь: вона залишається строго додатною для всіх дійсних значень \(a\). Отже:</p>
+<p>\[
+\Delta(a) &gt; 0 \quad \forall a \in \mathbb{R}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Рівняння має два дійсні та різні розв'язання для кожного дійсного значення параметра \(a\), за винятком \(a = -2\), яке слід виключити, оскільки воно зробило б коефіцієнт при \(x^{2}\) рівним нулю і перетворило б вираз на рівняння першого степеня.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Розглянемо квадратне рівняння, що залежить від параметра:</p>
+<p>\[
+x^{2} - (a - 4)x + (a^{2} - a) = 0
+\]</p>
+<p>де \(a\) — дійсний параметр. Ми хочемо визначити значення \(a\), при яких добуток двох розв'язань є строго меншим за \(2\). Для загального квадратного рівняння вигляду:</p>
+<p>\[
+x^{2} + bx + c = 0
+\]</p>
+<p>добуток розв'язань задовольняє тотожність \(x_{1}x_{2} = c\).</p>
+<h6>Ця тотожність випливає з <a href="factoring-quadratic-equations.html">розкладеної форми</a> монічного квадратного рівняння, де \(x^{2} + bx + c = (x - x_{1})(x - x_{2})\). Після розкриття добутку сталий член має вигляд \(x_{1}x_{2}\), що пояснює, чому добуток розв'язань дорівнює \(c\).</h6>
+<hr>
+<p>У цьому випадку сталий член \(c = a^{2} - a\), і вимога, щоб добуток двох розв'язань був меншим за \(2\), перетворюється на нерівність:</p>
+<p>\[
+a^{2} - a &lt; 2
+\]</p>
+<p>Переносячи всі доданки вліво, отримаємо нерівність:</p>
+<p>\[
+a^{2} - a - 2 &lt; 0
+\]</p>
+<p>Квадратний <a href="polynomials.html">поліном</a> зліва розкладається як</p>
+<p>\[
+a^{2} - a - 2 = (a - 2)(a + 1)
+\]</p>
+<p>Критичними точками, отже, є (a = -1) та (a = 2). Щоб визначити, де вираз є від'ємним, проаналізуємо знаки двох множників.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign mt-x-20 mb-x-30"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[-1\]</th>
+<th style="text-align:center">\[ 2\]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( a - 2 &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( a + 1 &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( (a - 2)(a + 1) &lt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Таблиця знаків показує, що \((a &#8211; 2)(a + 1) &lt; 0\), коли параметр лежить між двома коренями:</p>
+<p>\[
+-1 &lt; a &lt; 2
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Добуток розв'язків задовольняє нерівність \(x_{1}x_{2} &lt; 2\) тоді і тільки тоді, коли \(-1 &lt; a &lt; 2.\)</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що означає, що квадратне рівняння залежить від параметра?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Квадратне рівняння, що залежить від параметра, — це рівняння, у якому коефіцієнти a, b і c залежать від змінної стали (параметра), такої як k або a. Це створює ціле сімейство пов'язаних рівнянь, розв'язки та визначник яких змінюються залежно від значення параметра."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як змінюється визначник при введенні параметра?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "При введенні параметра визначник стає функцією цього параметра. Його знак — додатний, нуль або від'ємний — визначає, чи має рівняння два дійсних розв'язки, один повторений розв'язок або два комплексних розв'язки відповідно."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як значення параметра впливають на кількість дійсних розв'язків?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Кількість дійсних розв'язків залежить від знака визначника при зміні параметра. Якщо визначник додатний, рівняння має два дійсних корені; якщо він дорівнює нулю, рівняння має один подвійний корінь; якщо він від'ємний, корені є комплексними. Критичні значення параметра вказують на переходи між цими типами розв'язків."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="quadratic-equations-with-parameters.html">algebrica.org/quadratic-equations-with-parameters</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комплексні числа — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Комплексні числа</span>
+    </nav>
+    <article>
+        <h1>Комплексні числа</h1>
+        <time>2025-02-05</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-25" style="height:420px;min-height:420px;max-height:420px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:420px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">5</div>
+                                <div class="s-c-t-c-label">Дозволяє вивчити</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="quadratic-equations.html">Квадратні рівняння</a>, <a href="types-of-numbers.html">Типи чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-25");
+            var dataset = {"name":"root","children":[{"name":"construction","children":[{"name":"imaginary unit"},{"name":"cartesian product"},{"name":"ordered pairs"},{"name":"addition rule"},{"name":"multiplication rule"},{"name":"closure properties"}]},{"name":"representation","children":[{"name":"algebraic form"},{"name":"real part"},{"name":"imaginary part"},{"name":"purely imaginary"},{"name":"complex conjugate"},{"name":"argument"}]},{"name":"geometry and properties","children":[{"name":"argand plane"},{"name":"modulus"},{"name":"pythagorean relation"},{"name":"field structure"},{"name":"identities and inverses"},{"name":"non orderability"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 420;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Вступ</h2>
+<p>Комплексні числа виникають для подолання обмежень множини <a href="types-of-numbers.html">дійсних чисел</a> \(\mathbb{R}\), зокрема неможливості добування коренів парного степеня з від'ємних чисел. Одним із основних наслідків цього обмеження є неможливість визначити розв'язання <a href="quadratic-equations.html">квадратного рівняння</a> з від'ємним <a href="quadratic-formula.html">дискримінантом</a>.</p>
+<p>У множині <a href="properties-of-real-numbers.html">дійсних чисел</a> \( \mathbb{R} \) неможливо знайти число, квадрат якого дорівнює \(-1\), оскільки квадрат будь-якого дійсного числа завжди є невипадковою величиною (невід'ємним). Отже, розв'язання рівняння \( p(x) = x^2 + 1 = 0 \) не має розв'язків у \( \mathbb{R} \). Дійсно, це призвело б до \( x^2 = -1 \), що ніколи не виконується в множині дійсних чисел \( \mathbb{R} \).</p>
+<p>Починаючи саме з цього рівняння, ми вводимо символ \( i \), відомий як уявна одиниця, яка визначається властивістю:
+\[ i^2 = -1 \]</p>
+<p>Таким чином, рівняння \( x^2 + 1 = 0 \) має два різні комплексні корені, що дорівнюють \( \pm i \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Побудова комплексних чисел</h2>
+<p>Запровадження комплексних чисел іноді розглядають як питання зручного позначення, ніби символ \( i \) просто оголошується таким, що задовольняє \( i^2 = -1 \), і питання вважається вирішеним. Такий підхід залишає без відповіді важливе питання: чи існує насправді такий об'єкт, і якщо так, то в якому математичному сенсі? Відповідь вимагає короткої екскурсії в побудову \( \mathbb{C} \) з дійсних чисел.</p>
+<p>Початковою точкою є декартовий добуток \( \mathbb{R}^2 \), множина всіх впорядкованих пар дійсних чисел. Кожен елемент цієї множини є парою вигляду \( (a, b) \), де \( a, b \in \mathbb{R} \). Ця множина відома як геометричний об'єкт, а саме евклідова площина, але мета тут — наділити її алгебраїчною структурою, перетворивши її на поле. Для цього на \( \mathbb{R}^2 \) мають бути визначені дві бінарні операції: додавання та множення.</p>
+<p>Додавання визначається покомпонентно. Дано дві пари \( (a, b) \) та \( (c, d) \), їхня сума є наступною:
+\[
+(a,\, b) + (c,\, d) \;=\; (a + c,\; b + d)
+\]
+Це природне розширення додавання <a href="vectors.html">векторів</a> на площині й не викликає труднощів.</p>
+<hr>
+<p>Множення є більш тонким, і саме тут алгебраїчна структура комплексних чисел відрізняється від структури \( \mathbb{R}^2 \), розглянутої лише як векторний простір. Добуток двох пар визначається наступним чином:
+\[
+(a,\, b) \cdot (c,\, d) \;=\; (ac &#8211; bd,\; ad + bc)
+\]
+Це правило не є довільним. Це єдине множення, яке перетворює \( \mathbb{R}^2 \) на поле, що розширює \( \mathbb{R} \), що стане очевидним, як тільки зв'язок зі стандартним алгебраїчним позначенням буде роз'яснений. Множина \( \mathbb{R}^2 \), наділена цими двома операціями, позначається \( \mathbb{C} \), а її елементи називаються комплексними числами.</p>
+<p>Дійсні числа природно вбудовуються в \( \mathbb{C} \) через ідентифікацію \( a \mapsto (a, 0) \). Можна безпосередньо перевірити, що це відображення зберігає як додавання, так і множення, отже \( \mathbb{R} \) міститься всередині \( \mathbb{C} \) як підполе в точному алгебраїчному сенсі. Елемент \( (0, 1) \), який не має відповідника в цій вбудованій копії \( \mathbb{R} \), відіграє особливу роль. Обчислення його квадрата за правилом множення дає наступний результат:
+\[
+(0,\, 1) \cdot (0,\, 1) \;=\; (0 \cdot 0 &#8211; 1 \cdot 1,\; 0 \cdot 1 + 1 \cdot 0) \;=\; (-1,\; 0)
+\]
+За наведеною вище ідентифікацією пара \( (-1, 0) \) відповідає дійсному числу \( -1 \). Іншими словами, елемент \( (0, 1) \) множини \( \mathbb{C} \) задовольняє саме той зв'язок, який традиційно вимагається від символу \( i \). Цей елемент називається уявною одиницею і позначається \( i \), так що за означенням \( i = (0, 1) \) і, як наслідок, \( i^2 = -1 \). Таким чином, властивість \( i^2 = -1 \) є не постулатом, накладеним на невизначений символ, а теоремою, що випливає з правила множення на \( \mathbb{R}^2 \).</p>
+<p>З цим позначенням кожне комплексне число \( (a, b) \) може бути розкладене як комбінація двох базисних елементів \( (1, 0) \) та \( (0, 1) \), які відповідають \( 1 \) та \( i \) відповідно. Розклад набуває знайомого вигляду \( a + bi \), оскільки виконується наступний ланцюг рівностей:
+\[
+\begin{align}
+(a,\, b) &amp;= (a,\, 0) + (0,\, b) \\[6pt]
+&amp;= a\cdot(1,\, 0) + b\cdot(0,\, 1) \\[6pt]
+&amp;= a + bi
+\end{align}
+\]
+Позначення \( z = a + bi \) таким чином є компактним кодуванням впорядкованої пари \( (a, b) \), де \( a \) називається дійсною частиною, а \( b \) — уявною частиною \( z \). Вони записуються як \( \mathrm{Re}(z) = a \) та \( \mathrm{Im}(z) = b \). Зауважимо, що уявна частина — це дійсне число \( b \), а не величина \( bi \).</p>
+<hr>
+<p>Залишається перевірити, чи виконуються алгебраїчні властивості, що очікуються від поля. Перевірка є переважно механічною, але варто її підсумувати. Відносно додавання \( \mathbb{C} \) утворює абелеву групу: комутативність та асоціативність успадковуються безпосередньо від \( \mathbb{R} \), нейтральним елементом по додаванню є \( (0, 0) \), а протилежним елементом до \( (a, b) \) є \( (-a, -b) \).</p>
+<p>Множення також є комутативним і асоціативним, що можна підтвердити прямим обчисленням, а нейтральним елементом по множенню є \( (1, 0) \). Дистрибутивний закон виконується. Єдина властивість, що потребує справжньої уваги, — це існування обернених елементів по множенню для ненульових елементів. Дано \( (a, b) \neq (0, 0) \), перевіримо, що його обернений елемент по множенню — це наступна пара:
+\[
+(a,\, b)^{-1} \;=\; \left(\frac{a}{a^2 + b^2},\; \frac{-b}{a^2 + b^2}\right)
+\]
+Знаменник \( a^2 + b^2 \) є строго додатним саме тоді, коли \( (a, b) \neq (0, 0) \), що гарантує коректність формули для кожного ненульового комплексного числа. Висновок полягає в тому, що \( \mathbb{C} \), як побудоване, є полем. Більше того, оскільки \( \mathbb{R} \) вбудовується в нього як підполе, \( \mathbb{C} \) є полем розширень \( \mathbb{R} \). Це і є той точний математичний сенс, у якому комплексні числа розширюють систему дійсних чисел.</p>
+<p>Можна також зауважити, що як векторний простір над \( \mathbb{R} \), поле \( \mathbb{C} \) має розмірність два з базисом \( {1, i} \). Саме ця двовимірність робить геометричну інтерпретацію на комплексній площині такою природною: дійсна та уявна частини комплексного числа слугують координатами відносно цього базису.</p>
+<p>Описана побудова також узагальнюється: заміна \( \mathbb{R} \) довільним полем \( F \) та пошук розширення, в якому обраний незвідний <a href="polynomials.html">поліном</a> має корінь, призводить до ширшої теорії розширень полів, для якої \( \mathbb{C} \cong \mathbb{R}[x]/(x^2 + 1) \) є найпростішим і найважливішим прикладом.</p>
+</div><h2>Означення</h2>
+<p>Комплексним числом \( z \) називається число вигляду \( z = a + bi \), де \( a \) та \( b \) — дійсні числа. Множина комплексних чисел позначається \( \mathbb{C} \) і формально визначається наступним чином:
+\[
+\mathbb{C} := { z = a + ib \mid a, b \in \mathbb{R}}
+\]
+Нехай \( z \) — будь-яке комплексне число. Величину \( a \) називають дійсною частиною \( z \) і позначають \( \mathrm{Re}(z) \), а \( b \) називають уявною частиною \( z \) і позначають \( \mathrm{Im}(z) \):
+\[
+z = a + ib \quad \rightarrow \quad
+\begin{cases}
+\mathrm{Re}(z) = a \\[0.6em]
+\mathrm{Im}(z) = b \\
+\end{cases}
+\]</p>
+<ul>
+<li>Представлення \( z = a + ib \) називається алгебраїчною формою комплексного числа. Як було встановлено в наведеній вище побудові, комплексне число \( a + bi \) є впорядкованою парою \( (a, b) \in \mathbb{R} \times \mathbb{R} \), а множина \( \mathbb{C} \) збігається з декартовим добутком \( \mathbb{R} \times \mathbb{R} \), оснащеним відповідними операціями.</li>
+<li>Комплексне число \( z = 2 + 3i \) має дійсну частину \( 2 \) та уявну частину \( 3 \).</li>
+<li>Числа вигляду \( z = ib \) називаються чисто уявними числами.</li>
+</ul>
+<hr>
+<p>Хоча алгебраїчна форма є найбільш відомим представленням комплексних чисел, альтернативним і часто потужнішим способом їх вираження є їхня полярна <a href="complex-numbers-trigonometric-form.html">тригонометрична форма</a>:
+\[z = r (\cos\theta + i\sin\theta) \]
+Іншим представленням є <a href="complex-numbers-exponential-form.html">показникова форма</a>:
+\[z = r e^{i\theta} \]</p>
+</div>
+
+
+
+<div class="wp-block-group alignCenterMathjax pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Комплексна площина</h2>
+<p>Завдяки структурі множини \( \mathbb{C} \) як декартового добутку, комплексні числа можуть бути представлені геометрично на комплексній площині (також відомій як площина Гаусса або Арганда), де дійсна частина відповідає координаті \( x \), а уявна частина відповідає координаті \( y \). Таким чином, комплексне число:</p>
+<p>\[ z = x + iy \]</p>
+<p>може бути представлене як точка \( (x, y) \) на площині, яка відома як площина Гаусса (або комплексна площина).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="766" height="532" src="../images/complex-numbers-8.png" alt="" class="wp-image-25989" style="width:383px" srcset="../images/complex-numbers-8.png 766w, https://algebrica.org/wp-content/uploads/resources/images/complex-numbers-8-300x208.png 300w" sizes="(max-width: 766px) 100vw, 766px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Чисто уявне число представляється впорядкованою парою \( i = (0,1) \).</p>
+</div>
+
+
+
+<div class="wp-block-group alignCenterMathjax pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Спряжене число та модуль</h2>
+<p>Дано комплексне число \( z = a + bi \), тоді спряженим до \( z \) називається комплексне число:</p>
+<p>\[ \overline{z} = a - bi \]</p>
+<p>\( \overline{z} \) представляється на комплексній площині точкою, симетричною відносно \( z \) щодо осі \( x \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="724" height="572" src="../images/quad-eq-complex-roots.png" alt="" class="wp-image-25830" style="width:362px" srcset="../images/quad-eq-complex-roots.png 724w, https://algebrica.org/wp-content/uploads/resources/images/quad-eq-complex-roots-300x237.png 300w" sizes="(max-width: 724px) 100vw, 724px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><hr>
+<p>Дано комплексне число \( z = a + bi \), тоді модуль \( z \) визначається як:</p>
+<p>\[
+|z| = \sqrt{a^2 + b^2}
+\]</p>
+<p>Він представляє відстань від початку координат до точки \( (a, b) \) на комплексній площині. Це означення безпосередньо випливає з <a href="pythagorean-theorem.html">теореми Піфагора</a>, оскільки модуль відповідає гіпотенузі прямокутного трикутника з катетами довжиною \( |a| \) та \( |b| \):</p>
+<p>\[
+|z|^2 = a^2 + b^2
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="796" height="620" src="../images/complex-numbers-6.png" alt="" class="wp-image-25987" style="width:398px" srcset="../images/complex-numbers-6.png 796w, https://algebrica.org/wp-content/uploads/resources/images/complex-numbers-6-300x234.png 300w, https://algebrica.org/wp-content/uploads/resources/images/complex-numbers-6-768x598.png 768w" sizes="(max-width: 796px) 100vw, 796px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад</h2>
+<p>Розглянемо комплексне число \(z = 3 + 2i\). Використовуючи формулу модуля, підставимо \( a = 3 \) та \( b = 2 \):</p>
+<p>\[|z| = \sqrt{3^2 + 2^2} = \sqrt{9 + 4} = \sqrt{13}\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Таким чином, модуль \( z = 3 + 2i \) дорівнює:</p>
+<p>\[|z| = \sqrt{13} \approx 3.61 \]</p>
+<h5>Це значення представляє відстань від \( z \) до початку координат на комплексній площині для комплексного числа \(3 + 2i\).</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Аргумент</h2>
+<p>Аргументом комплексного числа \( z = a + bi \) є кут \( \theta \), що утворюється між позитивною дійсною віссю та відрізком, що з'єднує початок координат із точкою \( (a, b) \) на комплексній площині. Він вимірюється в радіанах, проти годинникової стрілки від позитивної дійсної осі, і позначається як \( \arg(z) \).</p>
+<p>Аргумент не є однозначно визначеним: будь-які два кути, що відрізняються на ціле кратне \( 2\pi \), описують той самий геометричний напрямок. Щоб усунути цю неоднозначність, зазвичай працюють із головним аргументом, що позначається \( \mathrm{Arg}(z) \), який є єдиним значенням \( \theta \), що задовольняє наступну умову:
+\[
+-\pi &lt; \mathrm{Arg}(z) \leq \pi
+\]</p>
+<p>Обчислення аргументу потребує обережності, оскільки наївна формула \( \theta = \arctan(b/a) \) є недостатньою: функція арктангенс повертає значення лише в інтервалі \( (-\pi/2,, \pi/2) \), що охоплює лише праву половину комплексної площини та взагалі не працює, коли \( a = 0 \). Правильне визначення \( \theta \) залежить від квадранта, в якому лежить точка \( (a, b) \), і має розглядатися окремо для кожного випадку.</p>
+<p>Коли \( a &gt; 0 \), точка лежить у правій напівплощині, і головний аргумент задається безпосередньо арктангенсом.
+\[
+\mathrm{Arg}(z) = \arctan\!\left(\frac{b}{a}\right)
+\]
+Коли \( a &lt; 0 \) і \( b \geq 0 \), точка лежить у другому квадранті, і необхідно додати поправку \( \pi \), щоб привести кут до правильного діапазону.
+\[
+\mathrm{Arg}(z) = \arctan\!\left(\frac{b}{a}\right) + \pi
+\]
+Коли \( a &lt; 0 \) і \( b &lt; 0 \), точка лежить у третьому квадранті, і поправка становить \( -\pi \).
+\[
+\mathrm{Arg}(z) = \arctan\!\left(\frac{b}{a}\right) &#8211; \pi
+\]
+Коли \( a = 0 \), точка лежить на уявній осі, і арктангенс не визначений. У цьому випадку аргумент визначається безпосередньо зі знака \( b \): якщо \( b &gt; 0 \), то \( \mathrm{Arg}(z) = \pi/2 \), а якщо \( b &lt; 0 \), то \( \mathrm{Arg}(z) = -\pi/2 \). Випадок \( z = 0 \) виключається, оскільки аргумент початку координат не визначений.</p>
+<hr>
+<p>Для ілюстрації розглянемо комплексне число \( z = -1 + i \). Його дійсна частина від'ємна, а уявна частина додатна, отже точка лежить у другому квадранті. Застосування арктангенса до відношення \( b/a = 1/(-1) = -1 \) дає \( \arctan(-1) = -\pi/4 \), що потрапляє в четвертий квадрант і, отже, є неправильним. Оскільки \( a &lt; 0 \) і \( b \geq 0 \), необхідно застосувати поправку \( +\pi \), що дає наступне:
+\[
+\mathrm{Arg}(z) = -\frac{\pi}{4} + \pi = \frac{3\pi}{4}
+\]
+Це значення узгоджується з геометричним положенням \( z = -1 + i \): точка лежить на рівній відстані від обох осей у другому квадранті, утворюючи кут \( 135° \) з позитивною дійсною віссю.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax pb-steps"><h2>Властивості \(\mathbb{C}\)</h2>
+<p><a href="complex-number-operations.html">Сума та добуток</a> комплексних чисел задовольняють асоціативну, комутативну та дистрибутивну властивості, так само як і множина дійсних чисел.
+Асоціативна властивість для суми та добутку. При додаванні або множенні комплексних чисел спосіб групування чисел не впливає на результат.
+\[(z_1 + z_2) + z_3 = z_1 + (z_2 + z_3) \]
+\[(z_1 \cdot z_2) \cdot z_3 = z_1 \cdot (z_2 \cdot z_3) \]
+Комутативна властивість. Порядок, у якому два комплексних числа додаються або множаться, не змінює результат.
+\[z_1 + z_2 = z_2 + z_1 \]
+\[z_1 \cdot z_2 = z_2 \cdot z_1 \]
+Дистрибутивна властивість. Множення числа на суму дає той самий результат, що й множення кожного доданка окремо з наступним додаванням отриманих добутків.
+\[z_1 \cdot (z_2 + z_3) = z_1 \cdot z_2 + z_1 \cdot z_3 \]</p>
+<hr>
+<p>Комплексне число \( 0 + 0i \) є нейтральним елементом по додаванню в \( \mathbb{C} \), оскільки для будь-якого комплексного числа \( z = a + bi \) маємо:
+\[
+\begin{align}
+z + (0 + 0i) &amp;= (a + bi) + (0 + 0i) \\[6pt]
+&amp;= (a + 0) + (b + 0)i \\[6pt]
+&amp;= a + bi \\[6pt]
+&amp;= z
+\end{align}
+\]
+Комплексне число \( 1 + 0i \) є нейтральним елементом по множенню в \( \mathbb{C} \), оскільки для будь-якого комплексного числа \( z = a + bi \) маємо:
+\[
+\begin{align}
+z \cdot (1 + 0i) &amp;= (a + bi) \cdot (1 + 0i) \\[6pt]
+&amp;= a \cdot 1 + a \cdot 0i + bi \cdot 1 + bi \cdot 0i \\[6pt]
+&amp;= a + bi \\[6pt]
+&amp;= z
+\end{align}
+\]</p>
+<hr>
+<p>Протилежним до \( a + bi \) є комплексне число:
+\[-(a + bi) = -a - bi \]
+Оберненим до ненульового комплексного числа \( z = a + bi \) є комплексне число:
+\[\frac{1}{z} = \frac{a}{a^2 + b^2} - \frac{b}{a^2 + b^2} i \]
+Комплексні числа вигляду \( z = a + 0i \), де уявна частина дорівнює нулю, є саме дійсними числами.</p>
+<hr>
+<p>Множину комплексних чисел \( \mathbb{C} \) неможливо впорядкувати таким чином, щоб це було сумісно з додаванням та множенням. Якби існував повний порядок \( \leq \) на \( \mathbb{C} \), ми мали б бути в змозі порівняти \( i \) з \( 0 \). Можливі два випадки:</p>
+<ul>
+<li>Якщо \( i &gt; 0 \), то множення обох частин на \( i \) дає \( i^2 = -1 &gt; 0 \), що є суперечністю.</li>
+<li>Якщо \( i &lt; 0 \), множення обох частин на \( i \) знову призводить до тієї самої суперечності: \( -1 &gt; 0 \).<br>
+Оскільки жоден випадок не є правильним, жоден повний порядок на \( \mathbb{C} \) не може бути визначений.</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке комплексне число?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Комплексне число — це число, яке має і дійсну, і уявну частини, і зазвичай записується у вигляді z = a + bi, де a та b — дійсні числа, а i — уявна одиниця."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке уявна одиниця i?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Уявна одиниця i визначається як квадратний корінь з -1. Вона дозволяє розширити систему дійсних чисел до системи комплексних чисел."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як комплексні числа представляються на комплексній площині?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Комплексні числа представляються як точки на комплексній площині, де горизонтальна вісь відповідає за дійсну частину, а вертикальна — за уявну частину."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке модуль комплексного числа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Модуль комплексного числа — це його відстань від початку координат на комплексній площині, яка обчислюється як квадратний корінь із суми квадратів дійсної та уявної частин."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке комплексне спряження?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Комплексно-спряженим до числа z = a + bi є число a - bi. Воно відображає точку симетрично відносно дійсної осі на комплексній площині."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="complex-numbers-introduction.html">algebrica.org/complex-numbers-introduction</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

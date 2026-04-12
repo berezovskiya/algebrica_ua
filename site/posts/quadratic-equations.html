@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квадратні рівняння — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Квадратні рівняння</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-3" style="height:460px;min-height:460px;max-height:460px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:460px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">5</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="roots-of-a-polynomial.html">Корені полінома</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-3");
+            var dataset = {"name":"root","children":[{"name":"structure","children":[{"name":"quadratic form"},{"name":"coefficients"},{"name":"variable"},{"name":"degenerate case"},{"name":"standard form"},{"name":"leading coefficient"}]},{"name":"geometry","children":[{"name":"parabola"},{"name":"x-axis intersection"},{"name":"opening direction"},{"name":"vertex"},{"name":"axis of symmetry"},{"name":"discriminant meaning"}]},{"name":"solutions","children":[{"name":"quadratic formula"},{"name":"discriminant"},{"name":"factoring"},{"name":"completing square"},{"name":"vieta relations"},{"name":"nature of roots"},{"name":"distinct roots"},{"name":"repeated root"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 460;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Вступ</h2>
+<p>Квадратне рівняння — це <a href="polynomial-equations.html">поліноміальне рівняння</a> другого степеня
+з однією змінною. Його стандартна форма має наступний вигляд:</p>
+<p>\[ ax^2 + bx + c = 0 \]</p>
+<p>де \(a\), \(b\) та \(c\) — дійсні коефіцієнти, \(x\) — невідома, і
+\(a \neq 0\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Коефіцієнти \(a\), \(b\) та \(c\) є сталими.</li>
+<li>\(x\) представляє змінну.</li>
+<li>\(a\) — це коефіцієнт квадратичного члена \(x^2\), \(b\) — коефіцієнт лінійного члена \(x\), а \(c\) — вільний член.</li>
+<li>Якщо \(a = 0\), рівняння зводиться до лінійного рівняння \(bx + c = 0\). Якщо також \(b = 0\), рівняння стає сталим і може не мати розв'язання або мати безліч розв'язань, залежно від того, чи \(c \neq 0\) або \(c = 0\).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Квадратні рівняння є особливим типом <a href="trinomial-equations.html">тричлена рівняння</a>
+із показником \( n \), що дорівнює 1:</p>
+<p>\[ ax^{2n} + bx^{n} + c = 0, \quad n = 1 \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section-inverse mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Геометрична інтерпретація</h2>
+<p>Квадратне рівняння у вигляді \( y = ax^2 + bx + c \), де \( a \neq 0 \),
+представляє <a href="parabola.html">параболу</a> на площині, визначеній змінними \( x \) та
+\( y \). Дійсні розв'язання рівняння \( ax^2 + bx + c = 0 \) відповідають
+точкам, у яких парабола перетинає вісь \( x \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="512" src="../images/quadratic-equations-params-6.png" alt="Parabola." class="wp-image-26026" style="width:306px" title="Parabola." srcset="../images/quadratic-equations-params-6.png 612w, https://algebrica.org/wp-content/uploads/resources/images/quadratic-equations-params-6-300x251.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Коли \(a &gt; 0\) парабола відкривається вгору, а коли \(a &lt; 0\) вона відкривається вниз. Це визначає, чи є вершина мінімумом чи максимумом функції:</p>
+<p>\[y = ax^2 + bx + c\]</p>
+<p>Коли <a href="quadratic-formula.html">дискримінант</a> \(\Delta = b^2 &#8211; 4ac\) є додатнім, парабола перетинає вісь у двох різних точках; коли він дорівнює нулю, парабола є дотичною до осі; а коли він від'ємний, парабола не перетинає вісь і рівняння не має дійсних розв'язань.</p>
+<h6>Умова \( a \neq 0 \) гарантує, що рівняння описує параболічну криву, а не <a href="linear-equations.html">лінійне рівняння</a>.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section pb-steps"><h2>Методи розв'язання</h2>
+<p>Квадратне рівняння називається <a href="incomplete-quadratic-equations.html">неповним</a>, якщо або
+коефіцієнт \(b\), або \(c\) дорівнює нулю. У цьому випадку рівняння набуває
+простішої форми і може бути розв'язане безпосередньо, без застосування загальної формули. Першим кроком у розв'язанні квадратного рівняння є запис його у стандартній формі:</p>
+<p>\[ax^2 + bx + c = 0\]</p>
+<p>Ця форма дозволяє визначити коефіцієнти та обчислити <a href="quadratic-formula.html">дискримінант</a> \(\Delta = b^2 &#8211; 4ac\). Дискримінант визначає характер розв'язків:</p>
+<ul>
+<li>Два різні дійсні корені, коли \(\Delta &gt; 0\).</li>
+<li>Один дійсний корінь кратності два, коли \(\Delta = 0\).</li>
+<li>Пара комплексних спряжених коренів, коли \(\Delta &lt; 0\).</li>
+</ul>
+<p>Найзагальнішим методом розв'язання є <a href="quadratic-formula.html">формула квадратного рівняння</a>.
+Однак у деяких випадках <a href="factoring-quadratic-equations.html">розкладання на множники</a> або
+<a href="completing-the-square.html">виділення повного квадрата</a> можуть запропонувати більш прямий шлях до
+розв'язання.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p> <a href="roots-of-a-polynomial.html">Основна теорема алгебри</a> гарантує, що
+квадратне рівняння має рівно два корені в \(\mathbb{C}\), враховуючи їхню кратність.
+Обидва корені є дійсними, коли \(\Delta \geq 0\), і утворюють пару <a href="quadratic-equations-with-complex-solutions.html">комплексно-спряжених чисел</a>,
+коли \(\Delta &lt; 0\).</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section-inverse mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Формула квадратного рівняння</h2>
+<p>Для квадратного рівняння у стандартній формі \(ax^2+bx+c = 0\), формула квадратного рівняння має вигляд:</p>
+<p>\[ x_{1,2} = \frac{{-b \pm \sqrt{{b^2 &#8211; 4ac}}}}{{2a}} \]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>\(a\), \(b\), \(c\) є дійсними коефіцієнтами і \(a \neq 0\).</li>
+<li>Символ \(\pm\) відображає існування двох розв'язань, що відповідають двом знакам.</li>
+<li>Квадратне рівняння має рівно два корені в \(\mathbb{C}\), враховуючи кратність.</li>
+<li>За формулами Вієта, корені задовольняють рівності \(x_1 + x_2 = -b/a\) та \(x_1 \cdot x_2 = c/a\).</li>
+</ul>
+<p>Подальшою властивістю визначника є наступна:</p>
+<p>\[ \Delta = a^2(x_1 - x_2)^2 \]</p>
+<p>Ця тотожність прямо показує, що \(\Delta \geq 0\), коли корені є дійсними, і що
+\(\Delta = 0\) тоді і тільки тоді, коли два корені збігаються.</p>
+<h6>Коли визначник від'ємний, розв'язання є комплексними. Спеціальний розділ про <a href="quadratic-equations-with-complex-solutions.html">квадратні рівняння з комплексними розв'язаннями</a> повністю охоплює цей випадок.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Розкладання на множники</h2>
+<p>Квадратне рівняння може бути <a href="factoring-quadratic-equations.html">розкладене на множники</a> у наступному вигляді:</p>
+<p>\[ ax^2 + bx + c = 0 \quad \Longleftrightarrow \quad a(x - x_1)(x - x_2) = 0 \]</p>
+<p>де \(x_1\) та \(x_2\) є коренями рівняння. За <a href="trinomials.html">формулами Вієта</a>, корені задовольняють наступні співвідношення:</p>
+<p>\[ x_1 + x_2 = -\frac{b}{a}\]
+\[ x_1 \cdot x_2 = \frac{c}{a} \]</p>
+<p>Цей метод є ефективним, коли корені можна визначити підбором або простим
+перевіренням, але стає непрактичним для рівнянь з ірраціональними або комплексними коренями, де
+бажано використовувати <a href="quadratic-formula.html">формулу квадратного рівняння</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps mb-x-30"><h2>Як розв'язати квадратне рівняння</h2>
+<ul>
+<li>Перепишіть рівняння у стандартному вигляді: \( ax^2 + bx + c = 0 \).</li>
+<li>Обчисліть визначник: \( \Delta = b^2 - 4ac \).</li>
+<li>Скористайтеся формулою квадратного рівняння:<br>
+\[
+x = \frac{-b \pm \sqrt{\Delta}}{2a}
+\]</li>
+<li>Спростіть результат.</li>
+<li>Якщо \( \Delta \geq 0 \), розв'язання є дійсними; якщо \( \Delta &lt; 0 \), розв'язання є комплексними спряженими.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Квадратні рівняння з параметрами</h2>
+<p>Природним розширенням вивчення квадратних рівнянь є розгляд випадку, коли коефіцієнти не є фіксованими числами, а залежать від зовнішнього параметра. У цьому контексті ми говоримо про <a href="quadratic-equations-with-parameters.html">квадратні рівняння з параметром</a>,
+які також називають літеральними квадратними рівняннями, що мають вигляд:</p>
+<p>\[ a(k)\,x^2 + b(k)\,x + c(k) = 0, \quad a(k) \neq 0 \]</p>
+<p>Зміна параметра \(k\) змінює рівняння і, відповідно, характер його розв'язань. Аналіз базується на визначнику:</p>
+<p>\[ \Delta(k) = b(k)^2 - 4\,a(k)\,c(k) \]</p>
+<p>який, точно так само, як і в класичному випадку, визначає, чи має рівняння два
+різних дійсних розв'язання, один повторюваний розв'язок або пару комплексних спряжених розв'язань.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Вправи</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad x^2 = 5x-6\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{2. } \quad \frac{1}{2}x^2+\frac{\sqrt{3}}{2}x+\frac{5}{8} = 0\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{3. } \quad -7x + 3 = -2x^2 \] розв'язання</p>
+</li>
+<li>
+<p>\[\text{4. } \quad x^2-5x-14 = 0\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{5. } \quad 2x^2+10x+11 = 0\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{6. } \quad (x-4)^2-9 = 0\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{7. } \quad (4x+8)\left(\frac{1}{2}x-6\right) = 0\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{8. } \quad x^2 + 0.4x-0.16 = 0\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{9. } \quad 7x^2+x+5 = 0\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{10. } \quad 9x^2-5=0\] розв'язання</p>
+</li>
+</ul>
+<h6>Деякі рівняння вже подані у стандартному вигляді, інші потребують попередніх алгебраїчних перетворень перед застосуванням методу. Спробуйте розв'язати їх самостійно, перш ніж звертатися до розв'язків.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li><strong>Університет Стоні-Брук</strong>. <a href="https://www.math.stonybrook.edu/Videos/MAP103Online/Handouts/Lecture-28-Handout.pdf">Розкладання квадратних поліномів на множники</a></li>
+<li><strong>MIT, H. Mui</strong>. <a href="https://www.mit.edu/~hsmui/files/handouts/mathcircle/vieta.pdf">Формули Вієта</a></li>
+<li><strong>Університет Оклахоми, M. Zhu</strong>. <a href="https://math.ou.edu/~mzhu/Algebra/Solving%20quadratic%20equations-3.pdf">Розв'язування квадратних рівнянь</a></li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Який загальний вигляд квадратного рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Квадратне рівняння зазвичай записується у вигляді ax² + bx + c = 0, де a, b і c є дійсними коефіцієнтами і a ≠ 0."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Скільки розв'язків має квадратне рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Квадратне рівняння має щонайбільше два розв'язання. Залежно від визначника, воно може мати два різних дійсних розв'язання, один повторюваний дійсний розв'язок або два комплексних розв'язання."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як розв'язати квадратне рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Квадратне рівняння можна розв'язати шляхом розкладання на множники, доповнення до повного квадрата або за допомогою формули квадратного рівняння. Метод залежить від конкретного вигляду рівняння."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="quadratic-equations.html">algebrica.org/quadratic-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

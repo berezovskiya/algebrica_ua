@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблиця стандартного нормального розподілу Z — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теорія ймовірностей та статистика</span>
+    </nav>
+    <article>
+        <h1>Таблиця стандартного нормального розподілу Z</h1>
+        <time>2025-05-01</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Від нормального до стандартного нормального розподілу</h2>
+<p>Загальний <a href="normal-distribution.html">нормальний розподіл</a> \( \mathcal{N}(x; \mu, \sigma) \) завжди можна перетворити на його стандартизовану форму \( N(x; 0, 1) \), ввівши стандартну змінну \( Z \), яка визначається як</p>
+<p>\[
+Z = \frac{X - \mu}{\sigma}
+\]</p>
+<p>Це перетворення, відоме як стандартизація, виражає кожне значення <a href="continuous-random-variables.html">неперервної випадкової змінної</a> \( X \) через кількість <a href="variance-and-covariance-of-a-random-variable.html">стандартних відхилень</a>, на які воно віддалене від <a href="mean-or-expected-value-of-a-random-variable.html">середнього значення</a> \( \mu \). У результаті нова змінна \( Z \) має стандартний нормальний розподіл із середнім \( 0 \) та стандартним відхиленням \( 1 \).</p>
+<hr>
+<p>Процес стандартизації є особливо корисним, оскільки він дозволяє привести різні нормальні розподіли до спільної шкали. Після того як змінна \( X \) була перетворена на стандартну змінну \( Z \), ймовірності та критичні значення можна знайти безпосередньо зі стандартного нормального розподілу \( N(x; 0, 1) \).</p>
+<p>Це дозволяє розв'язувати статистичні задачі за допомогою однієї універсальної довідкової таблиці (Z-таблиці), що спрощує обчислення та порівняння в різних контекстах.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Стандартна Z-таблиця</h2>
+<p><strong>Стандартна Z-таблиця</strong> містить для кожної комірки кумулятивну ймовірність ліворуч від заданого значення \(Z\). Іншими словами, вона показує ймовірність того, що стандартна нормальна змінна набуває значення, меншого або рівного заданому Z-показнику. Ці значення відповідають площі під кривою стандартного нормального розподілу від мінус нескінченності до обраної точки на горизонтальній осі, що позначається значенням \( z \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="802" height="482" src="../images/normal-distribution-standard-1.png" alt="" class="wp-image-18981" style="width:401px" srcset="../images/normal-distribution-standard-1.png 802w, https://algebrica.org/wp-content/uploads/resources/images/normal-distribution-standard-1-300x180.png 300w, https://algebrica.org/wp-content/uploads/resources/images/normal-distribution-standard-1-768x462.png 768w" sizes="(max-width: 802px) 100vw, 802px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-to-content alignCenterTable pb-steps"><p>Повна Z-таблиця є досить об’ємною, оскільки містить значення для широкого діапазону Z-показників. Для стислості нижче наведено лише частину таблиці як ілюстративний витяг.</p>
+<table>
+<thead>
+<tr>
+<th>z</th>
+<th>.00</th>
+<th>.01</th>
+<th>.02</th>
+<th>.03</th>
+<th>.04</th>
+<th>.05</th>
+<th>.06</th>
+<th>.07</th>
+<th>.08</th>
+<th>…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.0</td>
+<td>.5000</td>
+<td>.5040</td>
+<td>.5080</td>
+<td>.5120</td>
+<td>.5160</td>
+<td>.5199</td>
+<td>.5239</td>
+<td>.5279</td>
+<td>.5319</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0.1</td>
+<td>.5398</td>
+<td>.5438</td>
+<td>.5478</td>
+<td>.5517</td>
+<td>.5557</td>
+<td>.5596</td>
+<td>.5636</td>
+<td>.5675</td>
+<td>.5714</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>.5793</td>
+<td>.5832</td>
+<td>.5871</td>
+<td>.5910</td>
+<td>.5948</td>
+<td>.5987</td>
+<td>.6026</td>
+<td>.6064</td>
+<td>.6103</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0.3</td>
+<td>.6179</td>
+<td>.6217</td>
+<td>.6255</td>
+<td>.6293</td>
+<td>.6331</td>
+<td>.6368</td>
+<td>.6406</td>
+<td>.6443</td>
+<td>.6480</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>.6554</td>
+<td>.6591</td>
+<td>.6628</td>
+<td>.6664</td>
+<td>.6700</td>
+<td>.6736</td>
+<td>.6772</td>
+<td>.6808</td>
+<td>.6844</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>.6915</td>
+<td>.6950</td>
+<td>.6985</td>
+<td>.7019</td>
+<td>.7054</td>
+<td>.7088</td>
+<td>.7123</td>
+<td>.7157</td>
+<td>.7190</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>.7257</td>
+<td>.7291</td>
+<td>.7324</td>
+<td>.7357</td>
+<td>.7389</td>
+<td>.7422</td>
+<td>.7454</td>
+<td>.7486</td>
+<td>.7517</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0.7</td>
+<td>.7580</td>
+<td>.7611</td>
+<td>.7642</td>
+<td>.7673</td>
+<td>.7704</td>
+<td>.7734</td>
+<td>.7764</td>
+<td>.7794</td>
+<td>.7823</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>.7881</td>
+<td>.7910</td>
+<td>.7939</td>
+<td>.7967</td>
+<td>.7995</td>
+<td>.8023</td>
+<td>.8051</td>
+<td>.8078</td>
+<td>.8106</td>
+<td>…</td>
+</tr>
+<tr>
+<td>0.9</td>
+<td>.8159</td>
+<td>.8186</td>
+<td>.8212</td>
+<td>.8238</td>
+<td>.8264</td>
+<td>.8289</td>
+<td>.8315</td>
+<td>.8340</td>
+<td>.8365</td>
+<td>…</td>
+</tr>
+<tr>
+<td>1.0</td>
+<td>.8413</td>
+<td>.8438</td>
+<td>.8461</td>
+<td>.8485</td>
+<td>.8508</td>
+<td>.8531</td>
+<td>.8554</td>
+<td>.8577</td>
+<td>.8599</td>
+<td>…</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<h5>Кілька онлайн-ресурсів, як статичних, так і <a href="https://ztable.io">інтерактивних</a>, дозволяють користувачам обчислювати кумулятивні ймовірності для різних значень \( z \).</h5>
+<hr>
+<p>Користуватися Z-таблицею досить просто.</p>
+<ul>
+<li>Рядок, що відповідає значенню \(Z\), містить <a href="integers.html">цілу</a> частину та перший знак після коми</li>
+<li>Стовпець представляє решту десяткових знаків, починаючи з другого.</li>
+<li>Комірка на перетині обраного рядка та стовпця дає кумулятивну ймовірність до заданого значення \( z \).</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-table-to-content alignCenterTable pb-steps alignCenterMathjax mb-x-30"><h2>Приклад 1</h2>
+<p>Розглянемо простий приклад, щоб проілюструвати, як використовується Z-таблиця для визначення кумулятивної ймовірності, що відповідає заданому значенню стандартизованої змінної \( Z \). Розглянемо випадок стандартизованої змінної \( Z \), такої що:</p>
+<p>\[z = 0.16\]</p>
+<p>Щоб знайти кумулятивну ймовірність ліворуч від стандартизованої змінної \( z \), ми знаходимо значення 0.1 у рядку та 0.06 у стовпці Z-таблиці. Перетин цих двох значень дає відповідне значення ймовірності, яке в цьому випадку становить \( 0.5636 \).</p>
+<table>
+<thead>
+<tr>
+<th>z</th>
+<th>.00</th>
+<th>.01</th>
+<th>.02</th>
+<th>.03</th>
+<th>.04</th>
+<th>.05</th>
+<th><strong>.06</strong></th>
+<th>.07</th>
+<th>.08</th>
+<th>…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.0</td>
+<td>.5000</td>
+<td>.5040</td>
+<td>.5080</td>
+<td>.5120</td>
+<td>.5160</td>
+<td>.5199</td>
+<td>.5239</td>
+<td>.5279</td>
+<td>.5319</td>
+<td>…</td>
+</tr>
+<tr>
+<td><strong>0.1</strong></td>
+<td>.5398</td>
+<td>.5438</td>
+<td>.5478</td>
+<td>.5517</td>
+<td>.5557</td>
+<td>.5596</td>
+<td><strong>.5636</strong></td>
+<td>.5675</td>
+<td>.5714</td>
+<td>…</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>Це означає, що приблизно 56.36% спостережень у стандартному нормальному розподілі лежать нижче цього значення \( z \). Отже, ми можемо стверджувати, що ймовірність того, що стандартизована змінна \( Z \) буде меншою за \( z = 0.16 \), дорівнює \( 0.5636 \), тобто:</p>
+<p>\[
+P(Z &lt; 0.16) = 0.5636
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="742" height="544" src="../images/normal-distribution-standard-2-1.png" alt="" class="wp-image-19015" style="width:371px" srcset="../images/normal-distribution-standard-2-1.png 742w, https://algebrica.org/wp-content/uploads/resources/images/normal-distribution-standard-2-1-300x220.png 300w" sizes="(max-width: 742px) 100vw, 742px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Оскільки загальна площа під стандартною нормальною кривою дорівнює \(1\), а розподіл є симетричним відносно свого <a href="mean-or-expected-value-of-a-random-variable.html">середнього значення</a>, ми можемо відразу вивести, що</p>
+<p>\[
+P(Z &gt; 0.16) = 1 &#8211; 0.5636
+\]</p>
+<p>Крім того, ймовірність того, що \( Z \) лежить між \(0\) та \(0.16\), отримують шляхом віднімання кумулятивної ймовірності до \( Z = 0 \) від ймовірності до \( Z = 0.16 \):</p>
+<p>\[
+P(0 &lt; Z &lt; 0.16) = P(Z &lt; 0.16) &#8211; P(Z &lt; 0)
+\]</p>
+<p>Підставляючи відповідні значення, отримаємо</p>
+<p>\[
+P(0 &lt; Z &lt; 0.16) = 0.5636 &#8211; 0.5 = 0.0636
+\]</p>
+<p>Нарешті, через симетрію нормального розподілу відносно його середнього значення, ймовірність того, що \( Z \) лежить у <a href="intervals.html">проміжку</a> \( -0.16 &lt; Z &lt; 0.16 \), у двічі більша за ймовірність бути між \(0\) та \(0.16\):</p>
+<p>\[
+P(-0.16 &lt; Z &lt; 0.16) = 2 \times P(0 &lt; Z &lt; 0.16) = 0.1272
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-table-to-content alignCenterTable mb-x-30"><h2>Приклад 2</h2>
+<p>Припустимо, що середній термін служби акумулятора становить \( \mu = 8.0 \) годин, зі стандартним відхиленням \( \sigma = 1.2 \) години, і що термін служби акумулятора має нормальний розподіл. Ми хочемо обчислити ймовірність того, що випадково обраний акумулятор прослужить менше \( 6.5 \) годин.</p>
+<hr>
+<p>Щоб знайти ймовірність \( P(X &lt; 6.5) \), нам потрібно визначити площу під кривою нормального розподілу ліворуч від \( 6.5 \). Для цього ми застосовуємо формулу стандартизації:</p>
+<p>\[
+z = \frac{x &#8211; \mu}{\sigma}
+\]</p>
+<p>де \( x \) представляє спостережуне значення випадкової змінної, яке в цьому випадку відповідає 6.5 годинам. Маємо:</p>
+<p>\[
+z = \frac{6.5 - 8.0}{1.2} = \frac{-1.5}{1.2} = -1.25
+\]</p>
+<p>Далі ми можемо скористатися Z-таблицею, щоб знайти \( P(Z &lt; -1.25) \), що дає кумулятивну ймовірність, пов'язану з цим значенням \( z \).</p>
+<table>
+<thead>
+<tr>
+<th>z</th>
+<th>.00</th>
+<th>.01</th>
+<th>.02</th>
+<th>.03</th>
+<th>.04</th>
+<th><strong>.05</strong></th>
+<th>.06</th>
+<th>.07</th>
+<th>.08</th>
+<th>…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-1.0</td>
+<td>.1587</td>
+<td>.1562</td>
+<td>.1539</td>
+<td>.1515</td>
+<td>.1492</td>
+<td>.1469</td>
+<td>.1446</td>
+<td>.1423</td>
+<td>.1401</td>
+<td>…</td>
+</tr>
+<tr>
+<td><strong>-1.2</strong></td>
+<td>.1151</td>
+<td>.1131</td>
+<td>.1112</td>
+<td>.1093</td>
+<td>.1075</td>
+<td><strong>.1056</strong></td>
+<td>.1038</td>
+<td>.1020</td>
+<td>.1003</td>
+<td>…</td>
+</tr>
+<tr>
+<td>-1.3</td>
+<td>.0968</td>
+<td>.0951</td>
+<td>.0934</td>
+<td>.0918</td>
+<td>.0901</td>
+<td>.0885</td>
+<td>.0869</td>
+<td>.0853</td>
+<td>.0838</td>
+<td>…</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>З перетину обраного рядка та стовпця ми отримаємо значення ймовірності, що дорівнює \( 0.1056 \). Рисунок нижче ілюструє, де ця ймовірність розташована під стандартною кривою нормального розподілу, що відповідає кумулятивній площі ліворуч від \( z = -1.25 \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="690" height="526" src="../images/normal-distribution-standard-4.png" alt="" class="wp-image-19029" style="width:345px;height:auto" srcset="../images/normal-distribution-standard-4.png 690w, https://algebrica.org/wp-content/uploads/resources/images/normal-distribution-standard-4-300x229.png 300w" sizes="(max-width: 690px) 100vw, 690px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>З таблиці стандартного нормального розподілу отримуємо</p>
+<p>\[
+P(Z &lt; -1.25) = 0.1056
+\]</p>
+<h5>Це означає, що приблизно 10.56% усіх акумуляторів, як очікується, прослужать менше 6.5 годин.</h5>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке Z-таблиця стандартного нормального розподілу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Z-таблиця стандартного нормального розподілу показує кумулятивні ймовірності стандартного нормального розподілу N(0,1). Кожне значення в таблиці представляє ймовірність того, що змінна Z менша за певне Z-значення."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як використовувати Z-таблицю для пошуку ймовірностей?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб знайти кумулятивну ймовірність, знайдіть цілу частину та перший десятковий знак Z-значення в лівому стовпці, а решту десяткових знаків — у верхньому рядку. Перетин дає кумулятивну ймовірність P(Z < z)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому Z-таблиця важлива в статистиці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Z-таблиця є важливою для статистичного виводу, оскільки вона дозволяє перетворювати Z-значення на ймовірності. Вона використовується для обчислення довірчих інтервалів, рівнів значущості та p-значень при перевірці гіпотез."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="standard-normal-z-table.html">algebrica.org/standard-normal-z-table</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квадратні рівняння з комплексними розв'язками — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Квадратні рівняння з комплексними розв'язками</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Дійсні та комплексні розв'язки</h2>
+<p>Характер розв'язків <a href="quadratic-equations.html">квадратного рівняння</a> повністю визначається знаком дискримінанта \(\Delta = b^2 &#8211; 4ac\), який з'являється під знаком радикала у <a href="quadratic-formula.html">формулі квадратного рівняння</a>:</p>
+<p>\[x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\]</p>
+<p>Коли \(\Delta &gt; 0\), рівняння має два різних дійсних розв'язки. Коли \(\Delta = 0\), два розв'язки збігаються і рівняння має єдиний дійсний корінь, що рахується з кратністю два. Коли \(\Delta &lt; 0\), виникає квадратний корінь із від'ємного числа, і рівняння не має дійсних розв'язків. Однак воно допускає рівно два розв'язки в полі <a href="complex-numbers-introduction.html">комплексних чисел</a>, і вони завжди утворюють спряжену пару.</p>
+<hr>
+<p>За <a href="roots-of-a-polynomial.html">основною теоремою алгебри</a>, <a href="polynomials.html">поліноміальне</a> рівняння степеня \(n\) має рівно \(n\) коренів у \(\mathbb{C}\), з урахуванням кратності. У застосуванні до квадратного випадку це гарантує, що кожне рівняння виду \(ax^2 + bx + c = 0\) має рівно два кореня в \(\mathbb{C}\), незалежно від знаку дискримінанта.</p>
+<hr>
+<p>Нагадаємо, що для комплексного числа \(z = a + bi\) його <a href="complex-numbers-introduction.html">спряжене</a> визначається наступним чином.</p>
+<p>\[\overline{z} = a - bi\]</p>
+<p>Число \(\overline{z}\) зображується на площині Гауса точкою, симетричною до \(z\) відносно осі \(x\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="724" height="572" src="../images/quad-eq-complex-roots.png" alt="" class="wp-image-25830" style="width:362px" srcset="../images/quad-eq-complex-roots.png 724w, https://algebrica.org/wp-content/uploads/resources/images/quad-eq-complex-roots-300x237.png 300w" sizes="(max-width: 724px) 100vw, 724px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Ця геометрична інтерпретація показує, як спряжені корені природно виникають при розв'язуванні квадратних рівнянь із від'ємним дискримінантом, забезпечуючи візуальний зв'язок між алгебраїчними виразами та їх представленням на комплексній площині.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Кожне квадратне рівняння можна розв'язати, незалежно від того, чи є його дискримінант додатним, нульовим або від'ємним. Коли дискримінант виявляється від'ємним, рівняння просто не має дійсних коренів. Проте воно все ж має два повноцінних розв'язки в системі <a href="complex-numbers-introduction.html">комплексних чисел</a>. Ці розв'язки завжди утворюють пару комплексно спряжених чисел, що відображає фундаментальну структуру квадратних рівнянь на комплексній площині.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Комплексно спряжені корені</h2>
+<p>Якщо коефіцієнти \(a\), \(b\) та \(c\) є <a href="properties-of-real-numbers.html">дійсними</a>, комплексні корені квадратного рівняння \(ax^2 + bx + c = 0\) завжди з'являються спряженими парами. Зокрема, якщо \(z \in \mathbb{C}\) є розв'язком, то \(\overline{z}\) також є розв'язком. Цей результат випливає безпосередньо з властивостей комплексного спряження відносно арифметичних операцій.</p>
+<p>Нехай \(az^2 + bz + c = 0\). Беручи спряжене від обох сторін, отримуємо:</p>
+<p>\[\overline{az^2 + bz + c} = \overline{0}\]</p>
+<p>Оскільки спряження розподіляється по сумах і добутках, і оскільки кожне дійсне число збігається зі своїм спряженим, випливає, що \(\overline{a} = a\), \(\overline{b} = b\) та \(\overline{c} = c\). Тому ліва частина зводиться до наступного.</p>
+<p>\[a\overline{z}^2 + b\overline{z} + c = 0\]</p>
+<p>Це вихідне рівняння, обчислене при \(\overline{z}\), яке, отже, є коренем того самого рівняння.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розв'яжіть квадратне рівняння:</p>
+<p>\[x^2 + 4x + 5 = 0\]</p>
+<p>Рівняння вже записане у стандартній формі \(ax^2 + bx + c = 0\), з коефіцієнтами \(a = 1\), \(b = 4\) та \(c = 5\). Підставляючи у <a href="quadratic-formula.html">формулу квадратного рівняння</a>, отримуємо наступне.</p>
+<p>\[x_{1,2} = \frac{-4 \pm \sqrt{4^2 &#8211; 4 \cdot 1 \cdot 5}}{2 \cdot 1}\]</p>
+<p>Дискримінант від'ємний:</p>
+<p>\[\Delta = 16 &#8211; 20 = -4\]</p>
+<p>Оскільки \(\Delta &lt; 0\), рівняння не має дійсних розв'язків. Продовжуючи з формулою квадратного рівняння і записуючи \(\sqrt{-4} = 2i\):</p>
+<p>\[x_{1,2} = \frac{-4 \pm 2i}{2}\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Спрощуючи, два комплексно спряжені розв'язки є наступними.</p>
+<p>\[x_1 = -2 + i \qquad x_2 = -2 - i\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Наступний приклад ілюструє випадок, коли дискримінант від'ємний і коефіцієнти не всі є цілими числами, що вимагає додаткового кроку спрощення перед тим, як розв'язки можна записати у стандартній комплексній формі.</p>
+<p>\[3x^2 - 2x + 4 = 0\]</p>
+<p>Рівняння записане у стандартній формі з коефіцієнтами \(a = 3\), \(b = -2\) та \(c = 4\). Підставляючи у <a href="quadratic-formula.html">формулу квадратного рівняння</a>, отримуємо наступне.</p>
+<p>\[x_{1,2} = \frac{2 \pm \sqrt{(-2)^2 &#8211; 4 \cdot 3 \cdot 4}}{2 \cdot 3}\]</p>
+<p>Обчислюючи дискримінант:</p>
+<p>\[\Delta = 4 &#8211; 48 = -44\]</p>
+<p>Оскільки \(\Delta &lt; 0\), рівняння не має дійсних розв'язків. Записуючи \(\sqrt{-44} = 2\sqrt{11}\, i\):</p>
+<p>\[x_{1,2} = \frac{2 \pm 2\sqrt{11}\, i}{6} = \frac{1 \pm \sqrt{11}\, i}{3}\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язок:</p>
+<p>\[x_1 = \frac{1 + \sqrt{11}\, i}{3} \qquad x_2 = \frac{1 - \sqrt{11}\, i}{3}\]</p>
+</div>
+</div></div>
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="quadratic-equations-with-complex-solutions.html">algebrica.org/quadratic-equations-with-complex-solutions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

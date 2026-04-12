@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Складені функції — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Складені функції</h1>
+        <time>2025-02-24</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30 pb-steps"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Що таке композиція функцій</h2>
+<p>Коли ми говоримо про композицію функцій, ми маємо на увазі процес застосування однієї <a href="functions.html">функції</a> до результату іншої. Іншими словами, задано дві функції \( f(x) \) та \( g(x) \), тоді композиція функцій утворюється шляхом обчислення \( g \) від значення \( f \). Це позначається так:</p>
+<p>\[
+g \circ f= g(f(x))
+\]</p>
+<p>Це означає, що ми спочатку застосовуємо \( f \) до вхідного значення \( x \), а потім застосовуємо \( g \) до отриманого результату.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="586" height="298" src="../images/composite-functions-1-1.png" alt="" class="wp-image-15513" style="width:293px" srcset="../images/composite-functions-1-1.png 586w, https://algebrica.org/wp-content/uploads/resources/images/composite-functions-1-1-300x153.png 300w" sizes="(max-width: 586px) 100vw, 586px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Ця діаграма ілюструє концепцію композиції функцій: вхідне значення \( x \) з множини \( A \) спочатку відображається в \( f(x) \) у множині \( B \), а потім \( f(x) \) відображається в \( g(f(x)) \) у множині \( C \), що в результаті дає композицію \( g \circ f \).</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Більш формально, нехай задано дві функції \( f(x) \) та \( g(x) \), такі що:</p>
+<ul>
+<li>\(f \colon A \rightarrow B \)</li>
+<li>\(g \colon B \rightarrow C \)</li>
+<li>\(f(A) \subseteq B\)</li>
+</ul>
+<p>Композиція функцій визначається наступним чином:</p>
+<p>\[
+g \circ f \colon x \in A \rightarrow g(f(x)) \in C
+\]</p>
+<p>Це означає, що функція \( g \circ f \) відображає кожен елемент \( x \) в <a href="determining-the-domain-of-a-function.html">області визначення</a> \( A \) у значення \( g(f(x)) \), за умови, що образ \( f \) міститься в області визначення \( g \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Розглянемо наступні функції:</p>
+<ul>
+<li>\( f(x) = 2x + 3 \)</li>
+<li>\( g(x) = x^2 \)</li>
+</ul>
+<hr>
+<p>Ми хочемо визначити композицію функцій \(g \circ f = g(f(x)) \). Почнемо з обчислення \( f(x) \):</p>
+<p>\[
+f(x) = 2x + 3
+\]</p>
+<p>Тепер підставимо це в \( g(x) \):</p>
+<p>\[
+g(f(x)) = g(2x + 3) = (2x + 3)^2
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, композиція функцій має вигляд:
+\[
+g \circ f = (2x + 3)^2
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Композиція з оберненою функцією</h2>
+<p>Якщо функція \( f \) компонується зі своєю <a href="inverse-function.html">оберненою</a> \( f^{-1} \), результатом є тотожність, яка відображає кожен елемент множини в самого себе:</p>
+<p>\[
+f(f^{-1}(x)) = f^{-1}(f(x)) = x
+\]</p>
+<h5>Ця операція є правильною лише тоді, коли функція \( f \) є оберненою, тобто вона є однозначною (ін'єктивною) та на покриття (сюр'єктивною) на своїй області визначення.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Коли композиція двох функцій є коректно визначеною, тобто коли значення першої функції лежить в області визначення другої, ми можемо записати:</p>
+<p>\[
+g(f(x)) \equiv g \circ f \quad \text{та} \quad f(g(x)) \equiv f \circ g
+\]</p>
+<p>Цей запис підкреслює, що композиція функцій <strong>не є комутативною</strong>: загалом порядок, у якому функції компонуються, впливає на результат, і виконується наступне:</p>
+<p>\[
+g \circ f \neq f \circ g
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Продемонструємо на простому прикладі, що композиція функцій не є комутативною операцією, тобто, загалом, \( g \circ f \neq f \circ g \). Розглянемо дві функції:</p>
+<ul>
+<li>\( f(x) = e^x \)</li>
+<li>\( g(x) = x + 1 \)</li>
+</ul>
+<hr>
+<p>Обчислимо \( f \circ g \):
+\[
+f \circ g = f(g(x)) = f(x + 1) = e^{x + 1}
+\]</p>
+<p>Обчислимо \( g \circ f \):
+\[
+g \circ f = g(f(x)) = g(e^x) = e^x + 1
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Маємо:</p>
+<ul>
+<li>\( (f \circ g)(x) = e^{x + 1} = e \cdot e^x \)</li>
+<li>\( (g \circ f)(x) = e^x + 1 \)</li>
+</ul>
+<p>Ці вирази не рівні, і це доводить, що композиція функцій не є комутативною.</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке композиція функцій?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Композиція функцій утворюється шляхом застосування однієї функції до результату іншої. Якщо f(x) та g(x) є функціями, то композиція записується як f ∘ g = f(g(x))."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як обчислити значення композиції функцій?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб обчислити композицію функцій, таку як f ∘ g, спочатку обчисліть g(x), а потім підставте цей результат у f. Кінцевим значенням буде f(g(x))."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи є композиція функцій комутативною?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ні, загалом композиція функцій не є комутативною. Це означає, що (f ∘ g)(x) не обов'язково дорівнює g ∘ f."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли визначена композиція функцій?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Композиція f ∘ g визначена лише тоді, коли значення g(x) лежить в області визначення f(x)."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="composite-functions.html">algebrica.org/composite-functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

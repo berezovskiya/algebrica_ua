@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Біноміальний коефіцієнт — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Множини та числа</span>
+    </nav>
+    <article>
+        <h1>Біноміальний коефіцієнт</h1>
+        <time>2025-02-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-3" style="height:400px;min-height:400px;max-height:400px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:400px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли висвітлюють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="factorial.html">Факторіал</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-3");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"combinations"},{"name":"factorial formula"},{"name":"selection without order"},{"name":"permutations relation"},{"name":"notation n choose k"}]},{"name":"properties","children":[{"name":"edge"},{"name":"symmetry"},{"name":"additive"},{"name":"recursive"},{"name":"pascal triangle"},{"name":"boundary values"}]},{"name":"identities","children":[{"name":"row sum"},{"name":"alternating sum"},{"name":"vandermonde"},{"name":"upper summation"},{"name":"binomial theorem"},{"name":"central binomial coefficient"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 400;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-40"><h2>Вступ до біноміального коефіцієнта</h2>
+<p>Біноміальний коефіцієнт позначає кількість способів вибрати певну кількість елементів \(k\) з більшої множини з \(n\) елементів, не враховуючи порядок вибору. У комбінаториці біноміальний коефіцієнт позначається як \(n\) по \(k.\) Формула для біноміального коефіцієнта має вигляд:</p>
+<p>\[
+\binom{n}{k} = \begin{cases}
+\displaystyle\frac{n!}{k!\,(n-k)!} &amp; \text{якщо } 0 \leq k \leq n \\[1em]
+0 &amp; \text{якщо } k &gt; n
+\end{cases}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>\(n\) представляє загальну кількість елементів у множині.</li>
+<li>\(k\) позначає кількість елементів, які необхідно вибрати.</li>
+<li>\(n!\) та \((n-k)!\) представляють <a href="factorial.html">факторіал</a> натуральних чисел \(n\) та \((n-k)!\).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Щоб визначити значення біноміального коефіцієнта \( \large{4 \choose 2} \), ми підрахуємо кількість пар, які можна створити з множини з чотирьох елементів. Розглянемо множину \(P=(p,q,r,s)\). Кількість підмножин, утворених двома елементами, дорівнює шести. Ці підмножини:</p>
+<p>\[ (p,q) \quad (p,r) \quad (p,s) \quad (q,r) \quad (q,s) \quad (r,s) \]</p>
+<p>Порядок тут не відіграє ролі. Пара \((p,q)\) та пара \((q,p)\) стосуються одного і того ж вибору, тому вони рахуються як одна. Саме це відрізняє сполучення від перестановки — і саме це враховує формула.</p>
+<p>Чисельник \( \frac{n!}{(n-k)!} \) підраховує впорядковані послідовності з \( k \) елементів, вибраних із множини з \( n \): це кількість перестановок. Оскільки порядок не має значення, кожна невпорядкована підмножина з'являється \( k! \) разів у цьому підрахунку — по одному разу для кожного способу розташування її елементів. Ділення на \( k! \) усуває надмірний підрахунок:</p>
+<p>\[
+\binom{n}{k} = \frac{n!}{(n-k)!} \cdot \frac{1}{k!} = \frac{n!}{k!\,(n-k)!}
+\]</p>
+<p>що і є виразом, наведеним вище.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Біноміальний коефіцієнт з'являється в <a href="binomial-theorem.html">біноміальній теоремі</a>, де він представляє коефіцієнти кожного члена у розкладанні \( (a + b)^n \).</p>
+</div>
+
+
+
+<div id="pascal-triangle" class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Трикутник Паскаля</h2>
+<p>Трикутник Паскаля — це візуальне представлення біноміальних коефіцієнтів. Коротко кажучи, це геометричне розташування біноміальних коефіцієнтів, які є коефіцієнтами при розкладанні <a href="binomials.html">бінома</a> \( (a + b) \), піднесеного до будь-якого степеня \( n \).</p>
+<p>Трикутник будується за наступними правилами. Перший рядок містить лише 1. Кожне число в наступних рядках є сумою двох чисел, що знаходяться безпосередньо над ним. Найкрайні елементи завжди дорівнюють 1. Ось перші шість рядків:</p>
+<p>\[
+\begin{array}{c}
+1  \\
+1 \quad 1  \\
+1 \quad 2 \quad 1  \\
+1 \quad 3 \quad 3 \quad 1  \\
+1 \quad 4 \quad 6 \quad 4 \quad 1  \\
+1 \quad 5 \quad 10 \quad 10 \quad 5 \quad 1
+\end{array}
+\]</p>
+<hr>
+<p>Кожен елемент у рядку \( n \) та стовпці \( k \) відповідає біноміальному коефіцієнту. Наприклад, число при \( n = 4, k = 2 \) дорівнює:</p>
+<p>\[
+\binom {4}{2} = \frac{4!}{2!(4 &#8211; 2)!} = \frac{4!}{2!2!} = \frac{24}{4} = 6
+\]</p>
+<p>І дійсно, у четвертому рядку третє число — 6.</p>
+<hr>
+<p>Трикутник Паскаля задовольняє рекурентне співвідношення:</p>
+<p>\[
+\binom{n}{k} = \binom{n &#8211; 1}{k &#8211; 1} + \binom{n - 1}{k}
+\]</p>
+<p>що безпосередньо випливає з побудови трикутника.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Фундаментальні властивості біноміального коефіцієнта</h2>
+<p>Властивість краю біноміального коефіцієнта виражає базове правило, що проявляється вздовж меж <a href="#pascal-triangle">трикутника Паскаля</a>. Вона стверджує, що коефіцієнти, розташовані на двох кінцях кожного рядка, завжди дорівнюють одиниці:</p>
+<p>\[
+\binom{n}{0} = \binom{n}{n} = 1
+\]</p>
+<p>Для будь-якого натурального числа \( n \) існує рівно один можливий спосіб не обрати жодного з доступних елементів, і так само лише один спосіб обрати їх усі.</p>
+<hr>
+<p>Властивість симетрії спостерігається при виборі підмножини з \(k\) елементів із множини з \(n\) елементів, причому кількість способів зробити це завжди дорівнює кількості способів обрати решту \(n-k\) елементів. Ця симетрія відображена в еквівалентності:</p>
+<p>\[ \binom{n}{k} = \binom{n}{n-k} \]</p>
+<p>Цей принцип симетричного вибору є не просто теоретичною ідеєю, а практичним інструментом, що використовується в різних галузях. Він особливо корисний у теорії ймовірностей, комбінаториці та статистиці, де допомагає обчислювати ймовірності, підраховувати варіанти та аналізувати дані.</p>
+<hr>
+<p>Адитивна властивість біноміального коефіцієнта встановлює зв'язок між послідовними біноміальними коефіцієнтами. Якщо розглянемо біноміальні коефіцієнти \( \large{n \choose k} \) та \( \large{{n \choose k+1}}\), то:</p>
+<p>\[{n \choose k} + {n \choose k+1} = {n+1 \choose k+1} \]</p>
+<p>Ця властивість є фундаментальною в практичних застосуваннях, оскільки вона дає спосіб швидко обчислити значення наступного біноміального коефіцієнта, знаючи попередні. Вона ґрунтується на означенні біноміального коефіцієнта та його рекурентному зв'язку, що дозволяє виразити біноміальний коефіцієнт через попередні біноміальні коефіцієнти.</p>
+<hr>
+<p> <a href="#recursion">Рекурентна властивість</a> описує, як кожен біноміальний коефіцієнт може бути отриманий з коефіцієнтів попереднього рядка трикутника Паскаля. Згідно з цим зв'язком, кожен коефіцієнт отримується як сума двох елементів, розташованих безпосередньо над ним:</p>
+<p>\[
+\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
+\]</p>
+<p>Це правило надає рекурентне означення для біноміального коефіцієнта та пояснює адитивну структуру, що лежить в основі трикутника Паскаля.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Помітні тотожності біноміального коефіцієнта</h2>
+<p>Окрім основних властивостей, біноміальний коефіцієнт задовольняє низку глибших тотожностей, які неодноразово зустрічаються в комбінаториці, теорії ймовірностей та аналізі. Кожна з них відображає структурну істину про те, як працює підрахунок.</p>
+<hr>
+<p>Тотожність суми рядка стверджує, що сума всіх біноміальних коефіцієнтів у рядку \( n \) трикутника Паскаля дорівнює \( 2^n \):</p>
+<p>\[
+\sum_{k=0}^{n} \binom{n}{k} = 2^n
+\]</p>
+<p>Один зі способів зрозуміти, чому це так: розглянемо множину з \( n \) елементів. Кожен елемент може бути або включений у підмножину, або ні, що дає два незалежних вибори для кожного елемента. Загальна кількість підмножин, отже, становить \( 2^n \), і оскільки \( \binom{n}{k} \) підраховує підмножини рівно з \( k \) елементів, підсумовування по всіх можливих значеннях \( k \) від \( 0 \) до \( n \) відновлює той самий підрахунок.</p>
+<hr>
+<p>Тотожність знакоперемінної суми є близькою родичкою суми рядка, але зі знакоперемінними знаками:</p>
+<p>\[
+\sum_{k=0}^{n} (-1)^k \binom{n}{k} = 0
+\]</p>
+<p>Це випливає безпосередньо з обчислення біноміальної теореми при \( a = 1 \) та \( b = -1 \). Результат відображає симетрію між підмножинами парного та непарного розміру: для будь-якого \( n \geq 1 \) кількість підмножин парного розміру множини з \( n \) елементів точно дорівнює кількості підмножин непарного розміру.</p>
+<hr>
+<p>Тотожність Вандермонде описує, що відбувається, коли два незалежних вибори об'єднуються в один. Дано дві розривні групи з \( m \) та \( n \) елементів відповідно, тоді кількість способів обрати \( r \) елементів із об'єднаної групи дорівнює:</p>
+<p>\[
+\binom{m+n}{r} = \sum_{k=0}^{r} \binom{m}{k} \binom{n}{r-k}
+\]</p>
+<p>Міркування пряме: будь-який вибір \( r \) елементів із об'єднаної групи повинен містити рівно \( k \) елементів із першої групи та \( r - k \) із другої, для деякого значення \( k \) від \( 0 \) до \( r \). Кожен такий розподіл дає \( \binom{m}{k} \cdot \binom{n}{r-k} \) комбінацій, і підсумовування по всіх допустимих значеннях \( k \) дає загальний результат. Особливо корисний спеціальний випадок виникає, коли \( m = n \) та \( r = n \):</p>
+<p>\[
+\binom{2n}{n} = \sum_{k=0}^{n} \binom{n}{k}^2
+\]</p>
+<p>Це говорить нам, що центральний біноміальний коефіцієнт — середній запис рядка \( 2n \) у трикутнику Паскаля — підраховує кількість способів обрати \( n \) елементів із групи з \( 2n \), що завжди може бути розкладено як вибір \( k \) з однієї половини та \( n - k \) з іншої.</p>
+<hr>
+<p>Тотожність верхньої суми пов'язує біноміальний коефіцієнт із сумою коефіцієнтів із попередніх рядків:</p>
+<p>\[
+\sum_{i=0}^{r} \binom{n+i}{i} = \binom{n+r+1}{r}
+\]</p>
+<p>Назва походить від форми, яку ця тотожність описує в трикутнику Паскаля: діагональний ряд записів, сума яких дорівнює одному запису на один крок праворуч і на один крок вниз — що нагадує лезо та руків'я хокейного ключки. Ця тотожність особливо корисна при обчисленні кумулятивних підрахунків, що будуються рядок за рядком.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Узагальнений біноміальний коефіцієнт</h2>
+<p>Означення, введене на початку цієї сторінки, вимагає, щоб \( n \) та \( k \) були натуральними числами. Однак це обмеження не є таким суворим, як здається. Факторіал у чисельнику можна замінити добутком, який має сенс для будь-якого дійсного числа \( \alpha \), що призводить до узагальненого біноміального коефіцієнта:</p>
+<p>\[
+\binom{\alpha}{k} = \frac{\alpha(\alpha &#8211; 1)(\alpha - 2) \cdots (\alpha - k + 1)}{k!}
+\]</p>
+<p>де \( \alpha \in \mathbb{R} \), а \( k \) залишається цілим невід'ємним числом. Коли \( \alpha \) є натуральним числом і \( k \leq \alpha \), цей вираз зводиться до стандартного біноміального коефіцієнта. Коли \( \alpha \) не є натуральним числом або коли \( k &gt; \alpha \), він дає значення, які більше не є цілими, але залишаються добре визначеними. Саме це узагальнення дозволяє <a href="binomial-theorem.html">біноміальній теоремі</a>
+поширюватися на показники, що не є цілими числами. Для \( |x| &lt; 1 \) Ньютон показав, що:</p>
+<p>\[
+(1 + x)^{\alpha} = \sum_{k=0}^{\infty} \binom{\alpha}{k} x^k
+\]</p>
+<p>На відміну від стандартної біноміальної теореми, ця сума не є скінченною і є нескінченним рядом. Варто відзначити два випадки. При \( \alpha = -1 \) ми отримуємо <a href="geometric-series.html">геометричний ряд</a>:</p>
+<p>\[
+\frac{1}{1+x} = \sum_{k=0}^{\infty} (-1)^k x^k
+\]</p>
+<p>При \( \alpha = \tfrac{1}{2} \) отримуємо розклад \( \sqrt{1+x} \):</p>
+<p>\[
+\sqrt{1+x} = 1 + \frac{1}{2}x - \frac{1}{8}x^2 + \frac{1}{16}x^3 - \cdots
+\]</p>
+<p>це наближення, яке рутинно використовується у фізиці та інженерії, коли \( x \) є малим. В обох випадках коефіцієнти обчислюються безпосередньо з узагальненого біноміального коефіцієнта (та сама формула, але \( \alpha \) більше не обмежене цілим числом).</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Дослідницька група складається з 7 науковців та 8 інженерів. Скількома способами можна сформувати робочу групу, що складається з 3 науковців та 4 інженерів? Щоб сформувати групу, ми повинні незалежно вибрати 3 науковців із 7 та 4 інженерів із 8. Оскільки ці два вибори є незалежними, загальна кількість можливих комбінацій визначається як:</p>
+<p>\[
+N = \binom{7}{3} \times \binom{8}{4}
+\]</p>
+<p>Тепер обчислимо кожен член:</p>
+<p>\[
+\binom{7}{3} = \frac{7 \times 6 \times 5}{3 \times 2 \times 1} = 35
+\]</p>
+<p>\[
+\binom{8}{4} = \frac{8 \times 7 \times 6 \times 5}{4 \times 3 \times 2 \times 1} = 70
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, комбінуючи можливі вибори науковців та інженерів, ми отримаємо:</p>
+<p>\[
+N = 35 \times 70 = 2450
+\]</p>
+<blockquote>
+<p>Це означає, що, виходячи з нашої групи науковців та інженерів, ми можемо сформувати 2 450 різних робочих команд, що складаються з 3 науковців та 4 інженерів.</p>
+</blockquote>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Тепер розглянемо ту саму ситуацію, що описана в Прикладі 1, але з додатковою умовою: якщо 2 інженери мають розбіжності та не можуть бути призначені в одну групу, скільки допустимих комбінацій можна сформувати? Ми вже знаємо, що загальна кількість можливих груп без будь-яких обмежень становить 2450.</p>
+<p>Тепер ми повинні виключити групи, які включають обох інженерів, що не можуть працювати разом. Якщо обидва конфліктні інженери включені в одну групу, ми вже вибрали 2 конкретних інженерів, тому нам потрібно вибрати лише решту 2 інженерів з інших 6:</p>
+<p>\[
+\binom{6}{2}
+\]</p>
+<p>Водночас нам все ще потрібно вибрати 3 науковців із 7 доступних:</p>
+<p>\[
+\binom{7}{3}
+\]</p>
+<p>Кількість недопустимих груп, що містять обох конфліктних інженерів, отже становить:</p>
+<p>\[
+N_{\text{invalid}} = \binom{7}{3} \times \binom{6}{2}
+\]</p>
+<p>Підставимо значення, які ми маємо:</p>
+<p>\[
+\binom{7}{3} = 35 \qquad \binom{6}{2} = 15
+\]</p>
+<p>\[
+N_{\text{invalid}} = 35 \times 15 = 525
+\]</p>
+<p>Нарешті, віднімемо ці недопустимі випадки від загальної кількості, щоб знайти кількість допустимих комбінацій:</p>
+<p>\[
+N_{\text{valid}} = N_{\text{total}} &#8211; N_{\text{invalid}} = 2450 - 525 = 1925
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Існує 1 925 допустимих комбінацій, якщо двоє конфліктних інженерів не можуть бути призначені в одну групу.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div id="recursion" class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Рекурсія</h2>
+<p>Біноміальний коефіцієнт має природну рекурсивну структуру: щоб обчислити кількість способів вибору \( k \) елементів із \( n \), достатньо знати відповіді на дві менші версії тієї самої задачі.</p>
+<p>\[ \binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k} \]</p>
+<p>Обґрунтування є комбінаторним. Зафіксуємо один елемент із множини — назвемо його \( x \). Кожна підмножина розміром \( k \) або містить \( x \), або не містить його. Якщо містить, то решта \( k-1 \) елементів мають бути обрані з інших \( n-1 \), що дає \( \binom{n-1}{k-1} \). Якщо не містить, то всі \( k \) елементів обираються з решти \( n-1 \), що дає \( \binom{n-1}{k} \). Ці два випадки є взаємовиключними і разом охоплюють усі можливості. Наприклад:</p>
+<p>\[ \binom{3}{2} = \binom{2}{1} + \binom{2}{2} = 2 + 1 = 3 \]</p>
+<p>Ця тотожність є особливо корисною при обчисленнях, оскільки рекурсія не нав'язана задачі ззовні: вона вже закладена в математиці. Рекурсивна функція лише слідує цій структурі безпосередньо, зводячи кожен виклик до двох менших, доки не будуть досягнуті базові випадки:</p>
+<p>\[
+\binom{n}{0} = \binom{n}{n} = 1
+\]</p>
+</div>
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&#038;display=swap" rel="stylesheet">
+
+<style>
+.pb-code{
+font-family: "IBM Plex", monospace;
+font-weight: 500;
+font-style: normal;
+font-size: 13px;
+overflow-x: scroll !important;
+}
+</style>
+
+
+
+<div class="wp-block-jetpack-markdown pb-code mb-x-30"><pre><code>public static int binomialCoefficient(int n, int k) {
+    if (k == 0 || k == n) return 1;
+    return binomialCoefficient(n - 1, k - 1) + binomialCoefficient(n - 1, k);
+}</code></pre>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><h6>Зауважимо, що ця реалізація, хоч і є прозорою, багатократно переобчислює одні й ті самі значення. Обчислювальна складність швидко зростає зі збільшенням \( n \), і цю проблему вирішує мемоїзація шляхом збереження проміжних результатів у міру їх обчислення. Цей компроміс між простотою та ефективністю детально розглянуто в аналізі <a href="big-o-notation.html">нотації Big O</a>.</h6>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Основи біноміального розподілу</h2>
+<p>Біноміальний коефіцієнт є основою для <a href="binomial-distribution.html">біноміального розподілу</a>, який описує ймовірність отримання певної кількості успіхів у фіксованій кількості незалежних випробувань. Якщо кожне випробування має лише два можливі результати — успіх з ймовірністю \( p \) та невдача з ймовірністю \( q = 1 - p \), то ймовірність спостереження рівно \( x \) успіхів у \( n \) випробуваннях визначається як:</p>
+<p>\[
+b(x; n, p) = \binom{n}{x} p^{x} q^{n &#8211; x}
+\]</p>
+<p>Цей вираз поєднує дві речі: біноміальний коефіцієнт, який підраховує кількість способів розміщення \( x \) успіхів у \( n \) випробуваннях, та множник \( p^x q^{n-x} \), який вимірює ймовірність будь-якого одного такого розміщення. Фіксуючи \( n \) та \( p \) і дозволяючи \( x \) змінюватися від \( 0 \) до \( n \), ми отримуємо повний розподіл — кожен можливий результат, зважений відповідно до того, скількома способами він може виникнути.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-recap mb-x-30"><h2>Резюме</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Означення</td>
+<td>\( \dbinom{n}{k} = \dfrac{n!}{k!\,(n-k)!} \)</td>
+</tr>
+<tr>
+<td>Граничні випадки</td>
+<td>\( \dbinom{n}{0} = \dbinom{n}{n} = 1 \)</td>
+</tr>
+<tr>
+<td>Симетрія</td>
+<td>\( \dbinom{n}{k} = \dbinom{n}{n-k} \)</td>
+</tr>
+<tr>
+<td>Адитивність</td>
+<td>\( \dbinom{n}{k} + \dbinom{n}{k+1} = \dbinom{n+1}{k+1} \)</td>
+</tr>
+<tr>
+<td>Рекурсія</td>
+<td>\( \dbinom{n}{k} = \dbinom{n-1}{k-1} + \dbinom{n-1}{k} \)</td>
+</tr>
+<tr>
+<td>Сума рядка</td>
+<td>\( \displaystyle\sum_{k=0}^{n} \binom{n}{k} = 2^n \)</td>
+</tr>
+<tr>
+<td>Змінна сума</td>
+<td>\( \displaystyle\sum_{k=0}^{n} (-1)^k \binom{n}{k} = 0 \)</td>
+</tr>
+<tr>
+<td>Вандермонде</td>
+<td>\( \dbinom{m+n}{r} = \displaystyle\sum_{k=0}^{r} \binom{m}{k}\binom{n}{r-k} \)</td>
+</tr>
+<tr>
+<td>Верхня сума</td>
+<td>\( \displaystyle\sum_{i=0}^{r} \binom{n+i}{i} = \binom{n+r+1}{r} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке біноміальний коефіцієнт?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Біноміальний коефіцієнт представляє кількість способів вибору k елементів із множини n елементів незалежно від порядку. Він позначається як (n оберіть k) або \\( \\binom{n}{k} \\)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка формула для біноміального коефіцієнта?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Біноміальний коефіцієнт обчислюється за формулою \\( \\binom{n}{k} = \\frac{n!}{k!(n-k)!} \\), де n! — це факторіал n."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке трикутник Паскаля?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Трикутник Паскаля — це трикутне розташування чисел, де кожен запис є сумою двох записів безпосередньо над ним. Він візуально представляє біноміальні коефіцієнти."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="binomial-coefficient.html">algebrica.org/binomial-coefficient</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

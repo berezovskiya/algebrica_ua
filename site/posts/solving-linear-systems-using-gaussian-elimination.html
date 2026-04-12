@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Метод Гауса — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Системи лінійних рівнянь</span>
+    </nav>
+    <article>
+        <h1>Метод Гауса</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Що таке метод виключення Гаусса</h2>
+<p>Метод Гаусса, або <strong>виключення Гаусса</strong>, — це техніка, що використовується для розв'язання <a href="systems-of-linear-equations.html">систем</a> \( n \) лінійних рівнянь з \( n \) невідомими. Процес передбачає ітераційне застосування послідовності операцій для виключення однієї змінної за раз, перетворюючи систему у форму, яку легко розв'язати. Розглянемо наступну систему рівнянь:</p>
+<p>\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\[0.5em]
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2 \\[0.5em]
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3
+\end{cases}
+\]</p>
+<h5>Для застосування методу важливо, щоб система була квадратною, тобто вона повинна мати однакову кількість рівнянь і невідомих, як у системі \( 3 \times 3 \), показаній вище.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section-inverse mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps mb-x-30"><h2>Процес включає наступні кроки:</h2>
+<ul>
+<li>Виключити змінну \( x_1 \) з усіх рівнянь, крім першого.</li>
+<li>Виключити змінну \( x_2 \) з третього рівняння.</li>
+<li>Розв'язати третє рівняння, щоб знайти значення \( x_3 \).</li>
+<li>Рухатися у зворотному напрямку, щоб знайти значення решти змінних.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Коли алгоритм створює несумісне або невизначене рівняння, система не може рухатися далі: це сигналізує або про відсутність розв'язання, або про нескінченну множину розв'язків.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Зв'язок із матрицями</h2>
+<p>Метод виключення Гаусса перетворює <a href="matrices.html">матрицю</a> на її ступінчасту форму. Мета полягає в тому, щоб переписати матрицю так, щоб кожна позиція головного елемента (на головній діагоналі) містила 1, а всі елементи нижче кожного головного елемента були 0. Наприклад, починаючи з загальної матриці:</p>
+<p>\[
+A = \begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13} \\
+a_{21} &amp; a_{22} &amp; a_{23} \\
+a_{31} &amp; a_{32} &amp; a_{33}
+\end{bmatrix}
+\quad \xrightarrow{\text{to}} \quad
+\begin{bmatrix}
+1 &amp; b_{12} &amp; b_{13} \\
+0 &amp; 1 &amp; b_{23} \\
+0 &amp; 0 &amp; 1
+\end{bmatrix}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Почнемо з виключення змінної \( x_1 \) з усіх рівнянь, крім першого.</h2>
+<p>Щоб виключити \( x_1 \) з другого рівняння, ми множимо перше рівняння на \( a_{21} \), а друге на \( a_{11} \). Потім ми віднімаємо два отриманих рівняння і замінюємо друге рівняння результатом. Отримуємо:</p>
+<p>\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\[0.5em]
+\left(a_{11}a_{22} &#8211; a_{21}a_{12}\right)x_2 + \left(a_{11}a_{23} &#8211; a_{21}a_{13}\right)x_3 = a_{11}b_2 - a_{21}b_1 \\[0.5em]
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3
+\end{cases}
+\]</p>
+<p>Щоб спростити обчислення, ми переписуємо друге рівняння як:</p>
+<p>\[
+a^\prime_{22} x_2 + a^\prime_{23} x_3 = b^\prime_2
+\]</p>
+<p>Система набуває вигляду:</p>
+<p>\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\[0.5em]
+a^\prime_{22} x_2 + a^\prime_{23} x_3 = b^\prime_2\\[0.5em]
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3
+\end{cases}
+\]</p>
+<hr>
+<p>Тепер ми множимо перше рівняння на \( a_{31} \), а третє рівняння на \( a_{11} \). Потім ми віднімаємо два отриманих рівняння і замінюємо третє рівняння результатом.</p>
+<p>\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\[0.5em]
+a^\prime_{22} x_2 + a^\prime_{23} x_3 = b^\prime_2\\[0.5em]
+\left(a_{11}a_{32} - a_{31}a_{12}\right)x_2 + \left(a_{11}a_{33} - a_{31}a_{13}\right)x_3 = a_{11}b_3 &#8211; a_{31}b_1
+\end{cases}
+\]</p>
+<p>Ми переписуємо третє рівняння як:</p>
+<p>\[
+a^\prime_{32}x_2 + a^\prime_{33}x_3 = b’_3
+\]</p>
+<p>Отримуємо:</p>
+<p>\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_1 \\[0.5em]
+a^\prime_{22} x_2 + a^\prime_{23} x_3 = b^\prime_2\\[0.5em]
+a^\prime_{32}x_2 + a^\prime_{33}x_3 = b’_3\end{cases}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Переходимо до другого кроку і виключаємо змінну \( x_2 \) з третього рівняння.</h2>
+<p>Ми множимо друге рівняння на \( a^\prime_{32} \), а третє рівняння на \( a^\prime_{22} \). Потім ми віднімаємо два отриманих рівняння і замінюємо третє рівняння результатом. Завершивши обчислення, як на першому кроці, система зводиться до наступного вигляду:</p>
+<p>\[
+\begin{cases}
+a_{11}x_1 + a_{12} x_2 + a_{13} x_3 = b_1 \\[0.5em]
+a^\prime_{22} x_2 + a^\prime_{23} x_3 = b^\prime_2 \\[0.5em]
+a^{\prime\prime}_{33} x_3 = b^{\prime\prime}_3
+\end{cases}
+\]</p>
+<p>Ми отримали трикутну систему. На цьому етапі ми можемо знайти \( x_3 \) з третього рівняння, отримавши:
+\[ x_3 = \frac{b^{\prime\prime_3}}{a^{\prime\prime_{33}}} \]</p>
+<p>Тепер ми можемо визначити кожну змінну, починаючи з відомого значення \(x_3\).</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Розглянемо конкретний приклад методу Гаусса, застосований до системи 3×3. Розглянемо наступну систему лінійних рівнянь:</p>
+<p>\[
+\begin{cases}
+x + y + z = 6 \\[0.5em]
+2x + 3y + z = 14 \\[0.5em]
+x + 2y + 3z = 14
+\end{cases}
+\]</p>
+<p>Щоб вилучити \( x \) з другого рівняння, віднімемо \( 2 \times \) рівняння 1 від рівняння 2:</p>
+<p>\[
+(2x + 3y + z) - 2(x + y + z) = 0x + y - z = 2
+\]</p>
+<hr>
+<p>Тепер вилучимо \( x \) з третього рівняння, віднявши рівняння 1 від рівняння 3:</p>
+<p>\[
+(x + 2y + 3z) - (x + y + z) = 0x + y + 2z = 8
+\]</p>
+<p>Система набуває вигляду:</p>
+<p>\[
+\begin{cases}
+x + y + z = 6 \\[0.5em]
+y &#8211; z = 2 \\[0.5em]
+y + 2z = 8
+\end{cases}
+\]</p>
+<hr>
+<p>Тепер використаємо друге рівняння як новий опорний елемент. Щоб вилучити \( y \) з третього рівняння, віднімемо рівняння 2 від рівняння 3:</p>
+<p>\[
+(y + 2z) - (y - z) = 3z = 6 \Rightarrow z = 2
+\]</p>
+<p>Підставимо значення назад, щоб знайти інші змінні. З рівняння 2:
+\[
+y &#8211; z = 2 \rightarrow y = 2 + z = 2 + 2 = 4
+\]</p>
+<p>З рівняння 1:
+\[
+x + y + z = 6 \Rightarrow x = 6 &#8211; y &#8211; z = 6 &#8211; 4 &#8211; 2 = 0
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язання:</p>
+<p>\[
+x = 0 \quad y = 4 \quad z = 2
+\]</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Для чого використовується метод Гаусса?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Метод Гаусса — це метод, що використовується для розв'язання систем лінійних рівнянь шляхом перетворення системи в простішу, трикутну форму за допомогою елементарних операцій над рядками. Він дозволяє ефективно обчислити значення змінних за допомогою зворотних підстановок."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як розв'язати систему за допомогою методу Гаусса?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб розв'язати систему за допомогою методу Гаусса, потрібно послідовно вилучати одну змінну, щоб привести систему до ступінчастого вигляду, а потім використати зворотні підстановки для знаходження значень невідомих."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="solving-linear-systems-using-gaussian-elimination.html">algebrica.org/solving-linear-systems-using-gaussian-elimination</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

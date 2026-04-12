@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гармонійний ряд — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Ряди</span>
+    </nav>
+    <article>
+        <h1>Гармонійний ряд</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Що таке гармонійний ряд</h2>
+<p><strong>Гармонійний ряд</strong> визначається як нескінченна сума:</p>
+<p>\[
+\sum_{k=1}^{\infty} \frac{1}{k}
+\]</p>
+<p>де кожен член є оберненим значенням <a href="types-of-numbers.html">натурального числа</a>. Незважаючи на те, що члени прямують до нуля, <a href="series.html">ряд</a> розбігається, тобто сума зростає необмежено. Зокрема, оскільки гармонійний ряд є рядом з <a href="series-with-positive-terms.html">додатними членами</a>, можна показати, що він розбігається до плюс нескінченності. Дійсно, оскільки ряд має додатні члени, границя послідовності його часткових сум існує:</p>
+<p>\[
+S = \lim_{n \to +\infty} s_n = \lim_{n \to +\infty} \sum_{k=1}^{n} \frac{1}{k}
+\]</p>
+<p>На перший погляд може здатися, що при \( n \to \infty \) члени гармонійного ряду прямують до нуля, і тому сам ряд може збігатися. Однак це логічна помилка: хоча члени \( \frac{1}{n} \) дійсно наближаються до нуля, вони роблять це недостатньо швидко для збіжності ряду.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="846" height="532" src="../images/harmonic-series-1-2.png" alt="" class="wp-image-16158" style="width:423px" srcset="../images/harmonic-series-1-2.png 846w, https://algebrica.org/wp-content/uploads/resources/images/harmonic-series-1-2-300x189.png 300w, https://algebrica.org/wp-content/uploads/resources/images/harmonic-series-1-2-768x483.png 768w" sizes="(max-width: 846px) 100vw, 846px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Ось графік часткових сум гармонійного ряду до \(n = 100.\) Як видно, крива повільно, але безперервно зростає, підтверджуючи, що ряд є розбіжним.</h5>
+<hr>
+<p>Існує кілька способів довести, що гармонійний ряд розбігається. Один підхід полягає у використанні <a href="series.html">часткових сум</a>, як показано нижче:</p>
+<p>\[
+\sum_{k=1}^{\infty} \frac{1}{k} = 1 + \frac{1}{2} + \left( \frac{1}{3} + \frac{1}{4} \right) + \left( \frac{1}{5} + \frac{1}{6} + \frac{1}{7} + \frac{1}{8} \right) + \cdots
+\]</p>
+<p>Кожна група містить удвічі більше членів, ніж попередня. Зауваживши, що кожна група додає до суми принаймні \( \frac{1}{2} \), робимо висновок, що загальний ряд зростає необмежено:</p>
+<p>\[
+\sum_{k=1}^{\infty} \frac{1}{k} = \infty
+\]</p>
+<p>Отже, гармонійний ряд розбігається.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Знання поведінки гармонійного ряду та його варіантів є корисним, оскільки ознака порівняння часто дозволяє зв’язати складний ряд з гармонійним для перевірки його збіжності.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps mb-x-30 alignCenterMathjax"><h2>Узагальнений гармонійний ряд (p-ряд)</h2>
+<p>Розглянемо узагальнену версію гармонійного ряду, де знаменник піднесено до <a href="powers.html">степеня</a> \( a \):</p>
+<p>\[
+\sum_{k=1}^{\infty} \frac{1}{k^a}
+\]</p>
+<p>Цей ряд, відомий як <strong>узагальнений гармонійний ряд</strong>, має додаткову особливість порівняно зі стандартним гармонійним рядом: його збіжність або розбіжність залежить від значення показника \( a \). Маємо:</p>
+<ul>
+<li>Якщо \( a &gt; 1 \), ряд збігається.</li>
+<li>Якщо \( a \leq 1 \), ряд розбігається.</li>
+</ul>
+<hr>
+<p>Необхідна умова збіжності ряду \( \sum a_k \) полягає в тому, що загальний член прямує до нуля:</p>
+<p>\[
+\lim_{k \to \infty} a_k = 0.
+\]</p>
+<p>Якщо ця умова не виконується, тобто якщо \( \lim_{k \to \infty} a_k \neq 0 \), то ряд розбігається. У випадку узагальненого гармонійного ряду з показником \( a \leq 1 \) ця умова не виконується. Наприклад, коли \( a = 0 \), члени стають сталими \( a_k = 1 \), і:</p>
+<p>\[
+\lim_{k \to \infty} \frac{1}{k^0} = \lim_{k \to \infty} 1 = 1 \neq 0.
+\]</p>
+<p>Отже, ряд розбігається, оскільки його загальний член не прямує до нуля.</p>
+<hr>
+<p>Коли \( a &gt; 1 \), можна застосувати <a href="integral-test-for-series-convergence.html">інтегральну ознаку</a> для визначення збіжності ряду. Розглянемо відповідний невласний інтеграл:</p>
+<p>\[
+\int_1^{\infty} \frac{1}{x^a} \, dx
+\]</p>
+<p>Оскільки \( a &gt; 1 \), маємо:</p>
+<p>\[
+\int_1^{\infty} \frac{1}{x^a} \, dx
+= \lim_{t \to \infty} \int_1^t x^{-a} \, dx
+\]</p>
+<p>Обчислюючи інтеграл на кінцях, отримаємо:</p>
+<p>\[
+\lim_{t \to \infty} \left[ \frac{x^{1-a}}{1 &#8211; a} \right]_1^t
+= \lim_{t \to \infty} \left( \frac{t^{1 &#8211; a}}{1 &#8211; a} &#8211; \frac{1}{1 - a} \right)
+\]</p>
+<p>Оскільки \( a &gt; 1 \), показник \( 1 &#8211; a &lt; 0 \), тому \( t^{1 &#8211; a} \to 0 \). Отже:</p>
+<p>\[
+\int_1^{\infty} \frac{1}{x^a} \, dx = \frac{1}{a &#8211; 1}
+\]</p>
+<p>що є скінченним. Отже, ряд збігається для всіх \( a &gt; 1 \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps mb-x-30"><h2>Логарифмічно модифікований гармонійний ряд</h2>
+<p>Нарешті, розглянемо наступний ряд:</p>
+<p>\[
+\sum_{k=2}^{\infty} \frac{1}{k (\log^\alpha k)}
+\]</p>
+<p>Це так званий <strong>логарифмічно модифікований</strong> ряд, де наявність <a href="logarithms.html">логарифмічного</a> члена впливає на швидкість, з якою ряд збігається або розбігається. Збіжність ряду залежить від показника \( \alpha \) у логарифмічному члені:</p>
+<ul>
+<li>Якщо \( \alpha &gt; 1 \), ряд збігається.</li>
+<li>Якщо \( \alpha \leq 1 \), ряд розбігається.</li>
+</ul>
+<p>Підсумовування починається з \( k = 2 \), щоб уникнути сингулярностей при \( k = 0 \) (де \( \log 0 \) не визначений) та \( k = 1 \) (де \( \log 1 = 0 \), що спричиняє ділення на нуль).</p>
+<hr>
+<p>Для доведення збіжності застосуємо інтегральну ознаку. Розглянемо функцію:</p>
+<p>\[
+f(x) = \frac{1}{x (\log x)^\alpha}
+\]</p>
+<p>яка є додатною, <a href="continuous-functions.html">неперервною</a> та <a href="increasing-and-decreasing-functions.html">спадною</a> для \( x \geq 2 \). Далі обчислимо невласний інтеграл:</p>
+<p>\[
+\int_2^{\infty} \frac{1}{x (\log x)^\alpha} \, dx
+\]</p>
+<p>Використовуючи підстановку \( u = \log x \), отримаємо:</p>
+<p>\[
+\int_2^{\infty} \frac{1}{x (\log x)^\alpha} \, dx
+= \int_{\log 2}^{\infty} \frac{1}{u^\alpha} \, du
+\]</p>
+<p>Цей інтеграл збігається тоді й лише тоді, коли \( \alpha &gt; 1 \). Отже, за інтегральною ознакою, ряд збігається тоді й лише тоді, коли \( \alpha &gt; 1 \).</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Визначимо характер наступного ряду:</p>
+<p>\[
+\sum_{n=2}^{\infty} \frac{1}{n \sqrt{\log n}}
+\]</p>
+<hr>
+<p>Зауважимо, що цей ряд має загальну форму:</p>
+<p>\[
+\sum_{n=2}^{\infty} \frac{1}{n (\log n)^\alpha}
+\]</p>
+<p>з \( \alpha = \frac{1}{2} \). Це відомий логарифмічно модифікований гармонійний ряд. Згідно з відомими результатами, ряд збігається тоді й лише тоді, коли \( \alpha &gt; 1 \).</p>
+<p>Оскільки \( \alpha = \frac{1}{2} &lt; 1 \), ряд розбігається.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Робимо висновок, що ряд розбігається за ознакою порівняння з розбіжним гармонійним рядом, модифікованим логарифмічним членом.</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the harmonic series?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The harmonic series is the infinite sum of the reciprocals of natural numbers, written as 1 + 1/2 + 1/3 + 1/4 + ... . Despite its terms decreasing, the series diverges."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the harmonic series converge?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No, the harmonic series diverges. Although the terms approach zero, the total sum increases without bound."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a logarithmically modified harmonic series?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A logarithmically modified harmonic series includes a logarithmic term in the denominator, such as 1 / (k * (log k)^α). This affects convergence depending on the exponent α."
+      }
+    }
+  ]
+}
+</script>
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="harmonic-series.html">algebrica.org/harmonic-series</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

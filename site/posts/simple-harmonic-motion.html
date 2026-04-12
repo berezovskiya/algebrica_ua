@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простий гармонійний рух — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Кінематика | Фізика</span>
+    </nav>
+    <article>
+        <h1>Простий гармонійний рух</h1>
+        <time>2025-05-20</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Що таке простий гармонічний рух</h2>
+<p>Простий гармонічний рух — це прямолінійний рух, який отримують шляхом проєктування рівномірного кругового руху тіла на фіксований діаметр кола. У цьому випадку матеріальна точка неодноразово рухається вздовж діаметра, коливаючись туди й сюди та повертаючись у те саме положення через регулярні <a href="intervals.html">проміжки</a> часу, що дорівнюють періоду руху.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="746" height="602" src="../images/harmonic-motion-1.png" alt="" class="wp-image-14893" style="width:373px" srcset="../images/harmonic-motion-1.png 746w, https://algebrica.org/wp-content/uploads/resources/images/harmonic-motion-1-300x242.png 300w" sizes="(max-width: 746px) 100vw, 746px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Ця проєкція створює плавне та неперервне коливання, де відхилення від центру змінюється <a href="sine-and-cosine.html">синусоїдально</a> з часом. Положення як функція часу для простого гармонічного руху задається рівнянням:</p>
+<p>\[
+x(t) = A \sin(\omega t)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps mb-x-30"><ul>
+<li>\( A \) — це амплітуда, максимальне відхилення від положення рівноваги (функція \( \sin(\omega t) \) коливається між значеннями \( +1 \) та \( -1 \)).</li>
+<li>\( \omega \) — це кутова частота (в радіанах за секунду).</li>
+<li>\( t \) — це змінна часу.</li>
+</ul>
+<p>Оскільки функція є періодичною з періодом \( T \), що означає, що вона повторюється від \( t \) до \( t+T \), аргумент тригонометричної функції має змінитися на \( 2\pi \).<br>
+Отже, маємо:</p>
+<p>\[
+\omega(t+T) &#8211; \omega t = 2\pi
+\]</p>
+<p>Звідси ми виводимо основний зв'язок:
+\[
+\omega = \frac{2\pi}{T}
+\]
+де \( \nu \) представляє частоту гармонічного руху і пов'язана з періодом наступним чином:</p>
+<p>\[
+\nu = \frac{1}{T}
+\]</p>
+<hr>
+<p>У простому гармонічному русі, де центр коливань не збігається з початком координат, а розташований у точці \( x_0 \), загальне рівняння руху має вигляд:</p>
+<p>\[
+x &#8211; x_0 = A \sin(\omega t + \varphi)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>\( x(t) \) — положення матеріальної точки в момент часу ( t ),</li>
+<li>\( x_0 \) — центр, навколо якого відбуваються коливання,</li>
+<li>\( A \) — амплітуда,</li>
+<li>\( \omega \) — кутова частота,</li>
+<li>\( \varphi \) — початкова фаза.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 1</h2>
+<p>Наприклад, обчислимо рівняння простого гармонічного руху з періодом \( T = 3 \, \text{с} \) та амплітудою \( A = 0.5 \, \text{м} \).</p>
+<p>Знайдемо кутову частоту.</p>
+<p>\[
+\omega = \frac{2\pi}{T} = \frac{2\pi}{3} \, \text{рад/с}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Таким чином, рівняння руху має вигляд:</p>
+<p>\[
+x(t) = 0.5 \sin\left( \frac{2\pi}{3} t \right)
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Швидкість</h2>
+<p>Щоб знайти миттєву <a href="velocity.html">скалярну швидкість</a> \( v(t) \), ми <a href="derivatives.html">диференціюємо</a> \( x(t) \) по часу:</p>
+<p>\[
+v(t) = \frac{dx}{dt}
+\]</p>
+<p>Застосовуючи похідну:
+\[
+\frac{d}{dt} \left( A \sin(\omega t) \right) = A \omega \cos(\omega t)
+\]</p>
+<p>Таким чином, миттєва швидкість матеріальної точки дорівнює:
+\[
+v(t) = A \omega \cos(\omega t)
+\]</p>
+<p>Цей вираз показує, що швидкість змінюється з часом за <a href="cosine-function.html">функцією косинуса</a>, досягаючи свого максимуму, коли частинка проходить через положення рівноваги.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Швидкість при простому гармонічному русі не є сталою: вона змінюється з часом відповідно до тенденції функції косинуса.</li>
+<li>Коли тіло проходить через положення рівноваги (тобто \(x = 0\), центр руху), швидкість є максимальною.</li>
+<li>Коли тіло досягає крайніх точок (тобто в точках \(x = +A\) або \(x = -A\)), швидкість дорівнює нулю.</li>
+<li>Швидкість, будучи функцією косинуса, випереджає по фазі відхилення \(x\) при простому гармонічному русі.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 2</h2>
+<p>Наприклад, обчислимо миттєву швидкість простого гармонічного руху з періодом \( T = 3 \, \text{с} \) та амплітудою \( A = 0.5 \, \text{м} \).</p>
+<hr>
+<p>Знайдемо кутову частоту.</p>
+<p>\[
+\omega = \frac{2\pi}{T} = \frac{2\pi}{3} \, \text{рад/с}
+\]</p>
+<p>Функція положення має вигляд:</p>
+<p>\[
+x(t) = 0.5 \sin\left( \frac{2\pi}{3} t \right)
+\]</p>
+<p>Диференціюємо по часу, щоб знайти швидкість:</p>
+<p>\[
+v(t) = \frac{dx}{dt} = 0.5 \times \frac{2\pi}{3} \cos\left( \frac{2\pi}{3} t \right)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Спрощуючи, отримаємо:</p>
+<p>\[
+v(t) = \frac{\pi}{3} \cos\left( \frac{2\pi}{3} t \right)
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Прискорення</h2>
+<p>Щоб знайти миттєве <a href="acceleration.html">прискорення</a> \( a(t) \), ми <a href="derivatives.html">диференціюємо</a> функцію швидкості \( v(t) \) за часом:</p>
+<p>\[
+a(t) = \frac{dv}{dt}
+\]</p>
+<p>Застосовуючи похідну:</p>
+<p>\[
+\frac{d}{dt} \left( A \omega \cos(\omega t) \right) = -A \omega^2 \sin(\omega t)
+\]</p>
+<p>Таким чином, миттєве прискорення матеріальної точки дорівнює:</p>
+<p>\[
+a(t) = -A \omega^2 \sin(\omega t)
+\]</p>
+<p>Цей вираз показує, що прискорення змінюється з часом за <a href="sine-function.html">функцією синуса</a>, досягаючи свого максимального значення, коли частинка перебуває на максимальній відстані від положення рівноваги.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Прискорення при гармонічних коливаннях не є сталим: воно змінюється з часом за законом функції синуса.</li>
+<li>Коли тіло проходить через положення рівноваги (тобто \(x = 0\), центр руху), прискорення дорівнює нулю.</li>
+<li>Коли тіло досягає крайніх точок (тобто в точках \(x = +A\) або \(x = -A\)), прискорення досягає свого максимального значення.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius"><p>Прискорення, будучи функцією синуса, знаходиться в протифазі відносно зміщення \(x\). При гармонічних коливаннях прискорення має лише нормальну складову \( a_n \), і воно є доцентровим, завжди спрямованим до центру коливань. Це означає, що в міру руху частинки прискорення безперервно діє, щоб повернути її до положення рівноваги.</p>
+<blockquote>
+<p>При рівноприскореному <a href="acceleration.html">прямолінійному русі</a> <a href="vectors.html">вектор</a> прискорення має дві складові: нормальну складову \( a_n \) та тангенціальну складову \( a_t \). Оскільки траєкторія залишається прямою лінією, нормальна складова \( a_n = 0 \). Однак тангенціальна складова \( a_t \) є сталою та ненульовою, що представляє сталу зміну модуля швидкості вздовж напрямку руху.</p>
+</blockquote>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 3</h2>
+<p>Наприклад, обчислимо прискорення при гармонічних коливаннях з періодом \( T = 3 , \text{с} \) та амплітудою \( A = 0.5 \, \text{м} \).</p>
+<hr>
+<p>Переглянемо кроки, виконані в попередніх прикладах. Спочатку знайдемо кутову частоту.</p>
+<p>\[
+\omega = \frac{2\pi}{T} = \frac{2\pi}{3} \, \text{рад/с}
+\]</p>
+<p>Виходячи з рівняння руху:</p>
+<p>\[
+x(t) = 0.5 \sin\left( \frac{2\pi}{3} t \right)
+\]</p>
+<p>Швидкість дорівнює:</p>
+<p>\[
+v(t) = 0.5 \times \frac{2\pi}{3} \cos\left( \frac{2\pi}{3} t \right) = \frac{\pi}{3} \cos\left( \frac{2\pi}{3} t \right)
+\]</p>
+<p>Диференціюючи ще раз, знайдемо прискорення:</p>
+<p>\[
+a(t) = \frac{dv}{dt} = -\left( \frac{\pi}{3} \times \frac{2\pi}{3} \right) \sin\left( \frac{2\pi}{3} t \right)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Спрощуючи:</p>
+<p>\[
+a(t) = -\frac{2\pi^2}{9} \sin\left( \frac{2\pi}{3} t \right)
+\]</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке гармонічні коливання?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Гармонічні коливання — це тип періомічного руху, при якому об'єкт коливається вперед і назад навколо положення рівноваги під дією поновлювальної сили, пропорційної його зміщенню."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яке рівняння гармонічних коливань?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Рівняння гармонічних коливань має вигляд x(t) = A cos(ωt + φ), де A — амплітуда, ω — кутова частота, t — час, а φ — початкова фаза."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке поновлювальна сила при гармонічних коливаннях?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Поновлювальна сила при гармонічних коливаннях прямо пропорційна від'ємному значенню зміщення і відповідає закону Гука: F = -kx, де k — коефіцієнт жорсткості."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="simple-harmonic-motion.html">algebrica.org/simple-harmonic-motion</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналіз графіків функцій — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Аналіз графіків функцій</h1>
+        <time>2025-02-24</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Вступ</h2>
+<p>Аналіз графіка <a href="functions.html">функції</a> \(y=f(x)\) дозволяє дослідити її поведінку та ключові характеристики, надаючи цінну інформацію про її математичні властивості. Це структурований процес, який можна ефективно виконати, дотримуючись точного аналітичного алгоритму, що складається з наступних кроків.</p>
+<ul>
+<li>Визначити <a href="determining-the-domain-of-a-function.html">область визначення</a>, ідентифікувавши множину дійсних чисел, для яких функція визначена.</li>
+<li>Перевірити на симетрію, щоб визначити, чи є функція <a href="even-and-odd-functions.html">парною або непарною</a>.</li>
+<li>Знайти точки перетину, визначивши точки, де графік перетинає вісь \(x\) та вісь \(y\).</li>
+<li>Проаналізувати знак функції, щоб визначити, де вона додатна або від'ємна.</li>
+<li>Визначити <a href="asymptotes.html">асимптоти</a>, включаючи горизонтальні, вертикальні або похилі межі.</li>
+<li>Використати першу похідну для знаходження інтервалів зростання та спадання.</li>
+<li>Застосувати другу похідну для дослідження випуклості та виявлення <a href="maximum-minimum-and-inflection-points.html">точок перегину</a>.</li>
+<li>Надати якісне зображення графіка функції.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section"><h2>Область визначення</h2>
+<p>Першим кроком в аналізі функції є визначення її <a href="determining-the-domain-of-a-function.html">області визначення</a> — множини всіх дійсних чисел, для яких функція є коректно визначеною. Область визначення залежить від типу функції, що аналізується. Визначення області визначення є критично важливим, оскільки воно встановлює значення аргументів, для яких функцію можна обчислити та побудувати її графік. Щоб знайти область визначення, ми досліджуємо вираз функції та визначаємо будь-які математичні обмеження, які можуть обмежувати певні значення \( x \).</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><p>Розглянемо як приклад функцію \( y = x^3 - 2x \). Це поліноміальна функція вигляду:
+\[y = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0\]
+де \( a_n, a_{n-1}, \dots, a_0 \) — дійсні коефіцієнти, а \( n \) — степінь <a href="polynomials.html">полінома</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Оскільки поліноміальні функції визначені для всіх дійсних чисел, область визначення цієї функції — \( \mathbb{R} \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section"><h2>Симетрія</h2>
+<p>Наступним кроком є визначення того, чи виявляє функція <a href="even-and-odd-functions.html">симетрію</a> відносно осі \( y \) або початку координат.</p>
+<ul>
+<li>
+<p>Функція \(y=f(x)\) класифікується як <a href="even-and-odd-functions.html">парна</a>, якщо вона задовольняє умову \(f(-x) = f(x) \quad \forall x \in D.\) Це означає, що графік симетричний відносно осі \( y \).</p>
+</li>
+<li>
+<p>Функція \(y=f(x)\) класифікується як <a href="even-and-odd-functions.html">непарна</a>, якщо вона задовольняє умову \(f(-x) = -f(x) \quad \forall x \in D.\) Це означає, що графік симетричний відносно початку координат.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><p>Щоб визначити, чи є функція \(f(x) = x^3 &#8211; 2x\) парною чи непарною, обчислимо \( f(-x) \). Замінюючи \( x \) на \( -x \), маємо:
+\[
+\begin{align}
+f(-x) &amp;= (-x)^3 - 2(-x) \\[0.5em]
+&amp;= -x^3 + 2x
+\end{align}
+\]</p>
+<hr>
+<p>Обчислюючи \( -f(x) \), отримаємо:<br>
+\[
+\begin{align}
+-f(x) &amp;= -(x^3 - 2x) \\[0.5em]
+&amp;= -x^3 + 2x
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Оскільки \( f(-x) = -f(x) \), функція є непарною, що означає, що вона симетрична відносно початку координат.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Перетини з координатними осями</h2>
+<p>Після дослідження симетрії наступним кроком є визначення точок, у яких функція перетинає координатні осі. До них належать:</p>
+<ul>
+<li>перетини з віссю \( x \), що отримуються шляхом розв'язання \( f(x) = 0 \).</li>
+<li>перетин з віссю \( y \), що визначається як \( f(0) \), якщо функція визначена при \( x = 0 \).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-outline"><p>Щоб визначити точки перетину з віссю \( y \), підставимо \( x = 0 \) у функцію \( f(x) \). Маємо:
+\[f(0) = 0^3 &#8211; 2(0) = 0\]</p>
+<p>Таким чином, функція перетинає вісь \( y \) у точці:
+\[(0, 0)\]</p>
+<hr>
+<p>Далі, щоб знайти точки перетину з віссю \( x \), прирівняємо \( f(x) = 0 \):</p>
+<p>\[x^3 &#8211; 2x = 0\]
+\[x(x^2 &#8211; 2) = 0\]</p>
+<p>Розв'язуючи відносно \( x \), маємо:
+\[x = 0 \quad \text{або} \quad x^2 - 2 = 0\]</p>
+<p>З \( x^2 - 2 = 0 \) отримаємо:<br>
+\[x = \pm \sqrt{2}\]</p>
+<p>Таким чином, функція перетинає вісь \( x \) у точках:</p>
+<p>\[(0,0), \quad (\sqrt{2},0), \quad (-\sqrt{2},0)\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отже, перетинами з координатними осями є:</p>
+<p>вісь \( y \): \( (0,0)\)<br>
+вісь \( x \): \( (0,0) \), \( (\sqrt{2},0) \), \( (-\sqrt{2},0) \)</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section"><h2>Аналіз знаків</h2>
+<p>Далі ми проаналізуємо знак функції, визначивши проміжки, на яких вона є додатною та від'ємною. Це робиться шляхом розв'язання нерівності \(f(x) &gt; 0\), яка визначає, де функція набуває додатних значень. Доповняльні проміжки, де \( f(x) &lt; 0 \), вказують на те, де функція є від'ємною.</p>
+<h5>У цьому контексті, оскільки ми працюватимемо з нерівностями, корисно нагадати, як виконувати <a href="sign-analysis-in-inequalities.html">аналіз знаків</a> у нерівностях.</h5>
+</div>
+
+
+
+<div class="wp-block-group pb-outline mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><p>Щоб проаналізувати знак функції, ми визначимо, де \( f(x) \) є додатною, від'ємною або дорівнює нулю, розв'язавши нерівність:<br>
+\[x^3 - 2x \gt 0\]</p>
+<hr>
+<p>Розклавши вираз на множники, маємо:
+\[x(x^2 &#8211; 2) \gt 0\]</p>
+<p>З першого множника отримаємо:
+\[x \gt 0\]</p>
+<p>З другого множника отримаємо:
+\[x^2-2 \gt 0 \Rightarrow x \gt \sqrt{2} \quad x \lt -\sqrt{2}\]</p>
+<hr>
+<p>Перемноживши знаки першого та другого множників, ми отримаємо (чорним кольором) проміжки, на яких функція є додатною.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th>\[ -\sqrt{2}\]</th>
+<th>\[ 0\]</th>
+<th>\[ +\sqrt{2}\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td><div class="sign-plus-right -closed"></div></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td><div class="sign-plus-left-in -closed -highlight"></div></td>
+<td><div class="sign-plus-right-in -closed -highlight"></div></td>
+<td><div class="sign-plus-left -closed -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Отже, функція \( x(x^2 - 2) \) є додатною при:</p>
+<p>\[x \in (-\sqrt{2},0) \cup (+\sqrt{2},+\infty)\]</p>
+<h5>Для повноти нагадаємо, що аналіз знаків функції, як у наведеному прикладі, вимагає дослідження знаків її окремих множників та визначення загального знака для кожного проміжку шляхом обчислення добутку цих знаків.</h5>
+<hr>
+<p>Потім ми відобразимо на декартовій площині проміжки, де має бути розташована функція, виключаючи ті, що позначені сірим кольором.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="614" height="520" src="../images/graph-functions-1-2.png" alt="" class="wp-image-7737" style="width:307px" srcset="../images/graph-functions-1-2.png 614w, https://algebrica.org/wp-content/uploads/resources/images/graph-functions-1-2-300x254.png 300w" sizes="(max-width: 614px) 100vw, 614px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section"><h2>Асимптоти</h2>
+<p>Іншим важливим кроком в аналізі функції є дослідження її поведінки на межах області визначення. Це передбачає обчислення <a href="limits.html">границь</a>, щоб визначити, як поводиться функція, коли \( x \) наближається до кінцевих точок своєї області визначення або прямує до нескінченності. Обчисливши ці границі, ми можемо визначити наявність асимптот.</p>
+<ul>
+<li>
+<p>Функція \( f(x) \) має горизонтальну асимптоту, якщо:
+\[\lim\limits_{x \to \pm\infty} f(x) = L\]
+де \( L \) — скінченне дійсне число. У цьому випадку пряма \( y = L \) є асимптотою, що описує поведінку функції на нескінченності.</p>
+</li>
+<li>
+<p>Функція \( f(x) \) має вертикальну асимптоту в точці \( x = x_0 \), якщо<br>
+\[\lim\limits_{x \to x_0^\pm} f(x) = \pm\infty\]
+У цьому випадку пряма \( x = a \) є асимптотою, що вказує на необмежений ріст функції поблизу \( x = a \).</p>
+</li>
+<li>
+<p>Функція \( f(x) \) має похилу асимптоту вигляду \( y = mx + q \), якщо наступні границі існують і є скінченними:<br>
+\[m = \lim\limits_{x \to \pm\infty} \frac{f(x)}{x}\]
+\[q = \lim\limits_{x \to \pm\infty} \left[ f(x) - mx \right]\]</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><p>Щоб визначити, чи існують горизонтальні асимптоти, ми перевіримо, чи існує наступна границя і чи є вона скінченною:
+\[\lim\limits_{x \to \pm\infty} f(x)\]</p>
+<p>Маємо:<br>
+\[\lim\limits_{x \to \pm\infty} (x^3 &#8211; 2x) = \pm\infty\]</p>
+<p>Функція прямує до нескінченності в обох напрямках, таким чином, горизонтальних асимптот немає.</p>
+<hr>
+<p>Вертикальні асимптоти виникають у точках, де функція не визначена і її значення зростають необмежено. Дана функція \(y = x^3 &#8211; 2x\) є поліномом, який визначений для всіх \( x \in \mathbb{R} \). Оскільки поліноми не мають точок розриву або нескінченних границь при скінченних значеннях \( x \), ми робимо висновок, що вертикальних асимптот немає.</p>
+<hr>
+<p>Щоб визначити наявність похилих асимптот, ми обчислимо кутовий коефіцієнт \(m\) за допомогою наступної границі:</p>
+<p>\[m = \lim\limits_{x \to \pm\infty} \frac{x^3 &#8211; 2x}{x} = +\infty\]</p>
+<p>Оскільки границя не є скінченною, похилих асимптот немає.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отже, горизонтальних, вертикальних або похилих асимптот немає.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section"><h2>Точки максимуму та мінімуму</h2>
+<p>Тепер, аналізуючи першу похідну, ми спочатку визначаємо її область визначення та нулі, знаходячи, де \( f^{\prime}(x) = 0 \). Досліджуючи її знак, ми встановлюємо проміжки, на яких функція зростає \( f^{\prime}(x) &gt; 0 \), і, відповідно, ті, на яких вона спадає \( f^{\prime}(x) &lt; 0 \).</p>
+<p>Далі ми визначаємо можливі <a href="maximum-minimum-and-inflection-points.html">локальні максимуми та мінімуми</a>, обчислюючи критичні точки \( f(x) \). Крім того, ми досліджуємо функцію на наявність точок перегину, де змінюється випуклість, та точок, де \( f(x) \) <a href="points-of-non-differentiability.html">не є диференційовною</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-outline"><p>Обчислимо першу похідну \( f(x) \) та проаналізуємо її знак.
+\[f^{\prime}(x) = 3x^2 - 2\]</p>
+<p>Для
+\[
+3x^2 - 2 &gt; 0 \Rightarrow x &lt; -\sqrt{\frac{2}{3}} \quad x &gt; \sqrt{\frac{2}{3}}
+\]</p>
+<hr>
+<p>Звідси випливає, що \(f(x)\) зростає при:</p>
+<p>\[x &lt; -\sqrt{\frac{2}{3}} \quad \text{або} \quad x &gt; \sqrt{\frac{2}{3}}\]</p>
+<p>і спадає при:</p>
+<p>\[-\sqrt{\frac{2}{3}} &lt; x &lt; \sqrt{\frac{2}{3}}\]</p>
+<hr>
+<p>З аналізу знаків випливає, що в точці \( \sqrt{\frac{2}{3}} \) є локальний мінімум. Тепер обчислимо значення функції в цій точці:</p>
+<p>\[
+\begin{align}
+f\left(\sqrt{\frac{2}{3}}\right) &amp;= \left(\sqrt{\frac{2}{3}}\right)^3 - 2\left(\sqrt{\frac{2}{3}}\right) \\[0.5em]
+&amp;= \frac{2\sqrt{2}}{3\sqrt{3}} &#8211; 2\sqrt{\frac{2}{3}} \\[0.5em]
+&amp;= \frac{2\sqrt{6}}{9} &#8211; \frac{6\sqrt{6}}{9} \\[0.5em]
+&amp;= \frac{-4\sqrt{6}}{9}
+\end{align}
+\]</p>
+<hr>
+<p>З аналізу знаків також випливає, що в точці ( -\sqrt{\frac{2}{3}} ) є локальний максимум. Тепер обчислимо значення функції в цій точці:</p>
+<p>\[
+\begin{align}
+f\left(-\sqrt{\frac{2}{3}}\right) &amp;= \left(-\sqrt{\frac{2}{3}}\right)^3 &#8211; 2\left(-\sqrt{\frac{2}{3}}\right) \\[0.5em]
+&amp;= -\frac{2\sqrt{2}}{3\sqrt{3}} + 2\sqrt{\frac{2}{3}} \\[0.5em]
+&amp;= -\frac{2\sqrt{6}}{9} + \frac{6\sqrt{6}}{9} \\[0.5em]
+&amp;= \frac{4\sqrt{6}}{9}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Функція має:</p>
+<ul>
+<li>
+<p>Локальний максимум у точці:<br>
+\[x = -\sqrt{\frac{2}{3}}, \quad y = \frac{4\sqrt{6}}{9}\]</p>
+</li>
+<li>
+<p>Локальний мінімум у точці:<br>
+\[x = \sqrt{\frac{2}{3}}, \quad y = \frac{-4\sqrt{6}}{9} \]</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section"><h2>Точки перегину</h2>
+<p>Нарешті, аналізуючи другу похідну \( f^{\prime\prime}(x) \), ми визначаємо проміжки, на яких графік вигнутий вгору \( f^{\prime\prime}(x) &gt; 0 \) або вигнутий вниз \( f^{\prime\prime}(x) &lt; 0 \).</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><p>Тепер ми визначимо <a href="maximum-minimum-and-inflection-points.html">точки перегину</a>, аналізуючи знак другої похідної. Друга похідна f(x) дорівнює:</p>
+<p>\[f^{\prime\prime}(x) = 6x\]</p>
+<p>Прирівнявши \( f’'(x) = 0 \), ми знаходимо точку перегину в \(x = 0\). Обчисливши \( f(0) \), отримаємо \( y = 0 \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Таким чином, точка перегину: \[(0,0)\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Кінцевий графік</h2>
+<p>На цьому етапі ми маємо всю необхідну інформацію для побудови якісно-кількісного графіка нашої функції, враховуючи її поведінку, можливі асимптоти, локальні максимуми та мінімуми, а також точки перегину.</p>
+<p>У заданому прикладі ми отримуємо наступний графік:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="614" height="520" src="../images/graph-functions-2.png" alt="" class="wp-image-7788" style="width:307px" srcset="../images/graph-functions-2.png 614w, https://algebrica.org/wp-content/uploads/resources/images/graph-functions-2-300x254.png 300w" sizes="(max-width: 614px) 100vw, 614px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>На завершення, дослідження графіка функції вимагає структурованого підходу, що включає визначення ключових властивостей, таких як область визначення, симетрія, точки перетину з осями, аналіз знаків, асимптоти, монотонність, випуклість та критичні точки. Систематичне виконання цих кроків забезпечує точне та повне розуміння поведінки функції.</p>
+</div>
+</div></div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="analyzing-the-graphs-of-functions.html">algebrica.org/analyzing-the-graphs-of-functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

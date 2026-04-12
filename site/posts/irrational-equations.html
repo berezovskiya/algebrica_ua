@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ірраціональні рівняння — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Ірраціональні рівняння</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-1" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">4</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="equations.html">Рівняння</a>, <a href="powers.html">Степені</a>, <a href="radicals.html">Коріння</a>, <a href="systems-of-inequalities.html">Системи нерівностей</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-1");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"radicals"},{"name":"fractional powers"},{"name":"root notation"},{"name":"index of root"},{"name":"radicand"},{"name":"principal root"}]},{"name":"forms and methods","children":[{"name":"polynomial root"},{"name":"constant root"},{"name":"rational root"},{"name":"domain check"},{"name":"power step"},{"name":"solution check"},{"name":"spurious roots"}]},{"name":"properties","children":[{"name":"even roots"},{"name":"odd roots"},{"name":"domain restriction"},{"name":"non-negative values"},{"name":"rational equations"},{"name":"extraneous solutions"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Означення ірраціональних рівнянь</h2>
+<p>Ірраціональні рівняння, також відомі як радикальні рівняння, — це <a href="equations.html">рівняння</a>, у яких невідома змінна \(x\) знаходиться під <a href="radicals.html">радикалом</a> або представлена дробовим <a href="powers.html">показником</a>. Ці рівняння утворюють окремий клас задач, які не можуть бути розв'язані лише за допомогою стандартних алгебраїчних перетворень. Наявність коренів та нецілих показників накладає додаткові обмеження на допустимі значення \(x\), що робить <a href="determining-the-domain-of-a-function.html">аналіз області визначення</a> важливим попереднім кроком перед розв'язанням рівняння.</p>
+<hr>
+<p>Ірраціональним рівнянням називається рівняння вигляду \( F(x) = 0 \), у якому принаймні один доданок містить функцію у дробовому степені, зокрема у степені, знаменник якого більший за одиницю. Еквівалентно, такі рівняння містять радикальні вирази. Точніше, визначальний доданок має вигляд:</p>
+<p>\[
+f(x)^{\frac{p}{q}} \quad \text{де } q &gt; 1
+\]</p>
+<p>У радикальному записі ми можемо представити їх як:</p>
+<p>\[
+\sqrt[q]{\,f(x)}
+\]</p>
+<p>Типові форми включають вирази, де <a href="polynomials.html">поліном</a> знаходиться під коренем \(n\)-го степеня або піднесений до оберненого степеня:</p>
+<p>\[
+\sqrt[n]{\,f(x)\,} = g(x)\]\[
+f(x)^{\,\frac{1}{n}} = g(x)
+\]</p>
+<p>де \(f(x)\) та \(g(x)\) — <a href="polynomials.html">поліноми</a> довільного степеня з <a href="types-of-numbers.html">дійсними коефіцієнтами</a>.</p>
+<h6>Розв'язання таких рівнянь зазвичай передбачає позбавлення від радикала шляхом піднесення обох частин рівняння до відповідного степеня. Цей процес може призвести до появи сторонніх розв'язків; тому кожен кандидат у розв'язки має бути перевірений на відповідність обмеженням області визначення, визначеним початковим радикальним виразом.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Загальні форми ірраціональних рівнянь</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad \sqrt[n]{\,f(x)\,} = g(x) \]</p>
+</li>
+<li>
+<p>\[\text{2. } \quad \sqrt[n]{\,f(x)\,} = k\]</p>
+</li>
+<li>
+<p>\[\text{3. } \quad f(x)^{1/n} = g(x)\]</p>
+</li>
+</ul>
+<h5>Ці умови підкреслюють особливість ірраціональних рівнянь. Корені встановлюють чіткі <a href="limits.html">границі</a> для <a href="determining-the-domain-of-a-function.html">області визначення</a>, і після видалення радикалів необхідно перевірити розв'язки. Алгебраїчні кроки можуть дати можливі відповіді, але кожну з них слід ретельно перевірити.</h5>
+</div>
+
+
+
+<div class="wp-block-group pb-section-inverse mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Як розв'язувати ірраціональні рівняння</h2>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-steps-no-margin"><p>При роботі з ірраціональними рівняннями стратегія розв'язання значною мірою залежить від структури радикала та положення невідомої у виразі. Проте, попри ці відмінності, загальний підхід складається з кількох основних кроків, що керують процесом розв'язання. Основні етапи можна узагальнити наступним чином:</p>
+<ul>
+<li>
+<p>Визначити <a href="determining-the-domain-of-a-function.html">область визначення</a>, враховуючи, чи є показник кореня парним чи непарним, і встановити відповідні умови, розглянуті вище.</p>
+</li>
+<li>
+<p>Позбутися коренів, піднісши обидві частини рівняння до відповідного степеня.</p>
+</li>
+<li>
+<p>Виконати необхідні обчислення та знайти розв'язки. Перевірити їхню допустимість, перевіривши, чи належать вони до початкової області існування та чи задовольняють початкове рівняння.</p>
+</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-steps pb-section alignCenterMathjax"><h2>Детальний розгляд загальних форм</h2>
+<p>Ірраціональні рівняння можуть мати кілька структурних моделей, і розпізнавання цих моделей є важливим для розуміння підходу до їхнього розв'язання. У цьому контексті позиція змінної під знаком кореня та значення індексу кореня відіграють центральну роль, оскільки вони визначають як область визначення, так і тип алгебраїчних перетворень, які можна застосувати.</p>
+<hr>
+<p>Першим і дуже поширеним випадком є ірраціональні рівняння, в яких індекс \(n\) кореня є парним. Такі рівняння мають загальний вигляд:</p>
+<p>\[
+\sqrt[\large{n}]{\,f(x)\,} = g(x) \quad n \in 2\mathbb{Z}
+\]</p>
+<p>де \(2\mathbb{Z}\) позначає множину парних <a href="integers.html">цілих чисел</a>. Оскільки корінь парного степеня визначений лише для невід'ємних підкореневих виразів, перед спробою розв'язати рівняння необхідно встановити специфічні умови існування.</p>
+<ul>
+<li>Встановити область визначення:\(f(x) \ge 0\) та \((g(x) \ge 0.\)</li>
+<li>Позбутися кореня: піднести обидві частини до степеня \(n\).</li>
+<li>Розв'язати отримане алгебраїчне рівняння.</li>
+<li>Перевірити кожне розв'язання в початковому рівнянні.</li>
+<li>Залишити лише ті значення, що задовольняють усі умови області визначення.</li>
+</ul>
+<h5>У цьому випадку також необхідно перевірити, що \(g(x) \ge 0\), оскільки корінь парного індексу може давати лише невід'ємні дійсні значення і не може дорівнювати від'ємній величині.</h5>
+<hr>
+<p>Коли рівняння має вигляд</p>
+<p>\[
+\sqrt[\large{n}]{\,f(x)\,} = k
+\]</p>
+<p>і \(k\) є невід'ємним дійсним числом, область існування для невідомого \(x\) задається значеннями змінної, що задовольняють:</p>
+<p>\[
+f(x) \ge 0
+\]</p>
+<p>Тільки для таких значень вираз під коренем є визначеним. Щоб розв'язати рівняння, виконайте наступні основні кроки:</p>
+<ul>
+<li>Встановити умову області визначення: переконатися, що \(f(x) \ge 0\).</li>
+<li>Позбутися кореня, піднісши обидві частини до степеня \(n\).</li>
+<li>Розв'язати отримане алгебраїчне рівняння.</li>
+<li>Перевірити кожне можливе розв'язання в початковому рівнянні.</li>
+<li>Залишити лише ті значення, що задовольняють область визначення та початкову рівність.</li>
+</ul>
+<hr>
+<p>Якщо натомість рівняння має вигляд:</p>
+<p>\[
+\sqrt[\large{n}]{\,f(x)\,} = k
+\]</p>
+<p>де \(k\) — від'ємне дійсне число, то рівняння не має розв'язання. Корінь парного індексу не може дати від'ємного значення, тому рівність не може бути задоволена для будь-якого дійсного значення змінної.</p>
+<hr>
+<p>Більш загальна ситуація виникає, коли рівняння записане як:</p>
+<p>\[
+\sqrt[\large{n}]{\,f(x)\,} = g(x)
+\]</p>
+<p>де \(g(x)\) — раціональна функція. У цьому випадку визначення області існування вимагає аналізу обох частин рівняння. Допустимими значеннями \( x \) є ті, що задовольняють наступну <a href="systems-of-inequalities.html">систему нерівностей</a>, яка визначає область визначення:</p>
+<p>\[
+\begin{cases}
+f(x) \ge 0 \\[2ex]
+g(x) \ge 0 \\[2ex]
+\end{cases}
+\]</p>
+<p>Після встановлення умов області визначення рівняння можна перетворити, піднісши обидві частини до степеня \( n \), що призведе до наступного еквівалентного алгебраїчного рівняння:</p>
+<p>\[
+f(x) = \bigl(g(x)\bigr)^n
+\]</p>
+<p>За таких умов корінь є визначеним, рівність має сенс, а отримане рівняння після усунення кореня залишається узгодженим із початковим виразом.</p>
+<hr>
+<p>Якщо рівняння записане у вигляді:</p>
+<p>\[
+f(x)^{1/n} = g(x) \quad n \in 2\mathbb{Z}
+\]</p>
+<p>і вираз \(g(x)\) набуває від'ємних значень для деяких дійсних \(x\), то рівняння не може мати розв'язання в цих точках. Коли індекс \(n\) є парним, вираз \(f(x)^{1/n}\) представляє корінь парного степеня, який може давати лише невід'ємні дійсні числа. Як результат, рівність не може бути задоволена, коли \(g(x) &lt; 0,\) оскільки корінь парного степеня не може повертати від'ємне значення. Іншими словами, рівняння</p>
+<p>\[
+f(x)^{1/n} = g(x)
+\]</p>
+<p>не має розв'язання для будь-якого \(x\), такого що \(g(x) &lt; 0.\) Можливі розв'язання можуть існувати лише там, де \(g(x) \ge 0,\) і вони також повинні задовольняти умову визначеності підкореневого виразу, тобто \(f(x) \ge 0.\)</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps pb-steps-no-margin alignCenterMathjax"><h2>Відмінність між ірраціональними та раціональними рівняннями</h2>
+<p>Різниця між ірраціональними та <a href="rational-equations.html">раціональними рівняннями</a> залежить від того, як змінна \(x\) з'являється в алгебраїчному виразі. Раціональні рівняння будуються з відношень поліномів, що означає, що невідома зустрічається лише в чисельнику або знаменнику дробу, компонентами якого є поліноміальні вирази. Прикладом є</p>
+<p>\[
+\frac{2x}{2x &#8211; 1}
+\]</p>
+<p>що повністю залишається в межах раціональних виразів.</p>
+<p>Ірраціональні рівняння, з іншого боку, характеризуються наявністю змінної під знаком кореня або піднесенням її до дробового показника. Ці рівняння містять <a href="radicals.html">радикали</a>, часто з явним індексом, що визначає порядок кореня, і їхня структура вводить обмеження області визначення, які необхідно розглянути перед спробою розв'язання. Типовим прикладом є:</p>
+<p>\[
+\frac{2x}{\sqrt{2x &#8211; 1}}
+\]</p>
+<p>де квадратний корінь робить рівняння ірраціональним.</p>
+<p>Визначення того, чи є рівняння раціональним чи ірраціональним, є важливим першим кроком, оскільки кожен клас вимагає різних методів розв'язання та має свій набір алгебраїчних обмежень.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Корені з непарними показниками</h2>
+<p>Коли показник \(n\) радика є непарним цілим числом, поведінка рівняння стає особливо зручною. На відміну від коренів з парним показником, які накладають обмеження на підкореневий вираз, корінь з непарним показником може бути обчислений для будь-якого дійсного значення. Це означає, що вираз залишається визначеним на всій дійсній прямій, без необхідності введення умов, що обмежують область визначення змінної. На практиці можливість добування кореня з від'ємного числа значно спрощує загальну структуру рівняння.</p>
+<p>З математичної точки зору, якщо \(n = 2k + 1\) є непарним, функція:</p>
+<p>\[
+x \longmapsto \sqrt[n]{x}
+\]</p>
+<p>визначена для кожного \(x \in \mathbb{R}\). Ця властивість випливає з того факту, що піднесення дійсного числа до непарного степеня завжди дає дійсне значення, незалежно від того, чи є початкове число додатним, від'ємним або нулем. Як наслідок, добування кореня з непарним показником (зворотна операція) завжди можливе і ніколи не створює суперечностей, пов'язаних з обмеженнями знаків. Загальне ірраціональне рівняння з коренем непарного степеня можна записати як:</p>
+<p>\[
+\sqrt[\large{n}]{\,f(x)\,} = g(x) \quad n \in 2\mathbb{Z} + 1
+\]</p>
+<p>його можна перетворити на еквівалентне алгебраїчне рівняння, просто піднісши обидві частини до степеня \(n\):</p>
+<p>\[
+f(x) = \bigl(g(x)\bigr)^{n}
+\]</p>
+<p>У цьому випадку радикал не накладає додаткових нерівностей, таких як \(f(x) \ge 0\) або \(g(x) \ge 0\); будь-які обмеження виникають лише через вирази поза радикалом, наприклад, коли в інших частинах рівняння з'являються знаменники або інші корені. Простий числовий приклад ілюструє цю поведінку:</p>
+<p>\[
+\sqrt[3]{-8} = -2
+\]</p>
+<p>оскільки:</p>
+<p>\[
+(-2)^3 = -8
+\]</p>
+<p>У більш загальному вигляді, для будь-якого дійсного числа \(a\) та будь-якого непарного показника \(n = 2k + 1\):</p>
+<p>\[
+\sqrt[n]{\,a\,} = a^{1/n}
+\]</p>
+<p>і результат залишається дійсним. Ця відповідність між радикалами з непарним показником і дробовими степенями пояснює, чому ірраціональні рівняння такого типу часто можна розв'язати за допомогою прямих алгебраїчних перетворень, без попередньої перевірки області визначення, яка необхідна у випадку з парним показником.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Обґрунтування розміщення коренів по протилежних боках</h2>
+<p>При розв'язуванні рівнянь з коренями важливо тримати корені по різні боки знака рівності окремо. Така практика допомагає запобігти появі сторонніх розв'язків, які можуть виникнути під час піднесення до степеня. Наприклад, розглянемо наступне ірраціональне рівняння:</p>
+<p>\[\sqrt{2x} -\sqrt{x +1} = 0\]</p>
+<hr>
+<p>Піднесення кореня до квадрата може призвести до появи додаткових коренів, що може ускладнити обчислення:</p>
+<p>\[ \begin{align}
+&amp; (\sqrt{2x} -\sqrt{x +1} )^2 = 0 \\[2ex]
+&amp; 2x -(x +1) + 2\sqrt{2x}\cdot\sqrt{x+1} = 0\\[2ex]
+\end{align} \]</p>
+<hr>
+<p>Щоб спростити обчислення, бажано ізолювати корені по протилежних боках рівняння, де це можливо:</p>
+<p>\[ \begin{align}
+&amp; \sqrt{2x} = \sqrt{x +1} \\[2ex]
+&amp; (\sqrt{2x})^2 =  (\sqrt{x +1})^2  \\[2ex]
+&amp; 2x = x +1 \\[2ex]
+&amp; 2x-x = 1 \\[2ex]
+&amp; x = 1
+\end{align} \]</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розв'яжіть ірраціональне рівняння:</p>
+<p>\[\sqrt{x^2-2} =  \sqrt{4x} \]</p>
+<hr>
+<p>Рівняння має вигляд:</p>
+<p>\[\sqrt[\large{n}]{f(x)} = g(x)\]</p>
+<p>де \(n\), показник кореня, є парним. Допустима множина розв'язків визначається розв'язанням <a href="systems-of-inequalities.html">системи нерівностей</a>:</p>
+<p>\[ \begin{cases}
+f(x) \geq 0 \\[2ex]
+g(x) \geq 0 \\
+\end{cases}\]</p>
+<hr>
+<p>Підставимо \(f(x)\) та \(g(x)\) поліномами під коренями, щоб отримати: \[ \begin{cases}
+x^2-2 \geq 0 \\[2ex]
+4x \geq 0 \\
+\end{cases} \]</p>
+<hr>
+<p>Розв'яжемо рівняння <a href="quadratic-equations.html">другого степеня</a>, пов'язане з першою нерівністю \(x^2-2 \geq 0\), і знайдемо його розв'язки. У цьому випадку маємо: \[x_{1,2} = \pm \sqrt{2} \] отже, область існування <a href="quadratic-inequalities.html">нерівності</a> задається проміжками: \[(-\infty, -\sqrt{2}] \ \cup \ [\sqrt{2}, +\infty)\]</p>
+<p>Для другої нерівності маємо \(x \geq 0\). Перетин знайдених проміжків дає допустиму множину розв'язків. Ми можемо скористатися графічним методом, щоб визначити її візуально:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th>\[ -\sqrt{2}\]</th>
+<th>\[ 0\]</th>
+<th>\[ +\sqrt{2}\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td><div class="sign-plus-right -open"></div></td>
+<td></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax"><p>Система має розв'язання на проміжку \([\sqrt{2}, +\infty)\).</p>
+<hr>
+<p>Щоб розв'язати початкове рівняння, ізолюємо радикали з кожного боку рівняння, а потім піднесемо обидві частини до квадрата наступним чином:</p>
+<p>\[ \begin{align}
+&amp; \sqrt{x^2 -2} = \sqrt{4x} \\[0.5em]
+&amp; x^2 -2 = 4x\\[0.5em]
+&amp; x^2 -4x -2 = 0
+\end{align} \]</p>
+<p>Це дає нам <a href="quadratic-equations.html">квадратне рівняння</a>, яке ми можемо розв'язати за допомогою <a href="quadratic-formula.html">формули коренів квадратного рівняння</a>.</p>
+<p>\[ \begin{align}
+x_{1,2} &amp;= \frac{-(-4) \pm \sqrt{(-4)^2 -4 \cdot 1 \cdot (-2)}}{2 \cdot 1} \\[1ex]
+&amp; = \frac{4 \pm \sqrt{16 +8}}{2} \\[1ex]
+&amp; = \frac{4 \pm \sqrt{24}}{2} \\[1ex]
+&amp; = \frac{4 \pm 2\sqrt{6}}{2} \\[1ex]
+&amp; = 2 \pm \sqrt{6} \\[1ex]
+\end{align} \]</p>
+<hr>
+<p>Перед перевіркою розв'язків необхідно визначити, чи належать вони до допустимої множини \([\sqrt{2}, +\infty)\):</p>
+<ul>
+<li>\(x_2 = 2 + \sqrt{6} \approx 4.449 \in [\sqrt{2}, +\infty)\)</li>
+<li>\(x_1 = 2 - \sqrt{6} \approx -0.449 \notin [\sqrt{2}, +\infty)\)</li>
+</ul>
+<p>\(x_1 = 2 &#8211; \sqrt{6}\) є стороннім розв'язком, що виник під час піднесення до квадрата, і його слід відкинути. Тепер необхідно перевірити, чи задовольняє \(x_2 = 2 +\sqrt{6}\) початкове рівняння:</p>
+<p>\[ \begin{align}
+&amp; \sqrt{(2 +\sqrt{6})^2 -2} = \sqrt{4\cdot(2+\sqrt{6})} \\[0.5em]
+&amp; \sqrt{4 +4\sqrt{6} +6 -2}= \sqrt{8 +4\sqrt{6}} \\[0.5em]
+&amp; \sqrt{8 +4\sqrt{6}} = \sqrt{8 +4\sqrt{6}}\\[0.5em]
+\end{align} \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Рівність виконується. Таким чином, розв'язанням рівняння є:</p>
+<p>\[x = 2 + \sqrt{6}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Вправи</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad \sqrt{x^2 -2x +1} = \sqrt{3}\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{2. } \quad \sqrt{2x -x^2} = x -2 \] розв'язання</p>
+</li>
+<li>
+<p>\[\text{3. } \quad \sqrt{4 -x} = 3- \sqrt{5 +x} \]розв'язання</p>
+</li>
+<li>
+<p>\[\text{4. } \quad \sqrt{3x^2 -8x} = -5 \]розв'язання</p>
+</li>
+<li>
+<p>\[\text{5. } \quad \sqrt[3]{2x^2 +x -3} = \sqrt[3]{3} \] розв'язання</p>
+</li>
+<li>
+<p>\[\text{6. } \quad \sqrt{x+3} = 1 + \sqrt{2-x} \]розв'язання</p>
+</li>
+<li>
+<p>\[\text{7. } \quad \sqrt[5]{4x-6} = 2\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{8. } \quad \sqrt{x+100} -x = -10\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{9. } \quad \frac{\sqrt{2x &#8211; 1}}{x &#8211; 2} = 1\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{10. } \quad \sqrt{3 \sqrt{x-1}} = 3\] розв'язання</p>
+</li>
+</ul>
+<h5>Запропоновані рівняння ретельно підібрані, щоб допомогти вам закріпити розуміння ірраціональних рівнянь. Спробуйте розв'язати їх самостійно, перш ніж перевіряти надані розв'язання.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>OpenStax</strong>. <a href="https://assets.openstax.org/oscms-prodcms/media/documents/Algebra-and-Trigonometry-2e-WEB.pdf">Radical Equations</a></p>
+</li>
+<li>
+<p><strong>City University of New York</strong>. <a href="https://openlab.citytech.cuny.edu/shavermat1275cofall2019/files/2019/08/1566849743-AlgebraTrigBook.pdf">College Algebra and Trigonometry</a></p>
+</li>
+<li>
+<p><strong>University of British Columbia</strong>. <a href="https://www.math.ubc.ca/~feldman/m101/clp/clp_notes_100.pdf">Differentiation and Radical Equations Section</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке ірраціональне рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ірраціональне рівняння — це рівняння, яке містить принаймні одну змінну під знаком кореня, зазвичай квадратного. Розв'язання таких рівнянь передбачає ізоляцію радикала та піднесення обох частин до квадрата."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як розв'язати ірраціональне рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб розв'язати ірраціональне рівняння, ізолюйте ірраціональний вираз, а потім піднесіть обидві частини рівняння до квадрата. Після спрощення перевірте отримані розв'язки, щоб уникнути сторонніх результатів."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке сторонній розв'язок в ірраціональних рівняннях?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Сторонній розв'язок — це результат, який з'являється після піднесення обох частин рівняння до квадрата, але насправді не задовольняє початкове рівняння. Завжди перевіряйте кожен розв'язок, підставивши його в початкове рівняння."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи може ірраціональне рівняння не мати дійсного розв'язку?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так. Якщо рівняння призводить до суперечності або передбачає добування квадратного кореня з від'ємного числа (в множині дійсних чисел), воно може не мати дійсного розв'язку."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому важливо перевіряти розв'язки в ірраціональних рівняннях?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Перевірка розв'язків допомагає виявити сторонні відповіді, що виникають внаслідок піднесення до квадрата. Не всі розв'язки, отримані в ході алгебраїчних перетворень, є правильними для початкового рівняння."
+      }
+    }
+  ]
+}
+</script>
+
+
+
+<p></p></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="irrational-equations.html">algebrica.org/irrational-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

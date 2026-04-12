@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рівняння з модулем — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Рівняння з модулем</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Вступ</h2>
+<p>Рівняння з модулем — це особливий клас <a href="equations.html">рівнянь</a>, в яких змінна \( x \) з'являється всередині виразу з <a href="absolute-value.html">модулем</a>. Модуль числа показує, наскільки далеко <a href="types-of-numbers.html">число</a> знаходиться від нуля на числовій прямій, незалежно від його знаку. Він перетворює будь-яке дійсне число на його невід'ємний відповідник за таким правилом:</p>
+<p>\[
+|x| =
+\begin{cases}
++x &amp; \text{if } x \geq 0 \quad \forall \, x \in \mathbb{R} \\[0.6em]
+-x &amp; \text{if } x &lt; 0 \quad \forall \, x \in \mathbb{R}
+\end{cases}
+\]</p>
+<p>При розв'язуванні рівняння з модулем необхідно розглянути обидва можливі випадки (додатний і від'ємний), оскільки знак виразу під модулем визначає, яке означення слід застосувати. Цей процес часто призводить до двох окремих лінійних рівнянь, які потрібно розглянути окремо.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline mb-x-30"><h2>Властивості</h2>
+<p><a href="absolute-value-function.html">Функція модуля</a> \( |x| \) підпорядковується кільком важливим алгебраїчним властивостям, що описують її взаємодію з основними арифметичними операціями та порівняннями. Розуміння цих правил є фундаментальним при спрощенні виразів або розв'язуванні рівнянь з модулями. Наступний перелік узагальнює ключові властивості, що характеризують поведінку модулів у дійсних числах:</p>
+<p>\[
+|x| = |-x| \quad \forall x \in \mathbb{R}
+\]</p>
+<hr>
+<p>\[
+|x \cdot y| = |x| \cdot |y| \quad \forall x, y \in \mathbb{R}
+\]</p>
+<hr>
+<p>\[
+|x| = |y| \iff x = \pm y \quad \forall x, y \in \mathbb{R}
+\]</p>
+<hr>
+<p>\[
+|x| \leq |y| \iff x^2 \leq y^2 \quad \forall x, y \in \mathbb{R}
+\]</p>
+<hr>
+<p>\[
+\left| \frac{x}{y} \right| = \frac{|x|}{|y|} \quad \forall x, y \in \mathbb{R},\ y \ne 0
+\]</p>
+<hr>
+<p>\[
+\sqrt{x^2} = |x| \quad \forall x \in \mathbb{R}
+\]</p>
+<h5>Ці властивості корисні для перетворення виразів з модулями та для спрощення обчислень при розв'язуванні відповідних рівнянь.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Розв’язування рівнянь з модулем</h2>
+<p>Щоб розв’язати рівняння з модулями, необхідно проаналізувати вираз під модулем і розглянути можливі знаки, які він може набувати. Загальний підхід залежить від типу рівняння: чи дорівнює модуль сталій, чи іншому виразу. У кожному випадку процес розв’язування передбачає розбиття рівняння на окремі випадки відповідно до означення функції модуля.</p>
+<p>Розглянемо базовий випадок:
+\[ |A(x)| = a \]</p>
+<p>Загалом, якщо \( a \geq 0 \), рівняння еквівалентне \( A(x) = a \) або \( A(x) = -a \). Якщо \( a &lt; 0 \), рівняння не має розв’язків. Наприклад, рівняння \( |3 + 2x| = -2 \) не має розв’язків, оскільки модуль виразу не може бути від’ємним.</p>
+<hr>
+<p>Розглянемо тепер випадок:</p>
+<p>\[ |A(x)| = B(x) \]</p>
+<p>і для його розв’язування необхідно враховувати знак виразу під модулем при виконанні обчислень.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 1</h2>
+<p>Розв’яжемо рівняння:
+\[ |2x - 4| = x + 1 \]</p>
+<hr>
+<p>Спочатку проаналізуємо знак виразу під модулем. Маємо \( 2x - 4 \geq 0 \), звідки \( x \geq 2 \).</p>
+<p>Згідно з (1), рівняння набуває вигляду:</p>
+<p>\[
+|2x - 4| =
+\begin{cases}
+2x-4 &amp; \text{if } x \geq 2\\[0.5em]
+-2x+4 &amp; \text{if } x &lt; 2
+\end{cases}
+\]</p>
+<hr>
+<p>Розв’яжемо тепер першу систему:</p>
+<p>\[
+\begin{cases}
+x \geq 2 \\[0.5em]
+2x &#8211; 4 = x + 1
+\end{cases}
+\]</p>
+<p>\[
+\begin{cases}
+x \geq 2 \\[0.5em]
+2x - x = + 1 + 4 \rightarrow x = 5
+\end{cases}
+\]</p>
+<p>Цей розв’язок є допустимим, оскільки він задовольняє умову \( x \geq 2 \).</p>
+<h5>Щойно ми розглянули <a href="systems-of-inequalities.html">систему нерівностей</a> з однією змінною та двома нерівностями. Ознайомтеся з відповідним записом, щоб дізнатися більше про процес розв’язування та як працювати зі складнішими випадками.</h5>
+<hr>
+<p>Розв’яжемо тепер другу систему:</p>
+<p>\[
+\begin{cases}
+x &lt; 2 \\[0.5em]
+-2x + 4 = x + 1
+\end{cases}
+\]</p>
+<p>\[
+\begin{cases}
+x &lt; 2 \\[0.5em]
+-2x -x =+ 1  - 4\rightarrow -3x = -3 \rightarrow x = 1
+\end{cases}
+\]</p>
+<p>Цей розв'язок є допустимим, оскільки він задовольняє умову \( x &lt; 2 \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Розв'язком рівняння є:</p>
+<p>\[x= 1 \quad x=5\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 2</h2>
+<p>Розв’яжемо рівняння:
+\[ \frac{|3x|}{|x+1|} = |x|\]</p>
+<p>Ми маємо справу з дробово-раціональним рівнянням, для якого необхідно визначити умови існування, що в цьому випадку відповідають значенням \( x \), які перетворюють знаменник на нуль. Знаменник дорівнює нулю при \( x = -1 \), тому це значення необхідно виключити з множини розв’язків.</p>
+<hr>
+<p>Використовуючи властивості модуля, ми можемо переписати рівняння як:</p>
+<p>\[3 \left| \frac{x}{x+1} \right| = |x|\]</p>
+<hr>
+<p>Отже, ми повинні проаналізувати знаки виразів. Почнемо з розгляду наступного випадку:</p>
+<p>\[\frac{3x}{x+1} = x \rightarrow 3x = x^2 + x \rightarrow x^2 -2x \rightarrow x(x - 2)\]</p>
+<p>Ми отримали просте <a href="quadratic-equations.html">квадратне рівняння</a>, розв'язками якого є:</p>
+<p>\[x=0 \quad x= 2\]</p>
+<p>Обидва розв’язки є допустимими, оскільки вони відрізняються від \( -1 \).</p>
+<h5>Ми розв’язали квадратне рівняння без використання <a href="quadratic-formula.html">формули квадратного рівняння</a>, <a href="factoring-quadratic-equations.html">факторизувавши</a> відповідний <a href="polynomials.html">поліном</a> та знайшовши значення \( x \), що перетворюють кожен лінійний множник на нуль.</h5>
+<hr>
+<p>Розглянемо тепер випадок:</p>
+<p>\[\frac{3x}{x+1} = -x \rightarrow 3x = -x^2 &#8211; x \rightarrow x^2 + 4x \rightarrow x(x +4)\]</p>
+<p>Діючи як вище, ми отримали просте квадратне рівняння, розв'язками якого є:</p>
+<p>\[x=0 \quad x= -4\]</p>
+<p>Обидва розв'язки є допустимими, оскільки вони відрізняються від \( -1 \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язком рівняння є:</p>
+<p>\[x=-4 \quad x=0 \quad x= 2 \]</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are absolute value equations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolute value equations are mathematical expressions in which the variable appears inside an absolute value symbol. Solving them involves considering both the positive and negative cases of the expression inside the bars. These equations are widely used in algebra to describe distances and symmetrical relationships on the number line."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you solve an absolute value equation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "To solve an absolute value equation, you separate it into two possible cases depending on whether the expression inside the absolute value is positive or negative. This approach helps identify all possible solutions and ensures that the result satisfies the original equation. Understanding this method is essential for solving many algebraic problems involving distance or magnitude."
+      }
+    }
+  ]
+}
+</script>
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="absolute-value-equations.html">algebrica.org/absolute-value-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

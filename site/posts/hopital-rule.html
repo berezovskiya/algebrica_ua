@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правило Лопіталя — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теореми диференціального числення</span>
+    </nav>
+    <article>
+        <h1>Правило Лопіталя</h1>
+        <time>2025-02-23</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Невизначені форми</h2>
+<p>Правило Лопіталя — це метод обчислення певних <a href="limits.html">границь</a>, які призводять до <a href="indeterminate-forms.html">невизначених форм</a>. Теорема встановлює критерій для розв'язання невизначеної форми границі однієї або кількох функцій за допомогою їхніх <a href="derivatives.html">похідних</a>. Під невизначеними формами ми розуміємо такі вирази невизначеності, як:
+\[ \frac{0}{0} \quad \text{та} \quad \frac{\infty}{\infty} \]</p>
+<p>Ці форми перешкоджають прямому обчисленню границі, оскільки вони означають випадки, коли одних лише стандартних теорем про границі недостатньо для визначення результату і потрібні додаткові аналітичні методи.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Формулювання</h2>
+<p>Згідно з правилом Лопіталя, якщо дві <a href="functions.html">функції</a>, \( f(x) \) та \( g(x) \), визначені на проколотому околі \( I \) точки \( x_0 \), мають бути виконані наступні умови:</p>
+<ul>
+<li>\( f(x) \) та \( g(x) \) є диференційовними в \( I \), за можливості, крім точки \( x_0 \).</li>
+<li>\( g’(x) \neq 0 \) для всіх \( x \in I \), при \( x \neq x_0 \).</li>
+<li>\( \displaystyle \lim_{x \to x_0} f(x) = \lim_{x \to x_0} g(x) = 0 \).</li>
+<li>Наступна границя існує (скінченна або нескінченна):
+\[ \lim\limits_{x \to x_0} \frac{f’(x)}{g’(x)} \]</li>
+</ul>
+<p>Якщо вищезазначені умови виконуються, то існує наступна границя:
+\[
+\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = \lim\limits_{x \to x_0} \frac{f’(x)}{g’(x)}
+\]</p>
+<h5>Простіше кажучи, якщо частка двох функцій призводить до невизначеної форми, її границію можна визначити шляхом обчислення границі їхніх похідних при \( x \to x_0 \), за умови, що ця остання границя існує.</h5>
+<hr>
+<p>Правило аналогічно застосовується до невизначеної форми \( \infty/\infty \). Припустимо, що \( f(x) \to \infty \) та \( g(x) \to \infty \) при \( x \to x_0 \), і що обидві функції є диференційовними в околі \( x_0 \) при \( g’(x) \neq 0 \). Якщо границя частки похідних існує, то початкова границя дорівнює цьому значенню, як показано нижче:</p>
+<p>\[
+\lim_{x \to x_0} \frac{f(x)}{g(x)}
+=
+\lim_{x \to x_0} \frac{f’(x)}{g’(x)}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Доведення</h2>
+<p>Щоб довести теорему, розглянемо довільну точку \( x \in I \) при \( x &gt; x_0 \). Застосуємо <a href="cauchy-theorem.html">теорему Коші</a> до \( f(x) \) та \( g(x) \). Теорема стверджує, що за певних умов існує точка \( c \in ]x_0, x[ \), така що:<br>
+\[
+\frac{f’\left( c \right )}{g’\left( c \right)} = \frac{f(x) - f(x_0)}{g(x) - g(x_0)}
+\]</p>
+<hr>
+<p>За гіпотезою, маємо \( f(x_0) = g(x_0) = 0 \). Отже, \((1)\) набуває вигляду:<br>
+\[
+\frac{f’\left( c \right)}{g’\left( c \right)} = \frac{f(x)}{g(x)}
+\]</p>
+<hr>
+<p>На цьому етапі точка \( c \) не є фіксованою: вона залежить від \( x \). Точніше, для кожного \( x \neq x_0 \) теорема Коші гарантує існування точки \( c = c(x) \), такої що:
+\[x_0 &lt; c(x) &lt; x \quad \text{якщо } x &gt; x_0\]
+\[x &lt; c(x) &lt; x_0 \quad \text{якщо } x &lt; x_0\]
+Припустимо, наприклад, що \( x \to x_0^+ \). Тоді маємо \(0 &lt; c(x) - x_0 &lt; x - x_0.\) Оскільки \( x - x_0 \to 0 \), за <a href="squeeze-theorem.html">теоремою про затискання</a> звідси випливає, що \(c(x) &#8211; x_0 \to 0\) і, отже, \(c(x) \to x_0\). Аналогічний аргумент діє, коли \( x \to x_0^- \). Звідси ми робимо висновок, що:
+\[
+\lim_{x \to x_0} \frac{f’(c(x))}{g’(c(x))}
+=
+\lim_{x \to x_0} \frac{f(x)}{g(x)}
+\]</p>
+<hr>
+<p>Якщо \( f’(x) \) та \( g’(x) \) є неперервними в точці \( x_0 \), то їхні границі в точках \( c \) та \( x \) збігаються. Таким чином, виконується наступна рівність:
+\[
+\lim\limits_{x \to x_0} \frac{f’ \left( c \right)}{g’ \left(c \right)} = \lim\limits_{x \to x_0} \frac{f’(x)}{g’(x)}
+\]</p>
+<hr>
+<p>Тоді ми отримаємо те, що хотіли довести:
+\[
+\lim\limits_{x \to x_0} \frac{f(x)}{g(x)} = \lim\limits_{x \to x_0} \frac{f’(x)}{g’(x)}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Обчислимо наступну границі, що містить <a href="sine-function.html">функцію синуса</a>.</p>
+<p>\[\lim_{x \to 0} \frac{\sin x}{x}\]</p>
+<hr>
+<p>Це досить проста границя, але на перший погляд вона призводить до невизначеної форми. Дійсно, підставивши \(0\) замість \(x\), отримаємо:</p>
+<p>\[
+\frac{\sin 0}{0} = \frac{0}{0}
+\]</p>
+<p>Оскільки функції задовольняють необхідним умовам для правила Лопіталя, границі частки можна замінити границею відношення їхніх похідних:</p>
+<p>\[
+\lim_{x \to 0} \frac{\sin x}{x}
+= \lim_{x \to 0} \frac{(\sin x)&#8217;}{(x)&#8217;}
+= \lim_{x \to 0} \frac{\cos x}{1}
+\]</p>
+<h5>Умови теореми задоволені. Дійсно, маємо, що \(\sin(x)\) та \(x\) є <a href="continuous-functions.html">неперервними функціями</a> при \(x_0 = 0\), і \(\sin(0) = 0,\, x\big|_{x=0} = 0\). Крім того, обидві функції є диференційовними на інтервалі \(I\), що містить \(0\), а похідна знаменника \(g’(x)\), яка в цьому випадку дорівнює \(1\), відмінна від нуля.</h5>
+<hr>
+<p>У цьому випадку, обчисливши границі та значення \(\cos(x)\), ми знайдемо, що границя дорівнює (1):</p>
+<p>\[
+\lim_{x \to 0} \frac{\cos x}{1} = \frac{\cos(0)}{1} = \frac{1}{1} = 1
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, ми можемо зробити висновок, що:</p>
+<p>\[\lim_{x \to 0} \frac{\sin x}{x} = \lim_{x \to 0} \frac{\cos x}{1} = 1\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Тепер розглянемо складніший сценарій, у якому вираз призводить до невизначеності типу \( -\infty + \infty \). У таких ситуаціях рекомендованим підходом є переписування різниці двох функцій у вигляді добутку або частки. Така трансформація дозволяє перетворити вираз на одну зі стандартних невизначеностей, до яких застосовується правило Лопіталя, а саме:</p>
+<p>\[
+\frac{0}{0} \quad \text{або} \quad \frac{\infty}{\infty}
+\]</p>
+<hr>
+<p>Розглянемо наступну границю:</p>
+<p>\[\lim_{x \to 0} \left(\frac{1}{\sin x} &#8211; \frac{2}{x}\right)\]</p>
+<p>Ця границя призводить до невизначеності типу \(-\infty + \infty\). Щоб застосувати правило Лопіталя\(^*\), ми повинні спочатку переписати її як один дріб, отримавши таким чином невизначеність типу \(\frac{0}{0}\) або \(\frac{\infty}{\infty}\). Маємо:</p>
+<p>\[
+\lim_{x \to 0}\left(\frac{1}{\sin x} - \frac{2}{x}\right)
+= \lim_{x \to 0}\frac{x &#8211; 2\sin x}{x\sin x}
+\]</p>
+<h5>Перед застосуванням теореми завжди необхідно перевірити, чи виконуються початкові умови.</h5>
+<hr>
+<p>Обчисливши похідну, границя набуває вигляду:
+\[\lim_{x \to 0} \frac{1 - 2\cos x}{\sin x + x\cos x}\]</p>
+<p>Підстановка \( x = 0 \) в отриманий вираз дає \(-1/0\), що означає, що границя є розбіжною.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Результат:</p>
+<p>\[\lim_{x \to 0} \frac{1 – 2\cos x}{\sin x + x\cos x} = -\infty\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Загалом, якщо застосування правила Лопіталя призводить до границі, яка залишається <a href="indeterminate-forms.html">невизначеністю</a>, правило можна застосовувати неодноразово, за умови, що на кожному етапі виконуються необхідні умови. При кожній ітерації важливо підтвердити, що і новий чисельник, і знаменник наближаються або до \(0\), або до \(\infty\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30 alignCenterMathjax"><h2>Невизначені добутки</h2>
+<p>Той самий принцип, що був проілюстрований у Прикладі 2, можна застосувати при зустрічі з невизначеностями типу \(0 \cdot \infty\), що виникають із добутку двох функцій \(f(x)\cdot g(x)\). У цьому випадку, щоб переписати вираз у формі, приданій для застосування правила Лопіталя, достатньо представити добуток наступним чином:</p>
+<p>\[
+f(x)\cdot g(x) = \frac{f(x)}{\dfrac{1}{g(x)}} \quad\text{або}\quad f(x)\cdot g(x) = \frac{g(x)}{\dfrac{1}{f(x)}}
+\]</p>
+<hr>
+<p>Наприклад, розглянемо наступну границю:</p>
+<p>\[ \lim_{x \to 0^+} x \ln x \]</p>
+<p>Цей вираз представляє невизначеність типу \(0 \cdot \infty\). Добуток можна переписати як частку:</p>
+<p>\[ \lim_{x \to 0^+} x \ln x = \lim_{x \to 0^+} \frac{\ln x}{\dfrac{1}{x}} \]</p>
+<p>Отриманий вираз тепер є невизначеністю типу \(\dfrac{\infty}{\infty}\), що підходить для застосування правила Лопіталя:</p>
+<p>\[ \lim_{x \to 0^+} \frac{\ln x}{\dfrac{1}{x}} = \lim_{x \to 0^+} \frac{(\ln x)&#8217;}{\left(\dfrac{1}{x}\right)&#8217;} = \lim_{x \to 0^+} \frac{\dfrac{1}{x}}{-\dfrac{1}{x^2}} = \lim_{x \to 0^+} (-x) = 0 \]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>MIT, E. Herman</strong>. <a href="https://openstax.org/books/calculus-volume-1/pages/4-8-lhopitals-rule-introduction-to-improper-integrals">Calculus Vol. 1 — 4.8 L’Hôpital’s Rule</a></p>
+</li>
+<li>
+<p><strong>University of British Columbia (Feldman, Rechnitzer, Yeager)</strong>. <a href="https://personal.math.ubc.ca/~CLP/CLP1/clp_1_dc/sec_4_7.html">L’Hôpital’s Rule</a></p>
+</li>
+<li>
+<p><strong>MAA Convergence, (D. E. Otero, Xavier University)</strong>. <a href="https://old.maa.org/press/periodicals/convergence/l-h-pital-s-rule-a-mini-primary-source-project-for-calculus-1-students">L’Hôpital’s Rule</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке правило Лопіталя?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Правило Лопіталя — це метод обчислення granic невизначених форм, таких як 0/0 або ∞/∞. Правило стверджує, що якщо границя f(x)/g(x) призводить до невизначеної форми, можна взяти похідні чисельника та знаменника окремо і обчислити границю їхнього відношення."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли я можу застосувати правило Лопіталя?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ви можете застосувати правило Лопіталя, коли початкова границя створює невизначену форму (наприклад, 0/0 або ∞/∞), і як чисельник, так і знаменник є диференційовними поблизу точки, що розглядається. Крім того, похідна знаменника не повинна дорівнювати нулю поблизу цієї точки."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи застосовується правило Лопіталя до всіх невизначених форм?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ні, правило Лопіталя безпосередньо застосовується лише до невизначених форм 0/0 та ∞/∞. Інші форми, такі як 0 × ∞, ∞ - ∞ або 0^0, потребують алгебраїчних перетворень або перетворення у форму частки перед використанням правила."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи можу я використовувати правило Лопіталя кілька разів?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так, ви можете застосовувати правило Лопіталя неодноразово, якщо отримана границя все ще дає невизначену форму, за умови, що кожне застосування задовольняє необхідним умовам для дії правила."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи завжди правило Лопіталя є правильним?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Правило Лопіталя є правильним за певних умов: функції мають бути диференційовними на відкритому інтервалі навколо точки (за можливості, крім самої точки), а границя похідних має існувати або бути нескінченною. Якщо ці умови не виконуються, правило може призвести до неправильних висновків."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="hopital-rule.html">algebrica.org/hopital-rule</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

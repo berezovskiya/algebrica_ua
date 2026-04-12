@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лінійні нерівності — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Нерівності</span>
+    </nav>
+    <article>
+        <h1>Лінійні нерівності</h1>
+        <time>2025-02-13</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Вступ до нерівностей</h2>
+<p>Нерівність — це математиutчне твердження, що містить алгебраїчні вирази, для яких ми шукаємо значення змінних, що роблять нерівність правильною. Загалом, нерівність між двома алгебраїчними виразами \( A(x) \) та \( B(x) \) визначається як відношення:</p>
+<p>\[A(x) &gt; B(x) \]</p>
+<p>Розв'язання нерівності полягає у визначенні множини розв'язків, тобто всіх значень \( x \), що задовольняють попередню нерівність. Розв'язками нерівностей є підмножини \( \mathbb{R} \), визначені як інтервали.</p>
+<hr>
+<p>Дано два дійсні числа \( a \) та \( b \), такі що \( a &lt; b \); обмежений інтервал визначається як множина дійсних чисел між \( a \) та \( b \), де \( a \) та \( b \) є відповідно нижньою та верхньою межами. Необмежений інтервал — це множина чисел, які або передують \( a \), або йдуть за \( a \). Якщо кінцеві точки обмеженого інтервалу включені, інтервал називається замкненим, в іншому випадку він називається відкритим.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="650" height="450" src="../images/inequalities-1.png" alt="" class="wp-image-9600" style="width:325px" srcset="../images/inequalities-1.png 650w, https://algebrica.org/wp-content/uploads/resources/images/inequalities-1-300x208.png 300w" sizes="(max-width: 650px) 100vw, 650px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-table-to-content alignCenterTable"><p>Знак нерівності визначає, чи є інтервал розв'язків відкритим або замкненим на своїй межі. Строга нерівність, що виражається за допомогою \( &gt; \) або \( &lt; \), виключає граничне значення, що дає відкритий інтервал. Нестрога нерівність, що виражається за допомогою \( \geq \) або \( \leq \), включає його, що дає замкнений або напіввідкритий інтервал.</p>
+<table>
+<thead>
+<tr>
+<th>Нерівність</th>
+<th>Інтервал</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\( x &gt; a \)</td>
+<td>\( (a, +\infty) \)</td>
+</tr>
+<tr>
+<td>\( x \geq a \)</td>
+<td>\( [a, +\infty) \)</td>
+</tr>
+<tr>
+<td>\( x &lt; a \)</td>
+<td>\( (-\infty, a) \)</td>
+</tr>
+<tr>
+<td>\( x \leq a \)</td>
+<td>\( (-\infty, a] \)</td>
+</tr>
+<tr>
+<td>\( a &lt; x &lt; b \)</td>
+<td>\( (a, b) \)</td>
+</tr>
+<tr>
+<td>\( a \leq x \leq b \)</td>
+<td>\( [a, b] \)</td>
+</tr>
+</tbody>
+</table>
+<h6>Попередня таблиця узагальнює відповідність між знаком нерівності та отриманим позначенням інтервалу для лінійної нерівності з однією змінною.</h6>
+<hr>
+<p>Ступінь нерівності відповідає ступеню <a href="polynomials.html">полінома</a> \( P(x) \), отриманого шляхом переписування нерівності у вигляді \( P(x) &gt; 0 \). Лінійна нерівність або нерівність першого ступеня визначається у загальному вигляді:</p>
+<p>\[ax &gt; b\]</p>
+<p>Кожна нерівність першого ступеня при \( a \neq 0 \) завжди має інтервал значень як свій розв'язок. Умова \( a \neq 0 \) є важливою. Коли \( a = 0 \), змінна повністю зникає з нерівності, і задача зводиться до порівняння двох сталих. Розглянемо загальний випадок при \( a = 0 \).</p>
+<p>\[
+0 \cdot x &gt; b
+\]</p>
+<p>Це спрощується до \( 0 &gt; b \). Якщо \( b &lt; 0 \), нерівність виконується незалежно від значення \( x \), і множиною розв'язків є вся множина \( \mathbb{R} \). Якщо \( b \geq 0 \), нерівність ніколи не задовольняється, і множина розв'язків є порожньою. У будь-якому випадку, немає інтервалу, визначеного граничною точкою: результатом є глобальна істина або суперечність, а не належна нерівність першого ступеня.</p>
+<hr>
+<p>Для заданої нерівності еквівалентну нерівність можна отримати, додавши одне й те саме число або вираз до обох частин, за умови, що вираз є визначеним у тій самій <a href="determining-the-domain-of-a-function.html">області визначення</a>. Нерівність \( 5x - 2 &gt; x + 3 \) еквівалентна нерівності \( 4x - 2 &gt; 3 \) шляхом віднімання \( x \) з обох частин.</p>
+<p>Еквівалентну нерівність також можна отримати, поділивши або помноживши обидві частини на одне й те саме ненульове значення. Однак, якщо значення є від'ємним, знак нерівності має бути змінений на протилежний. Завжди корисно переписати нерівність першого ступеня, таку як \( -x + 5 &lt; -3 \), у вигляді \( x - 5 &gt; 3 \). Зміна знаків вимагає зміни напрямку нерівності.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps"><h2>Геометрична інтерпретація</h2>
+<p>Множина розв'язків лінійної нерівності завжди відповідає півпрямій на числовій прямій, тобто необмеженому інтервалу, що простягається нескінченно в одному напрямку від граничної точки.</p>
+<ul>
+<li>
+<p>Коли нерівність є строгою, гранична точка виключається, і півпряма є відкритою з цього кінця.</p>
+</li>
+<li>
+<p>Коли нерівність є нестрогою, гранична точка належить до множини розв'язків, і півпряма є замкненою.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Розглянемо, наприклад, просту нерівність \( x \geq 1 \). Її множиною розв'язків є замкнена півпряма \( [1, +\infty) \), зображена нижче.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[ 1 \]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Це геометричне тлумачення пояснює, чому розв'язання нерівності першого ступеня ніколи не є ізольованою точкою або обмеженим проміжком: лінійна структура виразу \( ax - b \) гарантує, що його знак змінюється рівно один раз, при \( x = b/a \), поділяючи дійсну пряму точно на дві області, одна з яких становить розв'язання.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо наступну нерівність:</p>
+<p>\[-\frac{x}{2} + 5 &gt; 2x &#8211; 5\]</p>
+<p>Мета полягає в тому, щоб звести її до стандартного вигляду \( ax &gt; b \). Оскільки ліва частина містить дріб зі знаменником \( 2 \), множення обох частин на \( 2 \) усуває знаменник без зміни напрямку нерівності, оскільки множник є додатним.</p>
+<p>\[-x + 10 &gt; 4x &#8211; 10\]</p>
+<p>Згрупувавши всі доданки зі змінною \( x \) ліворуч і перенісши сталі доданки праворуч, отримаємо наступне.</p>
+<p>\[-5x &gt; -20\]</p>
+<p>Ділення обох частин на \( -5 \) ізолює змінну. Оскільки дільник є від'ємним, напрямок нерівності має бути змінений на протилежний.</p>
+<p>\[x &lt; 4\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Множина розв'язків — це відкритий проміжок \( (-\infty, 4) \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Як розв'язувати літерні нерівності першого ступеня</h2>
+<p>У випадку літерних нерівностей першого ступеня коефіцієнт змінної не є фіксованою сталою, а залежить від одного або кількох параметрів. Розглянемо наступну нерівність.</p>
+<p>\[z(x - 1) &lt; 2x + 1\]</p>
+<p>Першим кроком є розкриття дужок і групування доданків, щоб переписати вираз в одній зі стандартних форм \( Ax &gt; B \), \( Ax &lt; B \), \( Ax \geq B \) або \( Ax \leq B \). Розкриваючи ліву частину та переносячи всі доданки зі змінною \( x \) ліворуч, отримаємо наступне.</p>
+<p>\[
+\begin{align}
+&amp;zx &#8211; z &lt; 2x + 1 \\[6pt]
+&amp;zx &#8211; 2x &lt; z + 1 \\[6pt]
+&amp;(z &#8211; 2)x &lt; z + 1
+\end{align}
+\]</p>
+<p>Тепер нерівність має вигляд \( Ax &lt; B \), де \( A = z - 2 \) та \( B = z + 1 \). Оскільки ділення обох частин на \( A \) вимагає знання його знака, а знак \( z - 2 \) залежить від значення параметра \( z \), необхідно розглянути три окремі випадки.</p>
+<hr>
+<p>Коли \( z &gt; 2 \), коефіцієнт \( z - 2 \) є додатним. Ділення обох частин на додатну величину зберігає напрямок нерівності, що дає наступне.</p>
+<p>\[x &lt; \frac{z + 1}{z &#8211; 2}\]</p>
+<hr>
+<p>Коли \( z = 2 \), коефіцієнт \( z &#8211; 2 \) дорівнює нулю. Підстановка цього значення зводить нерівність до \( 0 \cdot x &lt; 3 \), що виконується для будь-якого \( x \in \mathbb{R} \). Множиною розв'язків є вся множина \( \mathbb{R} \).</p>
+<hr>
+<p>Коли \( z &lt; 2 \), коефіцієнт \( z &#8211; 2 \) є від'ємним. Ділення обох частин на від'ємну величину змінює напрямок нерівності на протилежний, що дає наступне.</p>
+<p>\[x &gt; \frac{z + 1}{z - 2}\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Нерівності з модулем</h2>
+<p>Нерівності з модулем — це нерівності, що базуються на властивостях <a href="absolute-value.html">модуля</a> і мають вигляд:</p>
+<p>\[|x| &lt; z \]</p>
+<p>Загалом, нерівності з модулями не належать до класу лінійних нерівностей, оскільки наявність функції модуля змінює поведінку виразу, вносячи розрив, що порушує його лінійну структуру. Однак за допомогою відповідного процесу розкладання їх можна перетворити на одну або кілька еквівалентних систем лінійних нерівностей, що дозволяє аналізувати їх за допомогою тих самих методів, які застосовуються до нерівностей першого ступеня.</p>
+<hr>
+<p>Щоб розв'язати їх, нам потрібно розглянути знак модуля, розділивши його на два випадки:</p>
+<ul>
+<li>\( |x| &lt; z \) тоді і тільки тоді, коли \(-z &lt; x &lt; z\).</li>
+<li>\( |x| &gt; z \) тоді і тільки тоді, коли \( x &lt; -z \quad \text{або} \quad x &gt; z \).</li>
+</ul>
+<p>Отже, ми повинні розв'язати систему нерівностей, що виникає з можливих випадків, розглянутих під час аналізу. Цей процес дещо складніший, ніж розв'язування простих лінійних рівнянь, і під час обчислень слід бути уважними до знаків і напрямку нерівності.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Спробуймо розв'язати наступну нерівність з модулем:</p>
+<p>\[|x &#8211; 1| &lt; 2x + 4 \]</p>
+<hr>
+<p>Спочатку дослідимо знак \(|x &#8211; 1|\). Маємо:</p>
+<p>\[
+|x &#8211; 1| =
+\begin{cases}
+x - 1 &amp; \quad x \ge 1 \\[0.8em]
+-x + 1 &amp; \quad x &lt; 1
+\end{cases}
+\]</p>
+<hr>
+<p>Підставляючи першу гілку в нерівність і розв'язуючи її, отримаємо наступну систему.</p>
+<p>\[
+\begin{cases}
+x \geq 1 \\[6pt]
+x - 1 &lt; 2x + 4
+\end{cases}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain"><table>
+<thead>
+<tr>
+<th></th>
+<th>\[ -5\]</th>
+<th>\[1\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -closed -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Друга нерівність зводиться до \( x &gt; -5 \). Розв'язанням системи є перетин \( x \geq 1 \) та \( x &gt; -5 \), що є \( x \geq 1 \).</p>
+<hr>
+<p>Підставляючи другу гілку в нерівність та розв'язуючи її, отримуємо наступну систему:</p>
+<p>\[
+\begin{cases}
+x &lt; 1 \\[6pt]
+-x + 1 &lt; 2x + 4
+\end{cases}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\( -1 \)</th>
+<th>\( 1 \)</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-left-in -open"></div></td>
+<td><div class="sign-plus-right-in -open"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-left-in -open -highlight"></div></td>
+<td><div class="sign-plus-right-in -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Друга нерівність зводиться до \( x &gt; -1 \). Розв'язанням системи є перетин \( x &lt; 1 \) та \( x &gt; -1 \), що є відкритим проміжком \( (-1, 1) \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Повне розв'язання отримують, взявши об'єднання двох множин часткових розв'язків. Оскільки \( x \geq 1 \) та \( (-1, 1) \) є суміжними проміжками, які разом охоплюють усі значення, більші за \( -1 \), розв'язком нерівності є наступне.</p>
+<p>\[x &gt; -1\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>Stony Brook University</strong>. <a href="https://www.math.stonybrook.edu/Videos/MAP103Online/Handouts/Lecture-17-Handout.pdf">Linear Inequalities</a></p>
+</li>
+<li>
+<p><strong>Stony Brook University</strong>. <a href="https://www.math.stonybrook.edu/Videos/MAP103Online/Handouts/Lecture-18-Handout.pdf">Absolute Value Inequalities</a></p>
+</li>
+<li>
+<p><strong>Harvard University</strong>. <a href="https://abel.math.harvard.edu/archive/xb_spring_03/icearchive1/webAPPH.pdf">Appendix H: Interpreting and Working with Inequalities</a></p>
+</li>
+<li>
+<p><strong>University of Houston</strong>. <a href="https://online.math.uh.edu/Math1300-unpaid/ch1/s17/1300_Ch1_Section7.pdf">Interval Notation and Linear Inequalities</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+
+    {
+      "@type": "Question",
+      "name": "Що таке лінійна нерівність?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Лінійна нерівність — це математичний вислів, який порівнює два вирази за допомогою знаків нерівності, таких як <, >, ≤ або ≥, і містить змінні лише в першому степені. Наприклад: 2x + 3 > 5."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Чи потрібно змінювати знак нерівності при множенні на від'ємне число?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так. Коли ви множите або ділите обидві частини лінійної нерівності на від'ємне число, ви повинні змінити напрямок знака нерівності на протилежний."
+      }
+    }
+
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="linear-inequalities.html">algebrica.org/linear-inequalities</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

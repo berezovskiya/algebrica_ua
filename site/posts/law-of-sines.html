@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теорема синусів — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Теорема синусів</h1>
+        <time>2025-02-07</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-12" style="height:380px;min-height:380px;max-height:380px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:380px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Теорема                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті показана на концептуальній карті, де кожна гілка представляє основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="right-triangle-trigonometry.html">Тригонометрія прямокутного трикутника</a>, <a href="sine-and-cosine.html">Синус і косинус</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-12");
+            var dataset = {"name":"root","children":[{"name":"structure","children":[{"name":"ratios"},{"name":"sine function"},{"name":"triangle angles"},{"name":"side-angle relation"},{"name":"circumcircle"}]},{"name":"derivation","children":[{"name":"right triangle relations"},{"name":"symmetry"},{"name":"inscribed angle"},{"name":"chord relation"}]},{"name":"applications","children":[{"name":"solving triangles"},{"name":"proportions"},{"name":"ambiguous case"},{"name":"multiple solutions"},{"name":"numerical example"},{"name":"law of cosines"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 380;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Означення</h2>
+<p>Теорема синусів стверджує, що в будь-якому трикутнику відношення довжини сторони до <a href="sine-and-cosine.html">синуса</a> протилежного їй кута є однаковим для всіх трьох сторін. Для трикутника зі сторонами \(a, b, c\), що лежать проти кутів \(\alpha, \beta, \gamma\) відповідно, це спільне відношення дорівнює подвоєному радіусу \(r\) описаного кола:</p>
+<p>\[
+\frac{a}{\sin \alpha} = \frac{b}{\sin \beta} = \frac{c}{\sin \gamma} = 2r
+\]</p>
+<p>Величина \(2r\) є діаметром описаного кола, тобто єдиного кола, що проходить через усі три вершини трикутника.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="520" height="538" src="../images/law-of-sines-3.png" alt="" class="wp-image-21699" style="width:260px" srcset="../images/law-of-sines-3.png 520w, https://algebrica.org/wp-content/uploads/resources/images/law-of-sines-3-290x300.png 290w" sizes="(max-width: 520px) 100vw, 520px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Теорема синусів особливо корисна, коли відомі деякі сторони або кути трикутника і необхідно визначити інші, оскільки кожну невідому можна знайти за допомогою простої пропорції.</p>
+<hr>
+<p>Щоб встановити рівність трьох відношень, розглянемо висоту \(h\), проведену з вершини протилежної стороні \(c\) до самої сторони \(c\). За означенням функції <a href="sine-and-cosine.html">синуса</a>, застосованим до кутів \(\alpha\) та \(\beta\), маємо \(\sin(\alpha) = h/b\) та \(\sin(\beta) = h/a\), звідси \(b\sin(\alpha) = h = a\sin(\beta)\). Ділення обох частин на \(\sin(\alpha)\sin(\beta)\) дає:</p>
+<p>\[
+\frac{a}{\sin(\alpha)} = \frac{b}{\sin(\beta)}
+\]</p>
+<p>Аналогічний аргумент, застосований до висоти з вершини протилежної стороні \(a\), дає \(\sin(\beta) = h’/c\) та \(\sin(\gamma) = h’/b\), і, отже:</p>
+<p>\[
+\frac{b}{\sin(\beta)} = \frac{c}{\sin(\gamma)}
+\]</p>
+<p>Оскільки перше відношення дорівнює другому, а друге дорівнює третьому, всі три є рівними.</p>
+<p>Щоб зрозуміти, чому спільне значення дорівнює \(2r\), зауважимо, що коли трикутник вписаний у своє описане коло радіуса \(r\), теорема про вписаний кут передбачає, що хорда довжиною \(a\) опирається на центральний кут \(2\alpha\). Зв'язок між хордою та радіусом кола тоді дає \(a = 2r\sin(\alpha)\), звідси \(a/\sin(\alpha) = 2r\). За симетрією те саме справедливо для інших двох сторін.</p>
+<blockquote>
+<p>Теорема синусів часто використовується разом із <a href="law-of-cosines.html">теоремою косинусів</a>, яка забезпечує доповнюючий підхід до розв'язання трикутників, коли відомі різні комбінації сторін і кутів.</p>
+</blockquote>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо трикутник, у якому \(\alpha = 40^\circ\), \(\beta = 65^\circ\) та \(a = 10\). Мета — визначити довжину сторони \(b\), яка лежить проти \(\beta\). Оскільки сума внутрішніх кутів будь-якого трикутника дорівнює \(180^\circ\), третій кут становить \(\gamma = 180^\circ &#8211; 40^\circ - 65^\circ = 75^\circ\). Застосування теореми синусів до пари, що включає \(a\) та \(b\), дає:</p>
+<p>\[
+\frac{10}{\sin 40^\circ} = \frac{b}{\sin 65^\circ}
+\]</p>
+<p>Множення обох частин на \(\sin 65^\circ\) дозволяє виділити \(b\):</p>
+<p>\[
+b = \frac{10 \cdot \sin 65^\circ}{\sin 40^\circ} = \frac{10 \cdot 0.9063}{0.6428} \approx 14.1
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Довжина сторони \(b\) становить приблизно \(14.1\) одиниці.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Неоднозначний випадок</h2>
+<p>У конфігурації Сторона-Сторона-Кут (ССК), де задано дві сторони \(a\) та \(b\) і кут \(\alpha\) протилежний одній із них, теорема синусів не обов'язково визначає єдиний трикутник. Виділення \(\sin(\beta)\) з пропорції дає:</p>
+<p>\[
+\sin(\beta) = \frac{b \sin(\alpha)}{a}
+\]</p>
+<p>Оскільки функція синуса задовольняє рівності \(\sin(\theta) = \sin(180^\circ &#8211; \theta)\) для кожного \(\theta \in (0^\circ, 180^\circ)\), це значення може відповідати двом різним кутам, \(\beta\) та \(180^\circ - \beta\). Те, чи жоден, один чи обидва з них утворюють правильний трикутник, залежить від відносних величин \(a\), \(b\) та висоти з вершини протилежної стороні \(c\). Кожне потенційне значення \(\beta\), отже, має бути розглянуте окремо, щоб перевірити, чи сума отриманих кутів менша за \(180^\circ\) і чи всі сторони є додатними.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо трикутник, у якому \(\alpha = 35^\circ\), \(a = 7\) та \(b = 10\). Мета полягає в тому, щоб визначити всі можливі значення кута \(\beta\) і для кожного з них відповідний трикутник. Застосування теореми синусів для вираження \(\sin(\beta)\) дає:</p>
+<p>\[
+\begin{align}
+\sin(\beta) &amp;= \frac{b \sin(\alpha)}{a} \\[6pt]
+&amp;= \frac{10 \cdot \sin 35^\circ}{7} \\[6pt]
+&amp;= \frac{10 \cdot 0.5736}{7} \\[6pt]
+&amp;\approx 0.8194
+\end{align}
+\]</p>
+<p>Оскільки \(0 &lt; 0.8194 &lt; 1\), рівняння \(\sin(\beta) = 0.8194\) має два розв'язання на проміжку \((0^\circ, 180^\circ)\):</p>
+<p>\[\beta_1 = \arcsin(0.8194) \approx 55.0^\circ\]
+\[\qquad \beta_2 = 180^\circ &#8211; 55.0^\circ = 125.0^\circ\]</p>
+<p>Кожне значення необхідно перевірити на відповідність умові, що сума всіх трьох кутів дорівнює \(180^\circ\). Для \(\beta_1 = 55.0^\circ\) третій кут становить:
+\[\gamma_1 = 180^\circ - 35^\circ &#8211; 55^\circ = 90^\circ\]</p>
+<p>Цей кут є додатним, отже перший трикутник існує. Для \(\beta_2 = 125.0^\circ\) третій кут становить:
+\[\gamma_2 = 180^\circ &#8211; 35^\circ - 125^\circ = 20^\circ\]</p>
+<p>Цей випадок також є додатним, тому другий трикутник також існує. Ці два трикутники не є рівними: перший має кути \(35^\circ, 55^\circ, 90^\circ\), а другий має кути \(35^\circ, 125^\circ, 20^\circ\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Обидва узгоджуються із заданими даними \(\alpha = 35^\circ\), \(a = 7\), \(b = 10\), що підтверджує можливість існування двох різних трикутників, які задовольняють однакові початкові умови.</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що стверджує теорема синусів?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема синусів стверджує, що в будь-якому трикутнику відношення довжини сторони до синуса протилежного їй кута є сталою величиною. Для трикутника зі сторонами a, b, c та протилежними кутами α, β, γ маємо a / sin α = b / sin β = c / sin γ. (Джерело: algebrica.org)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як можна використовувати теорему синусів для знаходження невідомої сторони?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Якщо відома одна сторона та протилежний їй кут, а також задано інший кут або сторона, теорему синусів можна використати для знаходження невідомої сторони. Наприклад, у трикутнику з α = 40°, β = 65° та стороною a = 10 (протилежною α), ми запишемо 10 / sin 40° = b / sin 65°, звідси b = 10 × (sin 65° / sin 40°) ≈ 14.1. (Джерело: algebrica.org)"
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="law-of-sines.html">algebrica.org/law-of-sines</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

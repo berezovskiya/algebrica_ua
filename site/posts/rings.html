@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кільця — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Алгебричні структури</span>
+    </nav>
+    <article>
+        <h1>Кільця</h1>
+        <time>2026-03-30</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-8" style="height:430px;min-height:430px;max-height:430px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:430px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="groups.html">Групи</a>, <a href="sets.html">Множини</a>, є необхідними попередніми вимогами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-8");
+            var dataset = {"name":"root","children":[{"name":"structure","children":[{"name":"definition"},{"name":"additive structure"},{"name":"multiplicative structure"},{"name":"distributivity"},{"name":"commutative ring"},{"name":"ring with unity"},{"name":"integral domain"}]},{"name":"properties","children":[{"name":"zero element"},{"name":"additive inverse"},{"name":"multiplication rules"},{"name":"zero divisors"},{"name":"sign identities"},{"name":"cancellation"}]},{"name":"substructures","children":[{"name":"subrings"},{"name":"ideals"},{"name":"two-sided ideal"},{"name":"homomorphisms"},{"name":"isomorphisms"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 430;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Означення</h2>
+<p>Кільце — це алгебраїчна структура, що розширює поняття <a href="groups.html">групи</a> шляхом введення другої бінарної операції. Ця концепція виникає зі спостереження, що кілька фундаментальних об'єктів, таких як <a href="integers.html">цілі числа</a>, <a href="polynomials.html">поліноми</a> з дійсними коефіцієнтами та <a href="matrices.html">квадратні матриці</a> заданого розміру, мають спільну структуру. Вони допускають як додавання, так і множення, ці дві операції взаємодіють передбачуваним чином, і при цьому множення не обов'язково має бути комутативним і не обов'язково повинно мати обернені елементи. Кільцем називається множина \(R\) разом із двома бінарними операціями \(+\) та \(\cdot\) (додаванням і множенням), що задовольняють наступні аксіоми:</p>
+<ul>
+<li>\((R, +)\) є абелевою групою. Зокрема, існує елемент \(0 \in R\), такий що \(a + 0 = a\) для всіх \(a \in R\), і для кожного \(a \in R\) існує \(-a \in R\), при якому \(a + (-a) = 0\).</li>
+<li>Асоціативність множення: для всіх \(a, b, c \in R\) маємо \((a \cdot b) \cdot c = a \cdot (b \cdot c)\).</li>
+<li>Дистрибутивність: для всіх \(a, b, c \in R\) маємо \(a \cdot (b + c) = a \cdot b + a \cdot c\) та \((a + b) \cdot c = a \cdot c + b \cdot c\).</li>
+</ul>
+<p>Кільце \((R, +, \cdot)\) називається комутативним, якщо \(a \cdot b = b \cdot a\) для всіх \(a, b \in R\). Воно називається кільцем з одиницею, або унітальним кільцем, якщо існує мультиплікативний нейтральний елемент \(1 \in R\), такий що \(1 \cdot a = a \cdot 1 = a\) для всіх \(a \in R\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Властивості</h2>
+<p>Кілька елементарних наслідків випливають безпосередньо з аксіом. Для будь-якого \(a \in R\) множення на нейтральний елемент додавання задовольняє рівності \(a \cdot 0 = 0 \cdot a = 0\). Це не додаткова аксіома, а наслідок дистрибутивності. Запишемо \(a \cdot 0 = a \cdot (0 + 0) = a \cdot 0 + a \cdot 0\), а потім відкинемо \(a \cdot 0\) з обох сторін, використовуючи структуру групи \((R, +)\). Аналогічно, для всіх \(a, b \in R\) маємо наступну тотожність:</p>
+<p>\[
+(-a) \cdot b = a \cdot (-b) = -(a \cdot b)
+\]</p>
+<p>Зокрема, \((-1) \cdot a = -a\), якщо \(R\) має одиницю. Ці правила знаків відомі з елементарної арифметики і виконуються в будь-якому кільці.</p>
+<ul>
+<li>
+<p>Ненульовий елемент \(a \in R\) називається дільником нуля, якщо існує ненульовий елемент \(b \in R\), такий що \(a \cdot b = 0\) або \(b \cdot a = 0\).</p>
+</li>
+<li>
+<p>Дільники нуля — це особливість, що відрізняє кільця від полів: у полі жоден ненульовий елемент не може бути дільником нуля.</p>
+</li>
+<li>
+<p>Комутативне кільце з одиницею, яке не містить дільників нуля, називається цілісним кільцем.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps"><h2>Алгебраїчна ієрархія</h2>
+<p>Кільця займають проміжне місце в ієрархії алгебраїчних структур.</p>
+<p><a href="groups.html">Група</a> є найпростішою з цих структур. Вона складається з множини, оснащеної однією бінарною операцією, що задовольняє умови замкненості, асоціативності, існування нейтрального елемента та існування обернених елементів.</p>
+<p>Кільце розширює цю структуру, вводячи другу операцію — множення, яка має бути асоціативною та дистрибутивною відносно додавання, але не обов'язково комутативною і не обов'язково повинна мати обернені елементи.</p>
+<p>Коли до комутативного кільця з одиницею додається вимога, щоб кожен ненульовий елемент мав мультиплікативний обернений елемент, структура стає <a href="fields.html">полем</a>. Таким чином, ці три структури утворюють ланцюг зростаючої суворості визначень:</p>
+<ul>
+<li>Група має одну операцію з оберненими елементами.</li>
+<li>Кільце має дві операції, при цьому обернені елементи гарантовані лише для додавання.</li>
+<li>Поле має дві операції, при цьому обернені елементи гарантовані як для додавання, так і для всіх ненульових елементів при множенні.</li>
+</ul>
+<blockquote>
+<p>Цілі числа \(\mathbb{Z}\) є найбільш природним прикладом кільця, яке не є полем: кожне ціле число має обернений елемент за додаванням, проте \(2^{-1}\) не належить до \(\mathbb{Z}\). Раціональні числа \(\mathbb{Q}\), навпаки, утворюють поле.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Приклади</h2>
+<p>Множина \(\mathbb{Z}\) цілих чисел, оснащена звичайним додаванням та множенням, є найбільш природним прикладом комутативного кільця з одиницею. Нейтральним елементом по додаванню є \(0\), нейтральним елементом по множенню є \(1\), і кожне ціле число має протилежний елемент. Цілі числа утворюють область цілісності, оскільки добуток двох ненульових цілих чисел завжди є ненульовим.</p>
+<p>Множина поліномів з дійсними коефіцієнтами, що позначається \(\mathbb{R}[x]\), утворює комутативне кільце з одиницею за звичайними операціями додавання та множення поліномів. Нейтральним елементом по додаванню є нульовий поліном, а нейтральним елементом по множенню — стала функція \(1\). Це кільце також є областю цілісності.</p>
+<hr>
+<p>Нехай \(n\) — додатне ціле число. Множина \(\mathbb{Z}/n\mathbb{Z} = {0, 1, \ldots, n-1}\), осначена додаванням та множенням за модулем \(n\), утворює комутативне кільце з одиницею. Наприклад, у \(\mathbb{Z}/6\mathbb{Z}\) маємо \(2 \cdot 3 = 0\), отже \(2\) та \(3\) є дільниками нуля, і \(\mathbb{Z}/6\mathbb{Z}\) не є областю цілісності. Однак, якщо \(n\) є простим числом, \(\mathbb{Z}/n\mathbb{Z}\) не містить дільників нуля і фактично є полем.</p>
+<p>Нехай \(F\) — поле, а \(n\) — додатне ціле число. Множина \(\mathrm{M}_n(F)\) всіх <a href="matrices.html">матриць</a> розміру \(n \times n\) з елементами в \(F\) утворює кільце за операціями додавання та множення матриць. Нейтральним елементом по додаванню є нульова матриця, а нейтральним елементом по множенню — одинична матриця \(I_n\). Для \(n \geq 2\) це кільце не є комутативним, оскільки множення матриць загалом не є комутативним, і воно містить дільники нуля.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps"><h2>Підкільця</h2>
+<p>Підмножина \(S\) кільця \(R\) називається підкільцем, якщо \(S\) сама по собі є кільцем за операціями, що успадковані від \(R\). Непорожня підмножина \(S \subseteq R\) є підкільцем \(R\) тоді і тільки тоді, коли вона замкнена відносно віднімання та множення, тобто для всіх \(a, b \in S\) маємо \(a - b \in S\) та \(a \cdot b \in S\). Замкненість відносно віднімання еквівалентна вимозі, щоб \(S\) була підгрупою \((R, +)\), а замкненість відносно множення забезпечує, що друга операція також є коректно визначеною на \(S\). Кожне кільце \(R\) містить принаймні два підкільця:</p>
+<ul>
+<li>тривіальне підкільце \({0}\)</li>
+<li>\(R\) як ціле.</li>
+</ul>
+<p>Будь-яке підкільце, відмінне від \(R\), називається власним підкільцем.</p>
+<p>Як приклад, множина парних цілих чисел \(2\mathbb{Z} = \{\ldots, -4, -2, 0, 2, 4, \ldots\}\) є підкільцем \(( \mathbb{Z}, +, \cdot )\). Для будь-яких двох парних цілих чисел \(a = 2m\) та \(b = 2k\) маємо \(a - b = 2(m-k) \in 2\mathbb{Z}\) та \(a \cdot b = 4mk \in 2\mathbb{Z}\), отже обидві умови виконуються. Зауважимо, що \(2\mathbb{Z}\) не містить нейтрального елемента по множенню \(1\) з \(\mathbb{Z}\), що ілюструє: підкільце кільця з одиницею не обов'язково саме має бути кільцем з одиницею.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Ідеали</h2>
+<p>Ідеали — це підмножини, які дозволяють будувати факторкільця, відіграючи роль, аналогічну нормальним підгрупам у теорії груп. Непорожня підмножина \(I \subseteq R\) називається лівим ідеалом \(R\), якщо вона замкнена відносно додавання та лівого множення на елементи \(R\), тобто для всіх \(a \in I\) та \(r \in R\) маємо \(r \cdot a \in I\). Правий ідеал визначається аналогічно через праве множення. Підмножина, яка одночасно є лівим і правим ідеалом, називається двостороннім ідеалом, або просто ідеалом.</p>
+<p>Множина \(n\mathbb{Z}\) всіх кратних заданому цілому числу \(n\) є ідеалом \(\mathbb{Z}\): для будь-якого \(a = nk \in n\mathbb{Z}\) та будь-якого \(r \in \mathbb{Z}\) маємо:</p>
+<p>\[r \cdot a = n(rk) \in n\mathbb{Z}\]</p>
+<blockquote>
+<p>Ідеали — це саме ядра гомоморфізмів кілець, що робить їх природним інструментом для побудови факторкілець та вивчення структури кілець через їхні гомоморфні образи.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Гомоморфізми та ізоморфізми кілець</h2>
+<p>Гомоморфізм кілець — це <a href="functions.html">функція</a> між двома кільцями, яка зберігає обидві операції. Нехай задано два кільця \((R, +, \cdot)\) та \((S, \oplus, \odot)\), тоді функція \(\varphi : R \to S\) є гомоморфізмом кілець, якщо для всіх \(a, b \in R\):</p>
+<p>\[\varphi(a + b) = \varphi(a) \oplus \varphi(b)\]
+\[\varphi(a \cdot b) = \varphi(a) \odot \varphi(b)\]</p>
+<p>Перша умова вимагає, щоб \(\varphi\) була гомоморфізмом груп між адитивними групами, а друга — щоб вона зберігала множення. Як наслідок, \(\varphi\) відображає адитивний нейтральний елемент \(R\) в адитивний нейтральний елемент \(S\). Якщо обидва кільця є одиничними, часто додатково вимагають, щоб \(\varphi(1_R) = 1_S\). Ядро та образ гомоморфізма кілець \(\varphi : R \to S\) визначаються так само, як і у випадку з групами:</p>
+<p>\[
+\ker(\varphi) = \{a \in R : \varphi(a) = 0_S\} \]
+\[ \qquad \mathrm{im}(\varphi) = \{\varphi(a) : a \in R\}\]</p>
+<p>Ядро завжди є ідеалом \(R\), а образ завжди є підкільцем \(S\). Гомоморфізм є ін'єктивним тоді і тільки тоді, коли його ядро містить лише адитивний нейтральний елемент \(R.\)</p>
+<hr>
+<p>Гомоморфізм кілець, який одночасно є ін'єктивним і сюр'єктивним, називається ізоморфізмом кілець. Два кільця називаються ізоморфними, що записується як \(R \cong S\), якщо між ними існує ізоморфізм. Ізоморфні кільця структурно ідентичні та мають усі властивості, що притаманні їхній структурі кільця.</p>
+<p>Як приклад, розглянемо відображення \(\varphi : \mathbb{Z} \to \mathbb{Z}/n\mathbb{Z}\), визначене як \(\varphi(a) = a \bmod n\). Це відображення зберігає додавання та множення, оскільки \((a + b) \bmod n = (a \bmod n) + (b \bmod n)\), і аналогічно для множення. Отже, це гомоморфізм кілець, а його ядром є саме \(n\mathbb{Z\), ідеал кратних \(n\).</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="rings.html">algebrica.org/rings</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вектори — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Вектори та матриці</span>
+    </nav>
+    <article>
+        <h1>Вектори</h1>
+        <time>2025-02-17</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-8" style="height:380px;min-height:380px;max-height:380px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:380px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Поняття                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">10</div>
+                                <div class="s-c-t-c-label">Дозволяє вивчити</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="linear-combinations.html">Лінійні комбінації</a>, <a href="properties-of-real-numbers.html">Властивості дійсних чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-8");
+            var dataset = {"name":"root","children":[{"name":"representation","children":[{"name":"geometric view"},{"name":"components"},{"name":"basis"},{"name":"coordinate form"},{"name":"dimension"}]},{"name":"operations","children":[{"name":"addition"},{"name":"scalar multiplication"},{"name":"subtraction"},{"name":"dot product"},{"name":"cross product"}]},{"name":"properties","children":[{"name":"algebraic properties"},{"name":"norm"},{"name":"unit vector"},{"name":"orthogonality"},{"name":"vector space"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 380;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Геометричне представлення</h2>
+<p>Вектор — це величина, що характеризується як модулем, так і напрямком, на відміну від скаляра, який описується лише модулем. Ця відмінність природно виникає в геометрії та фізиці, де такі величини, як переміщення, <a href="velocity.html">швидкість</a> та сила, потребують інформації про напрямок, яку не може закодувати одне дійсне число. Формальний підхід, розроблений тут, є алгебраїчним і застосовується до векторів у евклідових просторах \(\mathbb{R}^2\) та \(\mathbb{R}^3\), яких достатньо для більшості базових застосувань у математичному аналізі, геометрії та механіці. Вектор на площині або в тривимірному просторі представляється як спрямований відрізок, тобто відрізок із визначеною початковою та кінцевою точками. Напрямок відрізка вказує на орієнтацію вектора, а його довжина представляє модуль.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="572" height="452" src="../images/vector-1.png" alt="Vector." class="wp-image-27366" style="width:286px" title="Vector." srcset="../images/vector-1.png 572w, https://algebrica.org/wp-content/uploads/resources/images/vector-1-300x237.png 300w" sizes="(max-width: 572px) 100vw, 572px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Два спрямовані відрізки, що мають однакову довжину та однаковий напрямок, вважаються такими, що представляють один і той самий вектор, незалежно від їхнього положення в просторі. Ця еквівалентність є основою поняття вільного вектора, який повністю характеризується своїм напрямком і модулем, незалежно від того, де він накреслений.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="572" height="506" src="../images/vector-2.png" alt="Vectors." class="wp-image-27369" style="width:286px" title="Vectors." srcset="../images/vector-2.png 572w, https://algebrica.org/wp-content/uploads/resources/images/vector-2-300x265.png 300w" sizes="(max-width: 572px) 100vw, 572px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Зазвичай вектори позначають жирними літерами, такими як \(\mathbf{v}\), або, альтернативно, за допомогою стрілки \(\vec{v}\). Нульовий вектор, що позначається \(\mathbf{0}\), має нульовий модуль і не має визначеного напрямку; він відіграє роль нейтрального елемента за додаванням у векторній арифметиці.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Компоненти та координатне представлення</h2>
+<p>У декартовій системі координат кожен вектор у \(\mathbb{R}^n\) може бути виражений через його компоненти вздовж координатних осей. Вектор \(\mathbf{v}\) у \(\mathbb{R}^2\) записується як впорядкована пара:</p>
+<p>\[\mathbf{v} = (v_1,\, v_2) \in \mathbb{R}^2\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="534" height="476" src="../images/vector-3.png" alt="Vector components in ℝ²." class="wp-image-27375" style="width:267px" title="Vector components in ℝ²." srcset="../images/vector-3.png 534w, https://algebrica.org/wp-content/uploads/resources/images/vector-3-300x267.png 300w" sizes="(max-width: 534px) 100vw, 534px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Вектор у \(\mathbb{R}^3\) записується як впорядкована трійка.</p>
+<p>\[ \mathbf{v} = (v_1,\, v_2,\, v_3) \in \mathbb{R}^3\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="740" height="552" src="../images/vector-4.png" alt="Vector components in ℝ³." class="wp-image-27378" style="width:370px" title="Vector components in ℝ³." srcset="../images/vector-4.png 740w, https://algebrica.org/wp-content/uploads/resources/images/vector-4-300x224.png 300w" sizes="(max-width: 740px) 100vw, 740px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p><a href="properties-of-real-numbers.html">Дійсні числа</a> \(v_1, v_2, v_3\) називаються компонентами \(\mathbf{v}\) відносно обраної системи координат. Стандартні базисні вектори в \(\mathbb{R}^3\) визначаються наступним чином.</p>
+<p>\[
+\mathbf{i} = (1,\,0,\,0) \qquad \mathbf{j} = (0,\,1,\,0) \qquad \mathbf{k} = (0,\,0,\,1)
+\]</p>
+<p>Кожен вектор у \(\mathbb{R}^3\) може бути виражений як <a href="linear-combinations.html">лінійна комбінація</a> цих базисних векторів.</p>
+<p>\[
+\mathbf{v} = v_1\,\mathbf{i} + v_2\,\mathbf{j} + v_3\,\mathbf{k}
+\]
+У цьому виразі кожен скалярний коефіцієнт визначає внесок відповідного базисного вектора: \(v_1\) масштабує \(\mathbf{i}\) вздовж осі \(x\), \(v_2\) масштабує \(\mathbf{j}\) вздовж осі \(y\), а \(v_3\) масштабує \(\mathbf{k}\) вздовж осі \(z\). Сума цих трьох масштабованих базисних векторів точно відтворює \(\mathbf{v}\). Наприклад, вектор \((3, -1, 2)\) записується як \(3\,\mathbf{i} &#8211; \mathbf{j} + 2\,\mathbf{k}\), що означає переміщення на три одиниці в напрямку \(x\), на одну одиницю в негативному напрямку \(y\) та на дві одиниці в напрямку \(z\). Таке представлення робить явним розклад \(\mathbf{v}\) на складові вздовж кожного координатного напрямку.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Векторні операції</h2>
+<p>Основними алгебраїчними операціями над векторами є додавання, віднімання та скалярне множення. Ці операції визначені покомпонентно і мають чітке геометричне тлумачення. Дано два вектори \(\mathbf{u} = (u_1, u_2, u_3)\) та \(\mathbf{v} = (v_1, v_2, v_3)\) у \(\mathbb{R}^3\), їхня сума визначається наступним чином.</p>
+<p>\[
+\mathbf{u} + \mathbf{v} = (u_1+v_1,\; u_2+v_2,\; u_3+v_3)
+\]</p>
+<p>Геометрично додавання векторів відповідає розміщенню початкової точки \(\mathbf{v}\) у кінцевій точці \(\mathbf{u}\). Результуючий вектор з'єднує початкову точку \(\mathbf{u}\) з кінцевою точкою \(\mathbf{v}\). Ця побудова відома як правило трикутника.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-20"><img loading="lazy" width="448" height="410" src="../images/vector-5-1.png" alt="" class="wp-image-27391" style="width:224px" title="Triangle rule for vector addition." srcset="../images/vector-5-1.png 448w, https://algebrica.org/wp-content/uploads/resources/images/vector-5-1-300x275.png 300w" sizes="(max-width: 448px) 100vw, 448px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Еквівалентне формулювання, правило паралелограма, передбачає розміщення обох векторів у спільній початковій точці та ідентифікацію їхньої суми з діагоналлю паралелограма, який вони визначають.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-10"><img loading="lazy" width="512" height="486" src="../images/vector-6.png" alt="Parallelogram rule for vectors." class="wp-image-27394" style="width:256px" title="Parallelogram rule for vectors." srcset="../images/vector-6.png 512w, https://algebrica.org/wp-content/uploads/resources/images/vector-6-300x285.png 300w" sizes="(max-width: 512px) 100vw, 512px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Скалярне множення на дійсне число \(\lambda \in \mathbb{R}\) рівномірно масштабує кожну компоненту.</p>
+<p>\[
+\lambda\,\mathbf{v} = (\lambda v_1,\; \lambda v_2,\; \lambda v_3)
+\]</p>
+<p>Коли \(\lambda &gt; 0\), результуючий вектор має той самий напрямок, що і \(\mathbf{v}\), а його величина масштабується на \(\lambda\). Коли \(\lambda &lt; 0\), напрямок змінюється на протилежний. Коли \(\lambda = 0\), результатом є нульовий вектор. Віднімання визначається шляхом поєднання двох попередніх операцій: \(\mathbf{u} &#8211; \mathbf{v} = \mathbf{u} + (-1)\mathbf{v}\), що дає \((u_1-v_1,\, u_2-v_2,\, u_3-v_3)\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-section"><h2>Алгебраїчні властивості</h2>
+<p>Операції додавання векторів та скалярного множення задовольняють набір фундаментальних властивостей, які виконуються для всіх векторів \(\mathbf{u}, \mathbf{v}, \mathbf{w} \in \mathbb{R}^n\) та всіх скалярів \(\lambda, \mu \in \mathbb{R}\).</p>
+<ul>
+<li>
+<p>Додавання є комутативним, тобто \(\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}\), та асоціативним, так що \((\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w}).\)</p>
+</li>
+<li>
+<p>Нульовий вектор \(\mathbf{0}\) виступає як нейтральний елемент за додаванням, задовольняючи \(\mathbf{v} + \mathbf{0} = \mathbf{v}\) для кожного \(\mathbf{v}\), і кожен вектор \(\mathbf{v}\) має протилежний вектор \(-\mathbf{v} = (-1)\mathbf{v}\) такий, що \(\mathbf{v} + (-\mathbf{v}) = \mathbf{0}.\)</p>
+</li>
+<li>
+<p>Скалярне множення розподіляється відносно додавання векторів згідно з \(\lambda(\mathbf{u} + \mathbf{v}) = \lambda\mathbf{u} + \lambda\mathbf{v}\), та відносно додавання скалярів згідно з \((\lambda + \mu)\mathbf{v} = \lambda\mathbf{v} + \mu\mathbf{v}\). Скалярне множення сумісне зі скалярним добутком: \((\lambda\mu)\mathbf{v} = \lambda(\mu\mathbf{v})\), а скаляр \(1\) виступає як нейтральний елемент за множенням, при цьому \(1 \cdot \mathbf{v} = \mathbf{v}.\)</p>
+</li>
+</ul>
+<blockquote>
+<p>Ці властивості не є випадковими: разом вони становлять визначальні аксіоми векторного простору. Множина \(\mathbb{R}^n\) з цими двома операціями утворює векторний простір над полем \(\mathbb{R}\), структура якої буде розглянута більш загально в статті про векторні простори.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Норма вектора</h2>
+<p>Норма, або величина, вектора \(\mathbf{v} = (v_1, v_2, v_3)\) — це невипадкове дійсне число, яке вимірює його довжину. Вона визначається наступним виразом:</p>
+<p>\[
+\|\mathbf{v}\| = \sqrt{v_1^2 + v_2^2 + v_3^2}
+\]</p>
+<p>Ця формула є прямим наслідком <a href="pythagorean-theorem.html">теореми Піфагора</a>, застосованої ітеративно вздовж координатних осей. У \(\mathbb{R}^2\) аналогічна формула має вигляд:</p>
+<p>\[\|\mathbf{v}\| = \sqrt{v_1^2 + v_2^2}\]</p>
+<p>Як приклад, розглянемо вектор \(\mathbf{v} = (2, -3, 6)\) у \(\mathbb{R}^3\). Його норма обчислюється шляхом додавання квадратів його компонент і добування квадратного кореня:</p>
+<p>\[
+\begin{align}
+\|\mathbf{v}\| &amp;= \sqrt{2^2+(-3)^2+6^2} \\[6pt]
+&amp;= \sqrt{4+9+36} \\[6pt]
+&amp;= \sqrt{49} \\[6pt]
+&amp;= 7
+\end{align}
+\]</p>
+<p>Кожен доданок під радикалом відповідає квадрату внеску одного координатного напрямку, і результат підтверджує, що \(\mathbf{v}\) має довжину \(7\). Вектор, норма якого дорівнює одиниці, називається одиничним вектором. Для будь-якого ненульового вектора \(\mathbf{v}\) завжди можливо побудувати одиничний вектор, що вказує в тому самому напрямку, поділивши \(\mathbf{v}\) на його норму. Ця операція називається нормалізацією.</p>
+<p>\[
+\hat{\mathbf{v}} = \frac{\mathbf{v}}{\|\mathbf{v}\|}
+\]</p>
+<p>Результуючий вектор \(\hat{\mathbf{v}}\) за побудовою задовольняє рівність \(\|\hat{\mathbf{v}}\| = 1\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Скалярний добуток</h2>
+<p>Скалярний добуток, також відомий як скалярний продукт або внутрішній добуток, є бінарною операцією, яка приймає два вектори та повертає дійсне число. Для \(\mathbf{u}, \mathbf{v} \in \mathbb{R}^n\) він визначається алгебраїчно як сума добутків відповідних компонент.</p>
+<p>\[
+\mathbf{u} \cdot \mathbf{v} = \sum_{i=1}^{n} u_i\, v_i = u_1 v_1 + u_2 v_2 + \cdots + u_n v_n
+\]</p>
+<p>Скалярний добуток має еквівалентне геометричне формулювання через кут \(\theta\) між двома векторами.</p>
+<p>\[
+\mathbf{u} \cdot \mathbf{v} = \|\mathbf{u}\| \,\|\mathbf{v}\|\cos\theta
+\]</p>
+<p>Множник \(\cos\theta\) пов'язує скалярний добуток із <a href="sine-and-cosine.html">косинусом</a> кута між двома векторами, і саме цей зв'язок робить скалярний добуток потужним інструментом для вимірювання співвідношення напрямків та ортогональності. Коли \(\mathbf{u} \cdot \mathbf{v} = 0\) і жоден із векторів не є нульовим, звідси випливає, що \(\cos\theta = 0\), отже \(\theta = \pi/2\). Два вектори, що задовольняють цю умову, називаються ортогональними. Навпаки, коли вектори паралельні, \(\theta = 0\) або \(\theta = \pi\), і скалярний добуток дорівнює \(\pm\|\mathbf{u}\|,\|\mathbf{v}\|\). Скалярний добуток також дає прямий вираз для норми: \(|\mathbf{v}|^2 = \mathbf{v} \cdot \mathbf{v}\). Як приклад, розглянемо \(\mathbf{u} = (1, 2, -1)\) та \(\mathbf{v} = (3, 0, 3)\). Скалярний добуток обчислюється наступним чином.</p>
+<p>\[
+\begin{align}
+\mathbf{u} \cdot \mathbf{v} &amp;= (1)(3)+(2)(0)+(-1)(3) \\[6pt]
+&amp;= 3+0-3 \\[6pt]
+&amp;= 0
+\end{align}
+\]</p>
+<p>Оскільки результат дорівнює нулю, два вектори є ортогональними. Цей висновок можна перевірити геометрично, зауваживши, що жоден вектор не є скалярним множником іншого і їхні компоненти точно задовольняють умову ортогональності.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Векторний добуток</h2>
+<p>Векторний добуток — це операція, визначена для векторів у \(\mathbb{R}^3\), яка приймає два вектори та повертає третій вектор. На відміну від скалярного добутку, результатом є не скаляр, а вектор, і з цієї причини операція також називається векторним добутком. Дано \(\mathbf{u} = (u_1, u_2, u_3)\) та \(\mathbf{v} = (v_1, v_2, v_3)\), їхній векторний добуток визначається за наступною формулою, вираженою як визначник <a href="matrices.html">матриці</a>.</p>
+<p>\[
+\mathbf{u} \times \mathbf{v} =
+\begin{vmatrix}
+\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k} \\[6pt]
+u_1 &amp; u_2 &amp; u_3 \\[6pt]
+v_1 &amp; v_2 &amp; v_3
+\end{vmatrix}
+\]</p>
+<p>Розклад за першим рядком дає явну форму компонент.</p>
+<p>\[
+\mathbf{u} \times \mathbf{v} = (u_2 v_3 - u_3 v_2,\; u_3 v_1 &#8211; u_1 v_3,\; u_1 v_2 - u_2 v_1)
+\]</p>
+<p>Отриманий вектор є ортогональним як до \(\mathbf{u}\), так і до \(\mathbf{v}\), що можна перевірити, обчисливши скалярні добутки \((\mathbf{u} \times \mathbf{v}) \cdot \mathbf{u}\) та \((\mathbf{u} \times \mathbf{v}) \cdot \mathbf{v}\), кожен з яких дорівнює нулю. Напрямок \(\mathbf{u} \times \mathbf{v}\) визначається за правилом правої руки: якщо пальці правої руки загинаються від \(\mathbf{u}\) до \(\mathbf{v}\), то великий палець вказує напрямок \(\mathbf{u} \times \mathbf{v}\). Модуль векторного добутку має природну геометричну інтерпретацію:
+\[
+\|\mathbf{u} \times \mathbf{v}\| = \|\mathbf{u}\|\,\|\mathbf{v}\|\sin\theta
+\]</p>
+<p>Ця величина дорівнює площі паралелограма, побудованого на векторах \(\mathbf{u}\) та \(\mathbf{v}\). Зокрема, \(\mathbf{u} \times \mathbf{v} = \mathbf{0}\) тоді і тільки тоді, коли \(\sin\theta = 0\), тобто тоді і тільки тоді, коли вектори паралельні. Векторний добуток є антикомутативним: \(\mathbf{v} \times \mathbf{u} = -(\mathbf{u} \times \mathbf{v})\), що відображає зміну орієнтації при зміні порядку операндів.</p>
+<hr>
+<p>Як конкретний приклад, розглянемо \(\mathbf{u} = (1, 2, 3)\) та \(\mathbf{v} = (4, 5, 6)\). Застосування формули компонент дає наступне:
+\[
+\begin{align}
+\mathbf{u} \times \mathbf{v} &amp;= (u_2v_3-u_3v_2,\; u_3v_1-u_1v_3,\; u_1v_2-u_2v_1) \\[6pt]
+&amp;= (2\cdot6-3\cdot5,\; 3\cdot4-1\cdot6,\; 1\cdot5-2\cdot4) \\[6pt]
+&amp;= (12-15,\; 12-6,\; 5-8) \\[6pt]
+&amp;= (-3,\; 6,\; -3)
+\end{align}
+\]
+Можна перевірити, що результат є ортогональним як до \(\mathbf{u}\), так і до \(\mathbf{v}\), обчисливши два скалярні добутки. Для першого:
+\[
+(-3,\;6,\;-3)\cdot(1,\;2,\;3) = - 3 + 12 - 9 = 0
+\]
+і для другого:</p>
+<p>\[
+(-3,\;6,\;-3)\cdot(4,\;5,\;6) = &#8211; 12 + 30 &#8211; 18 = 0
+\]</p>
+<p>Обидва результати дорівнюють нулю, що підтверджує, що \(\mathbf{u} \times \mathbf{v}\) перпендикулярний до обох множників.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="vectors.html">algebrica.org/vectors</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

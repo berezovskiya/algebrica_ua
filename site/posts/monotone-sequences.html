@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Монотонні послідовності — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Послідовності</span>
+    </nav>
+    <article>
+        <h1>Монотонні послідовності</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-2" style="height:310px;min-height:310px;max-height:310px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:310px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Означення                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="properties-of-real-numbers.html">Властивості дійсних чисел</a>, <a href="sequences.html">Послідовності</a>, <a href="supremum-and-infimum.html">Супремум та інфімум</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-2");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"increasing sequence"},{"name":"decreasing sequence"},{"name":"strict monotonicity"},{"name":"constant sequence"}]},{"name":"theorem","children":[{"name":"monotone convergence"},{"name":"bounded increasing sequence"},{"name":"bounded decreasing sequence"},{"name":"supremum as limit"},{"name":"infimum as limit"}]},{"name":"behavior","children":[{"name":"unbounded sequences"},{"name":"divergence"},{"name":"eventual monotonicity","children":[{"name":"eventually increasing"},{"name":"eventually decreasing"}]}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 310;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Означення</h2>
+<p> <a href="sequences.html">Послідовність</a> дійсних чисел може мати особливо регулярну закономірність зростання або спадання: кожен член може бути стабільно більшим за попередній або стабільно меншим. Послідовності з цією властивістю називають монотонними. Нехай \({a_n}_{n \in \mathbb{N}}\) буде послідовністю дійсних чисел. Кажуть, що послідовність є монотонно зростаючою, якщо для кожного індексу виконується наступна умова:</p>
+<p>\[ a_n \leq a_{n+1} \quad \, \forall \, n \in \mathbb{N} \]</p>
+<p>Якщо нерівність є строгою, послідовність називається строго зростаючою. Аналогічно, послідовність є монотонно спадаючою, якщо для кожного індексу виконується обернена умова:</p>
+<p>\[ a_n \geq a_{n+1} \quad \forall \, n \in \mathbb{N} \]</p>
+<p>і строго спадаючою, якщо \(a_n &gt; a_{n+1}\) для всіх \(n\). Послідовність називається монотонною, якщо вона є або монотонно зростаючою, або монотонно спадаючою.</p>
+<p>Стала послідовність, у якій кожен член дорівнює одному й тому самому значенню, задовольняє як \(a_n \leq a_{n+1}\), так і \(a_n \geq a_{n+1}\) для всіх \(n\), і, таким чином, є одночасно і зростаючою, і спадаючою за нестрогим означенням. Однак вона не є ні строго зростаючою, ні строго спадаючою, оскільки всюди виконується умова \(a_n = a_{n+1}\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Теорема про збіжність монотонних послідовностей</h2>
+<p>Важливість монотонних послідовностей полягає в наступному результаті, який дає повну характеристику їхньої збіжності. Монотонна послідовність <a href="properties-of-real-numbers.html">дійсних чисел</a> збіжний тоді і тільки тоді, коли вона обмежена. Більше того, якщо \({a_n}\) є монотонно зростаючою та обмеженою зверху, то її <a href="limits.html">границя</a> дорівнює супремуму її області значень.</p>
+<p>\[
+\lim_{n \to \infty} a_n = \sup\{a_n : n \in \mathbb{N}\}
+\]</p>
+<p>Аналогічно, якщо \({a_n}\) є монотонно спадаючою та обмеженою знизу, то її границя дорівнює інфімуму її області значень.</p>
+<p>\[
+\lim_{n \to \infty} a_n = \inf\{a_n : n \in \mathbb{N}\}
+\]</p>
+<p>Доведення для випадку зростання виглядає так. Нехай \(L = \sup{a_n : n \in \mathbb{N}}\), який існує як скінченне дійсне число, оскільки послідовність обмежена зверху. Нехай \(\varepsilon &gt; 0\).</p>
+<p>Оскільки \(L\) є найменшою верхньою гранню, значення \(L &#8211; \varepsilon\) не є верхньою гранню для послідовності, і, отже, існує індекс \(N\), такий що \(a_N &gt; L - \varepsilon\).</p>
+<p>Оскільки послідовність зростаюча, кожен наступний член задовольняє \(a_n \geq a_N &gt; L - \varepsilon\) для всіх \(n \geq N\). Оскільки \(L\) є верхньою гранню, ми також маємо \(a_n \leq L &lt; L + \varepsilon\) для всіх \(n\).</p>
+<p>Поєднання цих двох нерівностей дає \( |a_n - L| &lt; \varepsilon \, \forall \, n \geq N \), що є саме означенням збіжності до \( L \).</p>
+<h6>Теорема безпосередньо пов'язує збіжність із <a href="supremum-and-infimum.html">супремумом та інфімумом</a> послідовності, показуючи, що монотонні послідовності завжди збігаються до граничного значення своєї області значень, коли вони обмежені, і розбігаються до нескінченності, коли вони не обмежені.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Приклад</h2>
+<p>Розглянемо послідовність, задану наступним виразом:</p>
+<p>\[
+a_n = 1 &#8211; \frac{1}{n}
+\]</p>
+<p>Кожен член задовольняє \(a_n &lt; a_{n+1}\), оскільки віднімання меншої величини від \(1\) дає більший результат зі зростанням \(n\). Таким чином, послідовність є строго зростаючою. Вона також обмежена зверху числом \(1\), оскільки \(a_n &lt; 1\) для кожного скінченного \(n\). Згідно з теоремою про збіжність монотонних послідовностей, ця послідовність збіжний, і її границя дорівнює супремуму її області значень.</p>
+<p>\[
+\lim_{n \to \infty} \left(1 - \frac{1}{n}\right) = 1
+\]</p>
+<hr>
+<p>Як другий приклад, розглянемо послідовність, задану рекурсивно наступним чином:</p>
+<p>\[
+a_1 = 2, \qquad a_{n+1} = \frac{a_n}{2} + \frac{1}{a_n}
+\]</p>
+<p>Щоб показати, що послідовність є спадаючою, дослідимо знак \(a_{n+1} &#8211; a_n\).</p>
+<p>\[
+a_{n+1} &#8211; a_n = \frac{a_n}{2} + \frac{1}{a_n} &#8211; a_n = \frac{1}{a_n} - \frac{a_n}{2} = \frac{2 - a_n^2}{2a_n}
+\]</p>
+<p>Цей вираз є від'ємним завжди, коли \(a_n &gt; \sqrt{2}\), що, як ми зараз покажемо, виконується для всіх \(n \geq 1\). Застосувавши нерівність середнього арифметичного та середнього геометричного (AM-GM) до \(\frac{a_n}{2}\) та \(\frac{1}{a_n}\), отримаємо наступне:</p>
+<p>\[
+a_{n+1} = \frac{a_n}{2} + \frac{1}{a_n} \geq 2\sqrt{\frac{a_n}{2} \cdot \frac{1}{a_n}} = 2 \cdot \frac{1}{\sqrt{2}} = \sqrt{2}
+\]</p>
+<p>Оскільки \(a_1 = 2 &gt; \sqrt{2}\), і кожен член задовольняє \(a_{n+1} \geq \sqrt{2}\), послідовність обмежена знизу числом \(\sqrt{2}\) і є строго спадаючою. Теорема про збіжність монотонних послідовностей, отже, гарантує, що вона збігається до деякої границі \(L \geq \sqrt{2}\).</p>
+<p>Щоб визначити \(L\), перейдемо до границі в рекурсивному співвідношенні. Оскільки \(a_{n+1} \to L\) та \(a_n \to L\), отримаємо рівняння:</p>
+<p>\[L = \frac{L}{2} + \frac{1}{L}\]</p>
+<p>яке спрощується до \(L^2 = 2\). Оскільки \(L \geq \sqrt{2} &gt; 0\), ми робимо висновок, що \(L = \sqrt{2}\). Цей приклад ілюструє, як теорема про збіжність монотонних послідовностей може бути використана для встановлення збіжності та знаходження границі рекурсивно заданої послідовності, навіть коли немає виразу в закритій формі для загального члена.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Необмежені монотонні послідовності</h2>
+<p>Якщо монотонна послідовність не є обмеженою, теорема про збіжність монотонних послідовностей передбачає, що вона не може збігатися до жодної скінченної границі. Це не просто відсутність застосування теореми: це точне твердження про поведінку послідовності. Зростаюча послідовність, яка є необмеженою зверху, має члени, які зрештою перевищують будь-яке задане дійсне число, незалежно від того, наскільки воно велике, і тому послідовність розбігається до \(+\infty\). Симетрично, спадаюча послідовність, яка є необмеженою знизу, розбігається до \(-\infty\).</p>
+<p>Послідовність \(a_n = n\) є найпростішим прикладом першого випадку. Вона строго зростає і не має верхньої межі, тому розбігається до \(+\infty\). Менш очевидним прикладом є послідовність частинних сум гармонічного ряду, визначена наступним виразом:</p>
+<p>\[
+s_n = \sum_{k=1}^{n} \frac{1}{k} = 1 + \frac{1}{2} + \frac{1}{3} + \cdots + \frac{1}{n}
+\]</p>
+<p>Ця послідовність строго зростає, оскільки кожен новий член додає позитивну величину. Питання про те, чи є вона обмеженою зверху, є нетривіальним, і відповідь заперечна: гармонічний ряд розбігається, тому \(s_n \to +\infty\).</p>
+<p>Розбіжність відбувається достатньо повільно, що необмеженість не є одразу помітною при чисельному огляді (наприклад, \(s_{100} \approx 5.187\) та \(s_{10000} \approx 9.787\)), проте послідовність зростає без обмеження.</p>
+<h6>Цей приклад показує, що зростаюча послідовність може бути необмеженою навіть тоді, коли її члени зростають дуже повільно, і що теорема про збіжність монотонних послідовностей не дає короткого шляху: обмеженість має бути перевірена, а не припущена.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Зрештою монотонні послідовності</h2>
+<p>На практиці умова монотонності не обов'язково має виконуватися з самого першого члена послідовності. Послідовність називається зрештою зростаючою, якщо існує індекс \(N\) такий, що \(a_n \leq a_{n+1}\) для всіх \(n \geq N\), і зрештою спадаючою, якщо \(a_n \geq a_{n+1}\) для всіх \(n \geq N\). Початковий відрізок послідовності, що складається з скінченної кількості членів перед індексом \(N\), не має значення для питання збіжності.</p>
+<p>Це є наслідком загального принципу в теорії послідовностей: збіжність є властивістю «хвоста» послідовності, тобто вона залежить лише від того, що відбувається для достатньо великих індексів. Зміна або видалення будь-якої скінченної кількості членів на початку послідовності залишає її збіжність та її границю повністю незмінними. Таким чином, теорема про збіжність монотонних послідовностей застосовується без змін до зрештою монотонних послідовностей:</p>
+<ul>
+<li>Якщо послідовність є зрештою зростаючою та обмеженою зверху, вона збігається.</li>
+<li>Якщо вона є зрештою спадаючою та обмеженою знизу, вона також збігається.</li>
+</ul>
+<p>Для ілюстрації розглянемо послідовність, загальний член якої має наступний вигляд:</p>
+<p>\[
+a_n = \frac{n^2 - 5n}{n + 1}
+\]</p>
+<p>Перші кілька членів є від'ємними, і послідовність спочатку спадає, але починаючи з певного індексу члени стають додатними, і послідовність зростає без обмеження. Послідовність є зрештою зростаючою, але необмеженою зверху, тому вона розбігається. Обмеженість не може бути вилучена з гіпотези теореми.</p>
+</div>
+
+
+
+<p></p></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="monotone-sequences.html">algebrica.org/monotone-sequences</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

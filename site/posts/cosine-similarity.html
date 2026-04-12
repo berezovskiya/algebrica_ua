@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Косинусна подібність — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Різне</span>
+    </nav>
+    <article>
+        <h1>Косинусна подібність</h1>
+        <time>2024-05-10</time>
+        <div class="content">
+            
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400, 500&display=swap');
+.ibm-plex-mono-medium {
+  font-family: "IBM Plex Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+</style>
+
+
+
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-13" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Метод                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-3"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Просунутий</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="cosine-function.html">Косинусна функція</a>, <a href="vector-spaces.html">Векторні простори</a>, <a href="vectors.html">Вектори</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-13");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"vector representation"},{"name":"feature space"},{"name":"angle between vectors"},{"name":"direction vs magnitude"},{"name":"dot product"},{"name":"euclidean norm"}]},{"name":"computation","children":[{"name":"cosine formula"},{"name":"normalized dot product"},{"name":"euclidean distance"},{"name":"similarity mapping"},{"name":"term frequency"},{"name":"stop word removal"},{"name":"tf idf weighting"}]},{"name":"applications","children":[{"name":"text similarity"},{"name":"document vectors"},{"name":"orthogonality"},{"name":"angle interpretation"},{"name":"similarity scale"},{"name":"semantic search"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Що таке косинусна схожість</h2>
+<p>При роботі з великими колекціями текстів стає необхідним мати інструменти, які дозволяють комп'ютеру оцінити, наскільки два документи схожі один на одного. Одним із найбільш широко використовуваних підходів у цьому контексті є косинусна схожість — міра, що ґрунтується на лінійній алгебрі та кількісно визначає зв'язок між двома векторами через кут, який вони утворюють.</p>
+<p>Центральна ідея полягає в тому, що будь-який документ може бути представлений як <a href="vectors.html">вектор</a> у багатовимірному просторі, де кожен компонент відповідає певній ознаці тексту, наприклад, частоті вживання конкретного слова або його контекстуальній релевантності. Після того як два документи були таким чином закодовані, ступінь їхньої схожості можна оцінити, дослідивши геометричний зв'язок між відповідними векторами. Що відрізняє косинусну схожість від простіших мір відстані, так це те, що вона зосереджена виключно на орієнтації векторів, ігноруючи їхню величину: два документи вважатимуться схожими, якщо вони спрямовані приблизно в одному напрямку в просторі ознак, незалежно від їхньої довжини.</p>
+<p>Назва цієї міри походить безпосередньо від <a href="cosine-function.html">функції косинуса</a>: косинусна схожість визначається як косинус кута між двома векторами, а її значення виражається наступною формулою, яка детально розглянута в наступному розділі:</p>
+<p>\[
+C_s(V_x, V_y) = \frac{V_x \cdot V_y}{\|V_x\| \, \|V_y\|}
+\]</p>
+<p>Хоча існують більш складні методи вимірювання семантичної схожості, такі як нейронні ембеддинги або мовні моделі на основі трансформерів, косинусна схожість пропонує переконливий баланс між математичною простотою та практичною ефективністю. Вона широко використовується в рекомендаційних системах, автоматичній класифікації текстів і семантичному пошуку, де критично важливою є можливість швидко оцінити зв'язок між документами. Далі ми розглянемо, як обчислити косинусну схожість крок за кроком, починаючи з конкретного прикладу з невеликим набором речень.</p>
+<blockquote>
+<p>Варто пам'ятати, що косинусна схожість взагалі не має семантичного розуміння мови. Ця міра не осягає фактичного значення слів або речень, а працює суто на геометричному понятті близькості між векторами. Два документи можуть бути визнані схожими, тому що їхні числові представлення спрямовані в одному напрямку, навіть якщо їхній зміст концептуально не пов'язаний, і навпаки, документи з тісно пов'язаними значеннями можуть здатися віддаленими, якщо їхні векторні представлення відрізняються за орієнтацією.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Відстань між векторами та її обмеження</h2>
+<p>Перед введенням косинусної схожості варто розглянути більш елементарний підхід до вимірювання того, наскільки два вектори близькі один до одного, а саме — евклідову відстань. Дано два вектори \(\mathbf{u} = (u_1, u_2, \ldots, u_n)\) та \(\mathbf{v} = (v_1, v_2, \ldots, v_n)\), евклідова відстань між ними визначається наступним чином:</p>
+<p>\[
+d(\mathbf{u}, \mathbf{v}) = \sqrt{\sum_{i=1}^{n} (u_i &#8211; v_i)^2}
+\]</p>
+<p>Ця формула вимірює відстань по прямій між двома точками в \(n\)-вимірному просторі, які визначають ці вектори.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="734" height="524" src="../images/euclidean-distance.png" alt="" class="wp-image-28275" style="width:367px" srcset="../images/euclidean-distance.png 734w, https://algebrica.org/wp-content/uploads/resources/images/euclidean-distance-300x214.png 300w" sizes="(max-width: 734px) 100vw, 734px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Мале значення \(d(\mathbf{u}, \mathbf{v})\) вказує на те, що два вектори геометрично близькі один до одного, тоді як велике значення вказує на те, що вони знаходяться далеко. Оскільки евклідова відстань є необмеженою величиною, іноді зручно перетворити її на показник схожості, що набуває значень у обмеженому проміжку. Одним із поширених способів зробити це є наступне перетворення:</p>
+<p>\[
+\text{sim}(\mathbf{u}, \mathbf{v}) = \frac{1}{1 + d(\mathbf{u}, \mathbf{v})}
+\]</p>
+<p>Цей вираз відображає відстань у значення на проміжку \((0, 1]\). Коли два вектори ідентичні, відстань дорівнює нулю, а схожість дорівнює \(1\). У міру збільшення відстані схожість монотонно зменшується до \(0\), ніколи його не досягаючи.</p>
+<hr>
+<p>Евклідова відстань, однак, має суттєве обмеження при застосуванні до аналізу текстів: вона чутлива до величини векторів, а не лише до їхнього напрямку. Два документи, що обговорюють одні й ті самі теми, створять вектори, які спрямовані в одному напрямку, але один із них може мати набагато більшу норму просто тому, що він довший. Евклідова відстань тоді вкаже на те, що два документи знаходяться далеко один від одного, хоча їхній зміст по суті ідентичний. Косинусна схожість усуває це обмеження шляхом нормалізації векторів перед їх порівнянням, так що враховується лише кут між двома напрямками.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Як обчислити косинусну схожість між двома векторами</h2>
+<p>Косинусна схожість визначається як косинус кута, що утворюється двома векторами в заданому <a href="vector-spaces.html">векторному просторі</a>. Дано два вектори \(\mathbf{V_x}\) та \(\mathbf{V_y}\) у \(\mathbb{R}^n\), тоді косинусна схожість між ними виражається наступною формулою:</p>
+<p>\[
+C_s(V_x, V_y) = \frac{\displaystyle\sum_{i=1}^{n} V_{x_i} \cdot V_{y_i}}{\sqrt{\displaystyle\sum_{i=1}^{n} (V_{x_i})^2} \cdot \sqrt{\displaystyle\sum_{i=1}^{n} (V_{y_i})^2}}
+\]</p>
+<p>У компактному записі, використовуючи скалярний добуток та евклідову норму, той самий вираз набуває такого вигляду:</p>
+<p>\[
+C_s(V_x, V_y) = \frac{V_x \cdot V_y}{\|V_x\| \, \|V_y\|}
+\]</p>
+<p>У цих виразах \(V_x \cdot V_y\) позначає скалярний добуток двох векторів, тоді як \(\|V_x\|\) та \(\|V_y\|\) — їхні відповідні евклідові норми. Ділення на добуток норм є саме тим кроком нормалізації, який усуває вплив величини вектора і зберігає лише інформацію про напрямок.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="752" height="546" src="../images/cosine-similarity.png" alt="" class="wp-image-28283" style="width:376px" srcset="../images/cosine-similarity.png 752w, https://algebrica.org/wp-content/uploads/resources/images/cosine-similarity-300x218.png 300w" sizes="(max-width: 752px) 100vw, 752px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Значення косинусної схожості варіюється від \(-1\) до \(1\). У текстовому аналізі, де компоненти векторів за визначенням є невипадковою від'ємними, діапазон обмежений \([0, 1]\). Значення, близьке до \(1\), вказує на те, що кут між двома векторами малий, тобто вектори майже паралельні, а відповідні документи дуже схожі. Значення, близьке до \(0\), вказує на те, що вектори майже ортогональні, і, отже, два документи мають мало спільного або взагалі не мають спільного змісту.</p>
+<blockquote>
+<p>З чисто математичної точки зору, значення \(-1\) вказує на те, що два вектори спрямовані в абсолютно протилежних напрямках, утворюючи кут \(180°\). Такий випадок не виникає в текстовому аналізі, де всі компоненти векторів невід'ємні, але він залишається частиною загального математичного означення.</p>
+</blockquote>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps mb-x-30"><h2>Приклад 1</h2>
+<p>Розглянемо три речення, для яких ми хочемо визначити ступінь взаємної схожості:</p>
+<ul>
+<li>\(x\) = I am fond of reading thriller novels.</li>
+<li>\(y\) = I prefer reading thriller novels.</li>
+<li>\(z\) = Yesterday, I arrived late.</li>
+</ul>
+<p>Попередній огляд свідчить, що речення \(x\) та \(y\) мають спільну тему, тоді як речення \(z\) явно не пов'язане з двома іншими.</p>
+<p>Перший крок полягає в перетворенні кожного речення у вектор шляхом виділення всіх унікальних слів і фіксації частоти їхньої появи. Перед цим ми видаляємо слова, які мають мало семантичного змісту, такі як сполучник «of», займенник «I» та дієслово «to be». Цей крок фільтрації, відомий як видалення стоп-слів, є стандартною практикою в текстовому аналізі, особливо при роботі з великими корпусами текстів, оскільки це гарантує, що отримані вектори відображатимуть лише найзначущіші лексичні елементи.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown -align-right mb-x-30 pb-table-to-content alignCenterTable"><table>
+<thead>
+<tr>
+<th></th>
+<th>arrived</th>
+<th>fond</th>
+<th>late</th>
+<th>novels</th>
+<th>prefer</th>
+<th>reading</th>
+<th>thriller</th>
+<th>yesterday</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(V_x\)</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>\(V_y\)</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>\(V_z\)</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax"><p>Результатом цього процесу є наведена вище матриця «термін-документ», де кожен запис вказує, чи присутнє певне слово у відповідному реченні. У цьому випадку значення є бінарними, оскільки кожне значуще слово з'являється щонайбільше один раз у кожному реченні; загалом записи також можуть представляти необроблені частоти слів або зважені значення, такі як показники TF-IDF. Таким чином, векторне представлення трьох речень є наступним:</p>
+<ul>
+<li>\(V_x = [0, 1, 0, 1, 0, 1, 1, 0]\)</li>
+<li>\(V_y = [0, 0, 0, 1, 1, 1, 1, 0]\)</li>
+<li>\(V_z = [1, 0, 1, 0, 0, 0, 0, 1]\)</li>
+</ul>
+<p>Тепер ми застосуємо формулу косинусної схожості до пари \((V_x, V_y)\), від якої ми очікуємо високого значення схожості. Слід обчислити наступну формулу:</p>
+<p>\[
+C_s(V_x, V_y) = \frac{V_x \cdot V_y}{\|V_x\| \, \|V_y\|}
+\]</p>
+<p>Почнемо з обчислення скалярного добутку \(V_x \cdot V_y\). Перемноживши відповідні компоненти двох векторів і підсумувавши результати, отримаємо:</p>
+<p>\[
+V_x \cdot V_y = (0 \cdot 0) + (1 \cdot 0) + (0 \cdot 0) + (1 \cdot 1) + (0 \cdot 1) + (1 \cdot 1) + (1 \cdot 1) + (0 \cdot 0) = 3
+\]</p>
+<p>Далі ми обчислимо евклідову норму кожного вектора, яка з'являється в знаменнику формули. Норма \(V_x\) визначається так:</p>
+<p>\[
+\|V_x\| = \sqrt{0^2 + 1^2 + 0^2 + 1^2 + 0^2 + 1^2 + 1^2 + 0^2} = \sqrt{4} = 2
+\]</p>
+<p>Норма \(V_y\) обчислюється аналогічно:</p>
+<p>\[
+\|V_y\| = \sqrt{0^2 + 0^2 + 0^2 + 1^2 + 1^2 + 1^2 + 1^2 + 0^2} = \sqrt{4} = 2
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Підставляючи обчислені значення у формулу, ми отримаємо косинусну схожість:</p>
+<p>\[
+C_s(V_x, V_y) = \frac{3}{2 \times 2} = \frac{3}{4} = 0.75
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Кут між векторами</h2>
+<p>Щоб знайти кут \(\theta\) між двома векторами \(V_x\) та \(V_y\) за значенням косинусної схожості, ми застосовуємо функцію <a href="arcsine-and-arccosine.html">арккосинуса</a>. Оскільки косинусна схожість визначена як косинус кута між двома векторами, кут можна відновити шляхом інвертування цього зв'язку. У даному випадку ми отримаємо:</p>
+<p>\[
+\theta = \arccos(0.75) \approx 41.4^\circ
+\]</p>
+<p>Цей результат узгоджується з високим значенням схожості, обчисленим раніше: кут приблизно \(41.4^\circ\) вказує на те, що два вектори орієнтовані майже в одному напрямку в просторі ознак. Загалом, у міру того як кут між двома векторами зменшується до нуля, їхня косинусна схожість наближається до \(1\), що відображає зростаючий ступінь схожості між відповідними документами.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Косинусна схожість та ортогональність векторів</h2>
+<p>Тепер обчислимо косинусну схожість між \(V_x\) та \(V_z\), які представляють речення з абсолютно різною тематикою. Скалярний добуток \(V_x \cdot V_z\) отримують шляхом множення відповідних компонентів двох векторів та підсумовування результатів:</p>
+<p>\[
+V_x \cdot V_z = (0 \cdot 1) + (1 \cdot 0) + (0 \cdot 1) + (1 \cdot 0) + (0 \cdot 0) + (1 \cdot 0) + (1 \cdot 0) + (0 \cdot 1) = 0
+\]</p>
+<p>Оскільки чисельник формули косинусної схожості дорівнює нулю, косинусна схожість між \(V_x\) та \(V_z\) сама по собі дорівнює нулю. Цей результат вказує на те, що два вектори є ортогональними, тобто вони не мають жодних спільних ознак. З лінгвістичної точки зору це цілком узгоджується з тим спостереженням, що речення \(x\) та \(z\) не мають спільних слів після видалення стоп-слів.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x- 30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Реалізація на Python</h2>
+<p>Нижче наведено приклад коду на Python для обчислення косинусної схожості векторів \(V_x\) та \(V_y\), який ви можете <a href="https://trinket.io/python3/cd31924b04">перевірити</a> в онлайн-IDE.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-code mb-x-30"><pre><code>import numpy as np
+
+# Define the vectors
+Vx = np.array([0, 1, 0, 1, 0, 1, 1, 0])
+Vy = np.array([0, 0, 0, 1, 1, 1, 1, 0])
+
+# Function to calculate cosine similarity
+def cosine_similarity(vector1, vector2):
+    # Calculate the dot product
+    dot_product = np.dot(vector1, vector2)
+    # Calculate the norms of each vector
+    norm1 = np.linalg.norm(vector1)
+    norm2 = np.linalg.norm(vector2)
+    # Calculate the cosine similarity
+    cosine_sim = dot_product / (norm1 * norm2)
+    return cosine_sim
+
+# Calculate and print the cosine similarity
+similarity = cosine_similarity(Vx, Vy)
+print(f&quot;Cosine similarity (Vx,Vy): {similarity}&quot;)
+</code></pre>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><blockquote>
+<p>Після видалення деяких слів з оригінальних прикладів речень для більш точної оцінки, речення були вставлені в код безпосередньо як вектори, що дало значення косинусної схожості \(0.75\). Для повного прикладу, що починається з необроблених речень, замість цього можна розглянути наступний код. У цьому випадку значення косинусної схожості між \(V_x\) та \(V_y\) буде приблизно \(0.48\).</p>
+</blockquote>
+<hr>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-code"><pre><code>from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+sentences = [
+    &quot;I am fond of reading thriller novels.&quot;,  # x
+    &quot;I prefer reading thriller novels.&quot;,      # y
+    &quot;Yesterday, I arrived late.&quot;              # z
+]
+
+# Initialize a TF-IDF Vectorizer
+vectorizer = TfidfVectorizer()
+
+# Fit and transform the sentences to a TF-IDF matrix
+tfidf_matrix = vectorizer.fit_transform(sentences)
+
+# Compute the cosine similarity matrix
+cosine_sim = cosine_similarity(tfidf_matrix, tfidf_matrix)
+print(&quot;Cosine Similarity Matrix:\n&quot;, cosine_sim)
+</code></pre>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section"><h2>Висновки</h2>
+<p>Косинусна схожість є математично обґрунтованою та обчислювально ефективною мірою для оцінки ступеня схожості між документами помірної довжини. Її головна перевага полягає в нормалізації: зосереджуючись на напрямку векторів, а не на їхній величині, вона правильно ідентифікує як схожі ті документи, що мають однаковий тематичний зміст, незалежно від їхньої довжини.</p>
+<p>Однак для довших документів ситуація складніша. У міру збільшення довжини тексту зростає складність його семантичної структури, і одного кута в просторі векторів частотності термів може бути недостатньо для того, щоб зафіксувати тонкі відмінності в значенні. У таких випадках зазвичай доречнішими є більш складні підходи, такі як щільні векторні представлення, створені нейронними мовними моделями.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="cosine-similarity.html">algebrica.org/cosine-similarity</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

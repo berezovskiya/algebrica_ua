@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нотація "мале o" — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Границі</span>
+    </nav>
+    <article>
+        <h1>Нотація "мале o"</h1>
+        <time>2025-02-19</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-4" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Означення                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні обговорювані поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-3"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Просунутий рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="functions.html">Функції</a>, <a href="limits.html">Границі</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-4");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"asymptotic comparison"},{"name":"limit ratio"},{"name":"negligible growth"},{"name":"landau symbols"},{"name":"little-o notation"},{"name":"big-O relation"}]},{"name":"contexts","children":[{"name":"limit at point"},{"name":"limit at infinity"},{"name":"sequences"},{"name":"relative growth"},{"name":"infinitesimals"},{"name":"divergent behavior"}]},{"name":"properties","children":[{"name":"scaling invariance"},{"name":"addition rule"},{"name":"transitivity"},{"name":"composition"},{"name":"nested little-o"},{"name":"asymptotic hierarchy"},{"name":"taylor remainder"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Що таке позначення «о-мале»</h2>
+<p>Символ \( o(x) \), що називається «о-мале» від \(x\), належить до родини символів Ландау, які використовуються для характеристики асимптотичних відносин між функціями. Це позначення вказує на те, що одна функція є мізерною порівняно з іншою, коли аргумент наближається до заданої границі. Таким чином, \( o(x) \) формалізує <a href="asymptotes.html">асимптотичний</a> контроль, означаючи, що швидкість зростання однієї функції є незначною відносно іншої в <a href="limits.html">границі</a>.</p>
+<p>Нехай \( f, g : A \to \mathbb{R} \) (або \( \mathbb{C} \)) — дві <a href="functions.html">функції</a>, і нехай \( x_0 \) є граничною точкою \( A \). Ми кажемо, що \( f(x) \) є о-малим від \( g(x) \), коли \( x \to x_0 \), якщо \( g(x) \neq 0 \) в околі \( x_0 \) (за винятком, можливо, самої точки \( x_0 \)) і:</p>
+<p>\[
+\lim_{x \to x_0} \frac{f(x)}{g(x)} = 0
+\]</p>
+<p>Еквівалентно, для кожного \( \varepsilon &gt; 0 \) існує \( \delta &gt; 0 \), таке що щоразу, коли \( 0 &lt; |x - x_0| &lt; \delta \), маємо \( |f(x)| \le \varepsilon \cdot |g(x)| \). Це означення означає, що \( f(x) \) зростає асимптотично повільніше за \( g(x) \) біля \( x_0 \).</p>
+<h6>Це позначення застосовується до granic на нескінченності шляхом заміни \( x \to x_0 \) на \( x \to \infty \). Воно також застосовується до <a href="sequences.html">послідовностей</a>, де незалежна змінна \( x \) замінюється на \( n \to \infty \).</h6>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax pb-steps"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Приклад 1</h2>
+<p>Щоб зробити концепцію зрозумілішою, розглянемо простий приклад, заданий наступною границію:</p>
+<p>\[
+\lim_{x \to 0} \frac{x^2}{x} = \lim_{x \to 0} x = 0
+\]</p>
+<p>Ця границя демонструє, що \( x^2 \) зростає асимптотично повільніше за \( x \), коли \( x \) наближається до 0. Отже, ми можемо записати:</p>
+<p>\[
+x^2 = o(x) \quad \text{при} \quad x \to 0
+\]</p>
+<p>Дослідимо, чому це так. Якщо ми порівняємо \(x\) та \(x^2\), коли \(x\) наближається до нуля, ми помітимо, що обидві функції прагнуть до нуля, але з різною швидкістю. Графік чітко показує, що біля нуля \(x^2\) набагато менша за \(x\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="744" height="564" src="../images/little-o-1.png" alt="" class="wp-image-17505" style="width:372px" srcset="../images/little-o-1.png 744w, https://algebrica.org/wp-content/uploads/resources/images/little-o-1-300x227.png 300w" sizes="(max-width: 744px) 100vw, 744px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Ось кілька прикладів:</p>
+<ul>
+<li>Якщо \(x = 0.1\), то \(x = 0.1\) і \(x^2 = 0.01\).</li>
+<li>Якщо \(x = 0.01\), то \(x = 0.01\) і \(x^2 = 0.0001\).</li>
+<li>Якщо \(x = 0.001\), то \(x = 0.001\) і \(x^2 = 0.000001\).</li>
+</ul>
+<p>Як показують ці приклади, \(x^2\) стає набагато меншою за \(x\), коли \(x\) наближається до нуля. Це ключова ідея позначення «о-мале»: воно відображає той факт, що одна функція може стати асимптотично мізерною порівняно з іншою, коли аргумент наближається до певного значення.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Приклад 2</h2>
+<p>Позначення «о-мале» залишається застосовним, коли аргумент необмежено зростає. Наступна границя ілюструє це при \( x \to \infty \):</p>
+<p>\[
+\lim_{x \to \infty} \frac{x}{x^2} = \lim_{x \to \infty} \frac{1}{x} = 0
+\]</p>
+<p>Оскільки відношення прагне до нуля, виконується наступний вираз:</p>
+<p>\[
+x = o(x^2) \quad \text{при} \quad x \to \infty
+\]</p>
+<p>Цей результат вказує на те, що \( x \) зростає асимптотично повільніше за \( x^2 \), коли \( x \) необмежено зростає. Загалом, для будь-яких двох поліномів \( x^a \) та \( x^b \) при \( a &lt; b \), виконується наступний зв'язок:</p>
+<p>\[
+x^a = o(x^b) \quad \text{при} \quad x \to \infty
+\]</p>
+<p>Інший приклад порівнює логарифмічну функцію з степеневою функцією. Оскільки:</p>
+<p>\[
+\lim_{x \to \infty} \frac{\log x}{x} = 0
+\]</p>
+<p>звідси випливає, що \( \log x = o(x) \) при \( x \to \infty \). Цей результат особливо релевантний в аналізі алгоритмів, оскільки він підтверджує, що логарифмічне зростання строго домінується лінійним зростанням.</p>
+<h5>Умова «о-малого» на нескінченності паралельна умові в скінченній точці: відношення двох функцій має прагнути до нуля, коли аргумент необмежено зростає, а не коли він наближається до фіксованого значення.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30 pb-steps"><h2>Значення \( o(1) \)</h2>
+<p>Символ \( o(1) \) представляє клас функцій, що прямують до нуля, коли \( x \) наближається до певної точки \( x_0 \). Іншими словами, функція \( f(x) \) належить до \( o(1) \), якщо вона стає нескінченно малою порівняно зі сталою, зокрема 1, при границі \( x \to x_0 \). Формально ми пишемо \(f(x) = o(1)\) при \(x \to x_0\) тоді і тільки тоді, коли:</p>
+<p>\[
+\lim_{x \to x_0} \frac{f(x)}{1} = \lim_{x \to x_0} f(x) = 0
+\]</p>
+<p>Множину всіх функцій, що належать до \( o(1) \), можна описати наступним чином:</p>
+<p>\[
+o_{x_0}(1) = \lbrace f : B(x_0, \delta) \setminus \{x_0\} \to \mathbb{R} \,\Big|\, \lim_{x \to x_0} f(x) = 0 \rbrace
+\]</p>
+<p>На практиці цей вираз використовується для опису концепції \( o(1) \), зазначаючи, що:</p>
+<ul>
+<li>Розглядані функції мають бути визначені на околі \( x_0 \), за винятком самої точки \( x_0 \).</li>
+<li>Функція має прямувати до нуля, коли \( x \) наближається до \( x_0 \).</li>
+<li>Позначення \( o(1) \) представляє множину всіх функцій, які є нескінченно малими порівняно зі сталою, зокрема з \(1\).</li>
+<li>Символ \( B(x_0, \delta) \) позначає відкритий окіл \( x_0 \) з радіусом \( \delta \), де функція визначена і обчислюється границя.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Розглянемо границю:</p>
+<p>\[
+\lim_{x \to 0} \frac{\sin(x)}{x}
+\]</p>
+<p>Використовуючи розклад Тейлора для \( \sin(x) \) біля нуля, маємо:</p>
+<p>\[
+\sin(x) = x - \frac{x^3}{6} + o(x^3) \quad \text{при} \quad x \to 0
+\]</p>
+<hr>
+<p>Поділивши обидві частини на \( x \), отримаємо:</p>
+<p>\[
+\frac{\sin(x)}{x} = 1 &#8211; \frac{x^2}{6} + o(x^2) \quad \text{при} \quad x \to 0
+\]</p>
+<p>Тепер зауважимо, що і доданок \( \frac{x^2}{6} \), і залишок \( o(x^2) \) прямують до нуля при \( x \to 0 \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, при \(x \to 0\) ми можемо записати:</p>
+<p>\[
+\frac{\sin(x)}{x} = 1 + o(1)
+\]</p>
+<h5>Цей вираз показує, що різниця між \( \frac{\sin(x)}{x} \) та сталою \(1\) прямує до нуля в границі, а поправочні члени є асимптотично меншими за 1.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Властивості</h2>
+<p>Однією з фундаментальних властивостей позначення «мале-о» є те, що за означенням, якщо \( g(x) = o(f(x)) \) при \( x \to x_0 \), то відношення двох функцій прямує до нуля. Формально:</p>
+<p>\[
+\lim_{x \to x_0} \frac{o(f(x))}{f(x)} = 0
+\]</p>
+<hr>
+<p>Множення функції на ненульову сталу не змінює її асимптотичної поведінки в позначенні «мале-о». Для будь-якої сталої \( c \in \mathbb{R} \) та функції \( g(x) \), при \(x \to x_0\), маємо:</p>
+<p>\[
+o(c \cdot g(x)) = o(g(x))
+\]</p>
+<p>\[
+c \cdot o(g(x)) = o(g(x))
+\]</p>
+<h5>Це показує, що позначення «мале-о» стосується відносного зростання: масштабування за допомогою сталого коефіцієнта не впливає на асимптотичну поведінку поблизу \( x_0 \).</h5>
+<hr>
+<p>Члени «мале-о» також поводяться передбачувано при додаванні. Сума двох членів «мале-о» однієї і тієї ж функції залишається членом «мале-о» цієї функції. Формально при \(x \to x_0\):</p>
+<p>\[
+o(f(x)) + o(f(x)) = o(f(x))
+\]</p>
+<h5>Це означає, що додавання двох функцій, кожна з яких асимптотично менша за \( f(x) \), не змінює того факту, що сума все ще асимптотично менша за \( f(x) \).</h5>
+<hr>
+<p>При множенні члена «мале-о» на функцію результатом є новий член «мале-о», де асимптотична поведінка масштабується відповідним чином. Зокрема, для функцій \( f(x) \) та \( g(x) \), при \(x \to x_0\):</p>
+<p>\[
+f(x) \, o(g(x)) = o(f(x)g(x))
+\]</p>
+<p>Наприклад, якщо \( g(x) = x \) і \( o(g(x)) = o(x) \), то множення на \( f(x) = x^2 \) дає:</p>
+<p>\[
+x^2 \cdot o(x) = o(x^3)
+\]</p>
+<hr>
+<p>Інша важлива властивість позначення «мале-о» стосується степенів функцій. Якщо функція \( f(x) \) асимптотично менша за \( g(x) \) при \( x \to x_0 \), то піднесення обох функцій до одного й того самого додатного степеня зберігає відношення «мале-о». Формально, для \( a &gt; 0 \), якщо \(f(x) = o(g(x)) \) при \(x \to x_0\), то \([f(x)]^a = o([g(x)]^a)\) при \(x \to x_0\).</p>
+<p>Ця властивість демонструє, що асимптотична поведінка залишається стабільною при масштабуванні додатними степенями. Якщо \( f(x) \) стає нехтояною порівняно з \( g(x) \), то \( [f(x)]^a \) також є нехтояною порівняно з \( [g(x)]^a \) при \( x \to x_0 \). Наприклад, якщо \( f(x) = o(x) \) при \( x \to 0 \), то при \(x \to x_0\) маємо:</p>
+<p>\[
+[f(x)]^2 = o(x^2)
+\]</p>
+<hr>
+<p>Позначення «мале-о» виявляє транзитивність. Зокрема, якщо \( f(x) = o(g(x)) \) та \( g(x) = o(h(x)) \) при \( x \to x_0 \), то:</p>
+<p>\[
+f(x) = o(h(x)) \quad \text{при} \quad x \to x_0
+\]</p>
+<p>Цей результат випливає безпосередньо з означення. Оскільки обидва відношення прямують до нуля, їхній добуток також прямує до нуля, і, отже, \( f(x)/h(x) \to 0 \). Наприклад, оскільки \( x^3 = o(x^2) \) та \( x^2 = o(x) \) при \( x \to 0 \), звідси випливає, що \( x^3 = o(x) \) при \( x \to 0 \).</p>
+<h5>Ця властивість дозволяє створювати ланцюги асимптотичних порівнянь: якщо \(f\) зростає повільніше за \(g\), а \(g\) зростає повільніше за \(h\), то \(f\) також зростає повільніше за \(h\).</h5>
+<hr>
+<p>Композиція двох членів «мале-о» зводиться до одного члена. Зокрема, якщо \( h(x) = o(g(x)) \) та \( g(x) = o(f(x)) \) при \( x \to x_0 \), то будь-яка функція, що є «мале-о» від \( g \), також є «мале-о» від \( f \). У компактному записі:</p>
+<p>\[
+o(o(f(x))) = o(f(x)) \quad \text{при} \quad x \to x_0
+\]</p>
+<p>Цей результат випливає безпосередньо з властивості транзитивності: якщо \( h = o(g) \) і \( g = o(f) \), то \( h = o(f) \). Наприклад, оскільки \( x^2 = o(x) \) при \( x \to 0 \), будь-яка функція, що є \( o(x^2) \), також є \( o(x) \).</p>
+<h5>Ця властивість особливо корисна для спрощення вкладених асимптотичних виразів, оскільки вона гарантує, що ітеровані члени «мале-о» можуть бути представлені одним членом.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Відмінність між позначеннями «мале-о» та «велике-О»</h2>
+<p>Позначення «мале-о» та <a href="big-o-notation.html">«велике-О»</a> є представниками родини символів Ландау, але вони описують різні асимптотичні поведінки. Позначення «велике-О» задає верхню межу для функції з точністю до сталого множника, тоді як позначення «мале-о» накладає суворішу вимогу: відношення двох функцій має прямувати до нуля в границі.</p>
+<p>Формально, \( f(x) = O(g(x)) \) при \( x \to x_0 \), якщо існують сталі \( M &gt; 0 \) та \( \delta &gt; 0 \), такі що: \(|f(x)| \leq M |g(x)| \) щоразу, коли \(0 &lt; |x &#8211; x_0| &lt; \delta\). Ця відмінність ілюструється наступним прикладом.</p>
+<p>При \( x \to 0 \), \( x^2 = o(x) \), що також означає \( x^2 = O(x) \). Однак \( x = O(x) \) не означає \( x = o(x) \), як показано нижче:</p>
+<p>\[
+\lim_{x \to 0} \frac{x}{x} = 1 \neq 0
+\]</p>
+<p>Границя не дорівнює нулю, тому умова «мале-о» не виконується. Ця асиметрія є основою відмінності: «мале-о» вимагає, щоб відношення прямувало до нуля, тоді як «велике-О» вимагає лише, щоб воно залишалося обмеженим.</p>
+<p>Цей зв'язок можна візуалізувати як включення множин: множина функцій, що задовольняють \( f = o(g) \), є строго підмножиною множини функцій, що задовольняють \( f = O(g) \). Кожне відношення «мале-о» є також відношенням «велике-О», але зворотне твердження не є правильним.</p>
+<h5>Позначення «мале-о» накладає суворішу умову: воно виключає функції, які лише встигають за \( g \), допускаючи тільки ті, що строго відстають у границі.</h5>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>О-мале позначення в розкладах Тейлора</h2>
+<p>У розкладах Тейлора о-мале позначення забезпечує суворий підхід для кількісного визначення похибки, що виникає при відсіканні нескінченного ряду на скінченному порядку. Замість переліку кожного наступного члена, залишок представляється одним символом, який визначає його точний асимптотичний порядок.</p>
+<p>Нехай задано функцію \( f(x) \), яка є \( n \)-кратно диференційовною в точці \( x_0 \), тоді її розклад Тейлора до порядку \( n \) має вигляд:</p>
+<p>\[
+f(x) = f(x_0) + f’(x_0)(x &#8211; x_0) + \frac{f’''(x_0)}{2!}(x - x_0)^2 + \cdots + \frac{f^{(n)}(x_0)}{n!}(x - x_0)^n + o\bigl((x &#8211; x_0)^n\bigr)
+\]</p>
+<p>Залишок \( o((x - x_0)^n) \) передає точну асимптотичну інформацію. Зокрема, похибка зменшується швидше, ніж \( (x - x_0)^n \), коли \( x \to x_0 \), що робить її нехтовною порівняно з останнім явним членом розкладу.</p>
+<hr>
+<p>У наступній таблиці наведено розклади Тейлора для функцій, що часто зустрічаються, поблизу \( x = 0 \), кожна з яких представлена з явним о-малим залишком:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-recap mb-x-30"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\[ e^x \]</td>
+<td>\[ 1 + x + \dfrac{x^2}{2!} + \dfrac{x^3}{3!} + o(x^3) \]</td>
+</tr>
+<tr>
+<td>\[ \sin x \]</td>
+<td>\[ x - \dfrac{x^3}{6} + o(x^3) \]</td>
+</tr>
+<tr>
+<td>\[ \cos x \]</td>
+<td>\[ 1 - \dfrac{x^2}{2} + \dfrac{x^4}{24} + o(x^4) \]</td>
+</tr>
+<tr>
+<td>\[ \ln(1+x) \]</td>
+<td>\[ x &#8211; \dfrac{x^2}{2} + \dfrac{x^3}{3} + o(x^3) \]</td>
+</tr>
+<tr>
+<td>\[ (1+x)^\alpha \]</td>
+<td>\[ 1 + \alpha x + \dfrac{\alpha(\alpha-1)}{2}x^2 + o(x^2) \]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Ці розклади є особливо ефективними для обчислення granic, що містять невизначеності. Заміна початкової функції її розкладом Тейлора перетворює задачу на алгебраїчні маніпуляції, де о-малий залишок зникає в границі. Наступний приклад демонструє цей підхід:</p>
+<p>\[
+\lim_{x \to 0} \frac{e^x &#8211; 1 &#8211; x}{x^2} = \lim_{x \to 0} \frac{\dfrac{x^2}{2} + o(x^2)}{x^2} = \frac{1}{2}
+\]</p>
+<p>Коли \( x \to 0 \), о-малий член стає нехтовним, що дозволяє визначити границю за допомогою провідного коефіцієнта.</p>
+<h5>У розкладі Тейлора о-малий залишок не просто вказує на пропущені члени; він визначає швидкість, з якою покращується наближення, тим самим прив'язуючи відсікання до точного асимптотичного масштабу.</h5>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке о-мале позначення?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "О-мале позначення описує поведінку функції, яка стає асимптотично меншою за іншу функцію, коли аргумент наближається до певної точки. Це фундаментальне поняття в асимптотичному аналізі."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як формально визначається о-мале позначення?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функція f(x) є о-малою від g(x) при наближенні x до x0, якщо границя f(x)/g(x) дорівнює нулю, коли x наближається до x0. Формально, f(x) = o(g(x)), якщо lim_{x -> x0} f(x)/g(x) = 0."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що означає o(1)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "o(1) представляє клас функцій, що прямують до нуля, коли x наближається до певної точки. Іншими словами, функції в o(1) є асимптотично нехтовними порівняно зі сталою."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Який приклад о-малого позначення?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Наприклад, sin(x) / x = 1 + o(1) при наближенні x до 0. Це означає, що різниця між sin(x)/x та 1 стає нехтовною, коли x наближається до нуля."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="little-o-notation.html">algebrica.org/little-o-notation</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

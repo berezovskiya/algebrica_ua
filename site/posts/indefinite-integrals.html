@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Невизначені інтеграли — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Інтеграли</span>
+    </nav>
+    <article>
+        <h1>Невизначені інтеграли</h1>
+        <time>2025-03-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Первообразні</h2>
+<p>Диференціювання за означенням присвоює кожній функції єдину <a href="derivatives.html">похідну</a>. Обернений процес полягає у визначенні того, чи існує для заданої функції \(f(x)\) така функція \( F(x) \), похідна якої точно дорівнює \( f(x) \). Така функція називається <strong>первообразною</strong>. Формально, функція \( F(x) \) називається первообразною функції \( f(x) \), визначеної на <a href="intervals.html">проміжку</a> \([a, b]\), якщо \( F(x) \) є диференційовною на всьому \([a, b]\) і її похідна дорівнює \( f(x) \), тобто:</p>
+<p>\[F’(x) = f(x), \quad \forall x \in [a, b]\]</p>
+<p>Не кожна функція має первообразну на заданому проміжку. Достатньою умовою є <a href="continuous-functions.html">неперервність</a>: кожна неперервна функція на замкненому проміжку \( [a, b] \) має там первообразну. Обернене твердження в цілому не є вірним.</p>
+<p>Якщо ми шукаємо функцію \( F(x) \), похідна якої \( f(x) = 3x^2 \), правила диференціювання дозволяють нам визначити, що такою функцією є \(x^3\). Дійсно, похідна від \( x^3 \) дорівнює:
+\[\frac{d}{dx} x^3 = 3x^2 \]</p>
+<p>що підтверджує, що \( x^3 \) є первообразною \( f(x) = 3x^2 \).</p>
+<hr>
+<p>Ми бачили, що якщо функція \( f(x) \) є диференційовною, вона має єдину похідну \( f’(x) \). Однак у випадку з первообразними, первообразна функції не є єдиною. Для заданої функції \( f(x) \) будь-які дві первообразні \( F_1(x) \) та \( F_2(x) \) відрізняються на сталу, що означає:</p>
+<p>\[F_2(x) = F_1(x) + c \]</p>
+<p>де \( c \) — довільна стала. Це випливає з того факту, що похідна від сталої дорівнює нулю: \[\frac{d}{dx} c = 0 \]</p>
+<p>У попередньому прикладі \( 3x^2 \) є похідною від \( x^3 \), але вона також є похідною від \( x^3 + 5 \) та \( x^3 &#8211; 1/2 \). Це означає, що для нашої функції існує безліч первообразних \( F(x) \).</p>
+<hr>
+<p>Якщо функція \( f(x) \) має первообразну \( F(x) \), то вона має безліч первообразних вигляду \( F(x) + c \), де \( c \) — будь-яке дійсне число \( c \in \mathbb{R} \):
+\[D[F(x) + C] = F’(x) = f(x), \quad \forall C \in \mathbb{R} \]</p>
+<hr>
+<p>З іншого боку, якщо дві функції \( F_1(x) \) та \( F_2(x) \) є первообразними однієї і тієї ж функції \( f(x) \), то вони відрізняються на сталу.
+\[D[F_1(x) &#8211; F_2(x)] = F_1’(x) &#8211; F_2’(x) = f(x) &#8211; f(x) = 0 \]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse alignCenterMathjax mb-x-30"><h2>Що таке невизначений інтеграл</h2>
+<p><strong>Невизначеним інтегралом</strong> функції \( f(x) \) називається множина всіх її первообразних, що виражається як \( F(x) + c \), де \( c \) — довільне дійсне число. Його позначають як:</p>
+<p>\[\int f(x) dx = F(x) + c \quad c \in \mathbb{R} \]</p>
+<hr>
+<p>З попереднього означення випливає, що:</p>
+<p>\[D\left[ \int f(x) dx \right] = f(x)\]</p>
+<p>Цей результат відображає фундаментальну властивість невизначеного інтеграла: оператор
+\( D\left[\int \cdot \, dx\right] \) діє як тотожний на інтегруюваних функціях,
+повертаючи вихідну функцію \( f(x) \). Цей зв'язок точно встановлено в
+<a href="fundamental-theorem-of-calculus.html">Основній теоремі інтегрального числення</a>, яка встановлює
+формальний зв'язок між диференціюванням та інтегруванням.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Знайти первообразну \( 3x \), яка проходить через точку \( (2,1) \). Першим кроком є пошук загального вигляду первообразної \( f(x) = 3x \), яку ми отримаємо шляхом інтегрування:</p>
+<p>\[F(x) = \int 3x dx = \frac{3}{2}x^2 + c\]</p>
+<p>Щоб знайти конкретну первообразну, що проходить через точку \( (2,1) \), ми накладаємо умову \(F(2) = 1\). Підставляючи \( x = 2 \) у рівняння, ми отримаємо:</p>
+<p>\[
+\begin{align}
+\frac{3}{2} (2)^2 + c &amp;= 1 \\[0.5em]
+\frac{3}{2} \cdot 4 + c &amp;= 1 \\[0.5em]
+6 + c &amp;= 1 \\[0.5em]
+c &amp;= -5
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Таким чином, єдина первообразна, що задовольняє задану умову:
+\[F(x) = \frac{3}{2}x^2 &#8211; 5.\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Властивості лінійності</h2>
+<p>Інтеграл є лінійним оператором, що означає, що він задовольняє наступні властивості лінійності. Невизначений інтеграл від суми інтегруюваних функцій дорівнює сумі невизначених інтегралів від окремих функцій. Власне, маємо:
+\[\int \left[ f(x) + g(x) \right] dx = \int f(x) dx + \int g(x) dx \tag{1}\]</p>
+<p>Інтеграл від добутку сталої та інтегруюваної функції дорівнює добутку цієї сталої та інтеграла від функції. Маємо:
+\[\int k f(x) dx = k \int f(x) dx, \quad \forall k \in \mathbb{R} \tag{2}\]</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо функцію: \(f(x) = 3x^2 + 2x\). Застосовуючи рівняння \(1\), розіб'ємо інтеграл:</p>
+<p>\[\int (3x^2 + 2x) dx = \int 3x^2 dx + \int 2x dx\]</p>
+<p>Тепер обчислимо кожен інтеграл окремо:</p>
+<p>\[\int 3x^2 dx = x^3 + c_1\]
+\[\quad \int 2x dx = x^2 + c_2\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отримаємо \(x^3 + x^2 + c\), де \( c = c_1 + c_2 \) — довільна стала.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"><div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Розглянемо функцію: \( f(x) = 5\sin(x) \). Застосовуючи рівняння \(2\), маємо:</p>
+<p>\[\int 5\sin(x) dx = 5 \int \sin(x) dx\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Таким чином, ми отримаємо \(-5\cos(x)+c\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Інтеграл степеневої функції</h2>
+<p>Тепер розглянемо, як обчислити інтеграл степеневої функції вигляду \( x^a \) з \( a \in \mathbb{R} \). Загалом можна використовувати наступну формулу:
+\[\int x^a dx = \frac{x^{a+1}}{a+1} + c, \quad \text{для } a \in \mathbb{R}, \quad a \neq -1 \]</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 4</h2>
+<p>Розв'яжемо наступний інтеграл:</p>
+<p>\[\int (3x^4 + 5x^2) dx\]</p>
+<p>Використовуючи властивості, згадані вище, отримаємо:
+\[ 3 \int x^4 dx + 5 \int x^2 dx\]</p>
+<p>Ми розбили інтеграл від суми на суму двох інтегралів і винесли стали за знак інтеграла. Тепер обчислимо інтеграл від степеневої функції. Отримаємо:</p>
+<p>\[\int x^4 dx = \frac{x^5}{5} + c1, \quad \int x^2 dx = \frac{x^3}{3} + c2\]</p>
+<p>Множачи на стали:</p>
+<p>\[3 \cdot \frac{x^5}{5} + 5 \cdot \frac{x^3}{3} + c\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Таким чином, ми отримуємо кінцевий результат:
+\[\frac{3}{5} x^5 + \frac{5}{3} x^3 + c\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 5</h2>
+<p>Обчислите наступний інтеграл:</p>
+<p>\[
+\int \left( 4x^3 - \frac{3}{\sqrt{x}} + 2\cos x \right) dx
+\]</p>
+<p>Підінтегральна функція об'єднує три доданки принципово різного характеру: поліноміальний
+доданок, доданок зі степеневим показником \( x \) у вигляді дробу та тригонометричний доданок.
+Замість пошуку одного правила, що охоплює всі три одночасно, ми застосовуємо лінійність, щоб
+розкласти задачу на три незалежних інтеграли, кожен з яких відповідає відомому шаблону:</p>
+<p>\[
+\int 4x^3\, dx - \int 3x^{-1/2}\, dx + \int 2\cos x\, dx
+\]</p>
+<hr>
+<p>Перший доданок не викликає труднощів. Правило степеня, застосоване до \( x^3 \), дає:</p>
+<p>\[
+\int 4x^3, dx = 4 \cdot \frac{x^4}{4} = x^4
+\]</p>
+<hr>
+<p>Другий доданок менш очевидний, але стає простим, як тільки ми перепишемо \( \frac{1}{\sqrt{x}} \) як \( x^{-1/2} \). При \( a = -\frac{1}{2} \), правило степеня дає:</p>
+<p>\[
+\int 3x^{-1/2}\, dx = 3 \cdot \frac{x^{1/2}}{1/2} = 6\sqrt{x}
+\]</p>
+<p>Зауважимо, що \( a = -\frac{1}{2} \neq -1 \), тому логарифмічний випадок не виникає, і правило степеня застосовується без винятків.</p>
+<hr>
+<p>Для третього доданка стандартний інтеграл від косинуса дає безпосередньо:</p>
+<p>\[
+\int 2\cos x\, dx = 2\sin x
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Збираючи три складові:</p>
+<p>\[
+\int \left( 4x^3 - \frac{3}{\sqrt{x}} + 2\cos x \right) dx
+= x^4 - 6\sqrt{x} + 2\sin x + c
+\]</p>
+<h6>Три окремі стали інтегрування об'єднуються в одне довільне дійсне число \( c \in \mathbb{R} \), як і очікується з загальної теорії первісних. Результат можна перевірити шляхом диференціювання: застосування \( \frac{d}{dx} \) до \( x^4 &#8211; 6\sqrt{x} + 2\sin x + c \) повертає почленно початкову підінтегральну функцію, що підтверджує правильність обчислень.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Логарифмічний інтеграл</h2>
+<p>Коли показник степеня \( x \) дорівнює \( -1 \), інтеграл набуває іншої форми. Замість застосування правила степеня ми використовуємо <a href="logarithms.html">логарифмічний</a> інтеграл:
+\[\int x^{-1} dx = \int \frac{1}{x} dx = \ln |x| + c \]
+Насправді стандартна формула інтегрування степеневої функції така:
+\[\int x^a dx = \frac{x^{a+1}}{a+1} + c\]
+Однак, коли \( a = -1 \), знаменник у дробі стає рівним нулю:
+\[\frac{x^0}{0} = \frac{1}{0} \]
+Оскільки ділення на нуль не визначене, цей підхід не застосовується. Замість цього, для \( a = -1\), правильним інтегралом є \(\ln |x| + c\). Цей результат випливає з того, що похідна від \( \ln |x| \) є саме \( 1/x \), що робить її відповідною первісною у цьому особливому випадку.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-recap mb-x-30"><h2>Фундаментальні правила інтегрування</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Лінійність</td>
+<td>\[ \int \left( f(x) + g(x)\right)\, dx = \int f(x)\, dx + \int g(x)\, dx \]</td>
+</tr>
+<tr>
+<td>Лінійність</td>
+<td>\[ \int k\, f(x)\, dx = k \int f(x)\, dx \]</td>
+</tr>
+<tr>
+<td>Правило степеня</td>
+<td>\[ \int x^a\, dx = \dfrac{x^{a+1}}{a+1} + c \quad a \neq -1 \]</td>
+</tr>
+<tr>
+<td>Логарифмічний випадок</td>
+<td>\[ \int \dfrac{1}{x} \,dx = \ln|x| + c \]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-section post-type-test-list mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Поширені інтеграли</h2>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Нижче наведено підсумок найпоширеніших базових інтегралів, корисних у математичному аналізі та для перетворення складних виразів у простіші, відомі форми.</p>
+<ul>
+<li>
+<p>\[\int \frac{1}{x} \, dx = \ln |x| + c\] <a href="integral-of-rational-functions.html">Докладніше</a></p>
+</li>
+<li>
+<p>\[\int a^x \, dx = \frac{1}{\ln a} \cdot a^x + c\] <a href="integral-of-the-exponential-function.html">Докладніше</a></p>
+</li>
+<li>
+<p>\[\int \sin x \, dx = -\cos x + c\] <a href="integral-of-trigonometric-functions.html">Докладніше</a></p>
+</li>
+<li>
+<p>\[\int \cos x \, dx = \sin x + c\] <a href="integral-of-trigonometric-functions.html">Докладніше</a></p>
+</li>
+<li>
+<p>\[\int \frac{1}{\sin^2x}\, dx  = \cot x +c\] <a href="integral-of-trigonometric-functions.html">Докладніше</a></p>
+</li>
+<li>
+<p>\[\int \frac{1}{\cos^2x}\, dx  = \tan x +c\] <a href="integral-of-trigonometric-functions.html">Докладніше</a></p>
+</li>
+<li>
+<p>\[\int \sec^2 x \, dx = \tan x + c\] <a href="integral-of-trigonometric-functions.html">Докладніше</a></p>
+</li>
+<li>
+<p>\[\int \sec x \tan x \, dx = \sec x + c\] <a href="integral-of-trigonometric-functions.html">Докладніше</a></p>
+</li>
+<li>
+<p>\[\int \csc^2 x \, dx = -\cot x + c\] <a href="integral-of-trigonometric-functions.html">Докладніше</a></p>
+</li>
+<li>
+<p>\[\int \csc x \cot x \, dx = -\csc x + c\] <a href="integral-of-trigonometric-functions.html">Докладніше</a></p>
+</li>
+<li>
+<p>\[\int \frac{dx}{1 + x^2} = \arctan x + c\]</p>
+</li>
+<li>
+<p>\[\int \frac{dx}{\sqrt{1 - x^2}} = \arcsin x + c\]</p>
+</li>
+</ul>
+<h5>Ці тотожності виконуються на будь-якому проміжку, де підінтегральна функція визначена та неперервна.</h5>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>Stony Brook University</strong>. <a href="https://www.math.stonybrook.edu/Videos/MAT131Online/Handouts/Lecture-25-Handout.pdf">Antiderivative and Indefinite Integral</a></p>
+</li>
+<li>
+<p><strong>University of Kentucky</strong>. <a href="https://www.ms.uky.edu/~123/lecturenotes/Chapter10.pdf">Integrals, Antiderivatives, and the Fundamental Theorem of Calculus</a></p>
+</li>
+<li>
+<p><strong>Purdue University</strong>. <a href="https://www.math.purdue.edu/~kyochman/MA16010/Lesson27_Notes-IndefiniteIntegration.pdf">Antiderivatives and Indefinite Integration</a></p>
+</li>
+<li>
+<p><strong>Binghamton University</strong>. <a href="https://www2.math.binghamton.edu/lib/exe/fetch.php/people/mckenzie/antiderivatives_with_examples_and_extra_problems.pdf">Antiderivatives and Indefinite Integrals</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="indefinite-integrals.html">algebrica.org/indefinite-integrals</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

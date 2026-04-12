@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Комплексні числа в експоненціальній формі — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Комплексні числа</span>
+    </nav>
+    <article>
+        <h1>Комплексні числа в експоненціальній формі</h1>
+        <time>2025-02-05</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-22" style="height:460px;min-height:460px;max-height:460px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:460px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="complex-numbers-introduction.html">Комплексні числа</a>, <a href="complex-numbers-trigonometric-form.html">Комплексні числа у тригонометричній формі</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-22");
+            var dataset = {"name":"root","children":[{"name":"representation","children":[{"name":"algebraic form"},{"name":"trigonometric form"},{"name":"exponential form"},{"name":"modulus"},{"name":"argument"},{"name":"principal argument"}]},{"name":"foundations","children":[{"name":"euler formula"},{"name":"euler number"},{"name":"taylor series"},{"name":"complex exponential"},{"name":"unit circle"},{"name":"angle representation"}]},{"name":"operations","children":[{"name":"conversion steps"},{"name":"modulus computation"},{"name":"argument determination"},{"name":"multiplication"},{"name":"division"},{"name":"powers"},{"name":"de moivre theorem"},{"name":"complex conjugate"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 460;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30 alignCenterMathjax pb-steps"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Вступ</h2>
+<p>Хоча <a href="complex-numbers-introduction.html">алгебраїчна форма</a> \( z = a + bi \) є найбільш знайомим представленням комплексних чисел, альтернативним і часто більш потужним способом їх вираження є їхня експоненціальна форма:</p>
+<p>\[z = r e^{i\theta}\]</p>
+<p>Величини, що з'являються в цьому виразі, мають наступне значення:</p>
+<ul>
+<li>
+<p>\( r = |z| = \sqrt{a^2 + b^2} \) — це модуль, що представляє відстань від \( z \) до початку координат на комплексній площині.</p>
+</li>
+<li>
+<p>\( \theta = \arg(z) \) — це аргумент, кут у радіанах між додатньою дійсною віссю та вектором, що представляє \( z \).</p>
+</li>
+<li>
+<p>\( r \) та \( \theta \) зберігають свої відповідні інтерпретації з <a href="complex-numbers-trigonometric-form.html">тригонометричного представлення</a> комплексного числа.</p>
+</li>
+</ul>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="390" src="../images/trig-form-1.png" alt="" class="wp-image-26601" style="width:306px" srcset="../images/trig-form-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/trig-form-1-300x191.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Точка \( P \) може бути представлена або в прямокутних координатах \( (a, b) \), або в полярних координатах \( (r, \theta) \). Ця дуальність підкреслює зв'язок між алгебраїчним та геометричним поглядами на комплексні числа.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><hr>
+<p>Рівняння \(z = r e^{i\theta}\) випливає безпосередньо з формули Ейлера:</p>
+<p>\[e^{i\theta} = \cos\theta + i\sin\theta\]</p>
+<p>Ця тотожність показує, що <a href="exponential-function.html">експоненціальне</a> представлення еквівалентне тригонометричній формі:
+\[z = r(\cos\theta + i\sin\theta)\]</p>
+<p>Формула Ейлера може бути встановлена шляхом розкладання \( e^{ix} \), \( \cos x \) та \( \sin x \) у <a href="taylor-series.html">ряди Тейлора</a> та зауваження, що ряд для \( e^{ix} \) природно розпадається на дійсну та уявну частини:
+\[
+e^{ix} = \sum_{n=0}^{\infty} \frac{(ix)^n}{n!} = \cos x + i\sin x
+\]</p>
+<hr>
+<p>Дано комплексне число \( z = a + bi \), його комплексним спряженим визначено як:</p>
+<p>\[\overline{z} = a - bi\]</p>
+<p>В експоненціальній формі спряжене до \( z = r e^{i\theta} \) отримуємо шляхом зміни знака аргументу на протилежний:</p>
+<p>\[\overline{z} = r e^{-i\theta}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Формула містить число Ейлера \( e \), фундаментальну сталу в математиці. Щоб зрозуміти його походження, можна звернутися до теми <a href="euler-number-limit-sequence.html">Число Ейлера як границя послідовності</a>, де воно виникає як границя послідовності.</p>
+<h6>Геометрично це відповідає відображенню \( z \) відносно дійсної осі на комплексній площині.</h6>
+</div>
+
+
+
+<div class="wp-block-group  pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps pb-steps-no-margin"><h2>Як виразити комплексне число в експоненціальній формі</h2>
+<p>Дано комплексне число \( z = a + bi \), перетворення в експоненціальну форму відбувається наступним чином.</p>
+<ul>
+<li>
+<p>Обчислити модуль \( z \) згідно з означенням:
+\[r = \sqrt{a^2 + b^2}\]</p>
+</li>
+<li>
+<p>Визначити аргумент \( \theta \), тобто кут, який <a href="vectors.html">вектор</a>, що представляє \( z \), утворює з додатною дійсною віссю. Коли \( a &gt; 0 \), можна використовувати формулу:
+\[\theta = \tan^{-1}\!\left(\frac{b}{a}\right)\]
+Коли \( a \leq 0 \), необхідно врахувати чверть, у якій лежить \( z \), щоб вибрати правильне значення \( \theta \).</p>
+</li>
+<li>
+<p>Записати \( z \) в експоненціальній формі, застосувавши формулу Ейлера:
+\[z = r e^{i\theta}\]</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown  alignCenterMathjax"><hr>
+<p>Аргумент комплексного числа не визначений однозначно: якщо \( \theta \) є аргументом \( z \), то ним також є \( \theta + 2k\pi \) для будь-якого цілого \( k \). Точніше, маємо:</p>
+<p>\[z = r e^{i(\theta + 2k\pi)}\]
+\[k \in \mathbb{Z}\]</p>
+<p>Експоненціальне представлення, таким чином, не є унікальним; воно визначене з точністю до \( 2\pi \). Щоб усунути цю неоднозначність, зазвичай вибирають головний аргумент, що позначається \( \text{Arg}(z) \), який задовольняє умову:</p>
+<p>\[
+-\pi &lt; \text{Arg}(z) \leq \pi
+\]</p>
+<p>Якщо не зазначено інше, під аргументом розуміють головний аргумент.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо комплексне число \( z = 2 + 3i \) та його перетворення в експоненціальну форму. Модуль обчислюється шляхом прямого застосування означення. Оскільки \( a = 2 \) та \( b = 3 \), отримаємо:
+\[
+\begin{align}
+r = |z| &amp;= \sqrt{a^2 + b^2} \\[6pt]
+&amp;= \sqrt{2^2 + 3^2} \\[6pt]
+&amp;= \sqrt{4 + 9} \\[6pt]
+&amp;= \sqrt{13}
+\end{align}
+\]
+Аргумент \( \theta \) — це кут, який вектор, що представляє \( z \), утворює з додатною дійсною віссю. Оскільки \( a = 2 &gt; 0 \), число лежить у першій чверті, і формула арктангенса застосовується без коригування:
+\[
+\theta = \tan^{-1}\!\left(\frac{b}{a}\right) = \tan^{-1}\!\left(\frac{3}{2}\right) \approx 0.98 \text{ рад}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Підставивши \( r = \sqrt{13} \) та \( \theta \approx 0.98 \) в експоненціальну форму, отримаємо результат:
+\[
+z = \sqrt{13}\, e^{\,i \cdot 0.98}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо комплексне число \( z = -1 + i \) та його перетворення в експоненціальну форму. Модуль обчислюється за допомогою означення. Оскільки \( a = -1 \) та \( b = 1 \), отримаємо:
+\[
+\begin{align}
+r = |z| &amp;= \sqrt{(-1)^2 + 1^2} \\[6pt]
+&amp;= \sqrt{1 + 1} \\[6pt]
+&amp;= \sqrt{2}
+\end{align}
+\]</p>
+<p>З визначенням аргументу потрібно бути обережнішим. Оскільки \( a = -1 &lt; 0 \) та \( b = 1 &gt; 0 \), число лежить у другій чверті. Використання лише формули арктангенса дало б:
+\[
+\tan^{-1}!\left(\frac{b}{a}\right) = \tan^{-1}\!\left(\frac{1}{-1}\right) = \tan^{-1}(-1) = -\frac{\pi}{4}
+\]
+що відповідає четвертій чверті і, отже, є неправильним. Правильний аргумент отримують, додавши \( \pi \):
+\[
+\theta = -\frac{\pi}{4} + \pi = \frac{3\pi}{4}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Підставивши \( r = \sqrt{2} \) та \( \theta = \dfrac{3\pi}{4} \) в експоненціальну форму, отримаємо результат:
+\[
+z = \sqrt{2}\, e^{\,i \frac{3\pi}{4}}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Властивості експоненціальної форми</h2>
+<p>Однією з головних переваг експоненціальної форми є спрощення операцій множення, ділення та піднесення до степеня комплексних чисел. Дано два комплексних числа \( z_1 = r_1 e^{i\theta_1} \) та \( z_2 = r_2 e^{i\theta_2} \), їхній добуток отримують шляхом множення модулів та додавання аргументів:
+\[
+z_1 z_2 = r_1 r_2\, e^{i(\theta_1 + \theta_2)}
+\]</p>
+<p>Як конкретну ілюстрацію, розглянемо \( z_1 = 2e^{i\pi/3} \) та \( z_2 = 3e^{i\pi/6} .\) Їхній добуток дорівнює:
+\[
+z_1 z_2 = 2 \cdot 3\, e^{i(\pi/3 + \pi/6)} = 6\, e^{i\pi/2}
+\]
+Модуль добутку дорівнює \( 6 \), а його аргумент — \( \pi/2 \), що відповідає напрямку уявної одиниці на комплексній площині.</p>
+<hr>
+<p>Аналогічно, за умови \( z_2 \neq 0 \), частка отримується шляхом ділення модулів та віднімання аргументів:
+\[
+\frac{z_1}{z_2} = \frac{r_1}{r_2}\, e^{i(\theta_1 - \theta_2)}
+\]
+Обидві операції відповідають простим геометричним перетворенням на комплексній площині: розтягуванню та повороту. Цілі <a href="powers.html">степені</a> обробляються з такою ж ефективністю. Для будь-якого цілого числа \( n \) правила піднесення до степеня дають безпосередньо:
+\[
+z^n = \left(r e^{i\theta}\right)^n = r^n e^{in\theta}
+\]
+Модуль підноситься до степеня \( n \), а аргумент множиться на \( n \). Застосовуючи формулу Ейлера до \( e^{in\theta} \), це стає еквівалентним <a href="de-moivre-theorem.html">теоремі де Муавра</a>:
+\[
+(\cos\theta + i\sin\theta)^n = \cos(n\theta) + i\sin(n\theta)
+\]
+Як ілюстрацію, піднесення \( z = re^{i\theta} \) до квадрата дає:
+\[
+z^2 = r^2 e^{i2\theta}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="840" height="534" src="../images/exponent-form-2-1.png" alt="" class="wp-image-26741" style="width:420px" title="De Moivre's Theorem." srcset="../images/exponent-form-2-1.png 840w, https://algebrica.org/wp-content/uploads/resources/images/exponent-form-2-1-300x191.png 300w, https://algebrica.org/wp-content/uploads/resources/images/exponent-form-2-1-768x488.png 768w" sizes="(max-width: 840px) 100vw, 840px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Отримане комплексне число має модуль \( r^2 \) та аргумент \( 2\theta \). Геометрично вектор розтягується у \( r^2 \) разів і повертається на кут, що вдвічі перевищує початковий.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Корені в експоненціальній формі</h2>
+<p>Експоненціальна форма забезпечує природну основу для обчислення \( n \)-их коренів комплексного числа. Дано \( z = re^{i\theta} \), розв'язання рівняння \(w^n = z\) — це рівно \( n \) різних комплексних чисел, які задаються як:
+\[w_k = \sqrt[n]{r}\, e^{i(\theta + 2k\pi)/n}\]
+\[k = 0, 1, \ldots, n-1\]
+Модуль кожного кореня дорівнює \( \sqrt[n]{r} \), тоді як аргументи рівномірно розподілені з кроком \( 2\pi/n \). Геометрично \( n \) коренів відповідають вершинам правильного багатокутника, вписаного в коло радіуса \( \sqrt[n]{r} \) на комплексній площині.</p>
+<hr>
+<p>Як приклад, розглянемо кубічні корені з \( z = 8 \). Записуючи \( z = 8e^{i \cdot 0} \), маємо \( r = 8 \) та \( \theta = 0 \), отже три корені такі:</p>
+<p>\[w_k = \sqrt[3]{8}\, e^{i \cdot 2k\pi/3} = 2\, e^{i \cdot 2k\pi/3}\]
+\[k = 0, 1, 2\]</p>
+<p>Явно маємо:</p>
+<p>\[
+\begin{align}
+w_0 &amp;= 2e^{i \cdot 0} = 2 \\[6pt]
+w_1 &amp;= 2e^{i \cdot 2\pi/3} = 2\!\left(-\frac{1}{2} + i\frac{\sqrt{3}}{2}\right) = -1 + i\sqrt{3} \\[6pt]
+w_2 &amp;= 2e^{i \cdot 4\pi/3} = 2\!\left(-\frac{1}{2} &#8211; i\frac{\sqrt{3}}{2}\right) = -1 - i\sqrt{3}
+\end{align}
+\]</p>
+<h6>Три корені мають однаковий модуль \( 2 \) і розділені кутами \( 2\pi/3 \), утворюючи вершини рівностороннього трикутника, вписаного в коло радіуса \( 2 \) з центром у початку координат.</h6>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке експоненціальна форма комплексного числа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Експоненціальна форма комплексного числа — це спосіб представлення комплексного числа за допомогою його модуля, $\\|z\\|$, та його аргументу, $\\theta$, відносно експоненціальної функції. Вона виражається як $z = \\|z\\|e^{i\\theta}$, де $e$ — основа натурального логарифма, а $i$ — уявна одиниця ($\\sqrt{-1}$)."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="complex-numbers-exponential-form.html">algebrica.org/complex-numbers-exponential-form</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

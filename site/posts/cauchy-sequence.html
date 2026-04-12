@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Послідовність Коші — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Послідовності</span>
+    </nav>
+    <article>
+        <h1>Послідовність Коші</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Що таке послідовність Коші</h2>
+<p><strong>Послідовність Коші</strong> — це особливий тип <a href="sequences.html">послідовності</a>, в якій, чим далі ми просуваємося, тим ближчими стають її члени один до одного. Неважливо, якою є <a href="limits.html">границя</a> або чи відома вона вам: важливою є те, що різниця між членами стає все меншою і меншою. Ця ідея є важливою, оскільки вона допомагає нам зрозуміти, чи поводиться послідовність стабільно, ще до того, як ми точно дізнаємося, до чого вона наближається. Формально:</p>
+<hr>
+<p>Нехай \( {a_n} \) — послідовність. Тоді \( {a_n} \) є послідовністю Коші тоді і тільки тоді, коли вона є збіжною. Іншими словами, виконується наступна умова:</p>
+<p>\[
+\forall \varepsilon &gt; 0 \quad \exists \nu \in \mathbb{N} : \quad |a_n - a_m| &lt; \varepsilon \quad \forall n, m &gt; \nu
+\]</p>
+<h5>Цей критерій також застосовується до <a href="series.html">рядів</a> і дозволяє нам довести <a href="cauchy-convergence-criterion-series.html">збіжність</a>, не знаючи точного значення суми. Замість обчислення границі ми перевіряємо, чи стають члени послідовності частинних сум довільно близькими один до одного.</h5>
+<hr>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><p>Послідовність вигляду \( a_n = \frac{1}{n} \) є послідовністю Коші, де значення стають дедалі ближчими одне до одного зі зростанням ( n ). При побудові на графіку це відображає:</p>
+<ul>
+<li>криву, що починається з \( a_1 = 1 \) і швидко спадає,</li>
+<li>точки, які стають дедалі щільнішими біля нуля,</li>
+<li>відстань між будь-якими двома членами \( a_n \) та \( a_m \) для великих \( n \) та \( m \) стає все меншою і меншою.</li>
+</ul>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="788" height="550" src="../images/sequences-conv-1.png" alt="Convergent sequence." class="wp-image-14492" style="width:394px" srcset="../images/sequences-conv-1.png 788w, https://algebrica.org/wp-content/uploads/resources/images/sequences-conv-1-300x209.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sequences-conv-1-768x536.png 768w" sizes="(max-width: 788px) 100vw, 788px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><p>Зі зростанням \( n \) члени стають все меншими і меншими, наближаючись до нуля. Це класичний приклад послідовності, що збігається до 0.</p>
+<hr>
+<p>Інший приклад послідовності Коші задається послідовністю, визначеною як:</p>
+<p>\[
+a_n = 1 + \frac{1}{2} + \frac{1}{4} + \dots + \frac{1}{2^n}
+\]</p>
+<p>Це сума перших \( n \) членів геометричної прогресії з розносом \( \frac{1}{2} \). Ця послідовність є послідовністю Коші, тому що:</p>
+<ul>
+<li>Члени стають дедалі ближчими один до одного.</li>
+<li>Кожен новий член додає все менше і менше до загальної суми.</li>
+<li>Відстань між \( a_n \) та \( a_m \) (для \( m &gt; n \)) стає надзвичайно малою, оскільки ви додаєте лише такі значення, як:<br>
+\( \begin{align}\\[0.5em]\dfrac{1}{2^{n+1}}, \dfrac{1}{2^{n+2}}, \dots \end{align}\)</li>
+</ul>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="788" height="550" src="../images/cauchy-sequence-1.png" alt="" class="wp-image-14592" style="width:394px" srcset="../images/cauchy-sequence-1.png 788w, https://algebrica.org/wp-content/uploads/resources/images/cauchy-sequence-1-300x209.png 300w, https://algebrica.org/wp-content/uploads/resources/images/cauchy-sequence-1-768x536.png 768w" sizes="(max-width: 788px) 100vw, 788px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>У границі ця послідовність збігається до \( 2 \), що підтверджує, що вона є як послідовністю Коші, так і збіжною послідовністю.</p>
+<h5>Загалом, чисельна послідовність називається <a href="sequences.html">геометричною прогресією</a>, коли відношення між кожним членом і попереднім є сталим</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Теорема</h2>
+<p>Кожна збіжна послідовність \( (x_n)_n \) є послідовністю Коші.</p>
+<h5>Критерій Коші дозволяє нам виявити збіжність, ґрунтуючись лише на тому, наскільки близько члени наближаються один до одного, без необхідності знати фактичну границю. У повних просторах, таких як дійсні числа, цієї внутрішньої узгодженості достатньо, щоб гарантувати збіжність послідовності.</h5>
+<hr>
+<p>Власне, нехай \( (x_n) \) — збіжна послідовність у \( \mathbb{R} \), і нехай \( L \in \mathbb{R} \) — її границя. За означенням збіжності маємо:</p>
+<p>\[
+\forall \varepsilon &gt; 0, \ \exists N \in \mathbb{N} \ \text{такий, що} \ |x_n &#8211; L| &lt; \frac{\varepsilon}{2} \quad \forall \, n \geq N
+\]</p>
+<p>Тепер для будь-яких \( n, m \geq N \) застосуємо нерівність трикутника:</p>
+<p>\[
+|x_n - x_m| = |x_n - L + L - x_m| \leq |x_n &#8211; L| + |x_m &#8211; L| &lt; \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+\]</p>
+<p>Таким чином, маємо:</p>
+<p>\[
+\forall \varepsilon &gt; 0, \ \exists N \in \mathbb{N} \ \text{такий, що} \ |x_n &#8211; x_m| &lt; \varepsilon \quad \forall \, n, m \geq N
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Це саме означення послідовності Коші. Отже, кожна збіжна послідовність є послідовністю Коші.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Теорема</h2>
+<p>Кожна послідовність Коші \( (x_n) \) також є <a href="convergent-and-divergent-sequences.html">обмеженою послідовністю</a>. Власне, за означенням, якщо \( (x_n) \) є послідовністю Коші, то:</p>
+<p>\[
+\forall \varepsilon &gt; 0, \ \exists N \in \mathbb{N} \ \text{такий, що} \ |x_n &#8211; x_m| &lt; \varepsilon \quad \forall n, m \geq N
+\]</p>
+<p>Нехай оберемо \( \varepsilon = 1 \). Тоді існує \( N \in \mathbb{N} \), такий, що:</p>
+<p>\[
+|x_n - x_m| &lt; 1 \quad \forall n, m \geq N
+\]</p>
+<p>Фіксуємо \( m = N \), тоді отримаємо:</p>
+<p>\[
+|x_n &#8211; x_N| &lt; 1 \Rightarrow |x_n| \leq |x_N| + 1 \quad \forall n \geq N
+\]</p>
+<p>Тепер визначимо:</p>
+<p>\[
+M_1 := \max{|x_0|, |x_1|, \dots, |x_{N-1}|}, \quad M_2 := |x_N| + 1
+\]</p>
+<p>Нехай:</p>
+<p>\[
+M := \max{M_1, M_2} \Rightarrow |x_n| \leq M \quad \forall n \in \mathbb{N}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, послідовність \( (x_n) \) повністю міститься в скінченному проміжку і, таким чином, є обмеженою.</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке послідовність Коші?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Послідовність Коші — це послідовність, у якій члени стають довільно близькими один до одного в міру просування послідовності. Формально, для будь-якого ε > 0 існує індекс N такий, що для всіх n, m ≥ N відстань |xₙ − xₘ| < ε."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи є кожна послідовність Коші обмеженою?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так, кожна послідовність Коші є обмеженою. Це означає, що всі її члени лежать у скінченному проміжку. Це фундаментальна властивість у реальному аналізі, яка часто використовується для доведення результатів про збіжність."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="cauchy-sequence.html">algebrica.org/cauchy-sequence</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

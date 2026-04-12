@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ряди Фур'є — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Ряди</span>
+    </nav>
+    <article>
+        <h1>Ряди Фур'є</h1>
+        <time>2025-05-27</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Означення</h2>
+<p>Ряд Фур'є представляє періодичну функцію як нескінченну суму <a href="sine-function.html">синусів</a> та <a href="cosine-function.html">косинусів</a>. Точніше, він показує, що періодична поведінка може бути розкладена на елементарні гармонічні коливання. Цей результат виражає структурну властивість періодичних <a href="functions.html">функцій</a>: коливальні компоненти утворюють природну систему координат для опису повторення.</p>
+<hr>
+<p>Нехай \( f : \mathbb{R} \to \mathbb{R} \) — функція, яка є періодичною з періодом \( 2\pi \), тобто:</p>
+<p>\[
+f(x + 2\pi) = f(x) \, \forall x \in \mathbb{R}
+\]</p>
+<p>Припустимо, що \( f \) є <a href="definite-integrals.html">інтегруваною</a> на <a href="intervals.html">проміжку</a> \( [-\pi,\pi] \). Рядом Фур'є для \( f \) є формальний тригонометричний розклад:</p>
+<p>\[
+f(x) \sim \frac{a_0}{2}
++
+\sum_{n=1}^{\infty}
+a_n \cos(nx) + b_n \sin(nx)
+\]</p>
+<ul>
+<li>Символ \( \sim \) підкреслює, що ми ще не стверджуємо рівність (ми визначаємо тригонометричний ряд, пов'язаний з \( f \)).</li>
+<li>Питання про те, чи збігається ряд до \( f \), буде розглянуто пізніше.</li>
+<li>Кожен доданок \( \cos(nx) \) та \( \sin(nx) \) представляє коливання з частотою \( n \).</li>
+<li>Таким чином, розклад розкладає \( f \) на її гармонічні компоненти.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Коефіцієнти Фур'є</h2>
+<p>Коефіцієнти \( a_n \) та \( b_n \) визначаються наступними інтегралами:</p>
+<p>\[
+\begin{align}
+a_0 &amp;= \frac{1}{\pi}
+\int_{-\pi}^{\pi} f(x)\,dx \\
+a_n &amp;= \frac{1}{\pi}
+\int_{-\pi}^{\pi} f(x)\cos(nx)\,dx \\
+b_n &amp;= \frac{1}{\pi}
+\int_{-\pi}^{\pi} f(x)\sin(nx)\,dx
+\quad n \ge 1
+\end{align}
+\]</p>
+<p>Ці вирази не введені за домовленістю і не обрані просто тому, що вони працюють. Вони випливають зі структурного факту про <a href="sine-and-cosine.html">синуси та косинуси</a>: на повному періоді вони ортогональні один одному. На проміжку \( [-\pi,\pi] \) тригонометричні хвилі з різними частотами залишаються незалежними при інтегруванні, що і дозволяє нам ізолювати одну гармоніку за раз і визначити відповідний коефіцієнт.</p>
+<p>\[
+\begin{align}
+\int_{-\pi}^{\pi} \cos(nx)\cos(mx)\,dx &amp;=
+\begin{cases}
+\pi &amp; n=m\neq 0 \\
+0 &amp; n\ne m
+\end{cases} \\[6pt]
+\int_{-\pi}^{\pi} \sin(nx)\sin(mx)\,dx &amp;=
+\begin{cases}
+\pi &amp; n=m \\
+0 &amp; n\ne m
+\end{cases} \\[6pt]
+\int_{-\pi}^{\pi} \sin(nx)\cos(mx)\,dx &amp;= 0
+\end{align}
+\]</p>
+<p>Ці співвідношення означають, що тригонометрична система поводиться як ортогональний базис за скалярним добутком:</p>
+<p>\[
+\langle f, g \rangle =
+\int_{-\pi}^{\pi} f(x)g(x)\,dx
+\]</p>
+<p>Кожен коефіцієнт вимірює, наскільки присутній у функції конкретний гармонічний напрямок. У цьому сенсі розклад Фур'є є процесом проекції в нескінченновимірному просторі.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Цей приклад ілюструє, як навіть проста лінійна функція набуває багатої гармонічної структури при періодичному продовженні. Розглянемо функцію \(f(x) = x\), визначену на \( (-\pi,\pi) \) і продовжену періодично з періодом \( 2\pi \). Ця функція є непарною. Отже:</p>
+<p>\[
+a_0 = 0
+\quad
+a_n = 0
+\]</p>
+<p>Обчислимо коефіцієнти при <a href="sine-and-cosine.html">синусах</a>:</p>
+<p>\[
+b_n =
+\frac{1}{\pi}
+\int_{-\pi}^{\pi}
+x\sin(nx)\,dx
+\]</p>
+<p>Використовуючи <a href="integration-by-parts.html">інтегрування по частинах</a>, отримаємо:</p>
+<p>\[
+b_n = \frac{2(-1)^{n+1}}{n}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Звідси ряд Фур'є має вигляд:</p>
+<p>\[
+x \sim
+2
+\sum_{n=1}^{\infty}
+\frac{(-1)^{n+1}}{n}
+\sin(nx)
+\]</p>
+<h6>Коефіцієнти спадають як \( \frac{1}{n} \). Повільний спад відображає той факт, що \( f \) є неперервною, але не диференційовною на кінцях періоду. Періодичне продовження вносить розриви стрибка в точках, кратних \( \pi \), що впливає на поведінку збіжності.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Збіжність рядів Фур'є</h2>
+<p>Означення ряду Фур'є не гарантує автоматично збіжності до вихідної функції. Класичний результат стверджує, що якщо \( f \) задовольняє наступним <a href="dirichlet-function.html">умовам Діріхле</a>:</p>
+<ul>
+<li>\( f \) є шматочно неперервною</li>
+<li>\( f \) має скінченну кількість локальних екстремумів на \( [-\pi,\pi] \)</li>
+<li>\( f \) має скінченну кількість розривів стрибка</li>
+</ul>
+<p>тоді ряд Фур'є збігається в кожній точці \( x. \) Точніше, розглянемо \(N\)-ту часткову суму:</p>
+<p>\[
+S_N(x) =
+\frac{a_0}{2}
++
+\sum_{n=1}^{N}
+a_n\cos(nx)+b_n\sin(nx)
+\]</p>
+<p>\[
+\lim_{N\to\infty}
+S_N(x)
+=
+\frac{f(x^+)+f(x^-)}{2}
+\]</p>
+<p>У точках, де \( f \) є неперервною, ряд збігається до \( f(x) \). У точках розривів стрибка він збігається до середнього значення лівої та правої <a href="limits.html">границі</a>. Така поведінка розкриває фундаментальну властивість наближення Фур'є: воно враховує середню локальну поведінку, а не точкові значення в розривах.</p>
+<ul>
+<li>Якщо \( f \) є неперервно диференційовною, коефіцієнти спадають швидше.</li>
+<li>Якщо \( f \) має розриви, спад повільніший.</li>
+<li>Чим гладша функція, тим швидше зменшуються амплітуди гармонік.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li><strong>E. M. Stein, R. Shakarchi</strong>. <a href="https://kryakin.site/am2/Stein-Shakarchi-1-Fourier_Analysis.pdf">Fourier Analysis: An Introduction</a></li>
+<li><strong>L. Grafakos</strong>. <a href="https://www.math.stonybrook.edu/~bishop/classes/math638.F20/Grafakos_Classical_Fourier_Analysis.pdf">Classical Fourier Analysis</a></li>
+<li><strong>G. P. Tolstov</strong>. <a href="https://archive.org/embed/tolstov-fourier-series-1962">Fourier Series</a></li>
+<li><strong>G. B. Folland</strong>. <a href="https://www-elec.inaoep.mx/~rogerio/Tres/FourierAnalysisUno.pdf">Fourier Analysis and Its Applications</a></li>
+<li><strong>A. Zygmund</strong>. <a href="https://archive.org/details/trigonometricseries">Trigonometric Series</a></li>
+<li><strong>Y. Katznelson</strong>. <a href="https://archive.org/details/introductiontoha0000katz">An Introduction to Harmonic Analysis</a></li>
+<li><strong>Stanford University</strong>. <a href="https://see.stanford.edu/materials/lsoftaee261/book-fall-07.pdf">The Fourier Transform and Its Applications</a></li>
+<li><strong>Oxford University Press</strong>. <a href="https://academic.oup.com/book/54863/chapter/422699978">Fourier Series and Fourier Transforms</a></li>
+<li><strong>R. Herman</strong>. <a href="https://people.uncw.edu/hermanr/mat367/fcabook/FCA">An Introduction to Fourier and Complex Analysis</a></li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="fourier-series.html">algebrica.org/fourier-series</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

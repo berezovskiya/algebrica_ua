@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гіпербола — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Прямі, площини та конічні перерізи</span>
+    </nav>
+    <article>
+        <h1>Гіпербола</h1>
+        <time>2025-02-15</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Вступ до конічних перетинів</h2>
+<p>При означенні <a href="parabola.html">параболи</a> ми бачили, що коли площина перетинає конус, resulting shape, при проєкції на площину, може бути <a href="circumference.html">окружністю</a>, <a href="parabola.html">параболою</a>, <a href="ellipse.html">еліпсом</a> або гіперболою. Ці криві разом називають коніками. Більш формально, коніка — це алгебраїчна крива другого степеня на площині. Вона визначається як множина точок \( (x, y) \in \mathbb{R}^2 \), що задовольняють загальне квадратне рівняння зі змінними \( x \) та \( y \):</p>
+<p>\[
+f(x, y) = a_{11}x^2 + 2a_{12}xy + a_{22}y^2 + 2a_{13}x + 2a_{23}y + a_{33} = 0
+\]</p>
+<p>Тут коефіцієнти \( a_{ij} \in \mathbb{R} \), і щоб крива була дійсно квадратичною, ми вимагаємо, щоб і \( a_{11} \), і \( a_{22} \) були ненульовими.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Що таке гіпербола</h2>
+<p>Дано дві фіксовані точки на площині, \( F_1 \) та \( F_2 \); гіпербола визначається як множина всіх точок \( P \), таких що <a href="absolute-value.html">абсолютне значення</a> різниці відстаней від \( P \) до кожного фокуса є сталою. Іншими словами:</p>
+<p>\[
+\left| PF_1 &#8211; PF_2 \right| = \text{стала}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="610" height="624" src="../images/hyperbola-1.png" alt="Standard chart of a hyperbola." class="wp-image-12891" style="width:305px" srcset="../images/hyperbola-1.png 610w, https://algebrica.org/wp-content/uploads/resources/images/hyperbola-1-293x300.png 293w" sizes="(max-width: 610px) 100vw, 610px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>\(F_1\) та \(F_2\) — це фокуси гіперболи. Середина відрізка \( \overline{F_1F_2} \) називається центром (який на рисунку збігається з початком координат Декартових осей). Середина відрізка \( \overline{F_1F_2} \) називається центром.</p>
+<hr>
+<p>Тільки вісь x (яку також називають фокальною або поперечною віссю) перетинає гіперболу у двох дійсних точках: \( A(a, 0) \) та \( A’(-a, 0) \), відомих як вершини. Вісь y не перетинає гіперболу і називається неперепоперечною віссю.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="610" height="588" src="../images/hyperbola-2.png" alt="Asymptotes of a hyperbola." class="wp-image-12908" style="width:305px" srcset="../images/hyperbola-2.png 610w, https://algebrica.org/wp-content/uploads/resources/images/hyperbola-2-300x289.png 300w" sizes="(max-width: 610px) 100vw, 610px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p><a href="asymptotes.html">Асимптоти</a> гіперболи — це прямі, до яких крива наближається, але ніколи не перетинає. Вони представляють напрямки, вздовж яких гілки гіперболи простягаються до нескінченності. У випадку стандартної гіперболи з центром у початку координат, асимптоти задаються рівняннями:</p>
+<p>\[ y = \pm \frac{b}{a}x \]</p>
+<p>Зі збільшенням \(|x|\), \(|y|\) також збільшується, і крива стає нескінченно ближчою до асимптот.</p>
+<hr>
+<p>Коли \( P \) лежить на одній із двох вершин, наприклад, \( (a, 0) \), різниця відстаней від \( F_1 \) та \( F_2 \) становить рівно \( 2a \), і це значення залишається сталим для всіх точок гіперболи. Отже, маємо:</p>
+<p>\[
+\left| \overline{PF_1} &#8211; \overline{PF_2} \right| = 2a
+\]</p>
+<p>У стандартному вигляді гіпербола з центром у початку координат і горизонтальною поперечною віссю описується рівнянням:</p>
+<p>\[
+\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1
+\]</p>
+<p>де \(b^2 = c^2 &#8211; a^2\), при \(b &gt; 0\) та \(c &gt; a\), з чого випливає, що:</p>
+<p>\[
+c = \sqrt{a^2 + b^2}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30"><h2>Чому різниця відстаней до фокусів у гіперболі завжди стала?</h2>
+<p>Тому що саме це її визначає. Гіпербола — це множина всіх точок, для яких абсолютна різниця відстаней до двох фокусів дорівнює рівно \( 2a \). Будь-яка точка, що не задовольняє цю умову, лежить поза кривою і не належить до гіперболи.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Прямокутна гіпербола</h2>
+<p>Якщо в канонічному рівнянні гіперболи маємо \( a = b \), така гіпербола називається прямокутною гіперболою. Ця умова робить асимптоти перпендикулярними, утворюючи прямі кути. Коли фокуси лежать на осі \( x \), рівняння прямокутної гіперболи набуває вигляду:</p>
+<p>\[
+\frac{x^2}{a^2} &#8211; \frac{y^2}{a^2} = 1 \quad \rightarrow \quad x^2 &#8211; y^2 = a^2
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="610" height="630" src="../images/hyperbola-4.png" alt="Rectangular hyperbola graph." class="wp-image-12946" style="width:305px" srcset="../images/hyperbola-4.png 610w, https://algebrica.org/wp-content/uploads/resources/images/hyperbola-4-290x300.png 290w" sizes="(max-width: 610px) 100vw, 610px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>На Декартовій площині бісектрисами квадрантів є дві прямі \( y = x \) та \( y = -x \), які симетрично поділяють простір відносно осей.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Ексцентриситет</h2>
+<p>У гіперболі ексцентриситет визначається як відношення відстані від центру до фокуса \( c \) до піввисоти поперечної осі \( a \). Це значення характеризує розкриття гіперболи і завжди більше за 1, отже \( e &gt; 1 \). Тобто:</p>
+<p>\[
+e = \frac{c}{a} = \frac{\sqrt {a^2 + b^2}}{a}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="616" height="596" src="../images/hyperbola-3.png" alt="Eccentricity of a hyperbola.
+" class="wp-image-12926" style="width:308px" srcset="../images/hyperbola-3.png 616w, https://algebrica.org/wp-content/uploads/resources/images/hyperbola-3-300x290.png 300w" sizes="(max-width: 616px) 100vw, 616px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Ексцентриситет описує, наскільки розкрита гіпербола. Коли \( e = 1 \), гілки гіперболи відносно вузькі. У міру зростання \( e \) фокуси віддаляються від центру, і гілки розкриваються ширше. Ексцентриситет не залежить від розміру гіперболи, а залежить від відношення відстаней: це чиста міра форми.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Міст між круговою та гіперболічною тригонометрією</h2>
+<p>Рівностороння гіпербола відіграє центральну роль у гіперболічній тригонометрії. Подібно до того, як кругові <a href="sine-and-cosine.html">синус і косинус</a> визначаються за допомогою одиничного кола, <a href="hyperbolic-sine-and-cosine.html">гіперболічний синус і косинус</a> виникають з геометрії гіперболи:
+\[
+x^{2} - y^{2} = 1
+\]
+Тут гіперболічний сектор визначає параметр \(x\), і точка \(P\) на гіперболі, пов'язана з цим сектором, має координати:
+\[
+P_{x} = \cosh(x) = \frac{e^{x} + e^{-x}}{2}
+\]
+\[
+P_{y} = \sinh(x) = \frac{e^{x} - e^{-x}}{2}
+\]
+Ця паралель між колом і гіперболою чітко показує, що кожна крива породжує свій власний вид тригонометричної поведінки. Знайомі кругові функції мають свої гіперболічні відповідники, і ці дві системи поєднуються таким чином, що підкреслює спільну геометричну ідею, що лежить в основі обох конструкцій.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке гіпербола?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Гіпербола — це множина всіх точок на площині, для яких абсолютна різниця відстаней до двох фіксованих точок (фокусів) є сталою."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яке стандартне рівняння гіперболи?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стандартне рівняння гіперболи з горизонтальною поперечною віссю: \\( \\frac{x^2}{a^2} - \\frac{y^2}{b^2} = 1 \\)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що означає ексцентриситет гіперболи?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ексцентриситет (e) гіперболи — це відношення відстані від центру до фокуса (c) до піввисоти поперечної осі (a), що визначається як \\( e = \\frac{c}{a} \\). Для гіпербол e завжди більше за 1."
+      }
+    }
+  ]
+}
+</script>
+
+
+
+<p></p></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="hyperbola.html">algebrica.org/hyperbola</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

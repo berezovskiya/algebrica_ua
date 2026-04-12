@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теорема Вейєрштрасса — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теореми диференціального числення</span>
+    </nav>
+    <article>
+        <h1>Теорема Вейєрштрасса</h1>
+        <time>2025-02-23</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Формулювання</h2>
+<p>Нехай \( f : [a,b] \to \mathbb{R} \) — <a href="functions.html">функція</a>, неперервна на замкненому та обмеженому проміжку \( [a,b] \). Тоді існують точки \( x_{\min}, x_{\max} \in [a,b] \), такі що:</p>
+<p>\[
+f(x_{\min}) \le f(x) \le f(x_{\max}) \quad \forall \; x \in [a,b]
+\]</p>
+<p>Іншими словами, <a href="continuous-functions.html">неперервна функція</a> на замкненому проміжку досягає як свого мінімуму, так і свого максимуму. Цей результат часто називають теоремою про граничні значення. Наступний графік ілюструє теорему: функція досягає максимуму та мінімуму у двох внутрішніх точках проміжку \( [a, b] \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="852" height="498" src="../images/weierstrass-theorem-1.png" alt="" class="wp-image-23698" style="width:426px" title="Weierstrass Theorem." srcset="../images/weierstrass-theorem-1.png 852w, https://algebrica.org/wp-content/uploads/resources/images/weierstrass-theorem-1-300x175.png 300w, https://algebrica.org/wp-content/uploads/resources/images/weierstrass-theorem-1-768x449.png 768w" sizes="(max-width: 852px) 100vw, 852px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><p>Корисно пов'язати позначення з рисунком. Величина \( f(x_{\max}) \) позначає значення функції в точці, позначеній як Max на графіку, тобто найвищу точку, досягнуту на проміжку. Аналогічно, \( f(x_{\min}) \) представляє значення функції в точці, позначеній як min, де графік досягає свого найнижчого значення.</p>
+<hr>
+<p>Кожне припущення відіграє певну роль.</p>
+<ul>
+<li>
+<p>Проміжок має бути замкненим і обмеженим. Замкнений означає, що кінцеві точки включені. Обмежений означає, що він має скінченну довжину. Разом ці умови виражають компактність на дійсній прямій.</p>
+</li>
+<li>
+<p>Неперервність є однаково важливою. Теорема не вимагає диференційовності. Вона лише вимагає, щоб функція не мала стрибків або розривів на проміжку.</p>
+</li>
+<li>
+<p>Якщо будь-яку з цих умов прибрати, висновок може бути хибним.</p>
+</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Повне доведення виходить за межі цієї сторінки, але основна ідея проста. На замкненому та обмеженому проміжку неперервна функція не може розбігатися або пропускати значення. Оскільки проміжок включає свої кінцеві точки, а неперервність запобігає стрибкам, функція не просто наближається до своїх найбільших і найменших значень; вона фактично їх досягає.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Чому важлива замкненість та обмеженість</h2>
+<p>Розглянемо функцію \( f(x) = x \) на відкритому проміжку \( (0,1) \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="764" height="404" src="../images/weierstrass-theorem-2.png" alt="" class="wp-image-23691" style="width:382px" srcset="../images/weierstrass-theorem-2.png 764w, https://algebrica.org/wp-content/uploads/resources/images/weierstrass-theorem-2-300x159.png 300w" sizes="(max-width: 764px) 100vw, 764px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Функція є неперервною, проте вона не має ні максимуму, ні мінімуму на цьому проміжку. Інфімум дорівнює \( 0 \), а супремум дорівнює \( 1 \), але жодне з цих значень не досягається, оскільки кінцеві точки не включені.</p>
+<hr>
+<p>Тепер розглянемо \( f(x) = \dfrac{1}{x} \) на \( (0,1] \). Проміжок обмежений, але не замкнений. Функція є неперервною на своїй <a href="determining-the-domain-of-a-function.html">області визначення</a>, проте вона не досягає максимуму. При \( x \to 0^+ \) функція зростає без обмеження.</p>
+<h6>Ці приклади показують, що компактність області визначення є не технічною деталью, а структурною причиною, чому теорема виконується.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Тепер розглянемо конкретне застосування теореми. Розглянемо функцію:</p>
+<p>\[ f(x) = x^3 &#8211; 3x \]</p>
+<p>на проміжку \( [-2,2] \). Це <a href="polynomials.html">поліном</a>, отже, він неперервний на всій дійсній прямій. Зокрема, він неперервний на замкненому та обмеженому проміжку \( [-2,2] \). За теоремою Вейєрштрасса ми вже знаємо, що функція повинна досягати як максимуму, так і мінімуму десь на цьому проміжку. Щоб визначити, де ці екстремальні значення виникають, скористаємося диференціальним численням. Спочатку обчислимо <a href="derivatives.html">похідну</a>:</p>
+<p>\[ f’(x) = 3x^2 &#8211; 3 = 3(x^2 &#8211; 1) \]</p>
+<p>Критичні точки отримуємо, розв'язавши \( f’(x)=0 \):</p>
+<p>\[ 3(x^2 &#8211; 1)=0 \quad \rightarrow \quad x^2=1 \]</p>
+<p>отже, маємо:</p>
+<p>\[ x=-1 \quad x=1 \]</p>
+<p>Це єдині внутрішні точки, де кутовий коефіцієнт дотичної дорівнює нулю. Однак абсолютні екстремуми на замкненому проміжку можуть також виникати на кінцях проміжку. З цієї причини ми обчислюємо значення функції у всіх кандидатах: критичних точках та кінцевих точках.</p>
+<p>\[
+\begin{array}{ll}
+f(-2) = -2 &amp; f(-1) = 2 \\[6pt]
+f(1) = -2 &amp; f(2) = 2
+\end{array}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Порівнюючи ці значення, ми зауважимо, що максимальне значення дорівнює \( 2 \), яке досягається при \( x=-1 \) та \( x=2 \), тоді як мінімальне значення дорівнює \( -2 \), яке досягається при \( x=-2 \) та \( x=1 \).</p>
+<h6>Підсумовуючи, одним із важливих моментів цього прикладу є те, що теорема Вейєрштрасса не повідомляє нам, де розташовані екстремальні значення і скільки їх. Вона просто гарантує, що вони існують. Саме похідна дозволяє нам знайти їх явно.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Область значень неперервної функції</h2>
+<p>Нехай \( f \) є неперервною на замкненому та обмеженому проміжку \( [a,b] \). Згідно з теоремою Вейєрштрасса, \( f \) досягає мінімального значення \( m \) та максимального значення \( M \) на \( [a,b] \). Це означає, що існують точки \( x_{\min}, x_{\max} \in [a,b] \), такі що</p>
+<p>\[
+f(x_{\min}) = m \qquad f(x_{\max}) = M
+\]</p>
+<p>Згідно з теоремою про проміжні значення, функція набуває кожного значення між \( m \) та \( M \). Іншими словами, якщо \( y \) задовольняє умову:</p>
+<p>\[
+m \le y \le M
+\]</p>
+<p>тоді існує таке \( x \in [a,b] \), що \( f(x) = y \). Поєднуючи ці два факти, ми робимо висновок, що образ \( f \) — це саме \(f([a,b]) = [m, M].\) Таким чином, неперервна функція на замкненому проміжку не залишає прогалин у своїх значеннях, і її область значень сама є замкненим проміжком.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Де використовується ця теорема</h2>
+<p>Теорема Вейєрштрасса відіграє пряму роль у доведеннях кількох фундаментальних теорем диференціального числення.</p>
+<ul>
+<li><a href="fermat-theorem.html">Теорема Ферма</a> спирається на неї, щоб гарантувати, що максимум або мінімум дійсно існує на проміжку, перш ніж зробити висновок, що похідна в цій точці має бути рівною нулю.</li>
+<li><a href="rolles-theorem.html">Теорема Ролля</a> використовує її для встановлення того, що функція досягає свого максимуму та мінімуму на замкненому проміжку, що є першим кроком її доведення.</li>
+<li><a href="lagrange-theorem.html">Теорема Лагранжа</a> залежить від теореми Ролля і, отже, опосередковано, також і від теореми Вейєрштрасса.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>University of Washington, J. Burke</strong>. <a href="https://sites.math.washington.edu/~burke/crs/408/notes/nlp/unoc.pdf">Weierstrass Extreme Value Theorem</a></p>
+</li>
+<li>
+<p><strong>University of California Davis, J. Hunter</strong>. <a href="https://www.math.ucdavis.edu/~hunter/m125a/intro_analysis_ch3.pdf">Continuous Functions</a></p>
+</li>
+<li>
+<p><strong>University of Washington, J. Lee</strong>. <a href="https://sites.math.washington.edu/~lee/Courses/135-2017/EVT.pdf">The Extreme Value Theorem in Two Variables</a></p>
+</li>
+<li>
+<p><strong>University of Chicago, J. Murphy</strong>. <a href="https://www.math.uchicago.edu/~may/VIGRE/VIGRE2008/REUPapers/Murphy.pdf">Topological Proofs of the Extreme Value Theorems</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="weierstrass-theorem.html">algebrica.org/weierstrass-theorem</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

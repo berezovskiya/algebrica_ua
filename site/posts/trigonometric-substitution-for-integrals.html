@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тригонометрична підстановка в інтегралах — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Інтеграли</span>
+    </nav>
+    <article>
+        <h1>Тригонометрична підстановка в інтегралах</h1>
+        <time>2025-03-03</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps pb-table-to-content alignCenterTable"><h2>Як працює тригонометрична підстановка</h2>
+<p>Тригонометрична підстановка — це метод обчислення <a href="indefinite-integrals.html">інтегралів</a>, що містять <a href="radicals.html">квадратні корені</a> з квадратичних виразів. Він ґрунтується на простій ідеї: певні алгебраїчні форми стають набагато простішими для обробки, якщо їх переписати, використовуючи <a href="pythagorean-identity.html">тригонометричні тотожності</a> (тотожності Піфагора). Метод полягає у заміні змінної \(x=\phi(\theta)\), обраній таким чином, щоб квадратичний вираз під радикалом перетворився на квадрат тригонометричної функції в новій змінній.</p>
+<hr>
+<p>Після відповідних алгебраїчних перетворень багато інтегралів в елементарному численні можуть бути зведені до однієї з наступних канонічних форм, де \(a &gt; 0\):</p>
+<p>\[ \sqrt{a^2-x^2} \]
+\[\sqrt{x^2+a^2} \]
+\[\sqrt{x^2-a^2} \]</p>
+<p>Щоб радикал мав дійсне значення, змінна \( x \) повинна належати до відповідної області визначення:</p>
+<ul>
+<li>\(\sqrt{a^2 - x^2}\; \) вимагає \(x \in [-a, a]\)</li>
+<li>\(\sqrt{x^2 + a^2}\, \) визначена \(\forall \, x \in \mathbb{R}\)</li>
+<li>\(\sqrt{x^2 &#8211; a^2}\, \) вимагає \(x \in (-\infty, -a] \cup [a, \infty)\)</li>
+</ul>
+<p>Ці обмеження є істотними, оскільки вони визначають не лише те, де підінтегральна функція визначена, а й допустиму область значень допоміжного кута \( \theta \), що вводиться при підстановці. Зокрема, вибір <a href="intervals.html">проміжку</a> для \( \theta \) гарантує, що обернені тригонометричні функції визначені однозначно, а абсолютні значення, що виникають із квадратних коренів, можуть бути оброблені послідовно. Кожен із цих виразів природним чином пов'язаний із <a href="pythagorean-identity.html">тригонометричною тотожністю</a>:</p>
+<p>\[1-\sin^2\theta=\cos^2\theta \]
+\[1+\tan^2\theta=\sec^2\theta \]
+\[\sec^2\theta-1=\tan^2\theta\]</p>
+<h6>Підстановки обираються так, щоб член під квадратним коренем відповідав лівій частині однієї з цих тотожностей, перетворюючи радикал на вираз без радикалів. Нижче наведено три стандартні випадки, кожен з яких ілюструє, як відповідна тригонометрична підстановка перетворює радикальний вираз на повний квадрат і спрощує інтеграл.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>На практиці вираз під квадратним коренем рідко представлений в одній із трьох канонічних форм одразу. Поширеним попереднім кроком є переписування загального квадратичного виразу \(ax^2+bx+c\) у форму, що відповідає одному зі стандартних шаблонів, шляхом <a href="completing-the-square.html">виділення повного квадрата</a>.</p>
+<p>Наприклад, \(x^2+4x+5\) стає \((x+2)^2+1\) після виділення повного квадрата, що має вигляд \(u^2+a^2\) з \(u=x+2\) та \(a=1\).
+Після того як квадратичний вираз буде переписаний таким чином, проста підстановка \(u=x+k\) зводить інтеграл до одного з трьох випадків, описаних нижче, і тоді можна застосувати відповідну тригонометричну підстановку.</p>
+<h6>Розпізнавання цього попереднього кроку часто є ключем до розуміння того, яка підстановка потрібна, а пропуск цього кроку є частим джерелом плутанини, коли підінтегральна функція не відповідає знайомому шаблону одразу.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Від підстановок до геометрії</h2>
+<p>З геометричної точки зору ці підстановки можна інтерпретувати як параметризації конічних перетинів.</p>
+<ul>
+<li>Тотожність \(\sin^2\theta + \cos^2\theta = 1\) відповідає <a href="unit-circle.html">одиничному колу</a> і лежить в основі випадку \(\sqrt{a^2 &#8211; x^2}\).</li>
+<li>Тотожності \(1 + \tan^2\theta = \sec^2\theta\) та \(\sec^2\theta &#8211; 1 = \tan^2\theta\) пов'язані з геометрією <a href="hyperbola.html">гіперболи</a> \(x^2 &#8211; y^2 = a^2\) і лежать в основі форм \(\sqrt{x^2 + a^2}\) та \(\sqrt{x^2 &#8211; a^2}\).</li>
+</ul>
+<p>У цьому сенсі тригонометрична підстановка є не просто алгебраїчним трюком, а геометричною репараметризацією квадратичних кривих.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Форма \(\sqrt{a^2-x^2}\)</h2>
+<p>Коли підінтегральний вираз містить вираз вигляду \( \sqrt{a^2 &#8211; x^2} \), доцільно ввести тригонометричну підстановку, що відображає <a href="pythagorean-identity.html">піфагорову тотожність</a> \( 1 &#8211; \sin^2\theta = \cos^2\theta \), яка сама випливає з фундаментального зв'язку між <a href="sine-and-cosine.html">синусом і косинусом</a>. З цієї причини ми встановлюємо:</p>
+<p>\[
+x = a \sin\theta
+\]</p>
+<p>так, щоб алгебраїчна величина під квадратним коренем могла бути переписана через тригонометричну <a href="functions.html">функцію</a>. Диференціюючи обидві частини підстановки відносно \( \theta \), ми отримаємо:</p>
+<p>\[
+dx = a \cos\theta \, d\theta
+\]</p>
+<p>Підставляючи \( x = a \sin\theta \) у вираз під коренем, ми можемо переписати квадратний корінь наступним чином:</p>
+<p>\[
+\sqrt{a^2 &#8211; x^2}
+=
+\sqrt{a^2 - a^2 \sin^2\theta}
+\]</p>
+<p>Винесення \( a^2 \) за дужки у виразі під коренем дає:</p>
+<p>\[
+\sqrt{a^2(1 &#8211; \sin^2\theta)}
+\]</p>
+<p>Використовуючи тотожність \( 1 &#8211; \sin^2\theta = \cos^2\theta \), це перетворюється на:</p>
+<p>\[
+\sqrt{a^2 \cos^2\theta}
+=
+a \sqrt{\cos^2\theta}
+=
+a |\cos\theta|
+\]</p>
+<p>Щоб уникнути неоднозначності, пов'язаної з абсолютним значенням, зазвичай обмежують кут \( \theta \) проміжком:</p>
+<p>\[
+\theta \in \left[-\frac{\pi}{2}, \frac{\pi}{2}\right]
+\]</p>
+<p>оскільки на цьому проміжку маємо \( \cos\theta \ge 0 \). За такого обмеження абсолютне значення більше не є необхідним, і корінь спрощується до:</p>
+<p>\[
+\sqrt{a^2 - x^2} = a \cos\theta
+\]</p>
+<p>Нарешті, повертаючись до початкової змінної \( x \), зв'язки, що випливають із підстановки, можна записати явно як:</p>
+<p>\[
+\sin\theta = \frac{x}{a}
+\]</p>
+<p>\[
+\cos\theta = \frac{\sqrt{a^2 &#8211; x^2}}{a}
+\]</p>
+<p>і, отже, кут можна виразити через <a href="arcsine-and-arccosine.html">арксинус</a>:</p>
+<p>\[
+\theta = \arcsin\left(\frac{x}{a}\right)
+\]</p>
+<p>Ці співвідношення дозволяють нам виразити кінцевий результат інтегрування повністю через початкову змінну.</p>
+<h6>Геометрична інтерпретація часто є корисною: якщо \(\sin\theta=x/a\), можна використовувати <a href="right-triangle-trigonometry.html">прямокутний трикутник</a> з гіпотенузою \(a\), протилежним катетом \(x\) та прилеглим катетом \(\sqrt{a^2-x^2}\).</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Стандартні відповідності для \(\sqrt{a^2-x^2}\) можна запам'ятати наступним чином:</p>
+<ul>
+<li>Форма з коренем: \(\sqrt{a^2-x^2}\)</li>
+<li>Підстановка: \(x=a\sin\theta\)</li>
+<li>Використана тотожність: \(1-\sin^2\theta=\cos^2\theta\)</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps"><h2>Геометрична інтерпретація</h2>
+<p>При роботі з тригонометричними підстановками часто корисно візуалізувати зв'язок між \(\theta\) та \(x\) за допомогою прямокутного трикутника. Замість того щоб покладатися лише на алгебраїчні тотожності, можна зчитувати значення всіх тригонометричних функцій безпосередньо зі сторін трикутника, без необхідності явно розв'язувати рівняння відносно \(\theta\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="550" height="600" src="../images/trigonometrix-substitution.png" alt="Right triangle for the substitution with sine: the three sides correspond to the hypotenuse, the opposite, and the adjacent as labeled." class="wp-image-22718" style="width:275px" srcset="../images/trigonometrix-substitution.png 550w, https://algebrica.org/wp-content/uploads/resources/images/trigonometrix-substitution-275x300.png 275w" sizes="(max-width: 550px) 100vw, 550px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>З \(\text{виразу } x = a\sin\theta\) ми будуємо прямокутний трикутник, де:</p>
+<ul>
+<li>гіпотенуза дорівнює \(a\)</li>
+<li>протилежний катет дорівнює \(x\)</li>
+<li>прилеглий катет дорівнює \(\sqrt{a^2 &#8211; x^2}\)</li>
+</ul>
+<p>Оскільки \(\sin\theta = \frac{x}{a}\), звідси випливає, що \(\cos\theta = \frac{\sqrt{a^2 - x^2}}{a}.\) Це геометричне представлення дозволяє переписати всі тригонометричні функції від \(\theta\) безпосередньо через \(x\).</p>
+<h6>Така ж побудова застосовується до двох інших стандартних форм: для \(\sqrt{x^2+a^2}\) малюють трикутник з протилежним катетом \(x\), прилеглим катетом \(a\) та гіпотенузою \(\sqrt{x^2+a^2}\); для \(\sqrt{x^2-a^2}\) гіпотенузою стає \(x\), прилеглим катетом \(a\), а протилежним катетом \(\sqrt{x^2-a^2}\). У кожному випадку трикутник будується безпосередньо з підстановки та слугує надійним орієнтиром для етапу зворотньої підстановки.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Обчислимо наступний інтеграл:</p>
+<p>\[
+\int \sqrt{a^2 &#8211; x^2}\,dx
+\quad (a&gt;0)
+\]</p>
+<p>Оскільки підінтегральна функція містить вираз \( \sqrt{a^2 - x^2} \), введемо тригонометричну підстановку:</p>
+<p>\[ x = a\sin\theta \quad \theta \in \left[-\frac{\pi}{2},\frac{\pi}{2}\right]\]</p>
+<p>так що ми зможемо скористатися тотожністю \( 1 &#8211; \sin^2\theta = \cos^2\theta \) з \( \cos\theta \ge 0 \) на цьому проміжку. Диференціювання підстановки дає:</p>
+<p>\[
+dx = a\cos\theta\,d\theta
+\]</p>
+<hr>
+<p>Тепер перепишемо корінь:</p>
+<p>\[
+\sqrt{a^2 &#8211; x^2}
+=
+\sqrt{a^2 - a^2\sin^2\theta}
+=
+a\sqrt{1 &#8211; \sin^2\theta}
+=
+a\cos\theta
+\]</p>
+<p>Підставляючи все в інтеграл, отримаємо:</p>
+<p>\[
+\int \sqrt{a^2 &#8211; x^2}\,dx
+=
+\int (a\cos\theta)(a\cos\theta\,d\theta)
+=
+a^2\int \cos^2\theta\,d\theta
+\]</p>
+<p>Щоб проінтегрувати \( \cos^2\theta \), скористаємося <a href="reduction-formulas-and-reference-angles.html">формулою подвійного кута</a>:</p>
+<p>\[
+\cos^2\theta = \frac{1+\cos 2\theta}{2}
+\]</p>
+<p>Отже:</p>
+<p>\[
+a^2\int \cos^2\theta\,d\theta
+=
+\frac{a^2}{2}\int (1+\cos 2\theta)\,d\theta
+\]</p>
+<p>Інтегруючи почленно, маємо:</p>
+<p>\[
+\frac{a^2}{2}\theta
++
+\frac{a^2}{4}\sin 2\theta
++ c
+\]</p>
+<hr>
+<p>Повертаючись до змінної \(x\), з підстановки \( x = a\sin\theta \) маємо:</p>
+<p>\[
+\theta = \arcsin\left(\frac{x}{a}\right)
+\]</p>
+<p>Щоб переписати \( \sin 2\theta \), скористаємося:</p>
+<p>\[
+\sin 2\theta = 2\sin\theta\cos\theta
+\]</p>
+<p>І оскільки:</p>
+<p>\[
+\sin\theta=\frac{x}{a}
+\qquad
+\cos\theta=\frac{\sqrt{a^2-x^2}}{a}
+\]</p>
+<p>отримаємо:</p>
+<p>\[
+\sin 2\theta
+=
+2\cdot \frac{x}{a}\cdot \frac{\sqrt{a^2-x^2}}{a}
+=
+\frac{2x\sqrt{a^2-x^2}}{a^2}
+\]</p>
+<p>Підставляючи назад:</p>
+<p>\[
+\frac{a^2}{2}\theta + \frac{a^2}{4}\sin 2\theta
+=
+\frac{a^2}{2}\arcsin\left(\frac{x}{a}\right)
++
+\frac{x}{2}\sqrt{a^2-x^2}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Результат:</p>
+<p>\[
+\int \sqrt{a^2 &#8211; x^2}\,dx
+=
+\frac{x}{2}\sqrt{a^2-x^2}
++
+\frac{a^2}{2}\arcsin\left(\frac{x}{a}\right)
++ c
+\]</p>
+<h6>Це завершує обчислення. Інтеграл було зведено до тригонометричної форми, обчислено за допомогою стандартних тотожностей і, зрештою, повністю переписано через початкову змінну \(x\).</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Форма \(\sqrt{x^2+a^2}\)</h2>
+<p>Коли підінтегральна функція містить вираз вигляду \( \sqrt{x^2 + a^2} \), зручно ввести підстановку на основі <a href="pythagorean-identity.html">піфагорової тотожності</a>:</p>
+<p>\[
+1 + \tan^2\theta = \sec^2\theta
+\]</p>
+<p>яка пов'язує <a href="tangent-and-cotangent.html">тангенс</a> та <a href="secant-and-cosecant.html">секанс</a>. З цієї причини ми встановлюємо \(x = a \tan\theta\), щоб квадратичний вираз під коренем можна було переписати через тригонометричну функцію. Диферензуючи обидві частини відносно \( \theta \), отримаємо:</p>
+<p>\[
+dx = a \sec^2\theta \, d\theta
+\]</p>
+<p>Підстановка \( x = a \tan\theta \) у вираз під коренем дає:</p>
+<p>\[
+\sqrt{x^2 + a^2}
+=
+\sqrt{a^2 \tan^2\theta + a^2}
+\]</p>
+<p>Виносячи \( a^2 \) за дужки у виразі під коренем, отримаємо:</p>
+<p>\[
+\sqrt{a^2(\tan^2\theta + 1)}
+\]</p>
+<p>Використовуючи тотожність \( 1 + \tan^2\theta = \sec^2\theta \), це набуває вигляду:</p>
+<p>\[
+\sqrt{a^2 \sec^2\theta}
+=
+a \sqrt{\sec^2\theta}
+=
+a |\sec\theta|
+\]</p>
+<p>Щоб усунути неоднозначність, що виникає через модуль, зазвичай обмежують кут \( \theta \) наступним проміжком:</p>
+<p>\[
+\theta \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)
+\]</p>
+<p>оскільки на цьому проміжку \( \cos\theta &gt; 0 \) і, отже, \( \sec\theta &gt; 0 \). За такого обмеження корінь спрощується до:</p>
+<p>\[
+\sqrt{x^2 + a^2} = a \sec\theta
+\]</p>
+<p>Повертаючись до початкової змінної \( x \), зв'язки, що випливають із підстановки, можна записати явно як:</p>
+<p>\[\tan\theta = \frac{x}{a}\]
+\[\sec\theta = \frac{\sqrt{x^2 + a^2}}{a}\]
+\[\theta = \arctan\left(\frac{x}{a}\right)\]</p>
+<h5>Відповідна геометрична інтерпретація є очевидною: з relation \( \tan\theta = \frac{x}{a} \) можна побудувати прямокутний трикутник, у якому прилеглий катет має довжину \( a \), протилежний катет має довжину \( x \), а гіпотенуза, за <a href="pythagorean-theorem.html">теоремою Піфагора</a>, має довжину \( \sqrt{x^2 + a^2} \). Цей трикутник дає чітку геометричну картину підстановки та допомагає візуалізувати, чому вираз під коренем стає тригонометричною функцією.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Стандартні відповідності для \(\sqrt{x^2+a^2}\) можна запам'ятати наступним чином:</p>
+<ul>
+<li>Форма з коренем: \(\sqrt{x^2+a^2}\)</li>
+<li>Підстановка: \(x=a\tan\theta\)</li>
+<li>Використана тотожність: \(1+\tan^2\theta=\sec^2\theta\)</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-outline"><h2>Приклад 2</h2>
+<p>Обчислимо наступний інтеграл:</p>
+<p>\[
+\int \frac{dx}{\sqrt{x^2+a^2}}
+\quad (a&gt;0)
+\]</p>
+<p>Оскільки підінтегральна функція містить вираз \(\sqrt{x^2+a^2}\), введемо тригонометричну підстановку:</p>
+<p>\[x = a\tan\theta \quad \theta \in \left(-\frac{\pi}{2},\frac{\pi}{2}\right)\]</p>
+<p>так що ми зможемо скористатися тотожністю \(1+\tan^2\theta=\sec^2\theta\) з \(\sec\theta &gt; 0\) на цьому проміжку. Диференціювання підстановки дає:</p>
+<p>\[
+dx = a\sec^2\theta\,d\theta
+\]</p>
+<hr>
+<p>Тепер перепишемо ірраціональний вираз:</p>
+<p>\[
+\begin{align}
+\sqrt{x^2+a^2}
+&amp;= \sqrt{a^2\tan^2\theta+a^2} \\[6pt]
+&amp;= a\sqrt{\tan^2\theta+1} \\[6pt]
+&amp;= a\sec\theta
+\end{align}
+\]</p>
+<p>Підставляючи все в інтеграл, отримаємо:</p>
+<p>\[
+\int \frac{dx}{\sqrt{x^2+a^2}}
+=
+\int \frac{a\sec^2\theta}{a\sec\theta}\,d\theta
+=
+\int \sec\theta\,d\theta
+\]</p>
+<p>Щоб обчислити \(\int\sec\theta\,d\theta\), помножимо чисельник і знаменник на \(\sec\theta+\tan\theta\):</p>
+<p>\[
+\begin{align}
+\int \sec\theta\,d\theta
+&amp;= \int \frac{\sec\theta(\sec\theta+\tan\theta)}{\sec\theta+\tan\theta}\,d\theta \\[6pt]
+&amp;= \int \frac{\sec^2\theta+\sec\theta\tan\theta}{\sec\theta+\tan\theta}\,d\theta
+\end{align}
+\]</p>
+<p>Поклавши \( u = \sec\theta+\tan\theta \), маємо \( du = (\sec^2\theta+\sec\theta\tan\theta),d\theta \), отже чисельник точно дорівнює \( du \), і інтеграл зводиться до:</p>
+<p>\[
+\int \frac{du}{u} = \ln|u|+c = \ln|\sec\theta+\tan\theta|+c
+\]</p>
+<hr>
+<p>Повертаючись до змінної \(x\), оскільки:</p>
+<p>\[
+\tan\theta = \frac{x}{a}
+\qquad
+\sec\theta = \frac{\sqrt{x^2+a^2}}{a}
+\]</p>
+<p>отримаємо:</p>
+<p>\[
+\ln|\sec\theta+\tan\theta|+c
+=
+\ln\left|\frac{\sqrt{x^2+a^2}+x}{a}\right|+c
+\]</p>
+<p>Оскільки \(\sqrt{x^2+a^2} &gt; |x|\) для всіх \(x \in \mathbb{R}\), величина \(\sqrt{x^2+a^2}+x\) є строго додатною, і модуль можна відкинути. Більше того:</p>
+<p>\[
+\ln\left|\frac{\sqrt{x^2+a^2}+x}{a}\right|
+=
+\ln \! \left(\sqrt{x^2+a^2}+x\right)-\ln a
+\]</p>
+<p>і \(\ln a\) є сталою, яку можна включити в \(c\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Результат:</p>
+<p>\[
+\int \frac{dx}{\sqrt{x^2+a^2}}
+=
+\ln \! \left(\sqrt{x^2+a^2}+x\right)+c
+\]</p>
+<h6>На цьому обчислення завершено. Інтеграл було зведено до тригонометричної форми, обчислено за допомогою стандартних перетворень секанса і, зрештою, повністю переписано через початкову змінну \(x\).</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Форма \( \sqrt{x^2 - a^2} \)</h2>
+<p>Коли підінтегральна функція містить вираз вигляду \( \sqrt{x^2 &#8211; a^2} \), природно ввести підстановку, що ґрунтується на теоремі Піфагора:</p>
+<p>\[
+\sec^2\theta &#8211; 1 = \tan^2\theta
+\]</p>
+<p>що еквівалентно фундаментальному відношенню \( 1 + \tan^2\theta = \sec^2\theta \). З цієї причини ми встановлюємо:</p>
+<p>\[
+x = a \sec\theta
+\]</p>
+<p>так що квадратичний вираз під коренем можна переписати через тригонометричні функції. Диференціюючи обидві частини відносно \( \theta \), отримаємо:</p>
+<p>\[
+dx = a \sec\theta \tan\theta \, d\theta
+\]</p>
+<p>Підстановка \( x = a \sec\theta \) в ірраціональний вираз дає:</p>
+<p>\[
+\sqrt{x^2 &#8211; a^2}
+=
+\sqrt{a^2 \sec^2\theta - a^2}
+\]</p>
+<p>Виносячи \( a^2 \) за дужки під коренем, отримаємо</p>
+<p>\[
+\sqrt{a^2(\sec^2\theta &#8211; 1)}
+\]</p>
+<p>Використовуючи тотожність \( \sec^2\theta &#8211; 1 = \tan^2\theta \), це набуває вигляду:</p>
+<p>\[
+\sqrt{a^2 \tan^2\theta}
+=
+a \sqrt{\tan^2\theta}
+=
+a |\tan\theta|
+\]</p>
+<p>Наявність модуля відображає той факт, що знак \( \tan\theta \) залежить від обраної області визначення для \( \theta \). Наприклад, якщо ми працюємо за припущенням \( x \ge a \), зручним обмеженням є:</p>
+<p>\[
+\theta \in \left[0, \frac{\pi}{2}\right)
+\]</p>
+<p>оскільки на цьому проміжку маємо \( \sec\theta \ge 1 \) та \( \tan\theta \ge 0 \). За такого обмеження корінь спрощується до:</p>
+<p>\[
+\sqrt{x^2 - a^2} = a \tan\theta
+\]</p>
+<h6>Коли \(x \leq -a\), натомість обмежують \(\theta \in \left(\frac{\pi}{2}, \pi\right]\), так що \(\sec\theta \leq -1\) та \(\tan\theta \leq 0\); у цьому випадку \(|\tan\theta| = -\tan\theta.\) Для більшості підручникових задач достатньо припустити \(x \geq a\) і працювати з проміжком \(\left[0,\frac{\pi}{2}\right)\).</h6>
+<hr>
+<p>Повертаючись до початкової змінної \( x \), відношення, що випливають із підстановки, можна записати явно як:</p>
+<p>\[\sec\theta = \frac{x}{a}\]
+\[\tan\theta = \frac{\sqrt{x^2 - a^2}}{a}\]</p>
+<p>Еквівалентно, можна виразити сам кут через обернену тригонометричну функцію, записавши:</p>
+<p>\[
+\theta = \operatorname{arcsec}\left(\frac{x}{a}\right)
+\]</p>
+<p>на відповідній області визначення. Однак у багатьох практичних ситуаціях достатньо переписати \( \tan\theta \) та \( \sec\theta \) безпосередньо через \( x \) та \( \sqrt{x^2 - a^2} \), не розв'язуючи явно відносно \( \theta \).</p>
+<h6>Відповідна геометрична інтерпретація випливає безпосередньо з відношення \(\sec\theta = x/a\): можна побудувати <a href="right-triangle-trigonometry.html">прямокутний трикутник</a>, у якому гіпотенуза має довжину \(x\), прилеглий катет має довжину \(a\), а протилежний катет, за <a href="pythagorean-theorem.html">теоремою Піфагора</a>, має довжину \(\sqrt{x^2-a^2}\). Цей трикутник робить підстановку геометрично прозорою і забезпечує надійний спосіб визначення значень \(\sec\theta\) та \(\tan\theta\) безпосередньо зі сторін, без явного розв'язання для \(\theta\).</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Стандартні відповідності для \(\sqrt{x^2-a^2}\) можна запам'ятати наступним чином:</p>
+<ul>
+<li>Форма радикалу:\(\sqrt{x^2-a^2}\)</li>
+<li>Підстановка: \(x=a\sec\theta\)</li>
+<li>Використана тотожність: \(\sec^2\theta-1=\tan^2\theta\)</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Обчислимо наступний інтеграл:</p>
+<p>\[
+\int \frac{dx}{\sqrt{x^2-a^2}}
+\quad (a&gt;0, \; x&gt;a)
+\]</p>
+<p>Оскільки підінтегральна функція містить вираз \(\sqrt{x^2-a^2}\), введемо тригонометричну підстановку:</p>
+<p>\[x = a\sec\theta \quad \theta \in \left[0,\frac{\pi}{2}\right)\]</p>
+<p>так що ми зможемо використати тотожність \(\sec^2\theta-1=\tan^2\theta\) з \(\tan\theta \ge 0\) на цьому проміжку. Диференціювання підстановки дає:</p>
+<p>\[
+dx = a\sec\theta\tan\theta\,d\theta
+\]</p>
+<hr>
+<p>Тепер перепишемо радикал:</p>
+<p>\[
+\begin{align}
+\sqrt{x^2-a^2}
+&amp;= \sqrt{a^2\sec^2\theta-a^2} \\[6pt]
+&amp;= a\sqrt{\sec^2\theta-1} \\[6pt]
+&amp;= a\tan\theta
+\end{align}
+\]</p>
+<p>Підставляючи все в інтеграл, отримаємо:</p>
+<p>\[
+\int \frac{dx}{\sqrt{x^2-a^2}}
+=
+\int \frac{a\sec\theta\tan\theta}{a\tan\theta}\,d\theta
+=
+\int \sec\theta\,d\theta
+\]</p>
+<p>Щоб обчислити \(\int\sec\theta,d\theta\), помножимо чисельник і знаменник на \(\sec\theta+\tan\theta\):</p>
+<p>\[
+\begin{align}
+\int \sec\theta,d\theta
+&amp;= \int \frac{\sec\theta(\sec\theta+\tan\theta)}{\sec\theta+\tan\theta}\,d\theta \\[6pt]
+&amp;= \int \frac{\sec^2\theta+\sec\theta\tan\theta}{\sec\theta+\tan\theta}\,d\theta
+\end{align}
+\]</p>
+<p>Поклавши \( u = \sec\theta+\tan\theta \), маємо \( du = (\sec^2\theta+\sec\theta\tan\theta),d\theta \), отже чисельник точно дорівнює \( du \), і інтеграл зводиться до:</p>
+<p>\[
+\int \frac{du}{u} = \ln|u|+c = \ln|\sec\theta+\tan\theta|+c
+\]</p>
+<hr>
+<p>Повертаючись до змінної \(x\), оскільки:</p>
+<p>\[
+\sec\theta = \frac{x}{a}
+\quad
+\tan\theta = \frac{\sqrt{x^2-a^2}}{a}
+\]</p>
+<p>отримаємо:</p>
+<p>\[
+\ln|\sec\theta+\tan\theta|+c
+=
+\ln \! \left|\frac{x+\sqrt{x^2-a^2}}{a}\right|+c
+\]</p>
+<p>Оскільки \(x &gt; a &gt; 0\) та \(\sqrt{x^2-a^2} \ge 0\), величина \(x+\sqrt{x^2-a^2}\) є строго додатною, і модуль можна відкинути. Більше того:</p>
+<p>\[
+\ln \! \left(\frac{x+\sqrt{x^2-a^2}}{a}\right)
+=
+\ln \! \left(x+\sqrt{x^2-a^2}\right)-\ln a
+\]</p>
+<p>а \(\ln a\) є сталою, яку можна включити в \(c\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Результат:</p>
+<p>\[
+\int \frac{dx}{\sqrt{x^2-a^2}}
+=
+\ln \! \left(x+\sqrt{x^2-a^2}\right)+c
+\]</p>
+<h6>Це завершує обчислення. Структура виведення тісно повторює структуру Прикладу 2: в обох випадках підстановка зводить інтеграл до \(\int\sec\theta,d\theta\), а різниця полягає виключно в кроці зворотної підстановки, де вирази для \(\sec\theta\) та \(\tan\theta\) через \(x\) відображають геометрію двох різних форм радикалів.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-recap mb-x-30"><h2>Резюме</h2>
+<table>
+<thead>
+<tr>
+<th>Форма радикалу</th>
+<th>Підстановка</th>
+<th>Тотожність</th>
+<th>Область визначення</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\( \sqrt{a^2 &#8211; x^2} \)</td>
+<td>\( x = a\sin\theta \)</td>
+<td>\( 1 &#8211; \sin^2\theta = \cos^2\theta \)</td>
+<td>\( \theta \in \left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right] \)</td>
+</tr>
+<tr>
+<td>\( \sqrt{x^2 + a^2} \)</td>
+<td>\( x = a\tan\theta \)</td>
+<td>\( 1 + \tan^2\theta = \sec^2\theta \)</td>
+<td>\( \theta \in \left(-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right) \)</td>
+</tr>
+<tr>
+<td>\( \sqrt{x^2 &#8211; a^2} \)</td>
+<td>\( x = a\sec\theta \)</td>
+<td>\( \sec^2\theta &#8211; 1 = \tan^2\theta \)</td>
+<td>\( \theta \in \left[0, \dfrac{\pi}{2}\right) \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрані джерела</h2>
+<ul>
+<li>
+<p><strong>James Stewart</strong>. <a href="https://www.stewartcalculus.com/data/CALCULUS%20Concepts%20and%20Contexts/upfiles/3c3-TrigonometSubstitu_Stu.pdf">Trigonometric Substitution (Student Support)</a></p>
+</li>
+<li>
+<p><strong>Trinity University</strong>. <a href="https://ramanujan.math.trinity.edu/rdaileda/teach/s21/m1312/lectures/lecture6_slides.pdf">Trigonometric Substitution – Calculus II Lecture Slides</a></p>
+</li>
+<li>
+<p><strong>University of California</strong>. <a href="https://www.math.ucdavis.edu/~kouba/CalcTwoDIRECTORY/trigsubdirectory/TrigSub.html">Trigonometric Substitution (Notes with Exercises)</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="trigonometric-substitution-for-integrals.html">algebrica.org/trigonometric-substitution-for-integrals</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

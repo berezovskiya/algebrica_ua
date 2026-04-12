@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Неповні квадратні рівняння — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Неповні квадратні рівняння</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Що таке незаповнені квадратні рівняння</h2>
+<p><a href="quadratic-equations.html">Квадратне рівняння</a> вважається незаповненим, якщо в ньому відсутній один із членів стандартної форми \(ax² + bx + c = 0\), за умови, що член \(x^2\) присутній. Ці рівняння легко розв'язати, і немає потреби використовувати <a href="quadratic-formula.html">формулу квадратного рівняння</a> або <a href="factoring-quadratic-equations.html">метод розкладання на множники</a> для знаходження їхніх коренів.</p>
+<p>Якщо \(b\), коефіцієнт лінійного члена \(x\), та стала \(c\) дорівнюють нулю, ми маємо:
+\[ax^2 = 0 \quad a \neq 0 \]
+У цьому випадку рівняння має одне дійсне розв'язання \(x = 0 \quad \forall a \neq 0\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="698" height="588" src="../images/incomplete-quadratic-equations-1.png" alt="" class="wp-image-11442" style="object-fit:cover;width:349px;height:294px" srcset="../images/incomplete-quadratic-equations-1.png 698w, https://algebrica.org/wp-content/uploads/resources/images/incomplete-quadratic-equations-1-300x253.png 300w" sizes="(max-width: 698px) 100vw, 698px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Графічно рівняння представляє <a href="parabola.html">параболу</a> з вершиною в початку координат \((0, 0)\). Вона торкається осі x, але не перетинає її. Графік відкривається вгору, якщо \( a &gt; 0 \), і вниз, якщо \( a &lt; 0 \). Значення \(a\) також визначає, наскільки широкою або вузькою виглядає парабола.</p>
+<h5>Хоча рівняння має лише одне розв'язання, воно залишається квадратним рівнянням: функція має подвійний корінь у нулі, що означає, що вісь x є дотичною до параболи в початку координат.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Якщо \(b\), коефіцієнт лінійного члена \(x\), дорівнює нулю, ми маємо:
+\[ax^2 + c = 0 \quad a \neq 0, c \neq 0 \]</p>
+<p>У цьому випадку розв'язання таке:
+\[ x^2 = -\frac{c}{a} \]</p>
+<p>У цьому випадку рівняння представляє параболу без лінійного члена, що означає, що вона симетрична відносно осі y. Якщо \( \frac{c}{a} &lt; 0 \), графік перетинає вісь x у двох симетричних точках. Якщо \( \frac{c}{a} &gt; 0 \), дійсних розв'язань немає і парабола не торкається осі x.</p>
+<hr>
+<p>Якщо \(a \), коефіцієнт квадратичного члена \(x^2\), та стала \(c\) мають різні знаки, рівняння має два різні дійсні розв'язання:</p>
+<p>\[x_{1,2} = \pm \sqrt{-\frac{c}{a}} \]</p>
+<p>Це означає, що парабола симетрична відносно осі y і перетинає вісь x у двох різних точках. Ці точки симетричні відносно початку координат.</p>
+<hr>
+<p>Якщо \(a \), коефіцієнт квадратичного члена \(x^2\), та стала \(c\) мають однаковий знак, значення під коренем є від'ємним. У цьому випадку рівняння не має дійсних розв'язань. \[-\frac{c}{a} \lt 0 \to \nexists \hspace{10px} x \in \mathbb{R} \]</p>
+<hr>
+<p>Якщо стала \(c\) дорівнює нулю, ми маємо:
+\[ax^2 + bx = 0 \quad a \neq 0, b \neq 0 \]
+Виносячи спільний множник за дужки, отримаємо: \(x(ax+ b) = 0\), і застосовуючи властивість нульового добутку, отримаємо: \(x = 0 \quad (ax+ b) = 0 \)
+Рівняння має два різні дійсні розв'язання: \[x_1 = 0 \quad x_2 = -\frac{b}{a} \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-formula"><p>Тепер ми представимо поширену помилку, яка часто виникає при першому знайомстві з квадратними рівняннями.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><p>Для рівнянь вигляду \( ax^2 + bx = 0\) слід уникати поширеної помилки, що виникає при спрощенні невідомого \(x\), коли рівняння, наприклад, має вигляд:</p>
+<p>\[ax^2 = bx\]</p>
+<p>Якщо вам бракує досвіду в розв'язуванні рівнянь, може виникнути спокуса неправильно спростити обидві частини рівняння. Це може призвести до того, що ви <a href="loss-of-roots.html">втратите одне або обидва розв'язання</a> і перетворите квадратне рівняння на лінійне. Тому важливо повністю розуміти рівняння та уникати будь-яких поспішних спрощень.</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке незаповнене квадратне рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Незаповнене квадратне рівняння — це квадратне рівняння, в якому відсутній або лінійний член (bx), або стала (c), або обидва, при цьому зберігається квадратичний член ax²."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як розв'язати рівняння вигляду ax² + c = 0?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб розв'язати ax² + c = 0, ізолюйте x² і знайдіть розв'язання за допомогою квадратного кореня. Якщо c і a мають протилежні знаки, рівняння має два дійсних розв'язання. Якщо вони мають однаковий знак, дійсних розв'язань немає."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи можна скоротити x у рівняннях типу ax² = bx?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ні. Скорочення x може призвести до втрати розв'язань. Замість цього слід розкласти рівняння на множники та застосувати властивість нульового добутку, щоб знайти всі дійсні розв'язання."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="incomplete-quadratic-equations.html">algebrica.org/incomplete-quadratic-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

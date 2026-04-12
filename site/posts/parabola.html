@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Парабола — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Прямі, площини та конічні перерізи</span>
+    </nav>
+    <article>
+        <h1>Парабола</h1>
+        <time>2025-02-15</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Вступ до конічних перетинів</h2>
+<p>Коли площина перетинає конус, фігура, що утворюється в перетині, при проекції на площину може бути <a href="circumference.html">окружністю</a>, параболою, <a href="ellipse.html">еліпсом</a> або <a href="hyperbola.html">гіперболою</a>. Ці криві разом відомі як конічні перетини, або просто коніки. У більш формальних термінах, конік — це плоска алгебраїчна крива другого степеня, визначена як множина точок \( (x, y) \in \mathbb{R}^2 \), що задовольняють квадратному рівнянню зі змінними \( x \) та \( y \):</p>
+<p>\[
+f(x, y) = a_{11}x^2 + 2a_{12}xy + a_{22}y^2 + 2a_{13}x + 2a_{23}y + a_{33} = 0
+\]</p>
+<p>де коефіцієнти \( a_{ij} \in \mathbb{R} \), причому \( a_{11} \) та \( a_{22} \) є ненульовими, щоб рівняння було дійсно квадратичним.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-section-inverse mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Кожен коефіцієнт несе певну геометричну інформацію про конік.</h2>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>\( a_{11} \), \( a_{22} \) визначають кривизну вздовж осей x та y відповідно. Вони впливають на форму (еліпс, гіпербола, парабола) та орієнтацію коніка.</li>
+<li>\( a_{12} \) керує поворотом коніка. Якщо \( a_{12} = 0 \), конік вирівняний за координатними осями.</li>
+<li>\( a_{13} \), \( a_{23} \) впливають на положення коніка на площині. Вони діють як члени перенесення вздовж осей x та y.</li>
+<li>\( a_{33} 1\)визначає загальне положення кривої відносно початку координат; його можна розглядати як сталу, що зміщує графік вгору/вниз або вліво/вправо залежно від контексту.</li>
+</ul>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Вироджений конік</h2>
+<p>Якщо поліном \( f(x, y)\ \) можна розкласти як добуток двох лінійних поліномів:</p>
+<p>\[
+f(x, y) = (ax + by + c)(a’x + b’y + c’) = 0
+\]</p>
+<p>де \(a, b, c, a’, b’, c’ \in \mathbb{C}\), то такий конік називається виродженим.</p>
+<hr>
+<h5>Вироджений конік не представляє собою належну криволінійну фігуру, таку як парабола, еліпс або гіпербола. Замість цього він відповідає простішим геометричним об'єктам, таким як пара прямих, одна пряма або в деяких випадках порожня множина.</h5>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Парабола</h2>
+<p><strong>Парабола</strong> — це плоска крива, визначена як множина всіх точок, які рівновіддалені від фіксованої точки \(F \), що називається фокусом, і фіксованої прямої \( d \), що називається директрисою.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="608" height="444" src="../images/parabola-1.png" alt="Parabola" class="wp-image-9989" style="width:304px" srcset="../images/parabola-1.png 608w, https://algebrica.org/wp-content/uploads/resources/images/parabola-1-300x219.png 300w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Довжина відрізка \( \overline{FP} \) дорівнює довжині відрізка \( \overline{PD} \). Парабола є одним із так званих конічних перетинів, до яких також належать коло, еліпс і гіпербола. Ці криві можна отримати, перетинаючи конічну поверхню площиною. Конкретна крива, що утворюється, залежить від кута, під яким площина перетинає конус.</p>
+<hr>
+<p>Пряма, що проходить через фокус і перпендикулярна до директриси, називається віссю параболи. Точка \( V \), де парабола перетинає цю вісь, відома як вершина.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="726" height="442" src="../images/parabola-2.png" alt="" class="wp-image-9997" style="width:363px" srcset="../images/parabola-2.png 726w, https://algebrica.org/wp-content/uploads/resources/images/parabola-2-300x183.png 300w" sizes="(max-width: 726px) 100vw, 726px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><p>Рівняння параболи з вершиною в початку координат і віссю, що збігається з віссю y декартової площини, має вигляд:</p>
+<p>\[y = ax^2, \quad a \neq 0\]</p>
+<p>Кожна парабола, що задовольняє цьому рівнянню, є симетричною відносно осі y. У випадку, коли коефіцієнт \( a = 0 \), парабола називається виродженою, і рівняння набуває вигляду \( y = 0 \). Координати фокуса:</p>
+<p>\[F = \left( 0, \frac{1}{4a} \right)\]</p>
+<p>Рівняння директриси:</p>
+<p>\[y = - \frac{1}{4a} \]</p>
+<hr>
+<p>Коли коефіцієнт \( a &gt; 0 \), парабола відкривається вгору. Отже, \( y \geq 0 \) для будь-якого значення \( x \). Фокус також розташований на позитивній півосі y.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="784" height="548" src="../images/parabola-3.png" alt="" class="wp-image-10017" style="width:392px" srcset="../images/parabola-3.png 784w, https://algebrica.org/wp-content/uploads/resources/images/parabola-3-300x210.png 300w, https://algebrica.org/wp-content/uploads/resources/images/parabola-3-768x537.png 768w" sizes="(max-width: 784px) 100vw, 784px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><hr>
+<p>Коефіцієнт \( a \) визначає іншу характеристику параболи, а саме її ширину або розмах. Якщо \( a &gt; 0 \), то зі збільшенням значення \( a \) розмах стає вужчим. Аналогічно, якщо \( a &lt; 0 \), то зі збільшенням <a href="absolute-value.html">абсолютного значення</a> \( a \) розмах також стає вужчим.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="722" height="556" src="../images/parabola-4.png" alt="" class="wp-image-10026" style="width:361px" srcset="../images/parabola-4.png 722w, https://algebrica.org/wp-content/uploads/resources/images/parabola-4-300x231.png 300w" sizes="(max-width: 722px) 100vw, 722px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Парабола у стандартній квадратичній формі</h2>
+<p>Тепер розглянемо загальний випадок рівняння параболи, вісь якої паралельна осі y. Рівняння задано як:</p>
+<p>\[y = ax^2 + bx + c \quad \text{де} \quad a \neq 0\]</p>
+<p>Рівняння, що описує параболу, є <a href="quadratic-equations.html">рівнянням другого степеня</a>.</p>
+<hr>
+<p>Рівняння осі задано як:</p>
+<p>\[x = -\frac{b}{2a}\]</p>
+<hr>
+<p>Координати вершини задано як:</p>
+<p>\[V \left( -\frac{b}{2a}, \, -\frac{\Delta}{4a} \right)\]</p>
+<p>де \( \Delta = b^2 - 4ac \) є <a href="quadratic-formula.html">дискримінантом</a> квадратичного рівняння.</p>
+<hr>
+<p>Координати фокуса:</p>
+<p>\[F \left( -\frac{b}{2a}, \, \frac{1 - \Delta}{4a} \right)\]</p>
+<hr>
+<p>Рівняння директриси:</p>
+<p>\[y = -\frac{1 + \Delta}{4a}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Графічно загальна парабола \(y = ax^2 + bx + c\) з віссю, паралельною осі y, виглядає наступним чином:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="512" src="../images/parabola-5-1.png" alt="" class="wp-image-10078" style="width:306px" srcset="../images/parabola-5-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/parabola-5-1-300x251.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><ul>
+<li>
+<p>Коли \( b = 0 \) та \( c \neq 0 \), рівняння набуває вигляду \(y = ax^2 + c\). Вершина параболи знаходиться в точці \( V(0, c) \), а її віссю симетрії є вісь y.</p>
+</li>
+<li>
+<p>Випадок: \( c = 0 \) та \( b \neq 0 \), рівняння набуває вигляду \(y = ax^2 + bx\). Вершина параболи знаходиться в точці:
+\[
+V \left( -\frac{b}{2a}, -\frac{b^2}{4a} \right)
+\]
+Парабола завжди проходить через початок координат ( 0, 0 ).</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><hr>
+<p>Тепер розглянемо, як визначити точки перетину, якщо вони існують, між параболою та довільною прямою з рівнянням \( y = mx + q \). Для цього нам потрібно розв'язати систему рівнянь, що складається з рівняння прямої та рівняння параболи. Отримаємо:</p>
+<p>\[
+\begin{cases}
+y = ax^2 + bx + c \\[0.5 em]
+y = mx + q
+\end{cases}
+\]</p>
+<p>Виконавши обчислення, отримаємо:</p>
+<p>\[
+\begin{align}
+&amp;ax^2 + bx + c = mx + q\\[0.5 em]
+&amp;ax^2 + bx + c &#8211; mx &#8211; q = 0\\[0.5 em]
+&amp;ax^2 + x(b- m) +c &#8211; q = 0
+\end{align}
+\]</p>
+<p>Розв'язання рівняння \((5)\) представляють \( x \)-координати точок перетину параболи та прямої. Оскільки ми маємо справу з квадратичним рівнянням, може бути не більше двох різних розв'язків. Точніше, кількість розв'язків залежить від значення дискримінанта \( \Delta \) наступним чином:</p>
+<ul>
+<li>Якщо \( \Delta &gt; 0 \), розв'язки є дійсними та різними, і пряма перетинає параболу у двох точках. У цьому випадку пряма називається січною.</li>
+<li>Якщо \( \Delta = 0 \), розв'язки є дійсними та збігаються, і пряма є дотичною до параболи в одній точці.</li>
+<li>Якщо \( \Delta &lt; 0 \), розв'язків немає, і пряма лежить зовні параболи.</li>
+</ul>
+<p>Нижче наведено зображення січної прямої, що перетинає параболу у двох точках.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="730" height="482" src="../images/parabola-6-2.png" alt="" class="wp-image-10088" style="width:365px" srcset="../images/parabola-6-2.png 730w, https://algebrica.org/wp-content/uploads/resources/images/parabola-6-2-300x198.png 300w" sizes="(max-width: 730px) 100vw, 730px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Тепер розглянемо точку \( P \) на площині та визначимо прямі, що проходять через цю точку і є дотичними до параболи. Існує три можливих випадки:</p>
+<ul>
+<li>Обидві прямі є дотичними до параболи: у цьому випадку точка \(P\) лежить зовні параболи.</li>
+<li>Лише одна пряма є дотичною до параболи: у цьому випадку точка \(P\) лежить на параболі.</li>
+<li>Не існує жодної прямої, дотичної до параболи: у цьому випадку точка \(P\) лежить всередині параболи.</li>
+</ul>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="750" height="566" src="../images/parabola-7.png" alt="" class="wp-image-10090" style="width:375px" srcset="../images/parabola-7.png 750w, https://algebrica.org/wp-content/uploads/resources/images/parabola-7-300x226.png 300w" sizes="(max-width: 750px) 100vw, 750px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Щоб знайти рівняння прямих, що проходять через задану точку \( P(x_0, y_0) \) і є дотичними до параболи, заданої рівнянням \( y = ax^2 + bx + c \), необхідно скласти та розв'язати систему, що складається з рівняння параболи та рівняння пучка прямих, які проходять через \( P \). Маємо:</p>
+<p>\[
+\begin{cases}
+y &#8211; y_0 = m(x &#8211; x_0) \\[0.5em]
+y = ax^2 + bx + c
+\end{cases}
+\]</p>
+<p>Щоб накласти умову дотичності, необхідно прирівняти до нуля визначник \( \Delta \) рівняння, отриманого з системи. Потім розв'язуємо відносно \( m \) і підставляємо отримані значення в рівняння пучка прямих.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Визначте рівняння будь-яких прямих, що проходять через \( P(3, -6) \) і є дотичними до параболи, заданої рівнянням \( y = x^2 &#8211; 4 \).</p>
+<hr>
+<p>Загальне рівняння пучка прямих має вигляд:</p>
+<p>\[y &#8211; y_0 = m(x &#8211; x_0)\]</p>
+<p>Підставляючи значення \( x_0 = 3 \) та \( y_0 = -6 \) точки \( P(3, -6) \), отримаємо:</p>
+<p>\[y + 6 = m(x &#8211; 3)\]</p>
+<hr>
+<p>Система набуває вигляду:</p>
+<p>\[
+\begin{cases}
+y = x^2 - 4 \\[0.5em]
+y + 6 = m(x - 3)
+\end{cases}
+\]</p>
+<p>Отримаємо:
+\[x^2 &#8211; 4 = m(x-3) &#8211; 6 \rightarrow x^2 -mx +3m -2 = 0 \]</p>
+<hr>
+<p>Тепер визначимо значення \( \Delta \), враховуючи, що \( a = 1 \), \( b = -m \), та \( c = 3m &#8211; 2 \). Маємо:</p>
+<p>\[\Delta = m^2 -12m - 8\]</p>
+<hr>
+<p>Застосовуємо умову дотичності, прирівнявши \( \Delta = 0 \) та розв'язавши рівняння другого степеня.</p>
+<p>\[m^2 -12m &#8211; 8 = 0 \rightarrow m_1, m_2 = \frac{12 \pm \sqrt{144+32}}{2}\]</p>
+<p>Спрощуючи вираз, отримаємо:</p>
+<p>\[
+m_1 = 6 &#8211; 2\sqrt{11}, \quad m_2 = 6 + 2\sqrt{11}
+\]</p>
+<hr>
+<p>Підставляючи ці значення в рівняння пучка прямих, отримаємо:</p>
+<p>\[y = \left(6 &#8211; 2\sqrt{11}\right)\left(x - 3\right) -6 \]
+\[y = \left(6 + 2\sqrt{11}\right)\left(x &#8211; 3\right) - 6\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, рівняння двох дотичних мають вигляд:</p>
+<p>\[
+\begin{align*}
+y &amp;= \left(6 - 2\sqrt{11}\right)x + 6\sqrt{11} &#8211; 24 \\[0.5em]
+y &amp;= \left(6 + 2\sqrt{11}\right)x - 6\sqrt{11} &#8211; 24
+\end{align*}
+\]</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке парабола в математиці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Парабола — це графік квадратичної функції. Вона має вигляд U-подібної кривої, яка відкривається або вгору, або вниз залежно від рівняння."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як записати рівняння параболи?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стандартне рівняння параболи має вигляд y = ax² + bx + c, де a, b та c — дійсні числа. Якщо a додатне, парабола відкривається вгору. Якщо a від'ємне, вона відкривається вниз."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке вершина параболи?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вершина — це найвища або найнижча точка параболи. У рівнянні y = ax² + bx + c координата x вершини знаходиться за формулою x = -b / (2a)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке вісь симетрії параболи?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вісь симетрії — це вертикальна пряма, що проходить через вершину і ділить параболу на дві дзеркальні половини. Її рівняння: x = -b / (2a)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як знайти точки перетину параболи з віссю x?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб знайти точки перетину параболи з віссю x, розв'яжіть квадратне рівняння ax² + bx + c = 0. Розв'язки дають значення x, де парабола торкається або перетинає вісь x."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="parabola.html">algebrica.org/parabola</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

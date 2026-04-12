@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функція косинуса — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Функція косинуса</h1>
+        <time>2025-02-25</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Функція косинус</h2>
+<p><a href="functions.html">Функція</a> косинус \( f(x) = \cos(x) \) кожному куту \( x \), вираженому в радіанах, присвоює відповідне значення <a href="sine-and-cosine.html">косинуса</a>. Її графіком є періодична хвиля з періодом \( 2 \pi \) та амплітудою 1, що коливається між \(-1\) та \(1\). Функція \( f(x) = \cos x \) має всі дійсні числа у своїй <a href="determining-the-domain-of-a-function.html">області визначення</a>, але її область значень становить \( -1 \leq \cos(x) \leq 1 \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="838" height="388" src="../images/sine-cosine-4.png" alt="" class="wp-image-14052" style="width:419px" srcset="../images/sine-cosine-4.png 838w, https://algebrica.org/wp-content/uploads/resources/images/sine-cosine-4-300x139.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sine-cosine-4-768x356.png 768w" sizes="(max-width: 838px) 100vw, 838px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Разом із <a href="sine-function.html">функцією синус</a> вона представляє одну з фундаментальних моделей періодичних хвиль і широко використовується для опису циклічних явищ у фізиці, інженерії та математиці. Наприклад, у простому <a href="simple-harmonic-motion.html">гармонічному русі</a> у фізиці функція косинус часто з'являється в рівняннях для зміщення та <a href="acceleration.html">прискорення</a>, описуючи коливальну поведінку таких систем, як пружини та маятники.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30 pb-steps"><h2>Властивості</h2>
+<ul>
+<li><a href="determining-the-domain-of-a-function.html">Область визначення</a>: \( x \in \mathbb{R} \)</li>
+<li>Область значень: \( y \in \mathbb{R} : -1 \leq y \leq 1 \)</li>
+<li>Періодичність: періодична за \( x \) з періодом \( 2\pi \)</li>
+<li>Парність: <a href="even-and-odd-functions.html">парна</a>, \( \cos(-x) = \cos(x) \)</li>
+<li>Корені: \( x = \dfrac{\pi}{2} + n \pi, \quad n \in \mathbb{Z} \)</li>
+<li><a href="integers.html">Цілий</a> корінь: \( x = \dfrac{\pi}{2} \)</li>
+<li><a href="maximum-minimum-and-inflection-points.html">Точки максимуму та мінімуму</a>: \( \cos(x) \) досягає свого максимуму \(1\) при \( x = 2k \pi \) з \( k \in \mathbb{Z} \) та свого мінімуму \(-1\) при \( x = \pi + 2k \pi \) з \( k \in \mathbb{Z} \).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section"><h2>Границі, похідні та інтеграли функції косинус</h2>
+<p>Фундаментальною <a href="limits.html">границею</a>, що містить функцію косинус, є: \[ \lim\limits_{x \to 0} \frac{1 &#8211; \cos(x)}{x} = 0 \]</p>
+<hr>
+<p>Функція є <a href="continuous-functions.html">неперервною</a> та диференційовною для всіх дійсних чисел. <a href="derivatives.html">Похідна</a> дорівнює:
+\[ \frac{d}{dx} \cos(x) = -\sin(x) \]</p>
+<hr>
+<p><a href="indefinite-integrals.html">Невизначений інтеграл</a>:
+\[ \int \cos(x) dx = \sin(x) + c \]</p>
+<h5>Вичерпний огляд тригонометричних інтегралів, разом із найкориснішими методами перетворення та підстановки для обробки складніших випадків, доступний на сторінці про <a href="integral-of-trigonometric-functions.html">інтеграли тригонометричних функцій</a>.</h5>
+<hr>
+<p>Альтернативна форма функції \( \cos(x) \) з використанням уявних чисел задається формулою Ейлера, де \( e^{ix} \) — це <a href="exponential-function.html">показникова функція</a> з основою \( e \), а \( i \) — <a href="complex-numbers-introduction.html">уявна</a> одиниця:
+\[ \cos(x) = \frac{e^{ix} + e^{-ix}}{2} \]</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="cosine-function.html">algebrica.org/cosine-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

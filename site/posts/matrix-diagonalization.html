@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Діагоналізація матриці — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Вектори та матриці</span>
+    </nav>
+    <article>
+        <h1>Діагоналізація матриці</h1>
+        <time>2026-04-05</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-3" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті показана на концептуальній карті, де кожна гілка представляє основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="eigenvalues-and-eigenvectors.html">Власні значення та власні вектори</a>, <a href="matrices.html">Матриці</a>, <a href="vector-spaces.html">Векторні простори</a>, є необхідними попередніми вимогами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-3");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"diagonalization definition"},{"name":"eigenvectors basis"},{"name":"eigenvalues"},{"name":"change of basis"},{"name":"matrix similarity"},{"name":"diagonal form"},{"name":"invertible matrix"}]},{"name":"conditions","children":[{"name":"characteristic polynomial"},{"name":"eigenvalues computation"},{"name":"eigenspaces"},{"name":"geometric multiplicity"},{"name":"algebraic multiplicity"},{"name":"diagonalizable criterion"},{"name":"distinct eigenvalues"}]},{"name":"applications","children":[{"name":"powers of matrices"},{"name":"diagonal powers"},{"name":"non diagonalizable case"},{"name":"jordan form"},{"name":"linear transformations"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Умова діагоналізації</h2>
+<p>Квадратна <a href="matrices.html">матриця</a> називається діагональною, якщо можливо знайти базис відповідного <a href="vector-spaces.html">векторного простору</a>, що складається повністю з <a href="eigenvalues-and-eigenvectors.html">власних векторів</a> цієї матриці. Коли такий базис існує, матрицю можна представити в особливо простому вигляді: як діагональну матрицю, елементами якої є саме власні значення. Це представлення є не просто нотаційним зручністю; воно розкриває внутрішню геометричну структуру лінійного перетворення, пов'язаного з матрицею, і істотно спрощує обчислення степенів, експонент та розв'язання лінійних диференціальних рівнянь.</p>
+<p>Нехай \(A\) — квадратна матриця порядку \(n\) з елементами в \(\mathbb{R}\) або \(\mathbb{C}\). Матриця \(A\) є діагональною тоді і тільки тоді, коли існує обернена матриця \(P\) та діагональна матриця \(D\), такі що виконується наступний зв'язок:</p>
+<p>\[
+A = P D P^{-1}
+\]</p>
+<p>Стовпці \(P\) є власними векторами \(A\), а діагональні елементи \(D\) — відповідними власними значеннями. Еквівалентно, наведений вище зв'язок можна переписати наступним чином:</p>
+<p>\[
+P^{-1} A P = D
+\]</p>
+<p>Це формулювання чітко вказує на те, що \(P\) є матрицею переходу від одного базису до іншого: вона перетворює стандартне представлення \(A\) на діагональне представлення \(D\), виражене в базисі власних векторів.</p>
+<blockquote>
+<p>Матриця \(D\) є єдиною з точністю до порядку власних значень уздовж діагоналі, тоді як \(P\) не є єдиною, оскільки кожен власний вектор може бути замінений будь-яким його ненульовим скалярним кратним.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Власні значення та власні вектори</h2>
+<p>Побудова діагоналізації повністю покладається на <a href="eigenvalues-and-eigenvectors.html">власну структуру</a> \(A\). Нагадаємо, що скаляр \(\lambda\) є власним значенням \(A\), якщо існує ненульовий вектор \(\mathbf{v}\), що задовольняє наступне рівняння:</p>
+<p>\[
+A \mathbf{v} = \lambda \mathbf{v}
+\]</p>
+<p>Такий вектор \(\mathbf{v}\) називається власним вектором \(A\), пов'язаним з \(\lambda\). Власні значення визначаються шляхом розв'язання характеристичного рівняння, яке отримують, вимагаючи, щоб матриця \(A &#8211; \lambda I\) була виродженою:</p>
+<p>\[
+\det(A &#8211; \lambda I) = 0
+\]</p>
+<p>Ліва частина цього рівняння є <a href="polynomials.html">поліномом</a> степеня \(n\) відносно \(\lambda\), який називається характеристичним поліномом \(A\). Його корені, враховуючи кратність, є власними значеннями \(A\). Після того, як власне значення \(\lambda_k\) визначено, відповідні власні вектори є ненульовими розв'язками однорідної <a href="systems-of-linear-equations.html">лінійної системи</a>:</p>
+<p>\[
+(A - \lambda_k I)\,\mathbf{v} = \mathbf{0}
+\]</p>
+<p>Множина всіх розв'язків, включаючи нульовий вектор, утворює <a href="spaces.html">підпростір</a> \(\mathbb{R}^n\) (або \(\mathbb{C}^n\)), який називається власним простором, пов'язаним з \(\lambda_k\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Алгебраїчна та геометрична кратність</h2>
+<p>Кожне власне значення \(\lambda_k\) має два різні поняття кратності, які відіграють центральну роль у визначенні того, чи є \(A\) діагональною. Алгебраїчна кратність \(\lambda_k\), що позначається \(m_a(\lambda_k)\), — це кратність \(\lambda_k\) як кореня характеристичного полінома. Геометрична кратність \(\lambda_k\), що позначається \(m_g(\lambda_k)\), — це розмірність відповідного власного простору, тобто:</p>
+<p>\[
+m_g(\lambda_k) = \dim \ker(A - \lambda_k I)
+\]</p>
+<p>Можна показати, що для кожного власного значення геометрична кратність не перевищує алгебраїчну кратність:</p>
+<p>\[
+1 \leq m_g(\lambda_k) \leq m_a(\lambda_k)
+\]</p>
+<p>Матриця \(A\) є діагональною тоді і тільки тоді, коли для кожного власного значення \(\lambda_k\) геометрична кратність дорівнює алгебраїчній кратності. Зокрема, матриця з \(n\) різними власними значеннями завжди є діагональною, оскільки в такому випадку обидві кратності для кожного власного значення дорівнюють одиниці.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Процедура діагоналізації</h2>
+<p>Практична побудова матриць \(P\) та \(D\) здійснюється за чітко визначеною послідовністю кроків.</p>
+<ul>
+<li>
+<p>Перший крок полягає в обчисленні характеристичного полінома \(\det(A &#8211; \lambda I)\) та пошуку всіх його <a href="roots-of-a-polynomial.html">коренів</a>. Ці корені є власними значеннями \(\lambda_1, \lambda_2, \ldots, \lambda_k\) матриці \(A\).</p>
+</li>
+<li>
+<p>Другий крок полягає у визначенні для кожного власного значення базису відповідного власного простору шляхом розв'язання однорідної системи \((A - \lambda_j I)\,\mathbf{v} = \mathbf{0}\). Об'єднання всіх цих базисів повинно містити рівно \(n\) лінійно незалежних векторів, щоб матриця була діагональною.</p>
+</li>
+<li>
+<p>Третій крок полягає у формуванні матриці \(P\) шляхом розміщення власних векторів у стовпцях у порядку, що відповідає розташуванню власних значень у \(D\). Діагональна матриця \(D\) потім будується шляхом розміщення власного значення \(\lambda_j\) в позиції \((j,j)\).</p>
+</li>
+</ul>
+<p>Після того, як матриця \(P\) сформована, перевіряють, чи є вона обернею, і обчислюють \(P^{-1}\), завершуючи таким чином розклад \(A = P D P^{-1}\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо наступну матрицю:</p>
+<p>\[
+A = \begin{pmatrix} 3 &amp; 1 \\ 0 &amp; 2 \end{pmatrix}
+\]</p>
+<p>Щоб знайти власні значення, обчислюють <a href="determinant.html">визначник</a> \(A &#8211; \lambda I\):</p>
+<p>\[
+\det(A &#8211; \lambda I) = \det \begin{pmatrix} 3 - \lambda &amp; 1 \\ 0 &amp; 2 &#8211; \lambda \end{pmatrix} = (3 &#8211; \lambda)(2 - \lambda)
+\]</p>
+<p>Отже, характеристичне рівняння має наступний вигляд:</p>
+<p>\[
+(3 &#8211; \lambda)(2 - \lambda) = 0
+\]</p>
+<p>Два корені: \(\lambda_1 = 2\) та \(\lambda_2 = 3\), обидва прості, тому матриця є діагонізуемою. Для \(\lambda_1 = 2\) розв'язують систему \((A - 2I)\,\mathbf{v} = \mathbf{0}\):</p>
+<p>\[
+\begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+\]</p>
+<p>Перший рядок дає \(v_1 + v_2 = 0\), звідси \(v_1 = -v_2\). Вибравши \(v_2 = 1\), отримаємо власний вектор \(\mathbf{v}_1 = (-1,\, 1)^T\). Для \(\lambda_2 = 3\) розв'язують \((A - 3I)\,\mathbf{v} = \mathbf{0}\):</p>
+<p>\[
+\begin{pmatrix} 0 &amp; 1 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+\]</p>
+<p>Обидва рядки дають \(v_2 = 0\), при цьому \(v_1\) залишається довільним. Вибравши \(v_1 = 1\), отримаємо власний вектор \(\mathbf{v}_2 = (1,\, 0)^T\). Матриця \(P\) формується шляхом розміщення цих власних векторів як стовпців:</p>
+<p>\[
+P = \begin{pmatrix} -1 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}
+\]</p>
+<p>Її <a href="inverse-matrix.html">обернена матриця</a> обчислюється безпосередньо:</p>
+<p>\[
+P^{-1} = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 1 \end{pmatrix}
+\]</p>
+<p>Діагональна матриця містить власні значення у відповідному порядку:</p>
+<p>\[
+D = \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 3 \end{pmatrix}
+\]</p>
+<p>Можна перевірити, що рівність \(A = P D P^{-1}\) виконується шляхом прямого множення. Таким чином, матриця \(A\) є діагонізуемою, і її діагонізація задається наведеним вище розкладом із побудованими \(P\) та \(D\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо матрицю з кратним власним значенням. Нехай \(A\) буде наступною матрицею розміром \(3 \times 3\):</p>
+<p>\[
+A = \begin{pmatrix} 4 &amp; 1 &amp; 0 \\ 0 &amp; 4 &amp; 0 \\ 0 &amp; 0 &amp; 2 \end{pmatrix}
+\]</p>
+<p>Характеристичний поліном отримують, розкривши визначник \(A - \lambda I\):</p>
+<p>\[
+\det(A - \lambda I) = \det \begin{pmatrix} 4 &#8211; \lambda &amp; 1 &amp; 0 \\ 0 &amp; 4 - \lambda &amp; 0 \\ 0 &amp; 0 &amp; 2 &#8211; \lambda \end{pmatrix} = (4 &#8211; \lambda)^2 (2 - \lambda)
+\]</p>
+<p>Отже, власними значеннями є \(\lambda_1 = 4\) з алгебраїчною кратністю два та \(\lambda_2 = 2\) з алгебраїчною кратністю один. Просте власне значення \(\lambda_2 = 2\) не викликає труднощів. Розв'язання \((A - 2I)\,\mathbf{v} = \mathbf{0}\) дає систему:</p>
+<p>\[
+\begin{pmatrix} 2 &amp; 1 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix} \begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+\]</p>
+<p>Другий рядок дає \(v_2 = 0\), і підстановка в перший рядок дає \(v_1 = 0\), тоді як \(v_3\) залишається довільним. Таким чином, власний підпростір є одновимірним і породжується вектором \(\mathbf{v}_3 = (0,\, 0,\, 1)^T\). Кратне власне значення \(\lambda_1 = 4\) є критичним випадком. Розв'язання \((A &#8211; 4I)\,\mathbf{v} = \mathbf{0}\) дає систему:</p>
+<p>\[
+\begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; -2 \end{pmatrix} \begin{pmatrix} v_1 \\ v_2 \\ v_3 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \\ 0 \end{pmatrix}
+\]</p>
+<p>Перший рядок дає \(v_2 = 0\), а третій рядок дає \(v_3 = 0\), тоді як \(v_1\) залишається довільним. Отже, власний підпростір, пов'язаний з \(\lambda_1 = 4\), є одновимірним і породжується вектором \(\mathbf{v}_1 = (1,\, 0,\, 0)^T\). Оскільки геометрична кратність \(\lambda_1 = 4\) дорівнює одному, що строго менше за її алгебраїчну кратність (два), трьох знайдених власних векторів недостатньо для формування базису \(\mathbb{R}^3\), і матриця \(A\) не є діагонізуемою.</p>
+<blockquote>
+<p>Цей приклад ілюструє, що наявність кратного власного значення сама по собі не перешкоджає діагонізації: важливо, чи має відповідний власний підпростір розмірність, що дорівнює алгебраїчній кратності. Матриця з кратним власним значенням може бути або не бути діагонізуемою залежно від рангу \(A - \lambda I\).</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Коли діагоналізування неможливе</h2>
+<p>Не кожна квадратна матриця є діагоналізуемою. Матриця не є діагоналізуемою саме тоді, коли принаймні для одного власного значення геометрична кратність є строго меншою за алгебраїчну кратність. У таких випадках власний підпростір, пов'язаний із цим власним значенням, є занадто малим, щоб забезпечити достатню кількість лінійно незалежних власних векторів. Стандартним прикладом є матриця:</p>
+<p>\[
+B = \begin{pmatrix} 2 &amp; 1 \\ 0 &amp; 2 \end{pmatrix}
+\]</p>
+<p>Її характеристичний поліном дорівнює \((2 &#8211; \lambda)^2\), отже \(\lambda = 2\) є єдиним власним значенням з алгебраїчною кратністю два. Розв'язання \((B &#8211; 2I)\,\mathbf{v} = \mathbf{0}\) дає:</p>
+<p>\[
+\begin{pmatrix} 0 &amp; 1 \\ 0 &amp; 0 \end{pmatrix} \begin{pmatrix} v_1 \\ v_2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix}
+\]</p>
+<p>Єдиною умовою є \(v_2 = 0\), тому власний підпростір є одновимірним і породжується вектором \((1,, 0)^T\). Оскільки геометрична кратність дорівнює одному, тоді як алгебраїчна кратність дорівнює двом, неможливо скласти базис із власних векторів для \(\mathbb{R}^2\), і матриця \(B\) не є діагоналізуемою.</p>
+<blockquote>
+<p>Матриці такого типу вивчаються в рамках жорданової нормальної форми, яка забезпечує канонічне представлення для недаігоналізуємих матриць шляхом введення жорданових блоків.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Степені діагоналізуемої матриці</h2>
+<p>Одним із найбезпосередніших застосувань діагоналізування є обчислення цілих степенів матриці. Для діагоналізуемої матриці \(A = P D P^{-1}\) \(k\)-й степінь має наступний компактний вираз:</p>
+<p>\[
+A^k = P D^k P^{-1}
+\]</p>
+<p>Ця тотожність випливає з того, що \(A^2 = (PDP^{-1})(PDP^{-1}) = PD^2P^{-1}\), і за допомогою індукції ця закономірність поширюється на будь-яке додатне ціле число \(k\). Оскільки \(D\) є діагональною, її \(k\)-й степінь просто отримують, підносячи кожен діагональний елемент до степеня \(k\):</p>
+<p>\[
+D^k = \begin{pmatrix} \lambda_1^k &amp; &amp; \ &amp; \ddots &amp; \ &amp; &amp; \lambda_n^k \end{pmatrix}
+\]</p>
+<p>Це спостереження перетворює інакше трудомістке множення матриць на просте скалярне обчислення.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="matrix-diagonalization.html">algebrica.org/matrix-diagonalization</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

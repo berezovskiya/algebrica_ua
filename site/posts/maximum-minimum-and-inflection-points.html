@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Максимуми, мінімуми та точки перегину — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Похідні</span>
+    </nav>
+    <article>
+        <h1>Максимуми, мінімуми та точки перегину</h1>
+        <time>2025-02-21</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Глобальні точки максимуму та мінімуму</h2>
+<p>Максимум і мінімум функції \( f(x) \) представляють відповідно найвище та найнижче значення, яких функція може досягти у своїй <a href="determining-the-domain-of-a-function.html">області визначення</a>. Іншими словами, вони вказують на екстремальні точки функції, показуючи, де \( f(x) \) досягає свого найбільшого можливого значення або найменшого можливого значення для всіх допустимих значень \( x \) у заданій області визначення.</p>
+<p>Нехай задано функцію \( y = f(x) \) з областю визначення \( D \), тоді точка \( x_0 \in D \) є <strong>глобальним максимумом</strong>, якщо \( f(x_0) \geq f(x) \) для кожного \( x \in D \). Значення \( f(x_0) = M \) є глобальним максимумом функції.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="700" height="376" src="../images/max-min-1.png" alt="Graph of a function f(x) showing a maximum point, where the curve reaches its highest value at a smooth peak." class="wp-image-9378" style="width:360px" title="Graph of a function f(x) showing a maximum point, where the curve reaches its highest value at a smooth peak." srcset="../images/max-min-1.png 700w, https://algebrica.org/wp-content/uploads/resources/images/max-min-1-300x161.png 300w" sizes="(max-width: 700px) 100vw, 700px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><hr>
+<p>Нехай задано функцію \( y = f(x) \) з областю визначення \( D \), тоді точка \( x_0 \in D \) є <strong>глобальним мінімумом</strong>, якщо \( f(x_0) \leq f(x) \) для кожного \( x \in D \). Значення \( f(x_0) = m \) є глобальним мінімумом функції.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized Graph of a function f(x) showing minimum point, where the curve reaches its lowest value at smooth valley."><img loading="lazy" width="698" height="516" src="../images/max-min-2.png" alt="Graph of a function f(x) showing a minimum point, where the curve reaches its lowest value at a smooth valley." class="wp-image-9381" style="width:349px" srcset="../images/max-min-2.png 698w, https://algebrica.org/wp-content/uploads/resources/images/max-min-2-300x222.png 300w" sizes="(max-width: 698px) 100vw, 698px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Якщо глобальний максимум і глобальний мінімум функції існують, вони є єдиними. Згідно з <a href="weierstrass-theorem.html">теоремою Вейєрштрасса</a>, якщо функція є <a href="continuous-functions.html">неперервною</a> на замкненому та обмеженому проміжку \([a, b]\), то вона досягає як глобального максимуму, так і глобального мінімуму на цьому проміжку.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Локальні точки максимуму та мінімуму</h2>
+<p>У деяких випадках функція може мати більше одного піка або западини на певному проміжку. Такі точки відомі як локальні максимуми та локальні мінімуми. Вони відповідають позиціям, де функція досягає відносно найвищого або найнижчого значення порівняно з її безпосереднім оточенням, не обов'язково будучи абсолютними екстремумами на всій області визначення.</p>
+<p>Нехай задано функцію \( y = f(x) \), визначену на проміжку \([a, b]\), тоді точка \( x_0 \in [a, b] \) є <strong>локальним максимумом</strong>, якщо існує окіл \( I \) точки \( x_0 \), такий що \( f(x_0) \geq f(x) \) для кожного \( x \) у проміжку \( I \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="460" src="../images/max-min-3-1.png" alt="Graph of a function f(x) showing a local maximum point, where the curve reaches a temporary highest value compared to nearby points." class="wp-image-9395" style="width:306px" title="Graph of a function f(x) showing a local maximum point, where the curve reaches a temporary highest value compared to nearby points." srcset="../images/max-min-3-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/max-min-3-1-300x225.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Більш формально, нехай задано функцію \( y = f(x) \), яка визначена та неперервна в околі точки \( x_0 \) і диференційовна в тому самому околі для кожного \( x \neq x_0 \). Якщо для кожного \( x \) в околі виконуються наступні умови:</p>
+<p>\[
+\begin{align}
+f’(x) &amp;&gt; 0 \quad \text{для} \quad x &lt; x_0 \\
+f’(x) &amp;&lt; 0 \quad \text{для} \quad x &gt; x_0
+\end{align}
+\]</p>
+<p>тоді \( x_0 \) є точкою <strong>локального максимуму</strong> для функції \( f(x) \). Маємо:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign mt-m-20"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ x_0 \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( f’(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( f(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{\nearrow} \)</td>
+<td style="text-align:center">\( \boldsymbol{\searrow} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Нехай задано функцію \( y = f(x) \), визначену на проміжку \([a, b]\). Точка \( x_0 \in [a, b] \) називається <strong>локальним мінімумом</strong>, якщо існує окіл \( I \) точки \( x_0 \) такий, що \( f(x_0) \leq f(x) \) для кожного \( x \) у проміжку \( I \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="364" src="../images/max-min-4.png" alt="Graph of a function f(x) showing a local minimum point, where the curve reaches a temporary lowest value compared to nearby points." class="wp-image-9397" style="width:306px" title="Graph of a function f(x) showing a local minimum point, where the curve reaches a temporary lowest value compared to nearby points." srcset="../images/max-min-4.png 612w, https://algebrica.org/wp-content/uploads/resources/images/max-min-4-300x178.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Якщо виконуються наступні умови:</p>
+<p>\[
+\begin{align}
+f’(x) &amp;&lt; 0 \quad \text{для} \quad x &lt; x_0 \\
+f’(x) &amp;&gt; 0 \quad \text{для} \quad x &gt; x_0
+\end{align}
+\]</p>
+<p>тоді \( x_0 \) є точкою <strong>локального мінімуму</strong> для функції \( f(x) \). Маємо:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign mb-x-30 mt-m-20"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ x_0 \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( f’(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( f(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{\searrow} \)</td>
+<td style="text-align:center">\( \boldsymbol{\nearrow} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Функція може мати щонайбільше один глобальний максимум і щонайбільше один глобальний мінімум, але вона може мати кілька локальних максимумів і локальних мінімумів у своїй області визначення. Згідно з <a href="fermat-theorem.html">теоремою Ферма</a>, точки відносного максимуму та мінімуму диференційовної функції, що знаходяться всередині області визначення функції, є <strong>стаціонарними точками</strong>. Це означає, що дотична в точці відносного максимуму або мінімуму паралельна осі x. У цьому випадку <a href="derivatives.html">похідна</a> функції в точці \(x_0\) дорівнює нулю, і ми маємо \(f{\prime}(x_0) = 0\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Випуклість та ввігнутість</h2>
+<p>Кажуть, що функція \( f(x) \) є <strong>випуклою вниз</strong> (ввігнутою) у точці \( x_0 \), якщо існує окіл \( I \) точки \( x_0 \) такий, що для кожного \( x \in I \) при \( x \neq x_0 \) функція \( f(x) \) набуває значень, більших за значення прямої \( y = t(x) \), яка є дотичною до графіка \( f(x) \) у точці \( x_0 \).</p>
+<p>\[
+f(x) &gt; t(x) \quad \forall x \in I &#8211; \lbrace x_0 \rbrace
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="542" src="../images/max-min-5.png" alt="" class="wp-image-9410" style="width:306px" srcset="../images/max-min-5.png 612w, https://algebrica.org/wp-content/uploads/resources/images/max-min-5-300x266.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><hr>
+<p>Аналогічно, кажуть, що функція \( f(x) \) є <strong>випуклою вгору</strong> у точці \( x_0 \), якщо існує окіл \( I \) точки \( x_0 \) такий, що для кожного \( x \in I \) при \( x \neq x_0 \) функція \( f(x) \) набуває значень, менших за значення прямої \( y = t(x) \).</p>
+<p>\[
+f(x) &lt; t(x) \quad \forall x \in I - \lbrace x_0 \rbrace
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="524" src="../images/maximum-minimum-6-1.png" alt="" class="wp-image-9426" style="width:306px" srcset="../images/maximum-minimum-6-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/maximum-minimum-6-1-300x257.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Поняття випуклості та ввігнутості детально розглянуті в їхньому аналітичному формулюванні в статті <a href="convexity-and-concavity-of-functions.html">Випуклість та ввігнутість функцій</a></p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Точки перегину та зміна випуклості</h2>
+<p><strong>Точкою перегину</strong> називається точка, в якій змінюється випуклість функції.</p>
+<p>Розглянемо випадок, коли функція \( y = f(x) \) визначена на проміжку \( (a, b) \), і нехай \( x_0 \in (a, b) \) є або точкою, де \( f(x) \) диференційовна, або точкою, де:</p>
+<p>\[
+\lim_{x \to x_0} f’(x) = +\infty \quad \text{або} \quad \lim_{x \to x_0} f’(x) = -\infty
+\]</p>
+<p>Точка \( x_0 \) визначається як точка перегину, якщо функція змінює випуклість у точці \( x_0 \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="534" src="../images/maximum-minimum-7.png" alt="An _inflection point_ is a point where the concavity of a function changes." class="wp-image-9439" style="width:306px" srcset="../images/maximum-minimum-7.png 612w, https://algebrica.org/wp-content/uploads/resources/images/maximum-minimum-7-300x262.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure><div class="wp-block-jetpack-markdown mb-x-30"><p>Точка перегину називається горизонтальною, якщо дотична в точці перегину паралельна осі x. Коли дотична паралельна осі y, точка перегину називається вертикальною. У всіх інших випадках, як у випадку, показаному на рисунку, вона називається похилою.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="522" src="../images/maximum-minimum-8.png" alt="" class="wp-image-9575" style="width:306px" srcset="../images/maximum-minimum-8.png 612w, https://algebrica.org/wp-content/uploads/resources/images/maximum-minimum-8-300x256.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>\( x_0 \) є <strong>горизонтальною точкою перегину</strong> для функції \( f(x) \), якщо \( f’(x) = 0 \) і знак \( f’(x) \) є однаковим\(^1\) для кожного \( x \neq x_0 \) в околі \( I \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign mb-x-30 mt-m-20"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ x_0 \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( f’(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( f(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{\nearrow} \)</td>
+<td style="text-align:center">\( \boldsymbol{\nearrow} \)</td>
+</tr>
+</tbody>
+</table>
+<h6>Знаки в околі \(x_0\) можуть бути як обома додатними (як у схемі вище), так і обома від'ємними.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section-inverse mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Як обчислити точки локального максимуму та мінімуму</h2>
+<p>Для заданої неперервної функції, щоб знайти точки локального максимуму та мінімуму, ми аналізуємо знак першої похідної. Процедура включає наступні кроки:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>
+<p>Обчислити похідну \( f’(x) \) і визначити її область визначення, щоб ідентифікувати точки, де функція не є диференційовною (наприклад, cusps, кути).</p>
+</li>
+<li>
+<p>Дослідити знак похідної, аналізуючи, де \( f’(x) \) є додатною, від'ємною або дорівнює нулю.</p>
+</li>
+<li>
+<p>Визначити локальні максимуми та мінімуми: точка \( x_0 \) є локальним максимумом, якщо \( f’(x) \) змінює знак з додатного на від'ємний навколо \( x_0 \). Точка \( x_0 \) є локальним мінімумом, якщо \( f’(x) \) змінює знак з від'ємного на додатний навколо \( x_0 \).</p>
+</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Приклад 1</h2>
+<p>Обчислимо точки локального максимуму та мінімуму наступної функції:</p>
+<p>\[ y = f(x) = x^3 &#8211; \frac{1}{2}x^2 \]</p>
+<hr>
+<p>Оскільки це <a href="polynomial-function.html">поліноміальна функція</a>, вона є неперервною та диференційовною для всіх \( x \in \mathbb{R} \). Отже, вона не має точок розриву в своїй області визначення. Тепер обчислимо першу похідну функції. Отримаємо:</p>
+<p>\[f’(x) = 3x^2 - x\]</p>
+<hr>
+<p>Тепер дослідимо знак похідної, розв'язавши:
+\[ 3x^2 - x &gt; 0 \]</p>
+<p>Переходячи до відповідного рівняння, отримаємо:</p>
+<p>\[ 3x^2 - x = 0 \implies x(3x -1) = 0\]</p>
+<p>Рівняння виконується при \( x = 0 \) та \( x = \dfrac{1}{3} \).</p>
+<hr>
+<p>Повертаючись до нерівності, отримаємо, що \( f’(x) &gt; 0 \) при \( x &lt; 0 \) та \( x &gt; \dfrac{1}{3} \).</p>
+<hr>
+<p>Тепер представимо таблицю знаків і зауважимо, що функція зростає при \( x &lt; 0 \), спадає при \( 0 &lt; x &lt; \dfrac{1}{3} \) і знову зростає при \( x &gt; \dfrac{1}{3} \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ 0 \]</th>
+<th style="text-align:center">\[ +\dfrac{1}{3} \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( f’(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( f(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{\nearrow} \)</td>
+<td style="text-align:center">\( \boldsymbol{\searrow} \)</td>
+<td style="text-align:center">\( \boldsymbol{\nearrow} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Для ( x = 0 ) функція набуває значення \( f(0) = 0^3 &#8211; \dfrac{1}{2}0^2 = 0 \). Отже, точка \( (0,0) \) є локальним максимумом.</p>
+<hr>
+<p>Для \( x = \dfrac{1}{3} \), функція набуває значення:
+\[
+\begin{align}
+f\left( \dfrac{1}{3} \right) &amp;= \left( \dfrac{1}{3} \right)^3 - \dfrac{1}{2} \left( \dfrac{1}{3} \right)^2 \\[0.5em]
+&amp;= \dfrac{1}{27} &#8211; \dfrac{1}{2} \times \dfrac{1}{9} \\[0.5em]
+&amp;= -\dfrac{1}{54}\\
+\end{align}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Точка \( \left( \dfrac{1}{3}, -\dfrac{1}{54} \right) \), отже, є локальним мінімумом.
+Таким чином, ми знайшли точки локального максимуму та мінімуму функції \(f(x)\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30"><h2>Як визначити випуклість функції</h2>
+<p>Нехай \( y = f(x) \) — неперервна функція, визначена в околі точки \( x_0 \), а також її перша та друга похідні.</p>
+<p>Якщо в точці \( x_0 \) маємо \( f’'(x_0) \neq 0 \), тоді:</p>
+<ul>
+<li>Функція випукла вниз (concave upward), якщо \( f’'(x_0) &gt; 0 \).</li>
+<li>Функція випукла вгору (concave downward), якщо \( f’'(x_0) &lt; 0 \).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Приклад 2</h2>
+<p>Розглянемо функцію з Прикладу 1 та визначимо її <a href="convexity-and-concavity-of-functions.html">випуклість та ввігнутість</a>:</p>
+<p>\[
+y = f(x) = x^3 &#8211; \frac{1}{2}x^2
+\]</p>
+<hr>
+<p>Друга похідна функції дорівнює:</p>
+<p>\[
+f’'(x) = 6x - 1
+\]</p>
+<p>Тепер дослідимо знак, розв'язавши нерівність:</p>
+<p>\[
+6x - 1 &gt; 0 \implies x &gt; \frac{1}{6}
+\]</p>
+<hr>
+<p>Побудуємо таблицю знаків, щоб отримати проміжки, на яких функція випукла вниз або випукла вгору.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ 0 \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( f’'(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( f(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{\bigcup} \)</td>
+<td style="text-align:center">\( \boldsymbol{\bigcap} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">Випуклість</td>
+<td style="text-align:center">Вниз</td>
+<td style="text-align:center">Вгору</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Таким чином, ми отримали проміжки випуклості функції.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Визначення точок перегину</h2>
+<p>Точка перегину виникає тоді, коли випуклість функції змінює знак. Ця зміна вказує на перехід від випуклості вниз до випуклості вгору або навпаки. Щоб визначити, чи є точка дійсно точкою перегину, необхідно перевірити, чи змінює друга похідна \(f{\prime}{\prime}(x)\) знак при переході через цю точку.</p>
+<ul>
+<li>
+<p>Точка \( x_0 \) є горизонтальною точкою перегину, якщо:
+\[
+f’(x_0) = 0, \quad f’'(x_0) = 0
+\]
+але випуклість змінює знак в околі \( x_0 \). У цьому випадку дотична в точці \( x_0 \) є горизонтальною.</p>
+</li>
+<li>
+<p>Точка \( x_0 \) є вертикальною точкою перегину, якщо функція не є диференційовною в \( x_0 \) і випуклість змінює знак навколо \( x_0 \). Такий тип точки перегину часто зустрічається в точках із гострими кутами або заломами, де функція є неперервною, але не гладкою.</p>
+</li>
+<li>
+<p>Точка \( x_0 \) є похилою точкою перегину, якщо:
+\[
+f’(x_0) \neq 0, \quad f’'(x_0) = 0
+\]
+і випуклість змінює знак навколо \( x_0 \). У цьому випадку дотична не є ні горизонтальною, ні вертикальною, а має ненульовий кутовий коефіцієнт.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list pb-section"><h2>Вправи на знаходження максимумів, мінімумів та точок перегину функцій</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad f(x) = x^3 &#8211; 6x^2 + 9x \] <a href="#">розв'язання</a></p>
+</li>
+<li>
+<p>\[\text{2. } \quad f(x) = \dfrac{x^2}{x^2 + 1} \] <a href="#">розв'язання</a></p>
+</li>
+<li>
+<p>\[\text{3. } \quad f(x) = \ln(x^2 + 1)  \] <a href="#">розв'язання</a></p>
+</li>
+<li>
+<p>\[\text{4. } \quad f(x) = x e^{-x} \] <a href="#">розв'язання</a></p>
+</li>
+<li>
+<p>\[\text{5. } \quad f(x) = \sin(x) + \cos(x) \] <a href="#">розв'язання</a></p>
+</li>
+<li>
+<p>\[\text{5. } \quad f(x) = x^2 \ln(x) \] <a href="#">розв'язання</a></p>
+</li>
+</ul>
+<h5>Запропоновані функції ретельно підібрані, щоб допомогти вам закріпити розуміння локальних максимумів, мінімумів та точок перегину. Для кожної функції необхідно обчислити першу та другу похідні, визначити критичні точки та проаналізувати зміни випуклості. Деякі приклади є більш прямими, тоді як інші потребують алгебраїчних перетворень або містять змішані вирази (<a href="polynomials.html">поліноми</a>, <a href="exponential-function.html">показникові</a>, <a href="logarithms.html">логарифмічні</a> або <a href="unit-circle.html">тригонометричні</a>). Спробуйте самостійно визначити та класифікувати всі відповідні точки перед перевіркою розв'язань.</h5>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке локальний максимум у математичному аналізі?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Локальний максимум функції — це точка, у якій функція досягає пікового значення в певному околі. У цій точці значення функції є більшим або рівним значенням у сусідніх точках."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке точка перегину?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Точка перегину — це точка, в якій графік функції змінює випуклість, тобто переходить від випуклості вниз до випуклості вгору, або навпаки. Зазвичай це відбувається там, де друга похідна змінює знак."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як знайти локальні максимуми та мінімуми функції?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Локальні максимуми та мінімуми можна знайти, взявши першу похідну функції та розв'язавши рівняння для критичних точок, де похідна дорівнює нулю або не визначена. Для класифікації цих точок часто використовують тест другої похідної."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="maximum-minimum-and-inflection-points.html">algebrica.org/maximum-minimum-and-inflection-points</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

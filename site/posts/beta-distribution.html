@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бета-розподіл — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теорія ймовірностей та статистика</span>
+    </nav>
+    <article>
+        <h1>Бета-розподіл</h1>
+        <time>2025-05-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax pb-section"><h2>Вступ до бета-розподілу</h2>
+<p> <strong>Бета-розподіл</strong> — це неперервний розподіл ймовірностей, визначений на відкритому <a href="intervals.html">проміжку</a> \( (0, 1) \). Він залежить від двох додатних чисел, \( \alpha \) та \( \beta \), які визначають, як вигинається крива і як її маса розподілена вздовж проміжку. Оскільки він набуває значень лише від \(0\) до \(1\), його часто використовують для опису випадкових величин, що представляють пропорції, відношення або ймовірності — ситуацій, де результати природно обмежені цими межами. У формальних термінах бета-розподіл визначається наступною функцією щільності ймовірності:</p>
+<p>\[
+B(x; \alpha, \beta) =
+\frac{x^{\alpha - 1}(1 - x)^{\beta &#8211; 1}}{B(\alpha, \beta)}
+\quad 0 &lt; x &lt; 1
+\]</p>
+<p>де \( B(\alpha, \beta) \) — бета-функція, пов'язана з гамма-функцією наступним чином:</p>
+<p>\[
+B(\alpha, \beta) =
+\frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}
+\]</p>
+<p>Отже, функцію щільності ймовірності також можна записати явно через гамма-функцію як:</p>
+<p>\[
+B(x; \alpha, \beta) =
+\frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)}
+\, x^{\alpha - 1}(1 - x)^{\beta &#8211; 1}
+\]</p>
+<p>при цьому \( B(x; \alpha, \beta) = 0 \) для \( x \notin (0, 1) \). Сама гамма-функція \( \Gamma(c) \) для кожного \( c \in \mathbb{R}^+, \) визначається наступним <a href="definite-integrals.html">інтегральним</a> представленням:</p>
+<p>\[
+\Gamma(c) =
+\int_{0}^{+\infty} x^{c - 1} e^{-x} \, dx
+\]</p>
+<p>Гамма-функцію можна розглядати як неперервне продовження <a href="factorial.html">факторіала</a>, який визначений лише для натуральних чисел, на всі додатні дійсні значення.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps"><h2>Форма бета-розподілу</h2>
+<p>Форма бета-розподілу залежить від значень його параметрів \( \alpha \) та \( \beta \). Залежно від їхньої величини, розподіл може набувати різних форм: унімодальної, U-подібної або <a href="increasing-and-decreasing-functions.html">монотонної</a>. Розподіл досягає своєї моди в точці</p>
+<p>\[
+x_0 = \frac{\alpha &#8211; 1}{\alpha + \beta &#8211; 2}
+\]</p>
+<ul>
+<li>Якщо \( \alpha &gt; 1 \) і \( \beta &gt; 1 \), розподіл має моду в точці \( x_0 \), що відповідає точці максимуму функції щільності.</li>
+<li>Якщо \( \alpha &lt; 1 \) і \( \beta &lt; 1 \), функція має <a href="maximum-minimum-and-inflection-points.html">мінімум</a> у тій самій точці.</li>
+<li>При всіх інших комбінаціях параметрів розподіл є монотонним.</li>
+<li>Коли \( \alpha = \beta \), розподіл є <a href="even-and-odd-functions.html">симетричним</a> відносно вертикальної прямої \( x = x_0 = \tfrac{1}{2} \).</li>
+</ul>
+<hr>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>На малюнку проілюстровано одну з можливих форм бета-розподілу, коли обидва параметри \( \alpha \) та \( \beta \) менші за 1 і рівні між собою. У цій конфігурації розподіл набуває характерної U-подібної форми, при якій щільність прямує до нескінченності біля меж проміжку \( (0, 1) \). Можна помітити точку мінімуму, розташовану в \( x = x_0 \), що відповідає найнижчому значенню щільності ймовірності в <a href="determining-the-domain-of-a-function.html">області визначення</a>.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="540" height="420" src="../images/beta-distribution-1.png" alt="Typical U-shaped form of the Beta distribution with α < 1, β < 1, and α = β.
+" class="wp-image-19595" style="width:270px" title="Typical U-shaped form of the Beta distribution with α < 1, β < 1, and α = β." srcset="../images/beta-distribution-1.png 540w, https://algebrica.org/wp-content/uploads/resources/images/beta-distribution-1-300x233.png 300w" sizes="(max-width: 540px) 100vw, 540px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Цікавий випадок виникає, коли два параметри рівні, тобто \( \alpha = \beta \), і обидва більші за \(1\). У цій ситуації бета-розподіл стає симетричним відносно вертикальної прямої \( x = \tfrac{1}{2} \) і набуває унімодальної (тобто кривої з одним піком), дзвоноподібної форми з одним центральним піком. У міру збільшення значень \( \alpha \) та \( \beta \) крива стає прогресивно вужчою і дедалі більше нагадує <a href="normal-distribution.html">нормальний розподіл</a> з центром у точці \( x = 0.5 \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="540" height="520" src="../images/beta-distribution-2.png" alt="As α and β increase, the Beta distribution approaches a normal curve centered at 0.5." class="wp-image-19606" style="width:270px" title="As α and β increase, the Beta distribution approaches a normal curve centered at 0.5." srcset="../images/beta-distribution-2.png 540w, https://algebrica.org/wp-content/uploads/resources/images/beta-distribution-2-300x289.png 300w" sizes="(max-width: 540px) 100vw, 540px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Якщо бути точнішим, це <a href="asymptotes.html">асимптотичне</a> наближення, яке виконується для великих значень \( \alpha \) та \( \beta \). Для достатньо великих параметрів бета-розподіл може бути наближений нормальним розподілом з:</p>
+<p>\[
+\mu = \frac{\alpha}{\alpha + \beta}
+\]
+\[
+\sigma^2 = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}
+\]</p>
+<p>У симетричному випадку, де \( \alpha = \beta = k \), маємо:</p>
+<p>\[
+\mu = \tfrac{1}{2}
+\quad
+\sigma^2 = \frac{1}{8(2k + 1)} \approx \frac{1}{16k}
+\]</p>
+<p>Отже, при \( k \to \infty \):</p>
+<p>\[
+\mathrm{B}(x; k, k) \approx
+\mathcal{N}\!\left(\tfrac{1}{2}, \tfrac{1}{8(k + 1)}\right)
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Ключові особливості</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad f(x) = \frac{x^{\alpha &#8211; 1}(1 &#8211; x)^{\beta - 1}}{B(\alpha, \beta)} \quad 0 \le x \le 1 \]</p>
+</li>
+<li>
+<p>\[\text{2. } \quad \mu = E(X) = \frac{\alpha}{\alpha + \beta} \]</p>
+</li>
+<li>
+<p>\[\text{3. } \quad \sigma^{2} = \mathrm{Var}(X) = \frac{\alpha \beta}{(\alpha + \beta)^{2}(\alpha + \beta + 1)} \]</p>
+</li>
+<li>
+<p>\[\text{4. } \quad \sigma = \sqrt{\frac{\alpha \beta}{(\alpha + \beta)^{2}(\alpha + \beta + 1)}} \]</p>
+</li>
+</ul>
+<h5>Кожен вираз підкреслює ключову властивість бета-розподілу, показуючи, як його форма залежить від параметрів \(\alpha\) та \(\beta\), і як його середнє значення та мінливість відображають баланс між цими двома параметрами форми.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Середнє значення бета-розподілу</h2>
+<p> <a href="introduction-to-the-mean.html">Середнє значення</a>, або <a href="mean-or-expected-value-of-a-random-variable.html">математичне сподівання</a> бета-розподілу представляє середнє значення випадкової змінної, визначеної на проміжку \( (0, 1) \), залежно від параметрів форми \( \alpha \) та \( \beta \). Формально, середнє значення отримують із загального означення математичного сподівання:</p>
+<p>\[
+\mu = E(X) = \int_{0}^{1} x \, B(x; \alpha, \beta) \, dx
+\]</p>
+<p>Підставляючи функцію щільності ймовірності бета-розподілу, маємо:</p>
+<p>\[
+E(X) =
+\int_{0}^{1} x \,
+\frac{x^{\alpha - 1} (1 - x)^{\beta &#8211; 1}}{B(\alpha, \beta)} \, dx
+\]</p>
+<p>що спрощується до:</p>
+<p>\[
+E(X) =
+\frac{1}{B(\alpha, \beta)}
+\int_{0}^{1} x^{\alpha} (1 &#8211; x)^{\beta - 1} \, dx
+\]</p>
+<p>Помітивши, що інтеграл у правій частині сам по собі є бета-функцією
+\( B(\alpha + 1, \beta) \), отримаємо:</p>
+<p>\[
+E(X) =
+\frac{B(\alpha + 1, \beta)}{B(\alpha, \beta)}
+\]</p>
+<p>Використовуючи тотожність, що пов'язує бета- та гамма-функції, отримаємо:</p>
+<p>\[
+B(\alpha, \beta) =
+\frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}
+\]</p>
+<p>Отже, середнє значення можна виразити як:</p>
+<p>\[
+E(X) =
+\frac{\alpha}{\alpha + \beta}
+\]</p>
+<h5>Звідси, середнє значення бета-розподілу залежить тільки від двох параметрів форми та виражає баланс між ними.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Дисперсія бета-розподілу</h2>
+<p> <a href="variance-and-covariance-of-a-random-variable.html">Дисперсія</a> бета-розподілу вимірює, наскільки випадкова змінна відхиляється від свого середнього значення. У той час як середнє значення описує центральну тенденцію розподілу, дисперсія кількісно визначає його розсіяння — тобто, наскільки концентрованими або розсіяними є можливі результати в межах проміжку \( (0, 1) \). Формально, дисперсія визначається як:</p>
+<p>\[
+\sigma^2 = \mathrm{Var}(X) = E(X^2) - [E(X)]^2
+\]</p>
+<p>Починаючи з функції щільності ймовірності бета-розподілу:</p>
+<p>\[
+B(x; \alpha, \beta) =
+\frac{x^{\alpha - 1} (1 - x)^{\beta &#8211; 1}}{B(\alpha, \beta)}
+\]</p>
+<p>вираз можна переписати як:</p>
+<p>\[
+\begin{align}
+E(X^2) &amp;=
+\int_{0}^{1} x^2 f(x; \alpha, \beta) \, dx \\
+&amp;= \frac{1}{B(\alpha, \beta)}
+\int_{0}^{1} x^{\alpha + 1} (1 &#8211; x)^{\beta - 1} \, dx \\[12 pt]
+&amp;= \frac{B(\alpha + 2, \beta)}{B(\alpha, \beta)}
+\end{align}
+\]</p>
+<p>Підставляючи цей вираз та середнє значення у формулу, отримуємо:</p>
+<p>\[
+\sigma^2 =
+\frac{B(\alpha + 2, \beta)}{B(\alpha, \beta)} &#8211;
+\left(\frac{\alpha}{\alpha + \beta}\right)^2
+\]</p>
+<p>Використовуючи зв'язок між бета- та гамма-функціями:</p>
+<p>\[
+B(\alpha, \beta) =
+\frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}
+\]</p>
+<p>отримаємо спрощений вираз для дисперсії:</p>
+<p>\[
+\sigma^2 =
+\frac{\alpha \beta}
+{(\alpha + \beta)^2 (\alpha + \beta + 1)}
+\]</p>
+<h5>Коли \( \alpha \) та \( \beta \) збільшуються разом, дисперсія зменшується, що призводить до того, що розподіл стає більш концентрованим навколо свого середнього значення.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-section"><h2>Зв'язок між бета-розподілом та рівномірним розподілом</h2>
+<p> <a href="uniform-distribution.html">Рівномірний розподіл</a> можна розглядати як особливий випадок бета-розподілу. Коли обидва параметри дорівнюють одиниці, тобто \( \alpha = \beta = 1 \), функція щільності ймовірності бета-розподілу стає сталою на проміжку \( (0, 1) \). У загальному випадку неперервний рівномірний розподіл, визначений на проміжку \( (a, b) \), задається наступним чином:</p>
+<p>\[
+f(x) =
+\begin{cases}
+\dfrac{1}{b &#8211; a} &amp; a &lt; x &lt; b \\[10pt]
+0 &amp; \text{в іншому випадку}
+\end{cases}
+\]</p>
+<p>Для \( a = 0 \) та \( b = 1 \) цей вираз зводиться до \( f(x) = 1 \), що точно відповідає розподілу \(B(1, 1)\). У цьому випадку два параметри бета-розподілу набувають значень \( \alpha = 1 \) та \( \beta = 1 \), що створює сталу щільність ймовірності на проміжку \(0, 1\).</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке бета-розподіл?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Бета-розподіл — це неперервний розподіл ймовірностей, визначений на проміжку (0, 1). Він керується двома параметрами форми, альфа та бета, які визначають симетрію та загальну форму кривої."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Які параметри бета-розподілу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Бета-розподіл залежить від двох додатних параметрів, альфа та бета. Їхні значення керують асиметрією, симетрією та розсіюванням розподілу на проміжку (0, 1)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Де використовується бета-розподіл?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Бета-розподіл часто використовується для моделювання ймовірностей, пропорцій та інтенсивностей. Він також відіграє важливу роль у байєсівській статистиці, де слугує апріорним розподілом для параметрів, обмежених значеннями від 0 до 1."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="beta-distribution.html">algebrica.org/beta-distribution</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

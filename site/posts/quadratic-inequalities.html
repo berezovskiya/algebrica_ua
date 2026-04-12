@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Квадратні нерівності — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Нерівності</span>
+    </nav>
+    <article>
+        <h1>Квадратні нерівності</h1>
+        <time>2025-02-13</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section pb-steps mb-x-30 alignCenterMathjax"><h2>Що таке квадратні нерівності?</h2>
+<p>Квадратна нерівність або <a href="inequalities.html">нерівність</a> другого степеня — це нерівність з <a href="polynomials.html">поліномом</a> другого степеня від однієї змінної. Стандартна форма квадратної нерівності має таку ж організацію доданків, як і <a href="quadratic-equations.html">квадратне рівняння</a>, але замість знака рівності використовуються знаки \( &gt; \), \( &lt; \), \( \geq \) або \( \leq \).</p>
+<p>Квадратна нерівність має вигляд:</p>
+<p>\[ax^2 + bx + c \gt 0 \quad \text{де} \quad a \neq 0\]</p>
+<ul>
+<li>Коефіцієнти \(a\), \(b\) та \(c\) є сталими, а \(x\) представляє змінну.</li>
+<li>\(a\) — це коефіцієнт квадратичного члена \(x^2\), \(b\) — коефіцієнт лінійного члена \(x\), а \(c\) — вільний член (стала).</li>
+<li>Коли \(a\) дорівнює нулю, рівняння вироджається в лінійне рівняння \(bx + c = 0\) або в стале рівняння, залежно від значень \(b\) та \(c\).</li>
+</ul>
+<hr>
+<p>Квадратні нерівності, що не представлені у стандартній формі, можна перетворити, перенісши всі доданки в один бік, щоб праворуч залишився нуль. Наприклад, нерівність:</p>
+<p>\[x^2 + 3 &lt; 2x + 1\]</p>
+<p>переписується як \(x^2 &#8211; 2x + 2 &lt; 0\) перед застосуванням методів, описаних у цьому розділі.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Природа розв'язків квадратної нерівності</h2>
+<p>Розв'язання квадратної нерівності зазвичай виражається як проміжок значень, що задовольняють нерівність, а не як одне конкретне значення. Залежно від знака квадратичного виразу та природи його коренів, розв'язання може складатися з:</p>
+<ul>
+<li>відкритого або закритого інтервалу (неперервної множини значень),</li>
+<li>двох окремих інтервалів,</li>
+<li>одного значення, у випадках, коли нерівність задоволена лише в одній точці,</li>
+<li>або розв'язків немає, якщо нерівність ніколи не є правильною для будь-якого дійсного числа.</li>
+</ul>
+<p>Ці результати залежать від визначника (дискримінанта) відповідного квадратного рівняння та напрямку знака нерівності \(\gt, \lt \). Розуміння цієї структури є важливим для інтерпретації графічної поведінки параболи та визначення того, які області числової прямімої задовольняють умову.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Метод розв'язання</h2>
+<p>Першим кроком у розв'язанні квадратної нерівності є пошук розв'язків відповідного рівняння другого степеня. Потім, виходячи зі знака нерівності, можна визначити проміжок значень, що її задовольняють. Існує два широко використовуваних методи отримання розв'язків квадратного рівняння: <a href="quadratic-formula.html">формула коренів квадратного рівняння</a> та <a href="factoring-quadratic-equations.html">метод розкладання на множники</a>.</p>
+<h5>Формула квадратного рівняння дозволяє знайти розв'язки будь-якого квадратного рівняння простим і систематичним способом, тоді як метод розкладання на множники передбачає розкладання квадратичного виразу для отримання його розв'язків. Обидва методи є практичними та широко використовуються для розв'язування квадратних рівнянь.</h5>
+<hr>
+<p>Дано нерівність у стандартній формі \(ax^2 +bx +c \gt 0\) або \(ax^2 +bx +c \lt 0\), перетворимо її на відповідне рівняння, прирівнявши поліном до нуля. Таким чином, ми отримаємо рівняння другого степеня у вигляді:<br>
+\[ax^2 +bx +c = 0 \]</p>
+<p>Дійсні <a href="roots-of-a-polynomial.html">корені</a> відповідного рівняння розбивають дійсну пряму на підінтервали, на яких квадратичний поліном зберігає постійний знак. Визначивши знак виразу на кожному з цих інтервалів, ми можемо знайти значення, що задовольняють нерівність.</p>
+<h6>Часто корисно розуміти, як змінюється поведінка квадратичного виразу, коли коефіцієнти залежать від параметра. У таких випадках знак квадратичного виразу визначається дискримінантом як функцією параметра, і інтервали позитивності або негативності можуть відповідно зміщуватися. Повне обговорення цієї теми можна знайти в окремому розділі про <a href="quadratic-equations-with-parameters.html">квадратні рівняння з параметрами</a>.</h6>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Розв'язання при \(\Delta &gt; 0\)</h2>
+<p>Як було зазначено раніше, квадратні нерівності, на відміну від рівнянь, зазвичай мають множину розв'язків, що складається з проміжку значень, який визначається знаком нерівності. За умови \(\Delta &gt; 0\) (дискримінант <a href="quadratic-formula.html">квадратного рівняння</a>), відповідне рівняння має два різні дійсні корені \(x_1\) та \(x_2\). Припустимо для спрощення, що \(x_1 &lt; x_2\), тоді маємо наступні випадки:</p>
+<p>Коли нерівність має вигляд \(ax^2+bx+c \geq 0\) або \(ax^2+bx+c &gt; 0\):</p>
+<p>\[
+\begin{align}
+x \leq x_1 \lor x \geq x_2 &amp;\quad \text{для} \quad ax^2+bx+c \geq 0 \\[0.5em]
+x &lt; x_1 \lor x &gt; x_2 &amp;\quad \text{для} \quad ax^2+bx+c &gt; 0
+\end{align}
+\]</p>
+<p>Коли нерівність має вигляд \(ax^2+bx+c \leq 0\) або \(ax^2+bx+c &lt; 0\):</p>
+<p>\[
+\begin{align}
+x_1 \leq x \leq x_2 &amp;\quad \text{для} \quad ax^2+bx+c \leq 0 \\[0.5em]
+x_1 &lt; x &lt; x_2 &amp;\quad \text{для} \quad ax^2+bx+c &lt; 0
+\end{align}
+\]</p>
+<p>З геометричної точки зору, пам'ятаючи, що поліном другого степеня представляє собою <a href="parabola.html">параболу</a>, ми отримаємо наступні інтервали:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="748" height="626" src="../images/quadratic-inequalities-1-1.png" alt="" class="wp-image-9929" style="width:374px" srcset="../images/quadratic-inequalities-1-1.png 748w, https://algebrica.org/wp-content/uploads/resources/images/quadratic-inequalities-1-1-300x251.png 300w" sizes="(max-width: 748px) 100vw, 748px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h6>Якщо не зазначено інше, припущення \(a &gt; 0\) зберігається на всій цій сторінці. Якщо \(a &lt; 0\), парабола відкривається вниз, і множини розв'язків у наступних розділах змінюються на протилежні: вирази, що є додатними для \(a &gt; 0\), стають від'ємними для \(a &lt; 0\), і навпаки.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Розв'язання при \(\Delta = 0\)</h2>
+<p>Коли \(\Delta = 0\), відповідне рівняння має один дійсний корінь кратності два, що позначається як \(x_1 = x_2\). Маємо наступні випадки:</p>
+<p>Коли нерівність має вигляд \(ax^2+bx+c \geq 0\) або \(ax^2+bx+c &gt; 0\):</p>
+<p>\[
+\begin{align}
+\forall , x &amp;\quad \text{для} \quad ax^2+bx+c \geq 0 \\[0.5em]
+\forall , x \neq x_1 &amp;\quad \text{для} \quad ax^2+bx+c &gt; 0
+\end{align}
+\]</p>
+<p>Коли нерівність має вигляд \(ax^2+bx+c \leq 0\) або \(ax^2+bx+c &lt; 0\):</p>
+<p>\[
+\begin{align}
+x = x_1 &amp;\quad \text{для} \quad ax^2+bx+c \leq 0 \\[0.5em]
+\not\exists , x &amp;\quad \text{для} \quad ax^2+bx+c &lt; 0
+\end{align}
+\]</p>
+<p>З геометричної точки зору, коли \(\Delta = 0\), крива завжди набуває додатних значень (припускаючи, що коефіцієнт \(a\) більший за нуль). Єдина точка, де крива торкається осі x, знаходиться у подвійному корені, де значення виразу дорівнює нулю \(x_1 = x_2\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="666" height="470" src="../images/quadratic-inequalities-2.png" alt="" class="wp-image-9950" style="width:333px" srcset="../images/quadratic-inequalities-2.png 666w, https://algebrica.org/wp-content/uploads/resources/images/quadratic-inequalities-2-300x212.png 300w" sizes="(max-width: 666px) 100vw, 666px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Розв'язання при \(\Delta \lt 0\)</h2>
+<p>За умови \( \Delta &lt; 0 \), відповідне квадратне рівняння має <a href="quadratic-equations-with-complex-solutions.html">комплексні корені</a>. Отже, парабола не перетинає вісь x. Виходячи зі знака нерівності та знака старшого коефіцієнта ( a ), ми розрізняємо наступні випадки:</p>
+<ul>
+<li>
+<p>Коли нерівність має вигляд \(ax^2+bx+c \geq 0 \) або \(ax^2+bx+c \gt 0 \), в обох випадках маємо: \(\forall \, x\)</p>
+</li>
+<li>
+<p>Коли нерівність має вигляд \(ax^2+bx+c \leq 0 \) або \(ax^2+bx+c \lt 0 \), в обох випадках маємо: \(\not\exists \; x\)</p>
+</li>
+</ul>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="668" height="648" src="../images/quadratic-inequalities-3.png" alt="" class="wp-image-9952" style="width:334px" srcset="../images/quadratic-inequalities-3.png 668w, https://algebrica.org/wp-content/uploads/resources/images/quadratic-inequalities-3-300x291.png 300w" sizes="(max-width: 668px) 100vw, 668px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Коли коефіцієнт \( a \) додатний, гілки параболи спрямовані вгору, тоді як коли \( a \) від'ємний, гілки спрямовані вниз. У прикладах ми припустили, що вирази були переписані у вигляді \( ax^2 + bx + c &gt; 0 \) з додатним \( a \), що призвело до параболи, відкритії вгору.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розв'яжіть квадратну нерівність:
+\[2x^2 +5x &#8211; 3 \gt 0 \]</p>
+<p>Як показано вище, першим основним кроком є перехід до відповідного квадратного рівняння шляхом прирівнювання полінома до нуля:</p>
+<p>\[2x^2+5x-3 = 0 \]</p>
+<p>Тепер ми використовуємо <a href="quadratic-formula.html">формулу коренів квадратного рівняння</a>, щоб знайти розв'язання рівняння.</p>
+<p>\[
+\begin{align}
+x_{1,2} &amp;= \frac{-5 \pm \sqrt{5^2 -4\cdot(2)\cdot(-3)}}{2\cdot 2} \\[1em]
+&amp;= \frac{-5 \pm \sqrt{25 +24}}{4} \\[1em]
+&amp;= \frac{-5 \pm 7}{4} \\[1em]
+\end{align}\]</p>
+<hr>
+<p>Отримаємо: \[x_1 = \frac{2}{4} \to \frac{1}{2} \] \[x_2 = - \frac{12}{4} \to -3 \]</p>
+<hr>
+<p>Тепер визначимо область значень розв'язків нерівності. Ми можемо використовувати графічний метод, щоб визначити її візуально. Нерівність має вигляд \(ax^2 +bx +c \gt 0\). Маємо:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th>\[ -3\]</th>
+<th>\[ \frac{1}{2}\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td><div class="sign-plus-right -open -highlight"></div></td>
+<td><div class="sign-plus-left -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Розв'язанням нерівності є:
+\[
+x \lt -3 \;\lor\; x \gt \frac{1}{2}
+\quad\text{або}\quad
+x \in \left(-\infty, -3\right) \cup \left(\frac{1}{2}, +\infty\right)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-standard"><p>Якби нерівність мала вигляд \(2x^2 +5x - 3 \lt 0\), ми б мали:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th>\[ -3\]</th>
+<th>\[ \frac{1}{2}\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td><div class="sign-plus-right -open"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td><div class="sign-plus-left-in -open -highlight"></div></td>
+<td><div class="sign-plus-right-in -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>У цьому випадку область значень, яку слід розглянути, становить \(-3 \lt x \lt \frac{1}{2}\), і розв'язанням рівняння є \(x \in \left(-3,\frac{1}{2}\right)\).</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Аналіз знаків</h2>
+<p>Іншим корисним методом розв'язування нерівностей є <a href="sign-analysis-in-inequalities.html">аналіз знаків</a>. Цей метод використовується для визначення інтервалів, на яких заданий вираз є додатним, від'ємним або дорівнює нулю. Наприклад, розглянемо наступну нерівність:</p>
+<p>\[x^2 &#8211; 2x &#8211; 3 &gt; 0 \]</p>
+<p>Поліном можна <a href="factoring-ac-method.html">розкласти на множники</a> наступним чином:</p>
+<p>\[ (x &#8211; 3)(x + 1) &gt; 0 \]</p>
+<p>Згідно з правилом знаків добутку, цей поліном, розкладений на добуток двох множників, є додатним, коли виконується наступна умова:</p>
+<p>\[
+\begin{align}
+&amp;x - 3 &gt; 0 \rightarrow x &gt; 3 \\[0.5em]
+&amp;x + 1 &gt;0 \rightarrow x &gt; -1
+\end{align}
+\]</p>
+<p>Тепер ми відобразимо значення на числовій прямій і позначимо відповідні інтервали додатності та від'ємності. Маємо:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ -1 \]</th>
+<th style="text-align:center">\[3 \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\[ x + 1 &gt; 0 \]</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\[ x -3 &gt; 0 \]</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\[ (x + 1)(x &#8211; 3) &gt; 0 \]</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h6>Добуток двох множників є додатним, коли обидва множники мають однаковий знак, і від'ємним, коли вони мають протилежні знаки; повний опис цього методу доступний у відповідному розділі про <a href="sign-analysis-in-inequalities.html">аналіз знаків</a>.</h6>
+<p>В останньому рядку ми вставляємо результат добутку знаків між знаком з 1-го рядка та знаком з 2-го рядка для кожного проміжку. Проміжки, що задовольняють нашу початкову нерівність:</p>
+<p>\[x &lt; -1 \quad \text{та} \quad x &gt; 3 \]</p>
+<p>У позначеннях проміжків множина розв'язків така:</p>
+<p>\[(-\infty, -1) \cup (3, +\infty)\]</p>
+<p>Побудувавши криву на осях, отримаємо:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="558" src="../images/quadratic-inequalities-4-1.png" alt="" class="wp-image-21459" style="width:306px" srcset="../images/quadratic-inequalities-4-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/quadratic-inequalities-4-1-300x274.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Таким чином, ми розв'язали нерівність за допомогою таблиці знаків, не вдаючись до розв'язання відповідного квадратного рівняння за допомогою <a href="quadratic-formula.html">формули коренів квадратного рівняння</a>, що призвело б до того самого результату.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Приклад 2</h2>
+<p>Розглянемо наступну нерівність, де дискримінант відіграє вирішальну роль у визначенні розв'язання:
+\[3x^2 - 2x + 5 &gt; 0\]</p>
+<p>Дискримінант відповідного рівняння \(3x^2 - 2x + 5 = 0\) обчислюється наступним чином:
+\[\Delta = (-2)^2 &#8211; 4 \cdot 3 \cdot 5 = 4 &#8211; 60 = -56\]</p>
+<p>Оскільки \(\Delta &lt; 0\) і провідний коефіцієнт \(a = 3 &gt; 0\), парабола відкривається вгору і не перетинає вісь x.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="684" height="554" src="../images/quadratic-inequalities-8.png" alt="Quadratic inequalities." class="wp-image-25361" style="width:342px" title="Quadratic inequalities." srcset="../images/quadratic-inequalities-8.png 684w, https://algebrica.org/wp-content/uploads/resources/images/quadratic-inequalities-8-300x243.png 300w" sizes="(max-width: 684px) 100vw, 684px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Як результат, квадратний вираз залишається строго додатним для всіх дійсних значень \(x\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язання:
+\[\forall \, x \in \mathbb{R}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li><strong>Stony Brook University</strong>. <a href="https://www.math.stonybrook.edu/Videos/MAP103Online/Handouts/Lecture-31-Handout.pdf">Quadratic Inequalities</a></li>
+<li><strong>University of Illinois at Chicago, J. Baldwin</strong>. <a href="http://homepages.math.uic.edu/~jbaldwin/alginit/solquadsh.pdf">Solving Inequalities and Quadratics</a></li>
+<li><strong>University of Chicago M. Hidegkuti</strong>. <a href="https://teaching.martahidegkuti.com/shared/lnotes/4_collegealgebra/inequalities/inequality2.pdf">Quadratic Inequalities</a></li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке квадратна нерівність?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Квадратна нерівність — це вираз вигляду ax² + bx + c > 0, < 0, ≥ 0 або ≤ 0. Вона визначає діапазон значень змінної x, при яких нерівність є правильною, залежно від знака квадратного виразу."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як розв'язати квадратну нерівність?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб розв'язати квадратну нерівність, спочатку розв'язують відповідне квадратне рівняння, щоб знайти критичні точки. Потім аналізують знак виразу на кожному проміжку, щоб визначити, де виконується нерівність."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи може квадратна нерівність не мати розв'язків?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так, якщо нерівність вимагає такого знака, якого квадратний вираз ніколи не набуває (наприклад, коли шукають, при яких x ax² + bx + c < 0, але парабола завжди знаходиться вище осі x), то розв'язків не існує."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="quadratic-inequalities.html">algebrica.org/quadratic-inequalities</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тригонометричні тотожності — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Тригонометричні тотожності</h1>
+        <time>2025-02-07</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Допоміжні кути або відображення</h2>
+<p>Існує багато тригонометричних тотожностей, які дозволяють переформулювати тригонометричну функцію в інший, але еквівалентний спосіб. Ці альтернативні форми часто спрощують обчислення: вони допомагають впорядкувати вирази, виявляють корисні скорочення та є особливо зручними при розв'язанні таких задач, як розв'язання <a href="trigonometric-equations.html">тригонометричних рівнянь</a>.</p>
+<p>Метод <a href="identities-using-reference-angles.html">допоміжних кутів</a> або відображень стосується набору тригонометричних тотожностей, які дозволяють виразити тригонометричні функції негострих кутів через відповідний гострий кут у першому квадранті прямокутної системи координат. Іншими словами, будь-яка тригонометрична функція <a href="sine-and-cosine.html">синус</a>, <a href="sine-and-cosine.html">косинус</a>, <a href="tangent-and-cotangent.html">тангенс</a> або <a href="tangent-and-cotangent.html">котангенс</a> з аргументом вигляду:
+\[
+\pi \pm \alpha,\quad \frac{\pi}{2} \pm \alpha,\quad \pi \pm \alpha,\quad \frac{3\pi}{2} \pm \alpha,\quad 2\pi &#8211; \alpha, \quad \ldots
+\]</p>
+<p>може бути переписана як функція \(\alpha\) шляхом відповідного коригування знака. Розглянемо кут вигляду:
+\[
+\frac{\pi}{2} + \alpha
+\]
+У декартових координатах цей кут знаходиться у другому квадранті.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="608" height="552" src="../images/reference-angles-1.png" alt="" class="wp-image-6855" style="width:304px" srcset="../images/reference-angles-1.png 608w, https://algebrica.org/wp-content/uploads/resources/images/reference-angles-1-300x272.png 300w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Геометричний аналіз показує, що:</p>
+<p>\[
+\sin\left(\frac{\pi}{2} + \alpha\right) = \cos\alpha
+\]
+\[
+\cos\left(\frac{\pi}{2} + \alpha\right) = -\sin\alpha
+\]</p>
+<p>Іншими словами, <a href="sine-and-cosine.html">синус</a> кута \(\alpha\) (вертикальний відрізок у першому квадранті) дорівнює за довжиною <a href="sine-and-cosine.html">косинусу</a> кута \(\frac{\pi}{2} + \alpha\) (горизонтальний відрізок у другому квадранті), за винятком того, що останній має від'ємний знак.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Сума та різниця</h2>
+<p>Формули суми та різниці кутів дозволяють нам переписати тригонометричну функцію, застосовану до суми або різниці двох кутів, в еквівалентній формі. Для синуса та косинуса виконуються такі тотожності:</p>
+<p>\[
+\begin{align}
+&amp;\sin(a + b) = \sin(a)\cos(b) + \cos(a)\sin(b) \\[10pt]
+&amp;\sin(a &#8211; b) = \sin(a)\cos(b) &#8211; \cos(a)\sin(b) \\[10pt]
+&amp;\cos(a + b) = \cos(a)\cos(b) - \sin(a)\sin(b) \\[10pt]
+&amp;\cos(a &#8211; b) = \cos(a)\cos(b) + \sin(a)\sin(b)
+\end{align}
+\]</p>
+<hr>
+<p>Для тангенса та котангенса виконуються такі тотожності:</p>
+<p>\[
+\begin{align}
+&amp;\tan(a + b) = \frac{\tan(a) + \tan(b)}{1 &#8211; \tan(a)\tan(b)} \\[10pt]
+&amp;\tan(a - b) = \frac{\tan(a) - \tan(b)}{1 + \tan(a)\tan(b)}\\[10pt]
+&amp;\cot(a + b) = \frac{\cot(a)\cot(b) &#8211; 1}{\cot(a) + \cot(b)}\\[11pt]
+&amp;\cot(a - b) = \frac{\cot(a)\cot(b) + 1}{\cot(b) - \cot(a)}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Подвійний кут</h2>
+<p>Формули подвійного кута надають альтернативний спосіб вираження тригонометричної функції, застосованої до подвійного кута. Для формул подвійного кута синуса та косинуса маємо:</p>
+<p>\[\sin(2\theta) = 2\sin(\theta)\cos(\theta)\]
+\[\cos(2\theta) = \cos^2(\theta) - \sin^2(\theta)\]</p>
+<hr>
+<p>Для формул подвійного кута тангенса та котангенса маємо:</p>
+<p>\[\tan(2\theta) = \frac{2\tan(\theta)}{1 &#8211; \tan^2(\theta)}\]
+\[\cot(2\theta) = \frac{\cot^2(\theta) - 1}{2\cot(\theta)}\]</p>
+<hr>
+<p>Щоб навести доведення, розглянемо формулу синуса подвійного кута як приклад, починаючи з основної тригонометричної тотожності:</p>
+<p>\[
+\sin(a + b) = \sin(a)\cos(b) + \cos(a)\sin(b)
+\]</p>
+<hr>
+<p>Припустимо, що \( a = b = \theta \), тоді отримаємо:</p>
+<p>\[
+\sin(\theta + \theta) = \sin(\theta)\cos(\theta) + \cos(\theta)\sin(\theta)
+\]</p>
+<p>Оскільки \( \theta + \theta = 2\theta \), ми можемо переписати рівняння як:</p>
+<p>\[
+\sin(2\theta) = \sin(\theta)\cos(\theta) + \cos(\theta)\sin(\theta)
+\]</p>
+<p>Два доданки в правій частині рівняння ідентичні, тому ми можемо додати їх, щоб отримати:</p>
+<p>\[\sin(2\theta) = 2\sin(\theta)\cos(\theta)\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Формули половинного кута</h2>
+<p>Формули половинного кута використовуються для вираження тригонометричних функцій кута, поділеного навпіл, через тригонометричні функції вихідного кута. Для синуса та косинуса виконуються такі тотожності:</p>
+<p>\[\sin\left(\frac{\theta}{2}\right) = \pm\sqrt{\frac{1 - \cos(\theta)}{2}}\]
+\[\cos\left(\frac{\theta}{2}\right) = \pm\sqrt{\frac{1 + \cos(\theta)}{2}}\]</p>
+<hr>
+<p>Для тангенса та котангенса маємо:</p>
+<p>\[\tan\left(\frac{\theta}{2}\right) = \pm\sqrt{\frac{1 - \cos(\theta)}{1 + \cos(\theta)}} = \frac{\sin(\theta)}{1 + \cos(\theta)} = \frac{1 - \cos(\theta)}{\sin(\theta)}\]
+\[\cot\left(\frac{\theta}{2}\right) = \pm\sqrt{\frac{1 + \cos(\theta)}{1 - \cos(\theta)}} = \frac{1 + \cos(\theta)}{\sin(\theta)} = \frac{\sin(\theta)}{1 - \cos(\theta)}\]</p>
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Параметричні формули</h2>
+<p>Параметричні формули — це вирази, які дозволяють представити тригонометричні функції через допоміжну змінну, яку часто позначають як \( t \). Загалом, для кута \( \theta \), ми можемо виразити синус і косинус через параметричну змінну \( t = \tan\left(\frac{\theta}{2}\right) \) :</p>
+<p>\[
+\sin(\theta) = \frac{2t}{1 + t^2}
+\]
+\[
+\cos(\theta) = \frac{1 - t^2}{1 + t^2}
+\]</p>
+<hr>
+<p>Аналогічно, ми можемо виразити тангенс і котангенс через ту саму параметричну змінну \( t \):</p>
+<p>\[
+\tan(\theta) = \dfrac{2t}{1 &#8211; t^2}
+\]
+\[
+\cot(\theta) = \dfrac{1 - t^2}{2t}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Формули Вернера</h2>
+<p>Формули Вернера — це тригонометричні тотожності, які дозволяють перетворити добуток синусів і косинусів двох кутів на суми та різниці тригонометричних функцій.</p>
+<p>\[\sin(\alpha) \sin(\beta) = \frac{1}{2} [\cos(\alpha &#8211; \beta) - \cos(\alpha + \beta)]\]
+\[\cos(\alpha) \cos(\beta) = \frac{1}{2} [\cos(\alpha + \beta) + \cos(\alpha &#8211; \beta)]\]
+\[\sin(\alpha) \cos(\beta) = \frac{1}{2} [\sin(\alpha + \beta) + \sin(\alpha - \beta)]\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Формули простафайрезису</h2>
+<p>Формули простафайрезису надають корисний спосіб переписати суми та різниці тригонометричних виразів у вигляді добутків. Така зміна форми часто спрощує обчислення та виявляє симетрії, які менш помітні в їхній початковій адитивній формі.</p>
+<p>\[\sin(p) + \sin(q) = 2 \sin\left(\frac{p+q}{2}\right) \cos\left(\frac{p-q}{2}\right)\]
+\[\sin(p) - \sin(q) = 2 \cos\left(\frac{p+q}{2}\right) \sin\left(\frac{p-q}{2}\right)\]
+\[\cos(p) + \cos(q) = 2 \cos\left(\frac{p+q}{2}\right) \cos\left(\frac{p-q}{2}\right)\]
+\[\cos(p) - \cos(q) = -2 \sin\left(\frac{p+q}{2}\right) \sin\left(\frac{p-q}{2}\right)\]</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="trigonometric-identities.html">algebrica.org/trigonometric-identities</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

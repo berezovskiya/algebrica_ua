@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поля — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Алгебричні структури</span>
+    </nav>
+    <article>
+        <h1>Поля</h1>
+        <time>2026-04-02</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-7" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Означення                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="groups.html">Групи</a>, <a href="rings.html">Кільця</a>, <a href="sets.html">Множини</a>, є необхідними попередніми вимогами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-7");
+            var dataset = {"name":"root","children":[{"name":"структура","children":[{"name":"означення"},{"name":"аксіоми поля"},{"name":"адитивна група"},{"name":"мультиплікативна група"},{"name":"дистрибутивний закон"},{"name":"комутативне кільце"}]},{"name":"властивості","children":[{"name":"множення на нуль"},{"name":"відсутність дільників нуля"},{"name":"скорочення"},{"name":"правила знаків"},{"name":"обратність"},{"name":"замкненість"},{"name":"узгодженість"}]},{"name":"теорія","children":[{"name":"приклади"},{"name":"скінченні поля"},{"name":"підполя"},{"name":"розширення поля"},{"name":"характеристика"},{"name":"гомоморфізми"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section pb-steps"><h2>Означення</h2>
+<p>Поле — це алгебраїчна структура, в якій операції додавання та множення є повністю оберненими, за єдиним винятком того, що ділення на нуль виключено. Це поняття виникає природно, коли помічають, що певні знайомі числові системи, такі як раціональні числа, <a href="properties-of-real-numbers.html">дійсні числа</a> та <a href="complex-numbers-introduction.html">комплексні числа</a>, дозволяють не тільки додавання та віднімання, а й множення та ділення на будь-який ненульовий елемент, при цьому діють усі очікувані алгебраїчні правила.</p>
+<p>Формально, поле — це множина \(F\) разом із двома бінарними операціями \(+\) та \(\cdot\), що задовольняють наступні аксіоми:</p>
+<ul>
+<li>
+<p>\((F, +)\) є абелевою групою. Нейтральний елемент по додаванню позначається \(0\), а обернений елемент до \(a \in F\) по додаванню позначається \(-a.\)</p>
+</li>
+<li>
+<p>\((F \setminus \{0\}, \cdot)\) є абелевою групою. Нейтральний елемент по множенню позначається \(1\), а обернений елемент до ненульового елемента \(a\) по множенню позначається \(a^{-1}.\)</p>
+</li>
+<li>
+<p>Множення розподіляється відносно додавання: для всіх \(a, b, c \in F\) маємо \(a \cdot (b + c) = a \cdot b + a \cdot c\).</p>
+</li>
+</ul>
+<blockquote>
+<p>Вимога, щоб \(0 \neq 1\), міститься неявно через виключення \(0\) з мультиплікативної групи, і вона гарантує, що тривіальна множина \(\{0\}\) не вважається полем. Таким чином, поле — це комутативне <a href="rings.html">кільце</a> з одиницею, в якому кожен ненульовий елемент є оберненим. Кожне поле є кільцем, але кільце загалом не є полем.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Властивості</h2>
+<p>Кілька властивостей випливають безпосередньо з аксіом і варті того, щоб бути зафіксованими явно. Для будь-якого \(a \in F\) множення на нуль задовольняє рівність \(a \cdot 0 = 0\). Це не припускається, а виводиться: записують \(a \cdot 0 = a \cdot (0 + 0) = a \cdot 0 + a \cdot 0\) і потім скорочують \(a \cdot 0\) з обох сторін, використовуючи структуру адитивної групи.</p>
+<p>Поле не містить дільників нуля. Якщо \(a \cdot b = 0\) і \(a \neq 0\), то \(a\) є оберненим, і отримаємо \(b = a^{-1} \cdot (a \cdot b) = a^{-1} \cdot 0 = 0\). Це означає, що в полі добуток двох ненульових елементів завжди є ненульовим, що є властивістю, яка робить можливим скорочення в усій алгебрі. Адитивна та мультиплікативна структури взаємодіють через тотожність:</p>
+<p>\[
+(-a) \cdot b = a \cdot (-b) = -(a \cdot b)
+\]</p>
+<p>Цей вираз виконується для всіх \(a, b \in F\). Зокрема, добуток двох від'ємних елементів є додатним у тому сенсі, що \((-a) \cdot (-b) = a \cdot b\), що є наслідком аксіом, а не домовленістю.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Алгебраїчна ієрархія</h2>
+<p>Поля займають чітке місце в ширшій ієрархії алгебраїчних структур.</p>
+<p><a href="groups.html">Група</a> є найелементарнішою з цих структур. Вона складається з множини, оснащеної однією бінарною операцією, що задовольняє замкненість, асоціативність, існування нейтрального елемента та існування обернених елементів.</p>
+<p>Коли вводиться друга операція і вимагається, щоб вона розподілялася відносно першої, але без вимоги, щоб ця друга операція мала обернені елементи, результатом є <a href="rings.html">кільце</a>. Цілі числа \(\mathbb{Z}\) є канонічним прикладом. Кожне <a href="integers.html">ціле число</a> має обернений елемент по додаванню, проте більшість цілих чисел не мають оберненого елемента по множенню в самому \(\mathbb{Z}\), оскільки \(2^{-1}\) не належить до \(\mathbb{Z}\).</p>
+<p>Поле отримують, накладаючи ще одну вимогу на комутативне кільце з одиницею, а саме, що кожен ненульовий елемент має бути оберненим відносно множення. Таким чином, ці три структури утворюють ланцюг зростаючої жорсткості:</p>
+<ul>
+<li>Група має одну операцію з оберненими елементами.</li>
+<li>Кільце має дві операції, при цьому обернені гарантовані лише для додавання.</li>
+<li>Поле має дві операції, при цьому обернені гарантовані як для додавання, так і для всіх ненульових елементів при множенні.</li>
+</ul>
+<blockquote>
+<p>Раціональні числа \(\mathbb{Q}\), дійсні числа \(\mathbb{R}\) та комплексні числа \(\mathbb{C}\) є полями. Цілі числа \(\mathbb{Z}\), натомість, утворюють кільце, але не поле, оскільки ділення в них не є замкненою операцією.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Приклади</h2>
+<p>Множина \(\mathbb{Q}\) раціональних чисел, оснащена звичайним додаванням та множенням, є найменшим полем, що містить цілі числа. Кожне ненульове раціональне число \(p/q\) має обернений за множенням елемент \(q/p\), і всі аксіоми поля виконуються.</p>
+<p>Множина \(\mathbb{R}\) дійсних чисел є полем, що розширює \(\mathbb{Q}\). Вона допускає впорядкування, сумісне з її алгебраїчною структурою, — властивість, яка вирізняє її серед родини полів і яка відповідає за багато аналітичних концепцій, побудованих на її основі.</p>
+<p>Множина \(\mathbb{C}\) комплексних чисел є полем, що розширює \(\mathbb{R}\). На відміну від \(\mathbb{R}\), воно є алгебраїчно замкненим: кожен непостійний поліном із коефіцієнтами в \(\mathbb{C}\) має принаймні один корінь у \(\mathbb{C}\), результат, відомий як основна теорема алгебри.</p>
+<hr>
+<p>Для будь-якого простого \(p\) множина \(\mathbb{Z}/p\mathbb{Z} = \{0, 1, \ldots, p-1\}\), оснащена додаванням та множенням за модулем \(p\), є полем, яке зазвичай позначають \(\mathbb{F}_p\). Це скінченне поле: воно містить рівно \(p\) елементів. Простий характер \(p\) є істотним. У \(\mathbb{Z}/6\mathbb{Z}\), наприклад, елементи \(2\) та \(3\) задовольняють рівність \(2 \cdot 3 = 0\), тому жоден із них не є оберненим, і така структура не є полем.</p>
+<blockquote>
+<p>Скінченні поля існують лише тоді, коли кількість елементів є степенем простого числа \(p^n\) для деякого простого \(p\) та додатного цілого \(n\). Для кожного такого степеня простого числа існує, з точністю до ізоморфізму, рівно одне скінченне поле, що позначається \(\mathbb{F}_{p^n}\) або \(\text{GF}(p^n)\).</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Підполя та розширення полів</h2>
+<p>Підмножина \(K \subseteq F\) називається підполем \(F\), якщо \(K\) сама по собі є полем відносно операцій, успадкованих від \(F\). Еквівалентно, \(K\) є підполем \(F\), якщо воно містить \(0\) та \(1\) і є замкненим відносно додавання, протилежного елемента, множення та взяття обернених за множенням ненульових елементів. Раціональні числа \(\mathbb{Q}\) утворюють підполе \(\mathbb{R}\), яке, своєю чергою, є підполем \(\mathbb{C}\). Ці включення визначають ланцюг полів:</p>
+<p>\[
+\mathbb{Q} \subseteq \mathbb{R} \subseteq \mathbb{C}
+\]</p>
+<p>Коли \(K\) є підполем \(F\), кажуть, що \(F\) є розширенням поля \(K\), що записується як \(F/K\). З цієї точки зору, \(\mathbb{C}/\mathbb{R}\) є розширенням поля, і \(\mathbb{C}\) можна розглядати як двовимірний векторний простір над \(\mathbb{R}\) з базисом \(\{1, i\}\). Розмірність \(F\), розглянутого як векторний простір над \(K\), називається ступенем розширення і позначається \([F : K]\). У цьому прикладі \([\mathbb{C} : \mathbb{R}] = 2\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Характеристика поля</h2>
+<p>Кожне поле \(F\) має відповідне невід'ємне ціле число, яке називається його характеристикою; вона визначає, скільки разів потрібно додати одиницю (нейтральний елемент за множенням) саму до себе, щоб отримати нуль. Формально, характеристикою \(F\) є найменше додатне ціле число \(n\), таке що:</p>
+<p>\[
+\underbrace{1 + 1 + \cdots + 1}_{n} = 0
+\]</p>
+<p>Якщо такого \(n\) не існує, характеристика визначається як \(0\). Характеристика поля завжди є або нулем, або простим числом. Якби характеристика була складеним числом \(n = ab\) при \(1 &lt; a, b &lt; n\), можна було б записати:</p>
+<p>\[
+0 = \underbrace{1 + \cdots + 1}_{n} = \left(\underbrace{1 + \cdots + 1}_{a}\right) \cdot \left(\underbrace{1 + \cdots + 1}_{b}\right)
+\]</p>
+<p>Оскільки в полі немає дільників нуля, один із двох множників мав би бути рівним нулю, що суперечило б мінімальності \(n\). Поля \(\mathbb{Q}\), \(\mathbb{R}\) та \(\mathbb{C}\) мають характеристику нуль. Скінченне поле \(\mathbb{F}_p\) має характеристику \(p\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Гомоморфізми полів</h2>
+<p>Гомоморфізмом полів називається функція \(\varphi : F \to K\) між двома полями, яка зберігає обидві операції: для всіх \(a, b \in F\) виконується:</p>
+<p>\[\varphi(a + b) = \varphi(a) + \varphi(b)\]
+\[\varphi(a \cdot b) = \varphi(a) \cdot \varphi(b)\]</p>
+<p>Маємо, що \(\varphi(1_F) = 1_K\). Кожен гомоморфізм полів обов'язково є ін'єктивним. Щоб переконатися в цьому, зауважимо, що його ядро є <a href="rings.html">ідеалом</a> \(F\):</p>
+<p>\[\ker(\varphi) = \{a \in F : \varphi(a) = 0\}\]</p>
+<p>Оскільки \(F\) є полем, його єдиними ідеалами є \(\{0\}\) та саме \(F\), і умова \(\varphi(1) = 1 \neq 0\) виключає другу можливість. Бієктивний гомоморфізм полів називається ізоморфізмом полів. Два поля є ізоморфними, що записується як \(F \cong K\), якщо між ними існує ізоморфізм. Ізоморфні поля алгебраїчно невідрізні: вони мають усі властивості, що залежать лише від аксіом поля.</p>
+<blockquote>
+<p>Функція є ін'єктивною, або взаємно однозначною, якщо різні елементи області визначення відображаються в різні елементи області значень: \(\varphi(a) = \varphi(b)\) означає \(a = b\). Функція є бієктивною, якщо вона одночасно ін'єктивна та сюр'єктивна, тобто вона є взаємно однозначною і кожен елемент області значень є образом принаймні одного елемента області визначення.</p>
+</blockquote>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="fields.html">algebrica.org/fields</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

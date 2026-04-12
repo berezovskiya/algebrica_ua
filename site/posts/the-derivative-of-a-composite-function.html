@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Похідна складеної функції — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Похідні</span>
+    </nav>
+    <article>
+        <h1>Похідна складеної функції</h1>
+        <time>2025-02-21</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Правило łaнцюга</h2>
+<p>Нехай \( g \) є диференційовною в точці \( x \), а \( f \) є диференційовною в точці \( z = g(x) \). Тоді складена функція \( y = f(g(x)) \) є диференційовною в точці \( x \), і її <a href="derivative.html">похідна</a> є добутком похідної \( f \), обчисленої в точці \( g(x) \), та похідної \( g \) в точці \( x \):</p>
+<p>\[
+D[f(g(x))] = f’(g(x)) \cdot g’(x)
+\]</p>
+<p>Цей результат відомий як правило łaнцюга. Воно стверджує, що для диференціювання складеної функції необхідно похідну зовнішньої функції, обчислену у внутрішньої функції, помножити на похідну внутрішньої функції.</p>
+<p>У позначеннях Лейбніца, якщо \( y = f(u) \) та \( u = g(x) \), правило łaнцюга набуває вигляду:</p>
+<p>\[
+\frac{dy}{dx} = \frac{dy}{du} \cdot \frac{du}{dx}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Доведення</h2>
+<p>Щоб довести, що \(D[f(g(x))] = f’(g(x)) \cdot g’(x)\), обчислимо наступну <a href="limits.html">границю</a>:</p>
+<p>\[
+D[f(g(x))] = \lim_{h \to 0} \frac{f(g(x + h))-f(g(x))}{h}
+\]</p>
+<hr>
+<p>Нехай \( z = g(x) \), тоді \( g(x+h)-g(x) = \Delta z. \) Це означає, що \( g(x+h) = g(x) + \Delta z. \) Границя набуває вигляду:</p>
+<p>\[
+D[f(g(x))] = \lim_{h \to 0} \frac{f(z+\Delta z)-f(z)}{h}
+\]</p>
+<hr>
+<p>Множачи і чисельник, і знаменник на \( \Delta z \), отримаємо:</p>
+<p>\[
+\begin{aligned}
+D[f(g(x))] &amp;= \lim_{h \to 0} \frac{f(z + \Delta z)-f(z)}{\Delta z} \cdot \frac{\Delta z}{h} \\[0.5em]
+&amp;= \lim_{h \to 0} \frac{f(z + \Delta z)-f(z)}{\Delta z} \cdot \frac{g(x + h)-g(x)}{h} \\[0.8em]
+&amp;= f’(z) \cdot g’(x)\\[1em]
+&amp;= f’(g(x)) \cdot g’(x)
+\end{aligned}
+\]</p>
+<p>Цей аргумент припускає, що \( \Delta z \neq 0 \) для достатньо малих \( h \). Повне доведення розглядає випадок \( \Delta z = 0 \) окремо за допомогою допоміжної функції; висновок залишається таким самим.</p>
+<hr>
+<p>У випадку степенів функції правило узагальнюється наступним чином:</p>
+<p>\[
+D[f(x)^a] = a[f(x)]^{a-1}f’(x)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline pb-steps alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Обчислимо похідну наступної складеної функції:</p>
+<p>\[
+y = f(g(x)) = \sin(3x^2 + 2x)
+\]</p>
+<p>У цьому випадку маємо:</p>
+<ul>
+<li>Внутрішня функція \( g(x) = 3x^2 + 2x \)</li>
+<li>Зовнішня функція \( f(t) = \sin(t) \), де \( t = g(x) = 3x^2 + 2x \)</li>
+</ul>
+<hr>
+<p>Зовнішня функція — \( f(t) = \sin(t) \). Її похідна:</p>
+<p>\[
+f’(t) = \cos(t)
+\]</p>
+<p>Підставляючи \( t = g(x) \):</p>
+<p>\[
+f’(g(x)) = \cos(3x^2 + 2x)
+\]</p>
+<hr>
+<p>Внутрішня функція — \( g(x) = 3x^2 + 2x \). Її похідна:</p>
+<p>\[
+g’(x) = 6x + 2
+\]</p>
+<p>Застосовуючи правило łaнцюга, отримаємо:</p>
+<p>\[
+D[f(g(x))] = f’(g(x)) \cdot g’(x)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Результат:</p>
+<p>\[(6x + 2)\cos(3x^2 + 2x)\]</p>
+<h6>Дослідіть випадок <a href="derivative-of-composite-power-functions.html">складених степеневих функцій</a>, зокрема обчислення похідної функцій типу: \[ D[f(x)^{g(x)}] \]</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Застосування до багатократних складень</h2>
+<p>Правило łaнцюга можна розширити на складення, що включають три або більше функцій. Наприклад, якщо задано \( y = f(g(h(x))) \), то похідна дорівнює:</p>
+<p>\[
+D[f(g(h(x)))] = f’(g(h(x))) \cdot g’(h(x)) \cdot h’(x)
+\]</p>
+<p>Кожен множник представляє похідну функції у складенні, обчислену в точці складення всіх наступних функцій. Ця модель узагальнюється для будь-якої скінченної кількості вкладених функцій. Для \( y = f_1(f_2(\cdots f_n(x)\cdots)) \) похідна задається добутком:</p>
+<p>\[
+f_1’(f_2(\cdots f_n(x)\cdots)) \cdot f_2’(f_3(\cdots f_n(x)\cdots)) \cdots f_{n-1}'(f_n(x)) \cdot f_n’(x)
+\]</p>
+<p>На практиці диференціювання відбувається від найзовнішньої функції всередину, при цьому кожна похідна обчислюється послідовно, а результати перемножуються.</p>
+<hr>
+<p>Як приклад, розглянемо \( y = \sin(e^{3x}) \). Складення включає три функції:</p>
+<p>\[
+\begin{align}
+h(x) &amp;= 3x \\[6pt]
+g(t) &amp;= e^t \\[6pt]
+f(s) &amp;= \sin(s)
+\end{align}
+\]</p>
+<p>Застосовуючи правило łaнцюга зовні всередину, отримаємо:</p>
+<p>\[
+\begin{align}
+D[\sin(e^{3x})] &amp;= \cos(e^{3x}) \cdot e^{3x} \cdot 3 \\[6pt]
+&amp;= 3e^{3x}\cos(e^{3x})
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline pb-steps alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо наступну функцію:</p>
+<p>\[
+y = \ln\left(e^{x^2} + 1\right)
+\]</p>
+<p>Складення включає три функції:</p>
+<p>\[
+\begin{align}
+h(x) &amp;= x^2 \\[6pt]
+g(t) &amp;= e^t + 1 \\[6pt]
+f(s) &amp;= \ln(s)
+\end{align}
+\]</p>
+<hr>
+<p>Похідна зовнішньої функції \( f(s) = \ln(s) \) дорівнює \( f’(s) = \frac{1}{s} \), обчислена в точці \( s = g(h(x)) = e^{x^2} + 1 \):</p>
+<p>\[
+f’(g(h(x))) = \frac{1}{e^{x^2} + 1}
+\]</p>
+<p>Похідна середньої функції \( g(t) = e^t + 1 \) дорівнює \( g’(t) = e^t \), обчислена в точці \( t = h(x) = x^2 \):</p>
+<p>\[
+g’(h(x)) = e^{x^2}
+\]</p>
+<p>Похідна внутрішньої функції \( h(x) = x^2 \) дорівнює:</p>
+<p>\[
+h’(x) = 2x
+\]</p>
+<hr>
+<p>Застосовуючи правило łaнцюга зовні всередину:</p>
+<p>\[
+\begin{align}
+D\left[\ln\left(e^{x^2} + 1\right)\right] &amp;= \frac{1}{e^{x^2} + 1} \cdot e^{x^2} \cdot 2x \\[6pt]
+&amp;= \frac{2x e^{x^2}}{e^{x^2} + 1}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Результат:</p>
+<p>\[\frac{2x e^{x^2}}{e^{x^2} + 1}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li><strong>Гарвардський університет, О. Кнілл</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/math1a2020/handouts/lecture10.pdf">Правило łaнцюга</a></li>
+<li><strong>MIT OpenCourseWare, Г. Странг</strong>. <a href="https://ocw.mit.edu/courses/res-18-001-calculus-fall-2023/mitres_18_001_f17_ch04.pdf">Похідні за правилом łaнцюга</a></li>
+<li><strong>Університет Торонто, Дж. Кампезато</strong>. <a href="https://www.math.toronto.edu/campesat/ens/1920/1114.pdf">Диференційовність та правило łaнцюга</a></li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке складена функція?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Складена функція — це функція, створена шляхом застосування однієї функції до результату іншої. Вона зазвичай позначається як f(g(x)), що означає, що спочатку обчислюється g(x), а потім до результату застосовується f."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як обчислити похідну складеної функції?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб обчислити похідну складеної функції f(g(x)), необхідно застосувати правило łaнцюга. Похідна знаходиться шляхом множення похідної f, обчисленої в точці g(x), на похідну g(x): D[f(g(x))] = f'(g(x)) × g'(x)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому правило łaнцюга є важливим?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Правило łaнцюга є вирішальним, оскільки воно дозволяє диференціювати складені функції. Це фундаментальний принцип математичного аналізу, який пояснює, як зміни однієї змінної поширюються через вкладені функції."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="the-derivative-of-a-composite-function.html">algebrica.org/the-derivative-of-a-composite-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

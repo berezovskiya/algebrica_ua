@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функції — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Функції</h1>
+        <time>2025-02-24</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-20"><h2>Що таке функція</h2>
+<p><strong>Функція</strong> — це математичне правило, яке пов'язує дві непорожні підмножини <a href="types-of-numbers.html">дійсних чисел</a>, які зазвичай позначаються як \( A \subseteq \mathbb{R} \) та \( B \subseteq \mathbb{R} \). Функція \( f \) з \( A \) в \( B \) ставить у відповідність кожному дійсному числу з \( A \) рівно одне дійсне число з \( B \). Цей зв'язок записується так:
+\[
+f \colon A \to B
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Множина \( A \) називається <a href="#domain">областю визначення</a> функції.</li>
+<li>Множина \( B \) — це область значень (кообласть).</li>
+<li>Для кожного \( x \in A \) функція дає єдине значення \( f(x) \in B \).</li>
+<li>Змінна \( x \) називається незалежною змінною, а \( y \) — залежною змінною.</li>
+</ul>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="708" height="558" src="../images/functions-3.png" alt="Illustration showing the concept of a function with its domain and codomain: each element of the domain ( A ) is mapped to exactly one element in the codomain ( B ) through arrows representing the functional relationship.
+" class="wp-image-19719" style="width:354px" title="Illustration showing the concept of a function with its domain and codomain." srcset="../images/functions-3.png 708w, https://algebrica.org/wp-content/uploads/resources/images/functions-3-300x236.png 300w" sizes="(max-width: 708px) 100vw, 708px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Якщо таке правило виконується, ми кажемо, що функція коректно визначена. В іншому випадку відношення не є функцією, оскільки воно або не ставить у відповідність жодного значення, або ставить більше одного значення елементу області визначення.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-steps-no-margin alignCenterMathjax"><hr>
+<p>Функцію з множини \( A \) (область визначення) в множину \( B \) (кообласть), \( f : A \to B, \) можна класифікувати як:</p>
+<ul>
+<li>Ін'єктивну: якщо кожний елемент \( B \) є образом щонайбільше одного елемента \( A \), тобто якщо для будь-яких \(x_1, x_2 \in A\) з \(x_1 \neq x_2\) маємо \(f(x_1) \neq f(x_2)\); еквівалентно, якщо для кожного \(y \in B\) існує щонайбільше один \(x \in A\) такий, що \(f(x) = y\).</li>
+<li>Сюр'єктивну: якщо кожний елемент \( B \) є образом принаймні одного елемента \( A \), тобто якщо \(\forall \, y \in B\) існує принаймні один \(x \in A\) такий, що \(f(x) = y.\)</li>
+<li>Бієктивну: якщо функція є одночасно ін'єктивною та сюр'єктивною, тобто якщо для кожного \(y \in B\) існує єдиний \(x \in A\) такий, що \(f(x) = y\).</li>
+</ul>
+<hr>
+<p>Альтернативне означення стверджує, що функція \(f : A \to B\) є бієктивною тоді і тільки тоді, коли існує функція \(g : B \to A\) така, що:
+\[(g \circ f)(x) = x, \; \forall \, x \in A\]
+\[(f \circ g)(y) = y, \; \forall y \in B\]
+Якщо така функція \(g\) існує, вона визначена єдиним чином. У цьому випадку \(g\) називається <a href="inverse-function.html">оберненою</a> до \(f\) і позначається \(f^{-1}\).</p>
+<h6>Прикладом оберненої функції є <a href="logarithmic-function.html">логарифмічна функція</a>, яка є оберненою до <a href="exponential-function.html">показникової функції</a>, і навпаки.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Що не є функцією</h2>
+<p>Для більшої ясності проілюструємо випадок, коли ми маємо ситуацію, подібну до показаної на попередньому рисунку, але де неможливо визначити функцію. Формально це відбувається, коли існують принаймні дві різні точки \( (x, y_1) \) та \( (x, y_2) \) такі, що \( y_1 \ne y_2 \). У цьому випадку відношення не задовольняє означення функції, оскільки одному значенню \( x \) відповідає більше одного значення \( y \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="606" height="416" src="../images/functions-4-1.png" alt="What is not a function." class="wp-image-19716" style="width:303px" title="What is not a function." srcset="../images/functions-4-1.png 606w, https://algebrica.org/wp-content/uploads/resources/images/functions-4-1-300x206.png 300w" sizes="(max-width: 606px) 100vw, 606px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>На зображенні один елемент області визначення, позначений \( x_0 \), відповідає двом різним значенням у кообласті. Ця ситуація неприпустима відповідно до самого означення функції. Формально, відношення \( R \subseteq A \times B \) є функцією тоді і тільки тоді, коли:</p>
+<p>\[ \forall \, x \in A, \; \exists! \, y \in B \; : \; (x, y) \in R \]</p>
+<p>У цьому випадку існують \( y_1, y_2 \in B \) з \( y_1 \ne y_2 \) такі, що</p>
+<p>\[
+(x_0, y_1) \in R \quad \text{and} \quad (x_0, y_2) \in R
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-to-content alignCenterTable pb-steps"><p>що порушує умову єдиності, необхідну для того, щоб \( R \) було функцією. Простіше кажучи, уявіть ситуацію, де певним значенням \(x\) відповідають певні значення \(y\), як показано в наступній таблиці.</p>
+<table>
+<thead>
+<tr>
+<th>X</th>
+<th>-3</th>
+<th>1</th>
+<th>-3</th>
+<th>5</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Y</td>
+<td>7</td>
+<td>4</td>
+<td>10</td>
+<td>-2</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>У цьому випадку відношення не є функцією, оскільки для одного й того ж значення \( x = -3 \) існують два різних відповідних значення \( y \), а саме \( y = 7 \) та \( y = 10 \). Це порушує фундаментальне означення функції, яке вимагає, щоб кожному елементу області визначення відповідав один і тільки один елемент кообласті.</p>
+<hr>
+<p>Практичний графічний критерій для визначення того, чи крива на площині є функцією — це тест вертикальної прямої. Проведіть будь-яку вертикальну пряму і підрахуйте, скільки разів вона перетинає криву. Якщо кожна вертикальна пряма перетинає криву щонайбільше в одній точці, то крива є графіком функції.</p>
+<ul>
+<li>Для кожного значення \( x \) існує щонайбільше одне відповідне значення \( y \).</li>
+<li>Якщо деяка вертикальна пряма перетинає криву у двох або більше точках, крива не є графіком функції, оскільки цьому значенню \( x \) відповідало б кілька значень.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section-inverse mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Різниця між кообластю та областю значень</h2>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-steps-no-margin"><ul>
+<li>
+<p>Кообласть — це множина, яку ми оголошуємо як потенційну множину значень функції. Вона явно вказується в означенні функції. Наприклад, у функції, записаній як \( f: A \to B \), множина \( B \) є кообластю.</p>
+</li>
+<li>
+<p>Область значень (або образ) — це фактична множина значень, які функція приймає при обчисленні на своїй області визначення. Вона включає всі значення \( f(x) \) для \( x \in A \). Область значень завжди є підмножиною кообласті.</p>
+</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Рівність функцій та нулі</h2>
+<p>Дві функції \( y = f(x) \) та \( y = g(x) \) вважаються рівними, якщо вони мають однакову область визначення \( D \) і задовольняють умову:</p>
+<p>\[
+f(x) = g(x) \quad \forall \, x \in D
+\]</p>
+<hr>
+<p>Дійсне число \( a \in \mathbb{R} \) називається нулем функції \( y = f(x) \), якщо функція дорівнює нулю в цій точці, тобто:</p>
+<p>\[
+f(a) = 0
+\]</p>
+<p>Це означає, що графік функції перетинає вісь абсцис у точці \( (a, 0) \). Знаходження нулів функції є важливим для аналізу її поведінки, розв'язування <a href="equations.html">рівнянь</a> та визначення місць, де функція змінює знак.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-section mb-x-30 alignCenterMathjax"><h2>Симетричні функції</h2>
+<p>При вивченні дійснозначних функцій часто корисно розуміти, як функція поводиться відносно відображень навколо початку координат. Це приводить до розрізнення <a href="even-and-odd-functions.html">парних та непарних функцій</a>. Нехай \(A \subseteq \mathbb{R}\) — область визначення, симетрична відносно початку координат, тобто \(x \in A \Rightarrow -x \in A\). Функція \(f : A \to \mathbb{R}\) називається:</p>
+<ul>
+<li>Парною, якщо \(f(-x) = f(x) \quad \forall \; x \in A. \)</li>
+<li>Непарною, якщо \(f(-x) = -f(x) \quad \forall \; x \in A. \)</li>
+</ul>
+<p>Більш загально, для функції \(f(x) = x^{n}\) з \(n \in \mathbb{N}\), функція є парною тоді, коли показник \(n\) парний, і непарною тоді, коли \(n\) непарний.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-section mb-x-30 alignCenterMathjax"><h2>Обмежені функції</h2>
+<p>Перш ніж вводити формальні означення, корисно подумати про те, як дійснозначна функція поводиться на всій своїй області визначення. У багатьох ситуаціях ми хочемо знати, чи залишається функція в певних межах, ніколи не піднімаючись вище фіксованого порогу або ніколи не опускаючись нижче нього. Функція \(f : A \subseteq \mathbb{R} \to \mathbb{R}\) називається:</p>
+<ul>
+<li>Обмеженою зверху, якщо існує дійсне число \(M \in \mathbb{R}\) таке, що \(f(x) \leq M\) \( \forall \; x \in A.\)</li>
+<li>Обмеженою знизу, якщо існує дійсне число \(m \in \mathbb{R}\) таке, що \(m \leq f(x) \forall \; x \in A.\)</li>
+<li>Обмеженою, якщо вона задовольняє обидві умови вище, тобто існують \(m, M \in \mathbb{R}\), для яких \(m \leq f(x) \leq M\) виконується \( \forall \; x \in A\).</li>
+</ul>
+<hr>
+<p>Важливо розрізняти поняття обмеженої функції та існування <a href="maximum-minimum-and-inflection-points.html">максимуму або мінімуму</a>. Те, що функція обмежена, не означає, що вона дійсно досягає максимального або мінімального значення, глобально чи локально. Вимога обмеженості просто означає, що значення функції залишаються в межах скінченного інтервалу \([m, M]\).</p>
+<p>Звичайно, якщо функція має глобальний максимум, то вона автоматично обмежена зверху. Аналогічно, наявність глобального мінімуму гарантує, що вона обмежена знизу. Однак обернене не є істинним: функція може бути обмеженою, не досягаючи жодного максимуму чи мінімуму. Типовим прикладом є:</p>
+<p>\[
+f(x) = \sin\!\left(\frac{1}{x}\right) \quad x \neq 0<br>
+\]</p>
+<p>Ця функція завжди залишається між \(-1\) та \(1\), тому вона дійсно обмежена. Проте вона не має ні глобального максимуму, ні глобального мінімуму, оскільки при наближенні \(x\) до \(0\) осциляції стають довільно швидкими і функція ніколи не досягає своїх екстремальних значень.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-section mb-x-30 alignCenterMathjax"><h2>Монотонні функції</h2>
+<p>При аналізі дійснозначних функцій розуміння того, чи функція зростає, спадає або зберігає послідовну напрямлену поведінку, є суттєвим. Ці ідеї виражаються через поняття <a href="increasing-and-decreasing-functions.html">зростаючих, спадних та монотонних функцій</a>, які описують, як змінюються значення функції зі зростанням аргументу. Нехай \(A \subseteq \mathbb{R}\) і нехай \(x_1, x_2 \in A\) з \(x_1 &lt; x_2\). Функція \(f : A \to \mathbb{R}\) називається:</p>
+<ul>
+<li>Зростаючою, якщо \(f(x_1) \leq f(x_2).\)</li>
+<li>Строго зростаючою, якщо \(f(x_1) &lt; f(x_2).\)</li>
+<li>Спадною, якщо \(f(x_1) \geq f(x_2).\)</li>
+<li>Строго спадною, якщо \(f(x_1) &gt; f(x_2).\)</li>
+<li>Монотонною, якщо вона задовольняє одну з наведених вище умов на всій області визначення.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-section mb-x-30 alignCenterMathjax"><h2>Періодичні функції</h2>
+<p>Функція називається періодичною, коли її значення повторюються після фіксованого горизонтального зсуву. Більш формально, якщо \(X \subseteq \mathbb{R}\) і \(T &gt; 0\) такий, що \(x + T \in X\) щоразу, коли \(x \in X\), функція:
+\[
+f : X \to \mathbb{R}
+\]
+є періодичною з періодом \(T\), коли \(T\) є найменшим додатним числом, для якого<br>
+\[
+f(x + T) = f(x)
+\]
+виконується \(\forall \; x\) з області визначення. Як простий приклад, функції <a href="sine-function.html">синуса</a> та <a href="cosine-function.html">косинуса</a> є періодичними: обидві повторюють свій повний цикл через інтервал довжиною \(2\pi\).</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Класифікація функцій</h2>
+<p>Функції класифікуються як алгебраїчні або трансцендентні. Функція називається алгебраїчною, якщо її аналітичний вираз \( y = f(x) \) містить лише скінченну кількість операцій, таких як додавання, віднімання, множення, ділення, піднесення до раціонального <a href="powers.html">степеня</a> та <a href="radicals.html">добування кореня</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><p>Алгебраїчні функції можна далі класифікувати за структурою їхніх виразів:</p>
+<ul>
+<li><a href="polynomial-function.html">Поліноміальні функції</a> визначаються <a href="polynomials.html">поліноміальним</a> виразом, що містить степені \( x \) зі сталими коефіцієнтами.</li>
+<li>Раціональні функції виражаються як <a href="rational-equations.html">відношення двох поліномів</a>.</li>
+<li>Ірраціональні функції містять змінну \( x \) під знаком <a href="radicals.html">кореня</a>, наприклад \( \sqrt{x} \).</li>
+</ul>
+<p>Трансцендентні функції виходять за межі алгебраїчних операцій і включають вирази, які не можуть бути записані за допомогою скінченної комбінації додавання, віднімання, множення, ділення та добування кореня. Поширеними прикладами є <a href="exponential-function.html">показникові функції</a>, <a href="logarithmic-function.html">логарифмічні функції</a> та <a href="sine-function.html">тригонометричні функції</a>.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Розуміння області визначення функції є важливим кроком у розв'язуванні рівнянь, нерівностей та в <a href="analyzing-the-graphs-of-functions.html">аналізі функцій</a>. У більшості випадків визначення області визначення передбачає розпізнавання кількох фундаментальних ситуацій, підсумованих нижче.</p>
+</div>
+
+
+
+<div id="domain" class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30 alignCenterMathjax"><h2>Область визначення основних функцій</h2>
+<p>Нижче ми розглянемо області визначення найпоширеніших елементарних функцій. Однак на практиці багато функцій, що зустрічаються в реальних задачах, є значно складнішими, і їхні області визначення не можна визначити з першого погляду. Для всіх таких ситуацій, у яких структура виразу робить аналіз менш очевидним, ми посилаємось на <a href="determining-the-domain-of-a-function.html">цей метод</a>, який надає систематичний спосіб визначення області визначення більш складних функцій.</p>
+<hr>
+<p>Polynomial functions are defined by expressions of the form:</p>
+<p>\[
+y = a_0 x^n + a_1 x^{n-1} + \dots + a_n
+\]</p>
+<p>where \( a_0, a_1, \dots, a_n \) are real coefficients and \( n \in \mathbb{N} \). The domain of a polynomial function is the entire set of real numbers, \( \mathbb{R} \), since it does not involve any operations that could restrict its definition. An example of a polynomial function is:</p>
+<p>\[
+y = 2x^3 - 5x^2 + 3x - 1
+\]</p>
+<p>This expression can be viewed as a linear combination of powers of \( x \), where each term \( a_i x^i \) has a real coefficient \( a_i \). Polynomial functions of this type are defined for every real number \( x \in \mathbb{R} \), since no operation in their form imposes any restriction on the domain.</p>
+<hr>
+<p><a href="rational-functions.html">Rational functions</a> are expressed in the form:</p>
+<p>\[
+y = \frac{N(x)}{D(x)}
+\]</p>
+<p>where \( N(x) \) and \( D(x) \) are polynomials. These functions are defined for all real numbers \( x \) such that \( D(x) \neq 0 \). The domain is therefore \( \mathbb{R} \) excluding the values that make the denominator zero. An example of a rational function is:</p>
+<p>\[
+y = \frac{x^2 - 4}{x - 2}
+\]</p>
+<p>This expression represents the ratio of two polynomials and can be interpreted as a linear combination of powers of \( x \) in both the numerator and denominator. Rational functions of this type are defined for all real values of \( x \) except those that make the denominator equal to zero. In this example, the function is undefined at \( x = 2 \), since it would make the denominator vanish.</p>
+<hr>
+<p>Irrational functions are expressions of the form:</p>
+<p>\[
+y = \sqrt[n]{f(x)}
+\]</p>
+<p>The domain depends on the parity of the index \( n \). If \( n \) is even, the function is defined only when \( f(x) \geq 0 \), so the domain is:</p>
+<p>\[
+{ x \in \mathbb{R} \mid f(x) \geq 0 }
+\]</p>
+<p>An example of an irrational function with an even index is:</p>
+<p>\[
+y = \sqrt{x &#8211; 2}
+\]</p>
+<p>In this case, the expression under the radical must be non-negative, so the domain is given by \( x \ge 2 \). The function is therefore defined only for values of \( x \) that make the radicand \( x - 2 \) greater than or equal to zero. If \( n \) is odd, the function is defined for every value in the domain of \( f(x) \). An example with an odd index is:</p>
+<p>\[
+y = \sqrt[3]{x &#8211; 2}
+\]</p>
+<p>Here, the cube root is defined for every real value of \( x \), since odd roots can also take negative arguments. Thus, the domain of the function is the entire set of real numbers, \( \mathbb{R} \).</p>
+<hr>
+<p><a href="logarithmic-function.html">Logarithmic functions</a> are defined as:</p>
+<p>\[
+y = \log_a{f(x)} \quad \text{with} \quad a &gt; 0,\; a \ne 1
+\]</p>
+<p>They are defined only when the argument of the <a href="logarithms.html">logarithm</a> is strictly positive. Therefore, their domain is:</p>
+<p>\[
+{x \in \mathbb{R} \mid f(x) &gt; 0 }
+\]</p>
+<p>An example of a logarithmic function is:</p>
+<p>\[
+y = \log_2(x - 1)
+\]</p>
+<p>This function is defined only when the argument of the logarithm, \( x - 1 \), is strictly positive. Therefore, the domain is \( x &gt; 1 \). For any value of \( x \) less than or equal to \(1\), the expression becomes undefined because the <a href="logarithms.html">logarithm</a> of a non-positive number does not exist in the real domain. Another example is:</p>
+<p>\[
+y = \ln(3x + 6)
+\]</p>
+<p>In this case, the argument \( 3x + 6 \) must also be positive, so the domain is \( x &gt; -2 \). The same principle applies to all logarithmic functions: the argument of the logarithm must always be greater than zero for the function to be defined.</p>
+<hr>
+<p><a href="exponential-function.html">Exponential functions</a> of the form:</p>
+<p>\[
+y = a^{f(x)} \quad \text{with} \quad a &gt; 0,\; a \ne 1
+\]</p>
+<p>are defined for all values in the domain of \( f(x) \). An example of an exponential function is:</p>
+<p>\[
+y = 2^x
+\]</p>
+<p>This function is defined for every real value of \( x \), since the base \( a = 2 \) is positive and different from \(1\). Its domain is therefore the entire set of real numbers, \( \mathbb{R} \), while the range is strictly positive, \( y &gt; 0 \).</p>
+<hr>
+<p>Exponential functions of the form:</p>
+<p>\[
+y = [f(x)]^{g(x)}
+\]</p>
+<p>are defined only when the base \( f(x) &gt; 0 \), since real-valued exponentiation requires a positive base. Therefore, their domain is the intersection of:</p>
+<p>\[
+\{ x \in \mathbb{R} \mid f(x) &gt; 0 \} \, \cap \, \text{domain of } g(x)
+\]</p>
+<hr>
+<p>Exponential functions of the form:</p>
+<p>\[
+f(x)^{\alpha}
+\]</p>
+<p>where \( \alpha \in \mathbb{R} \setminus \mathbb{Q} \) are defined under the following conditions:</p>
+<p>\[
+\{ x \in \mathbb{R} \mid f(x) \geq 0 \}, \quad \text{if } \alpha &gt; 0
+\]
+\[
+\{ x \in \mathbb{R} \mid f(x) &gt; 0 \}, \quad \text{if } \alpha &lt; 0
+\]</p>
+<p>This ensures that the result of the expression remains within the set of real numbers.</p>
+<hr>
+<p>For trigonometric functions, the following domains apply:</p>
+<p>\( y = \sin x, \quad y = \cos x \)<br>
+Domain: \( \mathbb{R} \)</p>
+<p>\( y = \tan x \)<br>
+Domain: \( \mathbb{R} \setminus \left\lbrace \dfrac{\pi}{2} + k\pi \right\rbrace, \quad k \in \mathbb{Z} \)</p>
+<p>\( y = \cot x \)<br>
+Domain: \( \mathbb{R} \setminus \left\lbrace k\pi \right\rbrace, \quad k \in \mathbb{Z} \)</p>
+<p>\( y = \arcsin x, \quad y = \arccos x \)<br>
+Domain: \( [-1, 1] \)</p>
+<p>\( y = \arctan x, \quad y = \text{arccot}\,x \)<br>
+Domain: \( \mathbb{R} \)</p>
+<h5>As mentioned above, understanding all these cases is essential, as they play a crucial role in many areas of mathematics and their applications.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Operations between functions</h2>
+<p>When two real functions are defined on the same domain, it is possible to combine them through the usual algebraic operations, obtaining new functions derived from the original ones. This generalizes the basic arithmetic of real numbers to the context of functions, where each operation is applied point by point for every value of \( x \) in the domain. In formal terms, if</p>
+<p>\[
+f : X_1 \subseteq \mathbb{R} \to \mathbb{R} \quad \text{and} \quad g : X_2 \subseteq \mathbb{R} \to \mathbb{R}
+\]</p>
+<p>are two functions, we define: \(X = X_1 \cap X_2\) as the common domain on which the following operations can be performed.</p>
+<hr>
+<p>The sum of two functions \( f \) and \( g \) is defined by:</p>
+<p>\[
+(f + g)(x) = f(x) + g(x)
+\]</p>
+<p>The resulting function assigns to each \( x \in X \) the sum of the corresponding values of \( f \) and \( g \).</p>
+<hr>
+<p>The difference of two functions is given by:</p>
+<p>\[
+(f - g)(x) = f(x) - g(x)
+\]</p>
+<hr>
+<p>The product of two functions is defined as:</p>
+<p>\[
+(f \cdot g)(x) = f(x) \, g(x)
+\]</p>
+<p>The resulting function represents the pointwise multiplication of the two values.</p>
+<hr>
+<p>The quotient of two functions is expressed by</p>
+<p>\[
+\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)}
+\]</p>
+<p>but it is defined only for those values of \( x \in X \) where \( g(x) \neq 0 \). The domain of this function is therefore obtained by excluding from \( X \) all points that make the denominator vanish.</p>
+<hr>
+<p>The composition of two functions, written \( (g \circ f)(x) = g(f(x)) \), is another fundamental operation and is treated in detail on the dedicated page on <a href="composite-functions.html">composite functions</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Selected references</h2>
+<ul>
+<li>
+<p><strong>University of California S. B., H. McGahagan</strong>. <a href="https://web.math.ucsb.edu/~helena/teaching/math8/handouts/functions.pdf">Functions: Definitions and Properties</a></p>
+</li>
+<li>
+<p><strong>University of California Davis, J. Hunter</strong>. <a href="https://www.math.ucdavis.edu/~hunter/intro_analysis_pdf/ch1.pdf">Sets and Functions</a></p>
+</li>
+<li>
+<p><strong>University of Edinburgh, T. Leinster</strong>. <a href="https://webhomes.maths.ed.ac.uk/~tl/aa/aa.pdf">Sets and Functions</a></p>
+</li>
+<li>
+<p><strong>Princeton University, R. Gunning</strong>. <a href="https://web.math.princeton.edu/~gunning/bk.pdf">An Introduction to Analysis</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a function in mathematics?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A function is a relation that assigns exactly one output to each input in a given domain. It is commonly written as f(x), where x is the input and f(x) is the corresponding output."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are functions classified?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Functions can be classified into algebraic and transcendental types. Algebraic functions include polynomial, rational, and irrational forms, while transcendental functions include exponential, logarithmic, and trigonometric functions."
+      }
+    }
+  ]
+}
+</script>
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="functions.html">algebrica.org/functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

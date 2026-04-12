@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нерівності з модулем — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Нерівності</span>
+    </nav>
+    <article>
+        <h1>Нерівності з модулем</h1>
+        <time>2025-02-13</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-10" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Метод                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">4</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="absolute-value.html">Модуль числа</a>, <a href="linear-inequalities.html">Лінійні нерівності</a>, <a href="properties-of-real-numbers.html">Властивості дійсних чисел</a>, <a href="systems-of-inequalities.html">Системи нерівностей</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-10");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"absolute value"},{"name":"distance on real line"},{"name":"distance from a point"},{"name":"absolute expression"},{"name":"non-negative property"},{"name":"symmetry property"}]},{"name":"cases","children":[{"name":"less than case"},{"name":"greater than case"},{"name":"non-positive bound"},{"name":"compound inequalities"},{"name":"interval solutions"},{"name":"piecewise form"}]},{"name":"methods","children":[{"name":"solution steps"},{"name":"case splitting"},{"name":"interval representation"},{"name":"multiple absolute values"},{"name":"parameter cases"},{"name":"variable bound"},{"name":"solution check"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Вступ</h2>
+<p><a href="absolute-value.html">Модуль</a> дійского числа \(x\) визначається наступним чином:</p>
+<p>\[
+|x| = \begin{cases} +x &amp; \text{якщо } x \geq 0 \\[6pt]
+-x &amp; \text{якщо } x &lt; 0 \end{cases}
+\, \forall \, x \in \mathbb{R}
+\]</p>
+<p>Геометрично \(|x|\) представляє відстань від \(x\) до початку координат на дійсній прямій, а в більш загальному випадку \(|x - a|\) представляє відстань між \(x\) та точкою \(a\). Така геометрична інтерпретація часто є найприроднішим способом розуміння нерівностей із модулем, і вона слугуватиме інтуїтивною основою для методів розв'язання, розглянутих нижче.</p>
+<hr>
+<p>В основі розв'язання таких нерівностей лежать такі властивості. Для кожного <a href="properties-of-real-numbers.html">дійского числа</a> \(k &gt; 0\) та будь-якого дійского виразу \(f(x)\) виконуються наступні еквівалентності:</p>
+<ul>
+<li>
+<p>\( |f(x)| \leq k \quad \) якщо \( -k \leq f(x) \leq k.\)</p>
+</li>
+<li>
+<p>\(|f(x)| \geq k \quad \)  якщо \(f(x) \leq -k \, \) або \( \, f(x) \geq k.\)</p>
+</li>
+</ul>
+<p>Ці ж еквівалентності природним чином поширюються на випадки строгих нерівностей, де \(\leq\) замінюється на \(&lt;\), а \(\geq\) на \(&gt;\). Коли \(k = 0\), нерівність \(|f(x)| \leq 0\) виконується лише тоді, коли \(f(x) = 0\), оскільки модуль завжди є невипадково від'ємним. Для \(k &lt; 0\) нерівність \(|f(x)| \leq k\) не має розв'язання для будь-якого \(x\).</p>
+<p>Альтернативний метод, що застосовується у випадках, коли вираз під модулем є <a href="linear-inequalities.html">лінійним</a>, полягає в аналізі знака аргументу за допомогою його кусового визначення. Визначається точка, в якій аргумент перетворюється на нуль, дійсна пряма поділяється на дві відповідні півпрямі, і нерівність переписується окремо для кожної з них, позбуваючись модуля. Часткові розв'язання потім об'єднуються за допомогою операції об'єднання.</p>
+<h6>Розв'язання нерівності з модулем базується на тому ж принципі, що і розв'язання <a href="absolute-value-equations.html">рівняння з модулем</a>: застосовуються визначальні властивості функції модуля, щоб алгебраїчно позбутися його, зводячи задачу до набору звичайних нерівностей, які необхідно розв'язати та об'єднати.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Трикутна нерівність</h2>
+<p>Фундаментальним результатом, тісно пов'язаним із нерівностями з модулем, є трикутна нерівність. Для будь-яких двох дійских чисел \(a\) та \(b\) виконується наступне відношення:</p>
+<p>\[
+|a + b| \leq |a| + |b|
+\]</p>
+<p>Ця нерівність стверджує, що модуль суми ніколи не перевищує суми модулів. Її доведення та детальний розгляд наслідків представлені в статті про <a href="absolute-value.html">модуль</a>.</p>
+<h6>Цей результат варто пам'ятати при роботі з виразами, що містять суми модулів, оскільки він дає негайну верхню межу, що може спростити оцінки без необхідності повного попіксельного аналізу випадків.</h6>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо наступну просту нерівність:</p>
+<p>\[
+|x &#8211; 3| \leq 5
+\]</p>
+<p>Застосовуючи фундаментальну властивість для випадку \(\leq\), отримаємо <a href="systems-of-inequalities.html">систему</a> з двох одночасних нерівностей:</p>
+<p>\[
+-5 \leq x - 3 \leq 5
+\]</p>
+<p>Щоб ізолювати \(x\), додамо \(3\) до всіх трьох членів складеної нерівності. Ця операція є допустимою, оскільки додавання однієї й тієї самої величини до обох частин нерівності не змінює її напрямку.</p>
+<p>\[
+-5 + 3 \leq x \leq 5 + 3
+\]</p>
+<p>\[
+-2 \leq x \leq 8
+\]</p>
+<p>Зображення отриманих значень на дійсній прямій дає наступну картину:</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain mt-m-20">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[ -2\]</th>
+<th>\[8\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-right -closed"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-left-in -closed -highlight"></div></td>
+<td><div class="sign-plus-right-in -closed -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Виділений рядок представляє перетин двох умов: розв'язанням є множина значень \(x\), для яких обидві нерівності виконуються одночасно. Отже, розв'язанням є замкнений проміжок \([-2,\, 8]\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язанням є замкнений проміжок \([-2,\, 8]\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо наступну нерівність:</p>
+<p>\[
+|2x + 1| &gt; 3
+\]</p>
+<p>Застосовуючи фундаментальну властивість для випадку \(&gt;\), нерівність розпадається на дві альтернативні умови, кожна з яких має бути виконана незалежно.</p>
+<p>\[2x + 1 &lt; -3 \]
+\[2x + 1 &gt; 3\]</p>
+<p>Розв'язуючи першу умову, віднімаючи \(1\) від обох частин, отримаємо \(2x &lt; -4\), а ділення на \(2\) дає \(x &lt; -2\). Оскільки дільник додатний, знак нерівності зберігається.</p>
+<p>Розв'язуючи другу умову аналогічним чином і віднімаючи \(1\), отримаємо \(2x &gt; 2\), а ділення на \(2\) дає \(x &gt; 1\).</p>
+<p>Зображення отриманих значень на дійсній прямій дає наступну картину:</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain mt-m-20">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[ -2\]</th>
+<th>\[1\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-right -open"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-right -open -highlight"></div></td>
+<td><div class="sign-plus-left -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Як і в розглянутому раніше випадку, виділений рядок представляє об'єднання двох умов: розв'язком є множина значень \(x\), для яких виконується хоча б одна з двох нерівностей.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язком є об'єднання відкритих проміжків \((-\infty,\, -2) \cup (1,\, +\infty)\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Розглянемо наступну нерівність, у якій з'являються два різні модулі:</p>
+<p>\[
+|x + 1| + |x - 2| &gt; 4
+\]</p>
+<p>Коли нерівність містить більше одного модуля, найсистематичнішим підходом є розбиття дійсної прямої відповідно до нулів аргументів. Вирази \(x + 1\) та \(x - 2\) перетворюються на нуль при \(x = -1\) та \(x = 2\) відповідно, що дає три області для окремого аналізу.</p>
+<hr>
+<p>Випадок \(x &lt; -1\). У цій області \(x + 1 &lt; 0\) та \(x - 2 &lt; 0\), тому обидва аргументи від'ємні, і модуль змінює їхній знак на протилежний. Нерівність набуває такого вигляду:</p>
+<p>\[
+-(x + 1) + (-(x - 2)) &gt; 4
+\]</p>
+<p>\[
+-x - 1 - x + 2 &gt; 4
+\]</p>
+<p>\[
+-2x + 1 &gt; 4
+\]</p>
+<p>Віднімаючи \(1\) від обох частин, отримаємо \(-2x &gt; 3\). Ділячи на \(-2\) та змінюючи знак нерівності, оскільки дільник від'ємний, отримаємо наступне:</p>
+<p>\[
+x &lt; -\frac{3}{2}
+\]</p>
+<p>Ця умова має виконуватися в області \(x &lt; -1\). Оскільки \(-\frac{3}{2} &lt; -1\), умова \(x &lt; -\frac{3}{2}\) є більш обмежувальною з двох, і перетин з \(x &lt; -1\) зводиться до \(x &lt; -\frac{3}{2}\). Таким чином, внесок цього випадку становить \(\left(-\infty,\, -\frac{3}{2}\right)\).</p>
+<hr>
+<p>Випадок \(-1 \leq x &lt; 2\). У цій області \(x + 1 \geq 0\) та \(x &#8211; 2 &lt; 0\). Нерівність набуває такого вигляду:</p>
+<p>\[
+(x + 1) + (-(x &#8211; 2)) &gt; 4
+\]</p>
+<p>\[
+x + 1 &#8211; x + 2 &gt; 4
+\]</p>
+<p>\[
+3 &gt; 4
+\]</p>
+<p>Це суперечність, яка не виконується для жодного значення \(x\). Отже, випадок II не дає розв'язків.</p>
+<hr>
+<p>Випадок \(x \geq 2\). У цій області \(x + 1 &gt; 0\) та \(x - 2 \geq 0\), тому обидва аргументи невід'ємні, і модуль залишає їх без змін. Нерівність набуває такого вигляду:</p>
+<p>\[
+(x + 1) + (x &#8211; 2) &gt; 4
+\]</p>
+<p>\[
+2x &#8211; 1 &gt; 4
+\]</p>
+<p>Додаючи \(1\) до обох частин, отримаємо \(2x &gt; 5\), а ділення на \(2\) дає наступне:</p>
+<p>\[
+x &gt; \frac{5}{2}
+\]</p>
+<p>Перетин з \(x \geq 2\): оскільки \(\frac{5}{2} &gt; 2\), ефективною умовою є \(x &gt; \frac{5}{2}\). Таким чином, внесок цього випадку становить \(\left(\frac{5}{2},\, +\infty\right)\).</p>
+<hr>
+<p>Збираючи результати всіх трьох випадків, часткові розв'язки, отримані на кожній області дійсної прямої, зображені нижче.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain mt-m-20">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[ -\frac{3}{2}\]</th>
+<th>\[\frac{5}{2}\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-right -open"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-right -open -highlight"></div></td>
+<td><div class="sign-plus-left -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Об'єднання двох відкритих півпрямих дає повну множину розв'язків.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язком нерівності є:</p>
+<p>\[
+\left(-\infty,\, -\frac{3}{2}\right) \cup \left(\frac{5}{2},\, +\infty\right)
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"><div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 4</h2>
+<p>Тепер розглянемо складніший випадок, у якому права частина нерівності є не фіксованим числом, а <a href="equations-with-parameters.html">дійсним параметром</a> \(k\). Структура множини розв'язків залежить від значення \(k\), і повний аналіз вимагає окремого розгляду кількох випадків. Розглянемо наступну нерівність:</p>
+<p>\[
+|x &#8211; 1| &gt; k
+\]</p>
+<p>Поведінка розв'язання істотно змінюється залежно від того, чи є \(k\) від'ємним, нулем або додатним, і саме це ми маємо визначити.</p>
+<hr>
+<p>Випадок \(k &lt; 0\). Оскільки модуль завжди є невикладним, ліва частина задовольняє \(|x &#8211; 1| \geq 0 &gt; k\) для будь-якого дійсного \(x\). Отже, нерівність виконується для всіх дійсних чисел, і розв'язанням є \(\mathbb{R}\).</p>
+<hr>
+<p>Випадок \(k = 0\). Нерівність зводиться до \(|x &#8211; 1| &gt; 0\), що виконується для будь-якого \(x\), крім точки, де модуль дорівнює нулю. Оскільки \(|x &#8211; 1| = 0\) тоді і тільки тоді, коли \(x = 1\), розв'язанням є \(\mathbb{R} \setminus {1}\).</p>
+<hr>
+<p>Випадок \(k &gt; 0\). Застосовуючи основну властивість для випадку \(&gt;\), нерівність розпадається на дві альтернативні умови:</p>
+<p>\[ x &#8211; 1 &lt; -k \]
+\[ x &#8211; 1 &gt; k\]</p>
+<p>Додавання \(1\) до обох частин кожної умови дає наступне:</p>
+<p>\[
+x &lt; 1 &#8211; k \qquad \text{або} \qquad x &gt; 1 + k
+\]</p>
+<hr>
+<p>Зображення розв'язання на дійсній прямій дає наступну картину:</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain mt-m-20">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[ 1-k\]</th>
+<th>\[1+k\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-right -open"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-right -open -highlight"></div></td>
+<td><div class="sign-plus-left -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Зауважимо, що при \(k \to 0^+\) дві граничні точки \(1 &#8211; k\) та \(1 + k\) наближаються до \(1\) з протилежних боків, і множина розв'язків наближається до \(\mathbb{R} \setminus \{1\}\), що узгоджується з випадком \(k = 0\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язанням є об'єднання двох відкритих інтервалів:
+\[\left(-\infty,\, 1-k\right) \cup \left(1+k,\, +\infty\right)\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Нерівності з непостійною правою частиною</h2>
+<p>Еквівалентності, наведені вище, передбачають, що права частина є додатною сталою \(k\). Коли права частина сама є функцією від \(x\), наприклад \(g(x)\), ситуація потребує додаткової уваги. Розглянемо наступну нерівність.</p>
+<p>\[
+|f(x)| \leq g(x)
+\]</p>
+<p>Застосовуючи ті ж міркування, що й раніше, це еквівалентно наступній складеній нерівності.</p>
+<p>\[
+-g(x) \leq f(x) \leq g(x)
+\]</p>
+<p>Однак це зведення є правильним лише тоді, коли \(g(x) &gt; 0\). Якщо в якійсь точці \(g(x) \leq 0\), нерівність \(|f(x)| \leq g(x)\) не може бути задоволена, оскільки ліва частина завжди є невикладною. Таким чином, правильний підхід полягає в тому, щоб встановити \(g(x) &gt; 0\) як необхідну умову та знайти її перетин із розв'язанням складеної нерівності. Як конкретний приклад, розглянемо наступне.</p>
+<p>\[
+|x &#8211; 1| \leq 2x - 3
+\]</p>
+<p>Права частина \(g(x) = 2x - 3\) є додатною лише тоді, коли \(x &gt; \frac{3}{2}\). Поза цією областю нерівність не має розв'язків незалежно від значення \(|x &#8211; 1|\). У області \(x &gt; \frac{3}{2}\) нерівність еквівалентна наступній системі.</p>
+<p>\[
+-(2x - 3) \leq x &#8211; 1 \leq 2x - 3
+\]</p>
+<p>Ліва нерівність \(-(2x - 3) \leq x &#8211; 1\) спрощується до \(-2x + 3 \leq x - 1\), тобто \(4 \leq 3x\), звідси \(x \geq \frac{4}{3}\). Права нерівність \(x &#8211; 1 \leq 2x - 3\) спрощується до \(2 \leq x\), звідси \(x \geq 2\). Оскільки \(\frac{4}{3} &lt; \frac{3}{2} &lt; 2\), умова \(x \geq \frac{4}{3}\) вже випливає з вимоги \(x &gt; \frac{3}{2}\), і найсуворішим обмеженням серед усіх трьох є \(x \geq 2\). Зображення розв'язання на дійсній прямій дає наступну картину.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain mt-m-20">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[\frac{4}{3}\]</th>
+<th>\[\frac{3}{2}\]</th>
+<th>\[2\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -closed -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Три критичні значення, що з'являються на графіку, відображають три незалежні умови, отримані під час розв'язання: поріг \(\frac{4}{3}\) з лівої нерівності, поріг \(\frac{3}{2}\) з вимоги додатності \(g(x)\) та поріг \(2\) з правої нерівності. Оскільки кожна наступна умова є більш обмежувальноюю, ніж попередня, ефективне розв'язання повністю визначається найправішою межею.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язанням є проміжок \([2, +\infty)\).</p>
+</div>
+</div></div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="inequalities-with-absolute-value.html">algebrica.org/inequalities-with-absolute-value</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

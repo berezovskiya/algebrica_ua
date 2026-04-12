@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алгоритм зворотного поширення — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Різне</span>
+    </nav>
+    <article>
+        <h1>Алгоритм зворотного поширення</h1>
+        <time>2026-04-06</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-2" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Метод                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті показана на концептуальній карті, де кожна гілка представляє основний компонент, а підвузли висвітлюють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+                    </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">5</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="derivative-of-composite-power-functions.html">Похідна складених степеневих функцій</a>, <a href="derivatives.html">Похідні</a>, <a href="matrices.html">Матриці</a>, <a href="partial-derivatives.html">Часткові похідні</a>, <a href="vectors.html">Вектори</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-2");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"backpropagation definition"},{"name":"loss function"},{"name":"gradient"},{"name":"chain rule"},{"name":"computational graph"},{"name":"forward pass"},{"name":"backward pass"}]},{"name":"mechanism","children":[{"name":"reverse mode autodiff"},{"name":"gradient flow"},{"name":"local derivatives"},{"name":"linear layers"},{"name":"activation functions"},{"name":"outer product"},{"name":"gradient propagation"}]},{"name":"properties","children":[{"name":"gradient reuse"},{"name":"vanishing gradient"},{"name":"activation derivatives"},{"name":"deep networks"},{"name":"general case"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Що таке зворотне поширення помилки</h2>
+<p>Навчання нейронної мережі означає пошук значень параметрів, зазвичай <a href="matrices.html">матриць</a> ваг, які мінімізують функцію втрат відносно навчальних даних. Фундаментальна проблема полягає в тому, що навіть помірно глибока мережа може містити мільйони параметрів, і обчислення <a href="partial-derivatives.html">градієнта</a> втрат відносно кожного з них наївним способом вимагало б кількості операцій, пропорційної квадрату розміру мережі.</p>
+<p>Зворотне поширення помилки розв'язує цю проблему, використовуючи композиційну структуру мережі та <a href="the-derivative-of-a-composite-function.html">правило ланцюга</a> диференціального числення. Таким чином стає можливим обчислити всі градієнти за час, пропорційний часу, необхідному для одного прямого проходу через мережу.</p>
+<p>Інтуїтивно, зворотне поширення помилки відповідає на питання: на скільки слід скоригувати кожну вагу, щоб зменшити помилку, створену мережею? Відповідь міститься в градієнті втрат відносно кожного параметра. Алгоритм проходить через дві окремі фази.</p>
+<ul>
+<li>
+<p>У першій, що називається прямим проходом, вхідні дані поширюються шар за шаром до виходу, і проміжні значення кожного обчислення зберігаються.</p>
+</li>
+<li>
+<p>У другій, зворотному проході, починають з помилки, здійсненої на виході, і поширюють її назад через мережу, ітеративно обчислюючи градієнти відносно кожного шару за допомогою правила ланцюга.</p>
+</li>
+</ul>
+<p>Цей механізм лежить в основі навчання практично всіх сучасних моделей глибокого навчання: від згорткових мереж для комп'ютерного зору до трансформерів, що використовуються в обробці природної мови.</p>
+<blockquote>
+<p>Алгоритм зворотного поширення помилки був формалізований у 1986 році Девідом Е. Румельхартом, Джеффрі Е. Хінтоном та Рональдом Дж. Вільямсом у їхній основоположній роботі <a href="https://www.nature.com/articles/323533a0">Learning representations by back-propagating errors (1986)</a>. Їхня робота показує, що навчання нейронної мережі може бути зведене до систематичного застосування правила ланцюга, що дозволяє обчислювати градієнти функції втрат відносно кожного параметра через локальні оновлення похідних.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Правило ланцюга як теоретична основа</h2>
+<p>Обчислення градієнтів у нейронній мережі повністю ґрунтується на <a href="the-derivative-of-a-composite-function.html">правилі ланцюга</a>. Якщо змінна \(Z\) залежить від \(Y\), а \(Y\) залежить від \(X\), то <a href="derivatives.html">похідна</a> \(Z\) відносно \(X\) отримується наступним чином:</p>
+<p>\[
+\frac{\partial Z}{\partial X} = \frac{\partial Z}{\partial Y} \cdot \frac{\partial Y}{\partial X}
+\]</p>
+<p>Ця тотожність є механізмом, який дозволяє пов'язати градієнт втрат на виході мережі з градієнтом відносно будь-якого внутрішнього параметра, незалежно від того, наскільки далеко він знаходиться від виходу. Кожен шар мережі вносить локальний множник у загальний добуток, і зворотне поширення помилки використовує цю структуру так, щоб жодна величина ніколи не обчислювалася двічі.</p>
+<hr>
+<p>Для повноти викладу корисно виразити правило ланцюга в його якобіанській формі. Якщо \( y = g(x) \) та \( z = f(y) \), то виконується:</p>
+<p>\[
+\nabla_x z = J_g(x)^\top \nabla_y z
+\]</p>
+<p>Тут \( J_g(x) \) позначає матрицю Якобіана функції \( g \) у точці \( x \), тобто матрицю всіх <a href="partial-derivatives.html">часткових похідних</a> компонентів \( y \) відносно компонентів \( x \). Таке формулювання чітко показує, як градієнти поширюються назад через векторні перетворення. Для спрощення цей рівень загальності не розглядається явно в прикладі, що обговорюється тут.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-20"><h2>Обчислювальний граф</h2>
+<p>Щоб зробити міркування точними, зручно описати обчислення, що виконуються нейронною мережею, за допомогою спрямованого обчислювального графа. У цьому графі квадратні вузли представляють змінні (параметри, активації, входи, виходи), тоді як круглі вузли представляють операції (множення матриць, застосування нелінійності, обчислення втрат). Спрямовані ребра вказують на залежності між змінними та операціями.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="960" height="640" src="../images/neural-network.png" alt="Neural network." class="wp-image-28343" style="width:480px" title="Neural network." srcset="../images/neural-network.png 960w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-300x200.png 300w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-768x512.png 768w" sizes="(max-width: 960px) 100vw, 960px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><blockquote
+><p>Для спрощення в прикладі, наведеному нижче, вплив членів зміщення вздовж ланцюга зворотного поширення помилки явно не розглядається, оскільки їхній внесок підпорядковується аналогічним правилам диференціювання.</p>
+</blockquote>
+<hr>
+<p>Наприклад, розглянемо двошарову повністю зв'язану мережу з функцією активації \(\phi\), що застосовується поелементно між двома лінійними шарами. Рівняння, що описують прямий прохід, є такими:</p>
+<p>\[
+\mathbf{z} = W^{(1)} \mathbf{x}
+\]</p>
+<p>\[
+\mathbf{h} = \phi(\mathbf{z})
+\]</p>
+<p>\[
+\mathbf{o} = W^{(2)} \mathbf{h}
+\]</p>
+<p>\[
+L = \ell(\mathbf{o},\, \mathbf{y})
+\]</p>
+<p>У цих виразах \(\mathbf{x}\) — вектор вхідних даних, \(W^{(1)}\) та \(W^{(2)}\) — матриці ваг двох шарів, \(\mathbf{y}\) — цільове значення, а \(L\) — скалярне значення функції втрат. Метою зворотного поширення помилки є обчислення градієнтів \(\frac{\partial L}{\partial W^{(1)}}\) та \(\frac{\partial L}{\partial W^{(2)}}\), які потім будуть використані алгоритмом градієнтного спуску для оновлення ваг.</p>
+<blockquote
+><p>Зазвичай проблеми, що зустрічаються на практиці, не мають лінійної природи, і модель, яка застосовує до своїх вхідних даних лише лінійні перетворення, була б фундаментально обмежена у своїй експресивній здатності. Функція активації — це нелінійна функція, що застосовується поелементно до виходу лінійного шару, роль якої полягає саме у введенні нелінійності в мережу. Без неї композиція будь-якої кількості лінійних шарів сама по собі зводилася б до одного лінійного перетворення, що зробило б глибші архітектури еквівалентними одношаровій моделі. Поширеними варіантами є <a href="sigmoid-function.html">сигмоїдальна функція</a> \(\sigma(s) = \frac{1}{1+e^{-s}}\), <a href="hyperbolic-tangent-and-cotangent.html">гіперболічний тангенс</a> та лінійна функція з випрямленням \(\text{ReLU}(s) = \max(0, s)\).</p>
+</blockquote>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Автоматичне диференціювання у зворотному режимі</h2>
+<p>Конкретний метод, за допомогою якого реалізується зворотне поширення помилки, називається автоматичним диференціюванням у зворотному режимі, або reverse autodiff. Ідея полягає в тому, що обчислювальний граф обходиться у зворотному порядку, від виходу до входу, і у кожному вузлі обчислюється градієнт втрат відносно відповідної змінної, накопичуючи внески, отримані від наступних шарів. Обчислення завжди починається з похідної функції втрат відносно самої себе, яка тривіально дорівнює одиниці:</p>
+<p>\[
+\frac{\partial L}{\partial L} = 1
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-20"><img loading="lazy" width="968" height="430" src="../images/neural-network-2.png" alt="Nerual network: backpropagation." class="wp-image-28363" style="width:484px" title="Nerual network: backpropagation." srcset="../images/neural-network-2.png 968w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-2-300x133.png 300w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-2-768x341.png 768w" sizes="(max-width: 968px) 100vw, 968px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Це початкове значення становить відправну точку, від якої градієнт поширюється назад через усі вузли графа. На наступних кроках ми детально простежимо це поширення, рухаючись від вихідного шару назад до першого набору параметрів, і на кожному етапі виводитимемо градієнт, який зрештою буде використаний для оновлення ваг.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Крок 1: градієнт відносно виходу \(\mathbf{o}\)</h2>
+<p>Наступним вузлом, який зустрічається при русі назад, є той, що обчислює втрати з виходу \(\mathbf{o}\) та цільового значення \(\mathbf{y}.\) Застосування правила ланцюга дає:</p>
+<p>\[
+\frac{\partial L}{\partial \mathbf{o}} = \left(\frac{\partial L}{\partial L} \cdot \frac{\partial L}{\partial \mathbf{o}}\right) = \frac{\partial L}{\partial \mathbf{o}}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="932" height="432" src="../images/neural-network-3.png" alt="" class="wp-image-28369" style="width:466px" srcset="../images/neural-network-3.png 932w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-3-300x139.png 300w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-3-768x356.png 768w" sizes="(max-width: 932px) 100vw, 932px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Цей градієнт залежить від конкретного вигляду функції втрат. Для квадратичних втрат \(\ell(\mathbf{o}, \mathbf{y}) = |\mathbf{o} &#8211; \mathbf{y}|^2\), наприклад, маємо \(\frac{\partial L}{\partial \mathbf{o}} = 2(\mathbf{o} &#8211; \mathbf{y})\). Конкретне значення \(\mathbf{o}\) доступне, оскільки воно було обчислене та збережене під час прямого проходу.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Крок 2: градієнт відносно \(W^{(2)}\)</h2>
+<p>Другий лінійний шар обчислює \(\mathbf{o} = W^{(2)} \mathbf{h}\). Щоб визначити градієнт функції втрат відносно матриці \(W^{(2)}\), застосовується правило ланцюга:</p>
+<p>\[
+\frac{\partial L}{\partial W^{(2)}} = \frac{\partial L}{\partial \mathbf{o}} \cdot \frac{\partial \mathbf{o}}{\partial W^{(2)}}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="932" height="422" src="../images/neural-network-4.png" alt="" class="wp-image-28372" style="width:466px" srcset="../images/neural-network-4.png 932w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-4-300x136.png 300w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-4-768x348.png 768w" sizes="(max-width: 932px) 100vw, 932px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Оскільки \(\mathbf{o} = W^{(2)} \mathbf{h}\) є лінійним перетворенням, похідна \(\mathbf{o}\) відносно \(W^{(2)}\), застосована до вже відомого градієнта, дає наступний результат:</p>
+<p>\[
+\frac{\partial L}{\partial W^{(2)}} = \frac{\partial L}{\partial \mathbf{o}} \, \mathbf{h}^{\top}
+\]</p>
+<p>Зовнішній добуток між вектором градієнта \(\frac{\partial L}{\partial \mathbf{o}} \in \mathbb{R}^m\) та транспонованим вектором активації \(\mathbf{h}^{\top} \in \mathbb{R}^{1 \times d}\) повертає матрицю тих самих розмірів, що й \(W^{(2)}\), як це і необхідно. Зауважимо, що значення \(\mathbf{h}\) доступне, оскільки воно було обчислене та збережене під час прямого проходу.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Крок 3: поширення градієнта до \(\mathbf{h}\)</h2>
+<p>Перш ніж перейти до першого шару, необхідно обчислити градієнт функції втрат відносно вектора активації \(\mathbf{h}\). Знову застосовується правило ланцюга, використовуючи той факт, що \(\mathbf{o} = W^{(2)} \mathbf{h}\):</p>
+<p>\[
+\frac{\partial L}{\partial \mathbf{h}} = \left(\frac{\partial \mathbf{o}}{\partial \mathbf{h}}\right)^{\top} \frac{\partial L}{\partial \mathbf{o}} = \left(W^{(2)}\right)^{\top} \frac{\partial L}{\partial \mathbf{o}}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="932" height="442" src="../images/neural-network-5.png" alt="" class="wp-image-28375" style="width:466px" srcset="../images/neural-network-5.png 932w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-5-300x142.png 300w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-5-768x364.png 768w" sizes="(max-width: 932px) 100vw, 932px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Транспонування \(W^{(2)}\) природним чином виникає при обчисленні градієнта відносно входу лінійного перетворення, і саме цей механізм дозволяє сигналу помилки поширюватися від виходу до входу мережі.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Крок 4: градієнт через функцію активації</h2>
+<p>Наступний вузол у графі, рухаючись далі назад, — це той, що застосовує функцію активації \(\phi\) поелементно, обчислюючи \(\mathbf{h} = \phi(\mathbf{z})\). Оскільки \(\phi\) діє окремо на кожен компонент, її похідна є діагональною, і градієнт поширюється наступним чином:</p>
+<p>\[
+\frac{\partial L}{\partial \mathbf{z}} = \frac{\partial L}{\partial \mathbf{h}} \odot \phi’(\mathbf{z})
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="932" height="408" src="../images/neural-network-6.png" alt="" class="wp-image-28378" style="width:466px" srcset="../images/neural-network-6.png 932w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-6-300x131.png 300w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-6-768x336.png 768w" sizes="(max-width: 932px) 100vw, 932px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Тут \(\odot\) позначає поелементний добуток, а \(\phi’(\mathbf{z})\) — це <a href="vectors.html">вектор</a>, що містить значення похідної \(\phi\), обчисленої в точках \(z_1, z_2, \ldots, z_d\), які були збережені під час прямого проходу. Ця формула підкреслює важливий аспект: якщо похідна функції активації систематично мала, градієнт затухає на кожному шарі, поки не зникне в найглибших шарах. Це явище відоме як проблема затухаючого градієнта і є однією з причин, чому вибір функції активації має важливі наслідки для навчання глибоких мереж.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Проблема затухання градієнта</h2>
+<p>Аналіз вище показує, що щоразу, коли градієнт проходить крізь шар із функцією активації \(\phi\), він множиться на \(\phi’(\mathbf{z})\). У мережі з \(n\) шарами градієнт відносно параметрів першого шару містить добуток \(n\) таких множників. Якщо \(\phi’\) систематично менша за одиницю за абсолютним значенням, цей добуток зменшується експоненціально з \(n\), що робить градієнт мізерним і фактично неможливим оновлення ваг у найперших шарах. Сигмоїдна функція є особливо несприятливим прикладом у цьому відношенні. Вона має вигляд:</p>
+<p>\[
+\sigma(s) = \frac{1}{1+e^{-s}}
+\]</p>
+<p>Її похідна всюди задовольняє нерівність \(\sigma’(s) \leq \frac{1}{4}\). У глибокій мережі повторне множення цих множників призводить до того, що градієнт затухає експоненціально з глибиною, тому найперші шари отримують сигнал, який становить малу частку від того, що було обчислено на виході. Навчання в цих шарах стає надзвичайно повільним або повністю неефективним.</p>
+<hr>
+<p>Функція ReLU була введена саме для того, щоб пом'якшити цю проблему:
+\[
+\text{ReLU}(s) = \max(0, s)
+\]
+Її похідна дорівнює одиниці для всіх додатних значень аргументу, що дозволяє уникнути систематичного затухання градієнта вздовж напрямку активованих нейронів.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Крок 5: градієнт відносно \(W^{(1)}\)</h2>
+<p>Останнім параметричним вузлом, що зустрічається під час підйому по графу, є множення \(\mathbf{z} = W^{(1)} \mathbf{x}\). Градієнт відносно \(W^{(1)}\) обчислюється за тією ж схемою, що вже використовувалася для \(W^{(2)}\):</p>
+<p>\[
+\frac{\partial L}{\partial W^{(1)}} = \frac{\partial L}{\partial \mathbf{z}} \, \mathbf{x}^{\top}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="932" height="388" src="../images/neural-network-7.png" alt="" class="wp-image-28381" style="width:466px" srcset="../images/neural-network-7.png 932w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-7-300x125.png 300w, https://algebrica.org/wp-content/uploads/resources/images/neural-network-7-768x320.png 768w" sizes="(max-width: 932px) 100vw, 932px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Тут знову градієнт має таку ж форму, як і матриця ваг, і виражається як зовнішній добуток між сигналом помилки, що поширився до цієї точки, та вхідним вектором \(\mathbf{x}\), який також доступний з прямого проходу.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Резюме обчислювального потоку</h2>
+<p>Весь процес можна описати наступним чином. Під час прямого проходу послідовно обчислюються \(\mathbf{z}\), \(\mathbf{h}\), \(\mathbf{o}\) та \(L\), а проміжні значення зберігаються. Під час зворотного проходу в реверсивному порядку обчислюються такі градієнти:</p>
+<p>\[
+\begin{array}{c}
+\dfrac{\partial L}{\partial L} = 1 \\[10pt]
+\downarrow \\[10pt]
+\dfrac{\partial L}{\partial \mathbf{o}} = \dfrac{\partial \ell(\mathbf{o}, \mathbf{y})}{\partial \mathbf{o}} \\[10pt]
+\downarrow \\[10pt]
+\dfrac{\partial L}{\partial W^{(2)}} = \dfrac{\partial L}{\partial \mathbf{o}} \, \mathbf{h}^{\top} \\[10pt]
+\downarrow \\[10pt]
+\dfrac{\partial L}{\partial \mathbf{h}} = \left(W^{(2)}\right)^{\top} \dfrac{\partial L}{\partial \mathbf{o}} \\[10pt]
+\downarrow \\[10pt]
+\dfrac{\partial L}{\partial \mathbf{z}} = \dfrac{\partial L}{\partial \mathbf{h}} \odot \phi’(\mathbf{z}) \\[10pt]
+\downarrow \\[10pt]
+\dfrac{\partial L}{\partial W^{(1)}} = \dfrac{\partial L}{\partial \mathbf{z}} \, \mathbf{x}^{\top}
+\end{array}
+\]</p>
+<p>Кожен із цих градієнтів залежить виключно від величин, вже обчислених на попередніх кроках, що робить алгоритм обчислювально ефективним: кожне проміжне значення обчислюється один раз, а потім використовується стільки разів, скільки необхідно. Загальна кількість операцій має той самий порядок величини, що і прямий прохід, незалежно від глибини мережі.</p>
+<blockquote>
+<p>Умовою, яка робить можливим зворотне поширення помилки, є диференційовність усіх операцій у графі. Для функцій активації, які не є диференційовними всюди, таких як ReLU, на практиці в точці недиференційованості приймається субградієнт, і алгоритм продовжує працювати коректно в контексті стохастичного навчання.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Загальний випадок</h2>
+<p>Приклад із двома шарами, розглянутий вище, безпосередньо узагальнюється на мережу довільної глибини. Розглянемо мережу з \(n\) матрицями ваг \(W^{(1)}, \ldots, W^{(n)}\) та функціями активації \(\phi^{(1)}, \ldots, \phi^{(n-1)}\), що застосовуються між послідовними шарами. Позначаючи значення до активації на шарі \(k\) як \(\mathbf{z}^{(k)}\), а значення після активації як \(\mathbf{h}^{(k)}\), прямий прохід обчислює для \(k = 1, \ldots, n\):</p>
+<p>\[\mathbf{z}^{(k)} = W^{(k)} \mathbf{h}^{(k-1)}\]
+\[ \mathbf{h}^{(k)} = \phi^{(k)}(\mathbf{z}^{(k)})\]</p>
+<p>У цьому випадку за домовленістю \(\mathbf{h}^{(0)} = \mathbf{x}\). Зворотний прохід потім поширює градієнт від шару \(n\) вниз до шару \(1\). За умови, що на шар \(k\) надходить градієнт \(\frac{\partial L}{\partial \mathbf{h}^{(k)}}\), три локальні
+оновлення мають наступний вигляд:</p>
+<p>\[
+\begin{array}{c}
+\dfrac{\partial L}{\partial \mathbf{z}^{(k)}} = \dfrac{\partial L}{\partial \mathbf{h}^{(k)}} \odot \left(\phi^{(k)}\right)'(\mathbf{z}^{(k)}) \\[10pt]
+\downarrow \\[10pt]
+\dfrac{\partial L}{\partial W^{(k)}} = \dfrac{\partial L}{\partial \mathbf{z}^{(k)}} \left(\mathbf{h}^{(k-1)}\right)^{\top} \\[10pt]
+\downarrow \\[10pt]
+\dfrac{\partial L}{\partial \mathbf{h}^{(k-1)}} = \left(W^{(k)}\right)^{\top} \dfrac{\partial L}{\partial \mathbf{z}^{(k)}}
+\end{array}
+\]</p>
+<p>Третє рівняння поширює градієнт на шар нижче, що робить рекурсію самопідтримуваною. Починаючи з \(\frac{\partial L}{\partial \mathbf{h}^{(n)}} = \frac{\partial L}{\partial \mathbf{o}}\) та ітеруючи від \(k = n\) вниз до \(k = 1\), можна відновити всі градієнти, необхідні для оновлення кожної матриці ваг у мережі.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="backpropagation.html">algebrica.org/backpropagation</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

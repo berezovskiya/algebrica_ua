@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Біноміальні рівняння — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Біноміальні рівняння</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps"><h2>Що таке біноміальні рівняння</h2>
+<p>Біноміальні рівняння — це особливий тип алгебраїчних <a href="equations.html">рівнянь</a>, які містять лише два доданки, зазвичай виражені у вигляді:</p>
+<p>\[ax^n  + b = 0\]</p>
+<ul>
+<li>\(a\) та \(b\) — стали.</li>
+<li>\(x\) — змінна, піднесена до степеня \(n\), де \(n\) — додатне <a href="integers.html">ціле число</a>.</li>
+</ul>
+<h5>Існують різні стратегії розв'язання цих рівнянь залежно від значення \( n \). Коли \( n \) є непарним цілим числом, рівняння зазвичай має єдиний дійсний розв'язок. Якщо \( n \) парне, наявність дійсних розв'язків залежить від знака правої частини: наприклад, рівняння не має дійсних розв'язків, якщо потрібно добути корінь парного степеня з від'ємного числа. У більш складних контекстах розв'язки можуть також включати комплексні числа, особливо при роботі з від'ємними або недійсними результатами.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Рівняння зі степенем менше двох</h2>
+<p>Якщо значення \(n\) дорівнює \(1\), задане рівняння зводиться до простого <a href="linear-equations.html">лінійного рівняння</a> у вигляді \(ax + b = 0\), яке можна розв'язати, ізолювавши змінну \(x\) та знайшовши її відповідне значення.</p>
+<p>\[ ax+b= 0 \quad \rightarrow \quad x = \frac{-b}{a} \]</p>
+<p>Якщо значення \(n\) дорівнює \(2\), задане рівняння зводиться до <a href="quadratic-equations.html">квадратного рівняння</a> у вигляді \(ax^2 + b = 0\), яке можна розв'язати за допомогою <a href="quadratic-formula.html">формули коренів квадратного рівняння</a> або простіше — обчисливши квадратний корінь із виразу \(\large{\frac{-b}{a}}\):</p>
+<p>\[ x = \pm \sqrt{\frac{-b}{a}} \]</p>
+<h5>Ця формула дає дійсні розв'язки лише тоді, коли \( -\dfrac{b}{a} \geq 0 \). В іншому випадку рівняння має <a href="quadratic-equations-with-complex-solutions.html">комплексні розв'язки</a>.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Рівняння зі степенем більшим за два</h2>
+<p>Якщо \(n\) більше 2, ми маємо справу з відносно простим випадком рівняння зі степенем вищим за два. Загалом такі <a href="equations.html">рівняння</a> можна розв'язати, обчисливши корінь n-го степеня зі значення \(\large{\frac{-b}{a}}\), розглядаючи два окремих випадки залежно від того, чи є \(n\) парним, чи \(n\) непарним:</p>
+<p>Коли \(n\) парне і \(\large{\frac{-b}{a}}\) додатне, ми маємо два різних розв'язки, або один розв'язок, якщо \(\large{\frac{-b}{a}}\) дорівнює \(0\), у вигляді:</p>
+<p>\[ x = \pm \sqrt[\Large{n}]{\frac{-b}{a}} \]</p>
+<p>Коли \(n\) парне і \(\large{\frac{-b}{a}}\) від'ємне, рівняння не має розв'язків у полі <a href="types-of-numbers.html">дійсних чисел</a>.</p>
+<hr>
+<p>Коли \(n\) непарне, завжди існує єдиний розв'язок у вигляді:</p>
+<p>\[ x = \sqrt[\Large{n}]{\frac{-b}{a}} \]</p>
+<p>Фактично, корінь n-го <a href="roots-of-a-polynomial.html">степеня</a> з від'ємного числа можливий лише тоді, коли показник кореня є непарним. Ця арифметична операція є математично правильною і може бути виконана за тією ж методологією, що і для дійсних додатних чисел. Результат добування кореня n-го степеня з від'ємного числа також є від'ємним, за винятком випадків, коли показник є парним числом. У таких випадках дійсного розв'язку не існує.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 1</h2>
+<p>Розв'яжіть біноміальне рівняння \(x^3-27 = 0\).</p>
+<p>Маємо:</p>
+<p>\begin{align*}
+x^3 &amp;= 27 \\[0.6em]
+x &amp;= \sqrt[\Large{3}]{27}
+x &amp; = 3
+\end{align*}</p>
+<h5>У цьому випадку \(n\) непарне, а число під коренем додатне, тому рівняння має єдиний дійсний розв'язок.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язання рівняння:
+\[ x = 3 \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 2</h2>
+<p>Розв'яжіть біноміальне рівняння \(x^3 + 8 = 0\).</p>
+<p>Маємо:</p>
+<p>\begin{align*}
+x^3 &amp;= -8 \\[0.6em]
+x &amp;= \sqrt[\large{3}]{-8}
+\end{align*}</p>
+<p>У цьому випадку \(n\) непарне, а число під коренем від'ємне, тому рівняння має єдиний дійсний розв'язок.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язання рівняння:
+\[x= -2\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 3</h2>
+<p>Розв'яжіть біноміальне рівняння \(x^4 +5  = 0\).</p>
+<p>Маємо:</p>
+<p>\begin{align*}
+x^4 &amp;= -5 \\[0.6em]
+x &amp;= \sqrt[\large{4}]{-5}
+\end{align*}</p>
+<p>У цьому випадку \(n\) парне, а число під коренем від'ємне, тому рівняння не має дійсних розв'язків.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язання рівняння:
+\[\nexists x \in \mathbb{R}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Дійсно, наведені приклади є лише загальними ілюстраціями рівнянь, що легко розв'язуються. На практиці можна зустріти випадки, коли складні <a href="polynomial-equations.html">поліноміальні рівняння</a> можуть бути зведені до біноміальних рівнянь, які, як було продемонстровано, можна розв'язати за допомогою простих методів</h5>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке біноміальне рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Біноміальне рівняння — це алгебраїчне рівняння, яке містить рівно два доданки, зазвичай у вигляді axⁿ + b = 0, де a та b — дійсні сталі, а n — додатне ціле число."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як розв'язати біноміальне рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб розв'язати біноміальне рівняння, ізолюйте доданок зі змінною та застосуйте відповідний корінь. Наприклад, щоб розв'язати axⁿ + b = 0, перепишіть його як xⁿ = -b/a, а потім добудьте корінь n-го степеня з обох частин, враховуючи дійсні або комплексні розв'язання залежно від парності n."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли біноміальне рівняння має комплексні розв'язання?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Біноміальне рівняння має комплексні розв'язання, коли права частина рівняння xⁿ = -b/a є від'ємною, а n — парним. У таких випадках дійсних розв'язань немає, але існують комплексні розв'язання у вигляді уявних чисел."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="binomial-equations.html">algebrica.org/binomial-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

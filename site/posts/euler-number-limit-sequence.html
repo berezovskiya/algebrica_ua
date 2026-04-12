@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Число Ейлера як границя послідовності — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Послідовності</span>
+    </nav>
+    <article>
+        <h1>Число Ейлера як границя послідовності</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-1" style="height:460px;min-height:460px;max-height:460px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:460px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="binomial-theorem.html">Біноміальна теорема</a>, <a href="geometric-series.html">Геометричний ряд</a>, <a href="sequences.html">Послідовності</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-1");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"sequence definition"},{"name":"natural index"},{"name":"limit definition"},{"name":"decimal approximation"},{"name":"exponential base"},{"name":"growth constant"}]},{"name":"properties","children":[{"name":"monotonicity"},{"name":"boundedness"},{"name":"convergence"},{"name":"limit existence"},{"name":"monotone theorem"},{"name":"limit value"}]},{"name":"connections","children":[{"name":"binomial theorem"},{"name":"factorial bounds"},{"name":"term comparison"},{"name":"geometric bound"},{"name":"partial sums"},{"name":"taylor series"},{"name":"exponential series"},{"name":"definition equivalence"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 460;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Як послідовність відкриває \(e\)</h2>
+<p>Число Ейлера, що позначається як \(e\), є однією з найважливіших сталих у математиці.
+Існує кілька еквівалентних способів його введення: через нескінченні ряди, через
+натуральну експоненціальну функцію або через границю послідовності. Ця сторінка присвячена
+останньому підходу.</p>
+<p>Розглянемо послідовність \({a_n}\) з \(n \in \mathbb{N}\), визначену наступним виразом:
+\[
+a_n = \left(1 + \frac{1}{n}\right)^n
+\]
+Як показано в наступних розділах, ця послідовність є строго зростаючою та обмеженою зверху.
+Згідно з теоремою про збіжність монотонних послідовностей, вона, отже, збігається до скінченної границі. Ця границя
+береться як означення числа Ейлера, і ми пишемо:
+\[
+e := \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n
+\]
+Символ \(:=\) вказує на те, що це означення: число \(e\) вводиться
+як значення, до якого збігається послідовність. Його десятковий розклад починається як
+\(e \approx 2.71828\), і можна показати, що \(e\) є ірраціональним і трансцендентним.
+Ірраціональність означає, що \(e\) не може бути представлене як відношення двох
+<a href="integers.html">цілих чисел</a>. Трансцендентність є сильнішою властивістю: вона означає, що \(e\) не є
+коренем жодного ненульового <a href="polynomial-equations.html">поліноміального рівняння</a> з
+раціональними коефіцієнтами.</p>
+<hr>
+<p>Графік нижче ілюструє, як поводять себе члени послідовності при зростанні \(n\). Значення
+швидко зростають для малих \(n\), потім зростають повільніше, наближаючись до \(e\)
+знизу, ніколи його не досягаючи.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="868" height="534" src="../images/euler-sequence-1-1.png" alt="" class="wp-image-26196" style="width:434px" srcset="../images/euler-sequence-1-1.png 868w, https://algebrica.org/wp-content/uploads/resources/images/euler-sequence-1-1-300x185.png 300w, https://algebrica.org/wp-content/uploads/resources/images/euler-sequence-1-1-768x472.png 768w" sizes="(max-width: 868px) 100vw, 868px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h6>Кожен член \(a_n\) строго менший за \(e\), і розрив закривається при зростанні \(n\), хоча швидкість збіжності достатньо повільна, що навіть великі значення \(n\) дають лише грубе наближення границі.</h6>
+<p>Наступна таблиця значень ілюструє, як поводиться послідовність при збільшенні індексів.
+\[
+\begin{align}
+n = 1:&amp; \quad a_1 = \left(1 + \frac{1}{1}\right)^1 = 2 \\[6pt]
+n = 10:&amp; \quad a_{10} = \left(1 + \frac{1}{10}\right)^{10} \approx 2.59374 \\[6pt]
+n = 100:&amp; \quad a_{100} = \left(1 + \frac{1}{100}\right)^{100} \approx 2.70481 \\[6pt]
+n = 1000:&amp; \quad a_{1000} = \left(1 + \frac{1}{1000}\right)^{1000} \approx 2.71692
+\end{align}
+\]
+Члени зростають стабільно і наближаються до \(e \approx 2.71828\) знизу, при цьому кожне наступне значення охоплює більше десяткових знаків границі. Збіжність є монотонною, але повільною: навіть при \(n = 1000\) наближення збігається з \(e\) лише до другого десяткового знака.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Доведення монотонності послідовності</h2>
+<p>Щоб довести, що послідовність \({a_n}\) є строго зростаючою, ми розкладемо кожен член за допомогою <a href="binomial-theorem.html">біноміальної теореми</a>. Застосована до виразу \(\left(1 + \frac{1}{n}\right)^n\), розклад дає наступне:</p>
+<p>\[
+a_n = \sum_{k=0}^{n} \binom{n}{k} \frac{1}{n^k}
+= \sum_{k=0}^{n} \frac{1}{k!} \cdot \frac{n(n-1)\cdots(n-k+1)}{n^k}
+\]</p>
+<p>Кожен множник вигляду:</p>
+<p>\[\frac{n(n-1)\cdots(n-k+1)}{n^k}\]</p>
+<p>можна записати як добуток \(k\) членів типу \(\left(1 - \frac{j}{n}\right)\), для \(j = 0, 1, \ldots, k-1\). Таким чином, розклад набуває вигляду:</p>
+<p>\[
+a_n = \sum_{k=0}^{n} \frac{1}{k!} \prod_{j=0}^{k-1} \left(1 &#8211; \frac{j}{n}\right)
+\]</p>
+<p>Тепер розглянемо аналогічний вираз для \(a_{n+1}\), отриманий шляхом заміни \(n\) на \(n+1\) всюди. Відбуваються дві речі: верхня границя суми збільшується на один, додаючи новий додатний член, і кожен існуючий множник \(\left(1 - \frac{j}{n}\right)\) замінюється на \(\left(1 &#8211; \frac{j}{n+1}\right)\), який є строго більшим, оскільки віднімана величина зменшується.</p>
+<p>Кожен член у сумі для \(a_{n+1}\), отже, є строго більшим за відповідний член у сумі для \(a_n\), і сама сума містить один додатковий додатний член. Звідси випливає, що \(a_{n+1} &gt; a_n\) для всіх \(n \in \mathbb{N}\), отже послідовність є строго зростаючою.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Доведення обмеженості послідовності</h2>
+<p>Залишається показати, що послідовність є обмеженою. Оскільки \(a_1 = 2\) і послідовність є строго зростаючою, маємо \(a_n &gt; 2\) для всіх \(n \geq 1\). Отже, достатньо встановити верхню межу. Стверджуємо, що \(a_n &lt; 3\) для всіх \(n \in \mathbb{N}\). Виходячи з розкладу, отриманого в попередньому розділі, і зауваживши, що кожен множник \(\left(1 &#8211; \frac{j}{n}\right)\) не перевищує \(1\), отримаємо наступну оцінку:</p>
+<p>\[
+a_n = \sum_{k=0}^{n} \frac{1}{k!} \prod_{j=0}^{k-1} \left(1 &#8211; \frac{j}{n}\right) &lt; \sum_{k=0}^{n} \frac{1}{k!}
+\]</p>
+<p>Щоб обмежити цю суму зверху, використаємо нерівність \(k! \geq 2^{k-1}\), яка виконується для всіх \(k \geq 1\) і випливає з того факту, що кожен із \(k-1\) множників у \(2 \cdot 3 \cdots k\) принаймні дорівнює \(2\). Це дає:</p>
+<p>\[
+\sum_{k=0}^{n} \frac{1}{k!} \leq 1 + \sum_{k=1}^{n} \frac{1}{2^{k-1}} = 1 + \sum_{k=0}^{n-1} \frac{1}{2^k}
+\]</p>
+<p>Сума праворуч є частковою сумою <a href="geometric-series.html">геометричного ряду</a> зі знаменником \(\frac{1}{2}\). Її значення становить:</p>
+<p>\[
+\sum_{k=0}^{n-1} \frac{1}{2^k} = 2\left(1 - \frac{1}{2^n}\right) &lt; 2
+\]</p>
+<p>Поєднуючи ці оцінки, ми робимо висновок, що \(a_n &lt; 1 + 2 = 3\) для всіх \(n \in \mathbb{N}\). Разом із нижньою межею \(a_n &gt; 2\), це підтверджує, що послідовність є обмеженою.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Зв'язок із визначенням \(e\) через ряд</h2>
+<p>Доведення обмеженості розкриває більше, ніж просто верхню оцінку. Величина:</p>
+<p>\[\sum_{k=0}^{n} \frac{1}{k!}\]</p>
+<p>яка виступає як верхня межа для \(a_n\), сама є частковою сумою ряду:</p>
+<p>\[
+\sum_{k=0}^{\infty} \frac{1}{k!} = 1 + 1 + \frac{1}{2!} + \frac{1}{3!} + \cdots
+\]</p>
+<p>Цей ряд є збіжним, і його сума точно дорівнює \(e\). Фактично, наступна тотожність показує, що ці два визначення є еквівалентними:</p>
+<p>\[
+e = \lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = \sum_{k=0}^{\infty} \frac{1}{k!}
+\]</p>
+<p>Представлення у вигляді ряду, що виникає з розкладу експоненціальної функції в ряд Тейлора, збігається значно швидше, ніж послідовність \({a_n}\), і забезпечує ефективніший шлях для обчислення десяткових наближень \(e\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>University of Colorado, L. Baggett</strong>. <a href="https://spot.colorado.edu/~baggett/chap2.pdf">Definition of the Number \(e\)</a></p>
+</li>
+<li>
+<p><strong>University of Connecticut, K. Conrad</strong>. <a href="https://kconrad.math.uconn.edu/blurbs/analysis/irrational.pdf">Irrationality of \(\pi\) and \(e\)</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="euler-number-limit-sequence.html">algebrica.org/euler-number-limit-sequence</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

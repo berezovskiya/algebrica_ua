@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Системи нерівностей — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Нерівності</span>
+    </nav>
+    <article>
+        <h1>Системи нерівностей</h1>
+        <time>2025-02-13</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-section mb-x-30"><h2>Лінійні системи нерівностей з однією змінною</h2>
+<p>Система нерівностей — це сукупність двох або більше нерівностей, що містять одну або кілька змінних і розглядаються одночасно. Метою є визначення множини всіх значень змінних, які задовольняють кожну нерівність у системі одночасно. Іншими словами, розв'язання визначається спільною областю (або перетином) окремих множин розв'язків, пов'язаних із кожною нерівністю.</p>
+<p>У цьому розділі ми зосередимося на лінійних системах з однією дійсною змінною \( x \). Такі системи зазвичай складаються з нерівностей першого ступеня і можуть бути записані в загальному вигляді:</p>
+<p>\[
+\begin{cases}
+f_1(x) \geq 0 \\[0.6em]
+f_2(x) \geq 0 \\[0.6em]
+\quad \quad \quad \vdots \\[0.6em]
+f_k(x) \geq 0
+\end{cases}
+\]</p>
+<p>де \( f_i(x) \) — функції або вирази, що містять змінну \( x \), а відношенням може бути будь-який знак нерівності: \( &lt;, \leq, &gt;, \geq \). Система, що не має розв'язків, називається несумісною системою. Якщо навіть одна нерівність у системі не має розв'язання, вся система вважається несумісною.</p>
+<p>У розділі про <a href="linear-inequalities.html">лінійні нерівності</a> ми розглянули приклади того, як розв'язувати нерівності, що містять <a href="absolute-value-function.html">функцію модуля</a>. У таких випадках необхідно використовувати систему нерівностей, щоб знайти розв'язання. Розглянемо інший приклад того, як розв'язувати систему лінійних нерівностей.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Приклад 1</h2>
+<p>Розглянемо наступну систему лінійних нерівностей:</p>
+<p>\[
+\begin{cases}
+3x + 6 &gt; 0 \\[0.6em]
+x - 3 \geq 0 \\[0.6em]
+9 &#8211; x &gt; 0
+\end{cases}
+\]</p>
+<p>Нам потрібно знайти значення \( x \), які одночасно задовольняють усі три нерівності. Розв'язуючи окремі нерівності, ми отримаємо:</p>
+<p>\[
+\begin{cases}
+3x + &gt; -6 \rightarrow x &gt; -2\\[0.6em]
+x \geq 3 \\[0.6em]
+-x &gt; -9 \rightarrow x &lt; 9
+\end{cases}
+\]</p>
+<p>Отже, ми маємо три проміжки: \(x &gt; -2\), \(x \geq 3\), \(x&lt;9\). Як було зазначено, розв'язанням системи є те значення, яке задовольняє всі три нерівності одночасно. Ми представимо значення на числовій прямій і визначимо спільний проміжок, що відповідає вимогам.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th>\[ -2\]</th>
+<th>\[ 3\]</th>
+<th>\[ 9\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td><div class="sign-plus-right -open"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td><div class="sign-plus-left-in -closed -highlight"></div></td>
+<td><div class="sign-plus-right-in -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Розв'язанням системи є:
+\[x \in [3, 9)\]</p>
+<h5>Цей проміжок включає \( 3 \) і не включає \( 9 \). Для більш детального обговорення структури та інтерпретації проміжків зверніться до <a href="determining-the-domain-of-a-function.html">відповідного запису</a>.</h5>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section pb-steps"><h2>Загальна стратегія розв'язування систем нерівностей</h2>
+<p>Те, що ми розглянули, було дуже простою системою з трьох лінійних нерівностей зі змінною \( x \). Системи нерівностей можуть бути набагато складнішими і можуть включати раціональні функції, <a href="radicals.html">корені</a>, <a href="powers.html">степені</a>, <a href="logarithms.html">логарифми</a>, експоненти та <a href="sine-and-cosine.html">тригонометричні функції</a>.</p>
+<p>Хоча конкретна процедура розв'язання залежить від особливої форми та властивостей функцій, що використовуються, основний принцип залишається незмінним: допустимими є ті значення, які задовольняють усі нерівності в системі одночасно, тобто перетин їхніх окремих множин розв'язків.</p>
+<p>Загалом, розв'язування системи нерівностей відбувається за чітко визначеною послідовністю кроків. Типова процедура є наступною:</p>
+<ul>
+<li>Розв'язати кожну нерівність окремо та визначити відповідну для неї множину розв'язків.</li>
+<li>За потреби представити множини розв'язків на дійсній прямій, щоб візуалізувати отримані проміжки.</li>
+<li>Визначити перетин усіх множин розв'язків, оскільки лише значення, спільні для кожної нерівності, задовольняють систему.</li>
+<li>Записати остаточне розв'язання за допомогою відповідного позначення проміжків, переконавшись, що включення та виключення на кінцях indicated правильно.</li>
+</ul>
+<h5>Цей структурований підхід забезпечує надійну основу, яку можна адаптувати до широкого кола задач. Зі зростанням складності функцій ті самі принципи керують аналізом, гарантуючи, що кожен крок залишається логічно обґрунтованим і методологічно послідовним.</h5>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Приклад 2</h2>
+<p>Розглянемо наступну систему лінійних нерівностей:</p>
+<p>\[
+\begin{cases}
+\log_2(2x+4) &gt; \log_2(x) \\[0.9em]
+x - 2 &gt; 0
+\end{cases}
+\]</p>
+<p>Щоб розв'язати цю нерівність, спочатку нам потрібно визначити <a href="determining-the-domain-of-a-function.html">область визначення</a> логарифма. Логарифм визначений лише тоді, коли його аргумент більший за нуль. Отже, у цьому випадку маємо:</p>
+<p>\[
+\begin{align}
+&amp;2x + 4 &gt; 0 \rightarrow x &gt; -2 \\[0.6em]
+&amp;x &gt; 0 \rightarrow x &gt; 0
+\end{align}
+\]</p>
+<p>Перетин цих двох умов дає \( x &gt; 0 \). На цьому етапі перейдемо до першої нерівності. Оскільки логарифми \( \log_2(2x + 4) \) та \( \log_2(x) \) мають однакову основу, нерівність можна проаналізувати шляхом прямого порівняння аргументів двох логарифмічних виразів.</p>
+<p>\[2x+4 &gt; x \rightarrow x &gt; -2\]</p>
+<p>Тепер, перетинаючи це розв'язання з областю визначення логарифма, отримаємо \( x &gt; 0 \). Розглядаючи другу нерівність, отримаємо \( x &gt; 2 \). Тепер перевіримо, де два розв'язання задовольняються одночасно:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th>\[ 0\]</th>
+<th>\[ 2\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td><div class="sign-plus-left -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Розв'язанням системи є:
+\[x&gt; 2\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Багатозмінні системи нерівностей</h2>
+<p>Існують також складніші системи нерівностей, що складаються з \( k \) нерівностей зі змінними \( m \), які мають загальний вигляд:</p>
+<p>\[
+\begin{cases}
+f_1(x_1, x_2, \ldots x_m) \geq 0 \\[0.6em]
+f_2(x_1, x_2, \ldots x_m) \geq 0 \\[0.6em]
+\quad \quad \quad \vdots \\[0.6em]
+f_k(x_1, x_2, \ldots x_m) \geq 0
+\end{cases}
+\]</p>
+<p>Ці системи потребують більш просунутих методів розв'язання, таких як графічні методи, аналіз знаків, лінійне програмування та різні чисельні методи. Тому вони будуть розглянуті детальніше в інших розділах.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="systems-of-inequalities.html">algebrica.org/systems-of-inequalities</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

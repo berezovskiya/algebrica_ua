@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Факторіал — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Множини та числа</span>
+    </nav>
+    <article>
+        <h1>Факторіал</h1>
+        <time>2025-02-01</time>
+        <div class="content">
+            
+<div id="section-1" class="wp-block-group pb-section alignCenterMathjax js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Вступ до факторіала</h2>
+<p>Факторіал, що позначається як \(n!\), представляє добуток усіх додатних <a href="types-of-numbers.html">цілих чисел</a> від \(1\) до \(n\). Простіше кажучи, для заданого невивідничого цілого числа факторіал цього числа обчислюється шляхом множення всіх додатних цілих чисел від \(1\) до \(n\).</p>
+<p>\begin{align*}
+n! &amp;= n \times (n-1) \times (n-2) \times …  \times 2 \times 1 \\
+&amp;= n \times (n-1)!
+\end{align*}</p>
+<p>Наприклад:</p>
+<p>\[4! = 4 \times 3! = 4 \times 3 \times 2 \times 1 \ = 24\]</p>
+<p>За домовленістю, факторіал \(0\) дорівнює \(1\).</p>
+</div>
+</div></div>
+
+
+
+<div id="section-2" class="wp-block-group pb-section alignCenterMathjax js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Означення</h2>
+<p>У більш формальних термінах, факторіал додатного цілого числа \(n\) можна виразити через наступну рекурсивну <a href="functions.html">функцію</a>:</p>
+<p>\[ n! = \begin{cases}
+n \times (n-1)! &amp; \text{ якщо } n \in \mathbb{N} \quad n \gt 0\\[1em]
+1 &amp; \text{ якщо } n = 0
+\end{cases} \]</p>
+<p>Факторіал також можна записати компактніше як добуток \(\prod\) значень \(k\), що ітеруються від \(k=1\) до \(k=n\). Формула факторіала у компактному вигляді має такий вигляд:</p>
+<p>\[ n! = \begin{cases}
+\displaystyle{\prod_{k=1}^{n} k} &amp; \text{ якщо } n \in \mathbb{N} \quad n \gt 0\\[1em]
+1 &amp; \text{ якщо } n = 0
+\end{cases} \]</p>
+<p>Формула факторіала використовується для обчислення <a href="binomial-coefficient.html">біноміального коефіцієнта</a>, який представляє кількість способів вибрати певну кількість елементів із більшої множини.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div id="section-3" class="wp-block-group pb-section mb-x-30 alignCenterMathjax js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Спрощення відношень факторіалів</h2>
+<p>Відношення факторіалів часто зустрічаються в комбінаториці та теорії ймовірностей. Коли два факторіали мають спільну структуру, більшість множників скорочуються, і вираз зводиться до скінченного добутку. Нехай задано два цілих числа \(n\) та \(k\), при цьому \(n &gt; k\):</p>
+<p>\[
+\frac{n!}{(n-k)!} = n \times (n-1) \times (n-2) \times \cdots \times (n-k+1)
+\]</p>
+<p>Знаменник скорочує всі множники від \((n-k)\) вниз до \(1\), залишаючи рівно \(k\) членів у чисельнику.</p>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад</h2>
+<p>Обчислити відношення: \[\frac{10!}{5!}\]</p>
+<p>У цьому прикладі \(n=10\) та \(n -k=5\). За означенням факторіала ми отримаємо:</p>
+<p>\begin{align}
+\frac{10!}{5!} &amp; = \frac{10 \cdot 9 \cdot 8 \cdot 7 \cdot 6 \cdot \overbrace{ 5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}^{5!}}{\underbrace{5 \cdot 4 \cdot 3 \cdot 2 \cdot 1}_{5!}}\\[1em]
+&amp;= \frac{10 \cdot 9 \cdot 8 \cdot 7 \cdot 6 \cdot 5 !}{5 !} \\[0.6em]
+&amp;= 10 \cdot 9 \cdot 8 \cdot 7 \cdot 6 \\[1em]
+&amp;= 30240
+\end{align}</p>
+<p>Останній член відповідає \(n -k +1\), тобто \(10 -5 + 1 = 6\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Розв'язання:
+\[\frac{10!}{5!} = 30240\]</p>
+</div>
+</div></div>
+
+
+
+<div id="section-4" class="wp-block-group pb-section alignCenterMathjax js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Факторіал у комбінаториці</h2>
+<p>У комбінаториці факторіал \(n!\) визначає кількість різних перестановок \(n\) об'єктів. Наприклад, розташування 3 різних об'єктів дає \(3! = 6\) можливих варіантів:</p>
+<p>\begin{array}{rrrr}
+&amp; o_1 &amp; o_2 &amp; o_3 \\ \hline
+&amp; 1 &amp; 2 &amp; 3 \\
+&amp; 1 &amp; 3 &amp; 2 \\
+&amp; 2 &amp; 1 &amp; 3 \\
+&amp; 2 &amp; 3 &amp; 1 \\
+&amp; 3 &amp; 1 &amp; 2 \\
+&amp; 3 &amp; 2 &amp; 1 \\
+\end{array}</p>
+<p>Коли порядок вибору не має значення, багато з цих варіантів стають еквівалентними. Вибір об'єктів \(1, 2, 3\) є таким самим, як вибір \(3, 2, 1\) або будь-якого іншого розташування тих самих трьох елементів. Щоб підрахувати лише різні вибори, потрібно поділити на \(k!\) перестановок обраних об'єктів, що призводить до <a href="binomial-coefficient.html">біноміального коефіцієнта</a>:</p>
+<p>\[
+\binom{n}{k} = \frac{n!}{k!\,(n-k)!}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div id="section-5" class="wp-block-group pb-section alignCenterMathjax js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Корисна тотожність із факторіалом</h2>
+<p>Виходячи з означення факторіала, \( n! = n \cdot (n &#8211; 1)! \), ми можемо виділити \( n \) і поділити обидві частини на \( n! \). Це призводить до тотожності:</p>
+<p>\[
+\frac{n}{n!} = \frac{1}{(n &#8211; 1)!}
+\]</p>
+<p>Ця тотожність широко використовується в багатьох алгебраїчних та імовірнісних контекстах, де з'являються факторіали. Вона допомагає спростити вирази, що містять \( n! \), і полегшує коригування індексу підсумовування при роботі з рядами або дискретними імовірнісними моделями. Цей простий зв'язок часто виявляється корисним у практичних виводах, наприклад, при обчисленні середнього значення <a href="poisson-distribution.html">розподілу Пуассона</a> або спрощенні вигляду біноміальних коефіцієнтів.</p>
+</div>
+</div></div>
+
+
+
+<div id="section-6" class="wp-block-group pb-section alignCenterMathjax js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Зв'язок між факторіалом та гамма-функцією</h2>
+<p>Існує глибокий зв'язок між факторіалом та гамма-функцією. Факторіал застосовується лише до натуральних чисел, тоді як гамма-функція поширює цю ж ідею на всі додатні дійсні значення, створюючи його гладку та неперервну версію. Для будь-якого \( c \in \mathbb{R}^+ \) гамма-функція визначається інтегралом:</p>
+<p>\[
+\Gamma(c) =
+\int_{0}^{+\infty} x^{c - 1} e^{-x} \, dx
+\]</p>
+<p>Коли аргумент є цілим числом, гамма-функція відтворює факторіал відповідно до тотожності:</p>
+<p>\[
+\Gamma(n) = (n - 1)!
+\]</p>
+<p>У цьому сенсі факторіал можна розглядати як дискретний випадок гамма-функції.</p>
+<h5>Та сама функція також з'являється в означенні <a href="beta-distribution.html">бета-розподілу</a>, де вона забезпечує нормалізуючу сталу, яка гарантує, що повна ймовірність дорівнює одиниці.</h5>
+</div>
+</div></div>
+
+
+
+<div id="section-7" class="wp-block-group pb-section alignCenterMathjax pb-table-to-content alignCenterTable js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Наближення Стірлінга</h2>
+<p>Для великих значень \(n\) пряме обчислення \(n!\) стає непрактичним. Факторіал зростає швидше за будь-який <a href="polynomials.html">поліном</a> і швидше за будь-яку <a href="exponential-function.html">показникову функцію</a>: як показує таблиця нижче, навіть при \(n = 15\) він уже перевищує один мільярд, тоді як \(2^n\) все ще перебуває в межах десятків тисяч.</p>
+<table>
+<thead>
+<tr>
+<th>\(n\)</th>
+<th>Поліном \(n^2\)</th>
+<th>Показникова функція \(2^n\)</th>
+<th>Факторіал \(n!\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+</tr>
+<tr>
+<td>5</td>
+<td>25</td>
+<td>32</td>
+<td>120</td>
+</tr>
+<tr>
+<td>10</td>
+<td>100</td>
+<td>1,024</td>
+<td>3,628,800</td>
+</tr>
+<tr>
+<td>15</td>
+<td>225</td>
+<td>32,768</td>
+<td>~1.307 мільярда</td>
+</tr>
+</tbody>
+</table>
+<p>Наближення Стірлінга дає точну асимптотичну оцінку:</p>
+<p>\[
+n! \approx \sqrt{2\pi n} \left(\frac{n}{e}\right)^n
+\]</p>
+<p>де \(e\) — <a href="euler-number-limit-sequence.html">число Ейлера</a>. Це асимптотичний результат у строгому сенсі: відносна похибка прямує до нуля, коли \(n\) необмежено зростає:</p>
+<p>\[
+\lim_{n \to \infty} \frac{n!}{\sqrt{2\pi n}\left(\dfrac{n}{e}\right)^n} = 1
+\]</p>
+<p>і наближення стає дедалі точнішим зі збільшенням \(n\). Для \(n = 10\) точне значення становить \(10! = 3{,}628{,}800\), тоді як формула Стірлінга дає приблизно \(3{,}598{,}696\), що становить похибку менше \(1%\). Для \(n = 100\) відносна похибка падає нижче \(0.1%\). Удосконалена версія наближення включає поправочний член:</p>
+<p>\[
+n! \approx \sqrt{2\pi n} \left(\frac{n}{e}\right)^n \left(1 + \frac{1}{12n}\right)
+\]</p>
+<p>Наближення Стірлінга з'являється в асимптотичному аналізі <a href="binomial-coefficient.html">біноміальних коефіцієнтів</a>, в обчисленнях ентропії в статистичній механіці та в оцінках швидкості збіжності в теорії ймовірностей.</p>
+<h6>Для будь-якої основи \(a &gt; 1\) факторіал \(n!\) зрештою домінує над <a href="exponential-function.html">показниковою функцією</a> \(a^n\): тобто \(\lim_{n \to \infty} \dfrac{a^n}{n!} = 0\). Жодне показникові зростання, яким би швидким воно не було, не може встигнути за факторіалом.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-4" style="height:390px;min-height:390px;max-height:390px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:390px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті показана на концептуальній карті, де кожна гілка представляє основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-4");
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"добуток"},{"name":"рекурсивний"},{"name":"нульовий випадок"},{"name":"нотація"}]},{"name":"маніпуляції","children":[{"name":"відношення"},{"name":"скорочення"},{"name":"тотожності"},{"name":"зсув індексу"}]},{"name":"комбінаторика","children":[{"name":"перестановки"},{"name":"біноміальний коефіцієнт"},{"name":"сполучення"}]},{"name":"розширення","children":[{"name":"гамма-функція"},{"name":"інтегральна форма"},{"name":"наближення Стірлінга"},{"name":"швидкість зростання"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 390;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="factorial.html">algebrica.org/factorial</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

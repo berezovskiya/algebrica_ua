@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теорема Ферма — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теореми диференціального числення</span>
+    </nav>
+    <article>
+        <h1>Теорема Ферма</h1>
+        <time>2025-02-23</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Вступ</h2>
+<p>Теорема Ферма стверджує, що будь-який відносний <a href="maximum-minimum-and-inflection-points.html">максимум або мінімум</a> диференційовної функції в її <a href="determining-the-domain-of-a-function.html">області визначення</a> має бути в стаціонарній точці, тобто в точці, де перша <a href="derivatives.html">похідна</a> дорівнює нулю, а дотична є горизонтальною (паралельною \(x\)-осі).</p>
+<p>Теорема Ферма формулює необхідну, але не достатню умову для визначення локальних екстремумів. Зокрема, якщо функція має локальний максимум або мінімум у точці та є диференційовною в ній, то її похідна в цій точці має дорівнювати нулю. Однак обернене твердження не є правильним: нульова похідна не обов'язково означає наявність екстремуму.</p>
+<h6>Теорема Ферма відіграє ключову роль у доведенні <a href="rolles-theorem.html">теореми Ролля</a>.</h6>
+</div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Формулювання</h2>
+<p>Нехай задано <a href="functions.html">функцію</a> \( y = f(x) \), визначену на замкненому та обмеженому проміжку \([a, b]\) і диференційовну на відкритому проміжку \((a, b)\). Якщо функція досягає локального максимуму або мінімуму в точці \( x_0 \in (a, b) \), то похідна в цій точці має дорівнювати нулю:</p>
+<p>\[
+f’(x_0) = 0
+\]</p>
+<p>Наступний графік ілюструє теорему. У точці локального максимуму \( \mu \) всередині проміжку \( I \) похідна функції дорівнює нулю.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="462" src="../images/fermat-1.png" alt="" class="wp-image-15290" style="width:306px" srcset="../images/fermat-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/fermat-1-300x226.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h6>У певних випадках похідна функції стає рівною нулю в точці, яка не є ні максимумом, ні мінімумом. Такі точки називають стаціонарними точками без екстремуму, включаючи стаціонарні <a href="maximum-minimum-and-inflection-points.html">точки перегину</a>, де похідна дорівнює нулю, але функція зберігає свій напрямок.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Доведення</h2>
+<p>Щоб довести теорему, припустимо, що \( x_0 \) є точкою локального максимуму. Тоді в околі \( I \) навколо \( x_0 \) має виконуватися така нерівність:</p>
+<p>\[
+f(x) \leq f(x_0) \quad \forall \, x \in I
+\]
+Звідси випливає, що <a href="difference-quotient.html">приріст (частка різниці)</a> задовольняє наступне:</p>
+<p>Для \( h &gt; 0 \):
+\[
+\frac{f(x_0 + h) - f(x_0)}{h} \leq 0
+\]</p>
+<p>Для \( h &lt; 0 \):
+\[
+\frac{f(x_0 + h) - f(x_0)}{h} \geq 0
+\]</p>
+<p>З цих нерівностей, а також з означення похідної як границі частки різниці, випливає, що відповідні границі задовольняють:</p>
+<p>\[
+\lim_{h \to 0^+} \frac{f(x_0 + h) - f(x_0)}{h} \leq 0
+\]
+\[
+\lim_{h \to 0^-} \frac{f(x_0 + h) - f(x_0)}{h} \geq 0
+\]</p>
+<p>Якщо функція диференційовна в \( x_0\), то і ліва, і права границі існують і дорівнюють похідній. Єдиний спосіб, за якого ці дві нерівності можуть бути істинними одночасно, це якщо:</p>
+<p>\[
+f’(x_0) = 0
+\]</p>
+<h5>Таким чином, теорема доведена, оскільки ми показали, що якщо диференційовна функція досягає локального екстремуму у внутрішній точці, похідна в цій точці обов'язково має бути рівною нулю.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Теорема Ферма стверджує, що якщо функція досягає локального максимуму або мінімуму в точці та є диференційовною в цій точці, то її похідна має дорівнювати нулю. Однак обернене твердження не є правильним: нульова похідна в точці не обов'язково означає, що ця точка є локальним максимумом або мінімумом.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо приклад застосування теореми Ферма. Припустимо, ми вивчаємо функцію дійсних чисел:</p>
+<p>\[
+f(x) = x^{3} &#8211; 3x^{2} + 2
+\]</p>
+<p>визначену для кожного дійсного числа. Оскільки це <a href="polynomials.html">поліном</a>, функція є <a href="continuous-functions.html">неперервною</a> та <a href="derivatives.html">диференціовною</a> на всій дійсній прямій. Це гарантує, що якщо вона досягає локального максимуму або мінімуму в якійсь внутрішній точці своєї області визначення, теорема Ферма гарантує, що похідна в цій точці має дорівнювати нулю. Щоб визначити, де функція може мати екстремуми, обчислимо її похідну:</p>
+<p>\[
+f’(x) = 3x^{2} &#8211; 6x = 3x(x &#8211; 2)
+\]</p>
+<p>Похідна зникає саме тоді, коли \(3x(x &#8211; 2) = 0\), що відбувається при:</p>
+<p>\[
+x = 0 \quad \text{та} \quad x = 2
+\]</p>
+<p>Отже, ці два значення є єдиними кандидатами на внутрішні екстремуми, оскільки теорема Ферма стверджує, що будь-яка диференційовна функція, що досягає локального екстремуму, повинна мати горизонтальну дотичну в цій точці.</p>
+<hr>
+<p>Щоб визначити характер цих точок, дослідимо поведінку похідної навколо них. Для \( x &lt; 0 \) похідна додатна і функція зростає. Між \( 0 \) та \( 2 \) похідна стає від’ємною, тому функція спадає. Для \( x &gt; 2 \) похідна знову стає додатною, що означає, що функція знову зростає. Ця зміна <a href="increasing-and-decreasing-functions.html">монотонності</a> свідчить про те, що:</p>
+<ul>
+<li>для \( x = 0 \) функція переходить від зростання до спадання, що вказує на локальний максимум;</li>
+<li>для \( x = 2 \) функція переходить від спадання до зростання, що вказує на локальний мінімум.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign mb-x-30 mt-m-20"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[0\]</th>
+<th style="text-align:center">\[2\]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( f'(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( f(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{\nearrow} \)</td>
+<td style="text-align:center">\( \boldsymbol{\searrow} \)</td>
+<td style="text-align:center">\( \boldsymbol{\nearrow} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Обчислення значень функції підтверджує цю класифікацію: \(f(0) = 2 \) є локальним максимумом, а \(f(2)= -2 \) є локальним мінімумом.</p>
+<h6>Цей приклад підкреслює важливу роль теореми Ферма: вона не гарантує, що кожна точка з нульовою похідною є екстремумом, але вона гарантує, що кожен внутрішній екстремум диференційовної функції має бути в такій точці. Таким чином, вона надає необхідну умову, яка спрямовує та звужує пошук максимумів і мінімумів.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Не всі стаціонарні точки є екстремумами</h2>
+<p>Функція \( f(x) = x^3 \) є наочним прикладом, що показує, що нульова похідна не обов'язково означає наявність локального екстремуму.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="676" height="434" src="../images/fermat-2.png" alt="" class="wp-image-15317" style="width:338px" srcset="../images/fermat-2.png 676w, https://algebrica.org/wp-content/uploads/resources/images/fermat-2-300x193.png 300w" sizes="(max-width: 676px) 100vw, 676px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Похідна дорівнює:</p>
+<p>\[
+f’(x) = 3x^2
+\]</p>
+<p>При \( x = 0 \) маємо \(f’(0) = 0\). Таким чином, \( x = 0 \) є стаціонарною точкою. Хоча похідна в точці \( x = 0 \) дорівнює нулю, ця точка не є ні локальним максимумом, ні локальним мінімумом. Натомість x = 0 представляє стаціонарну точку перегину, де похідна дорівнює нулю. Проте функція зростає з обох боків цієї точки, не змінюючи напрямку.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Стаціонарні точки та поведінка на межі</h2>
+<p>Наявність стаціонарної точки — тобто точки, в якій похідна зникає — сама по собі не визначає, чи досягає функція в ній локального максимуму або мінімуму. Класифікація таких точок вимагає більш детального аналізу функції в околі точки-кандидата, а також розуміння структури області визначення. Розглянемо, наприклад, <a href="absolute-value-function.html">функцію модуля</a></p>
+<p>\[
+y = f(x) = |x| =
+\begin{cases}
++x &amp; \text{якщо } x \ge 0\\[4pt]
+-x &amp; \text{якщо } x &lt; 0
+\end{cases}
+\]</p>
+<p>яка досягає глобального мінімуму в точці \(x = 0\), хоча похідна в цій точці не існує.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="668" src="../images/fermath-theorem-4.png" alt="The function | x | has an absolute minimum at the origin, but it is not differentiable there, so Fermat’s theorem does not apply." class="wp-image-21614" style="width:306px" srcset="../images/fermath-theorem-4.png 612w, https://algebrica.org/wp-content/uploads/resources/images/fermath-theorem-4-275x300.png 275w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Цей приклад ілюструє, що екстремуми можуть виникати не лише там, де похідна дорівнює нулю, а й там, де функція не є диференційовною, або в граничних точках області визначення. У випадку замкнених проміжків функція може досягати своїх екстремумів на кінцях проміжку незалежно від поведінки похідної всередині нього.</p>
+<p>Навпаки, на відкритих проміжках або необмежених <a href="determining-the-domain-of-a-function.html">областях визначення</a> екстремуми можуть бути відсутні, навіть якщо існують стаціонарні точки. Таким чином, повне розуміння максимумів і мінімумів вимагає спільного використання умови Ферма, дослідження диференційовності та ретельного аналізу області, на якій визначена функція.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>Harvard University O. Knill</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/math1a_2014/handouts/26-rolle.pdf">The Mean Value Theorem and Rolle’s Theorem</a></p>
+</li>
+<li>
+<p><strong>UC Davis J. Hunter</strong>. <a href="https://www.math.ucdavis.edu/~hunter/m125a/intro_analysis_ch4.pdf">Differentiable Functions</a></p>
+</li>
+<li>
+<p><strong>MIT J. Starr</strong>. <a href="https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2005/e623940ed32c0dc3f942b64b9db07485_lecture_9.pdf">Critical Points and Extrema</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що стверджує теорема Ферма?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема Ферма стверджує, що якщо функція має локальний максимум або мінімум у точці та є диференційовною в цій точці, то похідна в цій точці має бути рівною нулю."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи завжди нульова похідна означає локальний екстремум?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ні. Нульова похідна вказує на стаціонарну точку, але не всі стаціонарні точки є максимумами або мінімумами. Наприклад, функція f(x) = x³ має похідну, що дорівнює нулю при x = 0, але ця точка не є локальним екстремумом."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи можна застосовувати теорему Ферма на кінцях проміжку?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ні. Теорема Ферма застосовується лише до внутрішніх точок області визначення, де функція є диференційовною. Вона не застосовується на кінцях проміжку або в точках, де функція не є диференційовною."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="fermat-theorem.html">algebrica.org/fermat-theorem</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

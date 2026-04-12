@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чудові границі — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Границі</span>
+    </nav>
+    <article>
+        <h1>Чудові границі</h1>
+        <time>2025-02-19</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-5" style="height:420px;min-height:420px;max-height:420px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:420px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли висвітлюють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="limits.html">Границі</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-5");
+            var dataset = {"name":"root","children":[{"name":"limits","children":[{"name":"sine limit"},{"name":"tangent limit"},{"name":"cosine limit"},{"name":"exponential limit"},{"name":"logarithmic limit"},{"name":"power limit"}]},{"name":"exponential and log","children":[{"name":"definition of e"},{"name":"continuous form"},{"name":"discrete form"},{"name":"logarithmic behavior"},{"name":"inverse relation"},{"name":"growth rates"}]},{"name":"asymptotics","children":[{"name":"asymptotic equivalence"},{"name":"little-o notation"},{"name":"local linearization"},{"name":"derivative link"},{"name":"taylor expansion"},{"name":"approximation"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 420;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Вступ</h2>
+<p>Помітні <a href="limits.html">границі</a> відіграють центральну роль у математичному аналізі. Вони неодноразово використовуються в обчисленнях і допомагають описати як локальну поведінку <a href="functions.html">функцій</a>, так і їхню поведінку на нескінченності. Найважливіші випадки зібрані нижче. Вони включають тригонометричні, експоненціальні та логарифмічні вирази, а також стандартні порівняння між величинами, що необмежено зростають, і тими, що прямують до нуля.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Тригонометрична фундаментальна границя</h2>
+<p>Найфундаментальніша та структурно значуща тригонометрична границя задана наступним чином:</p>
+<p>\[
+\lim_{x \to 0} \frac{\sin x}{x} = 1
+\]</p>
+<p>Цей результат характеризує локальну лінійність <a href="sine-function.html">функції синуса</a> в початку координат і еквівалентний наступному твердженню:</p>
+<p>\[
+\left.\frac{d}{dx}\sin x\right|_{x=0} = 1
+\]</p>
+<p>З цієї границі безпосередньо випливає, що для будь-якої дійсної сталої \(a\) маємо:</p>
+<p>\[\lim_{x \to 0} \frac{\sin(ax)}{ax} = 1\]
+\[\lim_{x \to 0} \frac{\sin(ax)}{x} = a\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Границя тангенса</h2>
+<p>Щоб обчислити границю <a href="tangent-function.html">тангенса</a>, розглянемо наступну тотожність:</p>
+<p>\[
+\frac{\tan x}{x} = \frac{\sin x}{x} \cdot \frac{1}{\cos x}
+\]</p>
+<p>Застосування неперервності функції косинуса в початку координат дає:</p>
+<p>\[
+\lim_{x \to 0} \frac{\tan x}{x} = 1
+\]</p>
+<p>Загалом, для будь-якої дійсної сталої \(a\) маємо:</p>
+<p>\[
+\lim_{x \to 0} \frac{\tan(ax)}{x} = a
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Границя косинуса</h2>
+<p>Квадратична поведінка, або поведінка другого порядку, виникає при обчисленні цієї границі:</p>
+<p>\[
+\lim_{x \to 0} \frac{1 - \cos x}{x^2} = \frac{1}{2}
+\]</p>
+<p>У цьому випадку чисельник зникає квадратично відносно \(x\), а не лінійно. <a href="cosine-function.html">Функція косинуса</a> дотична до горизонтальної прямої \(y = 1\) в початку координат: її перша похідна при \(x = 0\) дорівнює нулю, а перший ненульовий член у її розкладі Тейлора має порядок \(x^2\). Дійсно:
+\[
+\cos x = 1 &#8211; \frac{x^2}{2} + o(x^2)
+\]</p>
+<h6>Тут \( o(x^2) \) позначає <a href="little-o-notation.html">символ «о» малого</a>, що означає член, який стає нехтомним порівняно з \( x^2 \), коли \( x \to 0 \).</h6>
+<p>Ділення на \(x^2\) виділяє провідний квадратичний член і дає границю. Загалом маємо:</p>
+<p>\[
+\lim_{x \to 0} \frac{1 - \cos(ax)}{x^2} = \frac{a^2}{2}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Експоненціальна фундаментальна границя</h2>
+<p><a href="exponential-function.html">Експоненціальна функція</a> виявляє поведінку першого порядку біля початку координат: відхилення від сталої 1 є лінійним відносно \(x\):
+\[
+\lim_{x \to 0} \frac{e^x &#8211; 1}{x} = 1
+\]
+Ця границя відображає той факт, що похідна \(e^x\) в початку координат дорівнює одиниці:
+\[
+\left.\frac{d}{dx}e^x\right|_{x=0} = 1
+\]
+Цей результат випливає безпосередньо з розкладу Тейлора \(e^x\) біля початку координат:
+\[
+e^x = 1 + x + \frac{x^2}{2!} + o(x^2)
+\]
+з якого ділення на \(x\) та взяття границі негайно дає 1, оскільки всі члени вищого порядку зникають. Загалом, для будь-якої дійсної сталої \(a\) маємо:
+\[
+\lim_{x \to 0} \frac{e^{ax} - 1}{x} = a
+\]
+що випливає шляхом підстановки \(u = ax\) та зведення до стандартної форми.</p>
+<h6>Тут \(n!\) позначає <a href="factorial.html">факторіал</a> \(n\), визначений як добуток усіх додатних цілих чисел до \(n\); зокрема, \(2! = 2\).</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Логарифмічна фундаментальна границя</h2>
+<p>Для натурального <a href="logarithmic-function.html">логарифма</a> виконується наступна границя:
+\[
+\lim_{x \to 0} \frac{\ln(1+x)}{x} = 1
+\]
+Цей результат відповідає похідній \(\ln x\), обчисленій при \(x = 1\):
+\[
+\left.\frac{d}{dx}\ln x\right|_{x=1} = 1
+\]
+Загалом, для будь-якої дійсної сталої \(a\) маємо:
+\[
+\lim_{x \to 0} \frac{\ln(1+ax)}{x} = a
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Границі, що визначають експоненціальні функції</h2>
+<p>Стандартна границя, що визначає число Ейлера, задана як:
+\[
+\lim_{x \to 0} (1 + x)^{\frac{1}{x}} = e
+\]
+або еквівалентно, у її дискретній формі:
+\[
+\lim_{n \to \infty} \left(1 + \frac{1}{n}\right)^n = e
+\]</p>
+<h6>Дискретна форма отримується шляхом обмеження \(x\) значеннями вигляду \(\frac{1}{n}\), де \(n\) — додатне ціле число, так що \(x \to 0\) відповідає \(n \to \infty\). Підстановка дає послідовність \(\left(1 + \frac{1}{n}\right)^n\), чия границя при \(n \to \infty\) збігається з границі безперервної форми.</h6>
+<p>Загалом, для будь-якої дійсної сталої \(a\) маємо:
+\[
+\lim_{x \to 0} (1 + ax)^{\frac{1}{x}} = e^{a}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Границі, що включають степеневі функції</h2>
+<p>Для будь-якого дійсного показника \(\alpha\) маємо:
+\[
+\lim_{x \to 0} \frac{(1+x)^\alpha &#8211; 1}{x} = \alpha
+\]</p>
+<p>Цей результат може бути виведений за допомогою біноміального розкладу, коли \(\alpha\) є раціональним, або шляхом застосування логарифмічного диференціювання в загальному випадку.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Асимптотична еквівалентність</h2>
+<p>Наступні зауважені границі ілюструють локальні <a href="asymptotes.html">асимптотичні</a> зв'язки:
+\[
+\sin x \sim x \qquad \tan x \sim x \qquad 1 &#8211; \cos x \sim \frac{x^2}{2}
+\]
+\[
+e^x - 1 \sim x \qquad \ln(1+x) \sim x
+\]
+Точніше, позначення \(f(x) \sim g(x)\) при \(x \to 0\) вказує на те, що дві функції є асимптотично еквівалентними поблизу початку координат, що означає:
+\[
+\lim_{x \to 0} \frac{f(x)}{g(x)} = 1
+\]
+Кожен із цих зв'язків відповідає першому ненульовому члену в локальному розкладі Тейлора гладкої функції поблизу регулярної точки. Відповідно, ці еквівалентності можуть бути використані для заміни складніших виразів простішими при обчисленні granic.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Структурна інтерпретація</h2>
+<p>З просунутої точки зору, зауважені границі слугують вираженнями диференційовності та локальної лінеаризації. Кожна границя вигляду:</p>
+<p>\[ \lim_{x \to 0} \frac{f(x) - f(0)}{x} \]</p>
+<p>відповідає означенню <a href="derivatives.html">похідної</a> \(f\) у початку координат. Класичні зауважені границі представляють окремі випадки, коли ця похідна може бути обчислена явно, а потім використана як фундаментальний метод для розв'язання складніших <a href="indeterminate-forms.html">невизначеностей</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-recap mb-x-30"><h2>Підсумок основних зауважених granic</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\[\lim_{x \to 0} \frac{\sin x}{x}\]</td>
+<td>\[1\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{\sin(ax)}{ax}\]</td>
+<td>\[1\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{\sin(ax)}{x}\]</td>
+<td>\[a\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{\tan x}{x}\]</td>
+<td>\[1\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{\tan(ax)}{x}\]</td>
+<td>\[a\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{1-\cos x}{x^2}\]</td>
+<td>\[\frac{1}{2}\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{1-\cos(ax)}{x^2}\]</td>
+<td>\[\frac{a^2}{2}\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{e^x &#8211; 1}{x}\]</td>
+<td>\[1\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{e^{ax} - 1}{x}\]</td>
+<td>\[a\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{\ln(1+x)}{x}\]</td>
+<td>\[1\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{\ln(1+ax)}{x}\]</td>
+<td>\[a\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0}(1 + x)^{1/x}\]</td>
+<td>\[e\]</td>
+</tr>
+<tr>
+<td>\[\lim_{n\to\infty}\left(1+\frac{1}{n}\right)^n\]</td>
+<td>\[e\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x\to 0}(1+ax)^{1/x}\]</td>
+<td>\[e^a\]</td>
+</tr>
+<tr>
+<td>\[\lim_{x \to 0} \frac{(1+x)^\alpha - 1}{x}\]</td>
+<td>\[\alpha\]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li><strong>Stanford University G. B. Folland</strong>. <a href="https://web.stanford.edu/class/math19/limits.pdf">Limits and Continuity</a></li>
+<li><strong>MIT, D. Jerison</strong>. <a href="https://ocw.mit.edu/courses/res-18-001-calculus-fall-2023/mitres_18_001_f17_full_book.pdf">Calculus</a></li>
+<li><strong>Harvard University P. Knill</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/math1a_2011/calculus.pdf">Calculus One</a></li>
+<li><strong>University of Oxford J. Norbury</strong>. <a href="https://people.maths.ox.ac.uk/norbury/MT1/analysisI.pdf">Analysis I: Limits and Continuity</a></li>
+<li><strong>University of Cambridge N. D. Trefethen</strong>. <a href="https://www.maths.cam.ac.uk/undergrad/course/PartIA/analysis/analysis.pdf">Mathematical Analysis (Part IA)</a></li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="remarkable-limits.html">algebrica.org/remarkable-limits</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

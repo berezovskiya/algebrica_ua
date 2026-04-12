@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Векторні простори — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Алгебричні структури</span>
+    </nav>
+    <article>
+        <h1>Векторні простори</h1>
+        <time>2026-04-02</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-6" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Означення                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті показана на концептуальній карті, де кожна гілка представляє основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="fields.html">Поля</a>, <a href="groups.html">Групи</a>, <a href="vectors.html">Вектори</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-6");
+            var dataset = {"name":"root","children":[{"name":"структура","children":[{"name":"означення"},{"name":"вектори та скаляри"},{"name":"додавання векторів"},{"name":"множення на скаляр"},{"name":"нульовий вектор"},{"name":"скалярне поле"}]},{"name":"властивості","children":[{"name":"множення на нуль"},{"name":"скалярний нуль"},{"name":"протилежний елемент"},{"name":"відсутність дільників нуля"},{"name":"правила лінійності"},{"name":"замкненість"},{"name":"узгодженість"}]},{"name":"теорія","children":[{"name":"підпростори"},{"name":"лінійні комбінації"},{"name":"базис"},{"name":"розмірність"},{"name":"лінійні відображення"},{"name":"ядро та образ"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Означення</h2>
+<p>Векторний простір — це алгебраїчна структура, яка формалізує ідею величин, що можуть бути масштабовані та <a href="linear-combinations.html">комбіновані лінійно</a>. Це поняття виникає всюди, де зустрічаються об'єкти, які можна додавати один до одного та множити на числа узгодженим чином: геометричні стрілки на площині, <a href="polynomials.html">поліноми</a> з дійсними коефіцієнтами, послідовності <a href="properties-of-real-numbers.html">дійсних чисел</a> та <a href="continuous-functions.html">неперервні функції</a> на проміжку — всі вони мають цю спільну ознаку.</p>
+<p>На відміну від <a href="groups.html">групи</a> або <a href="rings.html">кільця</a>, які визначені на одній множині, векторний простір залучає дві різні множини: <a href="fields.html">поле</a> \(F\), елементи якого називаються скалярами, та множину \(V\), елементи якої називаються <a href="vectors.html">векторами</a>. Векторний простір над \(F\) — це множина \(V\) разом із двома операціями: додаванням векторів \(+ : V \times V \to V\) та множенням скаляра на вектор \(\cdot : F \times V \to V\), що задовольняють наступні аксіоми:</p>
+<ul>
+<li>\((V, +)\) є абелевою групою. Зокрема, існує нульовий вектор \(\mathbf{0} \in V\) такий, що \(\mathbf{v} + \mathbf{0} = \mathbf{v}\) для всіх \(\mathbf{v} \in V\), і кожен вектор \(\mathbf{v}\) має протилежний за знаком вектор \(-\mathbf{v}\).</li>
+<li>Сумісність із множенням у полі: для всіх \(\alpha, \beta \in F\) та \(\mathbf{v} \in V\) маємо \(\alpha \cdot (\beta \cdot \mathbf{v}) = (\alpha\beta) \cdot \mathbf{v}\).</li>
+<li>Нейтральний елемент множення скаляра: для всіх \(\mathbf{v} \in V\) мультиплікативна одиниця \(1 \in F\) задовольняє \(\mathbf{1} \cdot \mathbf{v} = \mathbf{v}\).</li>
+<li>Дистрибутивність множення скаляра відносно додавання векторів: для всіх \(\alpha \in F\) та \(\mathbf{u}, \mathbf{v} \in V\) маємо \(\alpha \cdot (\mathbf{u} + \mathbf{v}) = \alpha \cdot \mathbf{u} + \alpha \cdot \mathbf{v}\).</li>
+<li>Дистрибутивність множення скаляра відносно додавання в полі: для всіх \(\alpha, \beta \in F\) та \(\mathbf{v} \in V\) маємо \((\alpha + \beta) \cdot \mathbf{v} = \alpha \cdot \mathbf{v} + \beta \cdot \mathbf{v}\).</li>
+</ul>
+<blockquote>
+<p>Поле \(F\), над яким визначено \(V\), називається полем скалярів \(V\). У більшості застосувань на рівні бакалавра \(F\) є або \(\mathbb{R}\), або \(\mathbb{C}\), і відповідно говорять про дійсний векторний простір або комплексний векторний простір.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Властивості</h2>
+<p>Кілька елементарних наслідків випливають безпосередньо з аксіом. Для будь-якого скаляра \(\alpha \in F\) та будь-якого вектора \(\mathbf{v} \in V\) множення на нуль задовольняє \(\mathbf{0} \cdot \mathbf{v} = \mathbf{0}\). Щоб побачити це, запишемо \(0 \cdot \mathbf{v} = (0 + 0) \cdot \mathbf{v} = 0 \cdot \mathbf{v} + 0 \cdot \mathbf{v}\) і скоротимо \(0 \cdot \mathbf{v}\) з обох сторін, використовуючи структуру групи \((V, +)\). Аналогічно, для будь-якого \(\mathbf{v} \in V\) маємо \(\alpha \cdot \mathbf{0} = \mathbf{0}\) та \((-1) \cdot \mathbf{v} = -\mathbf{v}\).</p>
+<p>Якщо \(\alpha \cdot \mathbf{v} = \mathbf{0}\), то або \(\alpha = 0\), або \(\mathbf{v} = \mathbf{0}\). Це прямий наслідок оберненості ненульових скалярів: якщо \(\alpha \neq 0\), то \(\mathbf{v} = 1 \cdot \mathbf{v} = (\alpha^{-1}\alpha) \cdot \mathbf{v} = \alpha^{-1} \cdot (\alpha \cdot \mathbf{v}) = \alpha^{-1} \cdot \mathbf{0} = \mathbf{0}\). Ця властивість є аналогом відсутності дільників нуля в полі для векторного простору і відіграє центральну роль у теорії лінійної незалежності.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Алгебраїчна ієрархія</h2>
+<p>Векторні простори займають природне місце на вершині стандартної ієрархії алгебраїчних структур, суттєво залежно від наявності поля скалярів.</p>
+<p><a href="groups.html">Група</a> складається з множини з однією операцією, що допускає обернені елементи. <a href="rings.html">Кільце</a> вводить другу операцію, яка не обов'язково має бути оберненою. <a href="fields.html">Поле</a> вимагає, щоб обидві операції були повністю оберненими для ненульових елементів. Векторний простір бере поле як задане і будує на його основі нову структуру, в якій поле діє на окрему множину векторів шляхом масштабування. Ці три структури утворюють ланцюг зростаючої жорсткості:</p>
+<ul>
+<li>Група має одну операцію з оберненими елементами.</li>
+<li>Кільце має дві операції, причому обернені гарантовані лише для додавання.</li>
+<li>Поле має дві операції, причому обернені гарантовані як для додавання, так і для всіх ненульових елементів при множенні.</li>
+</ul>
+<blockquote>
+<p>Векторний простір сам по собі не є наступним кроком у цьому ланцюгу, а радше структурою, що передбачає існування поля. Кожен векторний простір над \(\mathbb{R}\) або \(\mathbb{C}\) залежить від того, що аксіоми поля діють, щоб його множення скаляра було правильно визначеним.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Приклади</h2>
+<p>Множина \(\mathbb{R}^n\) всіх впорядкованих \(n\)-ок real чисел є векторним простором над \(\mathbb{R}\) з покомпонентним додаванням та скалярним множенням. Для \(n = 2\) додавання визначається як \((a_1, a_2) + (b_1, b_2) = (a_1 + b_1,\, a_2 + b_2)\), а скалярне множення як \(\alpha \cdot (a_1, a_2) = (\alpha a_1,\, \alpha a_2)\). Нульовим вектором є \((0, 0)\). Це прототип скінченновимірного дійсного векторного простору, і він забезпечує геометричну інтуїцію, що лежить в основі загальної теорії.</p>
+<p>Множина \(\mathbb{C}^n\) всіх впорядкованих \(n\)-ок комплексних чисел є векторним простором над \(\mathbb{C}\) з аналогічними операціями. Її також можна розглядати як векторний простір над \(\mathbb{R}\), хоча в цьому випадку її розмірність подвоюється: \(\mathbb{C}^n\) як дійсний векторний простір має розмірність \(2n\).</p>
+<hr>
+<p>Множина \(\mathbb{R}[x]_{\leq n}\) всіх <a href="polynomials.html">поліномів</a> з дійсними коефіцієнтами степеня не більше \(n\) є векторним простором над \(\mathbb{R}\) зі звичайним додаванням поліномів та множенням полінома на дійсну сталу. Нульовим вектором є нульовий поліном. Природним базисом для цього простору є \({1, x, x^2, \ldots, x^n}\), який містить \(n+1\) елемент, отже розмірність цього простору дорівнює \(n+1\).</p>
+<p>Множина \(\mathcal{C}([a,b])\) всіх неперервних дійснозначних функцій на замкненому проміжку \([a,b]\) є векторним простором над \(\mathbb{R}\) з поточковим додаванням та скалярним множенням: \((f + g)(x) = f(x) + g(x)\) та \((\alpha f)(x) = \alpha f(x)\). Цей простір є нескінченновимірним, оскільки поліноми всіх степенів утворюють лінійно незалежну підмножину, яка не має скінченної породжуючої множини.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section pb-steps alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Підпростори</h2>
+<p>Непорожня підмножина \(W \subseteq V\) називається підпростором \(V\), якщо \(W\) сама по собі є векторним простором над \(F\) з операціями, що успадковані від \(V\). Замість того щоб перевіряти всі аксіоми окремо, достатньо перевірити дві умови: для всіх \(\mathbf{u}, \mathbf{v} \in W\) та всіх \(\alpha \in F\) необхідно, щоб \(\mathbf{u} + \mathbf{v} \in W\) та \(\alpha \cdot \mathbf{v} \in W\). Ці дві умови разом називаються замкненістю відносно лінійних комбінацій. Нульовий вектор \(\mathbf{0}\) повинен належати кожному підпростору, оскільки при \(\alpha = 0\) отримаємо \(0 \cdot \mathbf{v} = \mathbf{0} \in W\).</p>
+<p>Як приклад, множина \(W = {(x, y) \in \mathbb{R}^2 : y = 2x}\) є підпростором \(\mathbb{R}^2\). Для будь-яких двох векторів \((x_1, 2x_1)\) та \((x_2, 2x_2)\) у \(W\), їхня сума \((x_1 + x_2,\, 2x_1 + 2x_2) = (x_1 + x_2,\, 2(x_1+x_2))\) належить \(W\), і для будь-якого скаляра \(\alpha \in \mathbb{R}\) вектор \(\alpha(x_1, 2x_1) = (\alpha x_1,\, 2\alpha x_1)\) також належить \(W\). Обидві умови виконуються, отже \(W\) є підпростором \(\mathbb{R}^2\). Геометрично \(W\) — це пряма, що проходить через початок координат з кутовим коефіцієнтом \(2\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="534" height="426" src="../images/subspace.png" alt="" class="wp-image-28148" style="width:267px" srcset="../images/subspace.png 534w, https://algebrica.org/wp-content/uploads/resources/images/subspace-300x239.png 300w" sizes="(max-width: 534px) 100vw, 534px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><blockquote>
+<p>Діаграма ілюструє дві умови замкненості для підпростору \(W = \{(x, y) \in \mathbb{R}^2 : y = 2x\}\). Будь-який вектор у \(W\) лежить на прямій, що проходить через початок координат з кутовим коефіцієнтом \(2\). Додавання двох таких векторів або множення одного з них на скаляр завжди дає вектор, який залишається на тій самій прямій, що підтверджує замкненість \(W\) відносно обох операцій.</p>
+</blockquote>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Базис і розмірність</h2>
+<p>Множина векторів \(\{\mathbf{v}_1, \mathbf{v}_2, \ldots, \mathbf{v}_n\}\) у \(V\) називається лінійно незалежною, якщо єдиним розв'язанням рівняння</p>
+<p>\[
+\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_n \mathbf{v}_n = \mathbf{0}
+\]</p>
+<p>є \(\alpha_1 = \alpha_2 = \cdots = \alpha_n = 0\). Множина векторів, яка не є лінійно незалежною, називається лінійно залежною, що означає, що принаймні один вектор у множині може бути представлений як <a href="linear-combinations.html">лінійна комбінація</a> інших. Базисом \(V\) називається лінійно незалежна множина векторів, яка породжує \(V\), тобто кожен вектор у \(V\) може бути записаний як лінійна комбінація векторів базису. Представлення будь-якого вектора через заданий базис є єдиним. Якщо
+\[\mathbf{v} = \alpha_1 \mathbf{v}_1 + \cdots + \alpha_n \mathbf{v}_n = \beta_1 \mathbf{v}_1 + \cdots + \beta_n \mathbf{v}_n\]</p>
+<p>тоді віднімання дає:
+\[(\alpha_1 &#8211; \beta_1)\mathbf{v}_1 + \cdots + (\alpha_n &#8211; \beta_n)\mathbf{v}_n = \mathbf{0}\]</p>
+<p>і лінійна незалежність вимагає, щоб \(\alpha_k = \beta_k\) для всіх \(k\).</p>
+<hr>
+<p>Одна з фундаментальних теорем лінійної алгебри стверджує, що будь-які два базиси одного і того ж векторного простору містять однакову кількість елементів. Аргумент ґрунтується на зауваженні, що якщо множина з \(m\) векторів породжує \(V\), а множина з \(n\) векторів є лінійно незалежною у \(V\), то обов'язково \(n \leq m\). Застосувавши цю нерівність двічі, в обох напрямках, до будь-яких двох базисів, ми отримаємо, що їхні потужності рівні. Ця спільна потужність називається розмірністю \(V\) і позначається \(\dim V\).</p>
+<p>Стандартний базис \(\mathbb{R}^n\) складається з \(n\) векторів \(\mathbf{e}_1, \mathbf{e}_2, \ldots, \mathbf{e}_n\), де \(\mathbf{e}_k\) має \(1\) на \(k\)-ій позиції та \(0\) в усіх інших. Наприклад, у \(\mathbb{R}^3\) стандартний базис має такий вигляд:</p>
+<p>\[
+\mathbf{e}_1 = (1, 0, 0), \quad \mathbf{e}_2 = (0, 1, 0), \quad \mathbf{e}_3 = (0, 0, 1)
+\]</p>
+<p>Кожен <a href="vectors.html">вектор</a> \((a, b, c) \in \mathbb{R}^3\) можна однозначно записати як \(a\,\mathbf{e}_1 + b\,\mathbf{e}_2 + c\,\mathbf{e}_3\), що підтверджує, що ці три вектори утворюють базис і що \(\dim \mathbb{R}^3 = 3\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Лінійні відображення</h2>
+<p>Лінійне відображення, або лінійне перетворення, — це функція \(\varphi : V \to W\) між двома векторними просторами над одним і тим самим полем \(F\), яка зберігає структуру векторного простору. Зокрема, \(\varphi\) є лінійним, якщо для всіх \(\mathbf{u}, \mathbf{v} \in V\) та всіх \(\alpha \in F\) виконуються наступні дві умови:</p>
+<p>\[\varphi(\mathbf{u} + \mathbf{v}) = \varphi(\mathbf{u}) + \varphi(\mathbf{v})\]
+\[ \varphi(\alpha \cdot \mathbf{v}) = \alpha \cdot \varphi(\mathbf{v})\]</p>
+<p>Ці дві умови можна об'єднати в одну вимогу: \(\varphi(\alpha \mathbf{u} + \beta \mathbf{v}) = \alpha\varphi(\mathbf{u}) + \beta\varphi(\mathbf{v})\) для всіх \(\alpha, \beta \in F\) та \(\mathbf{u}, \mathbf{v} \in V\). Лінійне відображення, яке є бієктивним, називається лінійним ізоморфізмом, а два векторні простори називаються ізоморфними, якщо між ними існує лінійний ізоморфізм. Фундаментальний результат стверджує, що кожен \(n\)-вимірний векторний простір над \(F\) ізоморфний \(F^n\), тому скінченчновимірні векторні простори повністю класифікуються за їхньою розмірністю та їхнім скалярним полем.</p>
+<p>Ядро та образ лінійного відображення \(\varphi : V \to W\) визначаються наступним чином:</p>
+<p>\[\ker(\varphi) = \{\mathbf{v} \in V : \varphi(\mathbf{v}) = \mathbf{0}\}\]
+\[\mathrm{im}(\varphi) = \{\varphi(\mathbf{v}) : \mathbf{v} \in V\}\]</p>
+<p>Як \(\ker(\varphi)\), так і \(\mathrm{im}(\varphi)\) є підпросторами \(V\) та \(W\) відповідно. Теорема про розмірність, також відома як теорема про ранг і нульність, стверджує, що для будь-якого лінійного відображення між скінченчновимірними просторами виконується наступна тотожність:</p>
+<p>\[
+\dim V = \dim \ker(\varphi) + \dim \mathrm{im}(\varphi)
+\]</p>
+<p>Розмірність \(\mathrm{im}(\varphi)\) називається рангом \(\varphi\), а розмірність \(\ker(\varphi)\) — його нульністю. Теорема про ранг і нульність є одним із центральних результатів лінійної алгебри та лежить в основі теорії <a href="systems-of-linear-equations.html">систем лінійних рівнянь</a>, аналізу <a href="matrices.html">матриць</a> та класифікації лінійних відображень між скінченчновимірними просторами.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад</h2>
+<p>Розглянемо лінійне відображення \(\varphi : \mathbb{R}^3 \to \mathbb{R}^2\), визначене наступним правилом:</p>
+<p>\[
+\varphi(x, y, z) = (x + y,\; y + z)
+\]</p>
+<p>Щоб перевірити лінійність, необхідно переконатися, що:</p>
+<p>\[\varphi(\mathbf{u} + \mathbf{v}) = \varphi(\mathbf{u}) + \varphi(\mathbf{v})\]
+\[\varphi(\alpha \mathbf{v}) = \alpha \varphi(\mathbf{v})\]</p>
+<p>виконуються для всіх векторів і скалярів, що безпосередньо випливає з лінійності додавання та скалярного множення в \(\mathbb{R}^3\). Ядро складається з усіх векторів \((x, y, z)\), що задовольняють рівняння \(x + y = 0\) та \(y + z = 0\), тобто \(x = -y\) та \(z = -y\). Кожен елемент \(\ker(\varphi)\), отже, має вигляд:</p>
+<p>\[(-y, y, -y) = y(-1, 1, -1)\]</p>
+<p>для деякого \(y \in \mathbb{R}\), тож ядро є одновимірним підпростором, породженим вектором \((-1, 1, -1)\). Образ — це весь \(\mathbb{R}^2\), оскільки для будь-якого \((a, b) \in \mathbb{R}^2\) вектор \((a, 0, b)\) задовольняє умову \(\varphi(a, 0, b) = (a, b)\), що показує, що \(\varphi\) є сюр'єктивним і, таким чином, \(\dim \mathrm{im}(\varphi) = 2\). Теорема про ранг і нульність підтверджується:</p>
+<p>\[
+\dim \mathbb{R}^3 = \dim \ker(\varphi) + \dim \mathrm{im}(\varphi) = 1 + 2 = 3
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язанням цього прикладу є те, що \(\ker(\varphi)\) — це пряма, що проходить через початок координат у напрямку \((-1, 1, -1)\), а \(\mathrm{im}(\varphi) = \mathbb{R}^2\).</p>
+</div>
+</div></div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="vector-spaces.html">algebrica.org/vector-spaces</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

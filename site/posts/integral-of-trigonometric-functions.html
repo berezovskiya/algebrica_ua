@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інтеграл тригонометричних функцій — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Інтеграли</span>
+    </nav>
+    <article>
+        <h1>Інтеграл тригонометричних функцій</h1>
+        <time>2025-03-01</time>
+        <div class="content">
+            
+<div class="wp-block-group post-type-test-list mb-x-30 pb-section"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-20"><h2>Інтеграли основних тригонометричних функцій</h2>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>У розділі про <a href="functions.html">функції</a> ви знайдете інтеграли основних тригонометричних функцій (наприклад, <a href="sine-function.html">синуса</a>, <a href="cosine-function.html">косинуса</a>, <a href="tangent-function.html">тангенса</a>, <a href="cotangent-function.html">котангенса</a> та інших). Ці інтеграли легко обчислити, і їх варто пам'ятати, оскільки вони часто зустрічаються при розв'язанні задач. Нижче наведено узагальнений список інтегралів усіх основних тригонометричних функцій, що дає можливість одразу побачити всі істотні результати.</p>
+<ul>
+<li>
+<p>\[\text{1. } \quad \int \sin x\,dx = -\cos x + c\]</p>
+</li>
+<li>
+<p>\[\text{2. } \quad \int \cos x\,dx = \sin x + c\]</p>
+</li>
+<li>
+<p>\[\text{3. } \quad \int \tan x\,dx = -\ln|\cos x| + c\]</p>
+</li>
+<li>
+<p>\[\text{4. } \quad \int \cot x\,dx = \ln|\sin x| + c\]</p>
+</li>
+<li>
+<p>\[\text{5. } \quad \int \sec x\,dx = \ln|\sec x + \tan x| + c\]</p>
+</li>
+<li>
+<p>\[\text{6. } \quad \int \csc x\,dx = \ln|\csc x &#8211; \cot x| + c\]</p>
+</li>
+<li>
+<p>\[\text{7. } \quad \int \sinh x\,dx = \cosh x + c\]</p>
+</li>
+<li>
+<p>\[\text{8. } \quad \int \cosh x\,dx = \sinh x + c\]</p>
+</li>
+<li>
+<p>\[\text{9. } \quad \int \tanh x\,dx = \ln|\cosh x| + c\]</p>
+</li>
+<li>
+<p>\[\text{10. } \quad \int \coth x\,dx = \ln|\sinh x| + c\]</p>
+</li>
+<li>
+<p>\[\text{11. } \quad \int \operatorname{sech} x\,dx = 2\,\arctan\!\left(\tanh\frac{x}{2}\right) + c\]</p>
+</li>
+<li>
+<p>\[\text{12. } \quad \int \operatorname{csch} x\,dx = \ln\left|\tanh\frac{x}{2}\right| + c\]</p>
+</li>
+</ul>
+<h5>Пам'ятайте, що \(c\) позначає сталу інтегрування, яка додається для представлення всієї сім'ї первісних, пов'язаних з <a href="indefinite-integrals.html">невизначеним інтегралом</a>. Кожне значення \(c\) відповідає різній первісній, усі з яких мають однакову похідну.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Інтеграли тригонометричних степенів при парному \(n\)</h2>
+<p>Однак існують деякі важливі випадки, коли первісна не є очевидною і потребує простої стратегії для ефективного розв'язання. Ситуації такого роду часто зустрічаються у вправах та при розв'язанні задач. Класичний приклад виникає, коли синус або косинус піднесено до цілого степеня, а саме:</p>
+<p>\[\int \sin^{n} x\,dx\]
+\[\int \cos^{n} x\,dx\]</p>
+<p>У таких ситуаціях інтеграл можна значно спростити, застосувавши відповідні заміни. Коли показник \(n\) є парним, зазвичай переписують тригонометричні члени у квадраті, використовуючи формули подвійного кута. Зокрема, маємо:</p>
+<p>\[\sin^{2} x = \frac{1 - \cos 2x}{2}\]
+\[\cos^{2} x = \frac{1 + \cos 2x}{2}\]</p>
+<p>Ці вирази знижують степінь функції та дозволяють обчислити інтеграл простіше; вони випливають безпосередньо з наступних співвідношень. Починаючи з <a href="pythagorean-identity.html">основної тригонометричної тотожності</a>:
+\[
+\sin^{2}x + \cos^{2}x = 1
+\]
+і поєднуючи її з <a href="trigonometric-identities.html">формулою подвійного кута</a>:
+\[
+\cos 2x = \cos^{2}x - \sin^{2}x
+\]
+ми можемо виразити \(\cos 2x\) повністю через \(\cos^{2}x\) або \(\sin^{2}x\).</p>
+<hr>
+<p>Дійсно, замінивши \(\sin^{2}x\) на \(1 &#8211; \cos^{2}x\), отримаємо:
+\[
+\cos 2x = \cos^{2}x - (1 - \cos^{2}x)
+= 2\cos^{2}x - 1
+\]
+Розв'язавши цей вираз відносно \(\cos^{2}x\), отримаємо:
+\[
+\cos^{2}x = \frac{1 + \cos 2x}{2}
+\]</p>
+<hr>
+<p>Аналогічний аргумент діє для \(\sin^{2}x\). Якщо ми підставимо \(\cos^{2}x = 1 - \sin^{2}x\) у формулу подвійного кута, отримаємо:
+\[
+\cos 2x = (1 - \sin^{2}x) &#8211; \sin^{2}x
+= 1 - 2\sin^{2}x
+\]
+Розв'язавши відносно \(\sin^{2}x\), отримаємо:
+\[
+\sin^{2}x = \frac{1 - \cos 2x}{2}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Як ілюстрацію методу, розглянемо наступний інтеграл:
+\[
+\int 2\cos^{4}x\,dx
+\]</p>
+<hr>
+<p>Щоб обробити четвертий степінь косинуса, почнемо з нагадування тотожності пониження степеня:
+\[
+\cos^{2}x = \frac{1+\cos 2x}{2}
+\]</p>
+<p>Застосування цієї тотожності дозволяє нам переписати вираз у зручнішій формі:
+\[
+\begin{aligned}
+\cos^{4}x &amp; = \left(\frac{1+\cos 2x}{2}\right)^{2} \\[4pt]
+&amp;= \frac{1}{4}\left(1 + 2\cos 2x + \cos^{2} 2x\right)
+\end{aligned}
+\]</p>
+<hr>
+<p>На цьому етапі все ще залишається один степінь косинуса. Тому ми знижуємо його, використовуючи тотожність:
+\[
+\cos^{2} 2x = \frac{1+\cos 4x}{2}
+\]</p>
+<p>Підставивши цей вираз назад у формулу та помноживши на 2 (як того вимагає початковий інтеграл), отримаємо спрощену форму:
+\[
+2\cos^{4}x = \frac{3}{4} + \cos 2x + \frac{1}{4}\cos 4x
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Зрештою, інтегруючи кожен доданок окремо, отримаємо розв'язання:</p>
+<p>\[
+\frac{3}{4}x + \frac{1}{2}\sin 2x + \frac{1}{16}\sin 4x + c
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Інтеграли від степенів тригонометричних функцій з непарним \(n\)</h2>
+<p>Коли показник \(n\) є непарним, метод стає досить простим. У цьому випадку ми можемо відокремити один множник тригонометричної функції, степінь якої є непарним, і переписати решту парного степеня, використовуючи основну тригонометричну тотожність. Для синуса це виглядає так:
+\[
+\begin{aligned}
+\int \sin^{n} x\,dx
+&amp;= \int \sin x\,(\sin^{2}x)^{k},dx \\[4pt]
+&amp;= \int \sin x\,(1 &#8211; \cos^{2}x)^{k}\,dx
+\end{aligned}
+\]</p>
+<p>Наступна <a href="integration-by-substitution.html">заміна</a>:
+\[ u = \cos x\]
+\[du = -\sin x\,dx \]</p>
+<p>перетворює інтеграл на <a href="polynomials.html">поліном</a> від \(u\), який потім можна легко проінтегрувати. Процедура для непарного степеня косинуса є повністю аналогічною: виділяють один \(\cos x\) і переписують решту парного степеня за допомогою
+\[
+\cos^{2}x = 1 &#8211; \sin^{2}x
+\]
+що призводить до заміни \(u = \sin x\). В обох випадках відокремлення одного множника зводить інтеграл до набагато простішої форми.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо наступний інтеграл:</p>
+<p>\[\int \cos^{5}x \, dx\]</p>
+<p>Показник є непарним, тому стратегія полягає в тому, щоб відокремити один множник косинуса і переписати решту парного <a href="powers.html">степеня</a>, використовуючи основну тригонометричну тотожність. Запишемо:</p>
+<p>\[\int \cos^{5}x , dx = \int \cos^{4}x \cdot \cos x \, dx\]</p>
+<p>Множник \(\cos^{4}x\) є парним степенем, тому ми можемо виразити його через \(\sin^{2}x\):</p>
+<p>\[\cos^{4}x = (\cos^{2}x)^{2} = (1 &#8211; \sin^{2}x)^{2}\]</p>
+<p>Інтеграл набуває вигляду:</p>
+<p>\[\int (1 &#8211; \sin^{2}x)^{2} \cdot \cos x \, dx\]</p>
+<p>На цьому етапі множник \(\cos x \, dx\) є саме диференціалом \(\sin x\), тому встановимо:</p>
+<p>\[u = \sin x \qquad du = \cos x \, dx\]</p>
+<p>і інтеграл перетворюється на <a href="polynomials.html">поліном</a> від \(u\):</p>
+<p>\[\int (1 &#8211; u^{2})^{2} \, du\]</p>
+<p>Розкривши квадрат, отримаємо:</p>
+<p>\[\int (1 &#8211; 2u^{2} + u^{4}) \, du\]</p>
+<p>Кожен доданок інтегрується негайно:</p>
+<p>\[u - \frac{2}{3}u^{3} + \frac{1}{5}u^{5} + c\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Зробивши зворотну заміну \(u = \sin x\), маємо:</p>
+<p>\[\sin x - \frac{2}{3}\sin^{3}x + \frac{1}{5}\sin^{5}x + c\]</p>
+<h6>Заміна спрацювала чітко, оскільки відокремлений множник \(\cos x\) був саме похідною від \(u = \sin x\). Розпізнавання цього шаблону робить випадок із непарним показником простим, як тільки логіка засвоєна.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Обернені функції до синуса та косинуса</h2>
+<p>Інші випадки, що часто зустрічаються, включають інтеграли від обернених функцій до синуса та косинуса. Хоча ці вирази на перший погляд можуть здатися менш очевидними, обидва можна вивести за допомогою одного алгебраїчного прийому. Для секанса ключова ідея полягає в тому, щоб помножити підінтегральний вираз на дріб, що дорівнює 1:</p>
+<p>\[
+\begin{aligned}
+\int \sec x\,dx
+&amp;= \int \sec x \cdot \frac{\sec x + \tan x}{\sec x + \tan x}\,dx \\[6pt]
+&amp;= \int \frac{\sec^{2}x + \sec x\tan x}{\sec x + \tan x}\,dx
+\end{aligned}
+\]</p>
+<p>Тепер чисельник є точною похідною від знаменника, оскільки:</p>
+<p>\[
+\frac{d}{dx}(\sec x + \tan x) = \sec x\tan x + \sec^{2}x
+\]</p>
+<p>Це означає, що інтеграл має вигляд \(\int \frac{f’(x)}{f(x)}\,dx\), який інтегрується безпосередньо до \(\ln|f(x)|\). Отримаємо:</p>
+<p>\[
+\int \frac{1}{\cos x}\,dx = \int \sec x,dx = \ln|\sec x + \tan x| + c
+\]</p>
+<hr>
+<p>Така ж структура застосовується до косеканса. Множення на \(\frac{\csc x &#8211; \cot x}{\csc x &#8211; \cot x}\) дає чисельник, який є похідною від знаменника, оскільки:</p>
+<p>\[
+\frac{d}{dx}(\csc x - \cot x) = -\csc x\cot x + \csc^{2}x
+\]</p>
+<p>і інтеграл від \(\csc x\) дає:</p>
+<p>\[
+\int \frac{1}{\sin x}\,dx = \int \csc x\,dx = \ln|\csc x - \cot x| + c
+\]</p>
+<p>В обох випадках результат є <a href="logarithms.html">логарифмічним</a>, і знак всередині <a href="absolute-value.html">модуля</a> легко переплутати. Варто запам'ятати ці дві форми разом: \(\sec x + \tan x\) для оберненої до косинуса, \(\csc x - \cot x\) для оберненої до синуса.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>University of British Columbia, J. Feldman</strong>. <a href="https://personal.math.ubc.ca/~feldman/m105/intTrig.pdf">Trigonometric Integrals</a></p>
+</li>
+<li>
+<p><strong>University of British Columbia, L. Silberman</strong>. <a href="https://personal.math.ubc.ca/~lior/teaching/1516/101_W16/Notes/IntSecant.pdf">Integrating the Secant Function</a></p>
+</li>
+<li>
+<p><strong>University of Toronto, I. Khatchatourian</strong>. <a href="https://www.math.utoronto.ca/ivan/mat137/docs_1617/ivan_lecture205_student.pdf">Trigonometric Integrals</a></p>
+</li>
+<li>
+<p><strong>Columbia University, P. Woit</strong>. <a href="https://www.math.columbia.edu/~woit/eulerformula.pdf">Euler’s Formula and Trigonometry</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="integral-of-trigonometric-functions.html">algebrica.org/integral-of-trigonometric-functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

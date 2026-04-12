@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обернена функція — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Обернена функція</h1>
+        <time>2025-02-24</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Що таке обернена функція</h2>
+<p>У вступі до <a href="functions.html">функцій</a> ми бачили, що функція \( f: X \to Y \) називається бієктивною, якщо вона одночасно є ін'єктивною та сюр'єктивною, тобто для кожного \( y \in Y \) існує єдиний \( x \in X \), такий що \( f(x) = y \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>\( X \) — це область визначення.</li>
+<li>\( Y \) — це область значень (кодомен).</li>
+<li>Функція називається ін'єктивною, якщо для будь-яких \( x_1, x_2 \in X \), при яких \( x_1 \ne x_2 \), маємо \( f(x_1) \ne f(x_2) \). Іншими словами, для кожного \( y \in Y \) існує не більше одного \( x \in X \), такого що \( f(x) = y \).</li>
+<li>Функція називається сюр'єктивною, якщо для кожного \( y \in Y \) існує принаймні один \( x \in X \), такий що \( f(x) = y \).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax"><hr>
+<p>Функція \( f : X \to Y \) є бієктивною тоді і тільки тоді, коли існує функція \( g : Y \to X \), така що:</p>
+<ul>
+<li>\( (g \circ f)(x) = g(f(x)) = x \) для кожного \( x \in X \)</li>
+<li>\( (f \circ g)(y) = f(g(y)) = y \) для кожного \( y \in Y \)</li>
+</ul>
+<p>У цьому випадку функція \( g \) є єдиною і називається <strong>оберненою функцією</strong> до \( f \), що позначається як:
+\[ f^{-1} = g \]</p>
+<h5>\( (g \circ f)(x) = g(f(x)) \) називається композицією функцій, що означає спочатку застосування \( f \) до \( x \), а потім застосування \( g \) до отриманого результату.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-20"><h2>Зроблення функції оберненою шляхом обмеження її області визначення</h2>
+<p>Розглянемо функцію \( f(x) = x^2 \), визначену на \( \mathbb{R} \). Це квадратична функція, графіком якої є <a href="parabola.html">парабола</a> з вершиною в початку координат Декартової системи координат. На всій своїй <a href="determining-the-domain-of-a-function.html">області визначення</a> \( \mathbb{R} \) функція не є оберненою, оскільки вона не є ін'єктивною: різні значення аргументу можуть давати однакове значення функції, наприклад \( f(-2) = f(2) \).</p>
+<p>Однак, якщо ми обмежимо область визначення проміжком \( [0, +\infty) \), функція стане бієктивною і, отже, оберненою. У цьому випадку обернена функція має вигляд:</p>
+<p>\[
+f(x) = x^2 \rightarrow f^{-1}(x) = \sqrt{x} \quad \text{для} \; x \geq 0
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="730" height="580" src="../images/inverse-function-1.png" alt="" class="wp-image-14168" style="width:385px" srcset="../images/inverse-function-1.png 730w, https://algebrica.org/wp-content/uploads/resources/images/inverse-function-1-300x238.png 300w" sizes="(max-width: 730px) 100vw, 730px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Графік функції та графік її оберненої функції симетричні відносно прямої \(y = x\), яка є бісектрисою першої та третьої чвертей Декартової площини.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Якщо функція \( f \) <a href="composite-functions.html">компонується</a> зі своєю оберненою \( f^{-1} \), результатом є <strong>тотожна функція</strong>, яка відображає кожен елемент множини в самого себе:</p>
+<p>\[
+f(f^{-1}(x)) = f^{-1}(f(x)) = x
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section-inverse mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Як знайти обернену до загальної функції</h2>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>
+<p>Перевірте, чи є функція бієктивною, або визначте обмеження її області визначення, яке зробить її бієктивною.</p>
+</li>
+<li>
+<p>Замініть \( f(x) \) на \( y \), щоб працювати з рівнянням \( y = f(x) \).</p>
+</li>
+<li>
+<p>Поміняйте місцями змінні \( x \) та \( y \): запишіть \( x = f(y) \). Це відображає ідею обернення вхідних і вихідних даних.</p>
+</li>
+<li>
+<p>Розв'яжіть рівняння відносно \( y \), виразивши його явно.</p>
+</li>
+<li>
+<p>Перепишіть результат як \( f^{-1}(x) = \ldots \), використовуючи \( x \) як вхідну змінну для оберненої функції.</p>
+</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Знайдемо обернену до функції \( f(x) = \dfrac{2x - 1}{x + 3} \).</p>
+<h5>Функція \( f \) є бієктивною на своїй області визначення \( \mathbb{R} \setminus {-3} \), оскільки вона строго зростає: її похідна завжди додатна. Це гарантує, що \( f \) є ін'єктивною, а оскільки образ \( f \) охоплює всі дійсні числа, за винятком однієї точки, вона також є сюр'єктивною на свою область значень.</h5>
+<hr>
+<p>Запишемо функцію у вигляді рівняння:
+\[
+y = \dfrac{2x &#8211; 1}{x + 3}
+\]</p>
+<p>Поміняємо \( x \) та \( y \) місцями<br>
+\[
+x = \dfrac{2y - 1}{y + 3}
+\]</p>
+<hr>
+<p>Розв'яжемо відносно \( y \). Помножимо обидві частини на \( y + 3 \):<br>
+\[
+x(y + 3) = 2y - 1
+\]</p>
+<p>Розкриємо дужки в лівій частині:<br>
+\[
+xy + 3x = 2y - 1
+\]</p>
+<hr>
+<p>Перенесемо всі доданки зі змінною \( y \) в один бік і винесемо \( y \) за дужки:<br>
+\[\begin{align}
+&amp;xy &#8211; 2y = -1 &#8211; 3x\\[0.5em]
+&amp;y(x &#8211; 2) = -1 &#8211; 3x
+\end{align}
+\]</p>
+<p>Знайдемо \( y \):<br>
+\[
+y = \dfrac{-1 &#8211; 3x}{x &#8211; 2}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Обернена функція має вигляд:
+\[
+f^{-1}(x) = \dfrac{-1 - 3x}{x - 2}
+\]</p>
+</div>
+</div></div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Теорема про обернену функцію</h2>
+<p>Корисним результатом базового аналізу є одновимірна версія теореми про обернену функцію. Ідея досить інтуїтивна: якщо функція поводиться регулярно на проміжку, то її можна обернути без труднощів. Точніше, припустимо, що функція \(f\) є неперервною та диференційною на проміжку \(I\), і її <a href="derivatives.html">похідна</a> ніколи не перетворюється на нуль:</p>
+<p>\[
+f’(x) \neq 0 \quad \forall \, x \in I
+\]</p>
+<p>За таких умов функція є строго монотонною на \(I\), що гарантує її оберненість на цьому проміжку. Як наслідок, на \(f(I)\) існує обернена функція \(f^{-1}\). Ця обернена функція є не тільки неперервною, а й диференційною, і її похідна визначається співвідношенням:</p>
+<p>\[
+\bigl(f^{-1}\bigr)'(y) = \frac{1}{f’\!\bigl(f^{-1}(y)\bigr)}
+\]</p>
+<p>Цей результат показує, як локальна умова (похідна ніколи не стає рівною нулю) забезпечує глобальну властивість, таку як оберненість.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке обернена функція?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Обернена функція міняє місцями ролі аргументів та значень. Якщо функція f переводить x у y, то її обернена f⁻¹ переводить y назад у x. Функція має бути бієктивною (і ін’єктивною, і сюр’єктивною), щоб мати обернену."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як знайти обернену функцію?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб знайти обернену функцію, виконайте такі кроки: 1) Перевірте, чи є функція бієктивною; 2) Замініть f(x) на y; 3) Поміняйте x і y місцями; 4) Розв'яжіть рівняння відносно y. Результатом буде обернена функція f⁻¹(x)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли функція є оберненою?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функція є оберненою, якщо вона бієктивна — тобто однозначна (ін’єктивна) та на покриття (сюр’єктивна). Строго зростаючі або спадаючі функції на своїй області визначення завжди є оберненими."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="inverse-function.html">algebrica.org/inverse-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

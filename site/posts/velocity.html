@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рівномірний прямолінійний рух: швидкість — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Кінематика | Фізика</span>
+    </nav>
+    <article>
+        <h1>Рівномірний прямолінійний рух: швидкість</h1>
+        <time>2025-05-20</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Вступ</h2>
+<p>Кінематика — це розділ механіки, що вивчає рух тіл, описуючи їхнє положення, швидкість та <a href="acceleration.html">прискорення</a> з часом. Перш ніж перейти до детального пояснення цих явищ, необхідно розглянути деякі ключові поняття.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Матеріальна точка — це ідеалізований об'єкт, розмір якого вважається незначним порівняно з відстанями, що задіяні в його русі.</li>
+<li>Траєкторія — це лінія, яку описує матеріальна точка під час свого руху в просторі.</li>
+<li>Рух називається прямолінійним, якщо його траєкторія лежить на прямій лінії.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Якщо матеріальна точка рухається по прямій лінії з постійною швидкістю, тобто пройдені відстані пропорційні часовим проміжкам, такий рух називається <strong>рівномірним прямолінійним рухом.</strong></p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Швидкість</h2>
+<p>Розглянемо дві точки, \( x_1 \) та \( x_2 \), що представляють положення \( P \) точки у два послідовні моменти часу, \( t_1 \) та \( t_2 \), відповідно.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="662" height="162" src="../images/velocity-1-1.png" alt="" class="wp-image-14736" style="width:331px" srcset="../images/velocity-1-1.png 662w, https://algebrica.org/wp-content/uploads/resources/images/velocity-1-1-300x73.png 300w" sizes="(max-width: 662px) 100vw, 662px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><p>Ми можемо виразити наступний зв'язок:</p>
+<p>\[
+\frac{x_2 &#8211; x_1}{t_2 &#8211; t_1} = v
+\]</p>
+<p>Цей зв'язок показує, що пройдена відстань пропорційна часу, що минув, і це відношення залишається постійним, що дорівнює величині \( v \). <strong>Миттева скалярна швидкість</strong> визначається як границя цього відношення при тому, що часовий <a href="intervals.html">проміжок</a> наближається до нуля:</p>
+<p>\[
+v_s = \lim_{\Delta t \to 0} \frac{\Delta x}{\Delta t} = \lim_{\Delta t \to 0} \frac{x(t + \Delta t) - x(t)}{\Delta t}
+\]</p>
+<p>де \( v \) представляє миттєву швидкість, \( \Delta x \) — переміщення, а \( \Delta t \) — часовий проміжок. Отже, миттєва скалярна швидкість задається <a href="derivatives.html">похідною</a> \(x = x(t)\) по часу.</p>
+<hr>
+<p>Тепер уявімо, що положення \( P \) точки в часі \( t \) визначається <a href="vectors.html">вектором</a> переміщення \( \vec{r} \). Переміщення від \( P \) до \( P’ \) відбувається за часовий проміжок \( \Delta t \) і представляється вектором \( \Delta \vec{r} \). Маємо:</p>
+<p>\[
+\lim_{\Delta t \to 0} \frac{\Delta \mathbf{r}}{\Delta t} = \frac{d\mathbf{r}}{dt} = \mathbf{v}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="638" height="430" src="../images/velocity-2.png" alt="" class="wp-image-14751" style="width:319px" srcset="../images/velocity-2.png 638w, https://algebrica.org/wp-content/uploads/resources/images/velocity-2-300x202.png 300w" sizes="(max-width: 638px) 100vw, 638px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps mb-x-20"><p>Таким чином, ми можемо визначити <strong>вектор швидкості</strong> як:</p>
+<p>\[
+\mathbf{v} = \frac{dx}{dt} = \mathbf{i} \frac{dx(t)}{dt}
+\]</p>
+<p>де \(\mathbf{i}\) представляє спрямований та орієнтований вектор. Вектор швидкості є дотичним до траєкторії в кожній точці, орієнтований за напрямком руху і має модуль, що дорівнює скалярній швидкості.</p>
+<ul>
+<li>При рівномірному прямолінійному русі вектор швидкості залишається постійним.</li>
+<li>При рівномірному прямолінійному русі рівняння положення траєкторії від часу є <a href="lines.html">прямою</a>, що означає, що положення змінюється лінійно з часом.</li>
+</ul>
+<hr>
+<p>Швидкість вимірюється в одиницях довжини, помножених на час у степені \(-1\), і її стандартною одиницею є метри за секунду \((\text{ms}^{-1})\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30 alignCenterMathjax pb-steps"><h2>Приклад</h2>
+<p>Уявімо автомобіль, що рухається по прямій дорозі з постійною швидкістю \( v = 20\ \mathrm{m/s} \). Оскільки швидкість є постійною, відстань, яку проїхав автомобіль, прямо пропорційна часу, що минув. Положення \( x(t) \) автомобіля в будь-який момент часу \( t \) можна виразити як:</p>
+<p>\[
+x(t) = x_0 + v t
+\]</p>
+<p>де:</p>
+<ul>
+<li>\( x_0 \) — початкове положення (при \( t = 0 \)).</li>
+<li>\( v \) — постійна швидкість.</li>
+<li>\( t \) — час, що минув.</li>
+</ul>
+<p>Це означає, що за кожну секунду, що минає, автомобіль просувається рівно на 20 метрів вперед, не прискорюючись і не сповільнюючись. Підсумуємо дані в таблиці:</p>
+<p>\[
+\begin{array}{c|c}
+\text{Час } (\mathrm{s}) &amp; \text{Положення } (\mathrm{m}) \\
+\hline
+0 &amp; 0 \\
+1 &amp; 20 \\
+2 &amp; 40 \\
+3 &amp; 60 \\
+4 &amp; 80 \\
+\vdots &amp; \vdots
+\end{array}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-glossary mb-x-30"><h2>Глосарій</h2>
+<ul>
+<li>
+<p>Кінематика: розділ фізики, що вивчає рух тіл, описуючи їхнє положення, швидкість та прискорення з часом.</p>
+</li>
+<li>
+<p>Матеріальна точка: ідеалізований об'єкт, розмір якого вважається мізерним порівняно з відстанями, що задіяні в його русі.</p>
+</li>
+<li>
+<p>Траекторія: лінія, яку описує матеріальна точка під час свого руху в просторі.</p>
+</li>
+<li>
+<p>Рівномірний прямолінійний рух: рух, траекторія якого лежить на прямій лінії.</p>
+</li>
+<li>
+<p>Рівномірний прямолінійний рух: рух по прямій лінії з постійною швидкістю, де пройдені відстані пропорційні інтервалам часу.</p>
+</li>
+<li>
+<p>Скалярна швидкість: границя відношення переміщення до інтервалу часу, коли інтервал часу наближається до нуля; модуль вектора швидкості.</p>
+</li>
+<li>
+<p>Вектор швидкості: швидкість зміни вектора переміщення відносно часу; вектор, що є дотичним до траекторії, спрямований у бік руху, з модулем, що дорівнює скалярній швидкості.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-flashcard"><h2>Що таке швидкість</h2>
+<ul>
+<li>Швидкість описує, як швидко і в якому напрямку рухається об'єкт.</li>
+<li>Скалярна швидкість відноситься до абсолютного значення швидкості, представляючи лише швидкість об'єкта без урахування напрямку.</li>
+<li>Векторна швидкість — це швидкість зміни положення відносно часу, що виражається як вектор, дотичний до траекторії та спрямований у бік руху.</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке швидкість?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Швидкість описує, як швидко і в якому напрямку рухається об'єкт. Це векторна величина, яка включає як модуль (швидкість), так і напрямок."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке скалярна швидкість?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Скалярна швидкість відноситься до абсолютного значення швидкості, представляючи лише швидкість об'єкта без урахування напрямку."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке векторна швидкість?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Векторна швидкість — це швидкість зміни положення відносно часу, що виражається як вектор, дотичний до траекторії та спрямований у бік руху."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="velocity.html">algebrica.org/velocity</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

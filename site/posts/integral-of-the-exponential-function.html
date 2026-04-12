@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Інтеграл показникової функції — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Інтеграли</span>
+    </nav>
+    <article>
+        <h1>Інтеграл показникової функції</h1>
+        <time>2025-03-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Як обчислюється інтеграл від покажчикової функції</h2>
+<p><a href="exponential-function.html">Покажчикова функція</a> — це функція вигляду \( e^x \) або \( \alpha^x \) (де \( \alpha &gt; 0 \) та \( \alpha \neq 1 \)). Загалом, число \( e \) посідає центральне місце в аналізі, оскільки це єдина основа, для якої покажчикова функція відтворює саму себе при диференціюванні. Для загальної покажчикової функції \( \alpha^x \) при \( \alpha &gt; 0 \) диференціювання вводить неминучий множник:</p>
+<p>\[
+\frac{d}{dx}\alpha^x = \alpha^x \ln \alpha
+\]</p>
+<p>Цей <a href="logarithms.html">логарифмічний</a> член відображає, як обрана основа масштабує зростання функції. Існує рівно один випадок, коли цей додатковий множник зникає. Якщо \( \ln \alpha = 1 \), ми маємо:</p>
+<p>\[
+\frac{d}{dx}\alpha^x = \alpha^x
+\]</p>
+<p>Єдиним числом, що задовольняє цю умову, є \( e \approx 2.718 \). Таким чином, \( e^x \) — єдина покажчикова функція, яка залишається незмінною при диференціюванні. Така ж простота поширюється і на інтегрування. Ця структурна властивість пояснює, чому \( e \) відіграє таку фундаментальну роль.</p>
+<hr>
+<p>Вміння обчислювати <a href="indefinite-integrals.html">інтеграл</a> від таких функцій є дуже корисним у вправах, що містять покажчикові вирази. Розглянемо два випадки.</p>
+<p>Інтеграл від \( e^x \) задається формулою:
+\[\int e^x \,dx = e^x + c \tag{1} \]
+Дійсно, можна довести, що <a href="derivatives.html">похідна</a> від \( e^x \) — це сама \( e^x \).
+Диференціюючи результат інтегрування:
+\[
+D[e^x + c] = D[e^x] + D[c] = e^x + 0 = e^x
+\]</p>
+<h5>Заглибтеся в те, як число Ейлера \(e\) може бути визначене як <a href="euler-number-limit-sequence.html">границя відомої послідовності</a>.</h5>
+<hr>
+<p>Інтеграл від \(\alpha^x\) задається формулою:
+\[\int \alpha^x \,dx =\frac{1}{\ln\alpha} \cdot \alpha^x + c \tag{2}\]
+Фактично, ми маємо:
+\[
+D \left[ \frac{1}{\ln \alpha} \cdot \alpha^x + c \right] = \frac{1}{\ln \alpha} \cdot (\ln \alpha \cdot \alpha^x) = \alpha^x
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown post-formulas-divided pb-section mb-x-30"><h2>Канонічні форми покажчикових інтегралів</h2>
+<h6>У кожному рядку зліва наведено стандартний покажчиковий підінтегральний вираз, а справа — відповідна йому первісна. Ці канонічні шаблони охоплюють форми, що найчастіше зустрічаються в задачах на інтегрування.</h6>
+<ul>
+<li>\[ \text{1. } \quad \int e^x \, dx\] \[ e^x + c \]</li>
+<li>\[ \text{2. } \quad \int \alpha^x \, dx\] \[ \dfrac{1}{\ln \alpha}\,\alpha^x + c \]</li>
+<li>\[ \text{3. } \quad \int e^{ax+b} \, dx\] \[ \dfrac{1}{a} \,e^{ax+b} + c \]</li>
+<li>\[ \text{4. } \quad \int \alpha^{ax} \, dx\] \[ \dfrac{1}{a \ln \alpha}\,\alpha^{ax} + c \]</li>
+<li>\[ \text{5. } \quad \int e^{f(x)} f’(x) \, dx\] \[ e^{f(x)} + c \]</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Покажчикові функції зберігають свою структуру при інтегруванні: форма залишається незмінною, і лише множна стала відображає швидкість, закодовану в покажчику.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо наступний інтеграл:
+\[\int e^x + 3^x \,dx\]</p>
+<hr>
+<p>За <a href="indefinite-integrals.html">властивістю лінійності</a> інтеграла, інтеграл від суми дорівнює сумі інтегралів:</p>
+<p>\[\int (f(x) + g(x)) \,dx = \int f(x) \,dx + \int g(x) \,dx\]</p>
+<p>Маємо:</p>
+<p>\[\int e^x + 3^x \, dx = \int e^x \, dx + \int 3^x \, dx\]</p>
+<hr>
+<p>Перший інтеграл легко виводиться з \( (1) \):
+\[\int e^x \, dx = e^x + c\]</p>
+<p>Другий інтеграл виводиться з \( (2) \):
+\[\int 3^x \, dx = \frac{1}{\ln3} \cdot 3^x + c\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Таким чином, наш інтеграл набуває вигляду:</p>
+<p>\[
+e^x + \frac{1}{\ln3} \cdot 3^x + c
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Покажчикова функція з лінійним аргументом</h2>
+<p>На практиці покажчик рідко є просто \(x\). Дуже поширеною ситуацією є покажчикова функція, аргументом якої є лінійна функція \(ax + b\), де \(a \neq 0\). У такому разі ми маємо:</p>
+<p>\[
+\int e^{ax+b} \,dx = \frac{1}{a} e^{ax+b} + c
+\]</p>
+<p>Множник \(\frac{1}{a}\) точно компенсує те, що <a href="the-derivative-of-a-composite-function.html">правило диференціювання складеної функції</a> вводить при диференціюванні. Для перевірки:</p>
+<p>\[
+D \! \left[\frac{1}{a} e^{ax+b} + c\right] = \frac{1}{a} \cdot a \cdot e^{ax+b} = e^{ax+b}
+\]</p>
+<p>Загалом, коли покажчик є диференційовною функцією \(f(x)\), <a href="integration-by-substitution.html">інтегрування методом підстановки</a> дає:</p>
+<p>\[
+\int e^{f(x)} \cdot f’(x) \,dx = e^{f(x)} + c
+\]</p>
+<p>Якщо підінтегральний вираз містить покажчикову функцію \(e^{f(x)}\), помножену на похідну від її власного покажчика, інтеграл просто зводиться до \(e^{f(x)} + c\). Якщо \(f’(x)\) відсутній, спочатку потрібні алгебраїчні перетворення або підстановка.</p>
+<hr>
+<p>Те саме міркування на основі правила диференціювання складеної функції застосовується до покажчикових функцій з довільною основою \( \alpha \). Якщо покажчик — це \( ax \) замість просто \( x \), диференціювання дає два множники: коефіцієнт \( a \) від покажчика та \( \ln \alpha \) від основи. З цієї причини ми маємо:</p>
+<p>\[
+\int \alpha^{ax} \, dx = \frac{1}{a \ln \alpha} \, \alpha^{ax} + c
+\]</p>
+<p>Пряме диференціювання підтверджує цю формулу. Ця тотожність корисна на практиці, оскільки вирази такого типу часто з'являються на проміжних етапах при спрощенні складніших інтегралів.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Тепер розглянемо наступний інтеграл, який на перший погляд здається дещо складнішим за той, що був наведений у прикладі 1.</p>
+<p>\[\int 8^x \cdot 2^{(-3x + 4)} \, dx\]</p>
+<hr>
+<p>Щоб розв'язати його, ми можемо скористатися <a href="powers.html">властивостями степенів</a>. Ми можемо переписати:</p>
+<p>\[
+2^{-3x+4} = 2^{-3x} \cdot 2^4 = 2^{-3x} \cdot 16
+\]</p>
+<p>Тоді інтеграл набуває вигляду:</p>
+<p>\[
+\begin{aligned}
+16 \int 8^x \cdot 2^{-3x} \, dx
+&amp;= 16 \int (2^3)^x \cdot 2^{-3x} \, dx \\[6pt]
+&amp;= 16 \int 2^{3x} \cdot 2^{-3x} \, dx \\[6pt]
+&amp;= 16 \int 2^{3x-3x} \, dx \\[6pt]
+&amp;= 16 \int 1 \, dx
+\end{aligned}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отримаємо:</p>
+<p>\[16x + c\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Розглянемо наступний інтеграл:
+\[\int 9^{x-1} \cdot 3^{-x+2} \, dx\]</p>
+<hr>
+<p>Ми можемо переписати інтеграл, використовуючи властивості степенів:
+\[\int 9^x \cdot 9^{-1} \cdot  3^{-x} \cdot 3^2 \, dx = \int 9^x \cdot 9^{-1} \cdot  3^{-x} \cdot 9 \, dx \]</p>
+<p>Спрощуючи доданки, отримаємо:
+\[\int 9^x \cdot  3^{-x} \, dx = \int 3^{2x} \cdot 3^{-x} \, dx = \int 3^{x} \, dx \]</p>
+<p>Ми звели інтеграл до вигляду:
+\[\int \alpha^x \,dx\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отримаємо</p>
+<p>\[\frac{1}{\ln3} \cdot 3^x + c\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 4</h2>
+<p>Розглянемо наступний інтеграл:</p>
+<p>\[
+\int e^{3x - 2} \, dx
+\]</p>
+<p>Показник степеня є лінійним, тому це пряме застосування стандартного правила для показових функцій вигляду \( e^{ax+b} \). Оскільки похідна від \( 3x &#8211; 2 \) дорівнює \( 3 \), ми компенсуємо це, поділивши на \( 3 \).</p>
+<p>\[
+\int e^{3x-2} \, dx = \frac{1}{3} e^{3x-2} + c
+\]</p>
+<p>Завжди варто перевірити результат. Диференціювання \( \frac{1}{3} e^{3x-2} \) дає:</p>
+<p>\[
+\frac{1}{3} \cdot 3 e^{3x-2} = e^{3x-2}
+\]</p>
+<p>отже, обчислення є правильним.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язання:
+\[\frac{1}{3} e^{3x-2} + c\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Поширена помилка</h2>
+<p>Частою причиною помилок є наявність коефіцієнта в показнику степеня. Легко написати:</p>
+<p>\[
+\int e^{3x-2}\,dx = e^{3x-2} + c
+\]</p>
+<p>і пропустити множник \( \frac{1}{3} \). Проблема стає очевидною, як тільки ми диференціюємо результат:</p>
+<p>\[
+\frac{d}{dx} e^{3x-2} = 3 e^{3x-2}
+\]</p>
+<p>що не є початковим підінтегральним виразом, а в три рази перевищує його. Перевірка займає лише мить і відразу виявляє невідповідність. Щоразу, коли показник має вигляд \( ax + b \) при \( a \neq 1 \), компенсуючий множник \( \frac{1}{a} \) є необхідним.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Приклад 5</h2>
+<p>Розглянемо тепер наступний інтеграл, щоб дослідити цю нову ситуацію:</p>
+<p>\[
+\int x \, e^{x^2} \, dx
+\]</p>
+<p>Тут показник степеня \( x^2 \) не є лінійним, тому попереднє правило для \( e^{ax+b} \) не можна застосувати безпосередньо. Однак структура підінтегрального виразу підказує, що робити. Похідна від \( x^2 \) дорівнює \( 2x \), а множник \( x \) вже присутній. Ми переписуємо інтеграл, ввівши сталу:</p>
+<p>\[
+\int x \, e^{x^2} \, dx
+= \frac{1}{2} \int 2x \, e^{x^2} \, dx
+\]</p>
+<p>Тепер підінтегральний вираз має вигляд \( e^{f(x)} f’(x) \) при \( f(x) = x^2 \). У цій ситуації інтегрування є миттєвим:</p>
+<p>\[
+\frac{1}{2} e^{x^2} + c
+\]</p>
+<p>Швидка перевірка підтверджує результат. Диференціювання \( \frac{1}{2} e^{x^2} \) дає:</p>
+<p>\[
+\frac{1}{2} \cdot 2x \, e^{x^2} = x e^{x^2}
+\]</p>
+<p>що відповідає початковому підінтегральному виразу.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язання:
+\[
+\frac{1}{2} e^{x^2} + c
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Коли відповідний множник відсутній</h2>
+<p>Корисно зауважити, що станеться, якщо прибрати множник \( x \). Інтеграл:</p>
+<p>\[
+\int e^{x^2}\,dx
+\]</p>
+<p>не має первісної, яку можна було б записати за допомогою елементарних функцій. Замість цього він виражається через функцію помилок \( \mathrm{erf}(x) \). Вона визначається інтегралом:</p>
+<p>\[
+\mathrm{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{-t^2} \, dt
+\]</p>
+<p>На відміну від елементарних функцій, таких як поліноми, показові або тригонометричні функції, \( \mathrm{erf}(x) \) визначається безпосередньо через інтеграл. Вона була введена саме тому, що інтеграли вигляду \( \int e^{-t^2} dt \) не можуть бути виражені у замкненій елементарній формі.</p>
+<p>Це показує, що множник \( x \) у попередньому прикладі забезпечив, з точністю до сталої, похідну показника \( x^2 \). Без цієї відповідності проста структура зникає, і інтеграл більше не можна обчислити за допомогою тих самих елементарних засобів.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>Каліфорнійський університет у Дейвісі – Л. Куба</strong>. <a href="https://www.math.ucdavis.edu/~kouba/CalcTwoDIRECTORY/expondirectory/Exponentials.html">Інтегрування покажчикових функцій</a></p>
+</li>
+<li>
+<p><strong>MIT, Г. Странг</strong>. <a href="https://ocw.mit.edu/ans7870/textbooks/Strang/Edited/Calculus/6.pdf">Математичний аналіз – Розділ 6: Покажчикові та логарифмічні функції</a></p>
+</li>
+<li>
+<p><strong>Університет Вісконсина в Медісоні, С. Анженент</strong>. <a href="https://people.math.wisc.edu/~angenent/222.2013s/UWMath222_2013s.pdf">MATH 222 – Математичний аналіз (другий семестр)</a></p>
+</li>
+<li>
+<p><strong>Чикагський університет, В. Джаярам</strong>. <a href="http://math.uchicago.edu/~may/REU2017/REUPapers/Jayaram.pdf">Доведення неіснування елементарних первісних</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="integral-of-the-exponential-function.html">algebrica.org/integral-of-the-exponential-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

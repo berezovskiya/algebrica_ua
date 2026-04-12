@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Границі — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Границі</span>
+    </nav>
+    <article>
+        <h1>Границі</h1>
+        <time>2025-02-19</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Розуміння granic у математичному аналізі</h2>
+<p>Поняття <strong>границі</strong> є фундаментальним у математиці. Інтуїтивно, границя <a href="functions.html">функції</a> \( f(x) \), коли \( x \) наближається до точки \( x_0 \), дозволяє нам аналізувати поведінку функції, коли значення \( x \) стають довільно близькими до \( x_0 \).</p>
+<p>Окіл \( x \) — це інтервал, що складається з усіх точок, достатньо близьких до \( x \). Більш формально, окіл \( x \) — це будь-який відкритий інтервал \( (x - \delta, x + \delta) \), де \( \delta &gt; 0 \). Це поняття є важливим для означення granic і розуміння поведінки функцій при наближенні до заданої точки.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="734" height="432" src="../images/limits-1.png" alt="" class="wp-image-8850" style="width:367px" srcset="../images/limits-1.png 734w, https://algebrica.org/wp-content/uploads/resources/images/limits-1-300x177.png 300w" sizes="(max-width: 734px) 100vw, 734px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Чим менший окіл, тим ближче точки розташовані до \( x \). Іншими словами, у міру того як інтервал \( (x &#8211; \delta, x + \delta) \) стає вужчим (коли \( \delta \) наближається до нуля), відстань між точками всередині околу та \( x \) зменшується.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Означення</h2>
+<p>Припустимо, ми маємо функцію \( f(x) \), поведінку якої ми хочемо вивчити, коли \( x \) наближається до точки \( x_0 \). Ми кажемо, що коли \( x \) прямує до \( x_0 \), функція \( f(x) \) має границю \( \ell \), і записуємо:</p>
+<p>\[
+\lim_{x \to x_0} f(x) = \ell
+\]</p>
+<p>Формально це твердження стверджує, що для будь-якого значення \( \varepsilon &gt; 0 \) існує відповідна відстань \( \delta &gt; 0 \), така що щоразу, коли:</p>
+<p>\[ 0 &lt; |x - x_0| &lt; \delta \]</p>
+<p>звідси випливає, що:</p>
+<p>\[ |f(x) &#8211; \ell| &lt; \varepsilon \]</p>
+<p>Іншими словами, для кожного околу \( \ell \) існує достатньо малий окіл \( x_0 \), такий що всі відповідні значення функції залишаються в цьому околі. Це формальне означення точно формулює інтуїтивне поняття про те, що границя представляє значення, до якого наближається \( f(x) \), коли \( x \) стає довільно близьким до \( x_0 \).</p>
+<hr>
+<p>Коли означення границі застосовується тільки до правого або лівого околу \( x_0 \), ми називаємо їх відповідно правою та лівою граничною значеннями. Вони представляються наступним чином:</p>
+<p>\[
+\lim_{x \to x_0^+} f(x) \quad \text{та} \quad \lim_{x \to x_0^-} f(x)
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Асимптоти та нескінченні границі</h2>
+<p>Загалом, значення \( x \) у границі може наближатися до дійсного числа \( x_0 \) або до \( \pm \infty \).</p>
+<p>\[
+\lim_{x \to x_0} f(x) = \ell \quad \text{або} \quad \lim_{x \to x_0} f(x) = \pm \infty
+\]</p>
+<p>Крім того, саме значення границі може бути або скінченним числом, або \( \pm \infty \).</p>
+<p>\[
+\lim_{x \to \pm \infty} f(x) = \ell \quad \text{або} \quad \lim_{x \to \pm \infty} f(x) = \pm \infty
+\]</p>
+<hr>
+<p>Коли границя \( f(x) \) існує і прямує до \(\pm \infty\), коли \( x \) наближається до скінченного дійсного числа, поведінка функції може бути схожа на спрощену схему, показану на малюнку. Пряма \( x = k \) називається <strong>вертикальною асимптотою</strong>:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="810" height="692" src="../images/limits-2.png" alt="" class="wp-image-8880" style="width:405px" srcset="../images/limits-2.png 810w, https://algebrica.org/wp-content/uploads/resources/images/limits-2-300x256.png 300w, https://algebrica.org/wp-content/uploads/resources/images/limits-2-768x656.png 768w" sizes="(max-width: 810px) 100vw, 810px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>У прикладі ми маємо випадок, коли права та ліва границі \( f(x) \) дорівнюють відповідно:</p>
+<p>\[
+\lim_{x \to x_0^+} f(x) = &#8211; \infty \quad \text{та} \quad \lim_{x \to x_0^-} f(x) = + \infty
+\]</p>
+<hr>
+<p>Коли границя \( f(x) \) існує і наближається до скінченного значення \( L \), коли \( x \) прямує до \( \pm \infty \), поведінка функції може бути схожа на спрощену схему, показану на малюнку. Пряма \( y = L \) називається <strong>горизонтальною асимптотою</strong>:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="726" height="692" src="../images/limits-3.png" alt="" class="wp-image-8888" style="width:363px" srcset="../images/limits-3.png 726w, https://algebrica.org/wp-content/uploads/resources/images/limits-3-300x286.png 300w" sizes="(max-width: 726px) 100vw, 726px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>У прикладі ми маємо випадок, коли праві та ліві границі \( f(x) \) дорівнюють відповідно:</p>
+<p>\[
+\lim_{x \to +\infty} f(x) = L \quad \text{та} \quad \lim_{x \to -\infty} f(x) = L
+\]</p>
+<h5>Асимптота визначається як пряма, до якої графік функції наближається довільно близько, коли значення \( x \) або \( y \) зростає чи зменшується без обмеження. Отже, відстань між кривою та асимптотою наближається до нуля, коли графік поширюється до країв координатної площини.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Умови існування границі та неперервності</h2>
+<p>Коли ліва та права границі функції існують і є скінченними, але мають різні значення при \( \ell_1 \neq \ell_2 \), ми маємо:</p>
+<p>\[
+\begin{cases}
+\lim\limits_{x \to x_0^-} f(x) = \ell_1 \in \mathbb{R} \\[0.5em]
+\lim\limits_{x \to x_0^+} f(x) = \ell_2 \in \mathbb{R}
+\end{cases} \implies \nexists \lim\limits_{x \to x_0} f(x)
+\]</p>
+<p>У цьому сценарії границя \( f(x) \), коли \( x \) наближається до \( x_0 \), не існує, оскільки функція наближається до двох різних значень залежно від напрямку наближення. Проте ліва границя та права границя є добре визначеними та скінченними, якщо розглядати їх окремо.</p>
+<hr>
+<p>Згідно з теоремою про єдиність границь, якщо границя функції \( f(x) \), коли \( x \) наближається до \( x_0 \), існує (будь то скінченна чи нескінченна), така границя є єдиною. Це твердження можна формально представити як:</p>
+<p>\[
+\lim_{x \to x_0} f(x) = \ell \in \overline{\mathbb{R}} \implies \ell \text{ є єдиною}
+\]</p>
+<p>Теорема гарантує, що якщо границя існує, не може бути двох різних значень, що задовольняють означення границі для однієї і тієї ж функції та точки.</p>
+<hr>
+<p>Поняття границі є фундаментальним для введення та визначення поняття <a href="continuous-functions.html">неперервної</a> функції. Функція \( y = f(x) \) називається неперервною в точці \( x_0 \), якщо границя функції, коли \( x \) наближається до \( x_0 \), існує і дорівнює значенню функції в цій точці. Формально це виражається так:</p>
+<p>\[
+\lim_{x \to x_0} f(x) = f(x_0)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Властивості</h2>
+<p>Наступні властивості границь є особливо корисними для виконання обчислень та спрощення складних виразів. Вони встановлюють базові правила маніпуляцій з границями та є важливими для розв'язання складніших математичних задач.</p>
+<hr>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Границя добутку <strong>сталої</strong> та функції дорівнює добутку сталої та границі функції, за умови, що границя існує.</p>
+<p>\[
+\lim_{x \to x_0} \left( c \, f(x) \right) = c \, \lim_{x \to x_0} f(x) = c \cdot \ell
+\]</p>
+<p>Множення функції на сталу не впливає на процес знаходження границі, окрім масштабування результату на цю сталу.</p>
+<hr>
+<p>Границя алгебраїчної <strong>суми</strong> двох функцій дорівнює сумі їхніх окремих границь, за умови, що обидві границі існують.</p>
+<p>\[
+\lim_{x \to x_0} \left( f(x) + g(x) \right) = \lim_{x \to x_0} f(x) + \lim_{x \to x_0} g(x) = \ell_1 + \ell_2
+\]</p>
+<p>Таким чином, границі кожної функції можна обчислити окремо, а потім додати. Це особливо корисно при роботі з <a href="polynomial-function.html">поліномами</a>, <a href="sine-and-cosine.html">тригонометричними функціями</a> та іншими поширеними математичними виразами.</p>
+<hr>
+<p>Границя <strong>добутку</strong> двох функцій дорівнює добутку їхніх окремих границь, за умови, що обидві границі існують.</p>
+<p>\[
+\lim\limits_{x \to x_0} \left( f(x) \, g(x) \right) = \lim\limits_{x \to x_0} f(x) \cdot \lim\limits_{x \to x_0} g(x) = \ell_1 \cdot \ell_2
+\]</p>
+<hr>
+<p>Границя <strong>частки</strong> двох функцій дорівнює частці їхніх окремих границь, за умови, що обидві границі існують і границя знаменника не дорівнює нулю.</p>
+<p>\[
+\lim\limits_{x \to x_0} \left( \frac{f(x)}{g(x)} \right) = \frac{\lim\limits_{x \to x_0} f(x)}{\lim\limits_{x \to x_0} g(x)} = \frac{\ell_1}{\ell_2}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Коли стандартні властивості не застосовуються</h2>
+<p>Зазначені вище властивості є дійсними лише тоді, коли всі відповідні границі існують і є скінченними, а знаменник залишається ненульовим. Однак на практиці часто зустрічаються вирази, де пряма підстановка дає невизначений результат, такий як:</p>
+<p>\[ \dfrac{0}{0} \quad \dfrac{\infty}{\infty} \quad \infty &#8211; \infty \]</p>
+<p>Такі вирази класифікуються як <a href="indeterminate-forms.html">невизначеності</a>. Їх розв'язання потребує спеціальних методів, що виходять за межі стандартних алгебраїчних маніпуляцій з границями. Класичний приклад ілюструє цей момент:</p>
+<p>\[
+\lim_{x \to 0} \frac{\sin x}{x}
+\]</p>
+<p>Пряма підстановка \( x = 0 \) дає \( \frac{0}{0} \), що є невизначеним. Властивість частки границь у цьому випадку не застосовується, оскільки границя знаменника дорівнює нулю. Розв'язання таких виразів потребує спеціального аналітичного підходу, як детально описано на відповідній сторінці.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Фундаментальні границі елементарних функцій</h2>
+<p>Наступні границі характеризують асимптотичну поведінку поширених елементарних функцій. Ці границі забезпечують базовий інструментарій для обчислення складніших granic і часто зустрічаються в математичному аналізі.</p>
+<hr>
+<p>Для сталої функції \(f(x) = k\) при \(k \in \mathbb{R}\), маємо:</p>
+<p>\[\lim_{x \to -\infty} k = k \quad \text{та} \quad \lim_{x \to +\infty} k = k\]</p>
+<hr>
+<p>Для функції \( f(x) = x \), маємо:</p>
+<p>\[\lim_{x \to -\infty} x = -\infty \quad \text{та} \quad \lim_{x \to +\infty} x = +\infty\]</p>
+<hr>
+<p>Для <a href="exponential-function.html">показникової функції</a> з основою \( a &gt; 1 \), маємо:</p>
+<p>\[\lim_{x \to -\infty} a^x = 0 \quad \text{та} \quad \lim_{x \to +\infty} a^x = +\infty\]</p>
+<hr>
+<p>Для показникової функції з основою \( 0 &lt; a &lt; 1 \), маємо:</p>
+<p>\[\lim_{x \to -\infty} a^x = +\infty \quad \text{та} \quad \lim_{x \to +\infty} a^x = 0\]</p>
+<h6>Якщо основа більша за \(1\), показникова функція необмежено зростає в одному напрямку і наближається до нуля в іншому. Якщо основа знаходиться строго між \(0\) та \(1\), ця поведінка змінюється на протилежну.</h6>
+<hr>
+<p>Для степеневої функції з парним показником, маємо:</p>
+<p>\[\lim_{x \to -\infty} x^n = +\infty \quad \text{та} \quad \lim_{x \to +\infty} x^n = +\infty\]</p>
+<hr>
+<p>Для степеневої функції з непарним показником, маємо:</p>
+<p>\[\lim_{x \to -\infty} x^n = -\infty \quad \text{та} \quad \lim_{x \to +\infty} x^n = +\infty\]</p>
+<hr>
+<p>Для кореневих функцій із парним індексом, маємо:</p>
+<p>\[\lim_{x \to +\infty} \sqrt[n]{x} = +\infty\]</p>
+<h6>Для парних індексів коренева функція визначена лише для \( x \geq 0 \). Тому границя при \( x \to -\infty \) не застосовна.</h6>
+<hr>
+<p>Для кореневих функцій із непарним індексом, маємо:</p>
+<p>\[\lim_{x \to +\infty} \sqrt[n]{x} = +\infty \quad \text{та} \quad \lim_{x \to -\infty} \sqrt[n]{x} = -\infty\]</p>
+<hr>
+<p>Для <a href="logarithmic-function.html">логарифмічної функції</a> з основою \( a &gt; 1 \), маємо:</p>
+<p>\[\lim_{x \to 0^+} \log_a x = -\infty \quad \text{та} \quad \lim_{x \to +\infty} \log_a x = +\infty\]</p>
+<hr>
+<p>Для <a href="logarithmic-function.html">логарифмічної функції</a> з основою \( 0 &lt; a &lt; 1 \), маємо:</p>
+<p>\[\lim_{x \to 0^+} \log_a x = +\infty \quad \text{та} \quad \lim_{x \to +\infty} \log_a x = -\infty\]</p>
+<hr>
+<p>Для <a href="absolute-value-function.html">функції модуля</a> \( f(x) = |x| \), маємо:</p>
+<p>\[\lim_{x \to -\infty} |x| = +\infty \quad \text{та} \quad \lim_{x \to +\infty} |x| = +\infty\]</p>
+<hr>
+<p>Для функції знака \( \text{sgn}(x) \), маємо:</p>
+<p>\[\lim_{x \to -\infty} \text{sgn}(x) = -1 \quad \text{та} \quad \lim_{x \to +\infty} \text{sgn}(x) = 1\]</p>
+<hr>
+<p>Працюючи з границами, ви використовуєте алгебраїчні операції, щоб комбінувати, розкладати та працювати з функціями систематично. Ці правила, такі як границі сум, добутків, часток, степенів та композицій, детальніше пояснюються на сторінці про <a href="algebra-of-limits.html">алгебру granic</a>.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>Harvard University O. Knill</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/math1a2021/handouts/lecture03.pdf">Unit 3: Limits</a></p>
+</li>
+<li>
+<p><strong>University of California, Berkeley A. Vizeff</strong>. <a href="https://math.berkeley.edu/~avizeff/calculus-I-F22/lecture-5.pdf">Continuity and Discontinuities</a></p>
+</li>
+<li>
+<p><strong>University of California, Los Angeles N. Hu</strong>. <a href="https://www.math.ucla.edu/~njhu/teaching/math-131a-2024u/notes/10-compact.pdf">Limits of Functions</a></p>
+</li>
+<li>
+<p><strong>University of California, Berkeley R. Wang</strong>. <a href="https://math.berkeley.edu/~ruiwang/pdf/104.pdf">Limits</a></p>
+</li>
+<li>
+<p><strong>MIT D. Jerison</strong>. <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/1.-differentiation/part-a-definition-and-basic-rules/session-4-limits-and-continuity/">Limits and Continuity</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке границя в математичному аналізі?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Границя описує значення, до якого наближається функція, коли аргумент наближається до певної точки. Вона є фундаментальною в аналізі для означення неперервності, похідних та інтегралів."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як обчислити границю?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Границі можна обчислити за допомогою прямої підстановки, розкладання на множники, раціоналізації або застосування відомих правил обчислення granic. У випадках невизначеностей можуть бути використані такі методи, як правило Лопіталя."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке невизначеність?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Невизначеність виникає, коли обчислення границі призводить до таких виразів, як 0/0 або ∞/∞. Ці форми потребують алгебраїчних перетворень або спеціальних методів для розв'язання та знаходження фактичної границі."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="limits.html">algebrica.org/limits</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Арифметична прогресія — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Послідовності</span>
+    </nav>
+    <article>
+        <h1>Арифметична прогресія</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Що таке арифметична послідовність</h2>
+<p><a href="sequences.html">Послідовність</a> \( a_n \) називається <strong>арифметичною послідовністю</strong> (або арифметичною прогресією), якщо вона складається з чисел, розташованих таким чином, що різниця між будь-яким членом і попереднім членом є сталою. Вона характеризується членами вигляду:</p>
+<p>\[a_1, a_2, \dots, a_n \quad \text{де} \quad a_n - a_{n-1} = d\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps mb-x-30"><ul>
+<li>За домовленістю, перший член арифметичної прогресії зазвичай має індекс \( n = 1.\)</li>
+<li>\( d \) представляє різницю між двома послідовними членами арифметичної прогресії, і вона відома як різниця прогресії.</li>
+<li>Якщо \( d &gt; 0 \), прогресія є зростаючою.</li>
+<li>Якщо \( d &lt; 0 \), прогресія є спадаючою.</li>
+<li>Якщо \( d = 0 \), прогресія є сталою.</li>
+</ul>
+<p>Розглянемо, наприклад, послідовність невід'ємних парних чисел:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="602" height="294" src="../images/arithmetic-sequence.png" alt="" class="wp-image-14670" style="width:301px" srcset="../images/arithmetic-sequence.png 602w, https://algebrica.org/wp-content/uploads/resources/images/arithmetic-sequence-300x147.png 300w" sizes="(max-width: 602px) 100vw, 602px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Арифметична послідовність також може бути визначена за допомогою рекурентної формули:</p>
+<p>\[
+a_n = a_1 + n \cdot d \quad \text{де } a_1, d \in \mathbb{R}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="786" height="422" src="../images/arithmetic-sequence-2.png" alt="" class="wp-image-14687" style="width:393px" srcset="../images/arithmetic-sequence-2.png 786w, https://algebrica.org/wp-content/uploads/resources/images/arithmetic-sequence-2-300x161.png 300w, https://algebrica.org/wp-content/uploads/resources/images/arithmetic-sequence-2-768x412.png 768w" sizes="(max-width: 786px) 100vw, 786px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Арифметична прогресія демонструє характерний сходинковий закономірний вигляд, де висота кожного кроку відповідає різниці прогресії між послідовними членами послідовності.</p>
+<hr>
+<p>В арифметичній прогресії кожен член \( a_n \) отримують, додаючи до першого члена \( a_1 \) добуток різниці прогресії \( d \) та \( (n &#8211; 1) \). Це дає загальну формулу для \( n \)-го члена:</p>
+<p>\[
+a_n = a_1 + (n &#8211; 1) \cdot d \quad \text{для } n \geq 1
+\]</p>
+<p>Ця формула дозволяє обчислити будь-який член послідовності безпосередньо, не перелічуючи всі попередні.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Нехай задано арифметичну послідовність із першим членом \( a_1 = 2 \) та різницею прогресії \( d = 3 \). Використовуємо формулу:</p>
+<p>\[
+a_n = a_1 + (n &#8211; 1) \cdot d
+\]</p>
+<p>Підставимо значення:</p>
+<p>\[
+a_n = 2 + (n - 1) \cdot 3
+\]</p>
+<p>Тепер обчислимо перші кілька членів:</p>
+<ul>
+<li>\( a_1 = 2 \)</li>
+<li>\( a_2 = 2 + 1 \cdot 3 = 5 \)</li>
+<li>\( a_3 = 2 + 2 \cdot 3 = 8 \)</li>
+<li>\( a_4 = 2 + 3 \cdot 3 = 11 \)</li>
+<li>\( a_5 = 2 + 4 \cdot 3 = 14 \)</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отримана послідовність:</br>
+\[ 2,\ 5,\ 8,\ 11,\ 14,\ \dots \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Сума \(n\) членів арифметичної прогресії</h2>
+<p>Сума \( S_n \) перших \( n \) членів \( a_1, a_2, \dots, a_n \) арифметичної прогресії дорівнює добутку \( n \) та середнього арифметичного першого і останнього членів:</p>
+<p>\[
+S_n = n \cdot \frac{a_1 + a_n}{2}
+\]</p>
+<p>Ця формула дозволяє швидко обчислити загальну суму скінченної кількості членів арифметичної прогресії. Наприклад, розглянемо арифметичну прогресію невід'ємних парних чисел:<br>
+\[
+2,\ 4,\ 6,\ 8,\ 10
+\]</p>
+<p>Ми хочемо обчислити суму перших 5 членів \( (n = 5).\) Використовуючи формулу, маємо:<br>
+\[
+S_5 = 5 \cdot \frac{2 + 10}{2} = 5 \cdot 6 = 30
+\]</p>
+<h5>Це ілюструє той самий принцип, що лежить в основі трюку Гаусса: поєднуючи перший і останній члени, можна швидко обчислити загальну суму арифметичної прогресії.</h5>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке арифметична послідовність?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Арифметична послідовність — це послідовність чисел, у якій кожен наступний член відрізняється від попереднього на фіксоване значення, що називається різницею прогресії. Це означає, що різниця між послідовними членами завжди однакова."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як обчислити n-й член арифметичної послідовності?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "n-й член арифметичної послідовності можна обчислити за формулою: an = a₁ + (n - 1)·d, де a₁ — перший член, d — різниця прогресії, а n — порядковий номер члена в послідовності."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="arithmetic-sequence.html">algebrica.org/arithmetic-sequence</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

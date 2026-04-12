@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зростаючі, спадні та монотонні функції — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Зростаючі, спадні та монотонні функції</h1>
+        <time>2025-02-24</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Вступ</h2>
+<p>Розуміння поведінки <a href="functions.html">функцій</a> є фундаментальним у математиці. Залежно від того, як їхні значення змінюються відносно аргументу, функції можуть бути класифіковані як:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>зростаючі</li>
+<li>спадаючі</li>
+<li>монотонні</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Ці характеристики тісно пов'язані з геометрією їхніх графіків у декартовій площині, що дозволяє визначити, чи функція зростає, спадає або зберігає сталий напрямок тенденції.</h5>
+<hr>
+<p>Нехай \( y = f(x)\) — функція, визначена на <a href="determining-the-domain-of-a-function.html">області визначення</a> \( X \subseteq \mathbb{R} \). Ми кажемо, що \( f \) є <strong>суворо зростаючою</strong> на проміжку \(I \subseteq X \), якщо для будь-яких двох значень \( x_1, x_2 \in I \), таких що \( x_1 &lt; x_2 \), виконується наступна умова:
+\[
+f(x_1) &lt; f(x_2)
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="682" height="422" src="../images/increasing-decreasing-functions-1-3.png" alt="" class="wp-image-14078" style="width:341px" srcset="../images/increasing-decreasing-functions-1-3.png 682w, https://algebrica.org/wp-content/uploads/resources/images/increasing-decreasing-functions-1-3-300x186.png 300w" sizes="(max-width: 682px) 100vw, 682px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Це означає, що в міру зростання аргументу \( x \) на проміжку \( I \), значення \( f(x) \) також суворо зростає, без будь-яких плоских або спадаючих ділянок.</p>
+<hr>
+<p>Нехай \( y = f(x) \) — функція, визначена на області визначення \( X \subseteq \mathbb{R} \).
+Ми кажемо, що \( f \) є <strong>суворо спадаючою</strong> на проміжку \( I \subseteq X \), якщо для будь-яких двох значень \( x_1, x_2 \in I \), таких що \( x_1 &lt; x_2 \), виконується наступна умова:</p>
+<p>\[
+f(x_1) &gt; f(x_2)
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="732" height="406" src="../images/increasing-decreasing-functions-2-1.png" alt="" class="wp-image-14085" style="width:366px" srcset="../images/increasing-decreasing-functions-2-1.png 732w, https://algebrica.org/wp-content/uploads/resources/images/increasing-decreasing-functions-2-1-300x166.png 300w" sizes="(max-width: 732px) 100vw, 732px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Це означає, що в міру зростання аргументу \( x \) на проміжку \( I \),
+значення \( f(x) \) суворо спадає, без плоских або зростаючих ділянок.</p>
+<hr>
+<p>Функція з областю визначення \( X \subseteq \mathbb{R} \) називається <strong>суворо монотонною</strong> на проміжку \( I \subseteq X \), якщо вона є або суворо зростаючою, або суворо спадаючою на всьому проміжку \( I \), без зміни напрямку або плоских ділянок. Іншими словами, функція зберігає сталу тенденцію, або вгору, або вниз, на всьому \( I \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Підсумуємо: нехай \( X \subseteq \mathbb{R} \), і нехай \( x_1, x_2 \in X \) при \( x_1 &lt; x_2 \). Тоді функція \( f : X \to \mathbb{R} \) називається:</p>
+<ul>
+<li>Зростаючою: якщо \( f(x_1) \leq f(x_2) \).</li>
+<li>Суворо зростаючою: якщо \( f(x_1) &lt; f(x_2) \).</li>
+<li>Спадаючою: якщо \( f(x_1) \geq f(x_2) \).</li>
+<li>Суворо спадаючою: якщо \( f(x_1) &gt; f(x_2) \).</li>
+<li>(Суворо) монотонною: якщо функція є або (суворо) зростаючою, або (суворо) спадаючою.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Похідні та монотонна поведінка</h2>
+<p>Ми знаємо, що <a href="derivatives.html">похідні</a> використовуються для опису форми та графіка функцій. Зокрема, перша похідна функції, \( f’(x) \), може вказувати на проміжки, де вихідна функція \( f(x) \) зростає і де вона спадає.</p>
+<p>Загалом, якщо задано функцію \( y = f(x) \), яка є <a href="continuous-functions.html">неперервною</a> на проміжку \( I \) і диференційовною у внутрішніх точках \( I \):</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Якщо \( f’(x) &gt; 0 \) для кожного \( x \) у внутрішній частині \( I \), то \( f(x) \) зростає на \( I \).</li>
+<li>Якщо \( f’(x) &lt; 0 \) для кожного \( x \) у внутрішній частині \( I \), то \( f(x) \) спадає на \( I \).</li>
+<li>Якщо \( f’(x) = 0 \) для кожного \( x \) у внутрішній частині \( I \), то \( f(x) \) є сталою на \( I \).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Щоб продемонструвати ці властивості, ми використаємо <a href="lagrange-theorem.html">теорему Лагранжа</a>. Уявімо, що маємо дві точки \( a \) та \( b \) \(\in I \) при \( a &lt; b \). Далі, розглянемо точку \( c \), що належить проміжку \( ]a, b[ \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="628" height="488" src="../images/increasing-decreasing-function.png" alt="" class="wp-image-10305" style="width:314px" srcset="../images/increasing-decreasing-function.png 628w, https://algebrica.org/wp-content/uploads/resources/images/increasing-decreasing-function-300x233.png 300w" sizes="(max-width: 628px) 100vw, 628px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-alignCenterMathjax"><p>За теоремою Лагранжа, маємо:</p>
+<p>\[
+f^{\prime}\left (c \right ) = \frac{f(b) &#8211; f(a)}{b &#8211; a}
+\]</p>
+<p>Оскільки маємо \( b &#8211; a &gt; 0 \) та \( f’\left (c \right) &gt; 0 \), звідси випливає, що \( f(b) &#8211; f(a) &gt; 0 \), що означає \( f(b) &gt; f(a) \). Оскільки \( a \) та \( b \) є довільними точками в \( I \), функція є зростаючою на \( I \).</p>
+<p>Аналогічно, розглянемо протилежний випадок: оскільки маємо \( b &#8211; a &gt; 0 \) та \( f’\left( c \right) &lt; 0 \), звідси випливає, що \( f(b) &#8211; f(a) &lt; 0 \), що означає \( f(b) &lt; f(a) \). Оскільки \( a \) та \( b \) є довільними точками в \( I \), функція є спадаючою на \( I \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Приклад 1</h2>
+<p>Розглянемо функцію:
+\[f(x) = \frac{x^4}{4} - \frac{x^2}{2}\]</p>
+<hr>
+<p>Обчислимо її похідну:
+\[f’(x) = x(x^2 &#8211; 1)\]</p>
+<p>Знайдемо проміжки, на яких похідна більша за нуль. Маємо:</p>
+<p>\[x &gt; 0\]
+\[x^2 &#8211; 1 &gt; 0 \implies x &lt; -1 \text{ або } x &gt; 1\]</p>
+<p>Перемноживши знаки першого та другого множників, отримаємо проміжки, де похідна є додатною.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign mt-m-20"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ -1 \]</th>
+<th style="text-align:center">\[ 0 \]</th>
+<th style="text-align:center">\[ 1 \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( x &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( x^2 &#8211; 1 &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\[f’(x)\]</td>
+<td style="text-align:center">\( \boldsymbol{-}\)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\(\boldsymbol{+} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Отже, похідна \( x(x^2 &#8211; 1) \) є додатною для:</p>
+<p>\[x \in (-1,0) \cup (1,+\infty)\]</p>
+<h5>Для повноти додамо, що аналіз знаків функції, як у наведеному прикладі, вимагає дослідження знаків її окремих множників та визначення загального знака для кожного проміжку шляхом обчислення добутку цих знаків.</h5>
+<hr>
+<p>Графічно її поведінка є наступною:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="614" height="520" src="../images/increasing-decreasing-functions-2.png" alt="" class="wp-image-8317" style="width:307px" srcset="../images/increasing-decreasing-functions-2.png 614w, https://algebrica.org/wp-content/uploads/resources/images/increasing-decreasing-functions-2-300x254.png 300w" sizes="(max-width: 614px) 100vw, 614px" /></figure>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отже, функція є зростаючою на проміжку \((-1,0) \cup (1,+\infty)\) та спадаючою на проміжку \((-\infty, -1) \cup (0,1)\).</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Коли функція є зростаючою?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функція є зростаючою на проміжку, якщо для будь-яких двох точок x₁ та x₂, таких що x₁ < x₂, маємо f(x₁) ≤ f(x₂). Якщо нерівність є строгою (f(x₁) < f(x₂)), функція називається строго зростаючою."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли функція є спадаючою?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функція є спадаючою на проміжку, якщо для будь-яких двох точок x₁ та x₂, таких що x₁ < x₂, маємо f(x₁) ≥ f(x₂). Якщо нерівність є строгою (f(x₁) > f(x₂)), функція називається строго спадаючою."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли функція є монотонною?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функція є монотонною на проміжку, якщо вона або завжди зростає, або завжди спадає на цьому проміжку. Якщо функція є строго зростаючою або строго спадаючою, вона називається строго монотонною."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="increasing-and-decreasing-functions.html">algebrica.org/increasing-and-decreasing-functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

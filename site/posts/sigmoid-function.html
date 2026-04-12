@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сигмоїдна функція — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Сигмоїдна функція</h1>
+        <time>2026-04-07</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-1" style="height:420px;min-height:420px;max-height:420px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:420px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-3"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Просунутий рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="exponential-function.html">Показникова функція</a>, <a href="functions.html">Функції</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-1");
+            var dataset = {"name":"root","children":[{"name":"означення та структура","children":[{"name":"означення"},{"name":"показникова форма"},{"name":"область визначення та область значень"},{"name":"асимптотична поведінка"},{"name":"монотонність"},{"name":"бієктивність"}]},{"name":"аналіз","children":[{"name":"перша похідна"},{"name":"форма похідної"},{"name":"друга похідна"},{"name":"випуклість"},{"name":"точка перегину"},{"name":"поведінка зростання"}]},{"name":"зв'язки та застосування","children":[{"name":"логістична функція"},{"name":"гіперболічний тангенс"},{"name":"обернена функція"},{"name":"логіт"},{"name":"імовірнісна інтерпретація"},{"name":"застосування"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 420;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-section pb-steps mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Означення</h2>
+<p>Сигмоїдальна функція — це дійснозна <a href="functions.html">функція</a> дійсної змінної, яка набуває значень суворо між \(0\) та \(1\), наближаючись до кожного з двох екстремумів <a href="asymptotes.html">асимптотично</a>. Вона забезпечує гладке відображення дійсної прямої на одиничний проміжок і широко використовується в аналізі та машинному навчанні. Її означення є наступним:</p>
+<p>\[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]</p>
+<p>Сигмоїдальна функція може бути записана в еквівалентних формах, які іноді є зручнішими для обчислень або для встановлення певних властивостей. Одна з таких форм отримується шляхом множення чисельника та знаменника на \(e^x\):</p>
+<p>\[
+\sigma(x) = \frac{e^x}{e^x + 1}
+\]</p>
+<p>Цей вираз повністю еквівалентний початковому означенню і може спростити певні алгебраїчні маніпуляції.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="1010" height="514" src="../images/sigmoid-function.png" alt="Sigmoid function." class="wp-image-28424" style="width:505px" title="Sigmoid function." srcset="../images/sigmoid-function.png 1010w, https://algebrica.org/wp-content/uploads/resources/images/sigmoid-function-300x153.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sigmoid-function-768x391.png 768w" sizes="(max-width: 1010px) 100vw, 1010px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><ul>
+<li>Область визначення — \(\mathbb{R}\), тоді як область значень — відкритий інтервал \((0,1)\).</li>
+<li>Функція є строго зростаючою на \(\mathbb{R}\), оскільки її <a href="derivatives.html">похідна</a> завжди додатня, і, отже, є бієктивною з \(\mathbb{R}\) на \((0,1)\).</li>
+<li>Функція не має локальних екстремумів і має рівно одну <a href="maximum-minimum-and-inflection-points.html">точку перегину</a> в \((0, \frac{1}{2})\).</li>
+<li> <a href="limits.html">Границі</a> на нескінченності є наступними: \[ \lim_{x \to -\infty} \sigma(x) = 0\] \[ \lim_{x \to +\infty} \sigma(x) = 1\]</li>
+</ul>
+<blockquote>
+<p>S-подібна крива відображає поведінку функції: повільний ріст для дуже від'ємних значень \(x\), швидкий перехід в околі початку координат і насичення для дуже додатних значень.</p>
+</blockquote>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Властивості сигмоїдальної функції</h2>
+<p>Наступні властивості характеризують сигмоїдальну функцію аналітично та обґрунтовують її широке використання як у математичному аналізі, так і в прикладних задачах. Функція задовольняє наступному відношенню симетрії відносно початку координат:</p>
+<p>\[
+\sigma(-x) = 1 &#8211; \sigma(x)
+\]</p>
+<p>Ця тотожність, яку можна перевірити шляхом прямої підстановки, означає, що графік \(\sigma\) симетричний відносно точки:</p>
+<p>\[\left(0,\, \frac{1}{2}\right)\]</p>
+<p>Значення функції в початку координат дорівнює:</p>
+<p>\[
+\sigma(0) = \frac{1}{1 + e^{0}} = \frac{1}{2}
+\]</p>
+<p>Границі на краях дійсної прямої є наступними:</p>
+<p>\[\lim_{x \to -\infty} \sigma(x) = 0\]
+\[ \lim_{x \to +\infty} \sigma(x) = 1\]</p>
+<p>Прямі \(y = 0\) та \(y = 1\), отже, є <a href="asymptotes.html">горизонтальними асимптотами</a> графіка.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Похідна сигмоїдальної функції</h2>
+<p>Однією з найвизначніших властивостей сигмоїдальної функції є те, що її похідна може бути виражена в надзвичайно компактній формі через саму функцію. Перша похідна має наступний вигляд:</p>
+<p>\[
+\sigma’(x) = \sigma(x)\,\bigl(1 - \sigma(x)\bigr)
+\]</p>
+<p>Щоб перевірити цю тотожність, можна скористатися прямим обчисленням. Записуючи \(\sigma(x) = (1 + e^{-x})^{-1}\) та застосовуючи правило ланцюга, отримаємо наступне:</p>
+<p>\[
+\sigma’(x) = \frac{e^{-x}}{(1 + e^{-x})^2}
+\]</p>
+<p>Зауважимо, що чисельник можна записати як \((1 + e^{-x}) &#8211; 1\), тоді вираз розпадається на добуток:</p>
+<p>\[
+\begin{align}
+\sigma’(x) &amp;= \frac{1}{1 + e^{-x}} \cdot \frac{e^{-x}}{1 + e^{-x}} \\[6pt]
+&amp;= \sigma(x)\,\bigl(1 &#8211; \sigma(x)\bigr)
+\end{align}
+\]</p>
+<p>Оскільки \(\sigma(x) \in (0, 1)\) для кожного \(x \in \mathbb{R}\), похідна завжди є суворо додатною, що підтверджує, що функція є <a href="increasing-and-decreasing-functions.html">суворо зростаючою</a>. Максимальне значення похідної досягається при \(x = 0\), де \(\sigma’(0) = 1/4\).</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Друга похідна та випуклість</h2>
+<p>Друга похідна сигмоїдальної функції отримується шляхом диференціювання виразу:
+\[\sigma’(x) = \sigma(x)\,(1 - \sigma(x))\]</p>
+<p>Застосовуючи правило добутку та підставляючи вираз для \(\sigma’(x)\), отримаємо наступне:</p>
+<p>\[
+\begin{align}
+\sigma’‘(x) &amp;= \sigma’(x),(1 &#8211; \sigma(x)) - \sigma(x)\,\sigma’(x) \\[6pt]
+&amp;= \sigma’(x)\,(1 &#8211; 2\sigma(x)) \\[6pt]
+&amp;= \sigma(x)\,(1 - \sigma(x))\,(1 - 2\sigma(x))
+\end{align}
+\]</p>
+<p>Знак \(\sigma’'(x)\) повністю визначається множником \(1 &#8211; 2\sigma(x)\), оскільки \(\sigma(x)(1 &#8211; \sigma(x)) &gt; 0\) для всіх \(x \in \mathbb{R}\). Оскільки \(\sigma\) є строго зростаючою і \(\sigma(0) = \tfrac{1}{2}\), множник \(1 &#8211; 2\sigma(x)\) є додатним при \(x &lt; 0\) та від'ємним при \(x &gt; 0\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-large is-resized mb-x-30"><img loading="lazy" width="1024" height="558" src="../images/sigmoid-function-second-derivative-1-1024x558.png" alt="" class="wp-image-28457" style="width:521px" title="Sigmoid function, second derivative." srcset="../images/sigmoid-function-second-derivative-1-1024x558.png 1024w, https://algebrica.org/wp-content/uploads/resources/images/sigmoid-function-second-derivative-1-300x164.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sigmoid-function-second-derivative-1-768x419.png 768w, https://algebrica.org/wp-content/uploads/resources/images/sigmoid-function-second-derivative-1.png 1042w" sizes="(max-width: 1024px) 100vw, 1024px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Звідси випливає, що функція є випуклою вниз на \((-\infty, 0)\) та випуклою вгору на \((0, +\infty)\). Точка \(x = 0\), отже, є точкою перегину, в якій \(\sigma’'(0) = 0\) і випуклість змінює знак.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Зв'язок із логістичною функцією</h2>
+<p>Сигмоїдальна функція збігається з особливим випадком логістичної функції, в якому швидкість зростання дорівнює \(1\), а точка перегину розташована в початку координат. Загальний вигляд логістичної функції є наступним:</p>
+<p>\[
+f(x) = \frac{L}{1 + e^{-k(x - x_0)}}
+\]</p>
+<p>У цьому виразі \(L\) позначає верхнє асимптотичне значення, \(k\) — швидкість зростання, а \(x_0\) — точку перегину. Стандартна сигмоїдальна функція відповідає вибору \(L = 1\), \(k = 1\) та \(x_0 = 0\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Зв'язок із гіперболічним тангенсом</h2>
+<p>Сигмоїдальна функція тісно пов'язана з <a href="hyperbolic-tangent-and-cotangent.html">гіперболічним тангенсом</a> \(\tanh.\) Виконується наступна тотожність:</p>
+<p>\[
+\sigma(x) = \frac{1 + \tanh\!\left(\dfrac{x}{2}\right)}{2}
+\]</p>
+<p>Еквівалентна форма є наступною:</p>
+<p>\[
+\tanh(x) = 2\,\sigma(2x) &#8211; 1
+\]</p>
+<p>Цей зв'язок показує, що дві функції відрізняються суттєво лише вертикальним зсувом та масштабуванням. У той час як сигмоїда відображає \(\mathbb{R}\) в інтервал \((0, 1)\), гіперболічний тангенс відображає \(\mathbb{R}\) в інтервал \((-1, 1)\). Обидві функції мають однакову S-подібну криву та однаковий тип насичення на краях.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Обернена сигмоїдальна функція</h2>
+<p>Оскільки сигмоїдальна функція є строго монотонною, вона має обернену функцію, визначену на \((0, 1)\). Ця обернена функція відома як логіт-функція, і її вираз є наступним:</p>
+<p>\[
+\sigma^{-1}(p) = \ln\!\left(\frac{p}{1-p}\right)
+\]</p>
+<p>Аргумент <a href="logarithms.html">логарифма</a> називається відношенням шансів. Таким чином, логіт-функція відображає ймовірність \(p \in (0,1)\) у відповідне дійсне значення за шкалою логарифма шансів.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад</h2>
+<p>Розглянемо задачу обчислення значення сигмоїдальної функції при \(x = 2\) та перевірки того, що її похідна в цій точці узгоджується з формулою \(\sigma’(x) = \sigma(x)(1 - \sigma(x))\). Значення функції є наступним:</p>
+<p>\[
+\sigma(2) = \frac{1}{1 + e^{-2}}
+\]</p>
+<p>Оскільки \(e^{-2} \approx 0.1353\), отримаємо:</p>
+<p>\[
+\sigma(2) \approx \frac{1}{1.1353} \approx 0.8808
+\]</p>
+<p>Застосовуючи формулу похідної, значення \(\sigma’(2)\) є наступним:</p>
+<p>\[
+\sigma’(2) = \sigma(2),\bigl(1 - \sigma(2)\bigr) \approx 0.8808 \cdot 0.1192 \approx 0.1050
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Значення похідної сигмоїдальної функції при \(x = 2\), отже, приблизно дорівнює \(0.1050\), що підтверджує як формулу, так і той факт, що функція зростає дуже повільно в цій області, вже наблизившись до насичення.</p>
+</div>
+</div></div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="sigmoid-function.html">algebrica.org/sigmoid-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

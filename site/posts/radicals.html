@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Радикали — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Степені, радикали та логарифми</span>
+    </nav>
+    <article>
+        <h1>Радикали</h1>
+        <time>2025-02-03</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-27" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="powers.html">Степені</a>, <a href="properties-of-real-numbers.html">Властивості дійсних чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-27");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"nth root"},{"name":"radicand"},{"name":"index"},{"name":"principal root"},{"name":"even vs odd"},{"name":"inverse of powers"},{"name":"irrational roots"}]},{"name":"algebra","children":[{"name":"rational exponents"},{"name":"product rule"},{"name":"quotient rule"},{"name":"power of a root"},{"name":"nested radicals"},{"name":"simplification"},{"name":"like radicals"}]},{"name":"applications","children":[{"name":"irrationality of sqrt2"},{"name":"rationalization"},{"name":"conjugate method"},{"name":"limits and derivatives"},{"name":"indeterminate forms"},{"name":"geometric construction"},{"name":"euclid theorem"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax mb-x-30"><h2>Означення радикалів</h2>
+<p>Радикали виникають із задачі розв'язання <a href="equations.html">рівнянь</a> вигляду \( x^n = a \), де \( n \in \mathbb{N} \), \( n \ge 2 \), та \( a \in \mathbb{R} \). У цьому контексті корінь \( n \)-го степеня числа визначається як значення, чий \( n \)-й <a href="powers.html">степінь</a> дає початкове число.</p>
+<p>Якщо \( a \ge 0 \), то головним дійсним коренем \( n \)-го степеня з \( a \) є єдине невід'ємне дійсне число \( b \), що задовольняє рівність \( b^n = a \). Це значення позначається як \( \sqrt[n]{a} \). Визначальною властивістю є те, що \( \sqrt[n]{a} = b \) тоді і тільки тоді, коли \( b^n = a \) та \( b \ge 0 \). Умова \( b \ge 0 \) гарантує єдиність у дійсному випадку, коли \( n \) є парним.</p>
+<p>Значення \( a \) називається підкореневим виразом, а <a href="integers.html">ціле число</a> \( n \) відоме як показник кореня. Цей запис визначає як операцію добування кореня, так і його степінь.</p>
+<hr>
+<p>Властивості коренів залежать від того, чи є показник парним чи непарним.</p>
+<ul>
+<li>Для парного \( n \) рівняння \( x^n = a \) має дійсне розв'язання тільки якщо \( a \ge 0 \), у якому випадку головним коренем \( \sqrt[n]{a} \) є невід'ємне розв'язання.</li>
+<li>Для непарного \( n \) рівняння \( x^n = a \) має рівно одне дійсне розв'язання для кожного дійсного числа \( a \), тому функція \( a \mapsto \sqrt[n]{a} \) визначена для всіх \( a \in \mathbb{R} \).</li>
+</ul>
+<blockquote>
+<p>Наприклад, оскільки \( 2^3 = 8 \), звідси випливає, що \( \sqrt[3]{8} = 2 \), оскільки 2 є єдиним дійсним числом, куб якого дорівнює 8. Загалом, добування кореня \( n \)-го степеня є оберненою операцією до піднесення числа до степеня \( n \). Отже, розв'язання рівняння \( x^n = a \) еквівалентне застосуванню кореня \( n \)-го степеня до \( a \).</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Радикали, такі як \( \sqrt{2} \), \( \sqrt{3} \) та \( \sqrt{5} \), класифікуються як <a href="types-of-numbers.html">ірраціональні числа</a>, оскільки їх неможливо представити як точні дроби з двох цілих чисел.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="724" height="330" src="../images/numbers-2-2.png" alt="" class="wp-image-27481" style="width:362px" srcset="../images/numbers-2-2.png 724w, https://algebrica.org/wp-content/uploads/resources/images/numbers-2-2-300x137.png 300w" sizes="(max-width: 724px) 100vw, 724px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Їхні десяткові розклади є нескінченними та неперіодичними, без будь-якої передбачуваної закономірності. Жодне раціональне число в квадраті не дає 2, 3 або 5. Тим не менш, ці значення займають точні позиції на прямій дійсних чисел, перемішані з раціональними числами, без жодних проміжків.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Формально, якщо \( a \in \mathbb{N} \) не є повним квадратом, то \( \sqrt{a} \notin \mathbb{Q} \).</p>
+<blockquote>
+<p>Квадратні корені не завжди є ірраціональними. Квадратний корінь з повного квадрата, такого як \(4\) або \(9\), є раціональним. Натомість квадратний корінь з числа, що не є повним квадратом, такого як \(2\) або \(5\), є ірраціональним, оскільки його неможливо представити у вигляді дробу.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Чому \( \sqrt{2} \) ірраціональне?</h2>
+<p>Щоб довести, що \( \sqrt{2} \) не є раціональним числом, розглянемо доведення від супротивного. Припустимо, що \( \sqrt{2} \) є раціональним. Тоді його можна представити як дріб із двох цілих чисел, скорочений до найменших цілих, де \( a, b \in \mathbb{Z} \), \( b \neq 0 \), та \( \gcd(a,b) = 1 \):</p>
+<p>\[ \sqrt{2} = \frac{a}{b} \]</p>
+<blockquote>
+<p>\( \gcd(a,b) \) позначає найбільший спільний дільник \( a \) та \( b \), який є найбільшим додатним цілим числом, що ділить обидва числа. Умова \( \gcd(a,b) = 1 \) вказує на те, що \( a \) та \( b \) є взаємно простими, тобто вони не мають спільних дільників, окрім 1. Таким чином, дріб \( a/b \) вже є скороченим.</p>
+</blockquote>
+<hr>
+<p>Піднесемо обидві частини до квадрата:
+\[
+2 = \frac{a^2}{b^2} \to a^2 = 2b^2
+\]</p>
+<p>Це означає, що \( a^2 \) є парним, звідси \( a \) також має бути парним. Отже, ми можемо записати \( a = 2k \) для деякого цілого числа \( k \). Підставимо назад:
+\[
+(2k)^2 = 2b^2 \to 4k^2 = 2b^2 \to b^2 = 2k^2
+\]</p>
+<hr>
+<p>Це означає, що \( b^2 \) також є парним, отже \( b \) також має бути парним. Але якщо і \( a \), і \( b \) є парними, вони мають спільний множник \(2\), що суперечить нашому початковому припущенню, що \(\dfrac{a}{b}\) є скороченим дробом. Це означає, що \(\sqrt{2}\) є ірраціональним.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Степені з раціональними показниками</h2>
+<p>Зв'язок між коренями та <a href="powers.html">степенями</a> стає очевидним, коли показник є раціональним числом. Для \( a \in \mathbb{R}^+ \) та \( n \in \mathbb{N} \) при \( n \ge 1 \), корінь \( n \)-го степеня з \( a \) еквівалентно записується як:</p>
+<p>\[
+\sqrt[n]{a} = a^{\frac{1}{n}}
+\]</p>
+<p>У більш загальному випадку, для \( m \in \mathbb{Z} \), корінь, підкореневий вираз якого піднесено до цілого степеня, відповідає степеню з раціональним показником \( \frac{m}{n} \):</p>
+<p>\[
+\sqrt[n]{a^m} = a^{\frac{m}{n}}
+\]</p>
+<p>Це представлення є не просто нотаційним зручністю. Оскільки корені є степенями з раціональними показниками, всі стандартні правила піднесення до степеня поширюються на них без змін. Для \( a,\, b \in \mathbb{R}^+ \) та \( \frac{m}{n},\, \frac{p}{q} \in \mathbb{Q} \):</p>
+<p>\[
+\begin{align}
+a^{\frac{m}{n}} \cdot a^{\frac{p}{q}} &amp;= a^{\frac{m}{n}+\frac{p}{q}} \\[6pt]
+\dfrac{a^{\frac{m}{n}}}{a^{\frac{p}{q}}} &amp;= a^{\frac{m}{n}-\frac{p}{q}} \\[6pt]
+\left(a^{\frac{m}{n}}\right)^{\frac{p}{q}} &amp;= a^{\frac{m}{n} \cdot \frac{p}{q}}
+\end{align}
+\]</p>
+<p>Наприклад, \( \sqrt{a^3} = a^{\frac{3}{2}} \), \( \sqrt[3]{a^2} = a^{\frac{2}{3}} \), та \( \sqrt[4]{a} = a^{\frac{1}{4}} \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Властивості</h2>
+<p>Наступні тотожності визначають маніпуляції з коренями. Кожна властивість сформульована з умовами щодо підкореневого виразу та показника, необхідними для того, щоб вираз залишався визначеним у дійсних числах; ці умови залежать, зокрема, від того, чи є показник парним чи непарним.</p>
+<p>Для \( a \ge 0 \), \( n \in \mathbb{N} \) при \( n \ge 1 \), та \( m \in \mathbb{Z} \), будь-який корінь можна записати як степінь з раціональним показником:</p>
+<p>\[
+\sqrt[n]{a^m} = a^{\frac{m}{n}}
+\]</p>
+<p>Якщо \( n \) парне, умова \( a \ge 0 \) є необхідною для того, щоб залишатися в області дійсних чисел.</p>
+<hr>
+<p>Для \( n \in \mathbb{N} \) при \( n \ge 2 \), корінь \( n \)-го степеня розподіляється відносно множення та ділення:</p>
+<p>\[
+\sqrt[n]{ab} = \sqrt[n]{a}\,\sqrt[n]{b}
+\]</p>
+<p>\[
+\frac{\sqrt[n]{a}}{\sqrt[n]{b}} = \sqrt[n]{\frac{a}{b}}
+\]</p>
+<p>Якщо \( n \) парне, правило множення вимагає \( a \ge 0 \) та \( b \ge 0 \), а правило ділення вимагає \( a \ge 0 \) та \( b &gt; 0 \), щоб залишатися в області дійсних чисел. Якщо \( n \) непарне, обидві тотожності виконуються для всіх допустимих дійсних значень: будь-яких \( a,\, b \in \mathbb{R} \) для добутку та будь-яких \( a \in \mathbb{R} \), \( b \in \mathbb{R} \setminus {0} \) для частки.</p>
+<hr>
+<p>Для \( a \ge 0 \), \( n \in \mathbb{N} \) при \( n \ge 1 \), та \( m \in \mathbb{Z} \), піднесення кореня до цілого степеня еквівалентне піднесенню підкореневого виразу до цього степеня з подальним добуванням кореня:</p>
+<p>\[
+\left(\sqrt[n]{a}\right)^m = \sqrt[n]{a^m}
+\]</p>
+<p>Якщо \( n \) парне, умова \( a \ge 0 \) необхідна для того, щоб залишатися в області дійсних чисел.</p>
+<hr>
+<p>Нехай \( k \in \mathbb{N} \) при \( k \ge 1 \). Множення як показника кореня, так і степеня підкореневого виразу на одне й те саме додатне ціле число \( k \) не змінює значення кореня:</p>
+<p>\[
+\sqrt[n]{a^m} = \sqrt[nk]{a^{mk}}
+\]</p>
+<p>Ця тотожність дозволяє скоротити показник кореня до найпростішого вигляду. Наприклад, \( \sqrt[4]{a^2} = \sqrt[2]{a} = \sqrt{a} \), що отримано шляхом ділення обох показників на 2. Якщо \( n \) парне, застосовується умова \( a \ge 0 \).</p>
+<hr>
+<p>Для \( a \ge 0 \) та \( m,\, n \in \mathbb{N} \) при \( m,\, n \ge 1 \), вкладений корінь зводиться до одного кореня, показник якого є добутком двох показників:</p>
+<p>\[
+\sqrt[m]{\sqrt[n]{a}} = \sqrt[mn]{a}
+\]</p>
+<p>Якщо \( m \) або \( n \) є парним, умова \( a \ge 0 \) необхідна для того, щоб залишатися в області дійсних чисел. Якщо і \( m \), і \( n \) є непарними, тотожність виконується для всіх \( a \in \mathbb{R} \).</p>
+<hr>
+<p>Корінь \( \sqrt[n]{a^m} \) можна спростити, коли \( m \ge n \), розклавши показник як \( m = nq+r \), де \( q \) — частка, а \( 0 \le r &lt; n \) — остача від ділення \( m \) на \( n \). Тоді множник \( a^q \) можна винести за знак кореня:</p>
+<p>\[
+\sqrt[n]{a^m} = \sqrt[n]{a^{nq+r}} = a^q\,\sqrt[n]{a^r}
+\]</p>
+<p>Наприклад, \( \sqrt{a^5} = \sqrt{a^4 \cdot a} = a^2\sqrt{a} \), оскільки \( 5 = 2 \cdot 2+1 \). Аналогічно, \( \sqrt[3]{a^7} = a^2\,\sqrt[3]{a} \), оскільки \( 7 = 3 \cdot 2+1 \). Умова \( a \ge 0 \) застосовується, коли показник є парним.</p>
+<hr>
+<p>Два корені називаються подібними, якщо вони мають однаковий показник і однаковий підкореневий вираз. Подібні корені можна додавати та віднімати, комбінуючи їхні коефіцієнти, так само як і подібні доданки в поліномі:</p>
+<p>\[
+p\,\sqrt[n]{a}+q\,\sqrt[n]{a} = (p+q)\,\sqrt[n]{a}
+\]</p>
+<p>Наприклад:
+\[ 3\sqrt{2}+5\sqrt{2} = 8\sqrt{2} \]
+\[ 7\sqrt[3]{5}-2\sqrt[3]{5} = 5\sqrt[3]{5} \]</p>
+<p>Корені з різними показниками або різними підкореневими виразами не є подібними і не можуть бути об'єднані таким чином. У деяких випадках спрощення може показати, що два корені насправді є подібними. Наприклад:</p>
+<p>\[ \sqrt{12}+\sqrt{3} = 2\sqrt{3}+\sqrt{3} = 3\sqrt{3} \]</p>
+<p>оскільки:</p>
+<p>\[ \sqrt{12} = \sqrt{4 \cdot 3} = 2\sqrt{3} \]</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Спростіть наступний вираз і запишіть результат у вигляді кореня:</p>
+<p>\[
+\frac{\sqrt{a}}{\sqrt[3]{a}}
+\]</p>
+<hr>
+<p>Перетворивши кожен корінь у степінь з раціональним показником:</p>
+<p>\[
+\sqrt{a} = a^{\frac{1}{2}} \qquad \sqrt[3]{a} = a^{\frac{1}{3}}
+\]</p>
+<p>Застосовуючи правило ділення для <a href="powers.html">степенів</a>:</p>
+<p>\[
+\frac{a^{\frac{1}{2}}}{a^{\frac{1}{3}}} = a^{\frac{1}{2}-\frac{1}{3}} = a^{\frac{1}{6}}
+\]</p>
+</div><div class="wp-block-jetpack-markdown pb-solution"><p>Отже, отримаємо:</p>
+<p>\[
+\frac{\sqrt{a}}{\sqrt[3]{a}} = \sqrt[6]{a}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Позбавлення від ірраціональності в знаменнику</h2>
+<p>Вираз, що містить ірраціональність у знаменнику, зазвичай переписують у рівнозначній формі, в якій знаменник не містить радикалів. Цей процес називається позбавленням від ірраціональності в знаменнику і полягає в множенні чисельника та знаменника на відповідний вираз без зміни значення дробу. Якщо знаменник є одним радикалом \( \sqrt[n]{a^m} \), метою є доведення показника \( a \) всередині радикала до кратного \( n \). Множення чисельника та знаменника на \( \sqrt[n]{a^{n-m}} \) дає ціле число в знаменнику:</p>
+<p>\[
+\frac{1}{\sqrt[n]{a^m}} \cdot \frac{\sqrt[n]{a^{n-m}}}{\sqrt[n]{a^{n-m}}} = \frac{\sqrt[n]{a^{n-m}}}{\sqrt[n]{a^n}} = \frac{\sqrt[n]{a^{n-m}}}{a}
+\]</p>
+<p>Найпоширенішим випадком є \( n = 2 \) та \( m = 1 \), коли знаменник є квадратним коренем:</p>
+<p>\[
+\frac{1}{\sqrt{a}} \cdot \frac{\sqrt{a}}{\sqrt{a}} = \frac{\sqrt{a}}{a}
+\]</p>
+<p>Коли знаменник має вигляд \( \sqrt{a}+\sqrt{b} \) або \( \sqrt{a}-\sqrt{b} \), множення на спряжений вираз усуває радикали шляхом застосування формули різниці квадратів \( (x+y)(x-y) = x^2-y^2 \):</p>
+<p>\[
+\frac{1}{\sqrt{a}+\sqrt{b}} \cdot \frac{\sqrt{a}-\sqrt{b}}{\sqrt{a}-\sqrt{b}} = \frac{\sqrt{a}-\sqrt{b}}{a-b} \qquad a \ne b,\; a,b \ge 0
+\]</p>
+<p>Наприклад:</p>
+<p>\[
+\begin{align}
+\frac{1}{\sqrt{3}+\sqrt{2}} &amp;= \frac{\sqrt{3}-\sqrt{2}}{(\sqrt{3})^2-(\sqrt{2})^2} \\[6pt]
+&amp;= \frac{\sqrt{3}-\sqrt{2}}{3-2} \\[6pt]
+&amp;= \sqrt{3}-\sqrt{2}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Позбавлення від ірраціональності також може бути застосоване до чисельника, якщо це спрощує вираз. Розглянемо наступну границю, яка природним чином виникає в означенні <a href="derivatives.html">похідної</a>:</p>
+<p>\[
+\lim_{h \to 0} \frac{\sqrt{x+h}-\sqrt{x}}{h}
+\]</p>
+<p>Пряма підстановка \( h = 0 \) дає невизначеність \( \frac{0}{0} \). Щоб розв'язати це, помножимо чисельник і знаменник на спряжений вираз до чисельника:</p>
+<p>\[
+\begin{align}
+\frac{\sqrt{x+h}-\sqrt{x}}{h} &amp;= \frac{\sqrt{x+h}-\sqrt{x}}{h} \cdot \frac{\sqrt{x+h}+\sqrt{x}}{\sqrt{x+h}+\sqrt{x}} \\[6pt]
+&amp;= \frac{(x+h)-x}{h\left(\sqrt{x+h}+\sqrt{x}\right)} \\[6pt]
+&amp;= \frac{h}{h\left(\sqrt{x+h}+\sqrt{x}\right)} \\[6pt]
+&amp;= \frac{1}{\sqrt{x+h}+\sqrt{x}}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Обчислимо границю при \( h \to 0 \):</p>
+<p>\[
+\lim_{h \to 0} \frac{1}{\sqrt{x+h}+\sqrt{x}} = \frac{1}{2\sqrt{x}}
+\]</p>
+<p>Цей результат є похідною від \( \sqrt{x} \), отриманою тут без використання загального правила степеня.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-20"><h2>Геометричне побудова відрізка \(\sqrt{a}\)</h2>
+<p>Квадратний корінь \(\sqrt{a}\) — це більше ніж просто число: його можна побудувати як відрізок, використовуючи лише циркуль і лінійку. Цей метод перетворює алгебраїчну ідею в геометричну форму, розкриваючи глибокий зв'язок між числами та фігурами. Маючи відрізок довжиною \(a\), виконайте наступні кроки:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>
+<p>Накресліть відрізок \(AB\) довжиною \(a\).</p>
+</li>
+<li>
+<p>Продовжте відрізок вліво на 1 одиницю. Нехай точка \(C\) буде такою, що \(CA = 1\). Тепер \(CB = a + 1\).</p>
+</li>
+<li>
+<p>Накресліть півколо з діаметром \(CB\).</p>
+</li>
+<li>
+<p>З точки \(A\) проведіть перпендикуляр до \(CB\), що перетинає півколо в точці \(D\).</p>
+</li>
+<li>
+<p>Відрізок \(AD\) має довжину \(\sqrt{a}\).</p>
+</li>
+</ul>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="672" height="562" src="../images/radicals-6.png" alt="Geometric construction of √a: extend a segment by 1 unit, draw a semicircle, and obtain √a from the perpendicular segment." class="wp-image-27648" style="width:336px" title="Geometric construction of √a." srcset="../images/radicals-6.png 672w, https://algebrica.org/wp-content/uploads/resources/images/radicals-6-300x251.png 300w" sizes="(max-width: 672px) 100vw, 672px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Насправді, у прямокутному трикутнику \(\triangle DAB\) відрізок \(AD\) є висотою, проведеною з точки \(A\) до гіпотенузи \(CB\). Згідно з теоремою Евкліда для прямокутних трикутників, висота є середнім геометричним двох відрізків, на які вона ділить гіпотенузу. Тобто:</p>
+<p>\[
+\frac{AC}{AD} = \frac{AD}{AB}
+\]</p>
+<p>Множачи обидві частини на \(AD\), отримаємо:</p>
+<p>\[
+AD^2 = AB \cdot AC
+\]</p>
+<p>Оскільки \(AC = 1\) та \(AB = a\), знайдемо:</p>
+<p>\[
+AD^2 = a \cdot 1 = a
+\quad \rightarrow \quad
+AD = \sqrt{a}
+\]</p>
+<p>Це завершує побудову: відрізок \(AD\) має довжину, що точно дорівнює \(\sqrt{a}\).</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке радикал у математиці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Радикал — це математичний вираз, що містить символ кореня, наприклад, квадратний або кубічний корінь. Він представляє число, яке при піднесенні до певного степеня дорівнює значенню під радикалом."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи завжди квадратні корені є ірраціональними?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Не завжди. Квадратний корінь із повного квадрата, як-от 4 або 9, є раціональним. Але квадратний корінь із числа, що не є повним квадратом, як-от 2 або 5, є ірраціональним, оскільки його не можна представити у вигляді дробу."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="radicals.html">algebrica.org/radicals</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

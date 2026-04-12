@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теорема косинусів — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Теорема косинусів</h1>
+        <time>2025-02-07</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-11" style="height:380px;min-height:380px;max-height:380px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:380px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Теорема                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="right-triangle-trigonometry.html">Тригонометрія прямокутного трикутника</a>, <a href="sine-and-cosine.html">Синус і косинус</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-11");
+            var dataset = {"name":"root","children":[{"name":"structure","children":[{"name":"statement"},{"name":"side relation"},{"name":"cosine term"},{"name":"angle opposite"},{"name":"pythagorean extension"}]},{"name":"derivation","children":[{"name":"projection"},{"name":"right triangle"},{"name":"pythagorean theorem"},{"name":"trigonometric components"},{"name":"algebraic expansion"}]},{"name":"applications","children":[{"name":"solving triangles"},{"name":"side computation"},{"name":"angle computation"},{"name":"inverse cosine"},{"name":"law of sines"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 380;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Означення</h2>
+<p>Теорема косинусів пов'язує сторони будь-якого трикутника через кут, що лежить навпроти однієї з них. Її можна розглядати як узагальнення <a href="pythagorean-theorem.html">теореми Піфагора</a>, що є правильною не лише для прямокутних трикутників, а для кожного трикутника: квадрат сторони дорівнює сумі квадратів двох інших сторін мінус поправковий член, який враховує величину кута між ними. Для трикутника зі сторонами \(a, b, c\) та кутом \(\theta\) навпроти сторони \(c\), теорема стверджує:</p>
+<p>\[
+c^2 = a^2 + b^2 &#8211; 2ab \cos(\theta)
+\]</p>
+<p>Коли \(\theta = 90^\circ\), член із <a href="sine-and-cosine.html">косинусом</a> зникає, і формула перетворюється саме на теорему Піфагора, що підтверджує, що теорема косинусів є строгим узагальненням цього результату. Для будь-якого іншого кута поправковий член або віднімається від, або додається до суми \(a^2 + b^2\), залежно від того, чи є \(\theta\) гострим, чи тупим.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="566" height="480" src="../images/law-of-cosine-1.png" alt="Law of cosine." class="wp-image-28008" style="width:283px" title="Law of cosine." srcset="../images/law-of-cosine-1.png 566w, https://algebrica.org/wp-content/uploads/resources/images/law-of-cosine-1-300x254.png 300w" sizes="(max-width: 566px) 100vw, 566px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><p>Щоб вивести формулу, проведемо висоту \(h\) з вершини, що лежить навпроти \(c\), до сторони \(b\). Це ділить \(b\) на два відрізки: \(m = a\cos(\theta)\) та \(n = b - a\cos(\theta)\), тоді як сама висота задовольняє рівність \(h = a\sin(\theta)\). Застосувавши теорему Піфагора до прямокутного трикутника, утвореного відрізками \(n\), \(h\) та стороною \(c\), отримаємо:</p>
+<p>\[
+\begin{align}
+c^2 &amp;= n^2 + h^2 \\[6pt]
+&amp;= (b &#8211; a\cos(\theta))^2 + (a\sin(\theta))^2 \\[6pt]
+&amp;= b^2 &#8211; 2ab\cos(\theta) + a^2\cos^2(\theta) + a^2\sin^2(\theta) \\[6pt]
+&amp;= b^2 &#8211; 2ab\cos(\theta) + a^2(\cos^2(\theta) + \sin^2(\theta))
+\end{align}
+\]</p>
+<p>Оскільки <a href="pythagorean-identity.html">основна тригонометрична тотожність</a> дає \(\sin^2(\theta) + \cos^2(\theta) = 1\), вираз спрощується до:</p>
+<p>\[
+c^2 = a^2 + b^2 - 2ab\cos(\theta)
+\]</p>
+<blockquote>
+<p>Теорема косинусів часто використовується разом із <a href="law-of-sines.html">теоремою синусів</a>, що забезпечує доповнюючий підхід до розв'язання трикутників, коли відомі різні комбінації сторін і кутів.</p>
+</blockquote>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо трикутник зі сторонами \(a = 8\), \(b = 6\) та прилеглим кутом \(\theta = 60^\circ\). Мета — визначити довжину третьої сторони \(c\). Підставляючи відомі значення в теорему косинусів, отримаємо:</p>
+<p>\[
+\begin{align}
+c^2 &amp;= a^2 + b^2 &#8211; 2ab\cos(\theta) \\[6pt]
+&amp;= 64 + 36 &#8211; 2(8)(6)\cos(60^\circ) \\[6pt]
+&amp;= 64 + 36 &#8211; 96 \cdot \frac{1}{2} \\[6pt]
+&amp;= 100 &#8211; 48 \\[6pt]
+&amp;= 52
+\end{align}
+\]</p>
+<p>Обчисливши додатний квадратний корінь, отримаємо \(c = \sqrt{52} = 2\sqrt{13} \approx 7.21\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Довжина третьої сторони становить приблизно \(7.21\) одиниці.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо трикутник зі сторонами \(a = 5\), \(b = 7\) та \(c = 9\). Мета — визначити кут \(\theta\) навпроти сторони \(c\). Виражаючи \(\cos(\theta)\) з теореми косинусів, отримаємо:</p>
+<p>\[
+\cos(\theta) = \frac{a^2 + b^2 &#8211; c^2}{2ab}
+\]</p>
+<p>Підставляючи відомі значення:</p>
+<p>\[
+\begin{align}
+\cos(\theta) &amp;= \frac{25 + 49 &#8211; 81}{2(5)(7)} \\[6pt]
+&amp;= \frac{-7}{70} \\[6pt]
+&amp;= -0.1
+\end{align}
+\]</p>
+<p>Оскільки \(\cos(\theta) &lt; 0\), кут \(\theta\) є тупим. Обчислюючи арккосинус, отримаємо:</p>
+<p>\[
+\theta = \arccos(-0.1) \approx 95.7^\circ
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Кут, що лежить навпроти найдовшої сторони, становить приблизно \(95.7^\circ\).</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке теорема косинусів?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема косинусів — це зв'язок між трьома сторонами трикутника та одним із його кутів. Вона дозволяє обчислити довжину невідомої сторони, якщо відомі дві інші сторони та кут між ними, або знайти кут, якщо відомі всі три сторони."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли слід використовувати теорему косинусів замість теореми синусів?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Зазвичай теорема косинусів використовується, коли відомі дві сторони та кут між ними, або коли відомі всі три сторони трикутника і потрібно знайти один із кутів. Теорема синусів зазвичай зручніша, коли відомий кут і протилежна йому сторона, разом з іншими парами кут-сторона."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "До яких типів трикутників застосовна теорема косинусів?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема косинусів застосовна до будь-якого трикутника, а не тільки до прямокутних. Вона працює для гострокутних, тупокутних і прямокутних трикутників і може розглядатися як узагальнення теореми Піфагора, що також враховує кут між сторонами."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка інформація потрібна для використання теореми косинусів?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Для використання теореми косинусів потрібні або дві сторони та кут між ними, або довжини всіх трьох сторін трикутника. У першому випадку можна знайти невідому сторону, а в другому — визначити невідомий кут."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як теорема косинусів пов'язана з теоремою Піфагора?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема косинусів зводиться до теореми Піфагора, коли кут між двома відомими сторонами є прямим. У цьому особливому випадку косинус кута стає рівним нулю, і зв'язок між сторонами точно відповідає тому, що задано теоремою Піфагора."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="law-of-cosines.html">algebrica.org/law-of-cosines</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

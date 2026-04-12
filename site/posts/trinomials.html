@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Триноми — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Поліноми</span>
+    </nav>
+    <article>
+        <h1>Триноми</h1>
+        <time>2025-02-09</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-7" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">4</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="binomials.html">Біноми</a>, <a href="monomials.html">Мономіали</a>, <a href="polynomials.html">Поліноми</a>, <a href="powers.html">Степені</a>, є необхідними попередніми вимогами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-7");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"general form"},{"name":"degree"},{"name":"coefficients"},{"name":"quadratic case"},{"name":"parabola"}]},{"name":"properties","children":[{"name":"discriminant"},{"name":"roots"},{"name":"factorization"},{"name":"vieta formulas"},{"name":"perfect square"},{"name":"irreducibility"},{"name":"complex roots"}]},{"name":"methods","children":[{"name":"quadratic formula"},{"name":"completing square"},{"name":"reduction"},{"name":"substitution"},{"name":"biquadratic"},{"name":"factoring"},{"name":"applications"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group mb-x-30 pb-section"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Означення</h2>
+<p>Трикутом визначається як <a href="polynomials.html">поліном</a>, що складається рівно з трьох ненульових, попарно різних доданків. У більш загальному випадку, у комутативному кільці з одиницею, трикутом у невизначеній величині \(x\) є будь-який вираз вигляду:</p>
+<p>\[ a_n x^n + a_m x^m + a_k x^k\]
+\[n &gt; m &gt; k \geq 0\]</p>
+<p>Коефіцієнти \(a_n, a_m, a_k\) є ненульовими елементами кільця. Коли базовим кільцем є \(\mathbb{R}\), коефіцієнти є дійсними числами, а ступінь трикута дорівнює \(n\).</p>
+<blockquote>
+<p><a href="rings.html">Кільце</a> — це множина, оснащена операціями додавання та множення, що задовольняють стандартні алгебраїчні аксіоми: асоціативність, дистрибутивність, а також існування нейтрального елемента по додаванню та обернених елементів. Комутативне кільце з одиницею додатково вимагає комутативності множення та наявності одиниці множення. Типовими прикладами є \(\mathbb{Z}\), \(\mathbb{R}\) та \(\mathbb{C}.\)</p>
+</blockquote>
+<hr>
+<p><a href="quadratic-equations.html">Квадратний трикут</a> з однією змінною, який має другий ступінь, є найбільш вивченим випадком і має наступну канонічну форму, де \(a, b, c \in \mathbb{R}\) та \(a \neq 0\):</p>
+<p>\[ ax^2 + bx + c \tag{1}\]</p>
+<p>Вимога \(a \neq 0\) є важливою, оскільки, якщо її пропустити, старший доданок зникне і вираз перестане бути квадратним. Коефіцієнт \(a\) називається старшим коефіцієнтом, \(b\) — лінійним коефіцієнтом, а \(c\) — вільним членом.</p>
+<p>Не кожен поліном з трьома доданками має вигляд (1). Наприклад, такі вирази, як \(x^3 + 2x + 1\), \(x^4 - x^2 + 3\) та \(x^2 y + xy^2 - 1\), є трикутами, кожен з яких представляє окремий клас. Подальший розгляд стосується переважно квадратного випадку, з окремим розділом для трикутів вищих ступенів, які можуть бути зведені до цієї форми за допомогою заміни.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><hr>
+<p>Квадратний трикут (1) визначає квадратну функцію \(f(x) = ax^2 + bx + c\), графіком якої є <a href="parabola.html">парабола</a>. Форма вершини вказує на те, що вершина параболи розташована в точці</p>
+<p>\[ \left( -\frac{b}{2a}, \, -\frac{\Delta}{4a} \right) \]</p>
+<p>Парабола відкривається вгору, якщо \(a &gt; 0\), і вниз, якщо \(a &lt; 0\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="690" height="874" src="../images/trinomials.png" alt="" class="wp-image-28095" style="width:345px" title="Parabola." srcset="../images/trinomials.png 690w, https://algebrica.org/wp-content/uploads/resources/images/trinomials-237x300.png 237w" sizes="(max-width: 690px) 100vw, 690px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Кількість перетинів з віссю \(x\) відповідає кількості різних дійсних коренів. Знак \(\Delta\) дає геометричну інтерпретацію: \(\Delta &gt; 0\) вказує на два перетини з віссю \(x\), \(\Delta = 0\) вказує на дотикання до осі \(x\), а \(\Delta &lt; 0\) вказує на відсутність дійсних перетинів.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Класифікація трикутів</h2>
+<p>Трикути класифікують за двома основними критеріями: ступенем та кількістю змінних. Щодо ступеня, найпростішими нетривіальними трикутами з однією змінною є квадратні трикути (ступінь 2). Кубічні трикути, такі як \(x^3 + px + q\), мають важливе значення в теорії кубічних рівнянь, тоді як трикути четвертого ступеня виникають при вивченні біквадратних рівнянь.</p>
+<p>У випадку двох змінних трикути вигляду \(ax^2 + bxy + cy^2\) представляють однорідні квадратні форми. Однорідні трикути заслуговують на коротку згадку: трикут \(ax^n + bx^{n-1}y + cy^{n-2}\) не є однорідним, якщо тільки всі три доданки не мають однакового загального ступеня. Трикут \(x^2 + xy + y^2\), наприклад, є однорідним другого ступеня, тоді як \(x^2 + xy + y\) не є таким.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Дискримінант</h2>
+<p>Алгебраїчні властивості квадратного тричлена \(ax^2 + bx + c\) визначаються однією величиною, відомою як дискримінант, що визначається наступним чином:</p>
+<p>\[ \Delta = b^2 &#8211; 4ac \tag{2} \]</p>
+<p>Дискримінант визначає характер <a href="roots-of-a-polynomial.html">коренів</a> квадратного рівняння \(ax^2 + bx + c = 0\) і, як наслідок, структуру розкладання тричлена на множники над дійсними числами \(\mathbb{R}\) та комплексними числами \(\mathbb{C}\). Залежно від значення дискримінанта виникають три різні випадки.</p>
+<p>Якщо \(\Delta &gt; 0\), тричлен має два різні дійсні корені, \(x_1\) та \(x_2\), які визначаються за допомогою <a href="quadratic-formula.html">формули коренів квадратного рівняння</a>:</p>
+<p>\[ x_{1,2} = \frac{-b \pm \sqrt{\Delta}}{2a} \tag{3} \]</p>
+<p>Якщо \(\Delta = 0\), два корені збігаються, що дає одне значення \(x_0 = -b/(2a)\), яке називають повтореним коренем або коренем кратності два.</p>
+<p>Якщо \(\Delta &lt; 0\), тричлен не має дійсних коренів і є незвідним над \(\mathbb{R}\), оскільки його неможливо представити як добуток двох лінійних множників з дійсними коефіцієнтами. Однак над <a href="complex-numbers-introduction.html">комплексними числами</a> \(\mathbb{C}\) формула (3) залишається правильною, де \(\sqrt{\Delta}\) інтерпретується як \(i\sqrt{|\Delta|}\), що призводить до отримання спряженої пари <a href="quadratic-equations-with-complex-solutions.html">комплексних коренів</a>.</p>
+<hr>
+<p>Якщо \(\Delta \geq 0\), тричлен у рівнянні (1) може бути повністю розкладений на множники над дійсними числами:</p>
+<p>\[ ax^2 + bx + c = a(x - x_1)(x - x_2) \tag{4} \]</p>
+<p>\(x_1\) та \(x_2\) позначають корені, визначені в рівнянні (3). У випадку повтореного кореня цей розклад спрощується до</p>
+<p>\[ ax^2 + bx + c = a(x &#8211; x_0)^2 \]</p>
+<p>Розклад у рівнянні (4) представляє форму добутку тричлена. Ця форма є фундаментальною для спрощення раціональних виразів, розв'язання нерівностей, а також обчислення <a href="limits.html">границь</a> та <a href="definite-integrals.html">інтегралів</a>, що містять квадратні знаменники.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Формули Вієта</h2>
+<p>Непосереднім наслідком рівняння (4) є те, що корені задовольняють наступні співвідношення, відомі як формули Вієта:</p>
+<p>\[
+\begin{align}
+x_1 + x_2 &amp;= -\frac{b}{a} \\[6pt]
+x_1 x_2 &amp;= \frac{c}{a}
+\end{align}
+\tag{5}
+\]</p>
+<p>Ці тотожності отримані шляхом розкриття дужок у виразі \(a(x-x_1)(x-x_2)\) та прирівнювання коефіцієнтів до \(ax^2 + bx + c\). Формули Вієта особливо корисні, оскільки вони дозволяють перевірити розклад на множники без явного обчислення коренів і лежать в основі кількох методів факторизації. Наприклад, щоб розкласти \(x^2 - 5x + 6\), необхідно знайти два числа, сума яких дорівнює 5, а добуток — 6. Ми можемо використати цю просту схему, щоб знайти числа, які задовольняють наші обмеження.</p>
+<p>\[
+\begin{array}{rrrr}
+m &amp; n &amp; P &amp; S \\ \hline
+1 &amp; 6 &amp; 6 &amp; 7 \\
+-1 &amp; -6 &amp; 6 &amp; -7 \\
+2 &amp; 3 &amp; 6 &amp; 5 \\
+-2 &amp; -3 &amp; 6 &amp; -5 \\
+\end{array}
+\]</p>
+<p>Пара \((2, 3)\) у 3-му рядку задовольняє обидві умови, отже:</p>
+<p>\[ x^2 &#8211; 5x + 6 = (x &#8211; 2)(x &#8211; 3) \]</p>
+<blockquote>
+<p>Цей підхід усною арифметикою є ефективним у всіх випадках, коли корені є раціональними.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розкладіть на множники тричлен \(3x^2 &#8211; 7x + 2\). Першим кроком є обчислення дискримінанта: \(\Delta = (-7)^2 - 4 \cdot 3 \cdot 2 = 49 - 24 = 25 &gt; 0\). Оскільки \(\Delta &gt; 0\), тричлен має два різні дійсні корені, які можна визначити за допомогою формули коренів квадратного рівняння:</p>
+<p>\[ x_{1,2} = \frac{7 \pm \sqrt{25}}{6} = \frac{7 \pm 5}{6} \]</p>
+<p>Це обчислення дає \(x_1 = 12/6 = 2\) та \(x_2 = 2/6 = 1/3\). Отже, розклад над \(\mathbb{R}\) має вигляд</p>
+<p>\[
+\begin{align}
+3x^2 - 7x + 2 &amp;= 3\left(x &#8211; 2\right)\left(x &#8211; \tfrac{1}{3}\right) \\[6pt]
+&amp;= (x-2)(3x-1)
+\end{align}
+\]</p>
+<p>Для перевірки правильності, за формулами Вієта (5), має виконуватися \(x_1 + x_2 = -b/a\) та \(x_1 x_2 = c/a\). Дійсно, \(x_1 + x_2 = 2 + 1/3 = 7/3\) та \(x_1 x_2 = 2 \cdot 1/3 = 2/3\), що повністю узгоджується з \(-b/a = 7/3\) та \(c/a = 2/3\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розклад на множники дає:
+\[(x-2)(3x-1)\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Трином квадрата</h2>
+<p>Трином називається повним квадратом, якщо його можна представити як квадрат двочлена. Дві основні тотожності мають такий вигляд:</p>
+<p>\[ (a + b)^2 = a^2 + 2ab + b^2 \]
+\[ (a &#8211; b)^2 = a^2 &#8211; 2ab + b^2 \]</p>
+<p>Щоб визначити, чи є трином повним квадратом, необхідно одночасно перевірити три умови: перший і останній члени мають бути повними квадратами (такими як \(a^2\) та \(b^2\)), а середній член має бути точно \(\pm 2ab\). Якщо будь-яка з цих умов не виконується, трином не є повним квадратом.</p>
+<p>Наприклад, \(9x^2 - 12x + 4\) задовольняє всім умовам: \(9x^2 = (3x)^2\), \(4 = 2^2\), і \(12x = 2 \cdot 3x \cdot 2\). Отже</p>
+<p>\[ 9x^2 - 12x + 4 = (3x - 2)^2 \]</p>
+<p>Поширеною помилкою є припущення, що \(x^2 + 4x + 8\) є повним квадратом лише тому, що перший член є повним квадратом. Це неправильно, оскільки \(8 \neq (2)^2 = 4\). Обчислення визначника підтверджує це: \(\Delta = 16 - 32 = -16 &lt; 0\), що вказує на те, що трином є незвідним над \(\mathbb{R}\).</p>
+<p>Трином повного квадрата завжди має визначник \(\Delta = 0\), оскільки його два корені ідентичні. І навпаки, будь-який квадратний трином із \(\Delta = 0\) є повним квадратом.</p>
+<hr>
+<p>Наприклад, визначте, чи є \(4x^2 &#8211; 12x + 9\) повним квадратом, і розкладіть його на множники. Щоб перевірити, зауважимо, що \(4x^2 = (2x)^2\), \(9 = 3^2\), і \(12x = 2 \cdot 2x \cdot 3\). Оскільки всі три умови задоволені, маємо:</p>
+<p>\[ 4x^2 &#8211; 12x + 9 = (2x &#8211; 3)^2 \]</p>
+<p>Визначник \(\Delta = 144 - 144 = 0\) підтверджує наявність повтореного кореня при \(x_0 = 3/2\).</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 2</h2>
+<p>Визначте, чи є поліном \(x^2 + x + 1\) звідним над \(\mathbb{R}\), і знайдіть його комплексні корені. Визначник дорівнює \(\Delta = 1 - 4 = -3 &lt; 0\). Оскільки \(\Delta &lt; 0\), поліном не має дійсних коренів і є незвідним над \(\mathbb{R}\). Його не можна представити як добуток двох лінійних множників з дійсними коефіцієнтами.</p>
+<p>Над \(\mathbb{C}\) застосовується формула коренів квадратного рівняння з \(\sqrt{\Delta} = i\sqrt{3}\), що призводить до пари комплексних спряжених коренів:</p>
+<p>\[ x_{1,2} = \frac{-1 \pm i\sqrt{3}}{2} \]</p>
+<p>Ці корені є примітивними коренями шостого степеня з одиниці, оскільки вони задовольняють \(x^6 = 1\), але \(x^k \neq 1\) для \(k = 1, 2, 3, 4, 5\). Розклад на множники над \(\mathbb{C}[x]\) тоді має вигляд</p>
+<p>\[ x^2 + x + 1 = \left(x - \frac{-1 + i\sqrt{3}}{2}\right)\left(x - \frac{-1 &#8211; i\sqrt{3}}{2}\right) \]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Таким чином, трином є незвідним над \(\mathbb{R}\), і його два комплексні корені такі:
+\[x_1 = \dfrac{-1 + i\sqrt{3}}{2} \quad x_2 = \dfrac{-1 - i\sqrt{3}}{2}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Метод виділення повного квадрата</h2>
+<p><a href="completing-the-square.html">Виділення повного квадрата</a> — це техніка, що використовується для переписування будь-якого квадратного тринома вигляду \(ax^2 + bx + c\) у вигляді еквівалентного виразу:</p>
+<p>\[a(x &#8211; h)^2 + k\]</p>
+<p>\(h\) та \(k\) — це сталі, що визначаються початковими коефіцієнтами. Така форма дозволяє безпосередньо визначити вершину відповідної <a href="parabola.html">параболи</a> і слугує фундаментальним кроком у виведенні формули коренів квадратного рівняння. Для детального розгляду зверніться до відповідної сторінки про виділення повного квадрата.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Триноми, що зводяться до квадратного вигляду</h2>
+<p>Певні триноми вищого степеня можуть бути зведені до квадратного вигляду за допомогою відповідної заміни змінної. Зокрема, трином вигляду:</p>
+<p>\[ ax^{2n} + bx^n + c \]</p>
+<p>де \(n \geq 2\) — додатній <a href="integers.html">цілий число</a>, стає квадратним при застосуванні заміни \(t = x^n\):</p>
+<p>\[ at^2 + bt + c \]</p>
+<p>Корені \(t_1, t_2\) отриманого квадратного рівняння відповідають кореням початкового тринома, які отримують шляхом розв'язання \(x^n = t_i\) для кожного \(i\). Кількість і тип розв'язків залежать від значення \(n\) та знака кожного \(t_i\). Коли \(n = 2\), трином називається біквадратним триномом. Наприклад, розглянемо</p>
+<p>\[ x^4 - 5x^2 + 4 \]</p>
+<p>Заміна \(t = x^2\) призводить до:</p>
+<p>\[t^2 - 5t + 4 = (t-1)(t-4)\]</p>
+<p>Отже, \(t = 1\) або \(t = 4.\)</p>
+<p>Повертаючись до початкової змінної, \(x^2 = 1\) дає \(x = \pm 1\), а \(x^2 = 4\) дає \(x = \pm 2\). Таким чином, повний розклад на множники над \(\mathbb{R}\) має вигляд:</p>
+<p>\[ x^4 &#8211; 5x^2 + 4 = (x-1)(x+1)(x-2)(x+2) \]</p>
+<p>Якщо будь-яке значення \(t_i\) є від'ємним і \(n\) є парним, рівняння \(x^n = t_i\) не має дійсних розв'язків. У цьому випадку відповідний множник є незвідним над \(\mathbb{R}\), але розкладається над \(\mathbb{C}\).</p>
+<p>Трином \(x^4 + x^2 + 1\) слугує менш очевидним прикладом. Заміна \(t = x^2\) дає \(t^2 + t + 1\), який має визначник \(\Delta = 1 - 4 = -3 &lt; 0\) і, отже, є незвідним над \(\mathbb{R}\). Однак початковий трином може бути розкладений на множники над \(\mathbb{R}\) альтернативними методами, як показано нижче:</p>
+<p>\[
+\begin{align}
+x^4 + x^2 + 1 &amp;= (x^4 + 2x^2 + 1) &#8211; x^2 \\[6pt]
+&amp;= (x^2+1)^2 &#8211; x^2 \\[6pt]
+&amp;= (x^2 + x + 1)(x^2 &#8211; x + 1)
+\end{align}
+\]</p>
+<p>Кожен множник є квадратним триномом з від'ємним визначником, тому розклад на множники не може бути далі вдосконалений над \(\mathbb{R}\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Незвідність та комплексні корені</h2>
+<p>Квадратний трином \(ax^2 + bx + c\) з \(\Delta &lt; 0\) не може бути розкладений на лінійні множники над \(\mathbb{R}\). Над \(\mathbb{C}\) кожен квадратний поліном може бути повністю розкладений на множники. Корені утворюють спряжену пару:</p>
+<p>\[ x_{1,2} = \frac{-b \pm i\sqrt{|\Delta|}}{2a} \]</p>
+<p>Відповідний розклад на множники має вигляд \(a(x - x_1)(x - x_2)\), що виконується в \(\mathbb{C}[x]\). Цей результат випливає з <a href="roots-of-a-polynomial.html">Основної теореми алгебри</a>, яка стверджує, що кожен непостійний поліном над \(\mathbb{C}\) може бути повністю розкладений на лінійні множники.</p>
+<blockquote>
+<p>Ця незвідність є властивістю зі значними наслідками для дійсного аналізу та теорії інтегрування. Зокрема, інтеграли, що містять незвідний квадратний трином у знаменнику, потребують виділення повного квадрата та підстановки, а не використання методу розкладу на прості дроби з дійсними лінійними множниками.</p>
+</blockquote>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="trinomials.html">algebrica.org/trinomials</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

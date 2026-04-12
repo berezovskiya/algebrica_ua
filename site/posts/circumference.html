@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Коло — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Прямі, площини та конічні перерізи</span>
+    </nav>
+    <article>
+        <h1>Коло</h1>
+        <time>2025-02-15</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Вступ до конічних перетинів</h2>
+<p>При вивченні <a href="parabola.html">параболи</a> ми побачили, що коли площина перетинає конус, resulting shape, при проекції на площину, може бути окружністю, параболою, <a href="ellipse.html">еліпсом</a> або <a href="hyperbola.html">гіперболою</a>. Ці криві разом називають коніками. Більш формально, коніка — це алгебраїчна крива другого степеня на площині. Вона визначається як множина точок \( (x, y) \in \mathbb{R}^2 \), що задовольняють загальне квадратне рівняння зі змінними \( x \) та \( y \):</p>
+<p>\[
+f(x, y) = a_{11}x^2 + 2a_{12}xy + a_{22}y^2 + 2a_{13}x + 2a_{23}y + a_{33} = 0
+\]</p>
+<p>Тут коефіцієнти \( a_{ij} \in \mathbb{R} \), і щоб крива дійсно була квадратною, ми вимагаємо, щоб і \( a_{11} \), і \( a_{22} \) були ненульовими.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Що таке окружність</h2>
+<p>Дано точку \( C \) на площині, яку називають центром; окружність визначається як множина всіх точок на площині, які рівновіддалені від \( C \). Розглянемо окружність \( \Gamma \) з центром \( C \) та радіусом \( r \). Для кожної точки \( P \) на окружності виконується наступний зв'язок:</p>
+<p>\[
+\overline{PC} = r, \quad \text{де } r \in \mathbb{R}^{+} \setminus {0}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="484" height="500" src="../images/circumference-1.png" alt="" class="wp-image-10980" style="width:242px" srcset="../images/circumference-1.png 484w, https://algebrica.org/wp-content/uploads/resources/images/circumference-1-290x300.png 290w" sizes="(max-width: 484px) 100vw, 484px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Використовуючи формулу відстані між двома точками на площині, ми знайдемо, що радіус задається як:</p>
+<p>\[
+\sqrt{(x - x_0)^2 + (y - y_0)^2} = r
+\]</p>
+<p>Підносячи обидві частини рівняння до квадрата, ми отримаємо стандартну форму рівняння окружності.</p>
+<p>\[
+(x - x_0)^2 + (y - y_0)^2 = r^2
+\]</p>
+<p>Розкриваючи квадрати двох двочленів, отримаємо:</p>
+<p>\[
+x^2 - 2x x_0 + x_0^2 + y^2 - 2y y_0 + y_0^2 = r^2
+\]</p>
+<p>Перенесемо всі доданки в ліву частину та замінимо вирази наступними значеннями:</p>
+<p>\[
+\begin{aligned}
+a &amp;= -2x_0 \\[0.5em]
+b &amp;= -2y_0 \\[0.5em]
+c &amp;= x_0^2 + y_0^2 &#8211; r^2
+\end{aligned}
+\]</p>
+<p>Те, що ми отримали, відоме як канонічна або стандартна форма рівняння окружності.</p>
+<p>\[
+x^2 + y^2 + ax + by + c = 0
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30"><h2>Поширені запитання про окружність</h2>
+<ul>
+<li>
+<p><strong>Чи є коло тим самим, що й окружність?</strong><br>
+Ні, вони не є одним і тим самим. Окружність — це периметр або зовнішня межа кола, тоді як коло включає всі точки всередині цієї межі. Іншими словами, коло — це поверхня; окружність — це крива.</p>
+</li>
+<li>
+<p><strong>Як обчислити довжину окружності кола?</strong><br>
+Довжина окружності обчислюється за формулою \( C = 2\pi r \), де \( r \) — радіус кола.</p>
+</li>
+<li>
+<p><strong>Як обчислити площу кола?</strong><br>
+Площа кола задається формулою \( A = \pi r^2 \), де \( r \) — радіус. Було б неправильно говорити про «площу окружності», оскільки окружність — це лінія, а не поверхня.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Радіус, хорда, діаметр і коло</h2>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="448" height="642" src="../images/circumference-2.png" alt="" class="wp-image-10990" style="width:224px" srcset="../images/circumference-2.png 448w, https://algebrica.org/wp-content/uploads/resources/images/circumference-2-209x300.png 209w" sizes="(max-width: 448px) 100vw, 448px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><ul>
+<li>Радіус — це будь-який відрізок <a href="lines.html">прямої</a>, що з'єднує центр окружності з точкою на самій окружності.</li>
+<li>Хорда визначається як будь-який відрізок, кінці якого лежать на окружності.</li>
+<li>Діаметр — це будь-яка хорда, що проходить через центр окружності; отже, це найдовша можлива хорда. Його довжина рівно вдвічі більша за радіус.</li>
+<li>Коло — це множина, що містить усі точки на окружності, а також усі точки всередині неї.</li>
+</ul>
+<hr>
+<p>Довжину \( c \) хорди в колі можна обчислити за допомогою наступної формули, яка містить <a href="sine-and-cosine.html">функцію синуса</a>:</p>
+<p>\[
+c = 2r \cdot \sin\left(\frac{\theta}{2}\right)
+\]</p>
+<ul>
+<li>\( r \) — радіус кола.</li>
+<li>\( \theta \) — центральний кут, що опирається на хорду, виміряний у радіанах.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Дуги та кругові сектори</h2>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="360" height="516" src="../images/circumference-3-1.png" alt="" class="wp-image-10998" style="width:180px" srcset="../images/circumference-3-1.png 360w, https://algebrica.org/wp-content/uploads/resources/images/circumference-3-1-209x300.png 209w" sizes="(max-width: 360px) 100vw, 360px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><p>Дуга — це частина кола, обмежена двома його точками. Кінці хорди поділяють коло на дві дуги. Кажуть, що хорда опирається на дві дуги, або, що еквівалентно, кожна дуга опирається на хорду. Довжина дуги кола задається формулою:</p>
+<p>\[
+\text{Довжина дуги} = r \cdot \theta
+\]</p>
+<ul>
+<li>\( \theta \) — центральний кут у радіанах.</li>
+<li>\( r \) — радіус кола.</li>
+</ul>
+<hr>
+<p>Круговий сектор — це частина круга, обмежена дугою та двома радіусами, що з'єднують центр із кінцями дуги. Площа \(A\) кругового сектора задається формулою:</p>
+<p>\[
+\text{A} = \frac{1}{2} r^2 \theta
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="360" height="516" src="../images/circumference-6.png" alt="" class="wp-image-17695" style="width:180px" srcset="../images/circumference-6.png 360w, https://algebrica.org/wp-content/uploads/resources/images/circumference-6-209x300.png 209w" sizes="(max-width: 360px) 100vw, 360px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Дуги представляють вимірювані частини кола і безпосередньо пов'язані з центральними кутами. Сектори, визначені дугою та двома радіусами, дозволяють обчислювати площі та пов'язувати кутові міри з лінійними відстанями. Ці поняття є важливими для виведення формул довжини дуги та розв'язання задач з тригонометрії.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 1</h2>
+<p>Якщо коло має центр у початку координат і радіус \( r = 1 \), його рівняння набуває вигляду:</p>
+<p>\[
+x^2 + y^2 = 1
+\]</p>
+<hr>
+<p>Це відповідає загальному вигляду:</p>
+<p>\[
+x^2 + y^2 + ax + by + c = 0
+\]</p>
+<p>де:</p>
+<p>\[
+a = 0, \quad b = 0, \quad c = -1
+\]</p>
+<hr>
+<p>Отже, рівняння набуває вигляду:</p>
+<p>\[
+x^2 + y^2 - 1 = 0
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-min"><p>Зазвичай, якщо коефіцієнти при членах другого ступеня не дорівнюють 1, все рівняння ділять на відповідну сталу \(k\), щоб нормалізувати їх до 1. Це полегшує розпізнавання рівняння як рівняння кола та його пряме порівняння зі стандартним виглядом.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Кола та прямі</h2>
+<p>Пряма може бути класифікована як січна, дотична або зовнішня щодо кола залежно від її відстані до центру.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="690" height="868" src="../images/circumference-4.png" alt="" class="wp-image-11000" style="width:345px" srcset="../images/circumference-4.png 690w, https://algebrica.org/wp-content/uploads/resources/images/circumference-4-238x300.png 238w" sizes="(max-width: 690px) 100vw, 690px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><ul>
+<li>
+<p>Січні прямі: пряма перетинає коло у двох різних точках. Це відбувається, коли відстань від центру до прямої менша за радіус \(D &lt; r\).</p>
+</li>
+<li>
+<p>Дотичні прямі: пряма торкається кола рівно в одній точці. Це стається, коли відстань від центру дорівнює радіусу \(D = r\)</p>
+</li>
+<li>
+<p>Зовнішні прямі: пряма взагалі не перетинає коло. У цьому випадку відстань від центру більша за радіус \(D &gt; r\).</p>
+</li>
+</ul>
+<hr>
+<p>Координати точок перетину є розв'язками системи, утвореної рівняннями двох кривих:</p>
+<p>\[
+\begin{cases}
+x^2 + y^2 + ax + by + c = 0 \\[0.5em]
+y = mx + q
+\end{cases}
+\]</p>
+<ul>
+<li>
+<p>Пряма перетинає коло у двох різних точках (є січною), коли система має два дійсні та різні розв'язання. Ця ситуація виникає, коли дискримінант отриманого квадратного рівняння більший за нуль.</p>
+</li>
+<li>
+<p>Пряма торкається кола рівно в одній точці (є дотичною), коли система має один дійсний розв'язок (кратний). Це відповідає випадку, коли дискримінант дорівнює точно нулю.</p>
+</li>
+<li>
+<p>Пряма взагалі не перетинає коло (є зовнішньою), коли система не має дійсних розв'язків. Це стається, коли дискримінант квадратного рівняння менший за нуль.</p>
+</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 2</h2>
+<p>Розглянемо коло з рівнянням \(x^2 + y^2 - 2x - 2y - 3 = 0\) та дослідимо його взаємозв'язок із прямою \(y = -x + 3\). Наша мета — визначити, чи є ця пряма січною, дотичною або зовнішньою щодо кола.</p>
+<hr>
+<p>Спочатку складемо систему рівнянь для кола та прямої:</p>
+<p>\[
+\begin{cases}
+x^2 + y^2 &#8211; 2x &#8211; 2y &#8211; 3 = 0 \\[0.5em]
+y = -x + 3
+\end{cases}
+\]</p>
+<p>Щоб спростити обчислення, перепишемо перше рівняння за допомогою методу <a href="completing-the-square.html">доповнення до повного квадрата</a>, і отримаємо:</p>
+<p>\[
+(x - 1)^2 - 1 + (y - 1)^2 - 1 - 3 = 0
+\]</p>
+<hr>
+<h5>Метод доповнення до повного квадрата — це техніка, що використовується для переписування квадратного виразу в більш структуровану та зручну форму, що полегшує його аналіз та розв'язання. Метою є перетворення квадратного <a href="polynomials.html">полінома</a> або рівняння в еквівалентну форму, де ліва частина є повним квадратом <a href="trinomials.html">тричлена</a>, а права частина — сталою.</h5>
+<hr>
+<p>Система набуває вигляду:</p>
+<p>\[
+\begin{cases}
+(x &#8211; 1)^2 +(y &#8211; 1)^2 = 5\\[0.5em]
+y = -x + 3
+\end{cases}
+\]</p>
+<hr>
+<p>Підставимо вираз для \( y \) з другого рівняння в перше. Отримуємо:</p>
+<p>\[
+(x - 1)^2 + (-x + 2)^2 = 5
+\]</p>
+<p>Тепер розкриємо обидва квадрати:</p>
+<p>\[
+x^2 - 2x + 1 + x^2 - 4x + 4 = 5
+\]</p>
+<hr>
+<p>Згрупувавши подібні доданки, отримаємо:</p>
+<p>\[
+2x(x - 3) = 0
+\]</p>
+<p>Це рівняння є <a href="quadratic-equations.html">квадратним рівнянням</a> і має два розв'язання:</p>
+<p>\[
+x = 0 \quad \text{або} \quad x = 3
+\]</p>
+<hr>
+<p>Щоб знайти відповідні значення \( y \), скористаємося рівнянням \( y = -x + 3 \).</p>
+<p>Якщо \( x = 0 \), то \( y = 3 \).</p>
+<p>якщо \( x = 3 \), то \( y = 0 \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отже, точками перетину є:</p>
+<p>\[
+P_1 = (0,\ 3) \quad \text{та} \quad P_2 = (3,\ 0)
+\]</p>
+<p>Оскільки існують два різних розв'язання, пряма є січною до кола.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке окружність?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Окружність — це замкнена крива, що утворює межу кола. Вона представляє собою загальну відстань навколо кола."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи є коло тим самим, що й окружність?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ні, коло включає всі точки всередині кривої, тоді як окружність стосується лише граничної лінії, що охоплює коло."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи має окружність площу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ні, окружність є одновимірною кривою і не охоплює площу. Площа є властивістю самого кола."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="circumference.html">algebrica.org/circumference</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ранг матриці — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Вектори та матриці</span>
+    </nav>
+    <article>
+        <h1>Ранг матриці</h1>
+        <time>2025-02-17</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-4" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-3"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Просунутий рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="determinant.html">Визначник квадратної матриці</a>, <a href="matrices.html">Матриці</a>, <a href="vectors.html">Вектори</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-4");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"definition"},{"name":"rank bounds"},{"name":"linear independence"},{"name":"kernel and image"},{"name":"rank-nullity"}]},{"name":"methods","children":[{"name":"minors"},{"name":"submatrices"},{"name":"gaussian elimination"},{"name":"row echelon form"},{"name":"nonzero rows"},{"name":"computational approach"},{"name":"other methods"}]},{"name":"structures","children":[{"name":"row space"},{"name":"column space"},{"name":"dimension"},{"name":"invertibility"},{"name":"determinant relation"},{"name":"linear systems"},{"name":"rouche-capelli"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Означення</h2>
+<p>Ранг матриці \( A \), що позначається \( r(A) \) або \( \mathrm{rank}(A) \), — це максимальна кількість лінійно незалежних рядків (або, що еквівалентно, стовпців) матриці \( A \). Для матриці \( A \) розміром \( m \times n \) ранг задовольняє нерівності:</p>
+<p>\[
+0 \leq r(A) \leq \min(m,n)
+\]</p>
+<p>Ранг матриці \( A \) дорівнює розмірності образу відповідного лінійного перетворення \( T_A : \mathbb{R}^n \to \mathbb{R}^m \), визначеного як \( T_A(\mathbf{x}) = A\mathbf{x} \). Допоміжна величина \( n - r(A) \) є розмірністю ядра \( T_A \), підпростору <a href="vectors.html">векторів</a>, що відображаються в нуль. Ці дві величини пов'язані теоремою про ранг і нульність: для будь-якої матриці \( A \in M_{m,n}(\mathbb{R}) \) маємо:</p>
+<p>\[
+\mathrm{rank}(A) + \mathrm{nullity}(A) = n
+\]</p>
+<blockquote>
+<p>Ранг є одним із найфундаментальніших інваріантів матриці. Він визначає розв'язність <a href="systems-of-linear-equations.html">систем лінійних рівнянь</a> за теоремою Руше-Капеллі, а також збігається з умовою \( r(A) = n \) для того, щоб квадратна матриця була <a href="inverse-matrix.html">оберненою</a>.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Підматриці та мінори</h2>
+<p>Підматрицею матриці \( A \in M_{m,n}(\mathbb{R}) \) називається будь-яка матриця, отримана шляхом вибору \( k \) рядків і \( h \) стовпців з \( A \) зі збереженням початкового порядку елементів, де \( k \leq m \) та \( h \leq n \). Наприклад, вибір 1-го та 3-го рядків і 1-го, 2-го та 4-го стовпців з матриці \( A \) розміром \( 3 \times 4 \) дає підматрицю розміром \( 2 \times 3 \):</p>
+<p>\[
+B = \begin{pmatrix}
+a_{11} &amp; a_{12} &amp; a_{14} \\[6pt]
+a_{31} &amp; a_{32} &amp; a_{34}
+\end{pmatrix}
+\]</p>
+<p>Мінором порядку \( p \) матриці \( A \) називається <a href="determinant.html">визначник</a> квадратної підматриці розміром \( p \times p \), виділеної з \( A \). Оскільки визначник визначений лише для квадратних матриць, тільки квадратні підматриці дають мінори.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Означення через мінори</h2>
+<p>Ранг матриці \( A \) — це найбільше ціле число \( r \), таке що принаймні один мінор порядку \( r \) є ненульовим. Еквівалентно, всі мінори порядку \( r+1 \) дорівнюють нулю.</p>
+<p>У наступному прикладі обчислимо ранг матриці розміром \( 3 \times 4 \). Розглянемо:</p>
+<p>\[
+A = \begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; 4 \\[6pt]
+2 &amp; 4 &amp; 6 &amp; 8 \\[6pt]
+1 &amp; 0 &amp; 1 &amp; 2
+\end{pmatrix}
+\]</p>
+<p>Другий рядок точно вдвічі більший за перший, тому будь-який мінор \( 3 \times 3 \), що містить обидва ці рядки, матиме два пропорційні рядки й, отже, буде дорівнювати нулю. Можна перевірити, що всі мінори порядку 3 дорівнюють нулю. Однак підматриця \( 2 \times 2 \), виділена з 1-го та 3-го рядків і 1-го та 2-го стовпців, дає:</p>
+<p>\[
+\det\begin{pmatrix} 1 &amp; 2 \\[6pt] 1 &amp; 0 \end{pmatrix} = 0-2 = -2 \neq 0
+\]</p>
+<p>Оскільки існує ненульовий мінор порядку 2 і всі мінори порядку 3 дорівнюють нулю, ранг \( A \) дорівнює:</p>
+<p>\[
+r(A) = 2
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Означення через векторні простори</h2>
+<p>Ранг матриці \( A = (a_{ij}) \in M_{m,n}(\mathbb{R}) \) також можна визначити як спільну розмірність простору рядків і простору стовпців матриці \( A \). Рядки \( A \), розглянуті як вектори \( R_1, R_2, \ldots, R_m \in \mathbb{R}^n \), породжують підпростір \( \mathbb{R}^n \), який називається простором рядків \( A \). Стовпці \( A \), розглянуті як вектори \( C_1, C_2, \ldots, C_n \in \mathbb{R}^m \), породжують підпростір \( \mathbb{R}^m \), який називається простором стовпців \( A \). Фундаментальний результат лінійної алгебри стверджує, що ці два підпростори завжди мають однакову розмірність, яка дорівнює рангу \( A \). Розглянемо матрицю:</p>
+<p>\[
+A = \begin{pmatrix}
+\phantom{-}1 &amp; \phantom{-}0 &amp; \phantom{-}2 \\[6pt]
+-1 &amp; \phantom{-}3 &amp; \phantom{-}1
+\end{pmatrix}
+\]</p>
+<p>Рядки \( (1, 0, 2) \) та \( (-1, 3, 1) \) не є пропорційними, отже вони лінійно незалежні та породжують підпростір розмірності 2 у \( \mathbb{R}^3 \). Таким чином \( r(A) = 2 \).</p>
+<blockquote>
+<p>Два визначення — через мінори та через векторні простори — є еквівалентними. Визначення на основі мінорів є більш прямим для обчислень, тоді як визначення через векторні простори пов'язує ранг із теорією <a href="linear-combinations.html">лінійних комбінацій</a> та розмірністю.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Обчислення рангу за допомогою методу Гаусса</h2>
+<p>Для матриць великого порядку обчислення всіх мінорів є непрактичним. Стандартним обчислювальним методом є <a href="solving-linear-systems-using-gaussian-elimination.html">метод Гаусса</a>: зведення \( A \) до ступінчастого вигляду шляхом застосування елементарних операцій над рядками, які не змінюють ранг. Ранг дорівнює кількості ненульових рядків у зведеній матриці. Розглянемо матрицю з попереднього прикладу:</p>
+<p>\[
+A = \begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; 4 \\[6pt]
+2 &amp; 4 &amp; 6 &amp; 8 \\[6pt]
+1 &amp; 0 &amp; 1 &amp; 2
+\end{pmatrix}
+\]</p>
+<p>Віднімаючи двічі перший рядок від другого та перший рядок від третього:</p>
+<p>\[
+\begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; 4 \\[6pt]
+0 &amp; 0 &amp; 0 &amp; 0 \\[6pt]
+0 &amp; -2 &amp; -2 &amp; -2
+\end{pmatrix}
+\]</p>
+<p>Переставляючи другий і третій рядки:</p>
+<p>\[
+\begin{pmatrix}
+1 &amp; 2 &amp; 3 &amp; 4 \\[6pt]
+0 &amp; -2 &amp; -2 &amp; -2 \\[6pt]
+0 &amp; 0 &amp; 0 &amp; 0
+\end{pmatrix}
+\]</p>
+<p>Ступінчастий вигляд має 2 ненульові рядки, що підтверджує \( r(A) = 2 \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Властивості рангу</h2>
+<ul>
+<li>\( r(A) = 0 \) тоді і тільки тоді, коли \( A \) є нульовою матрицею.</li>
+<li>Для квадратної матриці \( A \) порядку \( n \), \( r(A) = n \) тоді і тільки тоді, коли \( A \) є несингулярною, тобто \( \det(A) \neq 0 \).</li>
+<li>\( r(A) = r(A^{\mathrm{T}}) \). Ранг не змінюється при транспонуванні.</li>
+<li>\( r(A+B) \leq r(A) + r(B) \).</li>
+<li>\( r(AB) \leq \min(r(A),\, r(B)) \).</li>
+</ul>
+<blockquote>
+<p>Ранг з'являється в теоремі Руше-Капеллі, яка характеризує сумісність системи лінійних рівнянь \( A\mathbf{x} = \mathbf{b} \): система є сумісною тоді і тільки тоді, коли \( r(A) = r(A|\mathbf{b}) \), де \( A|\mathbf{b} \) позначає розширену матрицю. У разі сумісності простір розв'язків має розмірність \( n &#8211; r(A) \).</p>
+</blockquote>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="rank-of-a-matrix.html">algebrica.org/rank-of-a-matrix</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Правило Крамера — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Системи лінійних рівнянь</span>
+    </nav>
+    <article>
+        <h1>Правило Крамера</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Що таке правило Крамера?</h2>
+<p>Правило Крамера надає метод розв'язання <a href="systems-of-linear-equations.html">систем</a> \( n \) <a href="linear-equations.html">лінійних рівнянь</a> з \( n \) невідомими за допомогою визначника <a href="matrices.html">матриці</a> коефіцієнтів системи. Це правило застосовується лише тоді, коли матриця коефіцієнтів є квадратною і її визначник не дорівнює нулю, що гарантує наявність у системи єдиного розв'язання.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Застосування правила Крамера</h2>
+<p>Розглянемо загальну систему з \( n \) рівнянь у \( n \) невідомих:</p>
+<p>\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n = b_1 \\[0.5em]
+a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n = b_2 \\[0.5em]
+\quad\vdots \\[0.5em]
+a_{n1}x_1 + a_{n2}x_2 + \dots + a_{nn}x_n = b_n
+\end{cases}
+\]</p>
+<p>Ми можемо переписати систему, використовуючи матричний запис, як \( A \cdot \mathbf{X} = \mathbf{B} \). Система набуває вигляду:</p>
+<p>\[
+A =
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+a_{m1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}
+\end{bmatrix}
+\]</p>
+<p>Вільні члени та змінні можна організувати у два стовпчикових <a href="vectors.html">вектори</a>:</p>
+<p>\[
+X =
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}
+\quad\quad
+B =
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+\vdots \\
+b_m
+\end{bmatrix}
+\]</p>
+<hr>
+<p>Припустимо, що матриця коефіцієнтів \( A \) є оберненою, що означає, що її визначник не дорівнює нулю (\(\det(A) \ne 0\)). За цієї умови система має єдине розв'язання, яке можна виразити через обернену матрицю \( A \) як:</p>
+<p>\[
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}
+=
+\frac{1}{\det(A)}
+\begin{bmatrix}
+A_{11} &amp; A_{21} &amp; \cdots &amp; A_{n1} \\
+A_{12} &amp; A_{22} &amp; \cdots &amp; A_{n2} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+A_{1n} &amp; A_{2n} &amp; \cdots &amp; A_{nn} \\
+\end{bmatrix}
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+\vdots \\
+b_n
+\end{bmatrix}
+\]</p>
+<p>Це загальна форма правила Крамера, де кожен \( A_{ij} \) є алгебраїчним доповненням елемента \( a_{ji} \) у вихідній матриці \( A \).</p>
+<h5>У цьому контексті \( A_{ij} \) позначає алгебраїчне доповнення елемента \( a_{ji} \) з вихідної матриці \( A \), а не сам елемент матриці. Матриця, що використовується тут, є приєднаною матрицею \( A \), що позначається як \( \text{adj}(A) \).</h5>
+<hr>
+<p>Значення невідомого на позиції \( k \) задається дробом. Його знаменник — це \( \det(A) \), а чисельник — визначник матриці, отриманої шляхом заміни \( k \)-го стовпця \( A \) стовпцем вільних членів:</p>
+<p>\[
+x_k = \frac{\det(A_k)}{\det(A)}
+\]</p>
+<h5>Для кращого розуміння цього кроку див. детальне пояснення в Прикладі 2.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30"><h2>Розв'язання однорідних систем</h2>
+<p><a href="systems-of-linear-equations.html">Однорідна система</a> — це система лінійних рівнянь, у якій усі вільні члени дорівнюють нулю. Такі системи завжди мають принаймні один розв'язок: тривіальний розв'язок, де всі змінні дорівнюють нулю. Але стається щось цікаве, коли ми розглядаємо визначник матриці коефіцієнтів:</p>
+<ul>
+<li>Якщо \( \det(A) \ne 0 \), система має лише тривіальний розв'язок.</li>
+<li>Якщо \( \det(A) = 0 \), система має безліч розв'язків, включаючи нетривіальні, де принаймні одна змінна не дорівнює нулю.</li>
+</ul>
+<h5>Однорідні системи ніколи не бувають несумісними. Вони завжди мають розв'язки, але кількість розв'язків повністю залежить від визначника.</h5>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 1</h2>
+<p>Розглянемо наступну однорідну систему з трьох рівнянь у трьох невідомих:</p>
+<p>\[
+\begin{cases}
+x + y + z = 0 \\[0.5em]
+2x &#8211; y + z = 0 \\[0.5em]
+3x + y + 2z = 0
+\end{cases}
+\]</p>
+<hr>
+<p>Цю систему можна записати в матричній формі як \( A \cdot \mathbf{x} = \mathbf{0} \), де матриця коефіцієнтів має вигляд:</p>
+<p>\[
+A = \begin{bmatrix}
+1 &amp; 1 &amp; 1 \\[0.5em]
+2 &amp; -1 &amp; 1 \\[0.5em]
+3 &amp; 1 &amp; 2
+\end{bmatrix}
+\]</p>
+<hr>
+<p>Щоб зрозуміти характер розв'язків, обчислимо визначник матриці \( A \):</p>
+<p>\[
+\begin{align*}
+\det(A) &amp;=
+1 \cdot (-1 \cdot 2 &#8211; 1 \cdot 1)
+-1 \cdot (2 \cdot 2 - 1 \cdot 3)
++1 \cdot (2 \cdot 1 &#8211; (-1) \cdot 3) \\[0.5em]
+&amp;= 1(-2 - 1) - 1(4 - 3) + 1(2 + 3) \\[0.5em]
+&amp;= -3 - 1 + 5 \\[0.5em]
+&amp; = 1
+\end{align*}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Оскільки визначник не дорівнює нулю, система має лише тривіальний розв'язок:</p>
+<p>\[x = 0 \quad y = 0 \quad z = 0\]</p>
+<h5>Цей результат узгоджується з правилом Крамера: коли \( \det(A) \ne 0 \), єдиним можливим розв'язком однорідної системи є тривіальний, оскільки всі визначники в чисельниках формули Крамера стають рівними нулю.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 2</h2>
+<p>Розвʼяжемо наступну систему з двох лінійних рівнянь з двома невідомими:</p>
+<p>\[
+\begin{cases}
+2x + 3y = 8 \\[0.5em]
+4x - y = 2
+\end{cases}
+\]</p>
+<hr>
+<p>Визначимо матрицю коефіцієнтів \( A \), вектор невідомих \( \mathbf{x} \) та вектор сталих \( \mathbf{b} \):</p>
+<p>\[
+A = \begin{bmatrix}
+2 &amp; 3 \\
+4 &amp; -1
+\end{bmatrix}
+\quad\quad
+\mathbf{x} = \begin{bmatrix}
+x \\
+y
+\end{bmatrix}
+\quad\quad
+\mathbf{b} = \begin{bmatrix}
+8 \\
+2
+\end{bmatrix}
+\]</p>
+<hr>
+<p>Обчислимо визначник матриці коефіцієнтів \( A \):</p>
+<p>\[
+\det(A) = 2 \cdot (-1) &#8211; 3 \cdot 4 = -2 - 12 = -14
+\]</p>
+<p>Оскільки визначник не дорівнює нулю, система має рівно один розвʼязок, і ми можемо застосувати правило Крамера.</p>
+<hr>
+<p>Сформуємо матрицю \( A_1 \), замінивши перший стовпець \( A \) на сталі:</p>
+<p>\[
+A_1 = \begin{bmatrix}
+8 &amp; 3 \\
+2 &amp; -1
+\end{bmatrix}
+\quad \rightarrow \quad
+\det(A_1) = 8 \cdot (-1) &#8211; 3 \cdot 2 = -8 - 6 = -14
+\]</p>
+<hr>
+<p>Тепер сформуємо \( A_2 \), замінивши другий стовпець \( A \) на сталі:</p>
+<p>\[
+A_2 = \begin{bmatrix}
+2 &amp; 8 \\
+4 &amp; 2
+\end{bmatrix}
+\quad \rightarrow \quad
+\det(A_2) = 2 \cdot 2 &#8211; 8 \cdot 4 = 4 - 32 = -28
+\]</p>
+<hr>
+<p>Тепер обчислимо значення невідомих за формулою:</p>
+<p>\begin{align*}
+x &amp;= \frac{\det(A_1)}{\det(A)} = \frac{-14}{-14} = 1 \\[0.5em]
+y &amp;= \frac{\det(A_2)}{\det(A)} = \frac{-28}{-14} = 2
+\end{align*}</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розвʼязанням системи є:</p>
+<p>\[
+x = 1 \quad\quad y = 2
+\]</p>
+<h5>Зауважте, що розвʼязанням системи лінійних рівнянь є \(n\)-ка від значень, яка задовольняє всі рівняння системи одночасно. У цьому випадку пара \( (x, y) = (1, 2) \) є єдиною комбінацією значень, яка робить обидва рівняння правильними одночасно.</h5>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Коли я можу використовувати правило Крамера?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ви можете використовувати правило Крамера, коли маєте систему з n лінійних рівнянь з n невідомими, і визначник матриці коефіцієнтів не дорівнює нулю. Це гарантує існування єдиного розвʼязку."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що правило Крамера говорить нам про однорідну систему?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "В однорідній системі правило Крамера показує, що якщо визначник матриці коефіцієнтів не дорівнює нулю, то єдиним розвʼязком є тривіальний (усі змінні дорівнюють нулю)."
+      }
+    }
+  ]
+}
+</script>
+</div></div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="cramers-rule.html">algebrica.org/cramers-rule</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

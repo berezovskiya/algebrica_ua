@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Власні значення та власні вектори — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Вектори та матриці</span>
+    </nav>
+    <article>
+        <h1>Власні значення та власні вектори</h1>
+        <time>2026-04-04</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-4" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-3"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Просунутий рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">4</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="determinant.html">Визначник квадратної матриці</a>, <a href="matrices.html">Матриці</a>, <a href="polynomial-equations.html">Поліноміальні рівняння</a>, <a href="vectors.html">Вектори</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-4");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"linear transformation"},{"name":"eigenvector"},{"name":"eigenvalue"},{"name":"invariant directions"},{"name":"scaling factor"},{"name":"non-zero condition"}]},{"name":"construction","children":[{"name":"eigen equation"},{"name":"characteristic equation"},{"name":"characteristic polynomial"},{"name":"determinant condition"},{"name":"roots and multiplicity"},{"name":"complex eigenvalues"}]},{"name":"structure","children":[{"name":"eigenspaces"},{"name":"geometric multiplicity"},{"name":"algebraic multiplicity"},{"name":"linear independence"},{"name":"diagonalization"},{"name":"jordan form"},{"name":"trace and determinant"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Означення</h2>
+<p>Лінійне перетворення, що представляється квадратною <a href="matrices.html">матрицею</a> \(A\), діє на вектори, переміщуючи їх у просторі. Воно може розтягувати, стискати, обертати або віддзеркалювати їх, і загалом образ <a href="vectors.html">вектора</a> спрямований в інший бік відносно оригіналу. Однак серед усіх векторів є такі, для яких дія \(A\) є особливо простою. Перетворення масштабує їх на сталий коефіцієнт, залишаючи їхній напрямок незмінним. Такі вектори називаються власними векторами \(A\), а відповідні коефіцієнти масштабування називаються власними значеннями.</p>
+<blockquote>
+<p>Власні вектори розкривають внутрішню геометрію лінійного перетворення, а сукупність власних значень кодує інформацію про матрицю, яка є інваріантною щодо широкого класу змін координат.</p>
+</blockquote>
+<hr>
+<p>Нехай \(A\) буде квадратною <a href="matrices.html">матрицею</a> порядку \(n\) з елементами в \(\mathbb{R}\) або \(\mathbb{C}\). Ненульовий <a href="vectors.html">вектор</a> \(\mathbf{v}\) називається власним вектором \(A\), якщо існує скаляр \(\lambda\), такий що виконується наступне рівняння:</p>
+<p>\[
+A\mathbf{v} = \lambda\mathbf{v}
+\]</p>
+<p>Скаляр \(\lambda\) називається власним значенням \(A\), пов'язаним із \(\mathbf{v}\). Умова вимагає, щоб \(A\) відображав \(\mathbf{v}\) у скалярний множник самого себе: вектор \(\mathbf{v}\) може бути розтягнутий або стиснутий, а його орієнтація може бути змінена на протилежну, якщо \(\lambda\) від'ємне, але він залишається на тій самій прямій, що проходить через початок координат. Власні вектори є інваріантними напрямками перетворення, а власні значення — коефіцієнтами масштабування вздовж цих напрямків.</p>
+<blockquote>
+<p>Нульовий вектор виключається за домовленістю. Рівняння \(A\mathbf{0} = \lambda\mathbf{0}\) виконується для будь-якого \(\lambda\) і не несе жодної інформації про матрицю.</p>
+</blockquote>
+<hr>
+<p>Наступна діаграма ілюструє цю ідею для квадратної матриці:</p>
+<p>\[
+A = \begin{pmatrix} 2 &amp; 1 \\ 1 &amp; 2 \end{pmatrix}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="642" height="622" src="../images/eigenvectors.png" alt="Eigenvalues and eigenvectors." class="wp-image-28246" style="width:321px" title="Eigenvalues and eigenvectors." srcset="../images/eigenvectors.png 642w, https://algebrica.org/wp-content/uploads/resources/images/eigenvectors-300x291.png 300w" sizes="(max-width: 642px) 100vw, 642px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p><a href="unit-circle.html">Одиничне коло</a> відображається в <a href="ellipse.html">еліпс</a>: більшість векторів змінюють напрямок під дією перетворення. Два власних вектори \(\mathbf{v}_1\) та \(\mathbf{v}_2\) є винятком. Вони залишаються на тій самій прямій, що проходить через початок координат, масштабовані на \(\lambda_1 = 3\) та \(\lambda_2 = 1\) відповідно.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Характеристичне рівняння</h2>
+<p>Переписуючи рівняння для власних значень як \((A - \lambda I)\mathbf{v} = \mathbf{0}\), де \(I\) — одинична матриця порядку \(n\), стає зрозуміло, що ненульове розв'язання \(\mathbf{v}\) існує саме тоді, коли матриця \(A - \lambda I\) є виродженою. Умовою виродженості є те, що її визначник дорівнює нулю. Рівняння</p>
+<p>\[
+\det(A - \lambda I) = 0
+\]</p>
+<p>називається характеристичним рівнянням \(A\). Розклад визначника дає поліном ступеня \(n\) відносно \(\lambda\), відомий як характеристичний поліном \(A\). Власні значення \(A\) — це корені цього полінома, і згідно з основною теоремою алгебри, їх рівно \(n\) (з урахуванням кратності) у \(\mathbb{C}\).</p>
+<blockquote>
+<p>Матриця з дійсними елементами має характеристичний поліном з дійсними коефіцієнтами, але це не перешкоджає існуванню комплексних коренів. Комплексні власні значення дійсної матриці завжди з'являються спільними спряженими парами.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Власні підпростори</h2>
+<p>Для кожного власного значення \(\lambda_0\) <a href="sets.html">множина</a> всіх векторів, що задовольняють \(A\mathbf{v} = \lambda_0\mathbf{v}\), є підпростором \(\mathbb{R}^n\) або \(\mathbb{C}^n\). Вона збігається з ядром \(A &#8211; \lambda_0 I\) і називається власним підпростором \(A\), пов'язаним із \(\lambda_0\):</p>
+<p>\[
+E_{\lambda_0} = \ker(A &#8211; \lambda_0 I) = \{\, \mathbf{v} : (A &#8211; \lambda_0 I)\mathbf{v} = \mathbf{0} \,\}
+\]</p>
+<p>Розмірність \(E_{\lambda_0}\) називається геометричною кратністю \(\lambda_0\). Окремо кратність \(\lambda_0\) як кореня характеристичного полінома називається алгебраїчною кратністю \(\lambda_0\). Можна показати, що геометрична кратність ніколи не перевищує алгебраїчну, і в найбільш сприятливих випадках вони збігаються.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо наступну <a href="matrices.html">матрицю</a>:</p>
+<p>\[
+A = \begin{pmatrix} 3 &amp; 1 \\ 0 &amp; 2 \end{pmatrix}
+\]</p>
+<p>Ми обчислюємо характеристичний <a href="polynomials.html">поліном</a>, утворюючи матрицю \(A - \lambda I\) та обчислюючи її <a href="determinant.html">визначник</a>. Оскільки \(A &#8211; \lambda I\) є верхньотрикутною, її визначник дорівнює добутку діагональних елементів:</p>
+<p>\[
+\det(A &#8211; \lambda I) = (3 - \lambda)(2 &#8211; \lambda)
+\]</p>
+<p>Прирівнювання цього виразу до нуля дає \(\lambda_1 = 2\) та \(\lambda_2 = 3\). Для \(\lambda_1 = 2\) ми розв'язуємо \((A &#8211; 2I)\mathbf{v} = \mathbf{0}\). Матриця \(A &#8211; 2I\) зводиться до:</p>
+<p>\[
+A &#8211; 2I = \begin{pmatrix} 1 &amp; 1 \\ 0 &amp; 0 \end{pmatrix}
+\]</p>
+<p>Система дає єдину умову \(v_1 + v_2 = 0\), отже \(v_1 = -v_2\). Приймаючи \(v_2 = 1\), власний підпростір \(E_2\) породжується вектором:</p>
+<p>\[
+\mathbf{v}_1 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}
+\]</p>
+<p>Для \(\lambda_2 = 3\) матриця \(A &#8211; 3I\) має вигляд:</p>
+<p>\[
+A &#8211; 3I = \begin{pmatrix} 0 &amp; 1 \\ 0 &amp; -1 \end{pmatrix}
+\]</p>
+<p>Обидва рядки дають умову \(v_2 = 0\), залишаючи \(v_1\) вільним. Приймаючи \(v_1 = 1\), власний підпростір \(E_3\) породжується вектором:</p>
+<p>\[
+\mathbf{v}_2 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, матриця \(A\) має власне значення \(\lambda_1 = 2\) з власним вектором \((-1, 1)^T\), та власне значення \(\lambda_2 = 3\) з власним вектором \((1, 0)^T\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо матрицю</p>
+<p>\[
+A = \begin{pmatrix} 2 &amp; 1 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 3 \end{pmatrix}
+\]</p>
+<p>Матриця \(A - \lambda I\) є блочно-верхньотрикутною, тому її визначник знову є добутком діагональних елементів. Характеристичний поліном має наступний вигляд:</p>
+<p>\[
+p(\lambda) = (2 - \lambda)^2(3 &#8211; \lambda)
+\]</p>
+<p>Рівняння \(p(\lambda) = 0\) дає два власних значення: \(\lambda_1 = 2\) з алгебраїчною кратністю два, та \(\lambda_2 = 3\) з алгебраїчною кратністю один.</p>
+<p>Для \(\lambda_2 = 3\) ми розв'язуємо \((A - 3I)\mathbf{v} = \mathbf{0}\). Матриця \(A - 3I\) має вигляд:</p>
+<p>\[
+A - 3I = \begin{pmatrix} -1 &amp; 1 &amp; 0 \\ 0 &amp; -1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \end{pmatrix}
+\]</p>
+<p>Другий рядок дає \(v_2 = 0\), і тоді перший рядок дає \(v_1 = 0\), залишаючи \(v_3\) вільним. Приймаючи \(v_3 = 1\), власний підпростір \(E_3\) породжується вектором:</p>
+<p>\[
+\mathbf{v}_1 = \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}
+\]</p>
+<p>Для \(\lambda_1 = 2\) ми розв'язуємо \((A - 2I)\mathbf{v} = \mathbf{0}\). Матриця \(A - 2I\) має вигляд:</p>
+<p>\[
+A - 2I = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; 1 \end{pmatrix}
+\]</p>
+<p>Перший рядок дає \(v_2 = 0\) і третій рядок дає \(v_3 = 0\), тоді як \(v_1\) залишається вільним. Приймаючи \(v_1 = 1\), власний підпростір \(E_2\) є одновимірним і породжується вектором:</p>
+<p>\[
+\mathbf{v}_2 = \begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Геометрична кратність \(\lambda_1 = 2\) отже дорівнює одному, тоді як її алгебраїчна кратність дорівнює двом. Оскільки ці два значення відрізняються, матриця \(A\) не є діагонізуемою. Вона має лише два <a href="rank-of-a-matrix.html">лінійно незалежних</a> власних вектори, чого недостатньо для формування бази \(\mathbb{R}^3\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Лінійна незалежність власних векторів</h2>
+<p>Власні вектори, що відповідають різним власним значенням, завжди є лінійно незалежними. Точніше, якщо \(\lambda_1, \ldots, \lambda_k\) є попарно різними власними значеннями \(A\) з відповідними власними векторами \(\mathbf{v}_1, \ldots, \mathbf{v}_k\), то \(\mathbf{v}_1, \ldots, \mathbf{v}_k\) є лінійно незалежними. Доведення здійснюється за допомогою індукції за \(k\) і використовує той факт, що кожне власне значення є відмінним, щоб вивести суперечність із будь-якого припущення про лінійну залежність.</p>
+<p>Як наслідок, квадратна матриця порядку \(n\) з \(n\) різними власними значеннями завжди має \(n\) лінійно незалежних власних векторів і, таким чином, допускає базис із власних векторів.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Діагонізація</h2>
+<p>Матриця \(A\) порядку \(n\) називається діагонізуемою, якщо її можна записати у вигляді</p>
+<p>\[
+A = PDP^{-1}
+\]</p>
+<p>де \(P\) — оборотна матриця, а \(D\) — діагональна. Стовпці \(P\) є власними векторами \(A\), а відповідні діагональні елементи \(D\) є відповідними власними значеннями. Цей розклад, якщо він існує, значно спрощує багато обчислень. Зокрема, \(k\)-й степінь \(A\) має вигляд:</p>
+<p>\[
+A^k = PD^kP^{-1}
+\]</p>
+<p>Оскільки піднесення діагональної матриці до степеня зводиться до піднесення кожного діагонального елемента до цього степеня, це дозволяє уникнути необхідності виконувати \(k\) послідовних множень матриць.</p>
+<p>Матриця є діагонізуемою тоді і тільки тоді, коли для кожного власного значення його геометрична кратність дорівнює його алгебраїчній кратності. Якщо ця умова не виконується, матрицю неможливо діагонізувати, але її можна звести до жорданової нормальної форми, яка є найближчою до діагональної структурою, доступною в загальному випадку.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Слід, визначник та власні значення</h2>
+<p>Нехай \(\lambda_1, \lambda_2, \ldots, \lambda_n\) будуть власними значеннями \(A\), враховуючи їхню алгебраїчну кратність. Дві класичні тотожності безпосередньо пов'язують їх із елементами матриці. Слід \(A\), визначений як сума його діагональних елементів, задовольняє рівність:</p>
+<p>\[
+\text{tr}(A) = \lambda_1 + \lambda_2 + \cdots + \lambda_n
+\]</p>
+<p>Визначник \(A\) задовольняє рівність:</p>
+<p>\[
+\det(A) = \lambda_1 \cdot \lambda_2 \cdots \lambda_n
+\]</p>
+<p>Обидві тотожності випливають зі структури характеристичного полінома. Друга має помітний наслідок: матриця є виродженою тоді і тільки тоді, коли нуль є одним із її власних значень. Разом ці дві співвідношення забезпечують швидку перевірку правильності, коли власні значення обчислюються вручну, без необхідності будь-якої додаткової перевірки.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="eigenvalues-and-eigenvectors.html">algebrica.org/eigenvalues-and-eigenvectors</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

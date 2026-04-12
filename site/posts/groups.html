@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Групи — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Алгебричні структури</span>
+    </nav>
+    <article>
+        <h1>Групи</h1>
+        <time>2026-03-22</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-9" style="height:465px;min-height:465px;max-height:465px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:465px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Означення                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                                <div class="s-c-t-c-label">Дозволяє вивчити</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="composite-functions.html">Складені функції</a>, <a href="sets.html">Множини</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-9");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"group"},{"name":"binary operation"},{"name":"closure"},{"name":"associativity"},{"name":"identity element"},{"name":"inverse element"},{"name":"abelian group"}]},{"name":"structure","children":[{"name":"order of group"},{"name":"order of element"},{"name":"cyclic group"},{"name":"generator"},{"name":"finite groups"},{"name":"infinite groups"},{"name":"group notation"}]},{"name":"morphisms","children":[{"name":"subgroup"},{"name":"subgroup criterion"},{"name":"homomorphism"},{"name":"kernel"},{"name":"image"},{"name":"isomorphism"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 465;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-steps pb-section"><h2>Означення</h2>
+<p>Група є однією з найфундаментальніших структур в абстрактній алгебрі. Це поняття виникає природним чином, коли виділяють істотні властивості, спільні для багатьох математичних об'єктів: цілих чисел за додаванням, ненульових дійсних чисел за множенням, симетрій геометричної фігури та обернених <a href="matrices.html">матриць</a> заданого розміру — всі вони демонструють одну й ту саму абстрактну модель. Розпізнавання цієї спільної структури та її вивчення окремо є центральною ідеєю теорії груп.</p>
+<p>Групою називається множина \(G\) разом із бінарною операцією \(\cdot : G \times G \to G\), що задовольняє наступні чотири аксіоми:</p>
+<ul>
+<li>Замкненість: для всіх \(a, b \in G\) елемент \(a \cdot b\) належить до \(G\).</li>
+<li>Асоціативність: для всіх \(a, b, c \in G\) маємо \((a \cdot b) \cdot c = a \cdot (b \cdot c)\).</li>
+<li>Нейтральний елемент: існує такий елемент \(e \in G\), що \(a \cdot e = e \cdot a = a\) для всіх \(a \in G\).</li>
+<li>Обернені елементи: для кожного \(a \in G\) існує елемент \(a^{-1} \in G\), такий що \(a \cdot a^{-1} = a^{-1} \cdot a = e\).</li>
+</ul>
+<p>Група \((G, \cdot)\) називається абелевою або комутативною, якщо на додачу \(a \cdot b = b \cdot a\) для всіх \(a, b \in G\).</p>
+<blockquote>
+<p>Нейтральний елемент та обернений до кожного елемента є єдиними. Обидва факти випливають безпосередньо з аксіом і є стандартними початковими результатами в будь-якому викладі теорії груп.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Властивості</h2>
+<p>Кілька елементарних наслідків випливають безпосередньо з аксіом. Якщо \(a \cdot b = a \cdot c\) для деяких \(a, b, c \in G\), то множення обох частин зліва на \(a^{-1}\) дає \(b = c\); це закон лівого скасування. Закон правого скасування виконується за аналогічним аргументом. Разом вони означають, що рівняння \(a \cdot x = b\) має єдине розв'язання \(x = a^{-1} \cdot b\) у \(G\) для будь-яких заданих \(a, b \in G\). Обернений елемент до добутку задовольняє наступну тотожність:</p>
+<p>\[
+(a \cdot b)^{-1} = b^{-1} \cdot a^{-1}
+\]</p>
+<p>Ця зміна порядку є наслідком аксіоми асоціативності та іноді називається «властивістю шкарпетки та черевика»: щоб скасувати операцію спочатку одягання шкарпетки, а потім черевика, потрібно спочатку зняти черевик, а потім шкарпетку. Порядок групи \(G\), що позначається \(|G|\), — це потужність відповідної множини. Група з скінченною кількістю елементів називається скінченною групою; в іншому випадку вона є нескінченною.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps"><h2>Алгебраїчна ієрархія</h2>
+<p>Групи є найпростішими об'єктами в ієрархії алгебраїчних структур.</p>
+<p>Група складається з множини, оснащеної однією бінарною операцією, що задовольняє замкненість, асоціативність, існування нейтрального елемента та існування обернених елементів.</p>
+<p>Коли вводиться друга операція і вимагається, щоб вона була дистрибутивною відносно першої, отриманою структурою є <a href="rings.html">кільце</a>.</p>
+<p>Накладання додаткової умови, що кожен ненульовий елемент має бути обервним за множенням, дає <a href="fields.html">поле</a>. Ці три структури утворюють ланцюг зростаючої жорсткості:</p>
+<ul>
+<li>Група має одну операцію з оберненими елементами.</li>
+<li>Кільце має дві операції, при цьому обернені гарантовані лише для додавання.</li>
+<li>Поле має дві операції, при цьому обернені гарантовані як для додавання, так і для всіх ненульових елементів за множенням.</li>
+</ul>
+<blockquote>
+<p>Цілі числа \(\mathbb{Z}\) утворюють кільце, але не поле. Раціональні числа \(\mathbb{Q}\) утворюють поле. Обидва розширюють структуру групи шляхом додавання другої операції.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Порядок елемента</h2>
+<p>Порядком елемента \(a\) у групі \(G\) називається найменше додатне ціле число \(n\), таке що \(a^n = e\), де \(e\) — нейтральний елемент, а позначення \(a^n\) означає добуток \(a\) самого на себе \(n\) разів. Якщо такого цілого числа не існує, кажуть, що елемент має нескінченний порядок. Порядок \(a\) позначається \(\mathrm{ord}(a)\).</p>
+<p>Як приклад, розглянемо групу \((\mathbb{Z}/6\mathbb{Z}, +)\). Елемент \(2\) має порядок \(3\), оскільки \(2+2+2 = 6 \equiv 0 \pmod{6}\), і ні \(2\), ні \(2+2 = 4\) не конгруентні \(0\). Елемент \(1\) має порядок \(6\), оскільки потрібно додати \(1\) до самого себе шість разів, щоб отримати \(0\). Натомість у групі \((\mathbb{Z}, +)\) кожен ненульовий елемент має нескінченний порядок, оскільки жодна скінченна сума фіксованого ненульового цілого числа не може дорівнювати \(0\).</p>
+<blockquote>
+<p>Оператор модуля \(a \bmod n\) повертає остачу від ділення \(a\) на \(n\). Наприклад, \(7 \bmod 5 = 2\), оскільки \(7 = 1 \cdot 5 + 2\).</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-"><h2>Приклади</h2>
+<p>Множина \(\mathbb{Z}\) звичайною операцією додавання утворює абелеву групу. Нейтральним елементом є \(0\), а оберненим до цілого числа \(n\) є \(-n\). Це нескінченна група і, мабуть, найприродніший приклад групи в елементарній математиці.</p>
+<p>Нехай \(n\) — додатне ціле число. Множина \(\mathbb{Z}/n\mathbb{Z} = {0, 1, \ldots, n-1}\) з операцією додавання за модулем \(n\) утворює скінченну абелеву групу порядку \(n\). Наприклад, у \(\mathbb{Z}/5\mathbb{Z}\) маємо \(3+4=2\), оскільки \(7 \equiv 2 \pmod{5}\). Нейтральним елементом є \(0\), а оберненим до \(k\) є \(n-k\).</p>
+<hr>
+<p>Нехай \(F\) — поле, а \(n\) — додатне ціле число. Множина всіх <a href="inverse-matrix.html">обернених</a> матриць розміру \(n \times n\) з елементами в \(F\), що позначається \(\mathrm{GL}(n, F)\), утворює групу за операцією множення матриць. Нейтральним елементом є одинична матриця \(I_n\), а оберненим до матриці \(A\) є її обернена матриця \(A^{-1}\). Ця група не є абелевою при \(n \geq 2\), оскільки множення матриць загалом не є комутативним.</p>
+<p>Дано множину \({1, 2, \ldots, n}\), перестановка — це бієкція цієї множини в саму себе. Сукупність усіх таких перестановок утворює групу за <a href="composite-functions.html">композицією функцій</a>, що позначається \(S_n\) і називається симетричною групою на \(n\) елементах. Нейтральним елементом є тотожна перестановка, а оберненим до перестановки \(\sigma\) є обернена функція \(\sigma^{-1}\). Група \(S_n\) має порядок \(n!\) і не є абелевою при \(n \geq 3\).</p>
+<p>Як конкретну ілюстрацію розглянемо \(S_3\), яка має порядок \(6\). Нехай \(\sigma\) — перестановка, що відображає \(1 \mapsto 2\), \(2 \mapsto 3\), \(3 \mapsto 1\), а \(\tau\) — перестановка, що відображає \(1 \mapsto 2\), \(2 \mapsto 1\), \(3 \mapsto 3\).</p>
+<p>\[
+\sigma = \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 2 &amp; 3 &amp; 1 \end{pmatrix} \qquad
+\tau = \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 2 &amp; 1 &amp; 3 \end{pmatrix}
+\]</p>
+<p>Щоб обчислити \(\sigma \circ \tau\), спочатку застосовують \(\tau\), а потім \(\sigma\).
+Елемент \(1\) відображається за допомогою \(\tau\) у \(2\), а потім \(\sigma\) відображає \(2\)
+у \(3\), отже \(1 \mapsto 3\). Елемент \(2\) відображається за допомогою \(\tau\) у \(1\),
+а потім \(\sigma\) відображає \(1\) у \(2\), отже \(2 \mapsto 2\). Нарешті, \(3\)
+залишається незмінним при \(\tau\), а \(\sigma\) відображає \(3\) у \(1\), отже \(3 \mapsto 1\).
+Таким чином</p>
+<p>\[
+\sigma \circ \tau = \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 3 &amp; 2 &amp; 1 \end{pmatrix}
+\]</p>
+<p>Аналогічне обчислення дає</p>
+<p>\[
+\tau \circ \sigma = \begin{pmatrix} 1 &amp; 2 &amp; 3 \\ 1 &amp; 3 &amp; 2 \end{pmatrix}
+\]</p>
+<p>Оскільки \(\sigma \circ \tau \neq \tau \circ \sigma\), група \(S_3\) дійсно не є абелевою.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Циклічні групи</h2>
+<p>Група \(G\) називається циклічною, якщо існує елемент \(g \in G\), такий, що кожен елемент \(G\) можна записати як степінь \(g\), тобто:</p>
+<p>\[G = {g^n : n \in \mathbb{Z}}\]</p>
+<p>Такий елемент \(g\) називається твірником \(G\). Циклічні групи є найпростішим класом груп і повністю класифіковані. Кожна циклічна група ізоморфна або \(\mathbb{Z}\), якщо вона нескінченна, або \(\mathbb{Z}/n\mathbb{Z}\) для деякого додатного цілого \(n\), якщо вона скінченна.</p>
+<p>Група \((\mathbb{Z}/6\mathbb{Z}, +)\) є циклічною з твірником \(1\), оскільки кожен елемент \(0, 1, 2, 3, 4, 5\) можна отримати як кратне \(1\). Елемент \(5\) також є твірником, оскільки повторюване додавання \(5\) за модулем \(6\) дає всі шість остач. Проте елемент \(2\) не є твірником, оскільки кратні \(2\) за модулем \(6\) — це лише \({0, 2, 4}\), які утворюють власну підгрупу \(\mathbb{Z}/6\mathbb{Z}\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Підгрупи</h2>
+<p>Підмножина \(H\) групи \(G\) називається підгрупою, якщо \(H\) сама по собі є групою за операцією, що успадкована від \(G\). Замість того щоб окремо перевіряти всі чотири аксіоми групи, можна скористатися наступним критерієм: непустий підмножина \(H \subseteq G\) є підгрупою \(G\) тоді і тільки тоді, коли для всіх \(a, b \in H\) елемент \(a \cdot b^{-1}\) належить до \(H\). Ця умова одночасно кодує замкненість відносно операції та відносно взяття обернених елементів, а наявність нейтрального елемента випливає з припущення \(a = b\). Записують \(H \leq G\), щоб indicated, що \(H\) є підгрупою \(G\).</p>
+<p>Кожна група \(G\) має принаймні дві підгрупи: тривіальну підгрупу \({e}\) та саму \(G\). Будь-яка підгрупа, відмінна від \(G\), називається власною підгрупою.</p>
+<p>Як приклад, розглянемо множину парних цілих чисел \(2\mathbb{Z} = {\ldots, -4, -2, 0, 2, 4, \ldots}\) як підмножину \((\mathbb{Z}, +)\). Візьмемо будь-які два парних цілих числа \(a = 2m\) та \(b = 2k\), оберненим до \(b\) у \(\mathbb{Z}\) є \(-b = -2k\), отже \(a+(-b) = 2(m-k)\), що знову є парним. Таким чином, критерій підгрупи задоволено, і \(2\mathbb{Z}\) є підгрупою \(\mathbb{Z}\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Гомоморфізми та ізоморфізми груп</h2>
+<p>Гомоморфізм груп — це функція між двома групами, яка зберігає структуру групи. Дано дві групи \((G, \cdot)\) та \((H, \star)\), функція \(\varphi : G \to H\) є гомоморфізмом, якщо:</p>
+<p>\[
+\varphi(a \cdot b) = \varphi(a) \star \varphi(b)
+\]</p>
+<p>для всіх \(a, b \in G\). Ця умова вимагає, щоб застосування \(\varphi\) після виконання операції в \(G\) давало той самий результат, що й спочатку застосування \(\varphi\) до кожного елемента, а потім виконання операції в \(H\). З цього означення випливає кілька основних властивостей. Гомоморфізм \(\varphi : G \to H\) обов'язково відображає нейтральний елемент \(G\) в нейтральний елемент \(H\) та задовольняє рівність \(\varphi(a^{-1}) = \varphi(a)^{-1}\) для всіх \(a \in G\).</p>
+<p>Двома особливо важливими підмножинами, пов'язаними з гомоморфізмом \(\varphi : G \to H\), є ядро та образ. Ядро визначається як</p>
+<p>\[
+\ker(\varphi) = {a \in G : \varphi(a) = e_H}
+\]</p>
+<p>де \(e_H\) позначає нейтральний елемент \(H\), а образ визначається як</p>
+<p>\[
+\mathrm{im}(\varphi) = {\varphi(a) : a \in G}
+\]</p>
+<p>Ядро завжди є підгрупою \(G\), а образ завжди є підгрупою \(H\). Більше того, гомоморфізм є ін'єктивним тоді і тільки тоді, коли його ядро містить лише нейтральний елемент \(G\).</p>
+<hr>
+<p>Гомоморфізм \(\varphi : G \to H\), який одночасно є ін'єктивним і сюр'єктивним, називається ізоморфізмом. Якщо між \(G\) та \(H\) існує ізоморфізм, то дві групи називаються ізоморфними, що записується як \(G \cong H\). Ізоморфні групи структурно ідентичні: вони відрізняються лише назвами своїх елементів та їхньою операцією, але не будь-якою властивістю, що є притаманною їхній груповій структурі.</p>
+<p>Як приклад, розглянемо групу \((\mathbb{Z}/2\mathbb{Z}, +)\) та групу \(({1,-1}, \times)\) за звичайним множенням. Визначимо \(\varphi : \mathbb{Z}/2\mathbb{Z} \to {1,-1}\), встановивши \(\varphi(0) = 1\) та \(\varphi(1) = -1\). Оскільки:</p>
+<p>\[
+\begin{align}
+\varphi(1+1) &amp;= \varphi(0) \\[6pt]
+&amp;= 1 \\[6pt]
+&amp;= (-1)(-1) \\[6pt]
+&amp;= \varphi(1)\cdot\varphi(1)
+\end{align}
+\]</p>
+<p>функція \(\varphi\) зберігає групову операцію. Оскільки вона також є бієктивною, вона є ізоморфізмом, і, отже, \(\mathbb{Z}/2\mathbb{Z} \cong \{1,-1\}\).</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="groups.html">algebrica.org/groups</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

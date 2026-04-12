@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Різницевий дріб — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Похідні</span>
+    </nav>
+    <article>
+        <h1>Різницевий дріб</h1>
+        <time>2025-02-21</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 pb-steps alignCenterMathjax"><h2>Що таке приріст функції (різницевий коефіцієнт)</h2>
+<p>Розглянемо функцію \(y = f(x)\), визначену на проміжку \([a, b]\), та два дійсні числа \(c\) і \(c + h\) при \(h \neq 0\), що обидва лежать у проміжку \([a, b]\). Різницевий коефіцієнт \(f\) у точці \(c\) визначається як відношення:</p>
+<p>\[
+\frac{\Delta y}{\Delta x} = \frac{f(c+h)-f \left(c \right)}{h}
+\]</p>
+<p>Умова \( h \neq 0 \) є необхідною: при \( h = 0 \) точки \( A \) і \( B \) збігаються, січна не визначена, а відношення набуває вигляду \( \frac{0}{0} \). Розглянемо точки \(A\) і \(B\) з координатами:</p>
+<ul>
+<li>\(A(c, f \left(c \right))\)</li>
+<li>\(B(c+h, f(c+h))\)</li>
+</ul>
+<p> <strong>різницевий коефіцієнт</strong> \(f\) у точці \(c\) є кутовим коефіцієнтом прямої, що проходить через точки \(A\) і \(B\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="726" height="630" src="../images/difference-quotient-2.png" alt="" class="wp-image-10293" style="width:363px" srcset="../images/difference-quotient-2.png 726w, https://algebrica.org/wp-content/uploads/resources/images/difference-quotient-2-300x260.png 300w" sizes="(max-width: 726px) 100vw, 726px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><p>Різницевий коефіцієнт є фундаментальним для означення <a href="derivatives.html">похідної</a>. Похідна функції в точці є <a href="limits.html">границею</a> різницевого коефіцієнта при наближенні \(h\) до нуля.</p>
+<p>\[f’ \left(c \right) = \lim_{h \to 0} \frac{f(c+h)-f \left(c \right)}{h} \]</p>
+<p>Цей процес, відомий як знаходження границі різницевого коефіцієнта, дає миттєву швидкість зміни функції в цій точці, або, що еквівалентно, кутовий коефіцієнт дотичної до графіка функції.</p>
+<hr>
+<p>Загалом, різницевий коефіцієнт вимірює, як функція змінюється на скінченному відрізку. У міру того як інтервал звужується, він переходить від глобальної міри зміни до локальної.</p>
+<ul>
+<li>
+<p>Різницевий коефіцієнт дає наближення швидкості зміни. Він обчислюється на скінченному проміжку \( [x, x + \Delta x] \) і представляє середню швидкість зміни.</p>
+</li>
+<li>
+<p>Похідна дає точну швидкість зміни. Вона обчислюється шляхом взяття границі при \( \Delta x \to 0 \) і представляє миттєву швидкість зміни.</p>
+</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Варто зауважити, що різницевий коефіцієнт і <a href="derivatives.html">похідна</a> вимірюють одну й ту саму геометричну величину на різних масштабах.</p>
+<ul>
+<li>Різницевий коефіцієнт вимірює кутовий коефіцієнт <a href="secant-and-cosecant.html">січної</a> на скінченному проміжку.</li>
+<li>Похідна вимірює кутовий коефіцієнт <a href="tangent-and-cotangent.html">дотичної</a> в точці.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Альтернативні форми</h2>
+<ul>
+<li>
+<p>\[
+\text{1.} \quad \frac{f(c+h) - f(c)}{h}
+\]</p>
+</li>
+<li>
+<p>\[
+\text{2.} \quad \frac{f(x_1) &#8211; f(x_0)}{x_1 &#8211; x_0}
+\]</p>
+</li>
+<li>
+<p>\[
+\text{3.} \quad \frac{f(x + \Delta x) &#8211; f(x)}{\Delta x}
+\]</p>
+</li>
+<li>
+<p>\[
+\text{4.} \quad \frac{f(x + dx) &#8211; f(x)}{dx}
+\]</p>
+</li>
+</ul>
+<h6>Наведені вище вирази представляють одну й ту саму величину і відрізняються лише позначеннями двох точок, залежно від використовуваної нотації.</h6>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Обчислимо різницевий коефіцієнт функції \(y = f(x) = 3x^2-x\) у точці \(c = 1\) для довільного \(h\).</p>
+<p>Визначимо \(f(c+h) = f(1+h)\):</p>
+<p>\[
+\begin{align*}
+f(1+h) &amp;= 3(1+h)^2-(1+h) \\[0.4em]
+&amp;= 3(1 + h^2 + 2h)-1-h \\[0.4em]
+&amp;= 3 + 3h^2 + 6h-1-h \\[0.4em]
+&amp;= 3h^2 + 5h + 2
+\end{align*}
+\]</p>
+<hr>
+<p>Визначимо \(f \left(c \right) = f(1)\):<br>
+\[
+f(1) = 3(1)^2 &#8211; 1 = 3 &#8211; 1 = 2
+\]</p>
+<hr>
+<p>Обчислимо різницевий коефіцієнт:
+\[
+\begin{align*}
+\frac{f(1+h)-f(1)}{h} &amp;= \frac{(3h^2 + 5h + 2)-2}{h}\\[0.4em]
+&amp;= \frac{3h^2 + 5h + 2-2}{h} \\[0.4em]
+&amp;= \frac{3h^2 + 5h}{h}\\[0.4em]
+&amp;= 3h + 5
+\end{align*}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Вираз \(3h + 5\) представляє, при зміні \(h\), кутовий коефіцієнт січної, що проходить через точку \(A\) на графіку з абсцисою 1.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Тепер розглянемо функцію, яка не є поліномом: \( f(x) = \sqrt{x} \), обчислену в точці \( c = 4 \). Процедура така сама, як і раніше, але спрощення різницевого часткого потребує додаткового кроку. Визначимо \( f(4+h) \):</p>
+<p>\[
+f(4+h) = \sqrt{4+h}
+\]</p>
+<p>Визначимо \( f(4) \):</p>
+<p>\[
+f(4) = \sqrt{4} = 2
+\]</p>
+<p>Різницеве часткове має вигляд:</p>
+<p>\[
+\frac{f(4+h) &#8211; f(4)}{h} = \frac{\sqrt{4+h} &#8211; 2}{h}
+\]</p>
+<p>У такому вигляді цей вираз неможливо спростити безпосередньо, оскільки чисельник і знаменник не мають очевидного спільного множника. Стандартний підхід полягає в тому, щоб раціоналізувати чисельник, помноживши і чисельник, і знаменник на спряжений вираз \( \sqrt{4+h} + 2 \):</p>
+<p>\[
+\begin{align*}
+\frac{\sqrt{4+h} &#8211; 2}{h} \cdot \frac{\sqrt{4+h} + 2}{\sqrt{4+h} + 2}
+&amp;= \frac{(4+h) - 4}{h\left(\sqrt{4+h} + 2\right)} \\[0.4em]
+&amp;= \frac{h}{h\left(\sqrt{4+h} + 2\right)} \\[0.4em]
+&amp;= \frac{1}{\sqrt{4+h} + 2}
+\end{align*}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Множник \( h \) скорочується, і результат є визначеним для кожного \( h \neq 0 \).</p>
+<p>Вираз \( \dfrac{1}{\sqrt{4+h}+2} \) представляє кутовий коефіцієнт січної, що проходить через точки \( A = (4,\ 2) \) та \( B = (4+h,\ \sqrt{4+h}) \) при зміні \( h \).</p>
+<p>При \( h \to 0 \) цей кутовий коефіцієнт наближається до \( \dfrac{1}{4} \), що є саме похідною \( \sqrt{x} \) у точці \( x = 4 \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>Purdue University, N. Egbert</strong>. <a href="https://www.math.purdue.edu/~egbertn/fa2016/notes/lesson8.pdf">The Difference Quotient</a></p>
+</li>
+<li>
+<p><strong>Dartmouth College</strong>. <a href="https://math.dartmouth.edu/opencalc2/cole/lecture21.pdf">The Difference Quotient and the Derivative</a></p>
+</li>
+<li>
+<p><strong>Princeton University</strong>. <a href="https://imai.fas.harvard.edu/teaching/files/calculus.pdf">Differential and Integral Calculus</a></p>
+</li>
+<li>
+<p><strong>Harvard University, O. Knill</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/math1a_2012/handouts/math1a_2012.pdf">Introduction to Calculus</a></p>
+</li>
+<li>
+<p><strong>California State University San Marcos</strong>. <a href="https://www.csusm.edu/mathlab/documents/differencequotient-r6.pdf">Difference Quotient</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке різницеве часткове?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Різницеве часткове — це формула, яка вимірює середню швидкість зміни функції на проміжку. Це фундаментальне поняття в математичному аналізі, яке записується як (f(x + h) − f(x)) / h."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому різницеве часткове є важливим?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Різницеве часткове використовується для розуміння того, як змінюється функція, та для знаходження похідної. Воно представляє кутовий коефіцієнт січної лінії між двома точками на кривій."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="difference-quotient.html">algebrica.org/difference-quotient</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

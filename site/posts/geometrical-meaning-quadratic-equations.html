@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Геометрична інтерпретація квадратних рівнянь — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Геометрична інтерпретація квадратних рівнянь</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section pb-steps"><h2>Від рівняння до параболи</h2>
+<p>Графічне зображення відповідної функції \( y = ax^2 + bx + c \), пов'язаної з <a href="quadratic-equations.html">квадратним рівнянням</a> \( ax^2 + bx + c = 0 \), є <a href="parabola.html">параболою</a>. Її вершина відповідає точці максимуму або мінімуму кривої залежно від знаку коефіцієнта \( a \): вершина є мінімумом, якщо \( a &gt; 0 \), і максимумом, якщо \( a &lt; 0 \). Форма та положення параболи визначаються значеннями коефіцієнтів \( a \), \( b \) та \( c \).</p>
+<ul>
+<li>Коефіцієнт \( a \) визначає напрямок, ширину та крутизну параболи: більші <a href="absolute-value.html">абсолютні значення</a> \( a \) роблять графік вужчим, тоді як менші значення роблять його ширшим.</li>
+<li>Коефіцієнт \( b \) впливає на горизонтальне положення вершини.</li>
+<li>Вільний член \( c \) визначає вертикальний зсув усієї кривої.</li>
+</ul>
+<hr>
+<p>Якщо парабола записана в стандартній формі як \( f(x) = ax^2 + bx + c \), тоді:</p>
+<ul>
+<li>
+<p>Якщо \( a &gt; 0 \), парабола відкривається вгору \( \cup \) і має точку мінімуму.</p>
+</li>
+<li>
+<p>Якщо \( a &lt; 0 \), парабола відкривається вниз \( \cap \) і має точку максимуму.</p>
+</li>
+<li>
+<p>В обох випадках координати вершини задаються формулою:
+\[
+V = \left(-\frac{b}{2a},\ f\left(-\frac{b}{2a}\right)\right)
+\]</p>
+</li>
+</ul>
+<hr>
+<p>Якщо парабола записана в стандартній формі \( f(y) = ay^2 + by + c \), тоді:</p>
+<ul>
+<li>
+<p>Якщо \( a &gt; 0 \), парабола відкривається вправо \( \subset \).</p>
+</li>
+<li>
+<p>Якщо \( a &lt; 0 \), парабола відкривається вліво \( \supset \).</p>
+</li>
+<li>
+<p>В обох випадках координати вершини задаються формулою:
+\[
+V = \left(f\left(-\frac{b}{2a}\right),\ -\frac{b}{2a}\right)
+\]</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Вершина та симетрія в окремих випадках</h2>
+<p>Графічно загальна парабола \(y = ax^2 + bx + c\) з віссю, паралельною осі y, виглядає наступним чином:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="512" src="../images/parabola-5-1.png" alt="" class="wp-image-10078" style="width:306px" srcset="../images/parabola-5-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/parabola-5-1-300x251.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><ul>
+<li>
+<p>Коли \( b = 0 \) і \( c \neq 0 \), рівняння набуває вигляду \(y = ax^2 + c\). Парабола має вершину в точці \( V(0, c) \), а її віссю симетрії є вісь y.</p>
+</li>
+<li>
+<p>Коли \( c = 0 \) і \( b \neq 0 \), рівняння набуває вигляду \(y = ax^2 + bx\). Парабола має вершину в точці:
+\[
+V \left( -\frac{b}{2a}, -\frac{b^2}{4a} \right)
+\]
+Парабола завжди проходить через початок координат ( 0, 0 ).</p>
+</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Як виглядає квадратне рівняння на графіку?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "На графіку квадратне рівняння утворює U-подібну криву, яка називається параболою. Її форма та напрямок залежать від коефіцієнтів рівняння."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке вершина параболи?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вершина — це найвища або найнижча точка параболи. Для рівняння y = ax^2 + bx + c вершина знаходиться в точці (-b/2a, f(-b/2a))."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як визначити, чи парабола відкривається вгору чи вниз?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Якщо коефіцієнт a додатний, парабола відкривається вгору. Якщо a від'ємний, вона відкривається вниз."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що означають літери a, b та c у квадратному рівнянні?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "У рівнянні y = ax^2 + bx + c коефіцієнт a визначає напрямок та ширину кривої, b зсуває її горизонтально, а c переміщує вгору або вниз."
+      }
+    }
+  ]
+}
+</script>
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="geometrical-meaning-quadratic-equations.html">algebrica.org/geometrical-meaning-quadratic-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

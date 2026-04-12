@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Триноміальні рівняння — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Триноміальні рівняння</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Що таке триноміальні рівняння</h2>
+<p>Триноміальні рівняння — це особливий тип <a href="polynomial-equations.html">поліноміального рівняння</a>, що складається з трьох доданків, які містять стали та <a href="powers.html">степені</a> змінної.</p>
+<p>\[ ax^{2n} + bx^{n} + c = 0 \]</p>
+<p>Така форма особливо корисна, оскільки вона дозволяє використовувати стратегії заміни, наприклад, встановити \(x^n = y\), щоб перетворити рівняння на стандартне квадратне.</p>
+<ul>
+<li>\( a \), \( b \), та \( c \) — це числові коефіцієнти.</li>
+<li>\( x \) — це невідома змінна.</li>
+</ul>
+<p>Варто зауважити, що якщо \( n = 1 \), рівняння стає <a href="quadratic-equations.html">квадратним рівнянням</a>, яке часто записують у вигляді:</p>
+<p>\[
+ax^2 + bx + c = 0
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30 pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Як розв'язувати триноміальні рівняння</h2>
+<p>Для розв'язання триноміального рівняння вигляду \( ax^{2n} + bx^n + c = 0 \) можна використовувати загальний набір кроків. Першим кроком є виконання заміни, яка перетворює рівняння на квадратне рівняння відносно \( y \), яке легше розв'язати. Наприклад, нехай:</p>
+<p>\[
+x^n = y
+\]</p>
+<p>і отримаємо:</p>
+<p>\[ ay^2 + by + c = 0 \]</p>
+<p>Ми можемо використовувати такі методи, як <a href="factoring-quadratic-equations.html">розкладання на множники</a>, <a href="completing-the-square.html">доповнення до повного квадрата</a> або <a href="quadratic-formula.html">формулу коренів квадратного рівняння</a>, щоб розв'язати отримане квадратне рівняння відносно \( y \). Після того як ми знайдемо розв'язання для \( y \), ми повертаємося до оригінальної заміни \( y = x^n \), щоб визначити відповідні значення \( x \). Коротко:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps mb-x-30"><ul>
+<li>
+<p>Нехай \( y = x^n \), тоді рівняння набуває вигляду \( ay^2 + by + c = 0 \).</p>
+</li>
+<li>
+<p>Розв'яжіть квадратне рівняння відносно \( y \).</p>
+</li>
+<li>
+<p>Для кожного розв'язання \( y_i \) розв'яжіть \( x^n = y_i \), щоб знайти відповідні значення \( x \).</p>
+</li>
+<li>
+<p>Перевірте всі розв'язання в початковому рівнянні, щоб переконатися в їхній правильності.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Важливо перевірити кожне розв'язання, підставивши його в початкове рівняння, щоб підтвердити його правильність. Цей процес може здатися складним, але насправді він практичний і простий у виконанні.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>При розв'язуванні рівнянь за допомогою заміни іноді можуть з'являтися додаткові розв'язання, які називають сторонніми розв'язаннями. Вони можуть задовольняти перетворене рівняння, але не задовольняти початкове. Підставляючи кожне розв'язання назад у початкове рівняння, ми переконуємося, що воно дійсно працює і не порушує жодних неявних умов.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Розв'яжіть рівняння \(3x^4-7x^2 + 2 = 0\).</p>
+<p>Нехай \(y = x^2\), щоб перетворити рівняння на квадратне рівняння:</p>
+<p>\[3y^2-7y + 2 = 0\]</p>
+<hr>
+<p>Ми можемо використати <a href="quadratic-formula.html">формулу коренів квадратного рівняння</a>, щоб знайти значення \(y\). Отримаємо:</p>
+<p>\begin{align*}
+y &amp;= \frac{{-(-7) \pm \sqrt{{(-7)^2-4 \cdot 3 \cdot 2}}}}{{2 \cdot 3}} \\[0.6em]
+&amp;= \frac{{7 \pm \sqrt{{49-24}}}}{6} \\[0.6em]
+&amp;= \frac{{7 \pm \sqrt{25}}}{6} \\[0.6em]
+&amp;= \frac{{7 \pm 5}}{6}
+\end{align*}</p>
+<p>Отже, ми знайшли:</p>
+<p>\[y_1 = \frac{12}{6} = 2\]
+\[y_2 = \frac{2}{6} = \frac{1}{3}\]</p>
+<hr>
+<p>Після того як розв'язання для \(y\) знайдено, їх можна підставити назад у початкове рівняння за допомогою \(x^2 = y\), щоб знайти відповідні значення \(x\).</p>
+<p>Для \(y = 2\) маємо:
+\[x^2 = 2 \quad \rightarrow \quad x = \pm \sqrt{2} \]</p>
+<p>Для \(y = \frac{1}{3}\) маємо
+\[x^2 = \frac{1}{3} \quad \rightarrow \quad \pm \sqrt{\frac{1}{3}} \]</p>
+<hr>
+<p>Необхідно перевірити правильність розв'язань, підставивши їх назад у початкове рівняння для забезпечення точності. Щоб перевірити, чи є задані значення розв'язаннями рівняння \(3x^4-7x^2 + 2 = 0\), ми повинні підставити їх у рівняння та перевірити, чи задовольняють вони його.</p>
+<p>Для \( x = \sqrt{2} \):</p>
+<p>\[ 3(\sqrt{2})^4-7(\sqrt{2})^2 + 2 = 3 \cdot 2^2-7 \cdot 2 + 2 \]
+\[ = 12 &#8211; 14 + 2 = 0 \]</p>
+<hr>
+<p>Для \( x = -\sqrt{2} \):
+\[ 3(-\sqrt{2})^4-7(-\sqrt{2})^2 + 2 = 3 \cdot 2^2-7 \cdot 2 + 2 \]
+\[ = 12 - 14 + 2 = 0 \]</p>
+<hr>
+<p>Для  \( x = \sqrt{\dfrac{1}{3}} \):
+\[ 3\left(\sqrt{\frac{1}{3}}\right)^4-7\left(\sqrt{\frac{1}{3}}\right)^2 + 2 = 3 \cdot \left(\frac{1}{3}\right)^2 - 7 \cdot \frac{1}{3} + 2 \]
+\[ = \frac{3}{9}-\frac{7}{3} + 2 = 0 \]</p>
+<hr>
+<p>Для \( x = -\sqrt{\dfrac{1}{3}} \):
+\[ 3\left(-\sqrt{\frac{1}{3}}\right)^4-7\left(-\sqrt{\frac{1}{3}}\right)^2 + 2 = 3 \cdot \left(\frac{1}{3}\right)^2-7 \cdot \frac{1}{3} + 2 \]
+\[ = \frac{3}{9}- \frac{7}{3} + 2 = 0 \]</p>
+<p>Усі розв'язання задовольняють початкове рівняння.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Розв'язанням рівняння є:
+\[x = \pm \sqrt{2} \quad \text{та} \quad \pm \sqrt{\frac{1}{3}}\]</p>
+</div>
+</div></div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="trinomial-equations.html">algebrica.org/trinomial-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

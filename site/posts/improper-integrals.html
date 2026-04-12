@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Невласні інтеграли — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Інтеграли</span>
+    </nav>
+    <article>
+        <h1>Невласні інтеграли</h1>
+        <time>2025-03-03</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Означення</h2>
+<p>Невластиві інтеграли — це <a href="indefinite-integrals.html">інтеграли</a>, у яких або проміжок інтегрування є необмеженим, або підінтегральна функція стає необмеженою в одній або кількох точках, або і те, і інше. В елементарному численні <a href="definite-integrals.html">визначений інтеграл</a>:</p>
+<p>\[
+\int_a^b f(x)\,dx
+\]</p>
+<p>визначається за припущенням, що:</p>
+<ul>
+<li>Проміжок \([a,b]\) є обмеженим.</li>
+<li>Функція \(f\) є <a href="continuous-functions.html">неперервною</a> або принайм інтегруемою на цьому проміжку.</li>
+</ul>
+<p>Однак багато важливих задач у математиці та прикладних науках природним чином виходять за ці обмеження. Ми можемо зустріти <a href="intervals.html">необмежений проміжок</a>, такий як \((a,+\infty)\), або функцію, яка стає необмеженою в одній або кількох точках проміжку. У таких випадках інтеграл називається <strong>невластивим інтегралом</strong>. Його значення не є очевидним: воно має бути визначене через граничний процес.</p>
+<h6>Невластиві інтеграли не розширюють клас <a href="riemann-integrability-criteria.html">інтегруємих за Ріманом</a> функцій. Вони переосмислюють проблемні ситуації через границі звичайних інтегралів. Збіжність є глобальною властивістю: вона залежить від того, як функція поводиться біля нескінченності або біля особливості, а не лише локально.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p><strong>Чому граничний процес?</strong> Розглянемо застосування <a href="fundamental-theorem-of-calculus.html">Основної теореми числення</a> безпосередньо до наступного інтеграла:</p>
+<p>\[
+\int_{-1}^{1} \frac{1}{x^2}\,dx
+\]</p>
+<p>Наївне обчислення дає \(\left[-x^{-1}\right]_{-1}^{1} = -2\), що є явно помилковим: підінтегральна функція суворо додатна, тому інтеграл не може бути від'ємним. Проблема полягає в тому, що \(1/x^2\) має особливість у точці \(x=0\), яка лежить всередині проміжку (Основна теорема тут не застосовується). Цей приклад показує, що розширення інтегрування за межі його класичної області визначення потребує більше, ніж механічних обчислень: воно потребує означення, побудованого на границях.</p>
+<h6>Сліпе застосування Основної теореми числення до невластивого інтеграла є не просто неточним; воно може призвести до результатів, які є не просто помилковими, а математично безглуздими.</h6>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps"><h2>Невластиві інтеграли на необмежених проміжках</h2>
+<p>Припустимо, що \(f\) є <a href="continuous-functions.html">неперервною</a> на \([a,+\infty)\). Інтеграл:
+\[
+\int_a^{+\infty} f(x)\,dx
+\]
+визначається як <a href="limits.html">границя</a>:
+\[
+\int_a^{+\infty} f(x)\,dx
+\;:=\;
+\lim_{b \to +\infty} \int_a^b f(x)\,dx
+\]</p>
+<p>за умови, що ця границя існує і є скінченною. Іншими словами, ми інтегруємо до скінченної верхньої межі \(b\), а потім дозволяємо \(b\) зростати без обмеження:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="414" src="../images/improper-integrals-1.png" alt="" class="wp-image-22835" style="width:306px" srcset="../images/improper-integrals-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/improper-integrals-1-300x203.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax"><ul>
+<li>Якщо границя існує і є скінченною, кажуть, що інтеграл збігається: площа під кривою накопичується до визначеного значення, незважаючи на необмежену область визначення.</li>
+<li>Якщо границя не існує або є нескінченною, інтеграл розбігається: йому не можна приписати жодного скінченного значення.</li>
+</ul>
+<hr>
+<p>Та сама ідея застосовується, коли нижня межа дорівнює \(-\infty\). Для інтеграла вигляду:
+\[
+\int_{-\infty}^b f(x)\,dx
+\]
+означення є симетричним:
+\[
+\int_{-\infty}^b f(x)\,dx
+\;:=\;
+\lim_{a \to -\infty} \int_a^b f(x)\,dx
+\]</p>
+<p>Для інтегралів по всій прямій жодна з кінцевих точок не є скінченною, тому однієї границі вже недостатньо. Замість цього ми розбиваємо інтеграл у довільній точці \(c\) і розглядаємо кожну половину окремо:
+\[
+\int_{-\infty}^{+\infty} f(x)\,dx
+\]
+визначається як:
+\[
+\int_{-\infty}^{+\infty} f(x)\,dx
+=
+\int_{-\infty}^c f(x)\,dx
++
+\int_c^{+\infty} \! f(x)\,dx
+\]
+для деякого дійсного \(c\), за умови, що обидва інтеграли збігаються окремо. Результат не залежить від вибору \(c\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Щоб проілюструвати збіжність, обчислимо наступний інтеграл:
+\[
+\int_1^{+\infty} \frac{1}{x^2}\,dx
+\]</p>
+<p>Відповідно до означення, ми замінюємо нескінченну верхню межу скінченною межею \(b\) і обчислюємо отриманий звичайний інтеграл:</p>
+<p>\[
+\int_1^b \frac{1}{x^2}\,dx
+=
+\int_1^b x^{-2}\,dx
+=
+\left[ -x^{-1} \right]_1^b
+= -\frac{1}{b} + 1
+\]</p>
+<p>Залишається взяти границю при \(b \to +\infty\). Оскільки \(b\) зростає без обмеження, доданок \(\frac{1}{b}\) зникає, і ми отримуємо:</p>
+<p>\[
+\lim_{b \to +\infty} \left(1 - \frac{1}{b}\right) =1
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Границя існує і є скінченною, отже ми робимо висновок:
+\[
+\int_1^{+\infty} \frac{1}{x^2}\,dx = 1
+\]
+і інтеграл збігається до \(1\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Тепер розглянемо випадок, коли границя не є скінченною. Інтеграл:</p>
+<p>\[
+\int_1^{+\infty} \frac{1}{x}\,dx
+\]</p>
+<p>виглядає структурно схожим на попередній, але поведінка є принципово іншою. Обчислимо:</p>
+<p>\[
+\int_1^b \frac{1}{x}\,dx
+=
+\left[ \ln x \right]_1^b
+=
+\ln b
+\]</p>
+<p>Обчислимо границю при \(b \to +\infty\):
+\[
+\lim_{b \to +\infty} \ln b
+= +\infty
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Границя не існує як скінченне значення, і тому інтеграл розбіжний.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Неправильні інтеграли з нескінченними розривами</h2>
+<p>Другий тип неправильного інтеграла виникає, коли \(f\) є необмеженою у деякій точці проміжку. Припустимо, що \(f\) неперервна на \((a,b]\), але стає необмеженою при \(x \to a^+\). Тоді ми визначаємо</p>
+<p>\[
+\int_a^b f(x)\,dx
+:=
+\lim_{t \to a^+} \int_t^b f(x)\,dx
+\]</p>
+<p>за умови, що границя існує і є скінченною.</p>
+<hr>
+<p>Симетрично, якщо \(f\) неперервна на \([a,b)\), але стає необмеженою при \(x \to b^-\), ми визначаємо:</p>
+<p>\[
+\int_a^b f(x)\,dx
+:=
+\lim_{t \to b^-} \int_a^t f(x)\,dx
+\]</p>
+<p>Якщо особливість знаходиться у внутрішній точці \(c \in (a,b)\), інтеграл розбивається в точці \(c\):
+\[
+\int_a^b f(x)\,dx
+=
+\int_a^c f(x)\,dx
++
+\int_c^b f(x)\,dx
+\]</p>
+<p>за умови, що обидва інтеграли збігаються окремо.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Щоб проілюструвати випадок нескінченного розриву, обчислимо інтеграл, підінтегральна функція якого прямує до нескінченності в одному з кінців. Розглянемо:</p>
+<p>\[
+\int_0^1 \frac{1}{\sqrt{x}}\,dx
+\]</p>
+<p>Функція \(\frac{1}{\sqrt{x}}\) є необмеженою при \(x \to 0^+\), тому це неправильний інтеграл другого типу. Відповідно до означення, ми усуваємо особливість, ввівши нижню межу \(t &gt; 0\) і обчисливши границю при \(t \to 0^+\):</p>
+<p>\[
+\int_0^1 \frac{1}{\sqrt{x}}\,dx
+:=
+\lim_{t \to 0^+} \int_t^1 x^{-1/2}\,dx
+\]</p>
+<p>Обчислимо первісну:</p>
+<p>\[
+\int x^{-1/2}\,dx
+=
+2x^{1/2} + c
+\]</p>
+<p>Обчислимо значення на \([t,1]\):
+\[
+\int_t^1 x^{-1/2}\,dx
+=
+2 &#8211; 2\sqrt{t}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Обчислимо границю при \(t \to 0^+\):
+\[
+\lim_{t \to 0^+} (2 &#8211; 2\sqrt{t})
+=2
+\]
+Границя існує і є скінченною, отже інтеграл збіжний і дорівнює \(2\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Тест \(p\)-інтеграла</h2>
+<p>Фундаментальним еталонним прикладом є сімейство інтегралів:</p>
+<p>\[
+\int_1^{+\infty} \frac{1}{x^p}\,dx
+\]</p>
+<p>де \(p\) — <a href="properties-of-real-numbers.html">дійсний</a> параметр. Поведінка цього інтеграла повністю залежить від \(p\), і результат слугує орієнтиром для порівняння складніших підінтегральних функцій. Для \(p \neq 1\) обчислимо:
+\[
+\int_1^b x^{-p}\,dx
+=
+\left[ \frac{x^{1-p}}{1-p} \right]_1^b
+=
+\frac{b^{1-p} &#8211; 1}{1-p}
+\]
+Обчислимо границю при \(b \to +\infty\):</p>
+<ul>
+<li>Якщо \(p &gt; 1\), то \(1-p &lt; 0\), отже \(b^{1-p} \to 0\) і інтеграл збігається до \(\dfrac{1}{p-1}\).</li>
+<li>Якщо \(p &lt; 1\), то \(1-p &gt; 0\), отже \(b^{1-p} \to +\infty\) і інтеграл розбіжний.</li>
+<li>Якщо \(p = 1\), первісна дорівнює \(\ln x\), і \(\lim_{b\to+\infty} \ln b = +\infty\), отже інтеграл розбіжний.</li>
+</ul>
+<p>Підсумовуючи:</p>
+<p>\[
+\int_1^{+\infty} \frac{1}{x^p}\,dx \quad \text{збігається тоді і тільки тоді, коли } p &gt; 1.
+\]</p>
+<hr>
+<p>Аналогічний результат справедливий біля початку координат. Для інтеграла:
+\[
+\int_0^1 \frac{1}{x^p}\,dx
+\]
+особливість тепер знаходиться в точці \(x = 0\), і ролі змінюються:
+\[
+\int_0^{1} \frac{1}{x^p}\,dx \quad \text{збігається тоді і тільки тоді, коли } p &lt; 1.
+\]</p>
+<h6>Тест \(p\)-інтеграла ілюструє фундаментальний принцип: збіжність неправильного інтеграла визначається швидкістю, з якою підінтегральна функція затухає або зростає. Зрештою важливою є не точна форма функції, а її асимптотична поведінка біля нескінченності або біля особливої точки. З цієї причини степені \(x\) слугують природними моделями порівняння в широкому спектрі аргументів збіжності.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Збіжність та порівняння</h2>
+<p>Пряме обчислення неправильного інтеграла не завжди можливо і часто навіть не є необхідним. У багатьох ситуаціях потрібно знати не точне значення інтеграла, а просто те, чи є він збіжним, чи розбіжним. Принципи порівняння дозволяють відповісти на це питання, аналізуючи поведінку підінтегральної функції, а не шукаючи її первісну.</p>
+<p>Найпростішим інструментом є прямий <strong>ознаку порівняння</strong>. Припустимо, що \(0 \le f(x) \le g(x)\) для всіх \(x \ge a\).</p>
+<ul>
+<li>Якщо \(\int_a^{+\infty} g(x)\,dx\) збіжний, то і \(\int_a^{+\infty} f(x)\,dx\) також збіжний</li>
+<li>Якщо \(\int_a^{+\infty} f(x)\,dx\) розбіжний, то і \(\int_a^{+\infty} g(x)\,dx\) також розбіжний</li>
+</ul>
+<h6>Міркування елементарні: якщо більша функція накопичує лише скінченну площу, то менша безумовно не може бути гіршою; навпаки, якщо менша функція вже змушує площу зростати без обмеження, то у більшої немає надії залишитися скінченною.</h6>
+<hr>
+<p>Поточечну оцінку не завжди легко встановити, і саме тут стає корисним гранична ознака порівняння. Якщо \(f(x), g(x) &gt; 0\) і:</p>
+<p>\[
+\lim_{x \to +\infty} \frac{f(x)}{g(x)} = L \quad \text{де} \quad 0 &lt; L &lt; +\infty
+\]</p>
+<p>тоді \(\int_a^{+\infty} f(x)\,dx\) та \(\int_a^{+\infty} g(x)\,dx\) або обидва збігаються, або обидва розбігаються. Коли дві функції є асимптотично еквівалентними, збіжність однієї передбачає збіжність іншої, і те саме стосується розбіжності. На практиці в якості еталона майже завжди обирають <a href="powers.html">степеневу функцію</a> \(1/x^p\), поведінка якої повністю характеризується ознакою \(p\)-інтеграла.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 4</h2>
+<p>Щоб проілюструвати граничну ознаку порівняння, розглянемо інтеграл:</p>
+<p>\[
+\int_1^{+\infty} \frac{1}{x^2 + 1}\,dx
+\]</p>
+<p>Знайти явну первісну тут можливо, вона містить \(\arctan x\), але мета прикладу інша: ми хочемо встановити збіжність без обчислення інтеграла, суто шляхом порівняння асимптотичних швидкостей. Для великих \(x\) доданок \(+1\) у знаменнику стає нехтовним відносно \(x^2\), тому підінтегральна функція поводиться як \(1/x^2\). Щоб зробити це точним, обчислимо границю:</p>
+<p>\[
+\lim_{x \to +\infty} \frac{\dfrac{1}{x^2+1}}{\dfrac{1}{x^2}}
+=
+\lim_{x \to +\infty} \frac{x^2}{x^2+1}
+=1
+\]</p>
+<p>Границя є скінченною та строгою додатною. За граничною ознакою порівняння, \(\int_1^{+\infty} \frac{1}{x^2+1}\,dx\) та \(\int_1^{+\infty} \frac{1}{x^2}\,dx\) або обидва збігаються, або обидва розбігаються.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Оскільки останній збіжний за ознакою \(p\)-інтеграла з \(p = 2 &gt; 1\), ми робимо висновок, що
+\[
+\int_1^{+\infty} \frac{1}{x^2+1}\,dx
+\]
+також збіжний.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li><strong>Simon Fraser University</strong>. <a href="https://www.sfu.ca/math-coursenotes/Math%20158%20Course%20Notes/sec_ImproperIntegrals.html">Improper Integrals</a></li>
+<li><strong>MIT OpenCourseWare</strong>. <a href="https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/resources/lecture-36-improper-integrals/">Lecture 36: Improper Integrals</a></li>
+<li><strong>Harvard University</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/fall2023/handouts/lecture09.pdf">Lecture 9: Improper Integrals</a></li>
+<li><strong>Harvard University</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/fall2023/handouts/lecture10.pdf">Lecture 10: Improper Integrals</a></li>
+<li><strong>University of California, Davis</strong>. <a href="https://www.math.ucdavis.edu/~hunter/intro_analysis_pdf/ch12.pdf">Chapter 12: Improper Integrals</a></li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="improper-integrals.html">algebrica.org/improper-integrals</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

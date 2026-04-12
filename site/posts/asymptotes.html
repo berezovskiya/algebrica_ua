@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Асимптоти — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Границі</span>
+    </nav>
+    <article>
+        <h1>Асимптоти</h1>
+        <time>2025-02-19</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Горизонтальні асимптоти</h2>
+<p>Асимптоти є фундаментальним поняттям у математичному аналізі. Це <a href="lines.html">прямі</a>, до яких <a href="functions.html">функція</a> наближається нескінченно, але ніколи не досягає їх, що допомагає охарактеризувати поведінку функції, зокрема поблизу нескінченності або в точках розриву. Асимптоти відіграють фундаментальну роль в <a href="analyzing-the-graphs-of-functions.html">аналізі функцій</a>, оскільки їхнє означення за своєю суттю ґрунтується на понятті <a href="limits.html">границь</a>.</p>
+<h6>Загалом, асимптота описує граничну поведінку функції за допомогою прямої лінії.</h6>
+<hr>
+<p>Розглянемо дійснозначну функцію \( y = f(x) \), визначену на проміжку \( [a, +\infty[ \), \( ]-\infty, b] \) або на \( \mathbb{R} \). Пряма з рівнянням \( y = L \) називається <strong>горизонтальною асимптотою</strong> ( f ), якщо:</p>
+<p>\[
+\lim_{x \to +\infty} f(x) = L \quad \text{або} \quad \lim_{x \to -\infty} f(x) = L
+\]</p>
+<p>Іншими словами, функція наближається до горизонтальної прямої \( y = L \), коли \( x \) прагне до позитивної або негативної нескінченності. Розглянемо, наприклад, функцію:</p>
+<p>\[
+y = \frac{x + 1}{x}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="690" height="576" src="../images/asymptotes-1.png" alt="" class="wp-image-17126" style="width:345px" srcset="../images/asymptotes-1.png 690w, https://algebrica.org/wp-content/uploads/resources/images/asymptotes-1-300x250.png 300w" sizes="(max-width: 690px) 100vw, 690px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Обчисливши границю при \( x \to \pm\infty \), отримаємо:</p>
+<p>\[
+\lim_{x \to \pm\infty} \frac{x + 1}{x} = \lim_{x \to \pm\infty} \left(1 + \frac{1}{x}\right) = 1
+\]</p>
+<p>Отже, функція має горизонтальну асимптоту вздовж прямої \( y = 1 \). Як ми бачимо з графіка функції, обидві гілки наближаються все ближче і ближче до прямої \( y = 1 \), коли \( x \) прагне до позитивної або негативної нескінченності. Така поведінка підтверджує, що \( y = 1 \) є горизонтальною асимптотою.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Вертикальні асимптоти</h2>
+<p>Нехай \( y = f(x) \) — дійснозначна функція, визначена на проміжку \( [a, b] \setminus {x_0} \), де \( x_0 \in [a, b] \). Ми кажемо, що пряма з рівнянням \( x = x_0 \) є <strong>вертикальною асимптотою</strong> \( f \), якщо:</p>
+<p>\[
+\lim_{x \to x_0^-} f(x) = \pm\infty \quad \text{або} \quad \lim_{x \to x_0^+} f(x) = \pm\infty
+\]</p>
+<p>Іншими словами, функція розбігається, коли \( x \) наближається до \( x_0 \) зліва або справа, стаючи довільно великою за <a href="absolute-value.html">модулем</a>. Розглянемо, наприклад, функцію:</p>
+<p>\[y = \frac{1}{x - 1}\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="744" height="624" src="../images/asymptotes-2.png" alt="" class="wp-image-17140" style="width:372px" srcset="../images/asymptotes-2.png 744w, https://algebrica.org/wp-content/uploads/resources/images/asymptotes-2-300x252.png 300w" sizes="(max-width: 744px) 100vw, 744px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><p>Зауважимо, що <a href="rational-functions.html">раціональна функція</a> не визначена при \( x = 1 \), оскільки знаменник стає рівним нулю. Щоб проаналізувати поведінку \( f(x) \) поблизу \( x = 1 \), обчислимо односторонні границі:</p>
+<p>\[
+\lim_{x \to 1^-} \frac{1}{x &#8211; 1} = -\infty \quad \lim_{x \to 1^+} \frac{1}{x - 1} = +\infty
+\]</p>
+<p>Це означає, що функція розбігається до \( -\infty \) при наближенні до \(1\) зліва і до \( +\infty \) при наближенні справа. Отже, пряма \( x = 1 \) є вертикальною асимптотою функції.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><h6><a href="rational-functions.html">Раціональні функції</a> часто мають вертикальні асимптоти в точках, де знаменник дорівнює нулю і функція не визначена. Ці точки відповідають неусуваним розривам, що є типовим для функцій такого типу.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Похилі асимптоти</h2>
+<p>Нехай \( y = f(x) \) — дійснозначна функція, визначена на півпрямому \( ] -\infty, a] \) або \( [a, +\infty[ \). Ми кажемо, що пряма з рівнянням \( y = px + q \) є <strong>похилою асимптотою</strong> \( f \), якщо виконується наступна умова:</p>
+<p>\[
+\begin{align}
+\lim_{x \to -\infty} \left[f(x) - (px + q)\right] &amp;= 0 \\[0.5em]
+\lim_{x \to +\infty} \left[f(x) &#8211; (px + q)\right] &amp;= 0
+\end{align}
+\]</p>
+<p>Іншими словами, різниця між функцією та прямою \( y = px + q \) прямує до нуля, коли \( x \) прямує до нескінченності або мінус нескінченності. Це означає, що функція поводиться все більше і більше як пряма \( y = px + q \) при великих значеннях \( x \).</p>
+<hr>
+<p>Рівняння похилої асимптоти \( y = px + q \) для функції \( f(x) \) можна визначити, обчисливши дві конкретні границі. Кутовий коефіцієнт \( p \) асимптоти знаходиться шляхом обчислення наступної границі:</p>
+<p>\[
+p = \lim_{x \to \pm\infty} \frac{f(x)}{x}
+\]</p>
+<p>Після того як кутовий коефіцієнт відомий, ми знаходимо вертикальне зміщення \( q \), обчислюючи:</p>
+<p>\[
+q = \lim_{x \to \pm\infty} \left[f(x) &#8211; px\right]
+\]</p>
+<p>Якщо обидві границі існують і є скінченними, то пряма \( y = px + q \) є похилою асимптотою функції.</p>
+<hr>
+<p>Розглянемо функцію:</p>
+<p>\[
+f(x) = \frac{x^2 + 1}{x}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="690" height="724" src="../images/asymptotes-3-1.png" alt="" class="wp-image-17158" style="width:345px" srcset="../images/asymptotes-3-1.png 690w, https://algebrica.org/wp-content/uploads/resources/images/asymptotes-3-1-286x300.png 286w" sizes="(max-width: 690px) 100vw, 690px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Щоб визначити, чи має ця функція похилу асимптоту при \( x \to \pm\infty \), почнемо з аналізу її поведінки при великих значеннях \( x \). Спочатку обчислимо границю:</p>
+<p>\[
+\frac{f(x)}{x} = \frac{x^2 + 1}{x^2} = 1 + \frac{1}{x^2}
+\]</p>
+<p>Оскільки \( x \to \pm\infty \), доданок \( \dfrac{1}{x^2} \) прямує до нуля, отже:</p>
+<p>\[
+\lim_{x \to \pm\infty} \frac{f(x)}{x} = 1
+\]</p>
+<p>Це вказує нам на те, що кутовий коефіцієнт асимптоти дорівнює \( p = 1 \). Далі обчислимо границю різниці між функцією та лінійним членом \( px \), щоб знайти вертикальне зміщення:</p>
+<p>\[
+f(x) - x = \frac{x^2 + 1}{x} &#8211; x = \frac{x^2 + 1 - x^2}{x} = \frac{1}{x}
+\]</p>
+<p>І знову, оскільки \( \frac{1}{x} \to 0 \) при \( x \to \pm\infty \), ми отримаємо:</p>
+<p>\[
+\lim_{x \to \pm\infty} [f(x) - x] = 0
+\]</p>
+<p>Отже, функція має похилу асимптоту з рівнянням:</p>
+<p>\[
+y = x
+\]</p>
+<h6>У цьому прикладі похила асимптота проходить через початок координат, в результаті чого \( q = 0 \), що представляє вироджений випадок. Загалом, вертикальне зміщення \( q \) не обов'язково має бути рівним нулю.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо наступну функцію як додатковий приклад, що розширює обговорення за межі виродженого випадку, представленого раніше:</p>
+<p>\[
+f(x) = \frac{2x^2 &#8211; x + 3}{2x}
+\]</p>
+<p>Щоб визначити похилу асимптоту, спочатку обчислимо кутовий коефіцієнт \( p \):</p>
+<p>\[
+\begin{align}
+p &amp;= \lim_{x \to \pm\infty} \frac{f(x)}{x} \\[6pt]
+&amp;= \lim_{x \to \pm\infty} \frac{2x^2 - x + 3}{2x^2} \\[6pt]
+&amp;= 1
+\end{align}
+\]</p>
+<p>Далі обчислимо вертикальне зміщення \( q \):</p>
+<p>\[
+\begin{align}
+q &amp;= \lim_{x \to \pm\infty} \bigl(f(x) &#8211; x\bigr) \\[6pt]
+&amp;= \lim_{x \to \pm\infty} \frac{2x^2 &#8211; x + 3 &#8211; 2x^2}{2x} \\[6pt]
+&amp;= \lim_{x \to \pm\infty} \frac{-x + 3}{2x} \\[6pt]
+&amp;= -\frac{1}{2}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula"><p>Отже, рівняння похилої асимптоти задається як:</p>
+<p>\[
+y = x - \frac{1}{2}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-recap mb-x-30"><h2>Підсумок</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Горизонтальна</td>
+<td>\[ \lim_{x \to \pm\infty} f(x) = L \]</td>
+</tr>
+<tr>
+<td>Вертикальна</td>
+<td>\[ \lim_{x \to x_0^\pm} f(x) = \pm\infty \]</td>
+</tr>
+<tr>
+<td>Похила</td>
+<td>\[ \lim_{x \to \pm\infty} [f(x) - (px+q)] = 0 \]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Ключові властивості асимптот</h2>
+<p>Асимптоти бувають різних видів і підпорядковуються певним правилам, які варто пам'ятати. Деякі з цих властивостей є інтуїтивно зрозумілими, тоді як інші стають очевидними лише після розв'язання кількох прикладів. У наступних пунктах узагальнено найважливіші факти про асимптоти та те, як вони пов'язані з поведінкою функції.</p>
+<ul>
+<li>Не всі функції мають асимптоти.</li>
+<li>Щодо горизонтальних асимптот можливі кілька конфігурацій: функція може не мати їх, вона може наближатися до однієї і тієї ж горизонтальної прямої при \( x \to +\infty \) та \( x \to -\infty \), або вона може наближатися до двох різних горизонтальних прямих у двох різних напрямках.</li>
+<li>Різні типи асимптот також можуть зустрічатися разом. Функція може одночасно мати горизонтальні, вертикальні та похилі асимптоти, залежно від її поведінки біля точок розриву та при прагненні змінної до нескінченності.</li>
+<li>Вертикальні асимптоти зазвичай виникають у точках, де функція не визначена внаслідок ділення на нуль. Ці асимптоти відповідають неусуваним розривам.</li>
+<li>Горизонтальні асимптоти характеризують поведінку функції на нескінченності, коли вона наближається до сталої величини при дуже великих або дуже малих значеннях \( x \).</li>
+<li>Похилі асимптоти виникають, коли ступінь чисельника перевищує ступінь знаменника рівно на одиницю, через що функція наближається до похилої прямої при прагненні \( x \) до нескінченності.</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке асимптота?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Асимптота — це пряма, до якої функція наближається нескінченно, але ніколи її не досягає. Асимптоти описують поведінку функції на нескінченності або біля точок, де вона не визначена."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке горизонтальна асимптота?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Горизонтальна асимптота — це горизонтальна пряма, до якої функція наближається, коли незалежна змінна x прагне до позитивної або негативної нескінченності. Вона визначається через границю функції при прагненні x до нескінченності або мінус нескінченності."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке вертикальна асимптота?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вертикальна асимптота — це вертикальна пряма, до якої функція наближається, коли її значення розбігаються до позитивної або негативної нескінченності при наближенні x до певної точки зліва або справа. Вона часто виникає в точках, де функція не визначена через ділення на нуль."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли функція має похилу асимптоту?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функція має похилу асимптоту, коли ступінь чисельника рівно на одиницю більша за ступінь знаменника. У цьому випадку функція на нескінченності прагне до похилої прямої."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи може функція мати більше одного типу асимптот?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так, функція може мати вертикальні, горизонтальні та похилі асимптоти, залежно від її поведінки біля точок розриву та на нескінченності. Однак вона не може мати одночасно і горизонтальну, і похилу асимптоту в одному й тому самому напрямку."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="asymptotes.html">algebrica.org/asymptotes</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теорема Піфагора — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Теорема Піфагора</h1>
+        <time>2025-02-07</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Формулювання</h2>
+<p>Теорема Піфагора стверджує, що в кожному прямокутному трикутнику квадрат гіпотенузи дорівнює сумі квадратів двох катетів:</p>
+<p>\[
+a^2 + b^2 = c^2
+\]</p>
+<p>де \( c \) — гіпотенуза, а \( a \), \( b \) — катети. Важливо зазначити, що теорема Піфагора застосовується виключно до прямокутних трикутників (трикутників, що містять рівно один кут у 90 градусів).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="790" height="690" src="../images/pythagorean-theorem-2.png" alt="" class="wp-image-16608" style="width:395px" srcset="../images/pythagorean-theorem-2.png 790w, https://algebrica.org/wp-content/uploads/resources/images/pythagorean-theorem-2-300x262.png 300w, https://algebrica.org/wp-content/uploads/resources/images/pythagorean-theorem-2-768x671.png 768w" sizes="(max-width: 790px) 100vw, 790px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Дано прямокутний трикутник зі сторонами \( a \), \( b \) (катетами) та \( c \) (гіпотенузою), тоді зв'язки між сторонами згідно з теоремою Піфагора такі:</p>
+<p>Гіпотенуза:
+\[
+c = \sqrt{a^2 + b^2}
+\]</p>
+<p>Катет \( a \):
+\[
+a = \sqrt{c^2 - b^2}
+\]</p>
+<p>Катет \( b \):
+\[
+b = \sqrt{c^2 &#8211; a^2}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Також виконується обернена теорема Піфагора: якщо в трикутнику зі сторонами \( a \), \( b \) та \( c \) виконується рівність \( a^2 + b^2 = c^2 \), то трикутник є прямокутним.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Застосування</h2>
+<p>Теорема Піфагора може бути застосована щоразу, коли фігуру можна розбити таким чином, щоб вона містила прямокутний трикутник. Це корисно для визначення довжини сторін, діагоналей або інших відрізків, що належать початковій фігурі. Розглянемо, наприклад, квадрат, як показано на малюнку:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="336" height="416" src="../images/pythagorean-theorem-3.png" alt="" class="wp-image-16625" style="width:168px" srcset="../images/pythagorean-theorem-3.png 336w, https://algebrica.org/wp-content/uploads/resources/images/pythagorean-theorem-3-242x300.png 242w" sizes="(max-width: 336px) 100vw, 336px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Провівши діагональ, можна розділити квадрат на два прямокутні трикутники, з яких можна вивести наступні зв'язки:</p>
+<p>\[
+\begin{aligned}
+\overline{DB}^2 &amp;= \overline{AB}^2 + \overline{AD}^2 \\[0.5em]
+\overline{DB} &amp;= \sqrt{\overline{AB}^2 + \overline{AD}^2}
+\end{aligned}
+\]</p>
+<hr>
+<p>Цей самий принцип можна застосувати до рівнобічних або рівносторонніх трикутників, розділивши фігуру на два прямокутні трикутники за її висотою.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="376" height="400" src="../images/pythagorean-theorem-4.png" alt="" class="wp-image-16630" style="width:188px" srcset="../images/pythagorean-theorem-4.png 376w, https://algebrica.org/wp-content/uploads/resources/images/pythagorean-theorem-4-282x300.png 282w" sizes="(max-width: 376px) 100vw, 376px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>У трикутнику, зображеному на малюнку, ми можемо, отже, вивести наступне:
+\[
+\begin{aligned}
+\overline{CB} &amp;= \sqrt{\overline{CH}^2 + \overline{HB}^2} \\[0.5em]
+\overline{CH} &amp;= \sqrt{\overline{CB}^2 - \overline{HB}^2} \\[0.5em]
+\overline{HB} &amp;= \sqrt{\overline{CB}^2 - \overline{CH}^2}
+\end{aligned}
+\]</p>
+<h5>Загалом, цей принцип можна застосувати до всіх геометричних фігур, які можуть бути частково зведені до прямокутних трикутників, таких як прямокутники, ромби або частини трапецій.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Піфагорові трійки</h2>
+<p>Піфагорові трійки — це множини з трьох додатних <a href="integers.html">цілих чисел</a> \( (a, b, c) \), що задовольняють рівняння</p>
+<p>\[
+a^2 + b^2 = c^2
+\]</p>
+<p>Деякі приклади піфагорових трійок наведені нижче:</p>
+<p>\[
+\begin{aligned}
+(3,\ 4,\ 5) \\[0.5em]
+(5,\ 12,\ 13) \\[0.5em]
+(7,\ 24,\ 25) \\[0.5em]
+(8,\ 15,\ 17)
+\end{aligned}
+\]</p>
+<p>Піфагорові трійки, що складаються з цілих чисел, які є попарно взаємно простими, називаються примітивними трійками. Усі примітивні трійки є піфагоровими трійками, але оберне твердження не є правильним: не всі піфагорові трійки є примітивними. Непримітивні трійки є просто кратними примітивній трійці.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Піфагорова тотожність на одиничному колі</h2>
+<p>Розглянемо тепер <a href="unit-circle.html">одиничне коло</a>, тобто коло з радіусом r = 1. Згадуючи означення <a href="sine-and-cosine.html">синуса та косинуса</a>, ми можемо помітити, що в одиничному колі радіус відіграє роль гіпотенузи, косинус кута \( \theta \) відповідає горизонтальному катету (прилеглому боку), а синус кута \( \theta \) відповідає вертикальному катету (протилежному боку), утворюючи прямокутний трикутник, вписаний у коло.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="670" height="546" src="../images/pythagorean-theorem-1.png" alt="" class="wp-image-16591" style="width:335px" srcset="../images/pythagorean-theorem-1.png 670w, https://algebrica.org/wp-content/uploads/resources/images/pythagorean-theorem-1-300x244.png 300w" sizes="(max-width: 670px) 100vw, 670px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><p>Ми також бачили, що існує <a href="pythagorean-identity.html">основна тригонометрична тотожність</a>, яка пов'язує значення синуса та косинуса, яка має вигляд:</p>
+<p>\[
+\sin^2 \theta + \cos^2 \theta = 1
+\]</p>
+<p>Ця тотожність є тригонометричною версією теореми Піфагора, застосованою до прямокутного трикутника, утвореного всередині одиничного кола, де \( \sin \theta \) та \( \cos \theta \) є катетами, а радіус (гіпотенуза) дорівнює 1.</p>
+<p> <a href="law-of-cosines.html">Теорема косинусів</a> надає узагальнену версію теореми Піфагора, тоді як <a href="law-of-sines.html">теорема синусів</a> пропонує інший зв'язок між кутами та сторонами, що є корисним для розв'язання будь-якого типу трикутників.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Модуль комплексного числа та теорема Піфагора</h2>
+<p>Теорема Піфагора також знаходить природне застосування в області <a href="complex-numbers-introduction.html">комплексних чисел</a>, особливо при обчисленні модуля комплексного числа. Фактично, модуль представляє відстань від початку координат до точки на комплексній площині, яка обчислюється так само, як гіпотенуза прямокутного трикутника. Комплексне число можна записати у вигляді:</p>
+<p>\[
+z = a + bi
+\]</p>
+<p>де \( a \) — дійсна частина, а \( b \) — уявна частина. На комплексній площині точка \( z \) відповідає координатам \( (a, b) \). Модуль \( |z| \) представляє відстань від початку координат \( (0, 0) \) до точки \( (a, b) \) і обчислюється за допомогою теореми Піфагора:</p>
+<p>\[
+|z| = \sqrt{a^2 + b^2}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="798" height="620" src="../images/complex-number-3.png" alt="" class="wp-image-16014" style="width:399px" srcset="../images/complex-number-3.png 798w, https://algebrica.org/wp-content/uploads/resources/images/complex-number-3-300x233.png 300w, https://algebrica.org/wp-content/uploads/resources/images/complex-number-3-768x597.png 768w" sizes="(max-width: 798px) 100vw, 798px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-glossary"><h2>Глосарій</h2>
+<ul>
+<li>
+<p>Прямокутний трикутник: трикутник, який містить рівно один прямий кут (90 градусів).</p>
+</li>
+<li>
+<p>Гіпотенуза: найдовша сторона прямокутного трикутника, що лежить навпроти прямого кута.</p>
+</li>
+<li>
+<p>Катети: дві коротші сторони прямокутного трикутника, що утворюють прямий кут.</p>
+</li>
+<li>
+<p>Піфагорові трійки: множина з трьох додатних цілих чисел \( (a, b, c) \), що задовольняють рівняння \( a^2 + b^2 = c^2 \).</p>
+</li>
+<li>
+<p>Примітивні трійки: піфагорові трійки, що складаються з цілих чисел, які є попарно взаємно простими.</p>
+</li>
+<li>
+<p><a href="unit-circle.html">Одиничне коло</a>: коло з радіусом, що дорівнює 1, з центром у початку координат системи координат.</p>
+</li>
+<li>
+<p><a href="pythagorean-identity.html">Основна тригонометрична тотожність</a>: відношення \( \sin^2 \theta + \cos^2 \theta = 1 \), яке безпосередньо випливає з теореми Піфагора, застосованої до одиничного кола.</p>
+</li>
+<li>
+<p><a href="law-of-cosines.html">Теорема косинусів</a>: узагальнення теореми Піфагора, яке застосовується до будь-якого трикутника, а не тільки до прямокутних.</p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке теорема Піфагора?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема Піфагора стверджує, що в будь-якому прямокутному трикутнику квадрат гіпотенузи дорівнює сумі квадратів двох інших сторін: a² + b² = c²."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли можна використовувати теорему Піфагора?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Її можна використовувати щоразу, коли йдеться про прямокутний трикутник, особливо для обчислення невідомих довжин сторін, діагоналей або для перевірки, чи є трикутник прямокутним."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка різниця між теоремою Піфагора та теоремою косинусів?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема Піфагора застосовується тільки до прямокутних трикутників, тоді як теорема косинусів узагальнює її для всіх типів трикутників, включаючи косинус кута."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="pythagorean-theorem.html">algebrica.org/pythagorean-theorem</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

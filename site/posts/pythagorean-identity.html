@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основна тригонометрична тотожність — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Основна тригонометрична тотожність</h1>
+        <time>2025-02-07</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-13" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Тотожність                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті показана на концептуальній карті, де кожна гілка представляє основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="pythagorean-theorem.html">теорема Піфагора</a>, <a href="sine-and-cosine.html">синус і косинус</a>, <a href="unit-circle.html">одиничне коло</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-13");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"right triangle"},{"name":"pythagorean theorem"},{"name":"unit circle"},{"name":"sine coordinate"},{"name":"cosine coordinate"},{"name":"angle definition"}]},{"name":"identity","children":[{"name":"sin\u00b2\u03b8 + cos\u00b2\u03b8 = 1"},{"name":"solve for sine"},{"name":"solve for cosine"},{"name":"quadrant signs"},{"name":"unit circle relation"},{"name":"distance relation"}]},{"name":"applications","children":[{"name":"derived identities"},{"name":"tangent secant"},{"name":"cotangent cosecant"},{"name":"expression simplification"},{"name":"function rewriting"},{"name":"trigonometric substitution"},{"name":"analytic interpretation"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group alignCenterMathjax pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Означення</h2>
+<p>Піфагорова тотожність — це рівняння, що пов'язує тригонометрію та геометрію, і воно випливає безпосередньо з <a href="pythagorean-theorem.html">теореми Піфагора</a>, яка пов'язує сторони прямокутного трикутника. Розглянемо прямокутний трикутник, гіпотенуза якого має довжину \(1\). Розмістивши трикутник на <a href="unit-circle.html">одиниковому колі</a> та позначивши \(\theta\) як кут при початку координат, отримаємо, що два катети мають довжини, що дорівнюють \(\sin(\theta)\) та \(\cos(\theta)\) відповідно.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="672" height="542" src="../images/pythagorean-identity-1-2.png" alt="" class="wp-image-26358" style="width:336px" srcset="../images/pythagorean-identity-1-2.png 672w, https://algebrica.org/wp-content/uploads/resources/images/pythagorean-identity-1-2-300x242.png 300w" sizes="(max-width: 672px) 100vw, 672px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Тотожність має вигляд</p>
+<p>\[
+\sin^2\theta + \cos^2\theta = 1
+\]</p>
+<p>де \(\sin^2\theta\) означає \((\sin\theta)^2\), а \(\cos^2\theta\) означає
+\((\cos\theta)^2\). Щоб зрозуміти, чому це так, нагадаємо, що теорема Піфагора стверджує, що в будь-якому прямокутному трикутнику квадрат гіпотенузи дорівнює сумі квадратів двох катетів.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="786" height="696" src="../images/pythagorean-identity-2-1.png" alt="Pythagorean theorem." class="wp-image-26361" style="width:393px" title="Pythagorean theorem." srcset="../images/pythagorean-identity-2-1.png 786w, https://algebrica.org/wp-content/uploads/resources/images/pythagorean-identity-2-1-300x266.png 300w, https://algebrica.org/wp-content/uploads/resources/images/pythagorean-identity-2-1-768x680.png 768w" sizes="(max-width: 786px) 100vw, 786px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Позначаючи гіпотенузу як \(c\), а катети як \(a\) та \(b\), теорема записується так:</p>
+<p>\[
+a^2 + b^2 = c^2
+\]</p>
+<p>Розмістивши трикутник всередині одиничного кола, гіпотенуза \(c\) збігається з радіусом кола, який за означенням дорівнює одному. Підставивши \(c = 1\), \(a =
+\sin\theta\) та \(b = \cos\theta\) у рівняння вище, ми безпосередньо отримаємо піфагорову тотожність.</p>
+<hr>
+<p>Піфагорова тотожність дозволяє виразити кожну з двох функцій через іншу. Розв'язання відносно синуса дає:</p>
+<p>\[
+\sin\theta = \pm \sqrt{1 &#8211; \cos^2\theta}
+\]</p>
+<p>а розв'язання відносно косинуса дає:</p>
+<p>\[
+\cos\theta = \pm \sqrt{1 &#8211; \sin^2\theta}
+\]</p>
+<p>У кожному випадку знак залежить від <a href="identities-using-reference-angles.html">квадранта</a>, в якому лежить \(\theta\). У першому квадранті обидві функції додатні, тому застосовується додатний квадратний корінь; у решті квадрантів знак слід обрати відповідно до відомого знака відповідної функції в цій області.</p>
+<hr>
+<p>Ця ж тотожність також дає підґрунтя для двох подальших співвідношень: одне включає <a href="tangent-and-cotangent.html">тангенс</a> та <a href="secant-and-cosecant.html">секанс</a>, інше — <a href="tangent-and-cotangent.html">котангенс</a> та
+<a href="secant-and-cosecant.html">косеканс</a>.</p>
+<p>Щоб отримати перше, поділимо обидві частини \(\sin^2\theta + \cos^2\theta = 1\) на
+\(\cos^2\theta\):</p>
+<p>\[
+\frac{\sin^2\theta}{\cos^2\theta} + \frac{\cos^2\theta}{\cos^2\theta} = \frac{1}{\cos^2\theta}
+\]</p>
+<p>Зауваживши, що \(\sin\theta / \cos\theta = \tan\theta\) та \(1/\cos\theta = \sec\theta\), рівняння зводиться до:</p>
+<p>\[
+\tan^2\theta + 1 = \sec^2\theta
+\]</p>
+<p>Щоб отримати друге, поділимо обидві частини замість цього на \(\sin^2\theta\):</p>
+<p>\[
+\frac{\sin^2\theta}{\sin^2\theta} + \frac{\cos^2\theta}{\sin^2\theta} = \frac{1}{\sin^2\theta}
+\]</p>
+<p>Оскільки \(\cos\theta / \sin\theta = \cot\theta\) та \(1/\sin\theta = \csc\theta\), це
+спрощується до:</p>
+<p>\[
+1 + \cot^2\theta = \csc^2\theta
+\]</p>
+<p>Три отримані тотожності разом із початковою піфагоровою тотожністю становлять основу більшості алгебраїчних перетворень, що зустрічаються в тригонометрії.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Обмеження області визначення</h2>
+<p>Тотожності:</p>
+<p>\[\tan^2\theta + 1 = \sec^2\theta\]
+\[1 + \cot^2\theta = \csc^2\theta\]</p>
+<p>виконуються лише там, де відповідні ділення визначені. Ділення на \(\cos^2\theta\) є правильним для всіх \(\theta\), які не є непарними кратними \(\dfrac{\pi}{2}\), оскільки саме при цих значеннях \(\cos\theta = 0\), а \(\tan\theta\) та \(\sec\theta\) не визначені.</p>
+<p>Аналогічно, ділення на \(\sin^2\theta\) вимагає \(\sin\theta \neq 0\), що виключає всі цілі кратні \(\pi\), де \(\cot\theta\) та \(\csc\theta\) не визначені. Початкова тотожність \(\sin^2\theta + \cos^2\theta = 1\), натомість, виконується для будь-якого дійсного значення \(\theta\) без винятку.</p>
+<p>Цей збіг між обмеженнями <a href="determining-the-domain-of-a-function.html">області визначення</a> та природними областями визначення \(\tan\), \(\sec\), \(\cot\) та \(\csc\) не є випадковим. Ці чотири функції визначені саме як відношення, що включають синус і косинус, тому значення, виключені з їхніх областей визначення, — це саме ті значення, при яких відповідний знаменник перетворюється на нуль. Отже, обмеження, що виникають при виведенні тотожностей шляхом ділення, є тими самими обмеженнями, що визначають самі функції, і не могли бути іншими.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Справедливість для довільних кутів</h2>
+<p>Геометричний аргумент, наведений вище, встановлює тотожність для гострих кутів, оскільки він ґрунтується на інтерпретації синуса та косинуса як довжин катетів прямокутного трикутника. Така інтерпретація перестає бути змістовною, коли \(\theta\) є тупим, від'ємним або більшим за \(2\pi\), тому необхідне більш загальне обґрунтування.</p>
+<p>Стандартним підходом є аналітичне означення синуса та косинуса через одиничне коло. Для будь-якого дійского числа \(\theta\) \(\cos\theta\) та \(\sin\theta\) визначаються як координати точки, отриманої шляхом переміщення на відстань \(\theta\) вздовж одиничного кола, починаючи з точки \((1, 0)\), за домовленістю, що додатні значення відповідають руху проти годинникової стрілки.</p>
+<p>За таким означенням точка \((\cos\theta, \sin\theta)\) за побудовою лежить на одиничному колі, а рівняння одиничного кола має вигляд \(x^2 + y^2 = 1\). Підставляючи \(x = \cos\theta\) та \(y = \sin\theta\), отримаємо:</p>
+<p>\[
+\cos^2\theta + \sin^2\theta = 1
+\]</p>
+<p>для кожного дійского значення \(\theta\), без будь-яких обмежень щодо чверті або величини кута. Таким чином, ця тотожність є не наслідком геометрії трикутника, а прямим вираженням означення тригонометричних функцій на дійсній прямій.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Приклад 1</h2>
+<p>Піфагорова тотожність часто є корисною для спрощення виразів, у яких вона на перший погляд не помітна. Наступний вираз ілюструє, як розпізнавання алгебраїчної структури в чисельнику може звести, здавалося б, нетривіальний дріб до сталі. Розглянемо вираз:</p>
+<p>\[
+\frac{\sin^4\theta - \cos^4\theta}{\sin^2\theta - \cos^2\theta}
+\]</p>
+<p>Чисельник є різницею квадратів і відповідно розкладається на множники як:</p>
+<p>\[
+\sin^4\theta - \cos^4\theta = (\sin^2\theta + \cos^2\theta)(\sin^2\theta - \cos^2\theta)
+\]</p>
+<p>Оскільки \(\sin^2\theta + \cos^2\theta = 1\) за Піфагоровою тотожністю, чисельник спрощується до \(\sin^2\theta - \cos^2\theta\). Отже, вираз спрощується до:</p>
+<p>\[
+\frac{\sin^2\theta &#8211; \cos^2\theta}{\sin^2\theta &#8211; \cos^2\theta} = 1
+\]</p>
+<p>за умови, що \(\sin^2\theta \neq \cos^2\theta\), тобто для всіх \(\theta\), які не є непарними кратними \(\dfrac{\pi}{4}\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Переписування виразів через одну функцію</h2>
+<p>Поширеною вимогою у вищому численнях та математичному аналізі є переписування тригонометричного виразу так, щоб він містив лише одну функцію. Три Піфагорові тотожності забезпечують систематичний спосіб зробити це, і ця техніка неодноразово зустрічається в широкому спектрі задач: від спрощення тригонометричних виразів до обчислення інтегралів та розв'язання диференціальних рівнянь.</p>
+<p>З фундаментальної тотожності:</p>
+<p>\[\sin^2\theta + \cos^2\theta = 1\]</p>
+<p>ми отримаємо два правила заміни:</p>
+<p>\[\sin^2\theta = 1 &#8211; \cos^2\theta\]
+\[\cos^2\theta = 1 &#8211; \sin^2\theta\]</p>
+<p>Це дозволяє будь-який <a href="polynomials.html">поліноміальний</a> вираз, що містить і синус, і косинус, звести до полінома лише від однієї з цих функцій. Наприклад, вираз вигляду:</p>
+<p>\[\sin^2\theta + 2\sin\theta\cos\theta + \cos^2\theta\]</p>
+<p>можна спростити, зауваживши, що: \(\sin^2\theta + \cos^2\theta = 1\), що залишає \(1 + 2\sin\theta\cos\theta\), що розпізнається як \(1 + \sin 2\theta\).</p>
+<p>Похідні тотожності слугують тій самій меті для виразів, що містять обернені та відношеннєві функції. З \(\tan^2\theta + 1 = \sec^2\theta\) отримують \(\tan^2\theta = \sec^2\theta &#8211; 1\), що є корисним щоразу, коли вираз містить \(\tan\theta\) та \(\sec\theta\) і потрібне зведення до однієї функції.</p>
+<p>Аналогічно, з \(1 + \cot^2\theta = \csc^2\theta\) отримують \(\cot^2\theta = \csc^2\theta &#8211; 1\), що дозволяє записувати вирази в \(\cot\theta\) та \(\csc\theta\) лише через \(\csc\theta\).</p>
+<p>Багато стандартних <a href="definite-integrals.html">інтегралів</a> вимагають, щоб підінтегральна функція була представлена у вигляді, що відповідає відомому шаблону, перш ніж можна буде застосувати заміну. Інтеграл від \(\tan^2\theta\), наприклад, не піддається негайному зведенню за елементарними правилами. Заміна \(\tan^2\theta = \sec^2\theta &#8211; 1\) переписує підінтегральний вираз як різницю двох доданків, кожен з яких інтегрується просто:</p>
+<p>\[
+\begin{align}
+\int \tan^2\theta \, d\theta &amp;= \int (\sec^2\theta - 1) \, d\theta \\[6pt]
+&amp;= \int \sec^2\theta \, d\theta \, - \int d\theta \\[6pt]
+&amp;= \tan\theta - \theta + c
+\end{align}
+\]</p>
+<p>Цей самий принцип лежить в основі тригонометричної підстановки, де вирази з радикалами, такими як \(\sqrt{1 &#8211; x^2}\) або \(\sqrt{1 + x^2}\), обробляються шляхом введення тригонометричної змінної з подальшим застосуванням відповідної Піфагорової тотожності для повного усунення радикалу. У випадку \(\sqrt{1 &#8211; x^2}\) підстановка \(x = \sin\theta\) перетворює радикал наступним чином:</p>
+<p>\[
+\sqrt{1 - x^2} = \sqrt{1 &#8211; \sin^2\theta} = \sqrt{\cos^2\theta} = |\cos\theta|
+\]</p>
+<p>що зводиться до \(\cos\theta\), коли \(\theta \in \left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right]\), що є стандартним проміжком, обраним для цієї підстановки. Радикал було повністю усунуто, і отриманий інтеграл містить лише тригонометричні функції, до яких безпосередньо застосовуються стандартні методи.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Заміна \(x = \sin\theta\) є стандартним методом для інтегралів, що містять радикал \(\sqrt{1 &#8211; x^2}\). Саме піфагорова тотожність робить цю заміну ефективною: вона гарантує, що радикал зводиться до однієї тригонометричної функції, повністю усуваючи квадратний корінь. Розглянемо наступний інтеграл:</p>
+<p>\[
+\int \sqrt{1 &#8211; x^2} \, dx
+\]</p>
+<p>Нехай \(x = \sin\theta\), де \(\theta \in \left[-\dfrac{\pi}{2}, \dfrac{\pi}{2}\right]\), тоді \(dx = \cos\theta \, d\theta\). <a href="radicals.html">Радикал</a> перетворюється наступним чином:</p>
+<p>\[
+\sqrt{1 &#8211; x^2} = \sqrt{1 - \sin^2\theta} = \sqrt{\cos^2\theta} = \cos\theta
+\]</p>
+<p>де на останньому кроці використано той факт, що \(\cos\theta \geq 0\) на обраному проміжку. Підставляючи в інтеграл, отримаємо:</p>
+<p>\[
+\int \sqrt{1 - x^2} \, dx = \int \cos\theta \cdot \cos\theta \, d\theta = \int \cos^2\theta \, d\theta
+\]</p>
+<p>Підінтегральна функція \(\cos^2\theta\) обробляється за допомогою тотожності \(\cos^2\theta = \dfrac{1 + \cos 2\theta}{2}\), що дає:</p>
+<p>\[
+\begin{align}
+\int \cos^2\theta \, d\theta &amp;= \int \frac{1 + \cos 2\theta}{2} \, d\theta \\[6pt]
+&amp;= \frac{\theta}{2} + \frac{\sin 2\theta}{4} + c
+\end{align}
+\]</p>
+<p>Залишається повернутися до початкової змінної. Оскільки \(x = \sin\theta\), маємо \(\theta = \arcsin x\). Для члена \(\sin 2\theta\) формула подвійного кута дає \(\sin 2\theta = 2\sin\theta\cos\theta = 2x\sqrt{1-x^2}\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язання таке:</p>
+<p>\[
+\int \sqrt{1 - x^2} \, dx = \frac{\arcsin x}{2} + \frac{x\sqrt{1 &#8211; x^2}}{2} + c
+\]</p>
+<h6>Це формула площі півкола одиничного радіуса, як і очікувалося з геометричної інтерпретації підінтегральної функції.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Зв'язок із формулою Ейлера</h2>
+<p>Піфагорова тотожність має особливо просте доведення, як тільки тригонометричні функції розширюються на комплексну площину. Формула Ейлера стверджує, що для будь-якого дійсного \(\theta\) <a href="complex-numbers-exponential-form.html">комплексна експонента</a> задовольняє рівності:</p>
+<p>\[e^{i\theta} = \cos\theta + i\sin\theta\]</p>
+<p>Оскільки \(e^{i\theta}\) лежить на одиничному колі в комплексній площині, його <a href="complex-numbers-introduction.html">модуль</a> дорівнює одиниці. Обчислення квадрата модуля безпосередньо дає:</p>
+<p>\[
+|e^{i\theta}|^2 = \cos^2\theta + \sin^2\theta = 1
+\]</p>
+<p>що відновлює піфагорову тотожність як прямий наслідок означення експоненціальної функції на уявній осі.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке піфагорова тотожність?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Піфагорова тотожність — це фундаментальне тригонометричне рівняння: sin²θ + cos²θ = 1. Вона виражає зв'язок між синусом і косинусом кута."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому вона називається піфагоровою тотожністю?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вона називається піфагоровою тотожністю, тому що нагадує теорему Піфагора для прямокутних трикутників, пов'язуючи квадрати синуса та косинуса з одиницею."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка геометрична інтерпретація піфагорової тотожності?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Піфагорова тотожність представляє рівняння одиничного кола в декартовій площині, де будь-яка точка (cosθ, sinθ) лежить на колі, визначеному рівнянням x² + y² = 1."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як можна використовувати піфагорову тотожність у тригонометрії?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Піфагорова тотожність використовується для спрощення тригонометричних виразів, доведення інших тотожностей та розв'язування тригонометричних рівнянь."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="pythagorean-identity.html">algebrica.org/pythagorean-identity</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

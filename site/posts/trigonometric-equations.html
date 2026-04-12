@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тригонометричні рівняння: частина 1 — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Тригонометричні рівняння: частина 1</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><p>Тригонометричні рівняння — це <a href="equations.html">рівняння</a>, у яких невідома змінна виступає як аргумент тригонометричних функцій. Існує кілька типів таких рівнянь, кожне з яких має відповідний метод розв'язання, як описано нижче. У цій першій частині ми розглянемо, як розв'язувати прості тригонометричні рівняння вигляду:</p>
+<p>\[ \sin(x) = m, \quad \cos(x) = m , \quad \tan(x) = m, \quad … \]</p>
+<p>а також рівняння типу:</p>
+<p>\[ \sin[f(x)], \quad \cos[f(x)], \quad \tan[f(x)], \quad … \]</p>
+<p>і так далі.</p>
+<hr>
+<h2>Прості тригонометричні рівняння</h2>
+<p>Почнемо з найпростіших випадків. Розглянемо, наприклад, рівняння, що містять одну тригонометричну функцію вигляду:</p>
+<p>\[\sin(x) = m \tag{1}\]</p>
+<p>Щоб розв'язати це рівняння, нам потрібно визначити всі кути \( x \), чий <a href="sine-and-cosine.html">синус</a> дорівнює \( m \). Оскільки функція синуса визначена в області значень \( -1 \leq m \leq 1 \), ця умова має бути виконана; в іншому випадку рівняння не має дійсних розв'язків і вважається неможливим. На <a href="unit-circle.html">одиниковому колі</a> ми можемо візуалізувати це рівняння, провівши горизонтальну пряму \( y = m \), яка перетинає коло у двох точках у першій та другій чвертях, за умови, що \( -1 \leq m \leq 1 \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="616" height="550" src="../images/trigonometric-equations-1.png" alt="" class="wp-image-6970" style="width:308px" srcset="../images/trigonometric-equations-1.png 616w, https://algebrica.org/wp-content/uploads/resources/images/trigonometric-equations-1-300x268.png 300w" sizes="(max-width: 616px) 100vw, 616px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Ці точки перетину відповідають двом кутам:</p>
+<p>\[
+x = \alpha \quad \text{та} \quad x = \pi &#8211; \alpha
+\]</p>
+<p>де \( \alpha \) — це опорний кут, такий що \( \sin(\alpha) = m \) у головній області \( [0, \pi] \). Оскільки функція синуса є періодичною з періодом \( 2\pi \), загальний розв'язок можна записати як:</p>
+<p>\[
+x = \alpha + 2k\pi, \quad x = \pi &#8211; \alpha + 2k\pi, \quad k \in \mathbb{Z}
+\]</p>
+<p>де \( k \) — будь-яке <a href="integers.html">ціле число</a>, що враховує періодичну природу <a href="sine-function.html">функції синуса</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Наприклад, ми хочемо розв'язати рівняння \(\cos x = 1/2\) на проміжку \( [0, 2\pi] \). Побудуємо пряму на рівні значення \(1/2\) на графіку <a href="cosine-function.html">функції косинуса</a>.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="834" height="390" src="../images/trigonometric-equations-2.png" alt="" class="wp-image-6978" style="width:417px" srcset="../images/trigonometric-equations-2.png 834w, https://algebrica.org/wp-content/uploads/resources/images/trigonometric-equations-2-300x140.png 300w, https://algebrica.org/wp-content/uploads/resources/images/trigonometric-equations-2-768x359.png 768w" sizes="(max-width: 834px) 100vw, 834px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>З відомих значень <a href="sine-and-cosine.html">косинуса</a> ми пам'ятаємо, що:</p>
+<p>\[
+\cos\left(\frac{\pi}{3}\right) = \frac{1}{2}
+\]</p>
+<p>Оскільки косинус додатний у першій та четвертій чвертях, два розв'язання на заданому проміжку такі:</p>
+<p>\[
+x_1 = \frac{\pi}{3}, \quad x_2 = \frac{5\pi}{3}
+\]</p>
+<hr>
+<p>Тепер спробуймо розв'язати рівняння \( \tan x = 2 \). Побудуємо пряму на рівні значення \( 2 \) на графіку <a href="tangent-function.html">функції тангенса</a>.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="411" height="205" src="../images/trigonometric-equations-3.png" alt="" class="wp-image-6986" style="width:411px" srcset="../images/trigonometric-equations-3.png 411w, https://algebrica.org/wp-content/uploads/resources/images/trigonometric-equations-3-300x150.png 300w" sizes="(max-width: 411px) 100vw, 411px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Щоб визначити розв'язання, спочатку знайдемо головний кут \( x \), такий що:</p>
+<p>\[\tan x = 2\]</p>
+<p>Оскільки функція тангенса є періодичною з періодом \( \pi \), загальний розв'язок має вигляд:</p>
+<p>\[
+x = \arctan(2) + k\pi, \quad k \in \mathbb{Z}
+\]</p>
+<p>де \( k \) — будь-яке ціле число, що представляє всі можливі розв'язання.</p>
+<p>Коли значення тангенса не є одним із commonly used (загальновживаних), ми можемо застосувати арктангенс — обернену функцію до тангенса — щоб визначити головний кут. Цей підхід дозволяє нам обчислити відповідний кут безпосередньо, не покладаючись на стандартні значення тангенса. Той самий принцип застосовується до інших обернених тригонометричних функцій, таких як <a href="arcsine-and-arccosine.html">arcsin</a> та <a href="arcsine-and-arccosine.html">arccosine</a>, які дозволяють нам знайти відповідні кути для будь-яких заданих значень синуса або косинуса.</p>
+<hr>
+<h2>Тригонометричні рівняння, що розв'язуються заміною</h2>
+<p>Іншим прикладом тригонометричних рівнянь є ті, що зазвичай розв'язуються шляхом заміни та мають вигляд:</p>
+<p>\[
+\sin[f(x)] = m \tag{2}
+\]</p>
+<p>Щоб розв'язати таке рівняння, спочатку переконайтеся, що \( m \) знаходиться в інтервалі \([-1,1]\), який є допустимою областю значень для функції синуса. Потім застосуйте заміну до \( f(x) \), щоб спростити рівняння та легше його розв'язати. Наприклад, розглянемо рівняння</p>
+<p>\[
+\sin(2x) = \frac{1}{2}
+\]</p>
+<p>Оскільки \(1/2\) знаходиться в допустимій області значень, ми прирівняємо \(2x\) до кутів, синус яких дорівнює \(1/2\). Ми знаємо, що якщо \(\sin(u) = 1/2\), то:</p>
+<p>\[
+u = \frac{\pi}{6} + 2\pi k \quad \text{або} \quad u = \frac{5\pi}{6} + 2\pi k, \quad k \in \mathbb{Z}
+\]</p>
+<p>Підставляючи \(u = 2x\) у ці вирази, отримаємо:</p>
+<p>\[
+2x = \frac{\pi}{6} + 2\pi k \quad \text{або} \quad 2x = \frac{5\pi}{6} + 2\pi k
+\]</p>
+<p>Поділивши обидва рівняння на 2, отримаємо розв'язання для \( x \):</p>
+<p>\[
+x = \frac{\pi}{12} + \pi k \quad \text{або} \quad x = \frac{5\pi}{12} + \pi k, \quad k \in \mathbb{Z}
+\]</p>
+<hr>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Розв'яжіть рівняння:</p>
+<p>\[
+\cos(3x + 2) = \frac{1}{\sqrt{2}}
+\]</p>
+<hr>
+<p>Спочатку згадаємо, що \( \cos u = \frac{1}{\sqrt{2}} \) має розв'язання при</p>
+<p>\[
+u= \frac{\pi}{4} + 2k\pi \quad \text{або} \quad u = -\frac{\pi}{4} + 2k\pi, \quad k \in \mathbb{Z}.
+\]</p>
+<p>Прирівнявши \( 3x + 2 \) до цих розв'язань, отримаємо два рівняння:</p>
+<p>\[
+3x + 2 = \frac{\pi}{4} + 2k\pi
+\]</p>
+<p>\[
+3x + 2 = -\frac{\pi}{4} + 2k\pi
+\]</p>
+<hr>
+<p>Віднімаючи \(2\) від обох частин:</p>
+<p>\[
+3x = \frac{\pi}{4} &#8211; 2 + 2k\pi
+\]</p>
+<p>\[
+3x = -\frac{\pi}{4} - 2 + 2k\pi
+\]</p>
+<p>Поділивши все на 3, знайдемо:</p>
+<p>\[
+x = \frac{\pi}{12} &#8211; \frac{2}{3} + \frac{2k\pi}{3}
+\]</p>
+<p>\[
+x = -\frac{\pi}{12} - \frac{2}{3} + \frac{2k\pi}{3}, \quad k \in \mathbb{Z}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Таким чином, загальні розв'язання можна записати як:</p>
+<p>\[
+x = \frac{\pi - 8}{12} + \frac{2k\pi}{3}
+\]</p>
+<p>\[
+x = \frac{-\pi - 8}{12} + \frac{2k\pi}{3}, \quad k \in \mathbb{Z}
+\]</p>
+<p>Це представляє всі можливі значення \( x \), що задовольняють задане рівняння.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="trigonometric-equations.html">algebrica.org/trigonometric-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

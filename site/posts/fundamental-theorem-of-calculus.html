@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Основна теорема математичного аналізу — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Інтеграли</span>
+    </nav>
+    <article>
+        <h1>Основна теорема математичного аналізу</h1>
+        <time>2025-03-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Вступ</h2>
+<p>Основна теорема інтегрального числення встановлює точний зв'язок між <a href="derivatives.html">диференціюванням</a> та <a href="indefinite-integrals.html">інтегруванням</a>. Ці дві операції виникають з різних початкових мотивів. Диференціювання описує миттєву зміну, тоді як інтегрування вимірює накопичену величину. Теорема доводить, що за відповідних припущень про регулярність вони є оберненими процесами. Результат традиційно поділяють на два взаємодоповнювальні твердження:</p>
+<ul>
+<li>Перша основна теорема інтегрального числення</li>
+<li>Друга основна теорема інтегрального числення</li>
+</ul>
+<h6>Як буде показано в наступних розділах, Перша основна теорема гарантує, що будь-яка неперервна функція на замкненому проміжку має первісну, що будується явно за допомогою інтегрування. Друга виражає практичний наслідок: визначений інтеграл функції на проміжку можна обчислити безпосередньо з будь-якої її первісної, обчисленої в кінцевих точках.</h6>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Перша основна теорема інтегрального числення</h2>
+<p>Нехай \( f \) є <a href="continuous-functions.html">неперервною</a> на <a href="intervals.html">замкненому проміжку</a> \( [a,b] \). Визначимо функцію:</p>
+<p>\[
+F(x) = \int_a^x f(t)\,dt
+\]</p>
+<p>для \( x \in [a,b] \). Тоді \( F \) є неперервною на \( [a,b] \), диференційовною на \( (a,b) \), і:</p>
+<p>\[
+F’(x) = f(x)
+\]</p>
+<p>Це твердження стверджує, що функція, визначена накопиченням площі від фіксованої нижньої межі до змінної верхньої межі, є диференційовною, і її похідна збігається з початковим підінтегральним виразом. Щоб обґрунтувати цей результат, розглянемо <a href="difference-quotient.html">різницевий частку</a>:</p>
+<p>\[
+\frac{F(x+h) - F(x)}{h}
+= \frac{1}{h} \left( \int_a^{x+h} f(t)\,dt - \int_a^x f(t)\,dt \right)
+\]</p>
+<p><a href="definite-integrals.html">Визначені інтеграли</a> задовольняють властивість адитивності на суміжних проміжках:
+\[
+\int_a^b f(t)\,dt + \int_b^c f(t)\,dt = \int_a^c f(t)\,dt
+\]
+Застосувавши це до нашого випадку, отримаємо:
+\[
+\frac{1}{h} \int_x^{x+h} f(t)\,dt
+\]</p>
+<p>Оскільки \( f \) є неперервною на \( [x, x+h] \), теорема про середнє значення для інтегралів гарантує існування точки \( c \) між \( x \) та \( x+h \), такої що:</p>
+<p>\[
+\int_x^{x+h} f(t)\,dt = f(c)h
+\]</p>
+<p>Звідси:</p>
+<p>\[
+\frac{F(x+h) &#8211; F(x)}{h} = f(c)
+\]</p>
+<p>При \( h \to 0 \), точка \( c \to x \). З неперервності \( f \) випливає, що</p>
+<p>\[
+\lim_{h \to 0} \frac{F(x+h) - F(x)}{h} = f(x)
+\]</p>
+<p>що доводить \( F’(x) = f(x) \). Концептуально ця теорема показує, що накопичення створює функцію, чия миттєва швидкість зміни відновлює початкову щільність.</p>
+<hr>
+<p>З геометричної точки зору, Перша основна теорема інтерпретує функцію:</p>
+<p>\[
+F(x) = \int_a^x f(t)\,dt
+\]</p>
+<p>як накопичену алгебраїчну площу. Похідна \( F’(x) \) представляє миттєву швидкість, з якою ця площа зростає. Якщо \( f(x) &gt; 0 \), площа збільшується; якщо \( f(x) &lt; 0 \), вона зменшується.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="816" height="546" src="../images/fundamental-theorem-calculus-1.png" alt="" class="wp-image-23037" style="width:408px" srcset="../images/fundamental-theorem-calculus-1.png 816w, https://algebrica.org/wp-content/uploads/resources/images/fundamental-theorem-calculus-1-300x201.png 300w, https://algebrica.org/wp-content/uploads/resources/images/fundamental-theorem-calculus-1-768x514.png 768w" sizes="(max-width: 816px) 100vw, 816px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Друга основна теорема інтегрального числення</h2>
+<p>Нехай \( f \) є неперервною на \( [a,b] \), і припустимо, що \( F \) є будь-якою первісною для \( f \), тобто:</p>
+<p>\[
+F’(x) = f(x)
+\]</p>
+<p>Тоді:</p>
+<p>\[
+\int_a^b f(x)\,dx = F(b) - F(a)
+\]</p>
+<p>Це друге твердження перетворює обчислення визначеного інтеграла на обчислення різниці значень первісної. Щоб побачити структурний зв'язок із першою частиною, визначимо:</p>
+<p>\[
+G(x) = \int_a^x f(t)\,dt
+\]</p>
+<p>З Першої основної теореми, \( G’(x) = f(x) \). Оскільки і \( F \), і \( G \) мають однакову похідну, їхня різниця є сталою:</p>
+<p>\[
+F(x) = G(x) + c
+\]</p>
+<p>Обчислення при \( x = a \) дає:</p>
+<p>\[
+F(a) = G(a) + c
+\]</p>
+<p>Оскільки \( G(a) = 0 \), отримаємо \( c = F(a) \), і отже:</p>
+<p>\[
+G(x) = F(x) - F(a)
+\]</p>
+<p>При \( x = b \) отримуємо:</p>
+<p>\[
+\int_a^b f(x)\,dx = G(b) = F(b) - F(a)
+\]</p>
+<p>Таким чином, визначений інтеграл вимірює чисту зміну будь-якої первісної на проміжку.</p>
+<hr>
+<p>Друга основна теорема має геометричний бік, на якому варто зупинитися. Дано неперервну функцію \( f \) на \( [a, b] \) та будь-яку первісну \( F \), визначений інтеграл вимірює чисту алгебраїчну площу між графіком \( f \) та горизонтальною віссю. Теорема говорить нам, що ця площа дорівнює \( F(b) - F(a) \), що є не чим іншим, як чистою зміною \( F \) на проміжку.</p>
+<p>Вражаючим є те, що не потрібно реконструювати площу частинами. Первісна \( F \) вже містить цю інформацію в собі, накопичену безперервно. Достатньо обчислити її у двох кінцевих точках і знайти різницю. Уся геометрія кривої між \( a \) та \( b \) зводиться до однієї арифметичної операції.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо наступний інтеграл:
+\[
+\int_0^1 3x^2\,dx
+\]
+Первісна для \( 3x^2 \) має вигляд \( F(x) = x^3 \). За Другою фундаментальною теоремою маємо:
+\[
+\int_0^1 3x^2\,dx = F(1) - F(0) = 1^3 - 0^3 = 1
+\]
+Площа під кривою \( 3x^2 \) на проміжку \([0, 1]\) отже дорівнює рівно \( 1 \), що отримано без будь-яких геометричних аргументів, а виключно шляхом обчислення первісної в кінцевих точках.</p>
+<hr>
+<p>Як другу ілюстрацію, визначимо:
+\[
+H(x) = \int_1^x \ln t\,dt
+\]
+Зауважимо, що \( H(1) = 0 \), оскільки інтеграл по виродженому проміжку дорівнює нулю. Оскільки \( \ln t \) є неперервною для \( t &gt; 0 \), функція \( H \) визначена для \( x &gt; 0 \), і Перша фундаментальна теорема передбачає:
+\[
+H’(x) = \ln x
+\]
+Похідна функції накопичення точно відновлює підінтегральну функцію, підтверджуючи, що інтегрування та диференціювання є оберненими операціями в точному сенсі, встановленому теоремою.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax pb-steps"><h2>Приклад 2</h2>
+<p>Застосуйте Першу фундаментальну теорему числення для того, щоб знайти наступну похідну:</p>
+<p>\[
+\frac{d}{dx} \int_1^x e^{-t^2}\,dt
+\]</p>
+<ul>
+<li>Підінтегральною функцією тут є \( f(t) = e^{-t^2} \), яка є неперервною функцією на всій множині \( \mathbb{R} \).</li>
+<li>Нижня межа інтегрування — це стала \( 1 \), а верхня межа — змінна \( x \).</li>
+</ul>
+<p>Це саме умови Першої фундаментальної теореми: якщо \( F(x) = \int_a^x f(t)\,dt \), то \( F’(x) = f(x) \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Застосовуючи це безпосередньо, отримаємо:</p>
+<p>\[
+\frac{d}{dx} \int_1^x e^{-t^2}\,dt = e^{-x^2}
+\]</p>
+<h6>Похідна функції накопичення відновлює підінтегральну функцію, обчислену в точці \( x \). Зауважте, що \( e^{-t^2} \) не має первісної у вигляді замкненої формули через елементарні функції, проте Перша фундаментальна теорема дозволяє нам диференціювати інтеграл, не обчислюючи його явно.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>MIT</strong>. <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/e5e4813ac3a0b21f61532842c7ce8a8c_MIT18_01SCF10_Ses52b.pdf">Доведення Першої фундаментальної теореми числення</a></p>
+</li>
+<li>
+<p><strong>University of California, Berkeley</strong>. <a href="https://math.berkeley.edu/~ogus/Math_1A/lectures/fundamental.pdf">Фундаментальна теорема числення</a></p>
+</li>
+<li>
+<p><strong>Michigan State University</strong>. <a href="https://users.math.msu.edu/users/mccarthy/MTH132/fundamental.theorem.pdf">Фундаментальна теорема числення</a></p>
+</li>
+<li>
+<p><strong>Dartmouth College</strong>. <a href="https://math.dartmouth.edu/opencalc2/dcsbook/c4pdf/sec43.pdf">Фундаментальна теорема числення</a></p>
+</li>
+<li>
+<p><strong>Stony Brook University</strong>. <a href="https://www.math.stonybrook.edu/~ndang/mat126-fall20/sec_1.3.pdf">Фундаментальна теорема числення</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="fundamental-theorem-of-calculus.html">algebrica.org/fundamental-theorem-of-calculus</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Метод інтервалів у нерівностях — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Нерівності</span>
+    </nav>
+    <article>
+        <h1>Метод інтервалів у нерівностях</h1>
+        <time>2025-02-13</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Що таке аналіз знаків</h2>
+<p>Аналіз знаків нерівностей — це метод визначення проміжків, на яких заданий вираз є додатним, від'ємним або дорівнює нулю. Цей підхід особливо цінний для розв'язання <a href="polynomials.html">поліноміальних</a> та <a href="rational-inequalities.html">раціональних нерівностей</a>, а також для аналізу поведінки функцій у визначених <a href="determining-the-domain-of-a-function.html">областях визначення</a>.</p>
+<hr>
+<p>Знак добутку визначається тим, чи є кількість від'ємних множників парною чи непарною. Добуток є додатним, якщо кількість від'ємних множників парна, і від'ємним, якщо кількість від'ємних множників непарна. Маємо:</p>
+<p>\[
+\begin{align}
++\times + &amp;\quad = + \\
++\times - &amp;\quad = &#8211; \\
+-\times - &amp;\quad = + \\
+-\times + &amp;\quad = &#8211;
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо просту <a href="quadratic-inequalities.html">квадратичну нерівність</a>:</p>
+<p>\[
+x^2 + x - 2 &gt; 0
+\]</p>
+<p>Нам потрібно визначити область значень \(x\), що задовольняють нерівність. Спочатку ми можемо <a href="factoring-ac-method.html">розкласти поліном на множники</a> у вигляді:</p>
+<p>\[(x - 1)(x + 2) &gt; 0 \]</p>
+<p>Згідно з правилом знаків добутку, цей поліном, розкладений на добуток двох множників, є додатним, коли виконується наступна умова:</p>
+<p>\[
+\begin{align}
+&amp;x &#8211; 1 &gt; 0 \to x &gt; 1 \\[6pt]
+&amp;x + 2 &gt; 0 \to x &gt; -2
+\end{align}
+\]</p>
+<p>Значення \(x = 1\) та \(x = -2\) поділяють дійсну пряму на розрізнені проміжки. Оскільки вираз є <a href="continuous-functions.html">неперервним</a> і може змінювати знак лише у своїх нулях, його знак залишається сталим на кожному проміжку. Ці значення потім відзначаються на числовій прямій, де \(+\) та \(-\) вказують знак на кожному проміжку.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign mt-m-20"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ -2 \]</th>
+<th style="text-align:center">\[1 \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( x - 1 &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( x +2 &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( (x - 1)(x+2) &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><hr>
+<p>В останньому рядку ми вписуємо результат добутку знаків між знаком з 1-го рядка та знаком з 2-го рядка для кожного проміжку. Проміжки, що задовольняють нашу початкову нерівність \( (x &#8211; 1)(x + 2) &gt; 0 \), це:</p>
+<p>\[x &lt; -2 \quad \text{та} \quad x &gt; 1 \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>У позначенні проміжками множина розв'язків така:</p>
+<p>\((-\infty, -2) \cup (1, +\infty) \)</p>
+<h6>Якщо нерівність нестрога, нулі виразу належать до розв'язання. Для нерівності: \(x^2 + x &#8211; 2 \geq 0\) процедура ідентична, але оскільки нерівність задовольняється також при \(f(x) = 0\), нулі \(x = -2\) та \(x = 1\) включені до множини розв'язків \((-\infty, -2] \cup [1, +\infty)\).</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Систематична процедура аналізу знаків</h2>
+<p>Загалом, аналіз знаків нерівностей здійснюється за систематичною процедурою, яка послідовно застосовується до будь-якого полінома або раціонального виразу.</p>
+<ul>
+<li>Перепишіть нерівність у вигляді \(f(x) &gt; 0\) (або \(&lt; 0\), \(\geq 0\), \(\leq 0\)), щоб правою частиною був нуль.</li>
+<li>Розкладіть \(f(x)\) на добуток або частку лінійних або незвідних множників. Для раціональних нерівностей аналізуйте чисельник і знаменник незалежно.</li>
+<li>Знайдіть нулі кожного множника. Нулі знаменника ніколи не належать до розв'язання і мають бути позначені на числовій прямій відкритим колом.</li>
+<li>Розташуйте нулі в порядку зростання вздовж дійсної прямої, розділяючи \(\mathbb{R}\) на розрізнені проміжки. Для кожного проміжку визначте знак кожного множника.</li>
+<li>Комбінуйте знаки для кожного проміжку, використовуючи правило добутку: загальний знак є додатним, якщо кількість від'ємних множників парна, і від'ємним, якщо вона непарна. Множники з парною кратністю не викликають зміни знака у відповідному нулю.</li>
+<li>Визначте проміжки, де загальний знак задовольняє початкову нерівність. Для строгих нерівностей виключіть нулі з розв'язання; для нестрогих нерівностей — включіть їх. Завжди виключайте нулі знаменника.</li>
+<li>Представте розв'язання за допомогою позначення множин, об'єднуючи розрізнені проміжки за допомогою \(\cup\).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Геометричне представлення</h2>
+<p>Побудувавши криву на осях, отримаємо:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="774" height="570" src="../images/sign-analysis-1.png" alt="" class="wp-image-9885" style="width:387px" srcset="../images/sign-analysis-1.png 774w, https://algebrica.org/wp-content/uploads/resources/images/sign-analysis-1-300x221.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sign-analysis-1-768x566.png 768w" sizes="(max-width: 774px) 100vw, 774px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Таким чином, ми розв'язали нерівність за допомогою таблиці знаків, не вдаючись до розв'язування відповідного квадратного рівняння за допомогою <a href="quadratic-formula.html">формули коренів квадратного рівняння</a>, що призвело б до того самого результату.</p>
+<p>Фактично, коли нерівність має вигляд \( ax^2 + bx + c \ge 0 \) або \( ax^2 + bx + c &gt; 0 \), і відповідне <a href="quadratic-equations.html">квадратне рівняння</a> \( ax^2 + bx + c = 0 \) має два різні дійсні розв'язання \( x_1 &lt; x_2 \), ми маємо:</p>
+<p>\[
+\begin{align}
+&amp;x \leq x_1 \lor x \geq x_2  &amp;&amp;\text{для} \quad ax^2+bx+c \geq 0 \\
+&amp;x &lt; x_1 \lor x &gt; x_2  &amp;&amp;\text{для} \quad ax^2+bx+c &gt; 0
+\end{align}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Якщо функція \( f(x) \) є <a href="continuous-functions.html">неперервною</a> на проміжку \([a,b]\) і \( f(a) \) та \( f(b) \) мають протилежні знаки, то за теоремою про проміжне значення існує принаймні одна точка \( c \in (a,b) \), така що \( f(c) = 0.\)</p>
+<h5>Іншими словами, для <a href="continuous-functions.html">неперервної функції</a> зміна знака відбувається лише при переході через нуль функції, тобто точку, де \( f(x) = 0 \). У наведеному вище прикладі зміна знака відбувається саме біля розв'язків рівняння, пов'язаного з нерівністю, а саме \( -2 \) та \( 1 \).</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Той самий підхід, розглянутий вище, можна застосувати для розв'язування раціональних нерівностей вигляду:</p>
+<p>\[\frac{N(x)}{D(x)}\]</p>
+<p>Щоб <a href="sign-analysis-in-inequalities.html">проаналізувати знак</a> нерівності такого типу, нам потрібно окремо дослідити знак чисельника та знак знаменника. Потім ми визначаємо проміжки, де знаки збігаються (обидва додатні або обидва від'ємні) або розбігаються (один додатний, інший від'ємний).</p>
+<hr>
+<p>Розглянемо наступну раціональну нерівність:</p>
+<p>\[\frac{2x - 3}{1 - x} &gt; 0 \]</p>
+<p>Проаналізуємо чисельник і знаменник окремо, встановивши: \(N(x) &gt; 0\) та \(D(x) &gt; 0\). Отримаємо:</p>
+<p>\[
+\begin{align}
+&amp;2x &#8211; 3 &gt; 0 \to x &gt; \frac{3}{2}\\[0.5em]
+&amp;1 &#8211; x &gt; 0 \to x &lt; 1\\
+\end{align}
+\]</p>
+<p>Зобразивши знаки на числовій прямій, маємо:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ 1 \]</th>
+<th style="text-align:center">\[\frac{3}{2} \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\( N(x) &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( D(x) &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\( \dfrac{N(x)}{D(x)} &gt; 0 \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, проміжок позитивності, що задовольняє нашу початкову нерівність:</p>
+<p>\(x \in \left(1, \dfrac{3}{2}\right)\)</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Розглянемо наступну нерівність, яка містить множник з парною кратністю:</p>
+<p>\[(x - 1)^2(x + 3) &gt; 0\]</p>
+<p>Нулями є \(x = 1\) (з кратністю \(2\)) та \(x = -3\) (з кратністю \(1\)). Вони розбивають дійсну пряму на три проміжки:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th>\[-3\]</th>
+<th>\[1\]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\((x-1)^2 &gt; 0\)</td>
+<td>\( \boldsymbol{+} \)</td>
+<td>\( \boldsymbol{+} \)</td>
+<td>\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td>\(x + 3 &gt; 0\)</td>
+<td>\( \boldsymbol{-} \)</td>
+<td>\( \boldsymbol{+} \)</td>
+<td>\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td>\((x-1)^2(x+3) &gt; 0\)</td>
+<td>\( \boldsymbol{-} \)</td>
+<td>\( \boldsymbol{+} \)</td>
+<td>\( \boldsymbol{+} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Зауважимо, що \((x-1)^2\) завжди є невикладним і дорівнює нулю тільки при \(x = 1\). Як результат, знак добутку повністю визначається множником \((x+3)\), і при \(x = 1\) зміни знака не відбувається. Загальний знак змінюється з \(-\) на \(+\) тільки при \(x = -3\), де множник \((x+3)\) змінює знак.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язанням нерівності є:</p>
+<p>\[x \in (-3, 1) \cup (1, +\infty)\]</p>
+<h6>Точка \(x = 1\) виключається, оскільки нерівність є строгою і \(f(1) = 0\), навіть попри те, що там не відбувається зміни знака.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрані джерела</h2>
+<ul>
+<li>
+<p><strong>City University of New York, N. Apostolakis</strong>. <a href="https://fsw01.bcc.cuny.edu/nikolaos.apostolakis/teaching/sp08/Math30/30sp08table-of-signs-hand.pdf">Handout About the Table of Signs Method</a></p>
+</li>
+<li>
+<p><strong>Florida State University, P. Kirby</strong>. <a href="https://www.math.fsu.edu/~pkirby/mac1140/5_4Inequalities.pdf">Solving Polynomial and Rational Inequalities</a></p>
+</li>
+<li>
+<p><strong>University of North Carolina Charlotte, H. Breiter</strong>. <a href="https://webpages.charlotte.edu/~hbreiter/m1120/testinterval.pdf">Sign Charts and the Test Interval Technique</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Cos'è l'analisi del segno in una disequazione?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "L'analisi del segno è una tecnica che consente di determinare gli intervalli in cui un'espressione algebrica è positiva, negativa o nulla. È fondamentale per risolvere disequazioni e comprendere il comportamento di una funzione."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Come si costruisce una tabella dei segni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Per costruire una tabella dei segni, si identificano gli zeri dell'espressione e si suddivide la retta reale in intervalli. Successivamente, si determina il segno dell'espressione in ciascun intervallo, considerando il comportamento dei singoli fattori."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="sign-analysis-in-inequalities.html">algebrica.org/sign-analysis-in-inequalities</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

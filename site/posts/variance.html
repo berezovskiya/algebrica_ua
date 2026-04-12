@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дисперсія — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теорія ймовірностей та статистика</span>
+    </nav>
+    <article>
+        <h1>Дисперсія</h1>
+        <time>2025-05-01</time>
+        <div class="content">
+            
+<div class="wp-block-group mb-x-30 pb-section"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax"><h2>Вступ до середніх відхилень</h2>
+<p>Одним із ключових принципів статистики є те, що один лише <a href="introduction-to-the-mean.html">середній</a> не може повністю описати набір даних. Справді важливим є розуміння того, як окремі спостереження розподілені навколо середнього, тобто наскільки кожне значення відхиляється від центральної тенденції. З цієї причини необхідно ввести поняття <strong>середніх відхилень</strong>, що виражається наступною загальною формулою:</p>
+<p>\[
+^sS_{\bar{x}} =
+\left[
+\frac{ \sum_{i=1}^{n} \left| x_i &#8211; \bar{x} \right|^s }{n}
+\right]^{1/s}
+\]</p>
+<ul>
+<li>Символ \(\bar{x}\) представляє базове середнє значення, відносно якого вимірюються відхилення.</li>
+<li>Надскрипт \(s\) позначає порядок розглянутого степеневого середнього.</li>
+</ul>
+<hr>
+<p>У сімействі середніх відхилень <strong>квадратичне середнє відхилення</strong> (або середньоквадратичне відхилення) вимірює середню величину відхилень від середнього. Воно визначається як квадратний корінь із відношення суми квадратів відхилень (також відомої як девіація) до загальної кількості спостережень:</p>
+<p>\[
+^2S =
+\sqrt{
+\frac{\sum_{i=1}^{n}(x_i - M)^2}{n}
+}
+\]</p>
+<p>Тут \(x_i\) представляє \(i\)-те спостереження в наборі даних, тоді як \(M\) позначає базове середнє значення, зазвичай <a href="arithmetic-mean.html">середнє арифметичне</a>.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline pb-table-to-content"><h2>Приклад 1</h2>
+<p>Щоб проілюструвати, як обчислюється квадратичне середнє відхилення, розглянемо простий набір даних, що складається з п'яти спостережуваних значень. Цей показник дозволить нам зрозуміти, наскільки в середньому кожне спостереження віддалене від середнього, коли більшим відхиленням надається пропорційно більша вага. Набір даних є наступним:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">\(X_i\)</th>
+<th style="text-align:center">Спостереження</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\(x_{1}\)</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_{2}\)</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_{3}\)</td>
+<td style="text-align:center">7</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_{4}\)</td>
+<td style="text-align:center">10</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_{5}\)</td>
+<td style="text-align:center">15</td>
+</tr>
+</tbody>
+</table>
+<p> <a href="arithmetic-mean.html">Середнє арифметичне</a> спостережень дорівнює:</p>
+<p>\[
+\bar{x} = \frac{3 + 5 + 7 + 10 + 15}{5} = \frac{40}{5} = 8
+\]</p>
+<hr>
+<p>Далі обчислимо квадрати відхилень кожного спостереження від середнього:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">\(x_i\)</th>
+<th style="text-align:center">\(x_i &#8211; \bar{x}\)</th>
+<th style="text-align:center">\((x_i - \bar{x})^2\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">25</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">-3</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">10</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">15</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">49</td>
+</tr>
+</tbody>
+</table>
+<p>Сума квадратів відхилень дорівнює:</p>
+<p>\[
+\sum (x_i - \bar{x})^2 = 25 + 9 + 1 + 4 + 49 = 88
+\]</p>
+<hr>
+<p>Поділивши це значення на загальну кількість спостережень і взявши квадратний корінь, отримаємо:</p>
+<p>\[
+^2S = \sqrt{ \frac{ \sum (x_i - \bar{x})^2 }{n} } =
+\sqrt{ \frac{88}{5} } = \sqrt{17.6} \approx 4.195
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, квадратичне середнє відхилення набору даних становить \(^2S \approx 4.20\). Це означає, що в середньому спостереження відрізняються від середнього приблизно на 4.2 одиниці.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps mb-x-30"><h2>Дисперсія</h2>
+<p>Квадрат середнього квадратичного відхилення називається <strong>дисперсією</strong>. Вона представляє середнє значення квадратів різниць між кожним спостереженням і опорним значенням \(M\), що дає міру того, наскільки широко дані розсіяні навколо цієї точки. На відміну від середнього квадратичного відхилення, яке зберігає ту саму одиницю виміру, що й дані, дисперсія виражається в квадратних одиницях. Її вираз має вигляд:</p>
+<p>\[
+\sigma^2 = \frac{\sum_{i=1}^{n}(x_i &#8211; M)^2}{n}
+\]</p>
+<ul>
+<li>Коли \(\sigma^2 = 0\), всі спостережувані значення збігаються з опорним значенням \(M\). У цьому випадку дисперсія повністю відсутня, оскільки кожне спостереження є ідентичним і точно відповідає середньому.</li>
+<li>Коли \(\sigma^2 = 1\), середнє квадратичне відхилення спостережень від опорного значення (M) дорівнює рівно одній одиниці. Це означає, що в середньому кожне спостереження відрізняється від (M) на одну одиницю у квадраті. На практиці це вказує на помірний рівень дисперсії: дані не є ідентичними, але їхні відхилення від середнього відносно малі та збалансовані.</li>
+<li>Якщо до всіх спостережень додати сталу величину, дисперсія залишиться незмінною.</li>
+<li>Якщо кожне спостереження помножити на сталу \(a\), дисперсія помножиться на \(a^2\).</li>
+<li>Чим більша дисперсія, тим більший розкид даних навколо \(M\), що вказує на вищу неоднорідність набору даних.</li>
+</ul>
+<hr>
+<p>Дисперсію також можна виразити в альтернативній і більш компактній формі, розкривши квадрат у її означенні. Почнемо із загальної формули:</p>
+<p>\[
+\sigma^2 = \frac{\sum_{i=1}^{n}(x_i - M)^2}{n}
+\]</p>
+<p><a href="notable-products.html">Розкриття квадрата</a> дає:</p>
+<p>\[
+(x_i - M)^2 = x_i^2 - 2Mx_i + M^2
+\]</p>
+<p>Підставивши цей вираз у початкову формулу, отримаємо:</p>
+<p>\[
+\sigma^2 = \frac{\sum_{i=1}^{n}x_i^2 &#8211; 2M\sum_{i=1}^{n}x_i + nM^2}{n}
+\]</p>
+<p>На цьому етапі згадаємо, що середнє \(M\) визначається як \(M = \frac{\sum_{i=1}^{n}x_i}{n}\). Заміна цієї залежності в рівнянні дозволяє нам спростити вираз крок за кроком:</p>
+<p>\[
+\sigma^2 = \frac{\sum_{i=1}^{n}x_i^2}{n} &#8211; 2M^2 + M^2
+\]</p>
+<p>Спрощуючи далі, два члени з \(M^2\) об'єднуються наступним чином:</p>
+<p>\[
+\sigma^2 = \frac{\sum_{i=1}^{n}x_i^2}{n} - M^2
+\]</p>
+<p>Таким чином, ми можемо виразити дисперсію більш компактним і елегантним способом:</p>
+<p>\[
+\sigma^2 = M(x^2) &#8211; M^2
+\]</p>
+<p>Тут \(M(x^2)\) представляє середнє квадратів спостережень, тоді як \(M\) позначає середнє значення вихідних даних. Ця тотожність показує, що дисперсію можна обчислити просто як різницю між середнім квадратів і квадратом середнього.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline pb-table-to-content"><h2>Приклад 2</h2>
+<p>Тепер обчислимо дисперсію для наступного набору даних, який складається з п'яти спостережуваних значень:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">\(X_i\)</th>
+<th style="text-align:center">Спостереження</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\(x_{(1)}\)</td>
+<td style="text-align:center">5</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_{(2)}\)</td>
+<td style="text-align:center">7</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_{(3)}\)</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_{(4)}\)</td>
+<td style="text-align:center">12</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_{(5)}\)</td>
+<td style="text-align:center">17</td>
+</tr>
+</tbody>
+</table>
+<p>Першим кроком є визначення середнього значення спостережень. Додавши всі значення та поділивши на кількість випадків, отримаємо:</p>
+<p>\[
+M = \frac{5 + 7 + 9 + 12 + 17}{5} = \frac{50}{5} = 10
+\]</p>
+<hr>
+<p>Тепер кожне спостереження можна порівняти із середнім, щоб дізнатися, наскільки воно від нього відхиляється.<br>
+Потім ми підносимо ці відхилення до квадрата, щоб уникнути взаємного скасування знаків і надати більшої ваги більшим різницям:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">\(x_i\)</th>
+<th style="text-align:center">\(x_i &#8211; M\)</th>
+<th style="text-align:center">\((x_i &#8211; M)^2\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">-5</td>
+<td style="text-align:center">25</td>
+</tr>
+<tr>
+<td style="text-align:center">7</td>
+<td style="text-align:center">-3</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">9</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">12</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">17</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center">49</td>
+</tr>
+</tbody>
+</table>
+<p>Сума всіх квадратів відхилень становить:</p>
+<p>\[
+\sum (x_i - M)^2 = 25 + 9 + 1 + 4 + 49 = 88
+\]</p>
+<hr>
+<p>Щоб отримати дисперсію, ми ділимо цю суму на кількість спостережень:</p>
+<p>\[
+\sigma^2 = \frac{88}{5} = 17.6
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, дисперсія цього набору даних дорівнює:</p>
+<p>\[
+\sigma^2 = 17.6
+\]</p>
+<h5>Цей результат означає, що в середньому квадрат відстані спостережень від середнього значення становить 17,6 одиниці. Якщо ми візьмемо квадратний корінь із цього значення, ми знайдемо відповідне середнє квадратичне відхилення \(\sigma = \sqrt{17.6} \approx 4.20\). Іншими словами, значення даних відрізняються від середнього приблизно на 4,2 одиниці в середньому, що вказує на помірний рівень дисперсії навколо центрального значення.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"><div class="wp-block-jetpack-markdown pb-outline pb-table-to-content"><h2>Приклад 3</h2>
+<p>У деяких випадках дисперсію можна обчислити ефективніше, використовуючи альтернативний вираз, який включає середнє значення квадратів значень та квадрат середнього значення. Така формуляція дає той самий результат, що й стандартне означення, але спрощує обчислення, особливо коли необхідні суми вже відомі. Давайте подивимося, як це працює на простому прикладі. Розглянемо наступний набір даних:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">\(i\)</th>
+<th style="text-align:center">\(x_i\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">9</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">11</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">14</td>
+</tr>
+</tbody>
+</table>
+<p>Спочатку обчислимо середнє значення спостережень:</p>
+<p>\[
+M = \frac{3 + 9 + 11 + 14}{4} = \frac{37}{4} = 9.25
+\]</p>
+<hr>
+<p>Далі знайдемо середнє значення квадратів значень:</p>
+<p>\[
+\begin{align}
+M(x^2) &amp;= \frac{3^2 + 9^2 + 11^2 + 14^2}{4} \\[3pt]
+&amp;= \frac{9 + 81 + 121 + 196}{4} \\[3pt]
+&amp;= \frac{407}{4} = 101.75
+\end{align}
+\]</p>
+<hr>
+<p>Тепер застосуємо спрощену формулу для дисперсії:</p>
+<p>\[
+\sigma^2 = M(x^2) - M^2
+\]</p>
+<p>Підставляючи значення, отримаємо:</p>
+<p>\[
+\sigma^2 = 101.75 &#8211; (9.25)^2 = 101.75 &#8211; 85.56 = 16.19
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, дисперсія набору даних становить \(\sigma^2 = 16.19\).</p>
+<h5>Цей підхід показує, що дисперсію можна вивести безпосередньо із середнього значення квадратів значень та квадрата середнього значення, що пропонує більш раціональний спосіб вимірювання розсіювання даних при роботі з агрегованою інформацією.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Дисперсія дискретних та неперервних випадкових величин</h2>
+<p>У випадку <a href="discrete-random-variables.html">дискретних випадкових величин</a>, <a href="variance-and-covariance-of-a-random-variable.html">дисперсія</a> визначається як:</p>
+<p>\[
+\sigma^2 = E[(X &#8211; \mu)^2] = \sum_x (x &#8211; \mu)^2 f(x)
+\]</p>
+<p>де \( x \) позначає кожне можливе значення, яке може набути випадкова величина \( X\), \( \mu = E[X] \) представляє <a href="mean-or-expected-value-of-a-random-variable.html">математичне сподівання</a> або теоретичне середнє значення змінної, а \( f(x) \) — функція ймовірності, яка присвоює ймовірність кожному можливому результату \( X \).</p>
+<hr>
+<p>У випадку <a href="continuous-random-variables.html">неперервних випадкових величин</a>, дисперсія визначається як:</p>
+<p>\[
+\sigma^2 = E[(X - \mu)^2] = \int_{-\infty}^{+\infty} (x - \mu)^2 f(x),dx
+\]</p>
+<p>Тут \( f(x) \) — це функція щільності ймовірності, яка описує, як ймовірність розподілена по можливих значеннях \( X \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Дисперсія вибіркового розподілу</h2>
+<p> <a href="sampling-distributions.html">Вибіркова дисперсія</a> описує, як дані у вибірці розподілені навколо вибіркового середнього. Більша дисперсія означає, що спостереження більш розсіяні, тоді як менша дисперсія вказує на те, що вони ближче до середнього. Формально, задано випадкові величини \( X_1, X_2, \ldots, X_n \), вибіркова дисперсія визначається як:</p>
+<p>\[
+S^2 = \frac{1}{n &#8211; 1} \sum_{i=1}^{n} (X_i - \overline{X})^2
+\]</p>
+<p>де \( S^2 \) — вибіркова дисперсія, \( \overline{X} \) — вибіркове середнє, а \( n \) — обсяг вибірки.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке дисперсія в статистиці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Дисперсія — це статистична міра, яка вказує, наскільки значення в наборі даних відхиляються від середнього. Вона кількісно визначає ступінь розсіювання, показуючи, чи зосереджені точки даних близько до середнього значення, чи вони широко розсіяні."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як обчислюється дисперсія?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Дисперсія обчислюється як середнє значення квадратів різниць між кожним спостереженням і середнім значенням набору даних. Математично це середнє квадратичне відхилення від середнього."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="variance.html">algebrica.org/variance</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

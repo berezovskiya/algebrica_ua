@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Системи лінійних рівнянь — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Системи лінійних рівнянь</span>
+    </nav>
+    <article>
+        <h1>Системи лінійних рівнянь</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Що таке лінійна система?</h2>
+<p>Лінійні системи моделюють задачі, де кілька умов мають бути виконані одночасно. Вони становлять основу багатьох методів розв'язання в алгебрі та прикладній математиці. Дано \( n \) змінних \( x_1, x_2, \dots, x_n \), система називається лінійною, якщо всі рівняння є <a href="linear-equations.html">лінійними рівняннями</a>, тобто кожна змінна з'являється в першому степені, без добутків між змінними. Стандартна форма лінійної системи з \( m \) рівняннями та \( n \) невідомими записується як:</p>
+<p>\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n = b_1 \\[0.5em]
+a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n = b_2 \\[0.5em]
+\quad\vdots \\[0.5em]
+a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n = b_m
+\end{cases}
+\]</p>
+<p>У лінійній системі, записаній у стандартній формі, коефіцієнти \( a_{ij} \) представляють значення, на яке множиться змінна \( x_j \) у \( i \)-му рівнянні.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Однорідні системи</h2>
+<p>Кожне \( b_i \) позначає сталу частину (також звану відомим членом) у правій частині \( i \)-го рівняння. Якщо всі сталі частини дорівнюють нулю, тобто \( \forall i,\ b_i = 0 \), система називається <strong>однорідною</strong>.</p>
+<p>\[
+\begin{cases}
+a_{11}x_1 + a_{12}x_2 + \dots + a_{1n}x_n = 0 \\[0.5em]
+a_{21}x_1 + a_{22}x_2 + \dots + a_{2n}x_n = 0 \\[0.5em]
+\quad\vdots \\[0.5em]
+a_{m1}x_1 + a_{m2}x_2 + \dots + a_{mn}x_n = 0
+\end{cases}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Розв'язання</h2>
+<p>Розв'язати лінійну систему означає знайти впорядкований \( n \)-кортеж значень, що позначається як \( (s_1, s_2, \dots, s_n) \), який задовольняє всі рівняння системи.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Система називається <strong>сумісною</strong>, якщо існує принаймні один розв'язок, і її рівняння є сумісними.</li>
+<li>Якщо розв'язка не існує, система називається <strong>несумісною</strong>, а її рівняння — несумісними.</li>
+<li>Якщо існує лише один розв'язок, система називається <strong>визначеною</strong>.</li>
+<li>Якщо існує безліч розв'язків, вона називається <strong>невизначеною</strong>.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-formula"><p>Лінійні системи визначаються їхніми коефіцієнтами та сталими, які можна природним чином організувати у <a href="matrices.html">матриці</a>. Цей зв'язок дозволяє нам компактно представити систему та застосовувати матричні методи для її аналізу та розв'язання.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-outline mb-x-30 alignCenterMathjax"><p>Будь-яка лінійна система у стандартній формі може бути представлена матрицею розміром \( m \times n \), де \( m \) — кількість рівнянь, а \( n \) — кількість змінних. Матриця, утворена коефіцієнтами змінних, називається <strong>матрицею коефіцієнтів</strong>:</p>
+<p>\[
+A =
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\[0.5em]
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\[0.5em]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\[0.5em]
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{bmatrix}
+\]</p>
+<p>Сталі частини та змінні можуть бути організовані у два стовпчикових <a href="vectors.html">вектори</a>:</p>
+<p>\[
+X =
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+\vdots \\
+x_n
+\end{bmatrix}
+\quad\quad
+B =
+\begin{bmatrix}
+b_1 \\
+b_2 \\
+\vdots \\
+b_m
+\end{bmatrix}
+\]</p>
+<p>Отже, систему можна переписати в матричній формі як:</p>
+<p>\[
+A \cdot X = B
+\]</p>
+<h5>Ця компактна форма узагальнює всю систему, де \( A \) — матриця коефіцієнтів, \( X \) — вектор змінних, а \( B \) — вектор сталих.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Чому матрична форма є важливою?</h2>
+<p>Розв'язання систем лінійних рівнянь може стати складним, особливо зі збільшенням кількості рівнянь і змінних. Хоча ми розглянемо різні методи розв'язання, варто зауважити, що переписування системи в матричній формі є особливо корисним. Це забезпечує більш компактне представлення і часто спрощує процес пошуку розв'язків.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30 alignCenterMathjax"><h2>Як розв'язати лінійну систему з однаковою кількістю рівнянь і невідомих (\( n = m \))</h2>
+<p>Лінійну систему з \( n \) рівняннями та \( n \) невідомими можна розв'язати за допомогою методу <a href="inverse-matrix.html">оберненої матриці</a>. Якщо матриця коефіцієнтів \( A \) є несингулярною, тобто якщо її визначник не дорівнює нулю, система \(A \cdot X = B\) має єдиний розв'язок, що визначається як:</p>
+<p>\[
+X = A^{-1}B
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Розв’яжемо відносно простий приклад: лінійну систему з 3 рівняннями у 3 невідомих, де \( n = m \).</p>
+<p>\[
+\begin{cases}
+x_1 + x_2 + x_3 = 3 \\[0.5em]
+2x_1 + x_2 + x_3 = 4 \\[0.5em]
+2x_1 + x_2 + 3x_3 = 8
+\end{cases}
+\]</p>
+<hr>
+<p>Спершу визначимо матрицю коефіцієнтів \( A \) та обчислимо визначник:</p>
+<p>\[
+A = \begin{bmatrix}
+1 &amp; 1 &amp; 1 \\
+2 &amp; 1 &amp; 1 \\
+2 &amp; 1 &amp; 3
+\end{bmatrix}
+\quad
+\det(A) = -2
+\]</p>
+<h5>Зверніться до розділу про <a href="determinant.html">обчислення визначника</a> квадратної матриці для кращого розуміння методу.</h5>
+<hr>
+<p>Оскільки визначник матриці не дорівнює нулю, матриця є несингулярною, і можна обчислити її обернену матрицю.</p>
+<p>\[
+A^{-1} =
+\begin{bmatrix}
+-\dfrac{1}{2} &amp; -\dfrac{1}{2} &amp; \dfrac{1}{2} \\
+0 &amp; -\dfrac{1}{2} &amp; \dfrac{1}{2} \\
+\dfrac{1}{2} &amp; 1 &amp; -\dfrac{1}{2}
+\end{bmatrix}
+\]</p>
+<h5>Зверніться до розділу про обчислення <a href="inverse-matrix.html">оберненої матриці</a> для перегляду всіх кроків.</h5>
+<hr>
+<p>Тепер представимо систему як \( X = A^{-1}B \), щоб визначити невідомі змінні:</p>
+<p>\[
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{bmatrix}
+=
+\begin{bmatrix}
+-\dfrac{1}{2} &amp; -\dfrac{1}{2} &amp; \dfrac{1}{2} \\
+0 &amp; -\dfrac{1}{2} &amp; \dfrac{1}{2} \\
+\dfrac{1}{2} &amp; 1 &amp; -\dfrac{1}{2}
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+3 \\
+4 \\
+8
+\end{bmatrix}
+\]</p>
+<hr>
+<p>Тепер обчислимо значення \( x_1 \), \( x_2 \) та \( x_3 \) з матричного рівняння.</p>
+<p>\[
+\begin{aligned}
+x_1 &amp;= -\dfrac{1}{2} \cdot 3 - \dfrac{1}{2} \cdot 4 + \dfrac{1}{2} \cdot 8 = \dfrac{1}{2} \\[0.5em]
+x_2 &amp;= 0 \cdot 3 - \dfrac{1}{2} \cdot 4 + \dfrac{1}{2} \cdot 8 = 2 \\[0.5em]
+x_3 &amp;= \dfrac{1}{2} \cdot 3 + 1 \cdot 4 &#8211; \dfrac{1}{2} \cdot 8 = \dfrac{3}{2}
+\end{aligned}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язаннями системи є:</p>
+<p>\[
+x_1 = \dfrac{1}{2} \quad\quad
+x_2 = 2 \quad\quad
+x_3 = \dfrac{3}{2}
+\]</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке лінійні системи?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Лінійні системи — це сукупності рівнянь із кількома змінними, де кожне рівняння є лінійним. Вони розв'язуються одночасно, щоб знайти значення, які задовольняють усі рівняння відразу."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як розв'язати лінійну систему за допомогою методу оберненої матриці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Якщо кількість рівнянь дорівнює кількості невідомих і матриця коефіцієнтів є несингулярною, систему можна розв'язати за формулою X = A⁻¹B, де A — матриця коефіцієнтів, а B — вектор сталих."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="systems-of-linear-equations.html">algebrica.org/systems-of-linear-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

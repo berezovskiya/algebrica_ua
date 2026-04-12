@@ -1,0 +1,107 @@
+.site-column-main-graph { width:100% }
+
+.post-graph { margin-top:30px;padding:0;font-size:14px }
+
+.post-graph h2 { padding:14px 20px;border-bottom:solid 1px #e1e1e1;font-size:14px;font-weight:500;color:#000 }
+
+a.graph-more { text-decoration:underline;text-underline-offset:3px;color:#999 }
+
+.graph-tag { color:#fff;font-weight:500;background:#bfbfbf;padding:2px 6px;border-radius:3px }
+
+.page-graph-paths { padding-bottom:0 }
+
+.algebrica-graph-paths__entry-noborder { border-bottom:none !important;margin-bottom:0 !important }
+
+.graph-relationship { display:flex;justify-content:flex-start;align-items:flex-start;column-gap:80px;margin:20px 0 20px 0 }
+
+.graph-relationship-item { display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;min-width:0;gap:6px;position:relative }
+
+.graph-relationship-item:first-child::after { content:"";position:absolute;top:13px;left:12px;width:calc(100% + 80px);height:1px;background-color:#ccc;z-index:0 }
+
+.graph-relationship-circle { display:flex;align-items:center;justify-content:center;padding:0;background-color:#888;color:#fff;font-weight:bold;border-radius:100%;width:26px;height:26px;position:relative;z-index:1;line-height:26px }
+
+.graph-relationship-circle-value { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;width:100%;text-align:center;font-size:13px;line-height:1;font-weight:bold;color:#fff }
+
+.graph-relationship-desc { display:flex;align-items:center;justify-content:flex-start;font-size:12px;min-width:0;max-width:11ch;text-align:left;white-space:normal;word-break:normal;overflow-wrap:normal;line-height:13px;color:#888 }
+
+a.post-grap-btn-graph { border:solid 1px #dadada;box-sizing:border-box;font-size:13px;background:#e1e1e1;background-image:url("images/new/icon-graph.svg");background-repeat:no-repeat;background-position:left 10px top 6px;margin-right:10px;height:38px;line-height:38px;border-radius:3px;padding:0 14px 0 40px;transition:background-color .25s cubic-bezier(0.2, 0, 0.3, 1);color:#000;text-decoration:none }
+
+a.post-grap-btn-graph:hover { background-color:#d1d1d1;cursor:pointer }
+
+.footer-paragraph { font-size:15px;line-height:1.5 }
+
+.icon-graph { background:url("images/new/icon-graph.svg") }
+
+.algebrica-graph__canvas { height:640px;width:100%;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-tap-highlight-color:rgba(0,0,0,0) }
+
+.algebrica-graph-paths { margin:20px 0 30px 0 }
+
+.algebrica-graph-paths ul:not(:last-child) { margin-bottom:5px }
+
+.algebrica-graph-paths ul li { background-position:top 8px left 0 !important }
+
+.algebrica-graph-paths__entry:not(:last-child) { margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e9e9e9 }
+
+.algebrica-graph-paths__entry-title { font-size:16px;margin-bottom:10px }
+
+.algebrica-graph-paths__entry-title a { color:#000;text-decoration:none;border-bottom:1px solid #000 }
+
+.algebrica-graph-path-header { display:flex;align-items:center;gap:10px;margin-bottom:4px;line-height:20px }
+
+.algebrica-graph-path-header-item { display:flex;align-items:center }
+
+.algebrica-graph__canvas svg { display:block;width:100%;height:100% }
+
+.algebrica-graph__node { fill:#777;transition:fill .2s ease-in-out,r .2s ease-in-out }
+
+.algebrica-graph__node:hover { fill:#ddd;r:5.5px }
+
+.algebrica-graph__label { fill:#ddd;opacity:0 }
+
+.algebrica-graph__canvas { height:640px }
+
+.algebrica-graph-head { display:flex;gap:20px;align-items:stretch;margin-bottom:60px }
+
+.algebrica-graph-head-item { flex:1 1 0;min-width:0 }
+
+.algebrica-graph-head-item h2 { color:#ddd;font-size:15px;font-weight:500 }
+
+.algebrica-graph-head-item p { font-size:13px;color:#aaa;line-height:16px }
+
+.algebrica-graph-big-number { font-size:26px;padding:10px 0 10px 0;color:#ddd }
+
+a.explore-the-graph,.placeholder-graph,a.explore-the-graph-mobile { font-size:13px;margin-right:10px;background:#dadada;height:38px;line-height:38px;background-image:url("images/new/icon-graph.svg");background-repeat:no-repeat;background-position:left 15px top 6px;border-radius:24px;padding:0 20px 0 47px;transition:background-color .25s cubic-bezier(0.2, 0, 0.3, 1);color:#000 }
+
+a.explore-the-graph:hover,.placeholder-graph:hover,a.explore-the-graph-mobile:hover { background-color:#d1d1d1;cursor:pointer }
+
+a.explore-the-graph-mobile { font-size:14px;height:46px !important;line-height:46px !important;display:block;margin:0;background-position:left 10px top 11px }
+
+.page-graph-placeholder { margin-bottom:-10px }
+
+.page-graph-placeholder-text { text-align:center;width:360px;margin:0 auto;color:#666 }
+
+.page-graph-placeholder-text p { position:relative;font-size:14px;margin-bottom:20px }
+
+.page-graph-placeholder-text a { color:#000;text-decoration:underline;text-underline-offset:4px }
+
+.placeholder-graph { margin-top:60px !important;margin-bottom:20px !important;font-weight:500;background-color:#fff;font-size:15px;display:block;width:fit-content;margin:0 auto;transition:none }
+
+.placeholder-graph:hover { background-color:rgba(0,0,0,0);cursor:default }
+
+.graph-page-search { margin:0 auto;width:400px;margin-bottom:20px }
+
+.graph-page-search__field { flex:1 1 auto;min-width:0 }
+
+.graph-page-search__input { width:100%;height:42px;border-radius:999px;background-color:rgba(0,0,0,.2);color:#bbb;font-size:14px;padding:0 18px;box-sizing:border-box;transition:background-color .2s ease-in-out,r .2s ease-in-out;background-image:url("images/new/search-graph.svg");background-position:10px 9px;background-repeat:no-repeat;padding-left:40px }
+
+.graph-page-search__input::placeholder { color:#777 }
+
+.graph-page-search__input:focus { outline:none;background-color:rgba(0,0,0,.3) }
+
+.graph-page-search__clear { flex:0 0 auto;height:42px;padding:0 16px;border:1px solid #666;border-radius:999px;background:rgba(0,0,0,0);color:#d7d7d7;font-size:13px;cursor:pointer }
+
+.graph-page-search__clear:hover,.graph-page-search__clear:focus { border-color:#d7d7d7;color:#fff }
+
+.graph-page-search__status { flex:0 0 auto;min-width:120px;color:#9a9a9a;font-size:12px;text-align:right }
+
+.graph-page-search__input::-webkit-search-decoration,.graph-page-search__input::-webkit-search-cancel-button,.graph-page-search__input::-webkit-search-results-button,.graph-page-search__input::-webkit-search-results-decoration { -webkit-appearance:none;appearance:none;display:none }

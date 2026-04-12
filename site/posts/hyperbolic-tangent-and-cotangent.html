@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гіперболічний тангенс та котангенс — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Гіперболічний тангенс та котангенс</h1>
+        <time>2026-04-03</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-5" style="height:390px;min-height:390px;max-height:390px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:390px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Поняття                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли висвітлюють конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+                    </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="exponential-function.html">Показникова функція</a>, <a href="hyperbola.html">Гіпербола</a>, <a href="hyperbolic-sine-and-cosine.html">Гіперболічний синус і косинус</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-5");
+            var dataset = {"name":"root","children":[{"name":"definitions","children":[{"name":"tanh definition"},{"name":"coth definition"},{"name":"hyperbolic ratio"},{"name":"geometric interpretation"},{"name":"unit hyperbola"}]},{"name":"identities","children":[{"name":"fundamental identity"},{"name":"tanh identity"},{"name":"coth identity"},{"name":"addition formulas"},{"name":"reciprocal relation"},{"name":"algebraic relations"}]},{"name":"analysis","children":[{"name":"exponential form"},{"name":"limits"},{"name":"asymptotes"},{"name":"monotonicity"},{"name":"parity"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 390;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Вступ до гіперболічного тангенса та котангенса</h2>
+<p>Гіперболічний тангенс і котангенс виникають природним чином із гіперболічного синуса та косинуса точно так само, як круговий <a href="tangent-and-cotangent.html">тангенс і котангенс</a> виникають із кругового <a href="sine-and-cosine.html">синуса та косинуса</a>. Дано <a href="hyperbolic-sine-and-cosine.html">гіперболічний синус і косинус</a>, обидва введені у зв'язку з правою гілкою рівносторонньої <a href="hyperbola.html">гіперболи</a>:</p>
+<p>\[
+X^{2} – Y^{2} = 1
+\]</p>
+<p>Гіперболічний тангенс визначається як їхнє відношення, за умови, що \(\cosh(x)\) не дорівнює нулю. Оскільки \(\cosh(x) \geq 1\) для всіх дійсних \(x\), знаменник ніколи не дорівнює нулю, і гіперболічний тангенс, отже, визначений на всій дійсній прямій. Гіперболічний котангенс передбачає обернене відношення і вимагає \(\sinh(x) \neq 0\), що виключає лише \(x = 0\).</p>
+<p>Після того, як точка \(P(\cosh(x), \sinh(x))\) на гіперболі була визначена як така, що відповідає підписаному гіперболічному сектору площею \(x/2\), гіперболічний тангенс і котангенс можна визначити за її координатами. Гіперболічний тангенс — це відношення вертикальної координати до горизонтальної:</p>
+<p>\[
+\tanh(x) := \frac{\sinh(x)}{\cosh(x)}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="630" height="560" src="../images/hyperbolic-thangent.png" alt="" class="wp-image-28176" style="width:315px" title="hyperbolic tangent" srcset="../images/hyperbolic-thangent.png 630w, https://algebrica.org/wp-content/uploads/resources/images/hyperbolic-thangent-300x267.png 300w" sizes="(max-width: 630px) 100vw, 630px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><blockquote>
+<p>Щоб зробити побудову більш інтуїтивною, розглянемо одиничну гіперболу \( x^2 &#8211; y^2 = 1 \) і точку \( P = (\cosh x, \sinh x) \), пов'язану з гіперболічним кутом \( x \). Проведемо <a href="lines.html">пряму</a>, що проходить через початок координат \( O \) та точку \( P \), і розглянемо вертикальну пряму \( x = 1 \). Їхній перетин визначає точку \( T \), яка має координати \( T = (1, \tanh x) \), оскільки кутовий коефіцієнт прямої \( OP \) дорівнює \( \sinh x/ \cosh x = \tanh x \). Вертикальний відрізок, що з'єднує \( (1,0) \) з \( T \), таким чином геометрично представляє довжину гіперболічного тангенса.</p>
+</blockquote>
+<hr>
+<p>Гіперболічний котангенс — це обернене відношення, тобто горизонтальна координата, поділена на вертикальну:</p>
+<p>\[
+\coth(x) := \frac{\cosh(x)}{\sinh(x)}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="632" height="560" src="../images/hyperbolic-cotangent-1.png" alt="Hyperbolic cotangent." class="wp-image-28197" style="width:316px" title="Hyperbolic cotangent." srcset="../images/hyperbolic-cotangent-1.png 632w, https://algebrica.org/wp-content/uploads/resources/images/hyperbolic-cotangent-1-300x266.png 300w" sizes="(max-width: 632px) 100vw, 632px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><blockquote>
+<p>Як і у випадку, описаному вище для гіперболічного тангенса, щоб зробити побудову більш інтуїтивною, розглянемо одиничну гіперболу \( x^2 &#8211; y^2 = 1 \) і точку \( P = (\cosh x, \sinh x) \), пов'язану з гіперболічним кутом \( x \). Проведемо <a href="lines.html">пряму</a>, що проходить через початок координат \( O \) та точку \( P \), і розглянемо горизонтальну пряму \( y = 1 \). Їхній перетин визначає точку \( S \), яка має координати \( S = (\coth x, 1) \), оскільки кутовий коефіцієнт прямої \( OP \) дорівнює \( \sinh x / \cosh x = \tanh x \), і, таким чином, його обернена величина дає \( \coth x = \cosh x / \sinh x \). Горизонтальний відрізок, що з'єднує \( (0,1) \) з \( S \), таким чином геометрично представляє довжину гіперболічного котангенса.</p>
+</blockquote>
+<hr>
+<p>У цій геометричній картині гіперболічний тангенс і котангенс виміряють свого роду нахил точки на гіперболі відносно її двох координат, за аналогією з тим, як круговий тангенс виражає нахил точки на <a href="unit-circle.html">одиничному колі</a>.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Основна гіперболічна тотожність для тангенса та котангенса</h2>
+<p>Гіперболічний тангенс і котангенс задовольняють тотожність, яка безпосередньо випливає з <a href="hyperbolic-sine-and-cosine.html">основної гіперболічної тотожності</a>. Виходячи з:</p>
+<p>\[
+\cosh^{2}(x) – \sinh^{2}(x) = 1
+\]</p>
+<p>і поділивши обидві частини на \(\cosh^{2}(x)\), що завжди є додатним, ми отримаємо тотожність для гіперболічного тангенса:</p>
+<p>\[
+1 – \tanh^{2}(x) = \frac{1}{\cosh^{2}(x)}
+\]</p>
+<p>Аналогічно, ділення основної тотожності на \(\sinh^{2}(x)\) при \(x \neq 0\) дає тотожність для гіперболічного котангенса:</p>
+<p>\[
+\coth^{2}(x) – 1 = \frac{1}{\sinh^{2}(x)}
+\]</p>
+<p>Обидві тотожності відображають прямий наслідок рівняння гіперболи: координати точки \(P\) обмежені умовою \(X^{2} – Y^{2} = 1\), і ділення на квадрат будь-якої з координат переводить це обмеження у відношення, що включає функції відношення.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section post-type-test-list"><h2>Гіперболічні тотожності</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad \tanh(x+y) = \frac{\tanh(x) + \tanh(y)}{1 + \tanh(x)\,\tanh(y)}\]</p>
+</li>
+<li>
+<p>\[\text{2. } \quad \tanh(x-y) = \frac{\tanh(x) – \tanh(y)}{1 – \tanh(x)\,\tanh(y)}\]</p>
+</li>
+<li>
+<p>\[\text{3. } \quad \tanh(2x) = \frac{2\,\tanh(x)}{1 + \tanh^{2}(x)}\]</p>
+</li>
+<li>
+<p>\[\text{4. } \quad \coth(x+y) = \frac{1 + \coth(x)\,\coth(y)}{\coth(x) + \coth(y)}\]</p>
+</li>
+<li>
+<p>\[\text{5. } \quad \coth(x-y) = \frac{-1 + \coth(x)\,\coth(y)}{\coth(x) – \coth(y)}\]</p>
+</li>
+<li>
+<p>\[\text{6. } \quad \tanh(x)\,\coth(x) = 1\]</p>
+</li>
+</ul>
+<blockquote>
+<p>Формули додавання та віднімання для гіперболічного тангенса та котангенса тісно відображають їхні тригонометричні аналоги, але керуються алгеброю рівносторонньої гіперболи. Остання тотожність просто стверджує, що \(\tanh\) та \(\coth\) є оберненими функціями всюди, де обидві визначені.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Аналітичний вираз гіперболічного тангенса</h2>
+<p>Використовуючи аналітичні вирази гіперболічного синуса та косинуса через <a href="exponential-function.html">показникову функцію</a>, ми можемо записати гіперболічний тангенс безпосередньо. Підставляючи:</p>
+<p>\[ \sinh(x) = \frac{e^{x} – e^{-x}}{2}\]
+\[ \cosh(x) = \frac{e^{x} + e^{-x}}{2}\]</p>
+<p>в означення \(\tanh(x) = \sinh(x)/\cosh(x)\) та спрощуючи множник \(1/2\), що з'являється і в чисельнику, і в знаменнику, ми отримаємо:</p>
+<p>\[
+\tanh(x) = \frac{e^{x} – e^{-x}}{e^{x} + e^{-x}}
+\]</p>
+<p>Еквівалентна і часто компактніша форма отримується шляхом множення чисельника та знаменника на \(e^{-x}\):</p>
+<p>\[
+\tanh(x) = \frac{1 – e^{-2x}}{1 + e^{-2x}}
+\]</p>
+<p>або, еквівалентно, шляхом множення на \(e^{x}\):</p>
+<p>\[
+\tanh(x) = \frac{e^{2x} – 1}{e^{2x} + 1}
+\]</p>
+<p>Усі три вирази є еквівалентними, і кожен відображає різний аспект функції: у першій формі чисельник і знаменник — це самі аналітично визначені <a href="hyperbolic-sine-and-cosine.html">гіперболічний синус і косинус</a>. В останніх двох стає відразу помітним показникове зростання при \(x \to +\infty\) або \(x \to -\infty\), і з них можна відразу визначити, що функція прямує до \(1\) та \(-1\) відповідно.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Аналітичний вираз гіперболічного котангенса</h2>
+<p>Виведення аналітичного виразу для гіперболічного котангенса відбувається за тією ж схемою. Підставляючи вирази \(\sinh(x)\) та \(\cosh(x)\) в означення \(\coth(x) = \cosh(x)/\sinh(x)\), і знову скоротивши спільний множник \(1/2\), ми отримаємо:</p>
+<p>\[
+\coth(x) = \frac{e^{x} + e^{-x}}{e^{x} – e^{-x}}
+\]</p>
+<p>Як і раніше, множення чисельника та знаменника на \(e^{-x}\) або на \(e^{x}\) дає еквівалентні форми:</p>
+<p>\[
+\coth(x) = \frac{1 + e^{-2x}}{1 – e^{-2x}} = \frac{e^{2x} + 1}{e^{2x} – 1}
+\]</p>
+<p>Останні вирази показують, що для великих додатних \(x\) функція наближається до \(1\) зверху, тоді як для великих від'ємних \(x\) вона наближається до \(-1\) знизу, при цьому в обох випадках у точці \(x = 0\) є вертикальна асимптота.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section aligCenterMathjax pb-steps"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Функції гіперболічного тангенса та котангенса</h2>
+<p>Функція гіперболічного тангенса \(f(x) = \tanh(x)\) визначена для всіх дійсних чисел. На відміну від тригонометричного тангенса, вона не має вертикальних <a href="asymptotes.html">асимптот</a>: її графік — це гладка, монотонно зростаюча крива, яка проходить через початок координат з кутовим коефіцієнтом \(1\) і залишається обмеженою для всіх \(x\). При \(x \to +\infty\) функція асимптотично наближається до \(1\), а при \(x \to -\infty\) вона наближається до \(-1\), отже, область значень — це відкритий проміжок \((-1, 1)\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="666" height="568" src="../images/hyperbolic-thangent-function-2.png" alt="Hyperbolic tangent function." class="wp-image-28208" style="width:333px" title="Hyperbolic tangent function." srcset="../images/hyperbolic-thangent-function-2.png 666w, https://algebrica.org/wp-content/uploads/resources/images/hyperbolic-thangent-function-2-300x256.png 300w" sizes="(max-width: 666px) 100vw, 666px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><ul>
+<li>Область визначення: \(x \in \mathbb{R}\)</li>
+<li>Область значень: \(y \in (-1, 1)\)</li>
+<li>Періодичність: неперіодична</li>
+<li>Парність: <a href="even-and-odd-functions.html">непарна</a>, \(\tanh(-x) = -\tanh(x)\)</li>
+<li>Горизонтальні асимптоти: \(y = 1\) при \(x \to +\infty\); \(y = -1\) при \(x \to -\infty\)</li>
+</ul>
+<hr>
+<p>Функція гіперболічного котангенса \(f(x) = \coth(x)\) визначена для всіх дійсних \(x \neq 0\). Її графік складається з двох гілок: одна для \(x &gt; 0\), де функція спадає від \(+\infty\) до \(1\), і одна для \(x &lt; 0\), де вона зростає від \(-\infty\) до \(-1\). Початок координат є вертикальною асимптотою, а прямі \(y = 1\) та \(y = -1\) є горизонтальними асимптотами.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="788" height="598" src="../images/hyperbolic-cotangent-function-1.png" alt="Hyperbolic cotangent function." class="wp-image-28213" style="width:394px" title="Hyperbolic cotangent function." srcset="../images/hyperbolic-cotangent-function-1.png 788w, https://algebrica.org/wp-content/uploads/resources/images/hyperbolic-cotangent-function-1-300x228.png 300w, https://algebrica.org/wp-content/uploads/resources/images/hyperbolic-cotangent-function-1-768x583.png 768w" sizes="(max-width: 788px) 100vw, 788px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><ul>
+<li>Область визначення: \(x \in \mathbb{R},; x \neq 0\)</li>
+<li>Область значень: \(y \in (-\infty, -1) \cup (1, +\infty)\)</li>
+<li>Періодичність: неперіодична</li>
+<li>Парність: <a href="even-and-odd-functions.html">непарна</a>, \(\coth(-x) = -\coth(x)\)</li>
+<li>Вертикальна асимптота: \(x = 0\)</li>
+<li>Горизонтальні асимптоти: \(y = 1\) при \(x \to +\infty\); \(y = -1\) при \(x \to -\infty\)</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Зв'язок із круговим тангенсом і котангенсом</h2>
+<p>Кругові <a href="tangent-and-cotangent.html">тангенс і котангенс</a> визначаються як відношення кругового синуса та косинуса, які, у свою чергу, виникають із геометрії одиничного кола. За цією ж аналогією, гіперболічний тангенс і котангенс є відношеннями гіперболічного синуса та косинуса, що виникають із геометрії рівносторонньої гіперболи. В обох випадках основна тотожність, що обмежує координати точки на кривій, переноситься на відповідну тотожність для функцій відношення.</p>
+<p>Існує, однак, фундаментальна відмінність між цими двома випадками: у той час як круговий тангенс є періодичним з періодом \(\pi\) і необмеженим, гіперболічний тангенс є монотонним і обмеженим між \(-1\) та \(1\). Аналогічно, круговий котангенс має вертикальні асимптоти в кожній цілій кратній \(\pi\), тоді як гіперболічний котангенс має лише одну — у початку координат.</p>
+<blockquote>
+<p>Як круговий, так і гіперболічний тангенс вимірюють свого роду відношення координат точки на кривій: одна на одиничному колі, інша — на рівносторонній гіперболі. Структурний паралелізм між цими двома сімействами функцій є однією з найелегантніших рис класичного аналізу.</p>
+</blockquote>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="hyperbolic-tangent-and-cotangent.html">algebrica.org/hyperbolic-tangent-and-cotangent</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

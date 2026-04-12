@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ділення поліномів — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Поліноми</span>
+    </nav>
+    <article>
+        <h1>Ділення поліномів</h1>
+        <time>2025-02-09</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Алгоритм ділення</h2>
+<p>Нехай \(P(x)\) та \(D(x)\) будуть <a href="polynomials.html">поліномами</a> в \(\mathbb{R}[x]\) з \(D(x) \neq 0\). Алгоритм ділення стверджує про існування єдиних поліномів \(Q(x)\) та \(R(x)\) в \(\mathbb{R}[x]\) таких, що:</p>
+<p>\[P(x) = Q(x) \cdot D(x) + R(x)\]</p>
+<p>\[\deg R(x) &lt; \deg D(x) \quad \text{або} \quad R(x) = 0\]</p>
+<ul>
+<li>Поліном \(P(x)\) називається діленим.</li>
+<li>\(D(x)\) — дільником.</li>
+<li>\(Q(x)\) — часткою.</li>
+<li>\(R(x)\) — остачею.</li>
+</ul>
+<p>Якщо \(R(x) = 0\), ділення є точним і \(D(x)\) ділить \(P(x)\) в \(\mathbb{R}[x]\). Цей результат є прямо аналогічним до евклідова ділення цілих чисел і виконується в будь-якому кільці поліномів \(F[x]\), де \(F\) — поле. Існування такого представлення може бути встановлено за допомогою індукції за \(\deg P\), тоді як єдиність випливає з аргументу ступеня. Припустимо, що існують два представлення:</p>
+<p>\[\begin{align}
+P(x) &amp;= Q_1(x) \cdot D(x) + R_1(x) \\[6pt]
+&amp;= Q_2(x) \cdot D(x) + R_2(x)
+\end{align}\]</p>
+<p>Віднімання дає \((Q_1(x) &#8211; Q_2(x)) \cdot D(x) = R_2(x) - R_1(x)\). Якщо \(Q_1 \neq Q_2\), ліва частина має ступінь принаймні \(\deg D\), тоді як права частина задовольняє \(\deg(R_2 &#8211; R_1) &lt; \deg D\), що є суперечністю. Отже \(Q_1 = Q_2\), і, відповідно, \(R_1 = R_2\).</p>
+<h6>Кільце визначається як алгебраїчна структура з двома операціями, додаванням і множенням, що задовольняють асоціативність, дистрибутивність та існування обернених елементів за додаванням. Поле — це кільце, в якому кожен ненульовий елемент має обернений елемент за множенням. Поширеними прикладами полів є \(\mathbb{Q}\), \(\mathbb{R}\) та \(\mathbb{C}\).</h6>
+<hr>
+<p>Нехай \(P(x)\) та \(D(x)\) будуть ненульовими поліномами такими, що \(\deg P \geq \deg D\). Ступені частки та остачі є наступними:</p>
+<p>\[\deg Q(x) = \deg P(x) - \deg D(x)\]
+\[\deg R(x) &lt; \deg D(x)\]</p>
+<p>Якщо \(\deg P &lt; \deg D\), тоді частка є нульовим поліномом, а остача — \(P(x)\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Ділення поліномів «куточком»</h2>
+<p>Алгоритм ділення «куточком» передбачає повторне ділення старшого члена поточного діленого на старший член \(D(x)\), віднімання отриманого добутку та продовження цього процесу, доки ступінь остачі не стане меншою за ступінь \(D(x)\). Процедуру можна узагальнити в наступних кроках:</p>
+<ul>
+<li>
+<p>Спочатку поділіть старший член поточного діленого на старший член \(D(x)\), щоб визначити наступний член \(Q(x)\).</p>
+</li>
+<li>
+<p>Далі помножте цей член на \(D(x)\) і відніміть результат від поточного діленого.</p>
+</li>
+<li>
+<p>Повторюйте ці кроки, доки ступінь виразу, що залишився, не стане строго меншою за \(\deg D(x)\).</p>
+</li>
+</ul>
+<h6>Коли дільник є лінійним поліномом вигляду \(x - c\), процедуру можна виконати ефективніше за допомогою <a href="syntetic-division.html">методу синтетичного ділення</a>, який зводить обчислення лише до операцій над коефіцієнтами.</h6>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Застосуємо описаний вище метод, щоб обчислити частку \(P(x)\) та \(D(x)\), де:</p>
+<p>\[P(x)= x^3 + 2x^2 - x - 2\]
+\[D(x) = x - 1\]</p>
+<p>Таблиця ділення будується з членами, розташованими в порядку спадання ступенів:</p>
+<p>\[
+\begin{array}{rrrr|rr}
++x^3 &amp; +2x^2 &amp; -x &amp; -2 &amp; +x &amp; -1 \\
+\\
+\end{array}
+\]</p>
+<p>Ділення старшого члена \(x^3\) на \(x\) дає \(x^2\). Далі помножте \(x^2\) на \(D(x) = x - 1\) і відніміть результат:</p>
+<p>\[
+\begin{array}{rrrr|rr}
++x^3 &amp; +2x^2 &amp; -x &amp; -2 &amp; x &amp; -1 \\
+-x^3 &amp; +x^2 &amp; &amp; &amp; x^2 &amp; \\
+\text{//} &amp; +3x^2 &amp; -x &amp; -2 &amp; &amp;
+\end{array}
+\]</p>
+<p>Ділення \(3x^2\) на \(x\) дає \(3x\). Помножте та відніміть, як і раніше:</p>
+<p>\[
+\begin{array}{rrrr|rr}
++x^3 &amp; +2x^2 &amp; -x &amp; -2 &amp; x &amp; -1 \\
+-x^3 &amp; +x^2 &amp; &amp; &amp; x^2 &amp; +3x \\
+\text{//} &amp; +3x^2 &amp; -x &amp; -2 &amp; &amp; \\
+&amp; -3x^2 &amp; +3x &amp; &amp; &amp;\\
+\text{//} &amp; \text{//} &amp; +2x &amp; -2 &amp; &amp;
+\end{array}
+\]</p>
+<p>Ділення \(2x\) на \(x\) дає \(2\). Помножте та відніміть, щоб завершити процес:</p>
+<p>\[
+\begin{array}{rrrr|rr}
++x^3 &amp; +2x^2 &amp; -x &amp; -2 &amp; x &amp; -1 \\
+-x^3 &amp; +x^2 &amp; &amp; &amp; x^2 &amp; +3x+2 \\
+\text{//} &amp; +3x^2 &amp; -x &amp; -2 &amp; &amp; \\
+&amp; -3x^2 &amp; +3x &amp; &amp; &amp;\\
+\text{//} &amp; \text{//} &amp; +2x &amp; -2 &amp; &amp;\\
+&amp; &amp; -2x &amp; +2 &amp; &amp;\\
+&amp; &amp; \text{//} &amp; 0 &amp; &amp;
+\end{array}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Оскільки остача дорівнює нулю, ділення є точним. Результат:</p>
+<p>\[Q(x) = x^2 + 3x + 2 \quad R(x) = 0\]</p>
+<p>і, отже:</p>
+<p>\[x^3 + 2x^2 &#8211; x &#8211; 2 = (x^2 + 3x + 2)(x &#8211; 1)\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Наступний приклад демонструє випадок, коли ділення не є точним; зокрема, остача \(R(x)\) є ненульовим поліномом, ступінь якого строго менша за \(\deg D(x)\).</p>
+<p>Зазначений вище метод застосовується для обчислення частки наступних поліномів:</p>
+<p>\[P(x) = x^3 + x^2 + x + 2\]
+\[D(x) = x^2 + 1\]</p>
+<p>Таблиця ділення будується з членами, розташованими в порядку спадання ступенів:</p>
+<p>\[
+\begin{array}{rrrr|rr}
++x^3 &amp; +x^2 &amp; +x &amp; +2 &amp; x^2 &amp; +1 \\
+\\
+\end{array}
+\]</p>
+<p>Ділення \(x^3\) на \(x^2\) дає \(x\). Множення \(x\) на \(D(x)\) та віднімання дає наступний рядок:</p>
+<p>\[
+\begin{array}{rrrr|rr}
++x^3 &amp; +x^2 &amp; +x &amp; +2 &amp; x^2 &amp; +1 \\
+-x^3 &amp; &amp; -x &amp; &amp; x &amp; \\
+\text{//} &amp; +x^2 &amp; \text{//} &amp; +2 &amp; &amp;
+\end{array}
+\]</p>
+<p>Ділення \(x^2\) на \(x^2\) дає \(1\). Множення та віднімання призводять до наступного:</p>
+<p>\[
+\begin{array}{rrrr|rr}
++x^3 &amp; +x^2 &amp; +x &amp; +2 &amp; x^2 &amp; +1 \\
+-x^3 &amp; &amp; -x &amp; &amp; x &amp; +1 \\
+\text{//} &amp; +x^2 &amp; \text{//} &amp; +2 &amp; &amp; \\
+&amp; -x^2 &amp; &amp; -1 &amp; &amp;\\
+&amp; \text{//} &amp; &amp; +1 &amp; &amp;
+\end{array}
+\]</p>
+<p>Ступінь остачі \(1\) дорівнює \(0\), що строго менше за \(\deg D(x) = 2\). Отже, алгоритм завершується. Частка та остача дорівнюють:</p>
+<p>\[Q(x) = x + 1 \quad R(x) = 1\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Ділення можна записати як:</p>
+<p>\[x^3 + x^2 + x + 2 = (x + 1)(x^2 + 1) + 1\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Теорема про остачу та теорема про множники</h2>
+<p>Алгоритм ділення призводить до результату, який пов'язує ділення поліномів з обчисленням значення полінома в конкретній точці. Замість того щоб обчислювати \(P(c)\) безпосередньо, те саме значення можна отримати як наслідок ділення \(P(x)\) на лінійний поліном \(x &#8211; c\). Нехай \(P(x) \in \mathbb{R}[x]\) та \(c \in \mathbb{R}\). Коли \(P(x)\) ділиться на лінійний поліном \(x &#8211; c\), остача дорівнює \(P(c)\).</p>
+<p>Застосовуючи алгоритм ділення з дільником \(D(x) = x &#8211; c\), оскільки \(\deg D = 1\), остача \(R(x)\) має задовольняти умову \(\deg R &lt; 1\), що означає, що \(R(x)\) є сталою, яку позначимо \(r\). Тоді алгоритм ділення дає:</p>
+<p>\[P(x) = Q(x)(x &#8211; c) + r\]</p>
+<p>Підставивши \(x = c\) в обидві частини:</p>
+<p>\[P(c) = Q(c)(c &#8211; c) + r = 0 + r = r\]</p>
+<p>Таким чином \(r = P(c)\), що встановлює результат.</p>
+<h5>Теорема про остачу пропонує прямий метод обчислення значення полінома в конкретній точці без виконання повного ділення. Значення \(P(c)\) задається остачею при діленні на \(x &#8211; c\).</h5>
+<hr>
+<p>Наступний результат, відомий як теорема про множники, є прямим наслідком теореми про остачу. Нехай \(P(x) \in \mathbb{R}[x]\) та \(c \in \mathbb{R}\). Поліном \(x &#8211; c\) ділить \(P(x)\) у \(\mathbb{R}[x]\) тоді і тільки тоді, коли \(P(c) = 0\).</p>
+<p>Цей результат можна довести безпосередньо, використовуючи теорему про остачу. Ділення \(P(x)\) на \(x - c\) дає \(P(x) = Q(x)(x - c) + r\), де \(r = P(c)\). Отже, \(x - c\) ділить \(P(x)\) тоді і тільки тоді, коли \(r = 0\), що еквівалентно \(P(c) = 0\).</p>
+<p>Теорема про множники встановлює відповідність між <a href="roots-of-a-polynomial.html">коренями</a> полінома та його лінійними множниками: \(c\) є коренем \(P(x)\) тоді і тільки тоді, коли \(x - c\) є множником \(P(x)\) у \(\mathbb{R}[x]\).</p>
+<h6>Цей принцип лежить в основі розкладання поліномів на множники над полем і буде детальніше розглянуто в розділі про <a href="polynomials.html">розкладання поліномів на множники</a>.</h6>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Як застосування теореми про остачу, розглянемо поліном:</p>
+<p>\[P(x) = 2x^3 &#8211; 3x^2 + x &#8211; 5\]</p>
+<p>та значення \(c = 2\). Згідно з теоремою, ділення \(P(x)\) на \(x &#8211; 2\) дає остачу, що дорівнює \(P(2)\). Обчислюючи \(P(2)\) безпосередньо шляхом підстановки, ми отримаємо:</p>
+<p>\[P(2) = 2(2)^3 &#8211; 3(2)^2 + (2) &#8211; 5 = 16 &#8211; 12 + 2 &#8211; 5 = 1\]</p>
+<p>Теорема про остачу передбачає, що остача від ділення \(P(x)\) на \(x &#8211; 2\) дорівнює \(1\). Цей результат можна перевірити за допомогою методу ділення «куточком»:</p>
+<p>\[
+\begin{array}{rrrrr|rr}
++2x^3 &amp; -3x^2 &amp; +x &amp; -5 &amp; x &amp; -2 \\
+\\
+\end{array}
+\]</p>
+<p>Ділення старшого члена \(2x^3\) на \(x\) дає \(2x^2\), що слугує початковим членом частки. Множачи \(2x^2\) на \(D(x) = x &#8211; 2\) та віднімаючи результат від діленого, отримуємо:</p>
+<p>\[
+\begin{array}{rrrr|rr}
++2x^3 &amp; -3x^2 &amp; +x &amp; -5 &amp; x &amp; -2 \\
+-2x^3 &amp; +4x^2 &amp; &amp; &amp; 2x^2 &amp; \\
+\text{//} &amp; +x^2 &amp; +x &amp; -5 &amp; &amp;
+\end{array}
+\]</p>
+<p>Ділення \(x^2\) на \(x\) дає \(x\). Множачи та віднімаючи, ми отримаємо:</p>
+<p>\[
+\begin{array}{rrrr|rr}
++2x^3 &amp; -3x^2 &amp; +x &amp; -5 &amp; x &amp; -2 \\
+-2x^3 &amp; +4x^2 &amp; &amp; &amp; 2x^2 &amp; +x \\
+\text{//} &amp; +x^2 &amp; +x &amp; -5 &amp; &amp; \\
+&amp; -x^2 &amp; +2x &amp; &amp; &amp;\\
+\text{//} &amp; \text{//} &amp; +3x &amp; -5 &amp; &amp;
+\end{array}
+\]</p>
+<p>Ділення \(3x\) на \(x\) дає \(3\). Множачи та віднімаючи:</p>
+<p>\[
+\begin{array}{rrrr|rr}
++2x^3 &amp; -3x^2 &amp; +x &amp; -5 &amp; x &amp; -2 \\
+-2x^3 &amp; +4x^2 &amp; &amp; &amp; 2x^2 &amp; +x+3 \\
+\text{//} &amp; +x^2 &amp; +x &amp; -5 &amp; &amp; \\
+&amp; -x^2 &amp; +2x &amp; &amp; &amp;\\
+\text{//} &amp; \text{//} &amp; +3x &amp; -5 &amp; &amp;\\
+&amp; &amp; -3x &amp; +6 &amp; &amp;\\
+&amp; &amp; \text{//} &amp; +1 &amp; &amp;
+\end{array}
+\]</p>
+<p>Остача дорівнює \(1\), що підтверджує, що \(R = P(2) = 1\) відповідно до теореми про остачу. Частка та остача становлять:</p>
+<p>\[Q(x) = 2x^2 + x + 3 \quad R = 1\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Ділення можна записати як:</p>
+<p>\[2x^3 - 3x^2 + x - 5 = (2x^2 + x + 3)(x - 2) + 1\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Раціональні функції та ділення поліномів</h2>
+<p>Коли ділення двох поліномів виконується без відокремлення остачі, результат представляється як <a href="rational-functions.html">раціональна функція</a>, де \(D(x) \neq 0\):</p>
+<p>\[F(x) = \frac{P(x)}{D(x)}\]</p>
+<p>У цьому контексті ділення поліномів пропонує систематичний метод розкладання \(F(x)\) на поліноміальний компонент та правильний раціональний компонент. Правильна раціональна функція визначається як така, в якій чисельник має строго менший ступінь, ніж знаменник:</p>
+<p>\[\frac{P(x)}{D(x)} = Q(x) + \frac{R(x)}{D(x)}\]</p>
+<p>Цей розклад є єдиним. Поліноміальна частина \(Q(x)\) та правильна раціональна частина \(R(x)/D(x)\) однозначно визначаються через \(P(x)\) та \(D(x)\) як прямий наслідок єдиності алгоритму ділення.</p>
+<p>Цей розклад слугує основою для <a href="partial-fraction-decomposition.html">розкладу на прості дроби</a> — методу, що представляє правильний раціональний компонент як суму простіших дробів. Цей метод широко використовується в інтегруванні.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li><strong>Cornell University, J. Belk</strong>. <a href="https://e.math.cornell.edu/people/belk/numbertheory/NumberTheoryPolynomials.pdf">Number Theory for Polynomials</a></li>
+<li><strong>University of Connecticut, K. Conrad</strong>. <a href="https://kconrad.math.uconn.edu/blurbs/ugradnumthy/divthmZF%5BT%5D.pdf">The Division Algorithm in Z</a></li>
+<li><strong>Harvard University, S. Vadhan</strong>. <a href="https://people.seas.harvard.edu/~salil/am106/fall09/lec16.pdf">Polynomial Rings and Division with Remainder</a></li>
+<li><strong>Harvard University, C. McMullen</strong>. <a href="https://people.math.harvard.edu/~ctm/home/text/class/harvard/123/23/html/home/course/course.pdf">Algebra II: Rings and Fields</a></li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="polynomial-division.html">algebrica.org/polynomial-division</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

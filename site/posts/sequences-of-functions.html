@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Послідовності функцій — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Послідовності</span>
+    </nav>
+    <article>
+        <h1>Послідовності функцій</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Вступ</h2>
+<p>Уявіть, що у вас є список різних <a href="functions.html">функцій</a>, де кожна функція в списку пов'язана з числом \(n = 1, 2, 3… \in \mathbb{N} \). Отже, для кожного \(n\) ви отримуєте різну функцію, і цей впорядкований список функцій — це, по суті, те, чим є <a href="sequences.html">послідовність</a> функцій. У формальних термінах, нехай \( A \subseteq \mathbb{R} \) буде непорожньою підмножиною і припустимо, що для кожного \( n \in \mathbb{N} \) ми маємо функцію \( f_n: A \rightarrow \mathbb{R} \). Тоді ми кажемо, що \( (f_n) = (f_1, f_2, f_3, \dots) \) є <strong>послідовністю функцій</strong> на \( A. \)</p>
+<hr>
+<p>Розглянемо простий практичний приклад. Нехай \( (f_n) \) буде послідовністю функцій, де \(n \in \mathbb{N}_0\) та \( x \in \mathbb{R} \), визначеною як:</p>
+<p>\[
+f_n(x) = \frac{x}{n+1}
+\]</p>
+<p>Це сімейство функцій, де кожна функція є лінійною, а кутовий коефіцієнт зменшується зі збільшенням \(n\). Для \(n = 0, 1, 2, 3, …\), ми маємо:</p>
+<p>\[
+\begin{aligned}
+f_0(x) &amp;= \frac{x}{0+1} = x \\[0.5em]
+f_1(x) &amp;= \frac{x}{1+1} = \frac{x}{2} \\[0.5em]
+f_2(x) &amp;= \frac{x}{2+1} = \frac{x}{3} \\[0.5em]
+f_3(x) &amp;= \frac{x}{3+1} = \frac{x}{4} \\[0.5em]
+\vdots
+\end{aligned}
+\]</p>
+<p>Таким чином, послідовність функцій має вигляд:</p>
+<p>\[
+(f_n) = \left( x, \frac{x}{2}, \frac{x}{3}, \frac{x}{4}, \dots \right)
+\]</p>
+<p>Графічно цю ситуацію можна спостерігати наступним чином:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="812" height="726" src="../images/sequence-functions-1.png" alt="" class="wp-image-17590" style="width:406px" srcset="../images/sequence-functions-1.png 812w, https://algebrica.org/wp-content/uploads/resources/images/sequence-functions-1-300x268.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sequence-functions-1-768x687.png 768w" sizes="(max-width: 812px) 100vw, 812px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Графік показує, як зі збільшенням індексу \(n\) кутовий коефіцієнт прямої \(f_n(x)\) поступово зменшується. Це відображає той факт, що функція spлющується до нульової функції \(f(x) = 0\) для кожного \(x\). Іншими словами, послідовність функцій \(f_n(x)\) поцентрово збігається до нульової функції при \(n \to \infty\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Поцентрова збіжність</h2>
+<p>Нехай \( \lbrace f_n(x) \rbrace \) буде послідовністю функцій, визначених на спільній <a href="determining-the-domain-of-a-function.html">області визначення</a> \( A \subseteq \mathbb{R} \), де \( n \in \mathbb{N} \). Ми кажемо, що послідовність \( \lbrace f_n(x) \rbrace \) збігається поцентрово на множині \( C \subseteq A \), якщо для кожного \( x \in C \) числова послідовність \( \lbrace f_n(x) \rbrace \) є збіжною. У цьому випадку <a href="limits.html">гранична</a> функція \( f(x) \) визначається як:</p>
+<p>\[
+f(x) = \lim_{n \to +\infty} f_n(x) \quad \forall \, x \in C
+\]</p>
+<p>Множина \( C \) називається множиною <strong>поцентрової збіжності</strong> послідовності \( {f_n(x)} \).</p>
+<hr>
+<p>Поцентрову збіжність також можна виразити наступним чином. Нехай \((f_n)\) — послідовність функцій, визначених на множині \(A\). Тоді \((f_n)\) збігається поцентрово до \(f : A \to \mathbb{R}\) тоді і тільки тоді, коли \(\forall \, x \in A\) та \(\forall \varepsilon &gt; 0\) існує \(K \in \mathbb{N} \), таке що:</p>
+<p>\[|f_n(x) - f(x)| &lt; \varepsilon \quad \forall \; n \geq K\]</p>
+<h5>Іншими словами, для кожної фіксованої точки \( x \) ми можемо зробити \( f_n(x) \) настільки близькою до \( f(x) \), наскільки забажаємо, обравши достатньо велике \( n \). Індекс \( K \), необхідний для досягнення бажаної точності, може змінюватися залежно від \( x \) та \( \varepsilon \).</h5>
+<hr>
+<p>Розглянемо послідовність функцій, обговорену раніше:</p>
+<p>\[
+f_n(x) = \frac{x}{n+1}, \quad x \in \mathbb{R}, \quad n \in \mathbb{N}_0
+\]</p>
+<p>Дослідимо, що відбувається для кожного \(x\) при \(n \to \infty\). Якщо ми зафіксуємо довільне \(x\), наприклад \(x = 2\), відповідна послідовність буде такою:</p>
+<p>\[
+\begin{aligned}
+f_0(2) &amp;= 2 \\[0.5em]
+f_1(2) &amp;= 1 \\[0.5em]
+f_2(2) &amp;= \frac{2}{3} \\[0.5em]
+f_3(2) &amp;= \frac{2}{4} \\[0.5em]
+&amp;\vdots
+\end{aligned}
+\]</p>
+<p>Ця послідовність чисел прямує до нуля при \(n \to \infty\). Загалом, для кожного \(x \in \mathbb{R}\):</p>
+<p>\[
+\lim_{n \to \infty} f_n(x) = \lim_{n \to \infty} \frac{x}{n+1} = 0
+\]</p>
+<p>Отже, гранична функція має вигляд:</p>
+<p>\[
+f(x) = 0 \quad \forall \, x \in \mathbb{R}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius"><p>З єдиності границь послідовностей дійсних чисел випливає, що поцентрова границя послідовності функцій \( (f_n) \) є єдиною.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Розглянемо поведінку наступної послідовності функцій на проміжку \(-1 &lt; x &lt; 1\):</p>
+<p>\[
+f_n(x) = x^n
+\]</p>
+<p>Для фіксованого значення \(x\) на цьому проміжку ми знаємо, що <a href="absolute-value.html">абсолютне значення</a> \(x\) менше за \(1\), тобто \(|x| &lt; 1\). Це означає, що ми розглядаємо <a href="powers.html">степені</a> числа, яке за абсолютним значенням менше за \(1\). За властивостями <a href="exponential-function.html">показників</a>, коли основа має абсолютне значення менше за \(1\), послідовність \(x^n\) прямує до нуля, коли \(n\) прямує до нескінченності:</p>
+<p>\[
+\lim_{n \to \infty} x^n = 0
+\]</p>
+<p>Послідовність степенів дійсного числа \(x\) при \(|x| &lt; 1\) збігається до нуля.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, для кожного \(x\) на проміжку \(-1 &lt; x &lt; 1\) послідовність функцій \(f_n(x) = x^n\) збігається поточково до нульової функції.</p>
+<p>\[
+f(x) = 0 \quad \forall \, x \in (-1,1)
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps mb-x-30 pb-section"><h2>Наслідки поточкової збіжності</h2>
+<p>Нехай \( {f_n} \) — послідовність функцій \( f_n : A \to \mathbb{R} \), яка збігається поточково до функції \( f : A \to \mathbb{R} \). Виконуються такі властивості:</p>
+<ul>
+<li>
+<p>Якщо кожна \( f_n(x) \geq 0 \) для всіх \( x \in A \), то \( f(x) \geq 0 \) для всіх \( x \in A \). На практиці, якщо кожна функція \(f_n(x)\) є невиnegative на \(A\), то гранична функція \(f(x)\) також буде невиnegative на \(A\). Це відображає той факт, що границя послідовності невиnegative дійсних чисел не може бути від'ємною.</p>
+</li>
+<li>
+<p>Якщо кожна \( f_n \) є неспадною на \( A \), то \( f \) є неспадною на \( A \). Відповідно, якщо кожна функція \(f_n\) є неспадною на \(A\), то гранична функція \(f\) також буде неспадною на \(A\). Іншими словами, властивість монотонності зберігається при поточковій збіжності.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Рівномірна збіжність</h2>
+<p>Нехай \( (f_n) \) — послідовність функцій, визначених на множині \( A \subseteq \mathbb{R} \). Ми кажемо, що \( (f_n) \) <strong>збігається рівномірно</strong> на \( A \) до функції \( f : A \to \mathbb{R} \), якщо для будь-якого \( \varepsilon &gt; 0 \) існує натуральне число \( K \), таке що для всіх \( n \geq K \) та всіх \( x \in A \) виконується наступна нерівність:</p>
+<p>\[
+|f_n(x) - f(x)| &lt; \varepsilon
+\]</p>
+<p>Якщо \( (f_n) \) збігається рівномірно до \( f \), то \( (f_n) \) також збігається поточково до \( f. \)</p>
+<hr>
+<p>Розглянемо послідовність функцій:</p>
+<p>\[
+f_n(x) = \frac{x}{n}, \quad x \in [0,1], \quad n \in \mathbb{N}.
+\]</p>
+<p>Для кожного фіксованого \(x\) на проміжку \([0,1]\) маємо:</p>
+<p>\[
+\lim_{n \to \infty} f_n(x) = 0
+\]</p>
+<p>Це означає, що послідовність \(f_n(x)\) збігається поточково до функції \(f(x) = 0\). Тепер перевіримо, чи є збіжність рівномірною на \([0,1]\). Обчислимо різницю між \(f_n(x)\) та граничною функцією \(f(x)\):</p>
+<p>\[
+|f_n(x) - f(x)| = \left| \frac{x}{n} - 0 \right| = \frac{x}{n}
+\]</p>
+<p>Максимальне значення цієї різниці на проміжку \([0,1]\) дорівнює:</p>
+<p>\[
+\sup_{x \in [0,1]} |f_n(x) - f(x)| = \frac{1}{n}
+\]</p>
+<p>Для будь-якого \(\varepsilon &gt; 0\) ми можемо обрати \(N\), таке що:</p>
+<p>\[
+\frac{1}{N} &lt; \varepsilon
+\]</p>
+<p>Отже, для всіх \(n \geq N\) та для всіх \(x \in [0,1]\) маємо:</p>
+<p>\[
+|f_n(x) - f(x)| &lt; \varepsilon
+\]</p>
+<p>Це підтверджує, що послідовність функцій \(f_n(x) = \frac{x}{n}\) збігається рівномірно до граничної функції \(f(x) = 0\) на проміжку \([0,1]\).</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке послідовність функцій?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Послідовність функцій — це список функцій, індексованих натуральними числами, що зазвичай записується як (f_n)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що означає, що послідовність функцій збігається поточково?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Послідовність функцій збігається поточково, якщо для кожного фіксованого x в області визначення послідовність дійсних чисел f_n(x) збігається до f(x) при збільшенні n."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка різниця між поточковою та рівномірною збіжністю?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Поточкова збіжність означає, що кожна точка має свою швидкість збіжності, тоді як рівномірна збіжність означає, що послідовність збігається з однаковою швидкістю для всіх точок в області визначення."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи можете ви навести приклад поточкової збіжності?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так, наприклад, послідовність f_n(x) = x/n збігається поточково до 0 для всіх x в області визначення."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="sequences-of-functions.html">algebrica.org/sequences-of-functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

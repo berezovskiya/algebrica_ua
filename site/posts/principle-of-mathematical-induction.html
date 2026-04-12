@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Принцип математичної індукції — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Послідовності</span>
+    </nav>
+    <article>
+        <h1>Принцип математичної індукції</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps"><h2>Індуктивна множина</h2>
+<p>Математична індукція — це фундаментальний принцип, що використовується для строгого доведення тверджень щодо <a href="types-of-numbers.html">натуральних чисел</a>. Підмножина \( A \subseteq \mathbb{R} \) називається індуктивною, якщо вона задовольняє наступні дві умови:</p>
+<ul>
+<li>\( 0 \in A \).</li>
+<li>\( \forall \, x \in A\) випливає, що \(x + 1 \in A \).</li>
+</ul>
+<p>Іншими словами, індуктивна множина містить елемент \( 0 \) і замкнена відносно операції додавання \( 1 \).</p>
+<hr>
+<p>Нехай \( A, B \subseteq \mathbb{R} \) — дві індуктивні множини. Тоді їх перетин \( A \cap B \) також є індуктивною множиною. Оскільки \( A \) та \( B \) є індуктивними, маємо:</p>
+<ul>
+<li>\( 0 \in A \) та \( 0 \in B \), отже \( 0 \in A \cap B \).</li>
+<li>Якщо \( x \in A \cap B \), то \( x \in A \) та \( x \in B \). За індуктивною властивістю, \( x + 1 \in A \) та \( x + 1 \in B \), звідси \( x + 1 \in A \cap B \).</li>
+</ul>
+<p>Отже, \( A \cap B \) задовольняє умови індуктивної множини. Зокрема, множина натуральних чисел \( \mathbb{N} \subseteq \mathbb{R} \) сама є індуктивною множиною, і більш точно, вона є найменшою індуктивною множиною, будучи перетином усіх індуктивних підмножин \( \mathbb{R} \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps"><h2>Математична індукція</h2>
+<p>Виходячи з формального означення індуктивної множини, розглянемо множину \( A \subseteq \mathbb{N} \), визначену властивістю \( p(n) \), таку що \(A = \lbrace n \in \mathbb{N} \mid p(n)  \rbrace\). Припустимо, що виконуються наступні умови:</p>
+<ul>
+<li>\( p(0) \) є істинним, тобто \( 0 \in A. \)</li>
+<li>\( p(n) \rightarrow p(n+1) \, \forall \ n \in \mathbb{N}, \) тобто, якщо \( n \in A \), то \( n+1 \in A.\)</li>
+</ul>
+<p>Таким чином, \( p(n) \) є істинним для кожного \( n \in \mathbb{N}.\)</p>
+<hr>
+<p>Ці дві умови точно відповідають структурі доведення методом математичної індукції:</p>
+<ul>
+<li>Базовий крок полягає у перевірці того, що \( p(0) \) виконується, тобто що \( 0 \) належить \( A \).</li>
+<li>Індуктивний крок полягає у доведенні того, що щоразу, коли \( p(n) \) є істинним для деякого \( n \in \mathbb{N} \), випливає, що \( p(n+1) \) також є істинним, забезпечуючи тим самим, що \( n+1 \in A \).</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо практичне застосування принципу математичної індукції, довівши наступне твердження (сума перших \( n \) натуральних чисел):</p>
+<p>\[
+\sum_{i=1}^{n} i = \frac{n(n+1)}{2}
+\quad \forall \, n \in \mathbb{N}
+\]</p>
+<p>Спочатку розглянемо базовий крок. Для \( n = 0 \) ліва частина є порожньою сумою, яка за домовленістю дорівнює \( 0 \). Права частина дає:</p>
+<p>\[
+\frac{0(0+1)}{2} = 0
+\]</p>
+<p>Таким чином, формула виконується при \( n = 0 \).</p>
+<hr>
+<p>Тепер перейдемо до індуктивного кроку. Припустимо, що формула є істинною для деякого довільного \( k \in \mathbb{N} \); тобто припустимо:</p>
+<p>\[
+\sum_{i=1}^{k} i = \frac{k(k+1)}{2}.
+\]</p>
+<p>За цього припущення ми повинні довести, що формула також виконується для \( k+1 \). Починаючи з лівої частини:</p>
+<p>\[
+\sum_{i=1}^{k+1} i = \frac{k(k+1)}{2} + (k+1).
+\]</p>
+<p>Спрощуючи, отримуємо:</p>
+<p>\[
+\frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}.
+\]</p>
+<p>Це точно права частина формули при \( n = k+1 \). Оскільки твердження виконується для \( n = 0 \) і його справедливість для \( n = k \) тягне за собою його справедливість для \( n = k+1 \), за принципом математичної індукції формула є істинною для кожного натурального числа \( n \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Звідси випливає, що формула виконується для кожного \( n \in \mathbb{N} \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Застосування: подільність</h2>
+<p>Покажемо, що вираз \( n^3 - n \) ділиться на \( 3 \) для кожного \( n \in \mathbb{N} \). Почнемо з базового кроку. Для \( n = 0 \) маємо \( 0^3 - 0 = 0 \), і \( 3 \mid 0 \) виконується тривіально, оскільки \( 0 = 3 \cdot 0. \)</p>
+<p>Тепер перейдемо до індуктивного кроку. Припустимо, що \( 3 \mid k^3 &#8211; k \) для деякого \( k \in \mathbb{N} \), тобто \( k^3 &#8211; k = 3m \) для деякого цілого числа \( m \). За цієї гіпотези ми хочемо показати, що подільність на \( 3 \) переноситься на наступний член, тобто що \( 3 \mid (k+1)^3 - (k+1) \). Розкриваючи вираз, отримуємо:</p>
+<p>\[
+\begin{align}
+(k+1)^3 &#8211; (k+1) &amp;= k^3 + 3k^2 + 3k + 1 &#8211; k &#8211; 1 \\[6pt]
+&amp;= (k^3 &#8211; k) + 3k^2 + 3k
+\end{align}
+\]</p>
+<p>За індуктивною гіпотезою, \( k^3 - k = 3m \), тому вираз стає:</p>
+<p>\[
+\begin{align}
+(k+1)^3 &#8211; (k+1) &amp;= 3m + 3k^2 + 3k \\[6pt]
+&amp;= 3(m + k^2 + k)
+\end{align}
+\]</p>
+<p>Оскільки \( m + k^2 + k \in \mathbb{Z} \), випливає, що \( 3 \mid (k+1)^3 &#8211; (k+1) \). За принципом індукції твердження виконується для кожного \( n \in \mathbb{N} \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Застосування: нерівність</h2>
+<p>Покажемо, що \( 2^n &gt; n \) для кожного \( n \in \mathbb{N} \). Ця нерівність виражає той факт, що експоненціальне зростання врешті-решт і назавжди домінує над лінійним зростанням — закономірність, яку індукція точно фіксує: щойно нерівність виконується на даному кроці, мультиплікативна природа лівої частини гарантує її виконання на наступному.</p>
+<p>Почнемо з базового кроку. Для \( n = 0 \) маємо \( 2^0 = 1 &gt; 0 \), отже нерівність виконується.</p>
+<p>Індуктивний крок здійснюється наступним чином. Припустимо, що \( 2^k &gt; k \) для деякого \( k \in \mathbb{N} \). Мета — показати, що \( 2^{k+1} &gt; k+1 \). Розглянемо ліву частину:</p>
+<p>\[
+\begin{align}
+2^{k+1} &amp;= 2 \cdot 2^k \\
+&amp;&gt; 2k \\
+&amp;= k + k
+\end{align}
+\]</p>
+<p>Оскільки \( k \geq 0 \), маємо \( k + k \geq k + 1 \) для кожного \( k \geq 1 \), а випадок \( k = 0 \) вже покрито базовим кроком. Отже, \( 2^{k+1} &gt; k + 1 \), і за принципом індукції нерівність виконується для кожного \( n \in \mathbb{N} \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Застосування: геометричний ряд</h2>
+<p>Покажемо, що для будь-якого дійсного числа \( r \neq 1 \) і кожного \( n \in \mathbb{N} \):</p>
+<p>\[
+\sum_{i=0}^{n} r^i = \frac{r^{n+1} - 1}{r - 1}
+\]</p>
+<p>Ця тотожність є замкненою формою часткової суми <a href="geometric-sequence.html">геометричної послідовності</a>, і індукція забезпечує чіткий шлях до її перевірки. Почнемо з базового кроку. Для \( n = 0 \) ліва частина дає \( r^0 = 1 \), а права частина дає:</p>
+<p>\[
+\frac{r^1 &#8211; 1}{r &#8211; 1} = 1
+\]</p>
+<p>Формула виконується для \( n = 0 \).</p>
+<hr>
+<p>Індуктивний крок здійснюється наступним чином. Припустимо, що формула виконується для деякого \( k \in \mathbb{N} \), тобто:</p>
+<p>\[
+\sum_{i=0}^{k} r^i = \frac{r^{k+1} &#8211; 1}{r &#8211; 1}
+\]</p>
+<p>Ми хочемо показати, що вона виконується для \( k + 1 \). Починаючи з лівої частини:</p>
+<p>\[
+\begin{align}
+\sum_{i=0}^{k+1} r^i &amp;= \sum_{i=0}^{k} r^i + r^{k+1} \\[6pt]
+&amp;= \frac{r^{k+1} &#8211; 1}{r &#8211; 1} + r^{k+1}
+\end{align}
+\]</p>
+<p>Зводячи два доданки до спільного знаменника:</p>
+<p>\[
+\begin{align}
+\frac{r^{k+1} - 1}{r - 1} + r^{k+1} &amp;= \frac{r^{k+1} &#8211; 1 + r^{k+1}(r-1)}{r &#8211; 1} \\[6pt]
+&amp;= \frac{r^{k+2} - 1}{r - 1}
+\end{align}
+\]</p>
+<p>Це точно права частина формули при \( n = k+1 \). За принципом індукції тотожність виконується для кожного \( n \in \mathbb{N} \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрані джерела</h2>
+<ul>
+<li>
+<p><strong>MIT, F. Gotti</strong>. <a href="https://math.mit.edu/~fgotti/docs/Courses/C.%20Combinatorial%20Analysis/2.%20Mathematical%20Induction/Mathematical%20Induction.pdf">Mathematical Induction</a></p>
+</li>
+<li>
+<p><strong>University of California, Berkeley, P. Vojta</strong>. <a href="https://math.berkeley.edu/~vojta/115/ho2.pdf">Three Types of Induction</a></p>
+</li>
+<li>
+<p><strong>McGill University, J. Labute</strong>. <a href="https://www.math.mcgill.ca/labute/courses/240f05/Sets.pdf">Axioms for Set Theory</a></p>
+</li>
+</ul>
+</div>
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="principle-of-mathematical-induction.html">algebrica.org/principle-of-mathematical-induction</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

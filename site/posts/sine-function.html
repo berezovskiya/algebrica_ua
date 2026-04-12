@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функція синуса — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Функція синуса</h1>
+        <time>2025-02-25</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Функція синус</h2>
+<p>Функція синус \(f(x) = \sin(x) \) кожному куту \(x\), вираженому в радіанах, присвоює відповідне значення <a href="sine-and-cosine.html">синуса</a>. Її графіком є періодична хвиля з періодом \(2 \pi \) та амплітудою 1, що коливається між \(-1\) та \(1\). Функція \( f(x) = \cos x \) має всі дійсні числа у своїй <a href="determining-the-domain-of-a-function.html">області визначення</a>, але її область значень становить \( -1 \leq \cos(x) \leq 1 \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="906" height="388" src="../images/sine-cosine-3-1.png" alt="" class="wp-image-14050" style="width:453px" srcset="../images/sine-cosine-3-1.png 906w, https://algebrica.org/wp-content/uploads/resources/images/sine-cosine-3-1-300x128.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sine-cosine-3-1-768x329.png 768w" sizes="(max-width: 906px) 100vw, 906px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Разом із <a href="cosine-function.html">функцією косинус</a> вона представляє одну з фундаментальних моделей періодичних хвиль і широко використовується для опису циклічних явищ у фізиці, інженерії та математиці. Наприклад, у простому <a href="simple-harmonic-motion.html">гармонічному русі</a> у фізиці функція синус зазвичай з'являється в рівняннях як для зміщення, так і для <a href="velocity.html">швидкості</a>, описуючи коливальну поведінку таких систем, як пружини та маятники.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30 pb-steps"><h2>Властивості</h2>
+<ul>
+<li><a href="determining-the-domain-of-a-function.html">Область визначення</a>: \(x \in \mathbb{R} \)</li>
+<li>Область значень: \(y \in \mathbb{R} : -1 \leq y \leq\ 1 \)</li>
+<li>Періодичність: періодична за \(x\) з періодом \( 2 \pi \)</li>
+<li>Парність: <a href="even-and-odd-functions.html">непарна</a>, \( \sin(-x) = -\sin(x)\)</li>
+<li>Корені: \(x = \pi n, \quad n \in \mathbb{Z} \)</li>
+<li><a href="integers.html">Ціле</a> значення кореня: \(x=0\)</li>
+<li><a href="maximum-minimum-and-inflection-points.html">Точки максимуму та мінімуму</a>: \( \sin(x) \) досягає свого максимуму \(1\) при \( x = \dfrac{\pi}{2} + 2k \pi \) з \( k \in \mathbb{Z} \) та свого мінімуму \(-1\) при \( x = \dfrac{3\pi}{2} + 2k \pi \) з \( k \in \mathbb{Z} \).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section"><h2>Границі, похідні та інтеграли функції косинус</h2>
+<p>Фундаментальна <a href="limits.html">границя</a>, що включає функцію синус, відображає поведінку \(\sin(x)\) в околі початку координат і відіграє центральну роль у диференціальному численні. Коли \(x\) наближається до нуля, значення \(\sin(x)\) стає все ближчим до самого \(x\), якщо обидва виміряні в радіанах. Це відображає той факт, що поблизу початку координат крива синуса майже не відрізняється від прямої \(y = x\). Цей зв'язок формалізується наступною границею:</p>
+<p>\[
+\text{1.} \quad \lim_{x \to 0} \frac{\sin(x)}{x} = 1
+\]</p>
+<hr>
+<p>Функція \(\sin(x)\) є <a href="continuous-functions.html">неперервною</a> та диференційовною для кожного дійсного значення \(x\). Її поведінка є гладкою та регулярною на всій дійсній прямій, без точок розриву або недиференційованості. Більше того, оскільки \(\sin(x)\) диференційовна всюди, її <a href="derivatives.html">похідна</a> визначена для всіх дійсних чисел і має вигляд:</p>
+<p>\[
+2. \quad  \frac{d}{dx}\,\sin(x) = \cos(x)
+\]</p>
+<hr>
+<p>Оскільки похідна від \( -\cos(x) \) дорівнює \( \sin(x) \), <a href="indefinite-integrals.html">невизначений інтеграл</a> функції синус можна записати як:
+\[ 3. \quad \int \sin(x) dx = -\cos(x) + c\]</p>
+<h5>Вичерпний огляд тригонометричних інтегралів, разом із найкориснішими методами перетворення та підстановки для обробки складніших випадків, доступний на сторінці про <a href="integral-of-trigonometric-functions.html">інтеграли тригонометричних функцій</a>.</h5>
+<hr>
+<p>Альтернативна форма функції \( \sin(x) \) з використанням уявних чисел задається формулою Ейлера, де \( e^{ix} \) — це <a href="exponential-function.html">показникова функція</a> з основою \( e \), а \( I \) — <a href="complex-numbers-introduction.html">уявна</a> одиниця:
+\[ 4. \quad \sin(x) = \frac{e^{ix} - e^{-ix}}{2i} \]</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="sine-function.html">algebrica.org/sine-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

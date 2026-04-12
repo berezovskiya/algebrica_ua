@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Формула Муавра — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Комплексні числа</span>
+    </nav>
+    <article>
+        <h1>Формула Муавра</h1>
+        <time>2025-02-05</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-21" style="height:420px;min-height:420px;max-height:420px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:420px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Теорема                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті показана на концептуальній карті, де кожна гілка представляє основний компонент, а підвузли висвітлюють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Для цієї статті як попередні необхідні такі поняття: <a href="complex-numbers-introduction.html">Комплексні числа</a>, <a href="complex-numbers-trigonometric-form.html">Комплексні числа в тригонометричній формі</a>.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-21");
+            var dataset = {"name":"root","children":[{"name":"форми","children":[{"name":"алгебраїчна форма"},{"name":"тригонометрична форма"},{"name":"показникова форма"},{"name":"модуль"},{"name":"аргумент"},{"name":"головний аргумент"}]},{"name":"теорема де Муавра","children":[{"name":"формулювання"},{"name":"формула степеня"},{"name":"геометричний зміст"},{"name":"тригонометричний зв'язок"},{"name":"множення кутів"},{"name":"періодичність"}]},{"name":"доведення та застосування","children":[{"name":"доведення індукцією"},{"name":"тригонометричні тотожності"},{"name":"степені комплексних чисел"},{"name":"корені одіниці"},{"name":"комплексні корені"},{"name":"корені n-го степеня"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 420;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Мотивація для теореми Де Муавра</h2>
+<p>Припустимо, ми хочемо обчислити степінь комплексного числа \( z \in \mathbb{C} \). Найпростіший підхід — почати з його <a href="complex-numbers-introduction.html">алгебраїчної форми</a> та розкрити вираз безпосередньо. Наприклад, задано \(z = a + ib\), і ми хочемо обчислити його квадрат. Маємо:</p>
+<p>\[
+\begin{align}
+z^2 &amp;= (a + ib)^2 \\[0.5em]
+&amp;= a^2 + i2ab &#8211; b^2
+\end{align}
+\]</p>
+<p>Хоча цей метод є правильним, зі збільшенням показника степеня понад три обчислення стають дедалі нуднішими та непрактичними. Алгебраїчне розкриття вищих степенів призводить до довгих виразів і більшої кількості доданків, що знижує практичність такого підходу. У таких ситуаціях <a href="de-moivre-theorem.html">теорема Де Муавра</a> забезпечує більш ефективне та елегантне розв'язання.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Теорема Де Муавра та експоненціальний запис комплексних чисел</h2>
+<p>Теорема Де Муавра надає метод обчислення степенів і коренів комплексних чисел, незалежно від того, чи записані вони в <a href="complex-numbers-trigonometric-form.html">тригонометричній</a> або <a href="complex-numbers-exponential-form.html">експоненціальній формі</a>. Розглянемо комплексне число \( z \) у цілому степені \( n \in \mathbb{Z} \). Тобто,</p>
+<p>\[
+z^n \quad n \in \mathbb{Z}
+\]</p>
+<p>Перепишемо число \(z\) у тригонометричній формі:</p>
+<p>\[
+z = r(\cos\theta + i\sin\theta)
+\]</p>
+<p>Для будь-якого <a href="integers.html">цілого</a> \( n \) степінь \( z^n \) можна обчислити, піднісши модуль до степеня \( n \) і помноживши кут на \( n \). Результатом є нове комплексне число в полярній формі. Маємо:</p>
+<p>\[
+z^n = r^n \left(\cos(n\theta) + i\sin(n\theta)\right)
+\]</p>
+<p>Ця тотожність виконується для всіх цілих \( n \), включаючи від'ємні. Коли \( n \) є раціональним числом \( n = p/q \), формула все ще застосовується, але дає один із \( q \) різних коренів; повна множина коренів потребує розгляду всіх значень аргументу вигляду \( \theta + 2k\pi \) для \( k = 0, 1, \dots, q-1 \).</p>
+<hr>
+<p>Тепер перепишемо комплексне число \( z \), використовуючи тотожність Ейлера, в експоненціальній формі:</p>
+<p>\[
+e^{i\theta} = \cos\theta + i\sin\theta
+\]</p>
+<p>Отримаємо:</p>
+<p>\[
+z = re^{i\theta}
+\]</p>
+<p>Таке формулювання дозволяє нам інтерпретувати комплексні числа таким чином, що вони глибоко узгоджуються зі структурою піднесення до степеня. Це також перетворює теорему Де Муавра на щось майже автоматичне. Коли ми підносимо \( z \) до цілого степеня, ми просто застосовуємо звичайні правила степенів:</p>
+<p>\[
+z^n = (re^{i\theta})^n = r^n e^{in\theta}
+\]</p>
+<p>Тут немає потреби розкривати алгебраїчні вирази чи маніпулювати тригонометричними тотожностями. Модуль підноситься до степеня \( n \), а аргумент множиться на \( n \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Доведення за допомогою індукції</h2>
+<p>Теорема Де Муавра стверджує, що для будь-якого цілого \( n \) і будь-якого комплексного числа \( z = r(\cos\theta + i\sin\theta) \):</p>
+<p>\[
+z^n = r^n\bigl(\cos(n\theta) + i\sin(n\theta)\bigr)
+\]</p>
+<p>Формулу можна встановити за допомогою <a href="principle-of-mathematical-induction.html">індукції</a> за \( n \). Доведення складається з двох частин:</p>
+<ul>
+<li>Перевірка базового випадку.</li>
+<li>Показ того, що правильність на кроці \( n \) зумовлює правильність на кроці \( n + 1 \).</li>
+</ul>
+<hr>
+<p>Для базового випадку, при \( n = 1 \) формула зводиться до \( z = r(\cos\theta + i\sin\theta) \), що за означенням є тригонометричною формою \( z \). Для індуктивного кроку припустимо, що формула виконується для деякого цілого \( n \geq 1 \):</p>
+<p>\[
+z^n = r^n\bigl(\cos(n\theta) + i\sin(n\theta)\bigr)
+\]</p>
+<p>Множачи обидві частини на \( z = r(\cos\theta + i\sin\theta) \) і розкриваючи добуток, отримаємо:</p>
+<p>\[
+z^{n+1} = r^{n+1}\Bigl[\bigl(\cos(n\theta)\cos\theta &#8211; \sin(n\theta)\sin\theta\bigr) + i\bigl(\sin(n\theta)\cos\theta + \cos(n\theta)\sin\theta\bigr)\Bigr]
+\]</p>
+<p>Два вирази в дужках є формулами додавання для <a href="sine-and-cosine.html">косинуса та синуса</a> відповідно, і їх застосування дає:</p>
+<p>\[
+z^{n+1} = r^{n+1}\bigl(\cos\bigl((n+1)\theta\bigr) + i\sin\bigl((n+1)\theta\bigr)\bigr)
+\]</p>
+<p>Тотожність виконується на кроці \( n + 1 \), що завершує індукцію.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Наприклад, піднесення до квадрата комплексного числа \( z = re^{i\theta} \) дає:</p>
+<p>\[
+z^2 = (re^{i\theta})^2 = r^2 e^{i2\theta}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="840" height="534" src="../images/exponent-form-2-1.png" alt="" class="wp-image-26741" style="width:420px" srcset="../images/exponent-form-2-1.png 840w, https://algebrica.org/wp-content/uploads/resources/images/exponent-form-2-1-300x191.png 300w, https://algebrica.org/wp-content/uploads/resources/images/exponent-form-2-1-768x488.png 768w" sizes="(max-width: 840px) 100vw, 840px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Результатом є нове комплексне число, модуль якого дорівнює \( r^2 \), а аргумент — \( 2\theta. \) У геометричному сенсі це означає, що <a href="vectors.html">вектор</a> розтягується у \( r^2 \) разів і повертається на кут, що вдвічі перевищує його початковий кут.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Спробуймо обчислити \( z^4 \) для комплексного числа \( z = 2 + 2i \).
+Спочатку визначимо модуль \( z \):</p>
+<p>\[
+|z| = \sqrt{2^2 + 2^2} = \sqrt{8} = 2\sqrt{2}
+\]</p>
+<h5>Модуль комплексного числа представляє його відстань від початку координат на комплексній площині. Він обчислюється за допомогою <a href="pythagorean-theorem.html">теореми Піфагора</a>.</h5>
+<hr>
+<p>Далі визначимо аргумент \( z \):</p>
+<p>\[
+\theta = \arg(z) = \arctan\left(\frac{2}{2}\right) = \frac{\pi}{4}
+\]</p>
+<h5>Аргумент комплексного числа — це кут, який воно утворює з додатньою віссю дійсних чисел, виміряний проти годинникової стрілки. У цьому випадку, оскільки дійсний та уявний частини рівні, кут становить рівно \( 45^\circ \), або \( \frac{\pi}{4} \) радіан.</h5>
+<hr>
+<p>Тепер ми можемо представити \( z \) в експоненціальній формі:</p>
+<p>\[
+z = 2\sqrt{2} \cdot e^{i\frac{\pi}{4}}
+\]</p>
+<p>Ця компактна форма значно спрощує піднесення \( z \) до степеня, оскільки ми можемо безпосередньо застосувати правила піднесення до степеня. Застосовуючи теорему де Муавра, обчислимо:</p>
+<p>\[
+z^4 = (2\sqrt{2})^4 \cdot e^{i \cdot 4 \cdot \frac{\pi}{4}} = (2\sqrt{2})^4 \cdot e^{i\pi}
+\]</p>
+<p>Спростимо:</p>
+<p>\[
+(2\sqrt{2})^4 = (2^1 \cdot 2^{1/2})^4 = 2^6 = 64
+\]</p>
+<hr>
+<p>Оскільки \(e^{i\pi} = -1\), отримаємо:</p>
+<p>\[
+z^4 = 64 \cdot (-1) = -64
+\]</p>
+<h5>Такого самого результату можна досягти, розкривши вираз алгебраїчно.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отже, четвертий степінь \( z = 2 + 2i \) — це дійсне число \( -64 \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Виведення тригонометричних тотожностей</h2>
+<p>Одним із найпрактичніших застосувань теореми де Муавра є виведення явних формул для <a href="sine-and-cosine.html">синуса та косинуса</a>, зокрема для \( \cos(n\theta) \) та \( \sin(n\theta) \) через степені \( \cos\theta \) та \( \sin\theta \). Ідея проста: розкрити ліву частину теореми за допомогою <a href="binomial-coefficient.html">біноміальної формули</a>, а потім розділити дійсну та уявну частини.</p>
+<p>Для \( n = 3 \) теорема дає:</p>
+<p>\[
+(\cos\theta + i\sin\theta)^3 = \cos(3\theta) + i\sin(3\theta)
+\]</p>
+<p>Розкриваючи ліву частину за допомогою біноміальної формули:</p>
+<p>\[
+(\cos\theta + i\sin\theta)^3 = \cos^3\theta + 3i\cos^2\theta\sin\theta + 3i^2\cos\theta\sin^2\theta + i^3\sin^3\theta
+\]</p>
+<p>Використовуючи \( i^2 = -1 \) та \( i^3 = -i \):</p>
+<p>\[
+= \bigl(\cos^3\theta &#8211; 3\cos\theta\sin^2\theta\bigr) + i\bigl(3\cos^2\theta\sin\theta &#8211; \sin^3\theta\bigr)
+\]</p>
+<p>Прирівнявши дійсну та уявну частини до правої частини:</p>
+<p>\[
+\cos(3\theta) = \cos^3\theta - 3\cos\theta\sin^2\theta
+\]</p>
+<p>\[
+\sin(3\theta) = 3\cos^2\theta\sin\theta - \sin^3\theta
+\]</p>
+<p>Це формули потрійного кута для косинуса та синуса. Обидві вони випливають безпосередньо з одного застосування біноміального розкладу, без потреби в повторному використанні <a href="reduction-formulas-and-reference-angles.html">формул додавання</a> або будь-яких інших проміжних результатів. Та сама процедура поширюється на будь-яке ціле \( n \): біноміальний розклад \( (\cos\theta + i\sin\theta)^n \) завжди дає \( \cos(n\theta) \) як дійсну частину та \( \sin(n\theta) \) як уявну частину.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Знаходження комплексних коренів за допомогою теореми де Муавра</h2>
+<p>Теорема де Муавра корисна не лише для степенів. Вона також дає нам чіткий і елегантний спосіб знайти корені комплексного числа. Припустимо, ми хочемо розв'язати:</p>
+<p>\[
+z^n = w
+\]</p>
+<p>де \( w \in \mathbb{C} \). Це означає, що ми шукаємо всі комплексні числа \( z \), такі, що при піднесенні їх до \( n \)-го степеня отримуємо \( w \). Спочатку запишемо \( w \) в експоненціальній формі. Оскільки аргумент комплексного числа визначений з точністю до кратних \( 2\pi \), запишемо:</p>
+<p>\[
+w = r e^{i(\theta + 2k\pi)}, \quad k \in \mathbb{Z}
+\]</p>
+<p>Застосовуючи теорему де Муавра до \( z^n = w \) і добуваючи \( n \)-й корінь з обох частин, ми отримаємо загальну формулу для \( n \)-х коренів:</p>
+<p>\[
+z_k = \sqrt[n]{r} \cdot e^{i\left(\frac{\theta + 2k\pi}{n}\right)}, \quad \text{для } k = 0, 1, \dots, n - 1
+\]</p>
+<p>Це дає всі \( n \) різних комплексних коренів. Вони лежать на колі радіуса \( \sqrt[n]{r} \), рівномірно розподілені з кутом \( \dfrac{2\pi}{n} \). Це означає, що корені розташовані як вершини правильного \( n \)-кутника, вписаного в коло радіуса \( \sqrt[n]{r} \). У випадку кубічних коренів ми отримуємо три точки на колі, кожна з яких відокремлена кутом \( \dfrac{2\pi}{3} \), що утворює рівносторонній трикутник на комплексній площині.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Знайдемо всі комплексні розв'язання рівняння:</p>
+<p>\[
+z^3 = 1
+\]</p>
+<p>На перший погляд здається очевидним, що \( z = 1 \) є розв'язанням. Але оскільки ми працюємо на комплексній площині, ми знаємо, що всього існує три кубічних корені, які рівномірно розподілені по <a href="unit-circle.html">одиниковому колу</a>.</p>
+<hr>
+<p>Оскільки аргумент комплексного числа визначений з точністю до кратних \( 2\pi \), запишемо \( 1 \) в експоненціальній формі як:</p>
+<p>\[
+1 = e^{i \cdot 2k\pi}, \quad k \in \mathbb{Z}
+\]</p>
+<p>Застосовуючи загальну формулу кореня з \( r = 1 \) та \( \theta = 0 \), отримаємо:</p>
+<p>\[
+z_k = \sqrt[3]{1} \cdot e^{i\left(\frac{0 + 2k\pi}{3}\right)} = e^{i \cdot \frac{2k\pi}{3}}, \quad \text{для } k = 0, 1, 2
+\]</p>
+<hr>
+<p>Тепер обчислимо три корені явно.</p>
+<p>Для \( k = 0 \):</p>
+<p>\[
+z_0 = e^{i \cdot 0} = \cos(0) + i\sin(0) = 1
+\]</p>
+<hr>
+<p>Для \( k = 1 \):</p>
+<p>\[
+z_1 = e^{i \cdot \frac{2\pi}{3}} = \cos\left(\frac{2\pi}{3}\right) + i\sin\left(\frac{2\pi}{3}\right) = -\frac{1}{2} + \frac{\sqrt{3}}{2}i
+\]</p>
+<hr>
+<p>Для \( k = 2 \):</p>
+<p>\[
+z_2 = e^{i \cdot \frac{4\pi}{3}} = \cos\left(\frac{4\pi}{3}\right) + i\sin\left(\frac{4\pi}{3}\right) = -\frac{1}{2} &#8211; \frac{\sqrt{3}}{2}i
+\]</p>
+<hr>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="742" height="532" src="../images/roots-of-unit.png" alt="" class="wp-image-26842" style="width:371px" title="De Moivre's Theorem." srcset="../images/roots-of-unit.png 742w, https://algebrica.org/wp-content/uploads/resources/images/roots-of-unit-300x215.png 300w" sizes="(max-width: 742px) 100vw, 742px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Це три кубічні корені з 1, розташовані на комплексній площині як вершини рівностороннього трикутника. Разом вони утворюють так звані <a href="roots-of-unity.html">корені одиниці</a>.</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке теорема де Муавра?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема де Муавра стверджує, що для будь-якого дійского числа θ та цілого числа n, (cos θ + i sin θ)^n = cos(nθ) + i sin(nθ). Вона дозволяє підносити комплексні числа в полярній формі до степеня."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як застосувати теорему де Муавра?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб застосувати теорему де Муавра, виразіть комплексне число в полярній формі, піднесіть модуль до степеня та помножте кут на показник степеня."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому теорема де Муавра корисна?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вона спрощує процес піднесення комплексних чисел до степеня та знаходження коренів. Вона особливо корисна в тригонометрії, обробці сигналів та комплексному аналізі."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи можна використовувати теорему де Муавра для знаходження коренів?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так. Виразивши комплексне число в полярній формі, можна використати теорему де Муавра для знаходження всіх n-их коренів, поділивши кут на n та обертаючи навколо одиничного кола."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке полярна форма комплексного числа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Полярна форма комплексного числа має вигляд r(cos θ + i sin θ), де r — це модуль (абсолютне значення), а θ — аргумент (кут) комплексного числа."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="de-moivre-theorem.html">algebrica.org/de-moivre-theorem</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

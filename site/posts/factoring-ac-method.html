@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Розкладання поліномів: метод AC — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Поліноми</span>
+    </nav>
+    <article>
+        <h1>Розкладання поліномів: метод AC</h1>
+        <time>2025-02-09</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-5" style="height:460px;min-height:460px;max-height:460px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:460px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Техніка                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що обговорюються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">4</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="binomials.html">Біноми</a>, <a href="monomials.html">Мономіали</a>, <a href="polynomials.html">Поліноми</a>, <a href="roots-of-a-polynomial.html">Корені полінома</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-5");
+            var dataset = {"name":"root","children":[{"name":"структура","children":[{"name":"стандартна форма"},{"name":"коефіцієнти"},{"name":"цілочисельні коефіцієнти"},{"name":"розкладання триномів"},{"name":"провідний коефіцієнт"},{"name":"квадратична форма"}]},{"name":"методи","children":[{"name":"метод ac"},{"name":"добуток ac"},{"name":"пари дільників"},{"name":"розподіл середнього члена"},{"name":"факторизація групуванням"},{"name":"спільний множник"},{"name":"лінійні множники"}]},{"name":"властивості","children":[{"name":"формули Вієта"},{"name":"нуль-множник"},{"name":"дискримінант"},{"name":"дійсні корені"},{"name":"комплексні корені"},{"name":"незвідні випадки"},{"name":"кільце поліномів"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 460;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Вступ</h2>
+<p><a href="trinomials.html">Трином</a> вигляду \( ax^2 + bx + c \), де \( a, b, c \in \mathbb{Z} \) та \( a \neq 0 \), вважається розкладним над \( \mathbb{Z} \), якщо його можна записати як добуток двох лінійних <a href="polynomials.html">поліномів</a> із <a href="integers.html">цілими</a> коефіцієнтами. Зокрема, це відбувається, якщо існують цілі числа \( p, q, r, s \), такі що:</p>
+<p>\[ ax^2 + bx + c = (px + q)(rx + s) \]</p>
+<p>Розкриття дужок у правій частині дає \( pr \cdot x^2 + (ps + qr)x + qs \), що призводить до тотожностей:</p>
+<p>\[\begin{align}
+a &amp;= pr \\[6pt]
+b &amp;= ps + qr \\[6pt]
+c &amp;= qs
+\end{align}\]</p>
+<p>Метод AC використовує мультиплікативні зв'язки між цими обмеженнями. Зокрема:</p>
+<p>\[ ac = pr \cdot qs = (ps)(qr) \]</p>
+<p>в той час як одночасно \( b = ps + qr \). Визначивши \( m = ps \) та \( n = qr \), задача зводиться до пошуку двох цілих чисел, що задовольняють:</p>
+<p>\[\begin{align}
+mn &amp;= ac \\[6pt]
+m + n &amp;= b
+\end{align}\]</p>
+<p>Існування такої пари \( (m, n) \) є і необхідним, і достатнім для того, щоб трином був розкладним над \( \mathbb{Z} \). Якщо такої пари цілих чисел не існує, трином є незвідним над \( \mathbb{Z} \), хоча він все ще може мати розклад над \( \mathbb{Q} \) або \( \mathbb{R} \), залежно від знака <a href="quadratic-formula.html">дискримінанта</a> \( b^2 - 4ac \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30 pb-steps"><h2>Метод</h2>
+<p>Розглянемо трином із цілими коефіцієнтами у стандартному вигляді:
+\[ ax^2 + bx + c \]</p>
+<p>Процедура є наступною. Обчислимо добуток \( ac \). Потім знайдемо цілі числа \( m \) та \( n \), якщо вони існують, такі що \( mn = ac \) та \( m + n = b \). Це зводиться до перебору пар цілих дільників \( ac \) та перевірки, яка пара задовольняє умову суми. Після того як відповідні значення знайдено, перепишемо середній член, розщепивши \( bx \) на \( mx + nx \):</p>
+<p>\[ ax^2 + bx + c = ax^2 + mx + nx + c \]</p>
+<p>Згрупуємо доданки попарно та винесемо найбільший спільний дільник із кожної групи:</p>
+<p>\[ ax^2 + mx + nx + c = (ax^2 + mx) + (nx + c) \]</p>
+<p>Кожна група дає <a href="monomials.html">мономіальний</a> множник, і два отримані вирази мають спільний лінійний біном. Винесення цього спільного множника дає повний розклад тринома як добутку двох лінійних поліномів.</p>
+<p>Два можливих порядки пари, \( (m, n) \) та \( (n, m) \), призводять до різних проміжних групувань, але обов'язково дають однаковий розклад, оскільки добуток \( (px + q)(rx + s) \) інваріантний відносно перестановки його множників.</p>
+<hr>
+<p>Підсумовуючи, процедура зводиться до наступних кроків:</p>
+<ul>
+<li>Обчислити \( ac \).</li>
+<li>Виписати пари цілих дільників \( ac \).</li>
+<li>Знайти пару \( (m, n) \), сума якої дорівнює \( b \).</li>
+<li>Переписати середній член як \( mx + nx \).</li>
+<li>Розкласти шляхом групування, щоб виділити спільний лінійний біном.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо трином \( 2x^2 + 7x + 3 \). У цьому випадку \( a = 2 \), \( b = 7 \), і \( c = 3 \), отже \( ac = 6 \). Завдання полягає в тому, щоб знайти цілі числа \( m \) та \( n \), такі що \( mn = 6 \) та \( m + n = 7 \). Пари цілих чисел \( (m, n) \), для яких \( mn = 6 \), наведені за абсолютним значенням:</p>
+<p>\[ \begin{array}{rrrr} m &amp; n &amp; mn &amp; m+n \\ \hline 1 &amp; 6 &amp; 6 &amp; 7 \\ 2 &amp; 3 &amp; 6 &amp; 5 \\ -1 &amp; -6 &amp; 6 &amp; -7 \\ -2 &amp; -3 &amp; 6 &amp; -5 \end{array} \]</p>
+<p>Пара \( (m, n) = (1, 6) \) задовольняє обидві умови. Таким чином, трином можна переписати як</p>
+<p>\[ 2x^2 + 7x + 3 = 2x^2 + x + 6x + 3 \]</p>
+<p>Згрупуємо перші два доданки та останні два доданки наступним чином:</p>
+<p>\[ 2x^2 + x + 6x + 3 = x(2x + 1) + 3(2x + 1) \]</p>
+<p><a href="binomials.html">Біном</a> \( (2x + 1) \) є спільним множником в обох групах, отже ми отримаємо:</p>
+<p>\[ x(2x + 1) + 3(2x + 1) = (x + 3)(2x + 1) \]</p>
+<p>Отже, трином розкладається як:</p>
+<p>\[ 2x^2 + 7x + 3 = (x + 3)(2x + 1) \]</p>
+<p>Відповідно, <a href="roots-of-a-polynomial.html">корені</a> відповідного рівняння \( 2x^2 + 7x + 3 = 0 \) випливають із властивості нуля добутку, яка стверджує, що добуток дійсних чисел дорівнює нулю тоді і тільки тоді, коли хоча б один множник дорівнює нулю.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Це дає:</p>
+<p>\[x_1 = -3 \quad x_2 = -\frac{1}{2}\]</p>
+<h6>Ці результати можна перевірити за допомогою <a href="quadratic-formula.html">квадратного рівняння</a>, яке повертає ті самі значення, підтверджуючи, що розклад \( (x + 3)(2x + 1) \) є правильним.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Зв'язок із формулами Вієта</h2>
+<p>Умови \( mn = ac \) та \( m + n = b \), які є центральними для методу AC, тісно пов'язані з класичним результатом теорії поліномів. <a href="trinomials.html">Формули Вієта</a> стверджують, що для монічного квадратного рівняння \( x^2 + px + q \) з коренями \( x_1 \) та \( x_2 \) виконуються такі співвідношення:</p>
+<p>\[\begin{align}
+x_1 + x_2 &amp;= -p \\
+x_1 \cdot x_2 &amp;= q
+\end{align}\]</p>
+<p>У особливому випадку, коли \( a = 1 \), тричлен спрощується до \( x^2 + bx + c \), і умови AC стають \( mn = c \) та \( m + n = b \). Формули Вієта для цього полінома дають \( x_1 + x_2 = -b \) та \( x_1 x_2 = c \), отже маємо \( m = -x_1 \) та \( n = -x_2 \): цілі числа, які шукає метод AC, є протилежними до коренів, і пошук такої пари еквівалентний прямому застосуванню формул Вієта.</p>
+<hr>
+<p>Коли \( a \neq 1 \), відповідність менш пряма, але вона зберігається. Множення тричлена на \( a \) дає</p>
+<p>\[ a(ax^2 + bx + c) = (ax)^2 + b(ax) + ac \]</p>
+<p>що є монічним квадратним рівнянням відповідально допоміжної змінної \( u = ax \). Застосування формул Вієта до цього масштабованого полінома вимагає знаходження двох чисел, сума яких дорівнює \( b \), а добуток — \( ac \), що точно відповідає умовам, накладеним на \( m \) та \( n \) методом AC.</p>
+<h6>Таким чином, метод AC можна інтерпретувати як застосування формул Вієта до масштабованого полінома, де розщеплення середнього члена слугує механізмом, що переносить факторизацію допоміжного полінома назад до вихідного тричлена.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Про незвідність квадратних тричленів</h2>
+<p>Якщо жодна пара цілих чисел \( (m, n) \) не задовольняє умови \( mn = ac \) та \( m + n = b \), тричлен є незвідним над \( \mathbb{Z} \). Це відбувається саме тоді, коли дискримінант \( \Delta = b^2 &#8211; 4ac \) не є цілим числом, що є повним квадратом.</p>
+<p>Коли \( \Delta &gt; 0 \), але не є повним квадратом цілого числа, тричлен має два різні ірраціональні дійсні корені та є незвідним як над \( \mathbb{Z} \), так і над \( \mathbb{Q} \); коли \( \Delta &lt; 0 \), він має два комплексних спряжених корені та так само є незвідним над \( \mathbb{R} \).</p>
+<p>Коли \( \Delta = 0 \), тричлен має кратний корінь \( x = -b/(2a) \), який є раціональним, але не обов'язково цілим, тому незвідність над \( \mathbb{Z} \) залежить від того, чи \( 2a \mid b \). Метод AC, будучи за своєю природою комбінаторним, завершується без результату, як тільки всі пари цілих дільників \( ac \) були перевірені без успіху, і цей перебір усіх випадків становить конструктивне доведення незвідності над \( \mathbb{Z} \).</p>
+<hr>
+<p>Для ілюстрації розглянемо тричлен \( 3x^2 + 5x + 4 \). У цьому випадку \( a = 3 \), \( b = 5 \) та \( c = 4 \), що дає \( ac = 12 \). Пари цілих дільників \( 12 \) є такими:</p>
+<p>\[ \begin{array}{rrrr} m &amp; n &amp; mn &amp; m+n \\ \hline 1 &amp; 12 &amp; 12 &amp; 13 \\ 2 &amp; 6 &amp; 12 &amp; 8 \\ 3 &amp; 4 &amp; 12 &amp; 7 \\ -1 &amp; -12 &amp; 12 &amp; -13 \\ -2 &amp; -6 &amp; 12 &amp; -8 \\ -3 &amp; -4 &amp; 12 &amp; -7 \end{array} \]</p>
+<p>Жодна з цих пар не задовольняє умову \( m + n = 5 \). Дискримінант підтверджує це: \( \Delta = b^2 - 4ac = 25 - 48 = -23 &lt; 0 \). Оскільки \( \Delta &lt; 0 \), тричлен має два <a href="quadratic-equations-with-complex-solutions.html">комплексних спряжених корені</a>:</p>
+<p>\[\begin{align}
+x_{1,2} &amp;= \frac{-5 \pm i\sqrt{23}}{6}
+\end{align}\]</p>
+<p>Отже, тричлен не допускає факторизації ні над \( \mathbb{R} \), ні над \( \mathbb{Z} \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjac"><h2>Обмеження методу AC</h2>
+<p>Метод AC є ефективним, коли коефіцієнти є малими цілими числами і пошук дільників завершується швидко. Його обчислювальна складність зростає зі збільшенням кількості пар цілих дільників \( ac \).</p>
+<p>Коли \( |ac| \) велике, перерахування стає трудомістким, і метод втрачає свою практичну перевагу над прямим застосуванням формули коренів квадратного рівняння. Більш фундаментально, метод за своєю суттю пов'язаний із факторизацією над \( \mathbb{Z} \).</p>
+<p>Коли тричлен є незвідним над \( \mathbb{Z} \), але має дійсні корені, слід вдатися до <a href="quadratic-formula.html">формули квадратного рівняння</a>, яка дає точні корені незалежно від того, чи є дискримінант повним квадратом.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Додатній зв'язок</h2>
+<p>Множення тричлена \( ax^2 + bx + c \) на \( a \) дає монічний квадратний поліном щодо допоміжної змінної \( u = ax \):</p>
+<p>\[\begin{align}
+a(ax^2 + bx + c) &amp;= (ax)^2 + b(ax) + ac \\[6pt]
+&amp;= u^2 + bu + ac
+\end{align}\]</p>
+<p>Цей поліном розкладається на множники над \( \mathbb{Z} \) як \( (u + m)(u + n) \), де \( mn = ac \) та \( m + n = b \).</p>
+<p>Підставляючи назад \( u = ax \), отримаємо \( (ax + m)(ax + n) = a^2x^2 + b(ax) + ac \), що дорівнює \( a(ax^2 + bx + c) \), підтверджуючи тотожність, не виходячи за межі \( \mathbb{Z}[x] \).</p>
+<p>Цей аргумент масштабування демонструє, що метод AC еквівалентний розкладанню на множники монічного квадратного полінома в перемасштабованій змінній, і пов'язаний із поняттям редукованості в <a href="rings.html">кільці</a> поліномів \( \mathbb{Z}[x] \). Тричлен \( ax^2 + bx + c \) є редукованим у \( \mathbb{Z}[x] \) тоді і тільки тоді, коли існує цілочисельна пара \( (m, n) \).</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке метод AC для розкладання поліномів на множники?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Метод AC використовується для розкладання квадратних поліномів вигляду ax^2 + bx + c. Помножте коефіцієнти a та c, знайдіть два числа, добуток яких дорівнює ac, а сума — b, потім розділіть середній член і розкладіть на множники методом групування."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="factoring-ac-method.html">algebrica.org/factoring-ac-method</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

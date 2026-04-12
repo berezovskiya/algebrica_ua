@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Гамма-розподіл — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теорія ймовірностей та статистика</span>
+    </nav>
+    <article>
+        <h1>Гамма-розподіл</h1>
+        <time>2025-05-01</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps mb-x-30"><h2>Вступ до гамма-розподілу</h2>
+<p>Гамма-розподіл — це неперервний розподіл ймовірностей, визначений на позитивній півпрямій. Він використовується для моделювання часу очікування, тривалості подій та явищ, де незалежні внески накопичуються з часом. Він походить від гамма-функції, визначеної як</p>
+<p>\[
+\Gamma(\alpha) = \int_{0}^{\infty} x^{\,\alpha - 1} e^{-x}\, dx
+\]</p>
+<p>яка поширює поняття <a href="factorial.html">факторіала</a> на дійсну <a href="determining-the-domain-of-a-function.html">область визначення</a> через тотожність \( \Gamma(n) = (n - 1)! \) для кожного позитивного <a href="integers.html">цілого числа</a> \( n \). Загалом, кажуть, що <a href="continuous-random-variables.html">неперервна випадкова величина</a> \( X \) має гамма-розподіл з параметрами \( \alpha \) та \( \beta \), якщо її функція щільності ймовірності задана як</p>
+<p>\[
+G(x;\alpha,\beta)=
+\begin{cases}
+\dfrac{1}{\beta^{\alpha}\,\Gamma(\alpha)}\, x^{\alpha &#8211; 1}\, e^{-x/\beta} &amp; x&gt;0\\[10pt]
+0 &amp; x\leq 0
+\end{cases}
+\]</p>
+<ul>
+<li>\( \alpha \) — це параметр форми: він контролює, наскільки швидко щільність зростає поблизу початку координат, і визначає ступінь асиметрії. Більші значення роблять розподіл більш симетричним і зміщують пік праворуч.</li>
+<li>\( \beta \) — це параметр масштабу: він розтягує розподіл по горизонталі. Збільшення \( \beta \) призводить до довших середніх часів очікування та ширшого розсіювання.</li>
+</ul>
+<p>Носієм розподілу є позитивна півпряма, що відображає той факт, що він моделює тривалість, час очікування або інші величини, які не можуть набувати від'ємних значень. Взаємодія між \( \alpha \) та \( \beta \) формує загальну поведінку: \( \alpha \) керує внутрішньою структурою, тоді як \( \beta \) встановлює масштаб.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="734" height="504" src="../images/gamma-distribution.png" alt="Plot of the gamma distribution for different parameter values." class="wp-image-19762" style="width:367px" title="Plot of the gamma distribution for different parameter values." srcset="../images/gamma-distribution.png 734w, https://algebrica.org/wp-content/uploads/resources/images/gamma-distribution-300x206.png 300w" sizes="(max-width: 734px) 100vw, 734px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Коли \(\alpha\) зростає понад \(1\), гамма-щільність більше не має піка в нулі, а формує максимум при позитивному значенні \( x \). У міру збільшення \(\alpha\) цей пік зміщується праворуч, а загальна форма стає більш гладкою і менш асиметричною.</p>
+<hr>
+<p>Як і для будь-якого неперерывного розподілу, загальна площа під кривою щільності має дорівнювати 1. Це той самий принцип, що діє для <a href="normal-distribution.html">нормального розподілу</a>, щільність якого <a href="definite-integrals.html">інтегрується</a> до \(1\) по всій дійсній прямій. Гамма-розподіл відповідає тій самій вимозі: його щільність визначена так, щоб інтеграл по позитивній півпрямій був точно рівний \(1\). Формально маємо</p>
+<p>\[
+\int_{0}^{+\infty}
+\frac{1}{\beta^{\alpha}\,\Gamma(\alpha)}\, x^{\alpha - 1}\, e^{-x/\beta}\, dx = 1
+\]</p>
+<p>Розв'язуючи інтеграл шляхом застосування <a href="integration-by-substitution.html">заміни</a> \( x = \beta t \), що дає \( dx = \beta\, dt \), ми можемо переписати вираз як:</p>
+<p>\[
+\int_{0}^{+\infty}
+\frac{1}{\beta^{\alpha}\,\Gamma(\alpha)}\, (\beta t)^{\alpha &#8211; 1} e^{-t}\, \beta\, dt
+\]</p>
+<p>Після збору степенів \( \beta \), це набуває вигляду:</p>
+<p>\[
+\frac{1}{\Gamma(\alpha)}
+\int_{0}^{+\infty} t^{\alpha &#8211; 1} e^{-t}\, dt
+\]</p>
+<p>Інтеграл у правій частині є саме означенням гамма-функції, тому отримаємо</p>
+<p>\[
+\frac{1}{\Gamma(\alpha)} \cdot \Gamma(\alpha) = 1
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Ключові особливості</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad f(x) =
+\frac{1}{\Gamma(\alpha)\,\beta^{\alpha}}
+\, x^{\alpha - 1} e^{-x/\beta}
+\quad x &gt; 0 \]</p>
+</li>
+<li>
+<p>\[\text{2. } \quad \mu = E(X) = \alpha\,\beta \]</p>
+</li>
+<li>
+<p>\[\text{3. } \quad \sigma^{2} = \mathrm{Var}(X) = \alpha\,\beta ^{2} \]</p>
+</li>
+<li>
+<p>\[\text{4. } \quad \sigma = \beta\,\sqrt{\alpha} \]</p>
+</li>
+</ul>
+<h5>Кожен вираз підкреслює ключову властивість гамма-розподілу, щільність якого визначена через гамма-функцію \(\Gamma(\alpha)\). Його середнє значення та мінливість спільно залежать від параметра форми \(\alpha\) та параметра масштабу \(\beta\), що визначає, як розподіл моделює час очікування та процеси з позитивною асиметрією.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Математичне сподівання гамма-розподілу</h2>
+<p>Як було зазначено в розділі про неперервні випадкові величини, <a href="mean-or-expected-value-of-a-random-variable.html">математичне сподівання неперервної випадкової величини</a> описує центральну тенденцію її розподілу і визначається як</p>
+<p>\[
+\mu = E(X) = \int_{-\infty}^{+\infty} x\, f(x)\, dx
+\]</p>
+<p>Ця загальна формула застосовується до будь-якого неперервного розподілу, де \( f(x) \) позначає функцію щільності ймовірності випадкової величини \( X \). Для гамма-розподілу з параметром форми \( \alpha \) та параметром масштабу \( \beta \) щільність має вигляд:</p>
+<p>\[
+f(x;\alpha,\beta)=\frac{1}{\beta^{\alpha}\Gamma(\alpha)}\, x^{\alpha &#8211; 1} e^{-x/\beta}
+\quad x&gt;0
+\]</p>
+<p>отже, математичне сподівання обчислюється як:</p>
+<p>\[
+\mu = E(X) = \int_{0}^{+\infty}
+x\, \frac{1}{\beta^{\alpha}\Gamma(\alpha)}\, x^{\alpha - 1} e^{-x/\beta}\, dx
+\]</p>
+<p>Об'єднавши степені \( x \), отримаємо:</p>
+<p>\[
+E(X) = \frac{1}{\beta^{\alpha}\Gamma(\alpha)}
+\int_{0}^{+\infty} x^{\alpha} e^{-x/\beta}\, dx
+\]</p>
+<p>Щоб спростити інтеграл, застосуємо заміну змінної \( x = \beta t \), що дає \( dx = \beta\, dt \). Після підстановки маємо:</p>
+<p>\[
+E(X) = \frac{1}{\beta^{\alpha}\Gamma(\alpha)}
+\int_{0}^{+\infty} (\beta t)^{\alpha} e^{-t}\, \beta\, dt
+\]</p>
+<p>Збираючи степені \( \beta \):</p>
+<p>\[
+\begin{align}
+E(X)
+&amp;= \frac{1}{\beta^{\alpha}\Gamma(\alpha)}
+\int_{0}^{+\infty} (\beta t)^{\alpha} e^{-t}, \beta, dt \\[0.6em]
+&amp;= \frac{\beta^{\alpha}\,\beta}{\beta^{\alpha}\Gamma(\alpha)}
+\int_{0}^{+\infty} t^{\alpha} e^{-t}\, dt \\[0.6em]
+&amp;= \frac{\beta}{\Gamma(\alpha)}
+\int_{0}^{+\infty} t^{\alpha} e^{-t}\, dt
+\end{align}
+\]</p>
+<p>Залишок інтеграла розпізнається як гамма-функція, обчислена в точці \( \alpha + 1 \):</p>
+<p>\[
+\int_{0}^{+\infty} t^{\alpha} e^{-t}\, dt = \Gamma(\alpha + 1)
+\]</p>
+<p>Використовуючи тотожність \( \Gamma(\alpha + 1) = \alpha \Gamma(\alpha) \), знайдемо</p>
+<p>\[
+\mu = \alpha \beta
+\]</p>
+<p>Це показує, що середнє значення гамма-розподілу залежить від обох параметрів: \( \alpha \) визначає, як маса розподілена вздовж позитивної осі, тоді як \( \beta \) розтягує розподіл горизонтально, і їхній добуток дає середнє значення змінної.</p>
+<hr>
+<p>Гамма-розподіл іноді записують в альтернативній формі, де замість параметра масштабу використовують параметр інтенсивності. У цьому випадку щільність виражається як:</p>
+<p>\[
+f(x;\alpha,\beta)=\frac{\beta^{\alpha}}{\Gamma(\alpha)}, x^{\alpha - 1} e^{-\beta x}
+\quad x&gt;0
+\]</p>
+<p>де \( \beta \) тепер відіграє роль інтенсивності, що є оберненим значенням до масштабу. При такій параметризації математичне сподівання набуває вигляду:</p>
+<p>\[
+E(X) = \frac{\alpha}{\beta}
+\]</p>
+<h5>Обидва вирази для середнього значення повністю узгоджуються: з параметром масштабу середнє значення дорівнює \( \alpha\beta \), тоді як з параметром інтенсивності воно дорівнює \( \alpha/\beta \). Різниця зумовлена виключно вибором параметризації, а не самим розподілом.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Дисперсія гамма-розподілу</h2>
+<p>Дисперсію гамма-розподілу можна отримати з загального означення <a href="variance-and-covariance-of-a-random-variable.html">дисперсії для неперервних випадкових величин</a>:</p>
+<p>\[
+\sigma^{2} = E(X^{2}) &#8211; [E(X)]^{2}
+\]</p>
+<p>Використовуючи відповідний інтегральний вираз і підставляючи щільність гамма-розподілу, маємо:</p>
+<p>\[
+E(X^{2}) =
+\int_{0}^{+\infty}
+x^{2}\,
+\frac{1}{\beta^{\alpha}\Gamma(\alpha)}\,
+x^{\alpha &#8211; 1} e^{-x/\beta}\, dx
+\]</p>
+<p>Об'єднавши степені \( x \), отримаємо:</p>
+<p>\[
+E(X^{2}) =
+\frac{1}{\beta^{\alpha}\Gamma(\alpha)}
+\int_{0}^{+\infty}
+x^{\alpha + 1} e^{-x/\beta}\, dx
+\]</p>
+<p>Застосувавши заміну змінної \( x = \beta t \), ми можемо переписати інтеграл як:</p>
+<p>\[
+\begin{align}
+E(X^{2})
+&amp;=
+\frac{1}{\beta^{\alpha}\Gamma(\alpha)}
+\int_{0}^{+\infty}
+(\beta t)^{\alpha + 1} e^{-t}\, \beta\, dt \\[0.6em]
+&amp;=
+\frac{\beta^{\alpha + 2}}{\beta^{\alpha}\Gamma(\alpha)}
+\int_{0}^{+\infty} t^{\alpha + 1} e^{-t}\, dt \\[0.6em]
+&amp;=
+\frac{\beta^{2}}{\Gamma(\alpha)}
+\Gamma(\alpha + 2)
+\end{align}
+\]</p>
+<p>Використовуючи тотожність:</p>
+<p>\[
+\Gamma(\alpha + 2) = (\alpha + 1)\alpha\, \Gamma(\alpha)
+\]</p>
+<p>отримаємо:</p>
+<p>\[
+E(X^{2}) = \beta^{2} \alpha(\alpha + 1)
+\]</p>
+<p>Оскільки середнє значення гамма-розподілу дорівнює</p>
+<p>\[
+E(X) = \alpha \beta
+\]</p>
+<p>дисперсія набуває вигляду:</p>
+<p>\[
+\sigma^{2}
+= \beta^{2}\alpha(\alpha + 1) &#8211; (\alpha\beta)^{2}
+= \alpha\beta^{2}
+\]</p>
+<hr>
+<p>Як і у випадку з математичним сподіванням, коли гамма-розподіл записується за допомогою параметра інтенсивності замість параметра масштабу, вираз для дисперсії також змінюється. У цій формі дисперсія гамма-розподілу стає:</p>
+<p>\[
+\mathrm{Var}(X)=\frac{\alpha}{\beta^{2}}
+\]</p>
+<h5>Цей результат повністю узгоджується з версією для параметра масштабу. Це просто інший спосіб запису того самого розподілу.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Особливі випадки гамма-розподілу</h2>
+<p>Гамма-розподіл включає кілька важливих особливих випадків, кожен з яких отримується шляхом вибору конкретних значень його параметрів. Одним із найвідоміших є <a href="exponential-distribution.html">показниковий розподіл</a>, який виникає, коли \( \alpha = 1 \). У цій ситуації щільність набуває простішої форми</p>
+<p>\[
+f(x;\lambda)=
+\begin{cases}
+\lambda e^{-\lambda x} &amp; x&gt;0\\[0.4em]
+0 &amp; x \le 0
+\end{cases}
+\]</p>
+<p>де \( \lambda \) — це параметр інтенсивності, який визначає, наскільки швидко затухає розподіл. Показниковий розподіл часто використовується для моделювання часу очікування між послідовними подіями, які відбуваються незалежно та з постійною середньою інтенсивністю, наприклад, часу між прибуттями в <a href="poisson-distribution.html">пуассонівському процесі</a>.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке гамма-розподіл?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Гамма-розподіл — це неперервна ймовірнісна модель на позитивній півосі, що використовується для опису часу очікування та накопичувальних процесів за допомогою параметрів форми та масштабу."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Які параметри гамма-розподілу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Гамма-розподіл визначається параметром форми α та параметром масштабу β, які разом визначають вигляд і розсіювання розподілу."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як обчислити математичне сподівання гамма-розподілу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Математичне сподівання гамма-розподіленої випадкової величини дорівнює αβ при параметризації за масштабом і α/β при параметризації за інтенсивністю."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка дисперсія гамма-розподілу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Дисперсія гамма-розподілу дорівнює αβ² при параметризації за масштабом і α/β², коли розподіл виражений через параметр інтенсивності."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="gamma-distribution.html">algebrica.org/gamma-distribution</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

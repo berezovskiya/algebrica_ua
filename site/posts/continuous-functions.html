@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Неперервні функції — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Неперервні функції</h1>
+        <time>2025-02-24</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section  mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Неперервна функція в точці</h2>
+<p>Поняття неперервності <a href="functions.html">функції</a> використовується для того, щоб визначити, чи поводиться функція передбачувано поблизу точки, без стрибків, розривів або різких змін. Формально, функція \( y = f(x) \) називається неперервною в точці \( x_0 \), якщо виконується наступна <a href="limits.html">границя</a>:</p>
+<p>\[
+\lim_{x \to x_0} f(x) = f(x_0)
+\]</p>
+<p>Іншими словами, це означає, що границя функції при наближенні \( x \) до \( x_0 \) існує і є скінченною, і що ця границя дорівнює значенню функції в точці \( x_0 \). Наприклад, функція \( f(x) = \sin(x) \) є неперервною на всій множині \( \mathbb{R} \). У кожній точці \( x_0 \in \mathbb{R} \) границя \( \sin(x) \) при \( x \to x_0 \) існує, є скінченною та задовольняє рівності \( \lim_{x \to x_0} \sin(x) = \sin(x_0) \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="812" height="388" src="../images/continuity-1.png" alt="" class="wp-image-24507" style="width:406px" srcset="../images/continuity-1.png 812w, https://algebrica.org/wp-content/uploads/resources/images/continuity-1-300x143.png 300w, https://algebrica.org/wp-content/uploads/resources/images/continuity-1-768x367.png 768w" sizes="(max-width: 812px) 100vw, 812px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Власне, розглянемо \( x_0 = \frac{\pi}{2} \) як конкретний приклад. Маємо:</p>
+<p>\[ \lim_{x \to \frac{\pi}{2}} \sin(x) = \sin\!\left(\frac{\pi}{2}\right) = 1 \]</p>
+<p>Умова неперервності для <a href="sine-function.html">функції синуса</a> виконується в точці \(x_0\), і такі ж міркування поширюються на всі інші точки в області визначення.</p>
+<hr>
+<p>Інший спосіб виразити неперервність функції в точці — зазначити, що праві та ліві границі функції в цій точці існують, є скінченними та збігаються зі значенням функції. Стосовно довільної точки \( x_0 \), це можна записати так:</p>
+<p>\[
+\lim_{x \to x_0^+} f(x) = \lim_{x \to x_0^-} f(x) = f(x_0)
+\]</p>
+<p>Ця умова гарантує, що графік функції не має розривів або стрибків у точці \(x_0.\)</p>
+<h6>Ця властивість очевидна на графіку \( f(x) = \sin(x) \). У кожній точці \( x_0 \) крива наближається до одного й того самого значення як зліва, так і справа, і це значення збігається з \( f(x_0) \). Графік утворює неперервну, безперервну лінію по всій прямій, і ця візуальна неперервність відображає аналітичну умову того, що односторонні границі функції та її значення рівні.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо <a href="polynomial-function.html">поліноміальну функцію</a>:</p>
+<p>\[
+f(x) = 3x + 1
+\]</p>
+<p>Нас цікавить, чи є ця функція неперервною в точці \( x_0 = 2 \). Для цього спочатку обчислимо границю функції при наближенні \( x \) до \(2\):</p>
+<p>\[
+\lim_{x \to 2} f(x) = \lim_{x \to 2} (3x + 1) = 3 \cdot 2 + 1 = 7
+\]</p>
+<p>Далі обчислимо значення функції безпосередньо в точці:</p>
+<p>\[
+f(2) = 3 \cdot 2 + 1 = 7
+\]</p>
+<p>Оскільки функція є <a href="polynomials.html">поліномом</a> першого ступеня, її графіком є пряма <a href="lines.html">лінія</a>.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="740" height="590" src="../images/continuous-functions.png" alt="" class="wp-image-17024" style="width:370px" srcset="../images/continuous-functions.png 740w, https://algebrica.org/wp-content/uploads/resources/images/continuous-functions-300x239.png 300w" sizes="(max-width: 740px) 100vw, 740px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown aligCenterMathjax alignCenterMathjax"><p>Границя існує, є скінченною і збігається зі значенням функції в цій точці. Отже, ми можемо зробити висновок, що</p>
+<p>\[
+\lim_{x \to 2} f(x) = f(2) = 7
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Це підтверджує, що функція \( f(x) = 3x + 1 \) є неперервною при \( x = 2.\)</p>
+<h6>Такі міркування поширюються і на поліноміальні функції вищих ступенів. Наприклад, квадратична функція \( f(x) = x^2 \) має <a href="parabola.html">параболічний</a> графік, і для кожної точки \( x_0 \in \mathbb{R} \) границя існує, є скінченною та задовольняє рівності \( \lim_{x \to x_0} x^2 = x_0^2 = f(x_0) \).</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Неперервна функція на проміжку</h2>
+<p>Коли ми розглядаємо проміжок замість однієї точки, ми кажемо, що функція \( y = f(x) \) є неперервною на замкненому та обмеженому проміжку \([a, b]\), якщо виконується наступна умова:</p>
+<p>\[
+\lim_{x \to x_0} f(x) = f(x_0) \quad \forall \, x_0 \in (a, b)
+\]</p>
+<p>Так само як і з неперервністю в точці, неперервність на замкненому проміжку може бути виражена через односторонні границі на кінцях проміжку. Зокрема, функція повинна задовольняти:</p>
+<p>\[
+\begin{align}
+\lim_{x \to a^+} f(x) &amp;= f(a) \\[6pt]
+\lim_{x \to b^-} f(x) &amp;= f(b)
+\end{align}
+\]</p>
+<p>Наприклад, функція \( f(x) = \sqrt{x} \), визначена на проміжку \([0, 4]\), є неперервною в кожній внутрішній точці, оскільки функція квадратного кореня є неперервною на \( (0, +\infty) \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="474" height="614" src="../images/continuity-2.png" alt="Example of continuous function." class="wp-image-24522" style="width:237px" title="Example of continuous function." srcset="../images/continuity-2.png 474w, https://algebrica.org/wp-content/uploads/resources/images/continuity-2-232x300.png 232w" sizes="(max-width: 474px) 100vw, 474px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>На лівому та правому кінцях умови односторонньої неперервності відповідно задоволені:
+\[
+\begin{align}
+\lim_{x \to 0^+} \sqrt{x} &amp;= 0 = f(0) \\[6pt]
+\lim_{x \to 4^-} \sqrt{x} &amp;= 2 = f(4)
+\end{align}
+\]</p>
+<p>Отже, всі три умови неперервності виконані, і \( f(x) = \sqrt{x} \) є неперервною на \([0, 4]\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps mb-x-30"><h2>Функції, неперервні на своїй області визначення</h2>
+<p>Наступні функції є неперервними на своїх відповідних <a href="determining-the-domain-of-a-function.html">областях визначення</a>:</p>
+<ul>
+<li>Поліноміальні функції вигляду \(P(x) = a_0 + a_1 x + \cdots + a_n x^n.\)</li>
+<li><a href="rational-functions.html">Раціональні функції</a>.</li>
+<li> <a href="exponential-function.html">Показникова функція</a> \( a^x.\)</li>
+<li> <a href="logarithmic-function.html">Логарифмічна функція </a>\( \log_a x. \)</li>
+<li> <a href="absolute-value-function.html">Функція модуля</a> \( |x|. \)</li>
+<li>Тригонометричні функції <a href="sine-and-cosine.html">синус</a> \( \sin x \), косинус \( \cos x \), та <a href="tangent-and-cotangent.html">тангенс</a> \( \tan x \), а також їхні обернені функції.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax pb-steps"><h2>Розрив</h2>
+<p>Якщо функція не є неперервною в заданій точці, кажуть, що вона має <a href="discontinuities-of-real-functions.html">розрив</a> у цій точці. Розриви виникають, коли локальна стабільність, що забезпечується неперервністю, порушується. Зокрема, це може статися, якщо функція не визначена в точці, якщо границя не існує, або якщо границя існує, але відрізняється від значення функції. Розриви поділяють на три взаємовиключні типи:</p>
+<ul>
+<li>Усунуваний розрив виникає, коли границя функції існує і є скінченною, але функція або не визначена в точці, або її значення не дорівнює цій границі.</li>
+<li>Стрибок розриву виникає, коли і ліва, і права границі існують і є скінченними, але ці границі не рівні між собою.</li>
+<li>Неусунуваний розрив другого роду (нескінченний розрив) присутній, коли принаймні одна з односторонніх granic є нескінченною, внаслідок чого функція розбігається біля точки замість того, щоб наближатися до скінченного значення.</li>
+</ul>
+<h6>Одна точка не може одночасно мати більше одного типу розриву.</h6>
+<hr>
+<p>Розглянемо приклад простої функції, яка не є неперервною: <a href="sign-function.html">функція знака</a>, що позначається як \( \operatorname{sign}(x) \). Ця функція визначається так:</p>
+<p>\[
+\operatorname{sign}(x) =
+\begin{cases}
+-1 &amp; \text{якщо } x &lt; 0 \\[0.5em]
+\phantom{-}0 &amp; \text{якщо } x = 0 \\[0.5em]
+\phantom{-}1 &amp; \text{якщо } x &gt; 0
+\end{cases}
+\]</p>
+<p>На перший погляд це може здатися простим, але ця функція не є неперервною при \( x = 0 \). Щоб бути неперервною в точці, границя зліва та границя справа повинні існувати і дорівнювати значенню функції в цій точці. Дослідимо границі:</p>
+<ul>
+<li>Коли \( x \to 0^- \), функція наближається до \( -1. \)</li>
+<li>Коли \( x \to 0^+ \), функція наближається до \( 1. \)</li>
+</ul>
+<p>Отже, маємо:</p>
+<p>\[
+\begin{align}
+\lim_{x \to 0^-} \operatorname{sign}(x) &amp;= -1 \\[6pt]
+\lim_{x \to 0^+} \operatorname{sign}(x) &amp;= 1
+\end{align}
+\]</p>
+<p>Оскільки дві односторонні границі не рівні, загальна границя при \( x \to 0 \) не існує. І хоча функція визначена при \( x = 0 \), ми не можемо прирівняти її до значення границі. Таким чином, функція має розрив при \( x = 0 \), хоча вона є неперервною всюди інде на \( \mathbb{R} \setminus \{0\} \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Властивості</h2>
+<p>Сума або різниця двох неперервних функцій також є неперервною. Припустимо, що \( f \) та \( g \) є функціями з \( \mathbb{R} \) в \( \mathbb{R} \), і нехай \( x_0 \) буде точкою, що належить і до \( \operatorname{Dom}(f) \), і до \( \operatorname{Dom}(g) \), де обидві функції є неперервними. Тоді функція \( f + g \), а також \( f - g \), є неперервною в точці \( x_0 \). Іншими словами, якщо і \( f \), і \( g \) є неперервними в точці \( x_0 \), тобто:</p>
+<p>\[
+\begin{align}
+\lim_{x \to x_0} f(x) &amp;= f(x_0) \\[6pt]
+\lim_{x \to x_0} g(x) &amp;= g(x_0)
+\end{align}
+\]</p>
+<p>тоді сума \( f + g \) також є неперервною в \( x_0 \), що означає:</p>
+<p>\[
+\lim_{x \to x_0} [f(x) + g(x)] = f(x_0) + g(x_0)
+\]</p>
+<hr>
+<p>Добуток двох неперервних функцій є неперервною функцією. Нехай \( f, g : \mathbb{R} \to \mathbb{R} \), і нехай \( x_0 \in \operatorname{Dom}(f) \cap \operatorname{Dom}(g) \) буде точкою, де обидві функції є неперервними. Тоді функція добутку \( f \cdot g \) є неперервною в \( x_0 \). Іншими словами, якщо:</p>
+<p>\[
+\begin{align}
+\lim_{x \to x_0} f(x) &amp;= f(x_0) \\[6pt]
+\lim_{x \to x_0} g(x) &amp;= g(x_0)
+\end{align}
+\]</p>
+<p>тоді:</p>
+<p>\[
+\lim_{x \to x_0} [f(x) \cdot g(x)] = f(x_0) \cdot g(x_0)
+\]</p>
+<hr>
+<p>Частка двох неперервних функцій залишається неперервною за умови, що знаменник не перетворюється на нуль. Нехай \( f, g : \mathbb{R} \to \mathbb{R} \), і нехай \( x_0 \in \operatorname{Dom}(f) \cap \operatorname{Dom}(g) \) буде точкою, де обидві функції є неперервними і такою, що \( g(x_0) \ne 0 \). За цих умов функція частки \( f/g \) є неперервною в \( x_0 \). Іншими словами, якщо маємо:</p>
+<p>\[
+\begin{align}
+\lim_{x \to x_0} f(x) &amp;= f(x_0) \\[6pt]
+\lim_{x \to x_0} g(x) &amp;= g(x_0) \\[6pt]
+g(x_0) &amp;\ne 0
+\end{align}
+\]</p>
+<p>тоді виконується наступна рівність:</p>
+<p>\[
+\lim_{x \to x_0} \left[ \frac{f(x)}{g(x)} \right] = \frac{f(x_0)}{g(x_0)}
+\]</p>
+<hr>
+<p> <a href="composite-functions.html">Композиція</a> неперервних функцій також є неперервною функцією. Нехай \( f, g : \mathbb{R} \to \mathbb{R} \), і нехай \( x_0 \in \operatorname{Dom}(f) \) буде точкою, де \( f \) є неперервною. Припустимо, що \( g \) є неперервною в \( y_0 = f(x_0) \). Тоді складена функція \( g \circ f \) є неперервною в \( x_0 \), що означає:</p>
+<p>\[
+\lim_{x \to x_0} [g(f(x))] = g\left( \lim_{x \to x_0} f(x) \right) = g(f(x_0))
+\]</p>
+<hr>
+<p>Якщо функція \( f \) є неперервною та <a href="increasing-and-decreasing-functions.html">суворо монотонною</a> на проміжку \( I \subset \mathbb{R} \), то вона є оберненою на \( I \), і її <a href="inverse-function.html">обернена функція</a> \( f^{-1} \) залишається неперервною на \( f(I) \). Еквівалентно, для будь-якого \( y_0 = f(x_0) \) виконується наступне:</p>
+<p>\[
+\lim_{y \to y_0} f^{-1}(y) = x_0
+\]</p>
+<p>Сувора монотонність гарантує, що функція не змінює напрямку, тим самим запобігаючи відображенню різних близьких значень аргументу в одне й те саме значення функції. За відсутності монотонності самої неперервності недостатньо, щоб забезпечити неперервність оберненої функції.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-section alignCenterMathjax mb-x-30"><h2>Від неперервності до рівномірної неперервності</h2>
+<p>Неперервність є локальною властивістю. У кожній точці \( x_0 \) та для кожного \( \varepsilon &gt; 0 \) існує таке \( \delta &gt; 0 \), яке може залежати від \( x_0 \), що</p>
+<p>\[ |x &#8211; x_0| &lt; \delta \to |f(x) &#8211; f(x_0)| &lt; \varepsilon \]</p>
+<p>Значення \( \delta \) може змінюватися від точки до точки. У областях, де функція швидко зростає, часто необхідні менші значення \( \delta \).</p>
+<p><a href="uniform-continuity.html">Рівномірна неперервність</a> розширює цю концепцію, накладаючи єдине глобальне обмеження. Функція \( f : A \to \mathbb{R} \) є рівномірно неперервною на \( A \), якщо для кожного \( \varepsilon &gt; 0 \) існує таке \( \delta &gt; 0 \), що</p>
+<p>\[ |x - y| &lt; \delta ;\Rightarrow; |f(x) - f(y)| &lt; \varepsilon \quad \forall \, x, y \in A \]</p>
+<p>У цьому контексті \( \delta \) залежить виключно від \( \varepsilon \) і не залежить від конкретних точок в області визначення. Загалом, маємо:</p>
+<ul>
+<li>Неперервність не означає рівномірної неперервності.</li>
+<li>Рівномірна неперервність означає неперервність.</li>
+</ul>
+<p>Наприклад, функція \( f(x) = x^2 \) є неперервною на \( \mathbb{R} \), але вона не є рівномірно неперервною на \( \mathbb{R} \), оскільки жодне єдине \( \delta \) не може регулювати її зростання на всій прямій.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li><strong>Гарвардський університет, Н. Елдредж</strong>. <a href="https://people.math.harvard.edu/~nate/teaching/UPenn/2009/spring/math_360/lectures/week_7/lecture_12/lecture_12.pdf">Границі функцій та неперервні функції</a></li>
+<li><strong>Міжнародний університет Флориди, Г. Мезіані</strong>. <a href="https://faculty.fiu.edu/~meziani/Lecture4.pdf">Неперервні функції</a></li>
+<li><strong>Каліфорнійський університет у Дейвісі, Дж. Хантер</strong>. <a href="https://www.math.ucdavis.edu/~hunter/m125a/intro_analysis_ch3.pdf">Неперервні функції</a></li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке неперервна функція?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Неперервна функція — це така функція, для якої границя в кожній точці її області визначення існує і дорівнює значенню функції в цій точці, внаслідок чого графік не має розривів або стрибків."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як перевірити, чи є функція неперервною в точці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб перевірити неперервність у точці x₀, переконайтеся, що ліва та права границі існують і рівні між собою, а спільна границя дорівнює значенню функції в точці x₀."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Які функції завжди є неперервними?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Поліноми, покажчикові, синус, косинус та функції абсолютного значення є неперервними на всій своїй області визначення. Раціональні та логарифмічні функції є неперервними всюди, де вони визначені."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="continuous-functions.html">algebrica.org/continuous-functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

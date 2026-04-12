@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Похідні — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Похідні</span>
+    </nav>
+    <article>
+        <h1>Похідні</h1>
+        <time>2025-02-21</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Вступ до похідних</h2>
+<p>Розглянемо функцію \( y = f(x) \), визначену на проміжку \( [a,b] \). Похідна \( f \) у точці \( c \in (a,b) \), що позначається як \( f’(c) \), визначається, якщо границя існує і є скінченною, як границя <a href="difference-quotient.html">різницевого частка</a> при \( h \to 0 \):</p>
+<p>\[
+f’(c) = \lim_{h \to 0} \frac{f(c+h) &#8211; f(c)}{h}
+\]</p>
+<p>Якщо ця границя існує для кожного \( x \) на проміжку, то похідна визначає нову функцію \( f’(x) \), яку називають похідною від \( f \). Значення \( f’(x) \) представляє кутовий коефіцієнт дотичної до графіка \( f \) у точці \( x \).</p>
+<hr>
+<p>Коли \( h \to 0 \), точка \( B \) наближається до точки \( A \), і <a href="lines.html">пряма</a> \( AB \) стає дотичною до кривої в точці \( A \). Кутовий коефіцієнт дотичної в точці \( A \) називається похідною функції в точці \( c \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="628" height="648" src="../images/derivatives-1.png" alt="" class="wp-image-10297" style="width:314px" srcset="../images/derivatives-1.png 628w, https://algebrica.org/wp-content/uploads/resources/images/derivatives-1-291x300.png 291w" sizes="(max-width: 628px) 100vw, 628px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-10 pb-steps"><p>Стосовно дотичної в точці \(A\) функції \( y = mx + q \), похідна \( f’(x) \) представляє значення кутового коефіцієнта \( m \).</p>
+<hr>
+<p>Функція є диференційовною в точці \(c\), якщо похідна \(f’ \left(c \right)\) існує. Якщо функція є диференційовною:</p>
+<ul>
+<li>Функція визначена в околі точки \(c\).</li>
+<li>Границя <a href="difference-quotient.html">різницевого частка</a> відносно \(c\) існує і є скінченною при \( h \to 0 \).</li>
+<li>Права та ліва границі різницевого частка існують і є рівними.</li>
+</ul>
+<hr>
+<p>Обернею операцією до диференціювання є <a href="indefinite-integrals.html">інтегрування</a>. Цей глибокий зв'язок між похідними та інтегралами формалізується <a href="fundamental-theorem-of-calculus.html">Основною теоремою числення</a>, яка встановлює, що диференціювання та інтегрування є оберненими процесами.</p>
+<h5>Похідні також відіграють фундаментальну роль у фізиці. Класичним прикладом є <a href="velocity.html">швидкість</a>, яка визначається як похідна координати за часом. Ця проста концепція становить основу для розуміння руху та змін у фізичному світі.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Якщо функція \( f(x) \) є диференційовною в точці \( c \), то функція також є <a href="continuous-functions.html">неперервною</a> в цій точці. Однак, не всі функції, що є неперервними в точці \( c \), є диференційовними. Іншими словами, диференційовні функції утворюють підмножину неперервних функцій.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Обчислимо похідну функції \( f(x) = 2x^2-3x \) у точці \( c = 2 \), використовуючи означення похідної.</p>
+<p>\[
+f’(2) = \lim_{h \to 0} \frac{f(2+h) - f(2)}{h}
+\]</p>
+<hr>
+<p>Обчислимо значення \( f(2+h) \):</p>
+<p>\[
+\begin{aligned}
+f(2+h) &amp;= 2(2+h)^2 &#8211; 3(2+h) \\[0.5em]
+&amp;= 2(4 + 4h + h^2)-3(2 + h) \\[0.5em]
+&amp;= 8 + 8h + 2h^2-6-3h \\[0.5em]
+&amp;= 2 + 5h + 2h^2
+\end{aligned}
+\]</p>
+<hr>
+<p>Тепер обчислимо значення \( f(2) \):</p>
+<p>\[
+f(2) = 2(2^2)-3(2) = 8-6 = 2
+\]</p>
+<hr>
+<p>Далі обчислимо різницю \( f(2+h)-f(2) \):</p>
+<p>\[
+f(2+h)-f(2) = (2 + 5h + 2h^2)-2 = 5h + 2h^2
+\]</p>
+<p>Тепер обчислимо різницевий частку:</p>
+<p>\[
+\frac{f(2+h)-f(2)}{h} = \frac{5h + 2h^2}{h} = 5 + 2h
+\]</p>
+<hr>
+<p>Нарешті, обчислимо границю:</p>
+<p>\[
+\lim_{h \to 0} (5 + 2h) = 5\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Таким чином, похідна \( f(x) = 2x^2 - 3x \) у точці \( c = 2 \) дорівнює: \[ f’(2) = 5 \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Правобічна та лівобічна похідні</h2>
+<p>Оскільки похідна є granicю різницевого частка, як і у випадку з границами, можна визначити <strong>правобічну</strong> та <strong>лівобічну похідні</strong> функції \(y=f(x)\).</p>
+<p>Правобічна похідна:
+\[
+f_{+}^{\prime} \left(c \right) = \lim_{h \to 0^+} \frac{f(c+h)-f \left(c \right)}{h}
+\]</p>
+<p>Лівобічна похідна:
+\[
+f_{-}^{\prime} \left(c \right) = \lim_{h \to 0^-} \frac{f(c+h)-f \left(c \right)}{h}
+\]</p>
+<p>Функція є диференційовною в точці \(c\), якщо правобічна та лівобічна похідні в цій точці існують і дорівнюють одна одній. Загалом, функція \( y = f(x) \) є диференційовною на проміжку \([A, B]\), якщо вона диференційовна у всіх внутрішніх точках проміжку і якщо правобічна похідна в точці \(A\) та лівобічна похідна в точці \(B\) існують і є скінченними.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section post-type-test-list mb-x-30"><h2>Фундаментальні похідні</h2>
+<ul>
+<li>
+<p>\[ f(x) = c \quad f’(x) = 0 \]</p>
+</li>
+<li>
+<p>\[ f(x) = x \quad  f’(x) = 1 \]</p>
+</li>
+<li>
+<p>\[ f(x) = x^a \quad a \in \mathbb{R}, x &gt; 0 \quad f’(x) = ax^{a-1} \]</p>
+</li>
+<li>
+<p>\[ f(x) = \sqrt{x} \quad x &gt; 0 \quad f’(x) = \frac{1}{2\sqrt{x}} \]</p>
+</li>
+<li>
+<p>\[ f(x) = a^x \quad f’(x) = a^x \ln(a) \]</p>
+</li>
+<li>
+<p>\[ f(x) = \log_a(x) \quad f’(x) = \frac{1}{x \log(a)} \]</p>
+</li>
+<li>
+<p>\[ f(x) = \ln(x) \quad  f’(x) = \frac{1}{x} \]</p>
+</li>
+<li>
+<p>\[ f(x) = e^x \quad f’(x) = e^x \]</p>
+</li>
+<li>
+<p>\[ f(x) = \sin(x) \quad f’(x) = \cos(x) \]</p>
+</li>
+<li>
+<p>\[ f(x) = \cos(x) \quad f’(x) = -\sin(x) \]</p>
+</li>
+<li>
+<p>\[ f(x) = \tan(x) \quad f’(x) = 1 + \tan^2(x) \]</p>
+</li>
+<li>
+<p>\[ f(x) = \cot(x) \quad f’(x) = -(1 + \cot^2(x)) \]</p>
+</li>
+<li>
+<p>\[ f(x) = \arcsin(x) \quad f’(x) = \frac{1}{\sqrt{1 &#8211; x^2}} \]</p>
+</li>
+<li>
+<p>\[ f(x) = \arccos(x) \quad f’(x) = \frac{-1}{\sqrt{1 &#8211; x^2}} \]</p>
+</li>
+<li>
+<p>\[ f(x) = \arctan(x) \quad f’(x) = \frac{1}{1 + x^2} \]</p>
+</li>
+<li>
+<p>\[ f(x) = \text{arccot}(x) \quad f’(x) = \frac{-1}{1 + x^2} \]</p>
+</li>
+</ul>
+<h5>\( f(x) = c \); Похідна: \( f’(x) = 0 \), оскільки пряма \( y = c \) паралельна осі x, її кутовий коефіцієнт \( m \) дорівнює 0.</h5>
+<h5>\( f(x) = x \); Похідна: \( f’(x) = 1 \). Функція \( y = x \) є бісектрисою першої та третьої чвертей, і її кутовий коефіцієнт \( m \) дорівнює 1.</h5>
+<h5>\( f(x) = x^a \), \( a \in \mathbb{R}, x &gt; 0 \); Похідна: \( f’(x) = ax^{a-1} \)</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Операції з похідними</h2>
+<p>Похідна від добутку сталі \( c \) та диференційовної функції \( f(x) \) дорівнює добутку сталі та похідної функції. Це виражається так:</p>
+<p>\[D[c \cdot f(x)] = c \cdot f’(x) \]</p>
+<p>Наприклад, якщо \( c = 3 \) і \( f(x) = x^2 \), то:</p>
+<p>\[
+D[3 \cdot x^2] = 3 \cdot f’[x^2] = 3 \cdot 2x = 6x
+\]</p>
+<hr>
+<p>Похідна від суми двох функцій \( f(x) \) та \( g(x) \) дорівнює сумі їхніх похідних. Це виражається так:</p>
+<p>\[D[f(x) + g(x)] = f’(x) + g’(x) \]</p>
+<p>Наприклад, якщо \( f(x) = x^2 \) і \( g(x) = 3x \), то:</p>
+<p>\[D[x^2 + 3x] = f’(x^2) + g’(3x) = 2x + 3 \]</p>
+<hr>
+<p>Похідна від добутку двох функцій \( f(x) \) та \( g(x) \) визначається за правилом добутку. Це виражається так:</p>
+<p>\[D[f(x) \cdot g(x)] = f’(x) \cdot g(x) + f(x) \cdot g’(x) \]</p>
+<p>Наприклад, якщо \( f(x) = x^2 \) і \( g(x) = 3x \), то:</p>
+<p>\[
+\begin{aligned}
+D[x^2 \cdot 3x] &amp;= f’(x^2) \cdot g(3x) + f(x^2) \cdot g’(3x)\\[0.5em]
+&amp; = 2x \cdot 3x + x^2 \cdot 3 \\[0.5em]
+&amp; = 6x^2 + 3x^2 = 9x^2\\
+\end{aligned}
+\]</p>
+<hr>
+<p>Похідна від частки двох функцій \( f(x) \) та \( g(x) \), де \( g(x) \neq 0 \), визначається за правилом частки. Це виражається так:</p>
+<p>\[
+D\left[\frac{f(x)}{g(x)}\right] = \frac{f’(x) \cdot g(x)-f(x) \cdot g’(x)}{g^2(x)} \]</p>
+<p>Наприклад, якщо \( f(x) = x^2 \) і \( g(x) = 3x + 1 \), то:</p>
+<p>\[
+\begin{aligned}
+D\left[\frac{x^2}{3x + 1}\right] &amp;= \frac{2x \cdot (3x + 1)-x^2 \cdot 3}{(3x + 1)^2}\\[0.5em]
+&amp;= \frac{6x^2 + 2x-3x^2}{(3x + 1)^2} \\[0.5em]
+&amp;= \frac{3x^2 + 2x}{(3x + 1)^2}\\[0.5em]
+\end{aligned}
+\]</p>
+<hr>
+<p>Похідна від оберненої функції \( f(x) \), де \( f(x) \neq 0 \), визначається так:</p>
+<p>\[
+D\left[\frac{1}{f(x)}\right] = -\frac{f’(x)}{f^2(x)} \]</p>
+<p>Наприклад, якщо \( f(x) = 3x + 1 \), то:</p>
+<p>\[
+D\left[\frac{1}{3x + 1}\right] = -\frac{3}{(3x + 1)^2}
+\]</p>
+<hr>
+<p>При диференціюванні композиції двох функцій цих правил недостатньо. У такому разі необхідно застосувати <a href="the-derivative-of-a-composite-function.html">похідну складеної функції</a>, також відому як правило ланцюга.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section pb-steps"><h2>Похідні вищих порядків</h2>
+<p>Загалом, похідні, які ми розглянули до цього, є першими похідними функції \( y = f(x) \). Процес диференціювання можна ітерувати, щоб обчислити похідні вищих порядків від першої похідної, такі як друга похідна та третя похідна.</p>
+<p>Наприклад, нехай функція \( y = f(x) = 3x^3 - 2x^2 + 1 \).</p>
+<ul>
+<li>
+<p>Перша похідна функції: \[
+f’(x) = 9x^2 - 4x
+\]</p>
+</li>
+<li>
+<p>Друга похідна: \[
+f’'(x) = 18x - 4
+\]</p>
+</li>
+<li>
+<p>Третя похідна
+\[
+f^{\prime \prime \prime}(x) = 18
+\]</p>
+</li>
+</ul>
+<p>Перша та друга похідні відіграють фундаментальну роль в аналізі локальної поведінки функцій, зокрема у визначенні <a href="maximum-minimum-and-inflection-points.html">точок мінімуму та максимуму</a>, а також точок перегину.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Ключові теореми диференціального числення</h2>
+<p>Похідні також лежать в основі деяких найважливіших теорем диференціального числення.</p>
+<ul>
+<li><a href="weierstrass-theorem.html">Теорема Вейєрштрасса</a> гарантує, що неперервна функція на замкненому та обмеженому проміжку досягає як свого максимуму, так і мінімуму.</li>
+<li><a href="fermats-theorem.html">Теорема Ферма</a> встановлює необхідну умову для локальних екстремумів.</li>
+<li><a href="rolles-theorem.html">Теорема Ролля</a> та <a href="lagranges-theorem.html">Теорема Лагранжа</a>, також відома як теорема про середнє значення, описують фундаментальні властивості диференційовних функцій на замкненому проміжку.</li>
+<li>Подальші узагальнення надають <a href="cauchy-theorem.html">Теорема Коші</a> та <a href="hopital-rule.html">Правило Лопіталя</a>, яке розширює використання похідних для обчислення <a href="indeterminate-forms.html">невизначених форм</a> границь.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Рівняння дотичної</h2>
+<p>Кутовий коефіцієнт дотичної до графіка функції \( f(x) \) у точці \( x_0 \) задається похідною \( f’(x_0) \). Це значення представляє миттєву швидкість зміни функції в цій точці та збігається з границею кутових коефіцієнтів січних, що наближаються до \( x_0 \).</p>
+<p>Точніше, якщо ми розглянемо другу точку \( x_0 + h \), кутовий коефіцієнт січної, що проходить через точки \( (x_0, f(x_0)) \) та \( (x_0 + h, f(x_0 + h)) \), дорівнює:</p>
+<p>\[
+\frac{f(x_0 + h) - f(x_0)}{h}
+\]</p>
+<p>Якщо границя цього виразу існує при \( h \to 0 \), функція є диференційовною в \( x_0 \), і ця границя дорівнює \( f’(x_0) \). Таким чином, дотична розуміється як граничне положення січних.</p>
+<p>Якщо похідна існує і є скінченною, дотична не є вертикальною. У такому разі її рівняння можна записати у вигляді рівняння прямої через точку та кутовий коефіцієнт. Оскільки пряма проходить через точку \( (x_0, f(x_0)) \) і має кутовий коефіцієнт \( f’(x_0) \), її рівняння має вигляд:</p>
+<p>\[
+y &#8211; f(x_0) = f’(x_0)(x &#8211; x_0)
+\]</p>
+<p>Ця лінійна функція забезпечує найкраще лінійне наближення \( f \) поблизу \( x_0 \). Фактично, для значень \( x \), близьких до \( x_0 \), приріст функції задовольняє рівність:</p>
+<p>\[
+f(x) \approx f(x_0) + f’(x_0)(x - x_0)
+\]</p>
+<p>що виражає ідею про те, що на достатньо малих масштабах диференційовна функція поводиться приблизно як її дотична.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо <a href="parabola.html">параболу</a>, задану рівнянням \( y = 2x^2 + 3x \), і визначимо дотичну в точці \( P(1, 5) \).</p>
+<hr>
+<p>Спочатку обчислимо похідну \( f’(x) \), і отримаємо:</p>
+<p>\[2x+3\]</p>
+<p>Обчислимо кутовий коефіцієнт дотичної при \( x = 1 \):</p>
+<p>\[
+f’(1) = 2(1) + 3 = 5
+\]</p>
+<p>Отже, кутовий коефіцієнт дотичної дорівнює \( m = 5 \). Маємо:</p>
+<p>\[y - f(1) = f{\prime}(1)(x &#8211; 1) \rightarrow y - 5 = 5(x - 1)\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Завершивши обчислення, отримаємо рівняння дотичної:</p>
+<p>\[
+y = 5x
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Часткові похідні</h2>
+<p>Похідні є фундаментальними в багатозмінному численні. Коли функція залежить від кількох змінних, швидкість зміни відносно однієї змінної при збереженні всіх інших змінних сталими описується частковою похідною:</p>
+<p>\[
+\frac{\partial f}{\partial x_i}(x_0) \;=\; \lim_{h \to 0} \frac{f(x_1^0, \ldots, x_i^0 + h, \ldots, x_n^0) - f(x_0)}{h}
+\]</p>
+<p><a href="vectors.html">Вектор</a> усіх часткових похідних утворює градієнт \( \nabla f \), який вказує напрямок найшвидшого зростання \( f \). Для детального розгляду, включаючи похідні вищих порядків, теорему Шварца, матрицю Якобі та правило ланцюга для функцій кількох змінних, зверніться до статті про <a href="partial-derivatives.html">часткові похідні</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрані джерела</h2>
+<ul>
+<li>
+<p><strong>MIT OpenCourseWare</strong>. <a href="https://ocw.mit.edu/courses/18-01-single-variable-calculus-fall-2006/pages/lecture-notes/">Математичний аналіз однієї змінної – Конспекти лекцій (Похідні)</a></p>
+</li>
+<li>
+<p><strong>University of British Columbia</strong>. <a href="https://www.math.ubc.ca/~feldman/m101/clp/clp_notes_100.pdf">Диференціювання – Конспекти лекцій</a></p>
+</li>
+<li>
+<p><strong>University College London (UCL)</strong>. <a href="https://www.ucl.ac.uk/~uczlcfe/my%20website%20notes/_maths%20-%20diff%201%20-%2000%20-%20complete.pdf">Про диференціювання I</a></p>
+</li>
+<li>
+<p><strong>Simon Fraser University</strong>. <a href="https://www.sfu.ca/~vjungic/Calculus%203/Calculus3.pdf">Математичний аналіз III – Часткові похідні</a></p>
+</li>
+<li>
+<p><strong>Portland State University</strong>. <a href="https://web.pdx.edu/~erdman/CALCULUS/CALCULUS_pdf.pdf">Задачі та вправи з математичного аналізу</a></p>
+</li>
+<li>
+<p><strong>Northwestern University</strong>. <a href="https://sites.math.northwestern.edu/scg479/courses/notes/lecture-notes-320-3.pdf">Дійсний аналіз – Конспекти лекцій</a></p>
+</li>
+<li>
+<p><strong>Penn State University</strong>. <a href="https://www.math.psu.edu/lamy/misc/Calc_Notes.pdf">Математичний аналіз – Похідні та їх застосування</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке похідна функції?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Похідна функції вимірює швидкість, з якою змінюється значення функції відносно змін її аргументу. Вона представляє кутовий коефіцієнт (нахил) дотичної в заданій точці графіка функції."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як знайти похідну функції?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ви можете знайти похідну функції, використовуючи правила диференціювання, такі як степеневе правило, правило добутку, правило частки або ланцюгове правило. Для простої функції, наприклад f(x) = x^2, похідна дорівнює f'(x) = 2x."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Який геометричний зміст похідної?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Геометрично похідна представляє кутовий коефіцієнт (нахил) дотичної до графіка функції в конкретній точці. Вона описує, наскільки крутим є графік і в якому напрямку він зростає або спадає."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="derivatives.html">algebrica.org/derivatives</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

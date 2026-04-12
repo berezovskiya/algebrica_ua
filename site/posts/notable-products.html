@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Формули скороченого множення — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Поліноми</span>
+    </nav>
+    <article>
+        <h1>Формули скороченого множення</h1>
+        <time>2025-02-09</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-4" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="binomial-theorem.html">Біном Ньютона</a>, <a href="binomials.html">Біноми</a>, <a href="monomials.html">Мономіали</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-4");
+            var dataset = {"name":"root","children":[{"name":"identities","children":[{"name":"square binomial"},{"name":"difference squares"},{"name":"cube binomial"},{"name":"sum cubes"},{"name":"difference cubes"},{"name":"power identities"}]},{"name":"operations","children":[{"name":"expansion"},{"name":"factorization"},{"name":"simplification"},{"name":"equation solving"},{"name":"quadratic reduction"},{"name":"pattern recognition"},{"name":"common factors"}]},{"name":"properties","children":[{"name":"binomial theorem"},{"name":"multinomial structure"},{"name":"nth powers"},{"name":"sum of powers"},{"name":"difference of powers"},{"name":"algebraic patterns"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Вступ</h2>
+<p>Помітні добутки, також відомі як формули скороченого множення, — це алгебраїчні тотожності, що представляють розклад або <a href="factoring-ac-method.html">розкладання на множники</a> добутків поліномів у закритій формі. Ці тотожності виникають при множенні виразів із впізнаваними структурами, такими як <a href="binomials.html">двочлени</a> та <a href="trinomials.html">тричлени</a>, і дають стандартні форми, що часто зустрічаються в алгебрі. Їхні основні застосування включають алгебраїчне спрощення, розкладання поліномів на множники та розв'язання <a href="equations.html">рівнянь</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Квадрат двочлена</h2>
+<p>Квадрат двочлена — це добуток, отриманий при множенні двочлена на самого себе. Двома стандартними алгебраїчними тотожностями є:</p>
+<p>\[(a+b)^2 = a^2 + 2ab + b^2\]
+\[(a-b)^2 = a^2 - 2ab + b^2\]</p>
+<p>Обидві тотожності можна вивести безпосередньо, розкривши добуток:</p>
+<p>\[
+\begin{align}
+(a+b)^2 &amp;= (a+b)(a+b) \\[6pt]
+&amp;= a^2 + ab + ab + b^2 \\[6pt]
+&amp;= a^2 + 2ab + b^2
+\end{align}
+\]
+Отриманий вираз містить три доданки: квадрат першого доданка, подвоєний добуток двох доданків і квадрат другого доданка. Для \((a-b)^2\) середній доданок є від'ємним, оскільки добуток двох доданків містить знак мінус.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Різниця квадратів</h2>
+<p>Різниця квадратів — це тотожність, яка розкладає вираз вигляду \(a^2 - b^2\) на множники як добуток суми та різниці двох доданків:</p>
+<p>\[a^2 - b^2 = (a+b)(a-b)\]</p>
+<p>Тотожність можна перевірити, розкривши праву частину:</p>
+<p>\[
+\begin{align}
+(a+b)(a-b) &amp;= a(a-b) + b(a-b) \\[6pt]
+&amp;= a^2 &#8211; ab + ab &#8211; b^2 \\[6pt]
+&amp;= a^2 &#8211; b^2
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Куб двочлена</h2>
+<p>Куб двочлена — це результат множення двочлена на самого себе тричі. Двома тотожностями є:</p>
+<p>\[
+\begin{align}
+(a+b)^3 &amp;= a^3 + 3a^2b + 3ab^2 + b^3 \\[6pt]
+(a-b)^3 &amp;= a^3 &#8211; 3a^2b + 3ab^2 &#8211; b^3
+\end{align}
+\]</p>
+<p>Обидва випадки є особливими випадками <a href="binomial-theorem.html">біноміальної теореми</a> при \(n = 3.\)</p>
+<hr>
+<p>Сума та різниця кубів двох чисел є тотожностями розкладання на множники:</p>
+<p>\[
+\begin{align}
+a^3 + b^3 &amp;= (a+b)(a^2 &#8211; ab + b^2) \\[6pt]
+a^3 &#8211; b^3 &amp;= (a-b)(a^2 + ab + b^2)
+\end{align}
+\]</p>
+<hr>
+<p>Обидві тотожності можна перевірити, розкривши праву частину:</p>
+<p>\[
+\begin{align}
+(a+b)(a^2-ab+b^2) &amp;= a^3 &#8211; a^2b + ab^2 + a^2b &#8211; ab^2 + b^3 \\[6pt]
+&amp;= a^3 + b^3
+\end{align}
+\]</p>
+<p>\[
+\begin{align}
+(a-b)(a^2+ab+b^2) &amp;= a^3 + a^2b + ab^2 &#8211; a^2b &#8211; ab^2 &#8211; b^3 \\[6pt]
+&amp;= a^3 &#8211; b^3
+\end{align}
+\]</p>
+<h6>У розкладанні \((a+b+c)^3\) коефіцієнт \(6\) у доданку \(6abc\) виникає з кількості перестановок трьох різних множників \(a\), \(b\), \(c\), тобто \(3! = 6\). Це приклад мультиноміальної теореми, яка узагальнює <a href="binomial-theorem.html">біноміальну теорему</a> для сум із більше ніж двох доданків.</h6>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Помітні добутки та біноміальна теорема</h2>
+<p>Квадрат і куб двочлена представляють конкретні випадки <a href="binomial-theorem.html">біноміальної теореми</a>, яка пропонує загальну формулу для розкладання \((a+b)^n\) для будь-якого цілого неотримального \(n\):</p>
+<p>\[(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^{k}\]</p>
+<p><a href="binomial-coefficient.html">Біноміальні коефіцієнти</a> \(\binom{n}{k}\) визначаються як:</p>
+<p>\[\binom{n}{k} = \frac{n!}{k!(n-k)!}\]</p>
+<p>Наприклад, коли \(n = 3\), чотирма біноміальними коефіцієнтами є:</p>
+<p>\[\binom{3}{0} = 1 \qquad \binom{3}{1} = 3 \qquad \binom{3}{2} = 3 \qquad \binom{3}{3} = 1\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Підставляючи ці значення в загальну формулу, отримаємо розклад для куба двочлена:</p>
+<p>\[(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3\]</p>
+<h6>Цей результат узгоджується з раніше виведеною тотожністю.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо наступне рівняння:</p>
+<p>\[x^3 - 27 = 0\]</p>
+<p>Оскільки \(27 = 3^3\), ліва частина є різницею кубів. Застосовуючи тотожність \(a^3 - b^3 = (a-b)(a^2+ab+b^2)\) з \(a = x\) та \(b = 3\), розкладемо на множники:</p>
+<p>\[(x - 3)(x^2 + 3x + 9) = 0\]</p>
+<p>Рівняння виконується, коли будь-який із множників дорівнює нулю:</p>
+<p>\[
+\begin{cases}
+x &#8211; 3 = 0 \\[0.5em]
+x^2 + 3x + 9 = 0
+\end{cases}
+\]</p>
+<p>Перший випадок безпосередньо дає \(x = 3\). Для другого випадку застосовується <a href="quadratic-formula.html">формула коренів квадратного рівняння</a>:</p>
+<p>\[
+\begin{align}
+x &amp;= \frac{-3 \pm \sqrt{3^2 - 4(1)(9)}}{2(1)} \\
+&amp;= \frac{-3 \pm \sqrt{9 &#8211; 36}}{2} \\
+&amp;= \frac{-3 \pm \sqrt{-27}}{2}
+\end{align}
+\]</p>
+<p>Оскільки дискримінант \(\Delta = -27 &lt; 0\), два інші розв'язання є <a href="quadratic-equations-with-complex-solutions.html">комплексними</a>. Підставляючи \(\sqrt{-27} = 3i\sqrt{3}\), отримаємо:</p>
+<p>\[x = \frac{-3 + 3i\sqrt{3}}{2} \qquad x = \frac{-3 - 3i\sqrt{3}}{2}\]</p>
+<p>Таким чином, три розв'язання рівняння такі:</p>
+<p>\[x = 3 \qquad x = \frac{-3 + 3i\sqrt{3}}{2} \qquad x = \frac{-3 - 3i\sqrt{3}}{2}\]</p>
+<h6>Для подальшого обговорення того, як дискримінант визначає характер розв'язків, зверніться до розділу про <a href="quadratic-formula.html">формулу коренів квадратного рівняння</a>.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отже, застосувавши розклад різниці кубів, ми змогли легко визначити розв'язання рівняння третього степеня, які такими:</p>
+<p>\[
+x = 3, \quad x = \frac{-3 + 3i\sqrt{3}}{2}, \quad x = \frac{-3 - 3i\sqrt{3}}{2}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Сума та різниця n-их степенів</h2>
+<p>Розклад на множники \(a^n + b^n\) та \(a^n &#8211; b^n\) залежить від парності \(n\). Для будь-якого натурального числа \(n\) різниця \(a^n &#8211; b^n\) завжди розкладається як:</p>
+<p>\[a^n &#8211; b^n = (a &#8211; b)(a^{n-1} + a^{n-2}b + a^{n-3}b^2 + \cdots + ab^{n-2} + b^{n-1})\]</p>
+<p>Сума \(a^n + b^n\) розкладається над \(\mathbb{R}\) тільки тоді, коли \(n\) є непарним:</p>
+<p>\[a^n + b^n = (a + b)(a^{n-1} &#8211; a^{n-2}b + a^{n-3}b^2 &#8211; \cdots - ab^{n-2} + b^{n-1})\]</p>
+<p>Коли \(n\) парне, \(a^n + b^n\) зазвичай не розкладається над \(\mathbb{R}\). Наприклад, \(a^2 + b^2\) та \(a^4 + b^4\) є незвідними над \(\mathbb{R}\), якщо не припускати додаткової структури.</p>
+<h6>Розклад \(a^n - b^n\) тісно пов'язаний зі структурою \(n\)-их коренів одиниці на <a href="complex-numbers-introduction.html">комплексній площині</a>. <a href="roots-of-a-polynomial.html">Корені</a> рівняння \(a^n - b^n = 0\) — це саме \(a/b = e^{2\pi i k/n}\) для \(k = 0, 1, \dots, n-1\).</h6>
+<hr>
+<p>Пов'язана тотожність, відома як тотожність Софі Жермен, стверджує, що:</p>
+<p>\[a^4 + 4b^4 = (a^2 + 2b^2 + 2ab)(a^2 + 2b^2 - 2ab)\]</p>
+<p>Цей розклад не є очевидним, оскільки, як зауважено вище, суми парних степенів зазвичай не розкладаються над \(\mathbb{R}\). Це стає можливим тут, тому що \(a^4 + 4b^4\) можна переписати, доповівши до повного квадрата:</p>
+<p>\[a^4 + 4b^4 = (a^2 + 2b^2)^2 &#8211; (2ab)^2\]</p>
+<p>Цей вираз є різницею двох квадратів. Тотожність має важливе застосування в елементарній теорії чисел, зокрема для демонстрації того, що певні цілі числа вигляду \(n^4 + 4^k\) є складеними, тобто вони мають нетривіальний розклад на множники і, отже, не є простими.</p>
+<h6>Тотожності для \(a^n \pm b^n\) пов'язані з тотожностями Ньютона, які виражають суми степенів \(p_k = a^k + b^k\) через елементарні симетричні поліноми \(e_1 = a+b\) та \(e_2 = ab\). Вони виникають при вивченні симетричних поліномів та теорії Галуа.</h6>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо вираз:</p>
+<p>\[a^4 + b^4\]</p>
+<p>Оскільки \(n = 4\) є парним, \(a^4 + b^4\) не розкладається над \(\mathbb{R}\) за допомогою формули суми n-их степенів, яка застосовується лише для непарних \(n\).</p>
+<p>Проте він допускає наступний розклад:</p>
+<p>\[a^4 + b^4 = (a^2 + \sqrt{2}\,ab + b^2)(a^2 &#8211; \sqrt{2}\,ab + b^2)\]</p>
+<p>Розклад можна перевірити, розкривши праву частину:</p>
+<p>\[
+\begin{align}
+(a^2 + \sqrt{2}\,ab + b^2)(a^2 - \sqrt{2}\,ab + b^2) &amp;= (a^2 + b^2)^2 - (\sqrt{2}\,ab)^2 \\
+&amp;= a^4 + 2a^2b^2 + b^4 - 2a^2b^2 \\
+&amp;= a^4 + b^4
+\end{align}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-recap mb-x-30"><h2>Список основних формул скороченого множення</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\[(a + b)^2\]</td>
+<td>\[a^2 + 2ab + b^2\]</td>
+</tr>
+<tr>
+<td>\[(a &#8211; b)^2\]</td>
+<td>\[a^2 &#8211; 2ab + b^2\]</td>
+</tr>
+<tr>
+<td>\[a^2 &#8211; b^2\]</td>
+<td>\[(a + b)(a &#8211; b)\]</td>
+</tr>
+<tr>
+<td>\[(a + b)^3\]</td>
+<td>\[a^3 + 3a^2b + 3ab^2 + b^3\]</td>
+</tr>
+<tr>
+<td>\[(a &#8211; b)^3\]</td>
+<td>\[a^3 &#8211; 3a^2b + 3ab^2 &#8211; b^3\]</td>
+</tr>
+<tr>
+<td>\[a^3 + b^3\]</td>
+<td>\[(a + b)(a^2 &#8211; ab + b^2)\]</td>
+</tr>
+<tr>
+<td>\[a^3 &#8211; b^3\]</td>
+<td>\[(a &#8211; b)(a^2 + ab + b^2)\]</td>
+</tr>
+<tr>
+<td>\[a^n + b^n \quad (n \text{ odd})\]</td>
+<td>\[(a + b)(a^{n-1} &#8211; a^{n-2}b + \cdots + b^{n-1})\]</td>
+</tr>
+<tr>
+<td>\[a^n - b^n\]</td>
+<td>\[(a - b)(a^{n-1} + a^{n-2}b + \cdots + b^{n-1})\]</td>
+</tr>
+<tr>
+<td>\[a^{2n} &#8211; b^{2n}\]</td>
+<td>\[(a^n &#8211; b^n)(a^n + b^n)\]</td>
+</tr>
+<tr>
+<td>\[a^4 &#8211; b^4\]</td>
+<td>\[(a &#8211; b)(a + b)(a^2 + b^2)\]</td>
+</tr>
+<tr>
+<td>\[a^4 + b^4\]</td>
+<td>\[(a^2 + \sqrt{2}\,ab + b^2)(a^2 &#8211; \sqrt{2}\,ab + b^2)\]</td>
+</tr>
+<tr>
+<td>\[(a + b + c)^2\]</td>
+<td>\[a^2 + b^2 + c^2 + 2(ab + ac + bc)\]</td>
+</tr>
+<tr>
+<td>\[(a + b + c)^3\]</td>
+<td>\[a^3 + b^3 + c^3 + 3(a^2b + a^2c + b^2a + b^2c + c^2a + c^2b) + 6abc\]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке формули скороченого множення в алгебрі?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Формули скороченого множення — це алгебраїчні тотожності, які допомагають швидко спрощувати вирази. Вони включають такі поширені моделі, як квадрат суми, квадрат різниці та різниця квадратів."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка формула квадрата суми?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Квадрат суми: (a + b)² = a² + 2ab + b². Це одна з найпоширеніших формул скороченого множення в алгебрі."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як працює формула квадрата різниці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Квадрат різниці: (a - b)² = a² - 2ab + b². Вона має таку ж структуру, як і квадрат суми, але зі знаком мінус перед подвоєним добутком."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка тотожність для різниці квадратів?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Різниця квадратів: a² - b² = (a + b)(a - b). Вона дозволяє розкладати на множники вирази, де одна повна квадратна величина віднімається від іншої."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому формули скороченого множення корисні в алгебрі?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Формули скороченого множення допомагають швидше спрощувати, розкривати дужки та розкладати вирази на множники завдяки розпізнаванню стандартних алгебраїчних моделей."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="notable-products.html">algebrica.org/notable-products</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Еліпс — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Прямі, площини та конічні перерізи</span>
+    </nav>
+    <article>
+        <h1>Еліпс</h1>
+        <time>2025-02-15</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Вступ до конічних перетинів</h2>
+<p>При вивченні <a href="parabola.html">параболи</a> ми побачили, що коли площина перетинає конус, resulting shape, при проєктуванні на площину, може бути <a href="circumference.html">окружністю</a>, параболою, еліпсом або <a href="hyperbola.html">гіперболою</a>. Ці криві разом називають коніками. Більш формально, коніка — це алгебраїчна крива другого степеня на площині. Вона визначається як множина точок \( (x, y) \in \mathbb{R}^2 \), що задовольняють загальне квадратне рівняння від змінних \( x \) та \( y \):</p>
+<p>\[
+f(x, y) = a_{11}x^2 + 2a_{12}xy + a_{22}y^2 + 2a_{13}x + 2a_{23}y + a_{33} = 0
+\]</p>
+<p>Тут коефіцієнти \( a_{ij} \in \mathbb{R} \), і щоб крива дійсно була квадратною, ми вимагаємо, щоб і \( a_{11} \), і \( a_{22} \) були ненульовими.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Що таке еліпс</h2>
+<p>Дано дві фіксовані точки на площині, \( F_1 \) та \( F_2 \); еліпс визначається як множина всіх точок \( P \) на площині, таких що сума відстаней від \( P \) до кожного фокуса є сталою.</p>
+<p>\[
+\overline{PF_1} + \overline{PF_2} = \text{constant}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="698" height="548" src="../images/ellipse-1.png" alt="" class="wp-image-12732" style="width:349px" srcset="../images/ellipse-1.png 698w, https://algebrica.org/wp-content/uploads/resources/images/ellipse-1-300x236.png 300w" sizes="(max-width: 698px) 100vw, 698px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>\( F_1 \) та \( F_2 \) — це фокуси еліпса. Припустимо, що фокус \( F_1 \) має координати \( (-c, 0) \), а фокус \( F_2 \) має координати \( (c, 0) \), тоді відстань між \( F_1 \) та \( F_2 \) називається фокальною відстанню і дорівнює \( 2c \). Середина відрізка \( \overline{F_1F_2} \) є центром еліпса.</p>
+<hr>
+<p>Ми визначаємо велику вісь та малу вісь еліпса відповідно як найдовший і найкоротший діаметри, що проходять через його центр. Велика вісь лежить уздовж напрямку максимального розширення еліпса і проходить через обидва фокуси. Її загальна довжина становить \( 2a \), де \( a \) — це піввісь великої осі. Мала вісь перпендикулярна до великої осі та також проходить через центр еліпса. Її загальна довжина становить \( 2b \), де \( b \) — це піввісь малої осі.</p>
+<hr>
+<p>Вибравши точку \( P = (a, 0) \), розташовану в правому кінці великої осі, ми розглянемо випадок, коли еліпс перетинає вісь \( x \) у своїй найвіддаленішій горизонтальній точці. У цій конфігурації відстань від лівого фокуса \( F_1 = (-c, 0) \) до точки \( P \) становить \(\overline{F_1P} = a + c\). Аналогічно, маємо \(\overline{F_2P} = a - c\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="724" height="490" src="../images/ellipse-2.png" alt="" class="wp-image-12749" style="width:362px" srcset="../images/ellipse-2.png 724w, https://algebrica.org/wp-content/uploads/resources/images/ellipse-2-300x203.png 300w" sizes="(max-width: 724px) 100vw, 724px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>З цього ми робимо висновок, що стала сума відстаней від будь-якої точки на еліпсі до двох фокусів дорівнює:</p>
+<p>\[
+\overline{F_1P} + \overline{F_2P} = (a + c) + (a - c) = 2a
+\]</p>
+<p>У стандартному вигляді еліпс з центром у початку координат і горизонтальною великою віссю описується рівнянням:</p>
+<p>\[
+\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1
+\]</p>
+<p>де \( b^2 = a^2 - c^2 \), при \( b &gt; 0 \) та \( a &gt; b \), звідси випливає, що:</p>
+<p>\[
+c = \sqrt{a^2 &#8211; b^2}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30"><h2>Чому сума відстаней до фокусів в еліпсі завжди стала?</p>
+<p>Тому що саме це його визначає. Еліпс — це множина всіх точок, для яких сума відстаней до двох фокусів дорівнює рівно \( 2a \). Будь-яка точка, що не задовольняє цю умову, лежить зовні або всередині кривої.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Вершини</h2>
+<p>Еліпс перетинає координатні осі в чотирьох ключових точках — своїх вершинах. Дві точки на великій осі представляють найвіддаленіші горизонтальні межі.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="640" height="460" src="../images/ellipse-3.png" alt="" class="wp-image-12772" style="width:320px" srcset="../images/ellipse-3.png 640w, https://algebrica.org/wp-content/uploads/resources/images/ellipse-3-300x216.png 300w" sizes="(max-width: 640px) 100vw, 640px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Дві точки на малій осі визначають вертикальні межі. Усі вони симетричні відносно центру і відображають повний геометричний відбиток еліпса.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Ексцентриситет</h2>
+<p>Відношення між фокальною відстанню та довжиною великої осян еліпса називається його ексцентриситетом. Його позначають \( e \) і він задовольняє умову:</p>
+<p>\[
+0 \leq e &lt; 1
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="756" height="638" src="../images/ellipse-4.png" alt="" class="wp-image-12778" style="width:378px" srcset="../images/ellipse-4.png 756w, https://algebrica.org/wp-content/uploads/resources/images/ellipse-4-300x253.png 300w" sizes="(max-width: 756px) 100vw, 756px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Чим ближче \( e \) до 0, тим більше еліпс нагадує коло. Коли \( e \) наближається до 1, еліпс стає дедалі більш витягнутим. Значення ексцентриситету \( e \) задано формулою:</p>
+<p>\[
+e = \frac{c}{a} = \frac{\sqrt{a^2 &#8211; b^2}}{a}
+\]</p>
+<h5>Ексцентриситет описує, наскільки «витягнутим» є еліпс. Коли \( e = 0 \), еліпс не відрізняється від кола, а його фокуси збігаються в центрі. Зі збільшенням \( e \) фокуси віддаляються один від одного, і форма витягується вздовж великої осян. Важливим є не розмір, а відношення: ексцентриситет є чистою мірою форми.</h5>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Визначимо рівняння еліпса з фокусами \( F_1 = (1, 0) \) та \( F_2 = (-1, 0) \), такий що сума відстаней від будь-якої точки еліпса до двох фокусів дорівнює 6.</p>
+<hr>
+<p>Точка \( P(x, y) \) належить еліпсу, якщо вона задовольняє умову:</p>
+<p>\[
+\sqrt{(x - 1)^2 + y^2} + \sqrt{(x + 1)^2 + y^2} = 6
+\]</p>
+<p>Кожен квадратний корінь представляє евклідову відстань між \( P(x, y) \) та одним із двох фокусів. Це рівняння виражає геометричне означення еліпса: множина всіх точок на площині, таких що сума їхніх відстаней до двох фокусів є сталою. Отже, для визначення рівняння еліпса потрібно просто виконати необхідні обчислення. Маємо:</p>
+<p>\[
+\begin{align}
+&amp;(x - 1)^2 + y^2 = 36 + (x + 1)^2 + y^2 - 12\sqrt{(x + 1)^2 + y^2}\\[0.5em]
+&amp;x^2 &#8211; 2x + 1 + y^2 = 36 + x^2 +2x +1 +y^2 &#8211; 12\sqrt{(x + 1)^2 + y^2}\\[0.5em]
+&amp;-4x -36  = - 12\sqrt{(x + 1)^2 + y^2}\\[0.5em]
+&amp;x + 9  = 3\sqrt{(x + 1)^2 + y^2}\\[0.5em]
+\end{align}
+\]</p>
+<hr>
+<p>Підносячи обидві частини рівняння до квадрата, отримаємо:</p>
+<p>\[
+\begin{align}
+&amp;(x + 9)^2  = (3\sqrt{(x + 1)^2 + y^2})^2\\[0.5em]
+&amp;x^2 + 18x +81  = 9x^2 +18x +9 + 9y^2\\[0.5em]
+&amp;8x^2 + 9y^2 = 72\\[0.5em]
+\end{align}
+\]</p>
+<hr>
+<p>Поділивши обидві частини рівняння на 72, отримаємо:</p>
+<p>\[
+\frac{8x^2}{72} + \frac{9y^2}{72} = 1
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, рівняння еліпса, що проходить через зазначені вище точки, і такого, що сума відстаней від будь-якої точки ( P ) на кривій до двох фокусів дорівнює 6, має вигляд:</p>
+<p>\[
+\frac{x^2}{9} + \frac{y^2}{8} = 1
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-glossary"><h2>Глосарій</h2>
+<ul>
+<li>
+<p>Еліпс: множина всіх точок на площині, де сума відстаней до двох фіксованих точок (фокусів) є сталою.</p>
+</li>
+<li>
+<p>Фокуси: дві фіксовані точки на площині, що використовуються для означення еліпса.</p>
+</li>
+<li>
+<p>Конічний переріз: крива, утворена перетином площини та конуса; включає кола, параболи, еліпси та гіперболи.</p>
+</li>
+<li>
+<p>Велика вісь: найдовший діаметр еліпса, що проходить через фокуси та центр. Її довжина дорівнює \( 2a \).</p>
+</li>
+<li>
+<p>Велика піввісь: половина довжини великої осі, позначається \( a \).</p>
+</li>
+<li>
+<p>Мала вісь: найкоротший діаметр еліпса, перпендикулярний до великої осі та що проходить через центр. Її довжина дорівнює \( 2b \).</p>
+</li>
+<li>
+<p>Мала піввісь: половина довжини малої осі, позначається \( b \).</p>
+</li>
+<li>
+<p>Центр: середина відрізка, що з'єднує два фокуси.</p>
+</li>
+<li>
+<p>Фокальна відстань: відстань між двома фокусами, що дорівнює \( 2c \).</p>
+</li>
+<li>
+<p>Вершини: чотири точки, в яких еліпс перетинає координатні осі.</p>
+</li>
+<li>
+<p>Ексцентриситет \(e\): відношення фокальної відстані \( 2c \) до довжини великої осі \( 2a \), \( e = c/a \). Це міра того, наскільки витягнутим є еліпс, при цьому \( 0 \leq e &lt; 1 \).</p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке еліпс у геометрії?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Еліпс — це множина всіх точок на площині, де сума відстаней до двох фіксованих точок (фокусів) є сталою."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яке стандартне рівняння еліпса?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стандартне рівняння еліпса з центром у початку координат: x²/a² + y²/b² = 1, де a та b — піввісі."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке фокальна відстань еліпса?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Фокальна відстань — це відстань між двома фокусами еліпса, яка дорівнює 2c, де c² = a² - b²."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="ellipse.html">algebrica.org/ellipse</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

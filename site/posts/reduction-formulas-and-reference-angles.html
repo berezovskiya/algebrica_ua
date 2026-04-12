@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Формули зведення та зведені кути — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Формули зведення та зведені кути</h1>
+        <time>2025-02-07</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30 pb-table-to-content alignCenterTable"><h2>Використання допоміжних кутів для перепису кутів</h2>
+<p>Метод допоміжних кутів ґрунтується на сімействі тотожностей, які часто називають формулами зведення, що дозволяють переписувати тригонометричні вирази з негострими кутами через відповідний гострий кут у першій чверті. Коли кут розміщено на <a href="unit-circle.html">одиниковому колі</a>, його чверть визначає, як мають бути скориговані знаки <a href="sine-and-cosine.html">синуса</a>, <a href="sine-and-cosine.html">косинуса</a>, <a href="tangent-and-cotangent.html">тангенса</a> та <a href="tangent-and-cotangent.html">котангенса</a>. Ці тотожності застосовуються до кутів вигляду<br>
+\[
+\frac{\pi}{2} \pm \alpha,\quad \pi \pm \alpha,\quad \frac{3\pi}{2} \pm \alpha,\quad 2\pi &#8211; \alpha,\quad \ldots
+\]<br>
+і дозволяють виразити кожну тригонометричну функцію таких кутів через відповідне значення при \( \alpha \), у поєднанні з правильним знаком, визначеним чвертю.</p>
+<hr>
+<p>Часто корисно зібрати ці результати в один огляд. У таблиці нижче наведено знаки \( \sin \), \( \cos \), \( \tan \) та \(\cot\) для найпоширеніших форм кутів, що зустрічаються у формулах зведення, із зазначенням відповідних чвертей та отриманого знака кожної тригонометричної функції:</p>
+<table>
+<thead>
+<tr>
+<th>Форма</th>
+<th>Чверть</th>
+<th>\( \sin \)</th>
+<th>\( \cos \)</th>
+<th>\( \tan \)</th>
+<th>\( \cot \)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\[ \frac{\pi}{2} \pm \alpha \]</td>
+<td>I / II</td>
+<td>\( + \)</td>
+<td>\( \pm \)</td>
+<td>\( \pm \)</td>
+<td>\( \pm \)</td>
+</tr>
+<tr>
+<td>\[ \pi \pm \alpha \]</td>
+<td>II / III</td>
+<td>\( \pm \)</td>
+<td>\( - \)</td>
+<td>\( + \)</td>
+<td>\( + \)</td>
+</tr>
+<tr>
+<td>\[ \frac{3\pi}{2} \pm \alpha \]</td>
+<td>III / IV</td>
+<td>\( - \)</td>
+<td>\( \pm \)</td>
+<td>\( \pm \)</td>
+<td>\( \pm \)</td>
+</tr>
+</tbody>
+</table>
+<h5>Ці формули зведення пропонують систематичний спосіб обчислення тригонометричних виразів для багатьох кутів без використання калькулятора, підкреслюючи симетрію та періодичну поведінку тригонометричних функцій на одиниковому колі.</h5>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Формули зведення для \( \frac{\pi}{2} + \alpha \)</h2>
+<p>Розглянемо кут вигляду<br>
+\[
+\frac{\pi}{2} + \alpha
+\]<br>
+де \( \alpha \) — гострий кут, відміряний від позитивної осі \( x \). Як показано на рисунку, починаючи від \( \frac{\pi}{2} \) (вертикальний напрямок), додавання малого кута \( \alpha \) зміщує кінцеву сторону трохи ліворуч від вертикальної осі. Це розміщує кут суворо між \( \frac{\pi}{2} \) та \( \pi \), що означає, що в декартових координатах він лежить у другій чверті.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="608" height="552" src="../images/reference-angles-1.png" alt="" class="wp-image-6855" style="width:304px" srcset="../images/reference-angles-1.png 608w, https://algebrica.org/wp-content/uploads/resources/images/reference-angles-1-300x272.png 300w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Геометричний аналіз показує, що:
+\[
+\sin\left(\frac{\pi}{2} + \alpha\right) = \cos\alpha\]
+\[
+\cos\left(\frac{\pi}{2} + \alpha\right) = -\sin\alpha
+\]</p>
+<p>Іншими словами, <a href="sine-and-cosine.html">синус</a> кута \(\alpha\) (вертикальний відрізок у першій чверті) дорівнює за довжиною <a href="sine-and-cosine.html">косинусу</a> кута \(\frac{\pi}{2} + \alpha\) (горизонтальний відрізок у другій чверті), за винятком того, що останній має від'ємний знак. Оскільки з означення <a href="tangent-and-cotangent.html">тангенса</a> та <a href="tangent-and-cotangent.html">котангенса</a> маємо:
+\[
+\tan\alpha = \frac{\sin\alpha}{\cos\alpha}\qquad
+\cot\alpha = \frac{\cos\alpha}{\sin\alpha}
+\]
+Таким чином ми отримаємо:
+\[
+\tan\left(\frac{\pi}{2} + \alpha\right) = \frac{\cos\alpha}{-\sin\alpha} = -\cot\alpha
+\]
+\[
+\cot\left(\frac{\pi}{2} + \alpha\right) = \frac{-\sin\alpha}{\cos\alpha} = -\tan\alpha
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Формули зведення для \( \frac{\pi}{2} &#8211; \alpha \)</h2>
+<p>Розглянемо тепер кут вигляду<br>
+\[
+\frac{\pi}{2} - \alpha
+\]<br>
+де \( \alpha \) — гострий кут у першій чверті. У цьому випадку кут отримують шляхом повороту від позитивної осі \( x \) до \( \frac{\pi}{2} \), а потім повернення назад на \( \alpha \). Цей зворотний поворот зміщує кінцеву сторону праворуч від вертикальної осі, залишаючи її між \( 0 \) та \( \frac{\pi}{2} \). Отже, в декартових координатах кут лежить у першій чверті.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="608" height="552" src="../images/reference-angles-2.png" alt="" class="wp-image-6861" style="width:304px" srcset="../images/reference-angles-2.png 608w, https://algebrica.org/wp-content/uploads/resources/images/reference-angles-2-300x272.png 300w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Маємо:
+\[
+\sin\left(\frac{\pi}{2} &#8211; \alpha\right) = \cos\alpha \]
+\[
+\cos\left(\frac{\pi}{2} &#8211; \alpha\right) = \sin\alpha
+\]</p>
+<p>Таким чином, функції тангенса та котангенса дорівнюють:
+\[
+\tan\left(\frac{\pi}{2} &#8211; \alpha\right) = \frac{\cos\alpha}{\sin\alpha} = \cot\alpha
+\]
+\[
+\cot\left(\frac{\pi}{2} - \alpha\right) = \frac{\sin\alpha}{\cos\alpha} = \tan\alpha
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Формули зведення для \( \pi + \alpha \)</h2>
+<p>Розглянемо наступний кут:<br>
+\[
+\pi + \alpha
+\]<br>
+де \( \alpha \) — гострий кут. Починаючи з \( \pi \), що відповідає від'ємному напрямку \( x \)-осі, додавання \( \alpha \) повертає кінцеву сторону трохи вниз, у нижню ліву область декартової площини. Це розміщує кут суворо між \( \pi \) та \( \frac{3\pi}{2} \). Як результат, кут \( \pi + \alpha \) знаходиться у третій чверті.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="608" height="552" src="../images/reference-angles-3-2.png" alt="" class="wp-image-6879" style="width:304px" srcset="../images/reference-angles-3-2.png 608w, https://algebrica.org/wp-content/uploads/resources/images/reference-angles-3-2-300x272.png 300w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Тотожності набувають вигляду:
+\[
+\sin(\pi + \alpha) = -\sin\alpha \]
+\[
+\cos(\pi + \alpha) = -\cos\alpha
+\]</p>
+<p>Отже:
+\[
+\tan(\pi + \alpha) = \frac{-\sin\alpha}{- \cos\alpha} = \tan\alpha
+\]
+\[\cot(\pi + \alpha) = \frac{-\cos\alpha}{-\sin\alpha} = \cot\alpha
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Формули зведення для \( \pi - \alpha \)</h2>
+<p>Нехай тепер розглянемо наступний кут:
+\[
+\pi - \alpha
+\]<br>
+де \( \alpha \) — гострий кут. Оскільки \( \pi \) відповідає від'ємному напрямку \( x \)-осі, віднімання \( \alpha \) переміщує кінцеву сторону трохи вгору, у верхню ліву область декартової площини. Як результат, кут лежить між \( \frac{\pi}{2} \) та \( \pi \). Отже, кут \( \pi - \alpha \) знаходиться у другій чверті.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="608" height="552" src="../images/reference-angles-4.png" alt="" class="wp-image-6884" style="width:304px" srcset="../images/reference-angles-4.png 608w, https://algebrica.org/wp-content/uploads/resources/images/reference-angles-4-300x272.png 300w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Тотожності такі:
+\[
+\sin(\pi &#8211; \alpha) = \sin\alpha\]
+\[
+\cos(\pi - \alpha) = -\cos\alpha
+\]</p>
+<p>Функції тангенса та котангенса набувають вигляду:
+\[
+\tan(\pi &#8211; \alpha) = \frac{\sin\alpha}{- \cos\alpha} = -\tan\alpha
+\]
+\[
+\cot(\pi &#8211; \alpha) = \frac{-\cos\alpha}{\sin\alpha} = -\cot\alpha
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Формули зведення для \( \frac{3\pi}{2} + \alpha \)</h2>
+<p>Тепер розглянемо кути, що виходять за межі \( 3\pi/2 \). Розглянемо кут вигляду:
+\[
+\frac{3\pi}{2} + \alpha
+\]<br>
+де \( \alpha \) — гострий кут. Починаючи з \( 3\pi/2 \), що відповідає від'ємному напрямку \( y \)-осі, додавання \( \alpha \) повертає кінцеву сторону трохи праворуч, розміщуючи її між \(3\pi/2 \) та \( 2\pi. \) Це означає, що кут лежить у четвертій чверті, і тому:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="608" height="552" src="../images/reference-angles-5.png" alt="" class="wp-image-6888" style="width:304px" srcset="../images/reference-angles-5.png 608w, https://algebrica.org/wp-content/uploads/resources/images/reference-angles-5-300x272.png 300w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Тотожності набувають вигляду:</p>
+<p>\[
+\sin\left(\frac{3\pi}{2} + \alpha\right) = -\cos\alpha\]
+\[
+\cos\left(\frac{3\pi}{2} + \alpha\right) = \sin\alpha
+\]</p>
+<p>Функції тангенса та котангенса дорівнюють:</p>
+<p>\[
+\tan\left(\frac{3\pi}{2} + \alpha\right) = \frac{-\cos\alpha}{\sin\alpha} = -\cot\alpha
+\]
+\[
+\cot\left(\frac{3\pi}{2} + \alpha\right) = \frac{\sin\alpha}{-\cos\alpha} = -\tan\alpha
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Формули зведення для \( \frac{3\pi}{2} &#8211; \alpha \)</h2>
+<p>Тепер розглянемо кут, отриманий шляхом руху назад від \( 3\pi/2 \). Візьмемо кут:<br>
+\[
+\frac{3\pi}{2} &#8211; \alpha
+\]<br>
+де \( \alpha \) — гострий кут. Оскільки \( 3\pi/2 \) відповідає негативному напрямку \( y \)-осі, віднімання \( \alpha \) зміщує кінцеву сторону трохи вгору в нижню ліву область декартової площини. Це розміщує кут між \( \pi \) та \( 3\pi/2 \). Отже, кут \( 3\pi/2 - \alpha \) лежить у четвертій чверті, і ми маємо:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="608" height="552" src="../images/reference-angles-6.png" alt="" class="wp-image-6895" style="width:304px" srcset="../images/reference-angles-6.png 608w, https://algebrica.org/wp-content/uploads/resources/images/reference-angles-6-300x272.png 300w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Тотожності набувають вигляду:</p>
+<p>\[
+\sin\left(\frac{3\pi}{2} &#8211; \alpha\right) = -\cos\alpha\]
+\[
+\cos\left(\frac{3\pi}{2} &#8211; \alpha\right) = -\sin\alpha
+\]</p>
+<p>Тангенс і котангенс набувають вигляду:
+\[
+\tan\left(\frac{3\pi}{2} &#8211; \alpha\right) = \frac{-\cos\alpha}{- \sin\alpha} = \cot\alpha
+\]
+\[
+\cot\left(\frac{3\pi}{2} - \alpha\right) = \frac{-\sin\alpha}{- \cos\alpha} = \tan\alpha
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Формули зведення для \( 2\pi - \alpha = -\alpha \)</h2>
+<p>Нарешті, розглянемо кути, що охоплюють повний оберт. Розглянемо кут<br>
+\[
+2\pi &#8211; \alpha = -\alpha
+\]<br>
+де \( \alpha \) — гострий кут. Віднімання \( \alpha \) від \( 2\pi \) переносить кінцеву сторону трохи нижче позитивної \( x \)-осі, розміщуючи її в четвертій чверті. Цей кут еквівалентний \( -\alpha \), що відображає періодичність тригонометричних функцій. Отже, для кута \( 2\pi - \alpha \) ми маємо:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="608" height="552" src="../images/reference-angles-7.png" alt="" class="wp-image-6898" style="width:304px" srcset="../images/reference-angles-7.png 608w, https://algebrica.org/wp-content/uploads/resources/images/reference-angles-7-300x272.png 300w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Тотожності набувають вигляду:</p>
+<p>\[
+\sin(2\pi &#8211; \alpha) = -\sin\alpha\]
+\[
+\cos(2\pi - \alpha) = \cos\alpha
+\]</p>
+<p>Відповідні функції тангенса та котангенса:</p>
+<p>\[
+\tan(2\pi &#8211; \alpha) = \frac{-\sin\alpha}{\cos\alpha} = -\tan\alpha
+\]
+\[
+\cot(2\pi &#8211; \alpha) = \frac{\cos\alpha}{-\sin\alpha} = -\cot\alpha
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section"><h2>Чому формули зведення важливі</h2>
+<p>Розуміння формул зведення — це не просто питання запам'ятовування тотожностей: це вміння читати тригонометрію безпосередньо на <a href="unit-circle.html">одиничному колі</a>. Знання того, в якій чверті лежить кут, як змінюються знаки та як будь-який кут можна пов'язати з гострим, дозволяє розв'язувати багато задач без калькулятора і, що важливіше, розвиває міцну геометричну інтуїцію щодо поведінки тригонометричних величин. Щойно цей підхід стане звичним, усе наступне — від складніших тотожностей до аналітичної тригонометрії — стане значно природнішим.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="reduction-formulas-and-reference-angles.html">algebrica.org/reduction-formulas-and-reference-angles</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

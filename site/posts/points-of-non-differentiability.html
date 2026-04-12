@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Точки недиференційовності — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Похідні</span>
+    </nav>
+    <article>
+        <h1>Точки недиференційовності</h1>
+        <time>2025-02-21</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Що таке точки недиференційованості</h2>
+<p>У статті про <a href="derivatives.html">похідні</a> ми бачили, що якщо функція \( f(x) \) є диференційовною в точці \( c \), то функція є <a href="continuous-functions.html">неперервною</a> в цій точці. Однак існують випадки, коли функція є неперервною в \( c \), але не є диференційовною. Загалом, <strong>точки недиференційованості</strong> функції \( f(x) \) виникають, коли:</p>
+<ul>
+<li>
+<p>Права та ліва <a href="limits.html">границі</a> <a href="difference-quotient.html">прирісту функції</a> існують і є скінченними, але не рівні між собою. \[f_{-}’ \left( c \right) \neq f_{+}’ \left( c \right)\]</p>
+</li>
+<li>
+<p>Границя приросту функції є нескінченною.</p>
+</li>
+</ul>
+<p>Ці точки поділяються на три основні типи, які ми розглянемо нижче.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Точка перегину з вертикальною дотичною</h2>
+<p><strong>Точка перегину</strong> — це точка, в якій змінюється випуклість функції. У цьому випадку ми маємо точку недиференційованості \( c \) функції, що призводить до <a href="maximum-minimum-and-inflection-points.html">точки перегину</a> з дотичною, паралельною \( y \)-осі (вертикальною дотичною). У такій точці відбувається наступне:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="806" height="434" src="../images/non-differentiable-points-1.png" alt="" class="wp-image-9717" style="width:403px" srcset="../images/non-differentiable-points-1.png 806w, https://algebrica.org/wp-content/uploads/resources/images/non-differentiable-points-1-300x162.png 300w, https://algebrica.org/wp-content/uploads/resources/images/non-differentiable-points-1-768x414.png 768w" sizes="(max-width: 806px) 100vw, 806px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown  alignCenterMathjax"><p>Така поведінка вказує на те, що кутовий коефіцієнт дотичної стає вертикальним при \( x = c \), тоді як функція може змінити випуклість навколо цієї точки. У випадку, показаному на рисунку, ми маємо \[f_{-}’ \left (c \right) = f_{+}’ \left(c \right) = +\infty \]</p>
+<p>Якби крива була віддзеркалена відносно осі y, ми б мали \[f_{-}’ \left (c \right) = f_{+}’ \left(c \right) = -\infty \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Каспи</h2>
+<p>У випадку <strong>каспів</strong> права та ліва границі є нескінченними та мають протилежні знаки.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="840" height="434" src="../images/non-differentiable-points-2.png" alt="" class="wp-image-9722" style="width:420px" srcset="../images/non-differentiable-points-2.png 840w, https://algebrica.org/wp-content/uploads/resources/images/non-differentiable-points-2-300x155.png 300w, https://algebrica.org/wp-content/uploads/resources/images/non-differentiable-points-2-768x397.png 768w" sizes="(max-width: 840px) 100vw, 840px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>У випадку, показаному на рисунку, ми маємо:
+\[
+f_{-}’ \left( c \right) = -\infty \quad \text{та} \quad f_{+}’ \left( c \right) = +\infty
+\]</p>
+<p>Якби касп був спрямований вгору замість того, щоб бути спрямованим вниз, ми б мали:
+\[
+f_{-}’ \left( c \right) = +\infty \quad \text{та} \quad f_{+}’ \left( c \right) = -\infty
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Злами</h2>
+<p><strong>Злам</strong> виникає, коли ліва похідна та права похідна існують, але не рівні. У випадку точок зламу до графіка в одній і тій самій точці існують дві дотичні, і вони відрізняються одна від одної.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="772" height="448" src="../images/non-differentiable-points-3.png" alt="" class="wp-image-9724" style="width:386px" srcset="../images/non-differentiable-points-3.png 772w, https://algebrica.org/wp-content/uploads/resources/images/non-differentiable-points-3-300x174.png 300w, https://algebrica.org/wp-content/uploads/resources/images/non-differentiable-points-3-768x446.png 768w" sizes="(max-width: 772px) 100vw, 772px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>У цьому випадку ми маємо:</p>
+<p>\[f_{-}’ \left (c \right) \neq f_{+}’ \left(c \right) \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-formula"><p>Як ми можемо перевірити диференційовність функції, не покладаючись на границю її приросту?</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><p>Загалом, нехай \( f(x) \) — функція, неперервна на проміжку ([a,b]) та диференційовна на цьому проміжку, за можливим винятком точки \( x_0 \in [a,b] \). Якщо границі \(\lim_{x \to x_0^-} f’(x) \) та \( \lim_{x \to x_0^+} f’(x)\) існують, то:</p>
+<p>\[
+f_{-}’ (x_o) = \lim_{x \to x_0^-} f’(x) \quad \text{та} \quad f_{+}’ (x_o) = \lim_{x \to x_0^+} f’(x)
+\]</p>
+<p>якщо \( \underset{x \to x_0^-}{\lim} f{\prime}(x) = \underset{x \to x_0^+}{\lim} f{\prime}(x) = \ell\), де \(\ell \in \mathbb{R}\), то функція є диференційовною в точці \(x_0\), і звідси випливає, що \(f’(x_0) = \ell\).</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+
+    {
+      "@type": "Question",
+      "name": "Що таке точка перегину?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Точка перегину — це точка, в якій графік функції змінює свою опуклість — з опуклої вниз на опуклу вгору або навпаки. Друга похідна може дорівнювати нулю або бути невизначеною, але функція залишається диференційовною в цій точці."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Що таке кут або кутова точка?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Кут, або кутова точка, — це точка, в якій функція є неперервною, але не є диференційовною через раптову зміну кутового коефіцієнта. Лівостороння та правостороння похідні існують, але не є рівними."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Що таке касп (загострення)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Касп — це точка на кривій, де напрямок різко змінюється, а кутові коефіцієнти з обох сторін прямують до нескінченності в протилежних напрямках. Функція є неперервною, але похідна в точці каспа не існує."
+      }
+    }
+
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="points-of-non-differentiability.html">algebrica.org/points-of-non-differentiability</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

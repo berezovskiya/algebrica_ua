@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лінійні рівняння — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Лінійні рівняння</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Що таке лінійні рівняння?</h2>
+<p>Лінійні рівняння описують зв'язок між змінними лінійно. Ці рівняння вважаються найпростішою формою <a href="equations.html">рівнянь</a>, що включають додавання, віднімання та множення. Стандартна форма має вигляд:</p>
+<p>\[a_1x_1 + a_2x_2 + \ldots + a_nx_n = b \]</p>
+<ul>
+<li>\(x_1, x_2, \ldots, x_n \in \mathbb{R} \) — це змінні.</li>
+<li>\(a_1, a_2, \ldots, a_n \in \mathbb{R} \) — це коефіцієнти: принаймні один коефіцієнт \( a_i \) має бути ненульовим.</li>
+<li>\(b \in \mathbb{R} \) — це стала частина.</li>
+<li>Коли стала частина \(b\) дорівнює нулю, лінійне рівняння називається однорідним.</li>
+</ul>
+<h5>Лінійні рівняння, загалом, можуть містити більше однієї змінної. Наприклад, рівняння \( ax + by + c = 0 \) є лінійним рівнянням з двома змінними \(x\) та \(y\).</h5>
+<hr>
+<p>Лінійні рівняння є основою систем рівнянь та матричних операцій, які дозволяють нам вивчати та розв'язувати кілька рівнянь одночасно структурованим та ефективним способом. Ці теми детальніше розглянуті у відповідних розділах Algebrica: <a href="systems-of-linear-equations.html">Системи лінійних рівнянь</a> та <a href="matrices.html">Матриці</a>.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section-inverse mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Тип розв'язання</h2>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><p>Геометрично тип розв'язання лінійного рівняння залежить від кількості змінних.</p>
+<ul>
+<li>З однією змінною розв'язанням є одна точка на числовій прямій.</li>
+<li>З двома змінними це <a href="lines.html">пряма</a> на площині.</li>
+<li>З трьома змінними це стає площиною в просторі.</li>
+<li>З більше ніж трьома змінними це визначає так звану гіперплощину у вищих вимірах.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Лінійні рівняння з однією змінною</h2>
+<p>Лінійне рівняння з однією змінною можна представити у вигляді \(ax = b\), яке має єдиний розв'язок, що визначається як:</p>
+<p>\[x= \frac{b}{a} \]</p>
+<p>Важливо зауважити, що оскільки за означенням \( a \neq 0 \), таке лінійне рівняння завжди має один і тільки один розв'язок.</p>
+<hr>
+<p>У деяких випадках коефіцієнти лінійного рівняння не є фіксованими сталими, а залежать від одного або кількох дійсних параметрів. Це призводить до так званих <a href="linear-equations-with-parameters.html">лінійних рівнянь з параметрами</a>, де поведінка рівняння змінюється залежно від значення, присвоєного параметру.</p>
+<h6>Зміна параметра може перетворити рівняння на звичайний лінійний зв'язок з єдиним розв'язком, але також може створити особливі ситуації, за яких рівняння стає тотожністю або перетворюється на суперечність.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Розв'язування рівнянь першого ступеня з однією змінною може бути простим. Якщо початкове рівняння вже перебуває у стандартній формі, процес зазвичай включає серію кроків для ізоляції змінної та виконання необхідних обчислень.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 1</h2>
+<p>Розв'яжіть рівняння \(2x + 3 = 11x\).</p>
+<p>Як перший крок, ми привели рівняння до стандартної форми. У цьому випадку немає обмежень на значення \(x\), яке існує в усій <a href="determining-the-domain-of-a-function.html">області визначення</a> <a href="types-of-numbers.html">дійсних чисел</a> \(x \in \mathbb{R}\). Виконуючи обчислення, ми отримаємо:</p>
+<p>\begin{align*}
+2x + 3 &amp;= 11x \\[0.6em]
+2x &#8211; 11x &amp;= -3  \\[0.6em]
+-9x &amp;= -3 \\[0.6em]
+x &amp;= \frac{3}{9}  \\[0.6em]
+x &amp;= \frac{1}{3}
+\end{align*}</p>
+<hr>
+<p>Підстановка значення \(x = \large{\frac{1}{3} }\) у початкове рівняння є вирішальною для забезпечення точності розв'язання. На основі виконаних обчислень остання рівність дійсно підтверджується.</p>
+<p>\begin{align*}
+2\left(\frac{1}{3}\right) + 3 &amp;= 11\left(\frac{1}{3}\right)\\[0.6em]
+\frac{2}{3} + 3 &amp;= \frac{11}{3} \\[0.6em]
+\frac{2}{3} + \frac{9}{3} &amp;= \frac{11}{3} \\[0.6em]
+\frac{11}{3} &amp;= \frac{11}{3} \\[0.6em]
+\end{align*}</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution  mb-x-30"><p>Розв'язанням рівняння є:</p>
+<p>\[ x = \frac{1}{3} \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Лінійні рівняння з двома змінними</h2>
+<p>Коли лінійне рівняння містить дві змінні, а стала частина дорівнює нулю, наприклад \( ax + by = 0 \), ми маємо однорідне лінійне рівняння. Такий тип рівняння має <strong>нескінченну кількість розв'язків</strong>, оскільки існує нескінченна кількість пар \((x, y)\), що задовольняють умову. Загальний розв'язок можна представити як:</p>
+<p>\[
+x = \lambda b, \quad y = -\lambda a
+\]</p>
+<p>де \( \lambda \) — параметр \(\in \mathbb{R}\). Кожне значення \( \lambda \) генерує точку на прямій, визначеній рівнянням, що означає, що всі розв'язки лежать на <a href="lines.html">прямій</a>, що проходить через початок координат.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Приклад 2</h2>
+<p>Розглянемо однорідне лінійне рівняння:
+\[
+2x - 3y = 0
+\]</p>
+<hr>
+<p>Це лінійне рівняння з двома змінними, де вільний член дорівнює нулю. Воно представляє пряму, що проходить через початок координат. Щоб знайти загальний розв'язок, ми можемо виразити одну змінну через іншу. Виразимо \( y \):</p>
+<p>\[
+2x = 3y \quad \rightarrow \quad y = \frac{2}{3}x
+\]</p>
+<hr>
+<p>Це показує, що кожен розв'язок \((x, y)\) задовольняє цей зв'язок. Ми також можемо описати всі розв'язки, використовуючи параметр \( \lambda \in \mathbb{R} \):
+\[
+x = \lambda \quad y = \frac{2}{3} \lambda
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="610" height="530" src="../images/linear-equations-1.png" alt="" class="wp-image-12201" style="width:305px" srcset="../images/linear-equations-1.png 610w, https://algebrica.org/wp-content/uploads/resources/images/linear-equations-1-300x261.png 300w" sizes="(max-width: 610px) 100vw, 610px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Тепер ми можемо взяти довільні значення \( \lambda \), наприклад \( \lambda = 3 \) та \( \lambda = -6 \) (але це може бути будь-яке дійсне число). Отримаємо:</p>
+<ul>
+<li>Для \( \lambda = 3 \), маємо \( x = 3 \), \( y = 2 \)</li>
+<li>Для \( \lambda = -6 \), маємо \( x = -6 \), \( y = -4 \)</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Розв'язком рівняння \( 2x - 3y = 0 \) є множина всіх точок \((x, y)\), що лежать на прямій, визначеній рівнянням:</p>
+<p>\[ y = \frac{2}{3}x \]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Лінійні рівняння з трьома змінними</h2>
+<p>Коли лінійне рівняння містить три змінні, наприклад \(ax + by + cz = 0\), ми маємо однорідне лінійне рівняння з трьома змінними. Його розв'язки утворюють площину в тривимірному просторі, що проходить через початок координат. Існує безліч розв'язків, оскільки існує безліч трійок \((x, y, z)\), що задовольняють рівняння.</p>
+<p>Загальний розв'язок можна записати в параметричній формі, обравши два параметри, наприклад \( \lambda \) та \( \mu \). Одним із можливих варіантів є:
+\[
+x = \lambda, \quad y = \mu, \quad z = -\frac{a\lambda + b\mu}{c}
+\]
+де \( \lambda, \mu \in \mathbb{R} \) та \( c \neq 0 \). Кожна пара \((\lambda, \mu)\) дає точку на площині. Усі розв'язки разом утворюють площину, що проходить через початок координат.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 3</h2>
+<p>Розглянемо рівняння:
+\[
+x + 2y &#8211; z = 0
+\]</p>
+<hr>
+<p>Виділимо \( z \):
+\[
+z = x + 2y
+\]</p>
+<p>Тепер призначимо параметри для \( x \) та \( y \):
+\[
+x = \lambda, \quad y = \mu
+\]</p>
+<p>Тоді:
+\[
+z = \lambda + 2\mu
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Розв'язком рівняння \( x + 2y - z = 0 \) є множина всіх точок \((x, y, z)\) вигляду:
+\[
+(x, y, z) = (\lambda, \mu, \lambda + 2\mu) \quad \text{де} \quad \lambda, \mu \in \mathbb{R}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Лінійні рівняння з параметром</h2>
+<p>Природним розширенням вивчення лінійних рівнянь є дослідження того, що відбувається, коли коефіцієнти не є фіксованими числами, а залежать від одного або кількох дійсних параметрів. У цьому контексті ми говоримо про <a href="linear-equations-with-parameters.html">лінійні рівняння з параметром</a>, сімейство відношень вигляду</p>
+<p>\[
+a(k)x + b(k) = c(k)
+\]</p>
+<p>поведінка яких змінюється залежно від обраного значення параметра. Залежно від того, як взаємодіють функції \(a(k)\), \(b(k)\) та \(c(k)\), рівняння може мати єдиний розв'язок, стати тотожністю, правильною для будь-якого дійсного \(x\), або перетворитися на суперечність, що не має розв'язків.</p>
+<h6>Цей параметричний підхід забезпечує чіткіше розуміння того, як лінійні моделі реагують на зовнішні величини та як змінюється множина їхніх розв'язків при зміні параметра.</h6>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке лінійне рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Лінійне рівняння — це алгебраїчне рівняння, у якому кожна змінна входить у першому ступені та не множиться на інші змінні."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як кількість змінних впливає на розв'язки лінійного рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "З однією змінною розв'язком є одне значення. З двома або більше змінними розв'язки утворюють пряму, площину або гіперплощину залежно від кількості змінних."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи може лінійне рівняння не мати розв'язків?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Саме по собі лінійне рівняння завжди має принаймні один розв'язок. Випадки відсутності розв'язків виникають лише в системах рівнянь."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="linear-equations.html">algebrica.org/linear-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

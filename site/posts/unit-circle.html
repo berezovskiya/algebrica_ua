@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Одиничне коло — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Одиничне коло</h1>
+        <time>2025-02-07</time>
+        <div class="content">
+            
+<div id="section-1" class="wp-block-group pb-section mb-x-30 js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Означення</h2>
+<p>Одиничне коло, яке також називають тригонометричним колом, — це коло радіусом один з центром у початку координат Декартової площини. Воно слугує геометричним орієнтиром для представлення кутів та їхнього положення, забезпечуючи точний спосіб опису обертання, орієнтації та взаємозв'язку між точками на колі при зміні кута. Розглянемо коло одиничного радіуса з центром у початку координат \( O \), і нехай \( P \) буде точкою на колі. Відрізок \( \overline{OP} \), який має довжину один, утворює кут \( \theta \) з позитивною віссю \( x \), а \( R \) позначає основу перпендикуляра, опущеного з \( P \) на вісь \( x \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="608" height="692" src="../images/unit-circle-4-1.png" alt="" class="wp-image-25879" style="width:304px" title="" srcset="../images/unit-circle-4-1.png 608w, https://algebrica.org/wp-content/uploads/resources/images/unit-circle-4-1-264x300.png 264w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>За домовленістю, напрямку проти годинникової стрілки присвоюється позитивний знак, а напрямку за годинниковою стрілкою — негативний знак. Отже, кут \( \theta \) є позитивним, коли точка \( P \) досягається рухом проти годинникової стрілки від позитивної осі \( x \), і негативним в іншому випадку. Нехай \( S \) буде точкою \( (1, 0) \), де одиничне коло перетинає позитивну вісь \( x \), і нехай \( T \) буде точкою, де пряма, що проходить через \( O \) та \( P \), перетинає вертикальну дотичну до кола в точці \( S \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Довжина вертикального відрізка \( \overline{PR} \) дорівнює <a href="sine-and-cosine.html">синусу</a> кута \( \theta \).</li>
+<li>Довжина горизонтального відрізка \( \overline{OR} \) дорівнює <a href="sine-and-cosine.html">косинусу</a> кута \( \theta \).</li>
+<li>Довжина вертикального відрізка \( \overline{ST} \) дорівнює <a href="tangent-and-cotangent.html">тангенсу</a> кута \( \theta \).</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div id="section-2" class="wp-block-group pb-section mb-x-30  alignCenterMathjax js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Основна тригонометрична тотожність</h2>
+<p>Після того як поняття <a href="sine-and-cosine.html">синуса</a> та <a href="sine-and-cosine.html">косинуса</a> були введені через геометрію одиничного кола, їхній взаємозв'язок стає особливо прозорим. Якщо точка \( P \) лежить на одиничному колі та відрізок \( \overline{OP} \) утворює кут \( \theta \) з позитивною віссю \( x \), то прямокутний трикутник з вершинами в \( O \), \( R \) та \( P \) має гіпотенузу довжиною \( 1 \), горизонтальний катет довжиною \( \cos\theta \) та вертикальний катет довжиною \( \sin\theta \). Застосування <a href="pythagorean-theorem.html">теореми Піфагора</a> до цього трикутника дає наступну тотожність:
+\[
+\sin^2\theta + \cos^2\theta = 1
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="672" height="542" src="../images/pythagorean-identity-1-2.png" alt="" class="wp-image-26358" style="width:336px" srcset="../images/pythagorean-identity-1-2.png 672w, https://algebrica.org/wp-content/uploads/resources/images/pythagorean-identity-1-2-300x242.png 300w" sizes="(max-width: 672px) 100vw, 672px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Цей зв'язок виконується для кожного кута \( \theta \), незалежно від положення \( P \) на колі. В аналітичному сенсі це виражає той факт, що точка \( (\cos\theta, \sin\theta) \) завжди лежить на одиничному колі, рівняння якого має наступний вигляд:</p>
+<p>\[
+x^{2} + y^{2} = 1
+\]</p>
+<p>З іншого боку, кожна точка на одиничному колі може бути записана у вигляді \( (\cos\theta, \sin\theta) \) для деякого кута \( \theta \), що є параметричним представленням кола.</p>
+</div>
+</div></div>
+
+
+
+<div id="section-3" class="wp-block-group pb-section pb-steps js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Кути на одиничному колі</h2>
+<p>Розглянемо точку \( P \) на одиничному колі. Її положення однозначно визначається кутом \( \theta \), що утворюється між позитивною віссю \( x \) та відрізком \( \overline{OP} \), де \( O \) позначає початок координат. Кут вимірюється проти годинникової стрілки від позитивної осі \( x \) згідно зі стандартною домовленістю.</p>
+<p>Кути зазвичай виражаються в градусах відповідно до шістдесяткової системи, в якій повний оберт відповідає \( 360^\circ \). Оскільки коло є замкненою кривою, обертання на \( 360^\circ \) повертає точку \( P \) у її початкове положення, тому кути природним чином визначаються за модулем \( 360^\circ \). У результаті значення, що перевищують \( 360^\circ \), представляють обертання, що включають один або кілька повних обертів, тоді як від'ємні значення вказують на обертання за годинниковою стрілкою. Наприклад:</p>
+<ul>
+<li>\( 450^\circ \) представляє один повний оберт (\( 360^\circ \)) плюс додаткові \( 90^\circ \).</li>
+<li>\( -90^\circ \) відповідає чверть-оберту в напрямку за годинниковою стрілкою.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div id="section-4" class="wp-block-group pb-section js-review alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Довжина дуги та радіани</h2>
+<p>Нехай \( A \) — точка перетину позитивної \( x \)-осі з одиничним колом, а \( P \) — будь-яка точка на одиничному колі. Точка \( P \) може бути однозначно визначена довжиною дуги від \( A \) до \( P \), виміряною проти годинникової стрілки вздовж одиничного кола.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="652" height="654" src="../images/unit-circle-2-1.png" alt="Unit circle." class="wp-image-26970" style="width:326px" title="Unit circle." srcset="../images/unit-circle-2-1.png 652w, https://algebrica.org/wp-content/uploads/resources/images/unit-circle-2-1-300x300.png 300w, https://algebrica.org/wp-content/uploads/resources/images/unit-circle-2-1-150x150.png 150w" sizes="(max-width: 652px) 100vw, 652px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Максимальна довжина такої дуги, що відповідає повному оберту, становить \( 2\pi \). Як і у випадку з градусами, довжини дуг, більші за \( 2\pi \), представляють кілька повних обертів, тоді як від'ємні значення відповідають руху за годинниковою стрілкою.</p>
+<p>Ця довжина дуги називається радіанною мірою кута \( \angle AOP \), і, оскільки оберти є періодичними, вона визначається за модулем \( 2\pi \). Щоб перевести кут із градусів у радіани, потрібно помножити його градусну міру на коефіцієнт \( \pi/180 \). Наприклад, кут \( \theta = 30^\circ \) відповідає наступній радіанній мірі:
+\[
+\theta = 30 \times \frac{\pi}{180} = \frac{\pi}{6}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div id="section-5" class="wp-block-group pb-section alignCenterMathjax mb-x-30 pb-steps js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Декартові координати та параметричний виклад</h2>
+<p>Одиничне коло має природний параметричний виклад у декартовій системі координат. Будь-яка точка \( P \) на колі однозначно визначається кутом \( \theta \), що утворюється між позитивною \( x \)-оссю та відрізком \( \overline{OP} \). Коли \( \theta \) змінюється в межах \( [0, 2\pi) \), точка \( P \) описує коло рівно один раз, і ця відповідність виражається наступними параметричними рівняннями:
+\[
+\begin{align}
+x &amp;= \cos\theta \\[6pt]
+y &amp;= \sin\theta \\[6pt]
+\end{align}
+\]
+Якщо дозволити \( \theta \) змінюватися по всій множині \( \mathbb{R} \), одна й та сама точка може бути досягнута кілька разів, що відображає періодичність тригонометричних функцій. Підставляючи параметричні вирази в рівняння \( x^2 + y^2 = 1 \), ми відновлюємо <a href="pythagorean-identity.html">основну тригонометричну тотожність</a> \( \sin^2\theta + \cos^2\theta = 1 \), що підтверджує, що кожна точка такого вигляду лежить на одиничному колі.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="682" height="542" src="../images/unit-circle-3-1.png" alt="" class="wp-image-26983" style="width:341px;height:auto" srcset="../images/unit-circle-3-1.png 682w, https://algebrica.org/wp-content/uploads/resources/images/unit-circle-3-1-300x238.png 300w" sizes="(max-width: 682px) 100vw, 682px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Як приклад, розглянемо кут \( \theta = \pi/3 \). <a href="equations-with-parameters.html">Параметричні рівняння</a> дають наступні значення:</p>
+<p>\[\cos\frac{\pi}{3} = \frac{1}{2}\]
+\[\sin\frac{\pi}{3} = \frac{\sqrt{3}}{2}\]</p>
+<p>Відповідна точка на одиничному колі, отже, має вигляд:
+\[ P\!\left(\frac{1}{2},\, \frac{\sqrt{3}}{2}\right) \]</p>
+<p>Можна безпосередньо перевірити, що:</p>
+<p>\[ \left(\frac{1}{2}\right)^2 + \left(\frac{\sqrt{3}}{2}\right)^2 = \frac{1}{4} + \frac{3}{4} = 1 \]</p>
+</div>
+</div></div>
+
+
+
+<div id="section-6" class="wp-block-group pb-section alignCenterMathjax js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Періодична природа параметризації</h2>
+<p>Параметричний виклад одиничного кола відображає фундаментальну властивість тригонометричних функцій: оскільки коло є замкненою кривою, виконання повного оберту на \( 2\pi \) радіан повертає точку \( P \) у її початкове положення. Як наслідок, додавання будь-якого цілого кратного \( 2\pi \) до кута \( \theta \) залишає відповідну точку на колі незмінною. Це виражається наступною тотожністю:</p>
+<p>\[
+(\cos(\theta + 2k\pi),\, \sin(\theta + 2k\pi)) = (\cos\theta,\, \sin\theta)
+\]</p>
+<p>для кожного цілого \( k \in \mathbb{Z} \). Зокрема, це означає, що параметризація за \( \theta \in \mathbb{R} \) не є ін'єктивною: безліч значень \( \theta \) відповідають одній і тій самій точці на колі, і бієктивна відповідність відновлюється лише шляхом обмеження \( \theta \) інтервалом довжиною \( 2\pi \), таким як \( [0, 2\pi) \).</p>
+<p>Ця періодична поведінка є визначальною властивістю <a href="sine-and-cosine.html">синуса та косинуса</a>, які успадковують її безпосередньо з геометрії одиничного кола.</p>
+</div>
+</div></div>
+
+
+
+<div id="section-6" class="wp-block-group pb-section alignCenterMathjax pb-table-to-content alignCenterTable js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Помітні кути та їхні координати</h2>
+<p>Певні кути природним чином виникають із геометрії одиничного кола і зустрічаються в усій тригонометрії. Для цих кутів значення синуса та косинуса можуть бути визначені точно за допомогою елементарних геометричних аргументів, без наближень. У наступній таблиці наведено відповідні координати \( (\cos\theta, \sin\theta) \) для найпоширеніших кутів.</p>
+<p>\[
+\begin{align}
+\theta &amp;= 0 &amp;\quad&amp; \cos 0 = 1 &amp;\quad&amp; \sin 0 = 0 \\[6pt]
+\theta &amp;= \frac{\pi}{6} &amp;\quad&amp; \cos\frac{\pi}{6} = \frac{\sqrt{3}}{2} &amp;\quad&amp; \sin\frac{\pi}{6} = \frac{1}{2} \\[6pt]
+\theta &amp;= \frac{\pi}{4} &amp;\quad&amp; \cos\frac{\pi}{4} = \frac{\sqrt{2}}{2} &amp;\quad&amp; \sin\frac{\pi}{4} = \frac{\sqrt{2}}{2} \\[6pt]
+\theta &amp;= \frac{\pi}{3} &amp;\quad&amp; \cos\frac{\pi}{3} = \frac{1}{2} &amp;\quad&amp; \sin\frac{\pi}{3} = \frac{\sqrt{3}}{2} \\[6pt]
+\theta &amp;= \frac{\pi}{2} &amp;\quad&amp; \cos\frac{\pi}{2} = 0 &amp;\quad&amp; \sin\frac{\pi}{2} = 1 \\[6pt]
+\theta &amp;= \pi &amp;\quad&amp; \cos\pi = -1 &amp;\quad&amp; \sin\pi = 0 \\[6pt]
+\theta &amp;= \frac{3\pi}{2} &amp;\quad&amp; \cos\frac{3\pi}{2} = 0 &amp;\quad&amp; \sin\frac{3\pi}{2} = -1
+\end{align}
+\]</p>
+<p>Значення при \( \theta = \pi/4 \) випливають із того факту, що рівнобедрений прямокутний трикутник, вписаний в одиничне коло, має рівні катети, тому \( \cos(\pi/4) = \sin(\pi/4) \), і спільне значення дорівнює \( \frac{\sqrt{2}}{2} \). Значення при \( \theta = \pi/6 \) та \( \theta = \pi/3 \) виводяться з геометрії рівностороннього трикутника, всі кути якого дорівнюють \( \pi/3 \).</p>
+</div>
+</div></div>
+
+
+
+<div id="section-7" class="wp-block-group pb-section alignCenterMathjax js-review"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Одиничне коло та комплексні числа</h2>
+<p>Одиничне коло має природну інтерпретацію в контексті комплексних чисел. Нагадаємо, що <a href="complex-numbers.html">комплексне число</a> \( z = x + iy \) може бути представлене як точка \( (x, y) \) на декартовій площині. Модуль \( z \) визначається як \( |z| = \sqrt{x^2 + y^2} \), отже, умова \( |z| = 1 \) описує саме множину комплексних чисел, що лежать на одиничному колі. За допомогою параметричного представлення, встановленого вище, кожне таке число можна записати у вигляді:</p>
+<p>\[ z = \cos\theta + i\sin\theta \]</p>
+<p>для деякого кута \( \theta \). Цей вираз збігається з <a href="complex-numbers-exponential-form.html">показниковою формою комплексного числа</a>, що задається формулою Ейлера:</p>
+<p>\[
+e^{i\theta} = \cos\theta + i\sin\theta
+\]</p>
+<p>Таким чином, одиничне коло — це множина всіх комплексних чисел вигляду \( e^{i\theta} \),
+де \( \theta \) набуває значень з \( \mathbb{R} \), або, що еквівалентно, множина
+\( {z \in \mathbb{C} : |z| = 1} \). Множення двох таких чисел геометрично відповідає
+повороту: якщо \( z_1 = e^{i\alpha} \) та \( z_2 = e^{i\beta} \),
+то \( z_1 z_2 = e^{i(\alpha+\beta)} \), що є точкою, отриманою шляхом повороту
+\( z_1 \) на кут \( \beta \). Ця геометрична інтерпретація лежить в основі як
+<a href="de-moivre-theorem.html">теореми де Муавра</a>, так і вивчення <a href="roots-of-unity.html">коренів одниці</a>.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-20" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">7</div>
+                                <div class="s-c-t-c-label">Дозволяє вивчити</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="circumference.html">Довжина кола</a>, <a href="sine-and-cosine.html">Синус і косинус</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-20");
+            var dataset = {"name":"root","children":[{"name":"geometry","children":[{"name":"unit circle"},{"name":"center at origin"},{"name":"radius one"},{"name":"angle orientation"},{"name":"quadrants"},{"name":"arc length"}]},{"name":"trigonometry","children":[{"name":"cosine coordinate"},{"name":"sine coordinate"},{"name":"tangent slope"},{"name":"fundamental identity"},{"name":"angle measure"},{"name":"periodicity"}]},{"name":"representation","children":[{"name":"parametric form"},{"name":"angle parameter"},{"name":"point coordinates"},{"name":"notable angles"},{"name":"radian measure"},{"name":"complex numbers"},{"name":"exponential link"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });```javascript
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="unit-circle.html">algebrica.org/unit-circle</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

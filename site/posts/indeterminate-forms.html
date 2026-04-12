@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Невизначені форми границь — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Границі</span>
+    </nav>
+    <article>
+        <h1>Невизначені форми границь</h1>
+        <time>2025-02-19</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section pb-steps mb-x-30 alignCenterMathjax"><h2>Що таке невизначеності?</h2>
+<p>Працюючи з границями, ми часто зустрічатимемо такі вирази:</p>
+<p>\[
+\frac{0}{0}
+\qquad
+\frac{\infty}{\infty}
+\qquad
+0 \cdot \infty
+\qquad
+\infty - \infty
+\]</p>
+<p>\[
+1^{\infty}
+\qquad
+0^{0}
+\qquad
+\infty^{0}
+\]</p>
+<p>Їх називають <strong>невизначеностями</strong>, оскільки значення границі неможливо визначити, просто подивившись на них. Різні <a href="functions.html">функції</a> можуть створювати однакову символічну форму, але призводити до зовсім різних результатів. У цьому розділі ми розглянемо, що означають ці форми, чому вони називаються невизначеними та як з ними працювати.</p>
+<p>Простими словами, невизначеність не позначає конкретного числа. Вона вказує на те, що прямої підстановки недостатньо для знаходження границі. Наприклад, припустимо, що ми маємо дві функції, \(f(x)\) та \(g(x)\), обидві з яких прямують до нуля, коли \(x\) наближається до деякого значення \(a\):</p>
+<p>\[
+\lim_{x \to a} f(x) = 0 \qquad \text{та} \qquad \lim_{x \to a} g(x) = 0
+\]</p>
+<p>Якщо ми спробуємо знайти границю їхнього відношення, пряма підстановка призведе до:</p>
+<p>\[
+\lim_{x \to a} \frac{f(x)}{g(x)} \to \frac{0}{0}
+\]</p>
+<p>Тут і починається проблема. Сама по собі ця нотація не говорить нам, як поводитиметься відношення. Залежно від того, як \(f(x)\) та \(g(x)\) наближаються до нуля, границію може бути будь-яким скінченним числом, нулем, нескінченністю або вона може взагалі не існувати. Невизначена форма не розв'язує проблему, вона сигналізує про те, що потрібен подальший аналіз.</p>
+<hr>
+<p>Перед аналізом кожної форми слід зауважити три ключові моменти:</p>
+<ul>
+<li>Невизначеність не представляє конкретного числа.</li>
+<li>Вона не означає рівності.</li>
+<li>Вона слугує позначенням, що описує граничну поведінку відповідних виразів.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Форма \( \frac{0}{0} \)</h2>
+<p>Це невизначеність, з якою ви будете стикатися найчастіше.
+Вона зазвичай виникає, коли і чисельник, і знаменник стають рівними нулю при одному й тому самому значенні.
+Часто ви можете спростити вираз за допомогою алгебри перед знаходженням границі. Наприклад:</p>
+<p>\[
+\lim_{x \to 2} \frac{x^2 &#8211; 4}{x &#8211; 2}
+\]</p>
+<p>Пряма підстановка дає \(\dfrac{0}{0}\). Розклавши чисельник на множники, ми отримаємо:</p>
+<p>\[
+x^2 - 4 = (x - 2)(x + 2)
+\]</p>
+<p>отже, для \(x \neq 2\):</p>
+<p>\[
+\frac{x^2 - 4}{x - 2} = x + 2
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Таким чином, ми отримаємо:</p>
+<p>\[
+\lim_{x \to 2} \frac{x^2 &#8211; 4}{x &#8211; 2} = 4
+\]</p>
+<h6>Як тільки ми спростимо вираз і побачимо його внутрішню структуру, невизначеність зникає. У складніших задачах ми можемо використовувати <a href="hopital-rule.html">правило Лопіталя</a> для розв'язання такого типу границь, якщо виконуються умови застосування цього правила.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Форма \( \dfrac{\infty}{\infty} \)</h2>
+<p>Ця форма виникає, коли і чисельник, і знаменник розбігаються. Наприклад, розглянемо наступну границю:</p>
+<p>\[
+\lim_{x \to \infty} \frac{3x^2 + 1}{2x^2 - 5}
+\]</p>
+<p>Пряма підстановка дає \(\dfrac{\infty}{\infty}\). Щоб розв'язати це, ми винесемо за дужки найвищий степінь \(x\):</p>
+<p>\[
+\begin{align}
+\frac{3x^2 + 1}{2x^2 &#8211; 5}
+&amp;= \frac{x^2(3 + 1/x^2)}{x^2(2 - 5/x^2)} \\[6pt]
+&amp;= \frac{3 + 1/x^2}{2 &#8211; 5/x^2}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula"><p>Оскільки \(x \to \infty\), доданки \(1/x^2\) та \(5/x^2\) зникають, тому границію стає:</p>
+<p>\[
+\lim_{x \to \infty} \frac{3x^2 + 1}{2x^2 - 5} = \frac{3}{2}
+\]</p>
+<h6>Знову ж таки, простого розгляду символів недостатньо. Відповідь визначається тим, як поводять себе доданки при великих значеннях \(x\).</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Форма \( 0 \cdot \infty \)</h2>
+<p>Ця форма виникає, коли один множник наближається до нуля, а інший необмежено зростає. Наприклад:</p>
+<p>\[
+\lim_{x \to 0^+} x \ln x
+\]</p>
+<p>Коли \(x\) наближається до нуля справа, \(\ln x\) стає все більш від'ємним, тому добуток набуває форми \(0 \cdot (-\infty)\). Щоб розв'язати це, ми перепишемо вираз у вигляді відношення:</p>
+<p>\[
+x \ln x = \frac{\ln x}{1/x}
+\]</p>
+<p>Тепер, при \(x \to 0^+\) ми маємо:</p>
+<p>\[
+\ln x \to -\infty \qquad \frac{1}{x} \to +\infty
+\]</p>
+<p>отже, ми отримаємо форму \(\dfrac{-\infty}{+\infty}\), яку можна розв'язати за допомогою асимптотичного порівняння або <a href="hopital-rule.html">правила Лопіталя.</a></p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Результат:</p>
+<p>\[
+\lim_{x \to 0^+} x \ln x = 0
+\]</p>
+<h6>Ключовим кроком є перетворення добутку на частку, що повертає задачу до більш знайомої форми.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Форма \( \infty &#8211; \infty \)</h2>
+<p>Ця форма може приховувати те, як розбіжні величини взаємознищуються. Наприклад, розглянемо наступну границю:</p>
+<p>\[
+\lim_{x \to \infty} \left( \sqrt{x^2 + x} &#8211; x \right)
+\]</p>
+<p>Обидва доданки зростають без обмеження, що дає форму \(\infty &#8211; \infty\). Щоб розв'язати це, ми раціоналізуємо вираз, множачи та ділячи на спряжений вираз:</p>
+<p>\[
+\begin{align}
+\sqrt{x^2 + x} - x
+&amp;= \frac{\left(\sqrt{x^2 + x} &#8211; x\right)\left(\sqrt{x^2 + x} + x\right)}{\sqrt{x^2 + x} + x} \\[6pt]
+&amp;= \frac{x^2 + x &#8211; x^2}{\sqrt{x^2 + x} + x} \\[6pt]
+&amp;= \frac{x}{\sqrt{x^2 + x} + x}
+\end{align}
+\]</p>
+<p>Далі винесемо \(x\) за дужки в знаменнику:</p>
+<p>\[
+\begin{align}
+\frac{x}{\sqrt{x^2 + x} + x}
+&amp;= \frac{x}{x\left(\sqrt{1 + 1/x} + 1\right)} \\
+&amp;= \frac{1}{\sqrt{1 + 1/x} + 1}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Обчислимо границю при \(x \to \infty\):</p>
+<p>\[
+\lim_{x \to \infty} \frac{1}{\sqrt{1 + 1/x} + 1} = \frac{1}{\sqrt{1} + 1} = \frac{1}{2}
+\]</p>
+<h6>Після спрощення очевидна розбіжність зникає, і границя виявляється скінченною.</h6>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Обґрунтування використання спряженого виразу</h2>
+<p>При аналізі форми \(\infty - \infty\) використовується спряжений вираз — вираз, ідентичний початковому, за винятком того, що знак між його доданками змінено на протилежний. Обґрунтування цього підходу розглянуто нижче. Розглянемо границю:</p>
+<p>\[
+\lim_{x \to \infty} \left(\sqrt{x^2 + 2x + 3} - x\right)
+\]</p>
+<p>Обидва доданки зростають без обмеження; таким чином, пряма підстановка призводить до невизначеної форми \(\infty - \infty\). Основна проблема не в самій розбіжності, а в тому, що дві величини зростають з однаковим головним порядком. Їх віднімання приховує потенційне взаємознищення домінуючих доданків. Якщо вираз залишити незмінним, неможливо визначити, що залишиться після того, як домінуючі компоненти компенсують один одного. Множення та ділення на спряжений вираз робить це взаємознищення явним:</p>
+<p>\[
+\begin{align}
+\frac{\left(\sqrt{x^2 + 2x + 3} &#8211; x\right)\left(\sqrt{x^2 + 2x + 3} + x\right)}{\sqrt{x^2 + 2x + 3} + x}
+&amp;= \frac{x^2 + 2x + 3 &#8211; x^2}{\sqrt{x^2 + 2x + 3} + x} \\[6pt]
+&amp;= \frac{2x + 3}{\sqrt{x^2 + 2x + 3} + x}
+\end{align}
+\]</p>
+<p>Початкова різниця тепер представлена у вигляді частки. Головний член \(x^2\) усунено, і отриманий вираз можна далі проаналізувати, винісши \(x\) за дужки як у чисельнику, так і в знаменнику:</p>
+<p>\[
+\begin{align}
+\frac{2x + 3}{\sqrt{x^2 + 2x + 3} + x}
+&amp;= \frac{x\left(2 + 3/x\right)}{x\left(\sqrt{1 + 2/x + 3/x^2} + 1\right)} \\[6pt]
+&amp;= \frac{2 + 3/x}{\sqrt{1 + 2/x + 3/x^2} + 1}
+\end{align}
+\]</p>
+<p>Оскільки \(x \to \infty\), доданки \(3/x\), \(2/x\) та \(3/x^2\) наближаються до нуля, і границя спрощується до:</p>
+<p>\[
+\lim_{x \to \infty} \left(\sqrt{x^2 + 2x + 3} - x\right) = \frac{2}{1 + 1} = 1
+\]</p>
+<h6>Використання спряженого виразу виявляє взаємознищення домінуючих доданків і відкриває справжній порядок зростання виразу. Головні члени \(x^2\) скорочуються, і поведінка визначається членами нижчого порядку. Цей підхід природно пов'язаний з нотацією <a href="big-o-notation.html">О велике</a> та <a href="little-o-notation.html">о мале</a>, де границі розуміються шляхом порівняння відносних швидкостей зростання.</h6>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-outline"><h2>Показникові невизначені форми</h2>
+<p>При роботі з границіями, що містять показникові вирази, можуть з'явитися три додаткові невизначені форми:</p>
+<p>\[
+1^{\infty} \qquad 0^{0} \qquad \infty^{0}
+\]</p>
+<p>Вони виникають у виразах вигляду:</p>
+<p>\[
+\lim_{x \to a} F(x)^{G(x)}
+\]</p>
+<p>де основа та показник поводяться суперечливо. Як і з іншими невизначеними формами, одного лише символічного вигляду недостатньо для визначення результату. Для розв'язання таких випадків ми використовуємо логарифмічне перетворення. Взяття <a href="logarithms.html">логарифма</a> перетворює показникову структуру на добуток, який потім можна переписати як частку та розв'язати за допомогою таких методів, як правило Лопіталя. Процедура наступна. Припустимо, ми хочемо обчислити:</p>
+<p>\[
+L = \lim_{x \to a} F(x)^{G(x)}
+\]</p>
+<p>Взявши натуральний логарифм від обох частин, ми отримаємо:</p>
+<p>\[
+\ln L = \lim_{x \to a} G(x) \ln F(x)
+\]</p>
+<p>Це зводить задачу до границі вигляду \(0 \cdot \infty\) або \(\dfrac{0}{0}\), з якими ми вже вміємо працювати. Після того, як \(\ln L\) знайдено, ми відновлюємо початкову границю як \(L = e^{\ln L}\). Як конкретний приклад, розглянемо:</p>
+<p>\[
+\lim_{x \to 0} (1 + x)^{1/x}
+\]</p>
+<p>Ця границя має форму \(1^{\infty}\). Прирівнявши \(L\) до границі та взявши логарифм:</p>
+<p>\[
+\ln L = \lim_{x \to 0} \frac{\ln(1 + x)}{x}
+\]</p>
+<p>Тепер це форма \(\dfrac{0}{0}\). Застосовуючи правило Лопіталя, ми диференціюємо чисельник і знаменник окремо:</p>
+<p>\[
+\lim_{x \to 0} \frac{\ln(1 + x)}{x} = \lim_{x \to 0} \frac{1/(1+x)}{1} = 1
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, ми отримаємо:</p>
+<p>\[
+L = e^{1} = e
+\]</p>
+<h6>Показникова форма містить приховану структуру частки. Застосування логарифмічного перетворення дозволяє легше побачити цю структуру.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Усі сім невизначених форм мають фундаментальне обмеження: один лише символьний вираз не визначає значення границі. Вирішальним фактором завжди є відносна швидкість, з якою відповідні величини зростають або зменшуються. Розпізнавання невизначеної форми є лише першим кроком; визначення границі вимагає більш детального аналізу функцій, що беруть участь у виразі.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-recap mb-x-30"><h2>Структурне зведення невизначених форм</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\[\dfrac{0}{0}\]</td>
+<td>Розкласти на множники та спростити або застосувати <a href="hopital-rule.html">правило Лопіталя</a></td>
+</tr>
+<tr>
+<td>\[\dfrac{\infty}{\infty}\]</td>
+<td>Винести домінуючий член або застосувати правило Лопіталя</td>
+</tr>
+<tr>
+<td>\[0 \cdot \infty\]</td>
+<td>Переписати як \(\dfrac{0}{1/\infty}\) або \(\dfrac{\infty}{1/0}\), щоб отримати \(\dfrac{0}{0}\) або \(\dfrac{\infty}{\infty}\)</td>
+</tr>
+<tr>
+<td>\[\infty - \infty\]</td>
+<td>Помножити на спряжений вираз або знайти спільний знаменник</td>
+</tr>
+<tr>
+<td>\[1^{\infty}\]</td>
+<td>Взяти логарифм і звести до \(0 \cdot \infty\)</td>
+</tr>
+<tr>
+<td>\[0^{0}\]</td>
+<td>Взяти логарифм і звести до \(0 \cdot \infty\)</td>
+</tr>
+<tr>
+<td>\[\infty^{0}\]</td>
+<td>Взяти логарифм і звести до \(0 \cdot \infty\)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>MIT, D.J. Kleitman</strong>. <a href="https://math.mit.edu/~djk/18_01/chapter26/contents.html">Indeterminate Forms and L’Hôpital’s Rule</a></p>
+</li>
+<li>
+<p><strong>UC Davis, D. Kouba</strong>. <a href="https://www.math.ucdavis.edu/~kouba/CalcOneDIRECTORY/lhopitaldirectory/LHopital.html">Determining Limits Using L’Hôpital’s Rule</a></p>
+</li>
+<li>
+<p><strong>UC Davis, R. Marx</strong>. <a href="https://www.math.ucdavis.edu/~marx/Sec.%208.6.pdf">Indeterminate Forms and Limits</a></p>
+</li>
+<li>
+<p><strong>Harvard University, O. Knill</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/math1a2024/handouts/lecture10.pdf">Infinity and Indeterminate Forms</a></p>
+</li>
+<li>
+<p><strong>University of Toronto – J. Campesato</strong>. <a href="https://www.math.toronto.edu/campesat/ens/1819/lec21-1128.pdf">Indeterminate Forms and L’Hôpital’s Rule</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="indeterminate-forms.html">algebrica.org/indeterminate-forms</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

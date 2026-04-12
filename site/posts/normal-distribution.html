@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Нормальний розподіл — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теорія ймовірностей та статистика</span>
+    </nav>
+    <article>
+        <h1>Нормальний розподіл</h1>
+        <time>2025-05-01</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Означення нормального розподілу</h2>
+<p> <strong>Нормальний розподіл</strong>, також відомий як розподіл Гаусса, є одним із найважливіших неперервних розподілів ймовірностей як у теорії ймовірностей, так і в статистиці. Він відіграє центральну роль у моделюванні реальних явищ, де значення мають тенденцію групуватися навколо середнього, за характерною кривою у формі дзвона. Математично нормальний розподіл визначається двома параметрами: <a href="introduction-to-the-mean.html">середнім</a> \( \mu \), яке визначає центр розподілу, та <a href="variance.html">середньоквадратичним відхиленням</a> \( \sigma \), яке контролює його розсіювання. Зазвичай його позначають як:</p>
+<p>\[ \mathcal{N}(x; \mu, \sigma) \]</p>
+<p>Як було зазначено раніше, нормальний розподіл має характерну форму дзвона і має набір чітко визначених математичних властивостей, які роблять його унікальним серед неперервних розподілів ймовірностей.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="706" height="480" src="../images/normal-distribution-1.png" alt="" class="wp-image-18866" style="width:353px" srcset="../images/normal-distribution-1.png 706w, https://algebrica.org/wp-content/uploads/resources/images/normal-distribution-1-300x204.png 300w" sizes="(max-width: 706px) 100vw, 706px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Загальна площа під кривою дорівнює \(1\). Це означає, що інтеграл від її функції щільності ймовірності по всій дійсній прямій, від \( -\infty \) до \( +\infty \), дорівнює \(1\).</li>
+<li>Крива симетрична відносно середнього \( \mu \). Іншими словами, вона виглядає однаково з обох боків від середнього, причому половина загальної ймовірності лежить ліворуч, а інша половина — праворуч.</li>
+<li>Крива має дві <a href="maximum-minimum-and-inflection-points.html">точки перегину</a>, розташовані в \( x = \mu + \sigma \) та \( x = \mu &#8211; \sigma \). У цих точках кривизна графіка <a href="sign-analysis-in-inequalities.html">змінює знак</a>, позначаючи перехід між опуклою та вогнутою областями розподілу.</li>
+<li>Крива є асимптотичною до осі x для значень \( x \), що віддаляються від середнього.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Ключові особливості</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad \mathcal{N}(x; \mu, \sigma) =
+\frac{1}{\sigma \sqrt{2\pi}}
+\exp\!\left( -\,\frac{(x - \mu)^{2}}{2\sigma^{2}} \right) \]</p>
+</li>
+<li>
+<p>\[\text{2. } \quad \mu = E(X) = \mu \]</p>
+</li>
+<li>
+<p>\[\text{3. } \quad \sigma^{2} = \mathrm{Var}(X) = \sigma^{2} \]</p>
+</li>
+<li>
+<p>\[\text{4. } \quad \sigma = \sigma \]</p>
+</li>
+</ul>
+<h5>Кожен вираз підкреслює ключову властивість нормального розподілу, показуючи, як його форма дзвона повністю визначається середнім \(\mu\) та середньоквадратичним відхиленням \(\sigma\), які контролюють його центр і розсіювання.</h5>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Функція щільності ймовірності нормального розподілу</h2>
+<p>Випадкова змінна \( X \), що має нормальний розподіл, називається нормальною випадковою змінною. Вона представляє собою <a href="continuous-random-variables.html">неперервну випадкову змінну</a>, ймовірності якої описуються нормальною <a href="functions.html">функцією</a> щільності ймовірності, що визначається як:</p>
+<p>\[
+\mathcal{N}(x; \mu, \sigma) = \frac{1}{\sqrt{2\pi} \,\sigma} \, e^{-\frac{1}{2\sigma^2}(x &#8211; \mu)^2}
+\]</p>
+<p>\[-\infty &lt; x &lt; +\infty\]</p>
+<p>Ця функція описує, як ймовірність розподіляється за можливими значеннями неперервної випадкової змінної \( X \), залежно від середнього \( \mu \) та середньоквадратичного відхилення \( \sigma \). Щоб глибше вивчити поняття середнього (або математичного сподівання), дисперсії та середньоквадратичного відхилення випадкової змінної (<a href="discrete-random-variables.html">дискретної</a> або <a href="continuous-random-variables.html">неперервної</a>), зверніться до наступних пов'язаних тем:</p>
+</div>
+
+
+<ul class="shortcode-post-list-updates"><li><span class="summary-post-views">871</span> <a href="mean-or-expected-value-of-a-random-variable.html">Середнє або математичне сподівання випадкової змінної</a></li><li><span class="summary-post-views">866</span> <a href="variance-and-covariance-of-a-random-variable.html">Дисперсія та коваріація випадкової змінної</a></li></ul>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><hr>
+<p>Як було обговорено вище, інтеграл від функції нормальної щільності по всій дійсній прямій, від \( -\infty \) до \( +\infty \), дорівнює 1:</p>
+<p>\[
+\frac{1}{\sqrt{2\pi}\,\sigma} \,
+\int_{-\infty}^{+\infty}
+e^{-\frac{1}{2\sigma^2}(x &#8211; \mu)^2}
+\, dx = 1
+\]</p>
+<p>З інтеграла випливає, що якщо ми хочемо обчислити площу під кривою між двома точками \( x_0 \) та \( x_1 \), ми повинні обчислити <a href="definite-integrals.html">визначений інтеграл</a> від функції нормальної щільності на цьому <a href="intervals.html">проміжку</a>.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="730" height="490" src="../images/normal-distribution-2.png" alt="" class="wp-image-18899" style="width:365px" srcset="../images/normal-distribution-2.png 730w, https://algebrica.org/wp-content/uploads/resources/images/normal-distribution-2-300x201.png 300w" sizes="(max-width: 730px) 100vw, 730px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Інтуїтивно випливає, що заштрихована область під кривою представляє ймовірність того, що випадкова змінна \( X \) набуває значення в проміжку \([x_0, x_1]\). Іншими словами, інтеграл функції щільності нормального розподілу на цьому інтервалі кількісно визначає ймовірність спостереження \( X \) між цими двома граничноюми значеннями. Формально, ймовірність того, що випадкова змінна \( X \) набуває значення між \( x_0 \) та \( x_1 \), задається як:</p>
+<p>\[
+\begin{align}
+P(x_0 &lt; X &lt; x_1) &amp;= \int_{x_0}^{x_1} n(x; \mu, \sigma)\,dx \\[6pt]
+&amp;= \frac{1}{\sqrt{2\pi}\,\sigma} \int_{x_0}^{x_1} e^{-\frac{1}{2\sigma^2}(x - \mu)^2}\,dx
+\end{align}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-section mb-x-30"><h2>Стандартний нормальний розподіл</h2>
+<p>Щоб спростити обчислення ймовірностей і зробити їх більш загальними, нормальний розподіл часто переписують у стандартизованій формі. У цьому процесі початкова змінна \( X \) перетворюється на нову змінну \( Z \), яка визначається як:</p>
+<p>\[
+Z = \frac{X - \mu}{\sigma}
+\]</p>
+<p>Ця нова змінна \( Z \) має так званий <strong>стандартний нормальний розподіл</strong> — особливий випадок, коли середнє значення дорівнює \( 0 \), а стандартне відхилення дорівнює \( 1 \). Завдяки стандартизації ми можемо працювати з єдиною універсальною кривою та використовувати <a href="standard-normal-z-table.html">стандартну Z-таблицю нормального розподілу</a> для знаходження ймовірностей замість обчислення інтеграла для кожного конкретного розподілу. На практиці будь-який нормальний розподіл може бути перетворений на стандартний, що значно спрощує порівняння та обчислення.</p>
+<h5>Значення, наведені в Z-таблицях, представляють кумулятивну площу під кривою стандартного нормального розподілу ліворуч від заданого значення \( Z \).</h5>
+<hr>
+<p>Розглянемо ще раз випадок ймовірності, визначеної на довільному проміжку \([x_0, x_1]\). Її можна виразити як:</p>
+<p>\[
+\begin{align}
+P(x_0 &lt; X &lt; x_1) &amp;= \frac{1}{\sqrt{2\pi}\,\sigma} \int_{x_0}^{x_1} e^{-\frac{1}{2\sigma^2}(x &#8211; \mu)^2}\,dx
+\end{align}
+\]</p>
+<p>Якщо ми перетворимо змінну \( X \) у її стандартизовану форму, інтервал \( P(x_0 &lt; X &lt; x_1) \) можна переписати через стандартну змінну \( Z \) як:</p>
+<p>\[
+P(x_0 &lt; X &lt; x_1) = P\left( \frac{x_0 - \mu}{\sigma} &lt; Z &lt; \frac{x_1 &#8211; \mu}{\sigma} \right)
+\]</p>
+<p>де змінна \( X \) була замінена її стандартизованою формою \( Z \), а границі \( x_0 \) та \( x_1 \) були замінені відповідними стандартизованими значеннями. Це перетворення дозволяє нам виразити ймовірність у рамках стандартного нормального розподілу, де \( Z \) має розподіл із середнім \( 0 \) та стандартним відхиленням \( 1 \). Виходячи із загальної форми ймовірності на проміжку \([x_0, x_1]\), маємо:</p>
+<p>\[
+\begin{align}
+P(x_0 &lt; X &lt; x_1) &amp;= \frac{1}{\sqrt{2\pi}\,\sigma} \int_{x_0}^{x_1} e^{-\frac{1}{2\sigma^2}(x &#8211; \mu)^2}\,dx\\[6pt]
+&amp;=\frac{1}{\sqrt{2\pi}\,\sigma} \int_{z_0}^{z_1} e^{-\frac{1}{2}(z)^2}\,dx = P(z_0 &lt; Z &lt; z_1)
+\end{align}
+\]</p>
+<p>Таке формулювання підкреслює, як процес стандартизації забезпечує прямий зв'язок між будь-яким нормальним розподілом і стандартною нормальною кривою, що дозволяє визначати ймовірності за допомогою універсальних еталонних значень \( Z \).</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Правило трьох сигм</h2>
+<p>У нормальному розподілі ймовірності симетрично розташовані відносно середнього значення.<br>
+Існує фундаментальний зв'язок між цими ймовірностями та їхньою відстанню від середнього, відомий як правило 68–95–99,7 або правило трьох сигм, яке описує, як більша частина ймовірнісної маси зосереджена біля центру розподілу.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="902" height="482" src="../images/normal-distribution-3.png" alt="" class="wp-image-18927" style="width:451px" srcset="../images/normal-distribution-3.png 902w, https://algebrica.org/wp-content/uploads/resources/images/normal-distribution-3-300x160.png 300w, https://algebrica.org/wp-content/uploads/resources/images/normal-distribution-3-768x410.png 768w" sizes="(max-width: 902px) 100vw, 902px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Приблизно 68% усіх значень потрапляють у межі одного стандартного відхилення від середнього, при цьому близько 34,1% з кожного боку.</li>
+<li>Розширення діапазону до двох стандартних відхилень охоплює приблизно 95% даних.</li>
+<li>Розширення діапазону до трьох стандартних відхилень охоплює близько 99,7% усіх можливих значень.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Центральна гранична теорема</h2>
+<p>Нехай \( X_1, X_2, \dots, X_n \) — послідовність незалежних і однаково розподілених випадкових величин, кожна з яких має математичне сподівання \( E[X_i] = \mu \) та скінченну дисперсію \( \mathrm{Var}(X_i) = \sigma^2 &gt; 0 \). Визначимо їхнє вибіркове середнє як:</p>
+<p>\[
+\bar{X}_{n} = \frac{1}{n} \sum_{i=1}^{n} X_i
+\]</p>
+<p>У міру того, як кількість спостережень \( n \) зростає, розподіл стандартизованої змінної \(Z\)</p>
+<p>\[
+Z = \frac{\bar{X}_n &#8211; \mu}{\sigma / \sqrt{n}}
+\]</p>
+<p>поступово наближається за законом до стандартного нормального розподілу згідно з відношенням:</p>
+<p>\[
+\frac{\bar{X}_n - \mu}{\sigma / \sqrt{n}} \xrightarrow{d} \mathcal{N}(x; 0,1) \quad \text{при } n \to \infty
+\]</p>
+<p>Іншими словами, незалежно від початкового розподілу випадкових величин, розподіл їхнього середнього значення має тенденцію ставати приблизно нормальним зі збільшенням розміру вибірки. Цей результат пояснює, чому нормальний розподіл так часто зустрічається в статистиці: він виступає як гранична модель поведінки середніх значень, коли кількість спостережень є достатньо великою.</p>
+<h5>Позначення \( \xrightarrow{d} \) означає «збіжність за розподілом», що означає, що розподіл ймовірностей стандартизованої змінної поступово наближається до стандартного нормального розподілу зі збільшенням \( n \).</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>L. Wasserman</strong>. <a href="https://www.stat.cmu.edu/~larry/all-of-statistics/">All of Statistics (free PDF draft)</a></p>
+</li>
+<li>
+<p><strong>J. Blitzstein, J. Hwang</strong>. <a href="https://projects.iq.harvard.edu/stat110/home">Introduction to Probability</a></p>
+</li>
+<li>
+<p><strong>MIT OpenCourseWare</strong>. <a href="https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2014/">Introduction to Probability and Statistics</a></p>
+</li>
+<li>
+<p><strong>OpenStax</strong>. <a href="https://openstax.org/details/books/introductory-statistics-2e">Introductory Statistics 2e</a></p>
+</li>
+<li>
+<p><strong>Penn State (STAT 414)</strong>. <a href="https://online.stat.psu.edu/stat414/">Probability Theory – Normal Distribution</a></p>
+</li>
+<li>
+<p><strong>University of Berkeley</strong>. <a href="https://www.stat.berkeley.edu/~stark/SticiGui/">Statistics</a></p>
+</li>
+<li>
+<p><strong>University of Oxford</strong>. <a href="https://www.stats.ox.ac.uk/~reinert/time/notesht10short.pdf">Statistics Lecture Notes – Normal Distribution</a></p>
+</li>
+<li>
+<p><strong>NIST/SEMATECH</strong>. <a href="https://www.itl.nist.gov/div898/handbook/eda/section3/eda3661.htm">Engineering Statistics Handbook – Normal Distribution</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Для чого використовується нормальний розподіл у статистиці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нормальний розподіл використовується для опису даних, які групуються навколо середнього значення. Він є фундаментальним у теорії ймовірностей, аналізі даних та інференційній статистиці для моделювання випадкових відхилень і помилок вимірювання."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому нормальний розподіл називають гауссовим?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Його називають гауссовим, тому що він був вперше визначений Карлом Фрідріхом Гауссом, який описав математичну форму дзвіноподібної кривої, що використовується для представлення багатьох природних явищ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Які основні властивості нормального розподілу?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нормальний розподіл симетричний відносно свого середнього значення, унімодальний і повністю визначається двома параметрами: середнім значенням і стандартним відхиленням. Загальна площа під кривою дорівнює одиниці, і приблизно 68%, 95% та 99,7% значень потрапляють у межі одного, двох і трьох стандартних відхилень від середнього."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке стандартний нормальний розподіл?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Стандартний нормальний розподіл — це особливий випадок нормального розподілу з середнім значенням нуль і стандартним відхиленням одиниця. Він дозволяє порівнювати та обчислювати ймовірності за допомогою стандартних Z-таблиць, що спрощує статистичний аналіз і перевірку гіпотез."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="normal-distribution.html">algebrica.org/normal-distribution</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

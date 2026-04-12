@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логарифми — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Степені, радикали та логарифми</span>
+    </nav>
+    <article>
+        <h1>Логарифми</h1>
+        <time>2025-02-03</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-26" style="height:430px;min-height:430px;max-height:430px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:430px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="powers.html">Степені</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-26");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"definition"},{"name":"base and argument"},{"name":"inverse of exponentiation"},{"name":"domain and conditions"},{"name":"natural logarithm"},{"name":"common logarithm"}]},{"name":"operations","children":[{"name":"product rule"},{"name":"quotient rule"},{"name":"power rule"},{"name":"log of reciprocal"},{"name":"change of base"},{"name":"identities"}]},{"name":"structures","children":[{"name":"logarithmic function"},{"name":"graph and asymptotes"},{"name":"monotonicity"},{"name":"logarithmic equations"},{"name":"homomorphism"},{"name":"integral definition"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 430;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Означення</h2>
+<p>Якщо \(a\) та \(b\) — додатні дійсні числа, де \(a \neq 1\), то логарифмом \(b\) за основою \(a\), що позначається як \(\log_a(b)\), називають таке дійсне число \(c\), що \(a^c = b\).</p>
+<p>\[\log_a{b} = c \iff a^c = b \]</p>
+<p>Мають бути виконані наступні умови:</p>
+<p>\[a&gt;0 \quad a \neq 1 \quad b &gt; 0 \]</p>
+<p>Простіше кажучи, логарифм числа — це показник степеня, до якого треба піднести задану основу, щоб отримати це число. Таким чином, логарифм є оберненою операцією до <a href="exponential-function.html">піднесення до степеня</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>\(a\) — основа логарифма.</li>
+<li>\(b\) — аргумент.</li>
+</ul>
+<blockquote>
+<p>Щоб роз'яснити це поняття, розглянемо простий приклад: \(\log{_2}8 = 3 \to 2^3 =8\).</p>
+</blockquote>
+<hr>
+<p>Умова \( a \neq 1 \) є важливою. Фактично, коли \( a = 1 \), показниковий вираз \( a^x \) стає \( 1^x = 1 \quad \forall \, x \in \mathbb{R} \). У цьому випадку показникова функція є сталою і, отже, не є <a href="inverse-function.html">оберненією</a>. Оскільки логарифм визначено як обернену операцію до піднесення до степеня, він не може бути визначений, коли основа дорівнює \(1\). З цієї причини основа логарифма має задовольняти умови \( a &gt; 0 \) та \( a \neq 1 \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps mb-x-30 alignCenterMathjax"><h2>Основні тотожності</h2>
+<p>Розуміння логарифмів потребує повторення поняття <a href="powers.html">степенів</a>, оскільки ці дві математичні ідеї тісно пов'язані. Наступні тотожності випливають безпосередньо з принципу того, що логарифми є оберненою операцією до піднесення до степеня:</p>
+<p>\[a^0 = 1 \to \log{_a}1 = 0 \]
+\[a^1 = a \to \log{_a}a = 1 \]</p>
+<p>Оскільки показникова функція завжди додатна, неможливо визначити логарифм від'ємного числа. Формально, \(\nexists\) такого числа \(c \in \mathbb{R}\), що \(a^c &lt; 0\).</p>
+<ul>
+<li>
+<p>Логарифми за основою \(e\), відомі як натуральні або Неперієві логарифми, зазвичай позначаються як \( \ln a \) без зазначення основи, де \(e \approx 2.71828\) — це <a href="euler-number-limit-sequence.html">число Ейлера</a>, основа натуральної показникової функції \(e^x\).</p>
+</li>
+<li>
+<p>Логарифми за основою \(10\), відомі як десяткові логарифми, зазвичай позначаються як \( \text{Log} a \) без зазначення основи.</p>
+</li>
+</ul>
+<blockquote>
+<p>Десятковий логарифм особливо корисний при роботі з дуже великими або дуже малими числами. Він допомагає зменшити масштаб, що полегшує інтерпретацію та порівняння значень. Саме тому він широко використовується в наукових і технічних галузях, часто відображаючись на логарифмічних шкалах.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-group pb-section"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Логарифмічна функція</h2>
+<p>Як було зазначено раніше, <a href="logarithmic-function.html">логарифмічна функція</a> є <a href="inverse-function.html">оберненою</a> до показникової функції. Відповідно, її <a href="determining-the-domain-of-a-function.html">область визначення</a> та область значень є інвертованими порівняно з показниковою функцією. Логарифмічна функція зазвичай виражається у наступному вигляді:</p>
+<p>\[
+\log_a : (0,+\infty) \to \mathbb{R}, \quad a &gt; 0,\; a \neq 1
+\]</p>
+<p>Область визначення \(x \in \mathbb{R}^+ \), а область значень — \(\mathbb{R}\). Функція є <a href="continuous-functions.html">неперервною</a> та <a href="derivatives.html">диференційною</a> на \( (0,+\infty) \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="596" src="../images/logarithms.png" alt="" class="wp-image-19436" style="width:306px" srcset="../images/logarithms.png 612w, https://algebrica.org/wp-content/uploads/resources/images/logarithms-300x292.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><hr>
+<p>Графік вище ілюструє монотонну поведінку та асимптотичні властивості логарифмічної функції. Для значень \( a &gt; 1 \) функція \(f(x) = \log_a x\) є строго зростаючою на \( (0,+\infty) \). Вона має вертикальну <a href="asymptotes.html">асимптоту</a> при \( x = 0 \), а її границі такі:</p>
+<p>\[
+\begin{aligned}
+\lim_{x \to 0^+} \log_a x &amp;= -\infty \\[8pt]
+\lim_{x \to +\infty} \log_a x &amp;= +\infty
+\end{aligned}
+\]</p>
+<hr>
+<p>Для \( 0 &lt; a &lt; 1 \) функція є строго спадаючою на \( (0,+\infty) \). Пряма \( x = 0 \) знову є вертикальною асимптотою, але гранична поведінка змінюється на протилежну:</p>
+<p>\[
+\begin{aligned}
+\lim_{x \to 0^+} \log_a x &amp;= +\infty \\[8pt]
+\lim_{x \to +\infty} \log_a x &amp;= -\infty
+\end{aligned}
+\]</p>
+<blockquote>
+<p>Логарифмічна функція використовується в різних дисциплінах, наприклад, в інформатиці, де вона є фундаментальною для аналізу алгоритмічної складності. Наприклад, такі алгоритми, як <a href="logarithmic-function.html">бінарний пошук</a>, мають логарифмічну часову складність, що вказує на те, що їхня продуктивність залишається ефективною зі збільшенням розміру вхідних даних. Ця характеристика демонструє, як логарифмічний ріст дозволяє створювати стислі та ефективні представлення експоненціальних процесів.</p>
+</blockquote>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Дослідник логарифмічної функції</h2>
+<p>Цей інтерактивний графік ілюструє, як форма логарифмічної функції залежить від значення її основи. Вибираючи основи, більші за 1 або від 0 до 1, можна спостерігати, як функція змінюється зі зростаючої на спадну, а також її поведінку біля нуля та на нескінченності, що забезпечує чітку візуальну інтерпретацію її фундаментальних властивостей та базової структури.</p>
+<hr>
+</div>
+
+
+
+<div id="pf-widget">
+
+<style>
+#pf-widget {
+  font-family: Algebrica, Arial, helvetica neue, helvetica, sans-serif;
+  color: #000;
+  box-sizing: border-box;
+}
+
+#pf-widget *, #pf-widget *::before, #pf-widget *::after {
+  box-sizing: border-box;
+}
+
+#pf-widget .pf-controls-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 10px;
+}
+
+#pf-widget .pf-controls-wrap span {
+  font-size: 13px;
+  color: #666;
+}
+
+#pf-widget .pf-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#pf-widget .deg-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 28px;
+  padding: 0 14px;
+  font-size: 13px;
+  line-height: 28px;
+  border: 0;
+  background: transparent;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.25), inset 0 -1px 0 rgba(0,0,0,0.25);
+  color: #73726c;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+
+#pf-widget .deg-btn:first-child {
+  box-shadow:
+    inset 1px 0 0 rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(0,0,0,0.25),
+    inset 0 -1px 0 rgba(0,0,0,0.25);
+  border-radius: 3px 0 0 3px;
+}
+
+#pf-widget .deg-btn:last-child {
+  box-shadow:
+    inset -1px 0 0 rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(0,0,0,0.25),
+    inset 0 -1px 0 rgba(0,0,0,0.25);
+  border-radius: 0 3px 3px 0;
+}
+
+#pf-widget .deg-btn.active {
+  background: rgba(0,0,0,0.07);
+  color: #1a1a18;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.35), inset 0 -1px 0 rgba(0,0,0,0.35);
+}
+
+#pf-widget .deg-btn.active:first-child {
+  box-shadow:
+    inset 1px 0 0 rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(0,0,0,0.35),
+    inset 0 -1px 0 rgba(0,0,0,0.35);
+}
+
+#pf-widget .deg-btn.active:last-child {
+  box-shadow:
+    inset -1px 0 0 rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(0,0,0,0.35),
+    inset 0 -1px 0 rgba(0,0,0,0.35);
+}
+
+#pf-widget .pf-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 320px;
+}
+
+#pf-widget .pf-info {
+  margin-top: 0.75rem;
+  font-size: 13px;
+  color: #73726c;
+  line-height: 1.6;
+  min-height: 40px;
+}
+
+#pf-widget .pf-formula {
+  font-size: 14px;
+  color: #1a1a18;
+  font-family: "Courier New", monospace;
+  margin-bottom: 4px;
+}
+</style>
+
+<div class="pf-controls-wrap">
+  <span>Основа</span>
+
+  <div class="pf-controls">
+    <button class="deg-btn" data-base="0.25">1/4</button>
+    <button class="deg-btn" data-base="0.5">1/2</button>
+    <button class="deg-btn active" data-base="e">e</button>
+    <button class="deg-btn" data-base="2">2</button>
+    <button class="deg-btn" data-base="4">4</button>
+  </div>
+</div>
+
+<div class="pf-canvas-wrap">
+  <canvas id="pfChart"></canvas>
+</div>
+
+<div class="pf-info">
+  <div class="pf-formula" id="pfFormula"></div>
+  <div id="pfDesc"></div>
+</div>
+
+</div>
+
+<script src="https://algebrica.org/wp-content/themes/algebrica/js/chart.umd.js"></script>
+
+<script>
+(function() {
+
+const gridColor  = '#ddd';
+const axisColor  = '#ddd';
+const textColor  = '#666';
+const curveColor = '#000';
+
+const infos = {
+  '0.25': {
+    f: 'y = log₁⁄₄(x)',
+    d: 'З основою b = 1/4, де 0 < b < 1, логарифмічна функція є строго спадною. Графік проходить через точки (1, 0) та (1/4, 1), має область визначення (0, +∞), область значень ℝ та вертикальну асимптоту x = 0.'
+  },
+  '0.5': {
+    f: 'y = log₁⁄₂(x)',
+    d: 'З основою b = 1/2, де 0 < b < 1, логарифмічна функція є строго спадною. Графік проходить через точки (1, 0) та (1/2, 1), має область визначення (0, +∞), область значень ℝ та вертикальну асимптоту x = 0.'
+  },
+  'e': {
+    f: 'y = ln(x)',
+    d: 'З основою b = e, де b > 1, ми отримуємо натуральний логарифм. Функція є строго зростаючою, проходить через точки (1, 0) та (e, 1), має область визначення (0, +∞), область значень ℝ та вертикальну асимптоту x = 0.'
+  },
+  '2': {
+    f: 'y = log₂(x)',
+    d: 'З основою b = 2, де b > 1, логарифмічна функція є строго зростаючою. Графік проходить через точки (1, 0) та (2, 1), має область визначення (0, +∞), область значень ℝ та вертикальну асимптоту x = 0.'
+  },
+  '4': {
+    f: 'y = log₄(x)',
+    d: 'З основою b = 4, де b > 1, логарифмічна функція є строго зростаючою. Графік проходить через точки (1, 0) та (4, 1), має область визначення (0, +∞), область значень ℝ та вертикальну асимптоту x = 0.'
+  }
+};
+
+function getBaseValue(key) {
+  return key === 'e' ? Math.E : parseFloat(key);
+}
+
+function evalLog(x, b) {
+  return Math.log(x) / Math.log(b);
+}
+
+function buildData(b) {
+  const data = [];
+  const steps = 1800;
+  const logMin = Math.log(1e-10);
+  const logMax = Math.log(10);
+
+  for (let i = 0; i <= steps; i++) {
+    const t = i / steps;
+    const x = Math.exp(logMin + (logMax - logMin) * t);
+    data.push({ x: x, y: evalLog(x, b) });
+  }
+
+  return data;
+}
+
+function getXAxisMinFor4px(canvas) {
+  const width = canvas.clientWidth || canvas.width || 320;
+  const xMax = 10;
+  const px = 4;
+
+  return -(xMax * px) / (width - px);
+}
+
+let currentBase = 'e';
+let chart;
+
+function buildChart() {
+  const canvas = document.getElementById('pfChart');
+  const ctx = canvas.getContext('2d');
+  const b = getBaseValue(currentBase);
+  const data = buildData(b);
+  const xAxisMin = getXAxisMinFor4px(canvas);
+
+  const info = infos[currentBase];
+  document.getElementById('pfFormula').textContent = info.f;
+  document.getElementById('pfDesc').textContent = info.d;
+
+  if (chart) chart.destroy();
+
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [{
+        data,
+        borderColor: curveColor,
+        borderWidth: 2,
+        pointRadius: 0,
+        tension: 0.12,
+        cubicInterpolationMode: 'monotone',
+        spanGaps: false
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 450,
+        easing: 'easeOutCubic'
+      },
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          type: 'linear',
+          min: xAxisMin,
+          max: 10,
+          ticks: {
+            color: textColor,
+            maxTicksLimit: 7,
+            callback: v => Number.isInteger(v) && v >= 0 ? v : ''
+          },
+          grid: { color: gridColor },
+          border: { color: axisColor }
+        },
+        y: {
+          min: -8,
+          max: 8,
+          ticks: { color: textColor },
+          grid: { color: gridColor },
+          border: { color: axisColor },
+          afterBuildTicks: (axis) => {
+            axis.ticks = [-8, -4, 0, 4, 8].map(v => ({ value: v }));
+          }
+        }
+      }
+    }
+  });
+}
+
+document.querySelectorAll('#pf-widget .deg-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('#pf-widget .deg-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentBase = btn.dataset.base;
+    buildChart();
+  };
+});
+
+buildChart();
+window.addEventListener('resize', buildChart);
+
+})();
+</script>
+</div></div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Властивості логарифмів</h2>
+<p>Логарифми мають властивості, які полегшують маніпуляції з математичними виразами та <a href="equations.html">рівняннями</a>. Ці властивості фундаментально пов'язані з властивостями покажчикових функцій, оскільки кожна логарифмічна тотожність безпосередньо випливає з відповідного закону показників.</p>
+<p>Оскільки логарифм визначено як обернену до покажчикової функції, наступні тотожності є правильними:</p>
+<p>\[
+a^{\log_a x} = x \qquad \forall x \in (0,+\infty)
+\]</p>
+<p>\[
+\log_a(a^x) = x \qquad \forall x \in \mathbb{R}
+\]</p>
+<hr>
+<p>Правило добутку стверджує, що логарифм добутку двох чисел дорівнює сумі їхніх логарифмів з тією самою основою: \[\log_a(xy) = \log_ax + \log_ay \]</p>
+<hr>
+<p>Правило частки стверджує, що логарифм частки двох чисел дорівнює різниці логарифмів чисельника та знаменника: \[ \log_a{\frac{x}{y}} = \log_ax-\log_ay  \] З попереднього виразу, якщо чисельник \(x\) дорівнює \(1\), ми отримаємо: \[ \log_a{\frac{1}{y}} = -\log_ay \] Це означає, що логарифм оберненого до числа \(\frac{1}{y}\) є протилежним до його логарифма, і це називається кологарифмом, що позначається як: \[\text{colog}_a{y} = -log_a{y} = \log_a{\frac{1}{y}}\]</p>
+<hr>
+<p>Властивість логарифма степеня стверджує, що логарифм <a href="powers.html">степеня</a> числа дорівнює добутку показника степеня та логарифма основи: \[ \log{_a}x^n = n \cdot \log{_a}x \] Ця властивість безпосередньо випливає з властивостей покажчикових функцій, оскільки вираз на кшталт \( x^n \) можна розуміти як результат множення \( x \) самого на себе \( n \) разів.</p>
+<hr>
+<p>З попередньої властивості та властивості <a href="radicals.html">ірраціональних виразів (коренів)</a> випливає, що логарифм кореня дорівнює частці між логарифмом підкореневого виразу та показником кореня: \[\log_a\sqrt[n]{b} = \frac{1}{n}\log_ab \]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Фундаментальна нерівність для натурального логарифма</h2>
+<p>Ключова нерівність, що містить натуральний логарифм \(\ln\), задана так:</p>
+<p>\[
+\ln x \le x - 1 \qquad \forall x &gt; 0
+\]</p>
+<p>Ця рівність виконується тоді і тільки тоді, коли \( x = 1 \). Цей результат безпосередньо випливає з опуклості функції \( \ln x \) на проміжку \( (0,+\infty) \). Оскільки друга похідна задовольняє умову:</p>
+<p>\[
+(\ln x)^{\prime\prime} = -\frac{1}{x^2} &lt; 0 \qquad \forall x &gt; 0
+\]</p>
+<p>Графік логарифма завжди лежить нижче кожної своєї дотичної. Зокрема, розглянемо дотичну в точці \( x = 1 \), де:</p>
+<p>\[
+\ln 1 = 0 \quad \text{та} \quad (\ln x)’ \big|_{x=1} = 1
+\]</p>
+<p>Рівняння дотичної має вигляд:</p>
+<p>\[
+y = x - 1
+\]</p>
+<p>Отже, нерівність виражає геометричний факт того, що крива \( y = \ln x \) не піднімається вище своєї дотичної в точці \( x = 1 \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Роль логарифмів в алгебраїчній структурі</h2>
+<p>Логарифм діє як структурний міст між двома різними алгебраїчними системами. У множині додатних дійсних чисел \((0,+\infty)\) основною операцією є множення, тоді як у \(\mathbb{R}\) цю роль відіграє додавання. Логарифм пов'язує ці системи, перетворюючи мультиплікативні зв'язки на адитивні. Наприклад, розглянемо наступний добуток:</p>
+<p>\[
+x^3 y^2
+\]</p>
+<p>Обчислення логарифмів дає:</p>
+<p>\[
+\log_a(x^3 y^2) = 3\log_a x + 2\log_a y
+\]</p>
+<p>Цей процес перетворює мультиплікативну структуру, що характеризується добутками та степенями, на адитивну структуру, що характеризується сумами та скалярними множниками. У цьому контексті логарифм функціонує як гомоморфізм з мультиплікативної групи \((0,+\infty)\) в адитивну групу \(\mathbb{R}\), зберігаючи базову структуру, але змінюючи операцію. Стандартні логарифмічні правила надають точні алгебраїчні формулювання цього перетворення.</p>
+<blockquote>
+<p>Гомоморфізм — це функція між двома алгебраїчними структурами, яка зберігає операцію, тобто \(\varphi(x \star y) = \varphi(x) \circ \varphi(y)\). Тут \( \star \) та \( \circ \) позначають операції двох алгебраїчних структур, такі як додавання або множення.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Спростимо наступний логарифмічний вираз, використовуючи властивості логарифмів:</p>
+<p>\[
+\log_a \left( \frac{x^3 \cdot y}{z^2} \right)
+\]</p>
+<hr>
+<p>Спочатку застосуємо правило частки, яке стверджує, що логарифм частки є різницею між логарифмами чисельника та знаменника:</p>
+<p>\[
+\log_a \left( \frac{x^3 \cdot y}{z^2} \right) = \log_a(x^3 \cdot y) &#8211; \log_a(z^2)
+\]</p>
+<p>Далі застосуємо правило добутку, яке говорить нам, що логарифм добутку є сумою логарифмів множників:</p>
+<p>\[
+\log_a(x^3 \cdot y) = \log_a(x^3) + \log_a(y)
+\]</p>
+<p>Таким чином, вираз набуває вигляду:</p>
+<p>\[
+\log_a \left( \frac{x^3 \cdot y}{z^2} \right) = \log_a(x^3) + \log_a(y) &#8211; \log_a(z^2)
+\]</p>
+<hr>
+<p>Тепер застосуємо правило степеня, яке стверджує, що логарифм степеня дорівнює добутку показника степеня на логарифм основи:</p>
+<p>\[
+\log_a(x^3) = 3 \log_a(x) \quad \text{та} \quad \log_a(z^2) = 2 \log_a(z)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Нарешті, підставимо та спростимо, отримавши вираз:</p>
+<p>\[
+\log_a \left( \frac{x^3 \cdot y}{z^2} \right) = 3 \log_a(x) + \log_a(y) - 2 \log_a(z)
+\]</p>
+</div>
+</div></div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Зміна основи логарифма</h2>
+<p>Будь-який логарифм з основою \(a\) можна представити як відношення логарифмів зі спільною основою. Зокрема, логарифм з основою \(a\) та аргументом \(b\) можна записати як відношення двох логарифмів з основою \(p\), де чисельник має аргумент \(b\), а знаменник має аргумент \(a\):</p>
+<p>\[\log{_a}b = \frac{\log{_p}b}{\log{_p}a} \]</p>
+<blockquote>
+<p>Ця властивість є перевагою, оскільки вона значно спрощує обчислення в різних контекстах.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Скористаймося простим прикладом, щоб продемонструвати формулу зміни основи логарифмів. Відповідно до означення логарифма, логарифм за основою \(a\) числа \(x\), що позначається як \(\log_a(x)\), представляє собою показник, у який ми повинні піднести основу \(a\), щоб отримати число \(x\). Ми можемо записати властивість зміни основи як: \[\log_a(x) = \frac{\log_b(x)}{\log_b(a)}\]</p>
+<hr>
+<p>Розглянемо заміну \( y = \log_a(x) \), що означає, згідно з означенням логарифма, \( a^y = x \). Маємо: \[\log_b(a^y) = \log_b(x)\]</p>
+<hr>
+<p>За властивістю степеня логарифма отримаємо: \[y \cdot \log_b(a) = \log_b(x)\]</p>
+<hr>
+<p>Тепер, поділивши обидві частини на \(\log_b(a) \), отримаємо: \[y = \frac{\log_b(x)}{\log_b(a)}\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Оскільки \( y = \log_a(x) \), ми довели, що:</p>
+<p>\[\log_a(x) = \frac{\log_b(x)}{\log_b(a)}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30 pb-steps"><h2>Логарифмічні рівняння</h2>
+<p><a href="logarithmic-equations.html">Логарифмічні рівняння</a> — це математичні вирази, в яких змінна з'являється всередині логарифмічної функції. Розв'язання таких рівнянь вимагає ретельного розуміння властивостей логарифмів, які є необхідними для ізоляції та визначення значення змінної. Типове логарифмічне рівняння має таку структуру:</p>
+<p>\[ \log_af(x) = g(x) \]</p>
+<ul>
+<li>
+<p>\( a \) є основою логарифма і має задовольняти умову \( a \gt 0, a\neq 1.\)</p>
+</li>
+<li>
+<p>Функція \(f(x)\) слугує аргументом логарифма і має бути більшою за нуль. Ця вимога виникає тому, що логарифмічна функція визначена лише для додатних чисел.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Натуральний логарифм</h2>
+<p>З аналітичної точки зору, натуральний логарифм визначається незалежно від піднесення до степеня за допомогою <a href="definite-integrals.html">визначеного інтеграла</a>. Для кожного дійсного числа \( x &gt; 0 \) натуральний логарифм задається як:</p>
+<p>\[
+\ln x = \int_1^x \frac{1}{t} \, dt
+\]</p>
+<p>Це означення гарантує, що \( \ln x \) є добре визначеним для всіх додатних дійсних чисел, оскільки функція \( \frac{1}{t} \) є неперервною на \( (0,+\infty) \). За <a href="fundamental-theorem-of-calculus.html">Основною теоремою аналізу</a>, натуральний логарифм є диференційовним і задовольняє рівності:</p>
+<p>\[
+(\ln x)’ = \frac{1}{x} \qquad x&gt;0
+\]</p>
+<p>Крім того, натуральний логарифм є <a href="increasing-and-decreasing-functions.html">суворо зростаючим</a>, оскільки його <a href="derivatives.html">похідна</a> додатна на \( (0,+\infty) \). Він також є опуклим вниз, оскільки:</p>
+<p>\[
+(\ln x)^{\prime\prime}= -\frac{1}{x^2} &lt; 0
+\]</p>
+<hr>
+<p>Показникова функція \( e^x \) визначається як обернена до \( \ln x \). Після встановлення натурального логарифма, логарифми з будь-якою основою \( a&gt;0 \), \( a\neq 1 \), визначаються як:</p>
+<p>\[
+\log_a x = \frac{\ln x}{\ln a}
+\]</p>
+<p>Така побудова забезпечує суворе аналітичне обґрунтування логарифмів і враховує їхню неперервність, диференційовність та структурні властивості.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Нерівність AM-GM через логарифми</h2>
+<p><a href="arithmetic-mean.html">Середнє арифметичне</a> та <a href="geometric-mean.html">середнє геометричне</a> скінченної множини додатних дійсних чисел задовольняють фундаментальну нерівність: середнє арифметичне завжди більше або дорівнює середньому геометричному. Для додатних дійсних чисел \(x_1, x_2, \ldots, x_n\) це формулюється так:</p>
+<p>\[
+\frac{x_1 + x_2 + \cdots + x_n}{n} \geq \left( x_1 x_2 \cdots x_n \right)^{\frac{1}{n}}
+\]</p>
+<p>причому рівність досягається тоді і тільки тоді, коли \(x_1 = x_2 = \cdots = x_n\). Логарифм забезпечує одне з найелегантніших доведень цього результату, спираючись на єдиний аргумент про ввігнутість.</p>
+<hr>
+<p>Ключовим спостереженням є те, що \(\ln\) є строго ввігнутою функцією на \((0,+\infty)\), оскільки її друга похідна задовольняє \((\ln x)&#8217;’ = -1/x^2 &lt; 0\) для всіх \(x &gt; 0\). Оскільки \(\ln\) є ввігнутою, для будь-яких додатних дійсних чисел \(x_1, \ldots, x_n\) виконується наступне:</p>
+<p>\[
+\frac{1}{n} \sum_{i=1}^{n} \ln x_i \leq \ln\!\left( \frac{1}{n} \sum_{i=1}^{n} x_i \right)
+\]</p>
+<p>Ліва частина є середнім арифметичним \(\ln x_1, \ldots, \ln x_n\), яке за логарифмічною формою <a href="geometric-mean.html">середнього геометричного</a> дорівнює \(\ln M_g\). Права частина — це \(\ln M_a\), де \(M_a\) позначає <a href="arithmetic-mean.html">середнє арифметичне</a>. Таким чином, нерівність набуває вигляду:</p>
+<p>\[
+\ln M_g \leq \ln M_a
+\]</p>
+<p>Оскільки \(\ln\) є строго зростаючою функцією, це еквівалентно \(M_g \leq M_a\), що і є нерівністю AM-GM. Рівність виконується тоді і тільки тоді, коли всі аргументи рівні, тобто \(x_1 = x_2 = \cdots = x_n\).</p>
+<blockquote>
+<p>Це доведення чітко демонструє структурну роль логарифма: відображаючи мультиплікативну структуру \(M_g\) в адитивну структуру \(M_a\), воно зводить нерівність між двома різними типами середнього до єдиної аналітичної властивості \(\ln\).</p>
+</blockquote>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке логарифм?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Логарифм — це обернена функція до показника степеня. Він вказує, в який степінь потрібно піднести задану основу, щоб отримати певне число. Наприклад, log₁₀(100) = 2, тому що 10² = 100."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке натуральний логарифм?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Натуральний логарифм, що записується як ln(x), — це логарифм за основою e, де e є ірраціональною сталою, що приблизно дорівнює 2.718. Він широко використовується в математиці, математичному аналізі та моделях експоненціального зростання."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка різниця між натуральними та десятичними логарифмами?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Натуральні логарифми використовують основу e і записуються як ln(x), тоді як десятичні логарифми використовують основу 10 і записуються як log(x). Обидва використовуються для розв'язання показникових рівнянь, але в різних контекстах."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Де логарифми використовуються в реальному житті?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Логарифми використовуються в багатьох галузях, включаючи комп'ютерні науки, фізику та інженерію. Вони необхідні для розв'язання показникових рівнянь, аналізу складності алгоритмів та моделювання природних процесів, таких як розпад і зростання."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="logarithms.html">algebrica.org/logarithms</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Критерій збіжності Коші для рядів — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Ряди</span>
+    </nav>
+    <article>
+        <h1>Критерій збіжності Коші для рядів</h1>
+        <time>2025-02-18</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Вступ</h2>
+<p><strong>Критерій Коші</strong> — це корисний інструмент для доведення того, що <a href="series.html">ряд</a> є збіжним, без необхідності знати його суму. Замість обчислення точного значення ряду, критерій перевіряє, чи стають часткові суми зрештою довільно близькими одна до одної. Якщо ця умова виконується, ми можемо зробити висновок, що ряд збіжний, навіть якщо фактична <a href="limits.html">границя</a> залишається невідомою.</p>
+<p>Цей критерій спирається на <a href="cauchy-sequence.html">критерій збіжності Коші</a> для <a href="sequences.html">послідовностей</a>, який стверджує, що послідовність \( a_n \) є збіжною тоді і тільки тоді, коли:</p>
+<p>\[
+\forall \, \varepsilon &gt; 0 \ \exists \, \nu \in \mathbb{N} \, : \, |a_n &#8211; a_m| &lt; \varepsilon \quad \forall\, n, m &gt; \nu
+\]</p>
+<h5>Приємною особливістю підходу Коші є те, що він дозволяє нам зрозуміти ряд, розглядаючи лише поведінку його часткових сум, не переслідуючи фактичне значення, до якого вони можуть наближатися. Така перспектива особливо корисна в доведеннях, де важлива структура аргументу, а не кінцевий числовий результат.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Критерій збіжності Коші</h2>
+<p>Нехай \( \sum_{k=1}^{\infty} a_k \) — ряд. Згідно з критерієм Коші, ряд є збіжним тоді і тільки тоді, коли виконується наступна умова:</p>
+<p>\[
+\forall \, \varepsilon &gt; 0 \ \exists \, \nu \in \mathbb{N}\, : \ 
+\left| \sum_{k=\nu+1}^{\nu+p} a_k \right| &lt; \varepsilon \quad \forall \, p \in \mathbb{N}
+\]</p>
+<p>Простими словами, сума будь-якого «хвоста» ряду, починаючи з деякого достатньо великого індексу, має бути довільно малою. Це гарантує, що часткові суми стають все ближчими і ближчими, що означає збіжність.</p>
+<hr>
+<p>Щоб довести це, ми застосуємо критерій збіжності Коші для послідовностей до заданого ряду.</p>
+<ul>
+<li>Нагадаємо, що ряд \( \sum a_k \) збіжний тоді і тільки тоді, коли послідовність його часткових сум \( s_n = \sum_{k=1}^{n} a_k \) є збіжною.</li>
+<li>Отже, ряд збіжний тоді і тільки тоді, коли послідовність \( (s_n) \) є послідовністю Коші.</li>
+</ul>
+<p>У випадку ряду різницю між двома частковими сумами можна записати як:</p>
+<p>\[
+s_{n+p} - s_n = \sum_{k=n+1}^{n+p} a_k
+\]</p>
+<p>Взявши абсолютне значення, отримаємо:</p>
+<p>\[
+|s_{n+p} &#8211; s_n| = \left| \sum_{k=n+1}^{n+p} a_k \right|
+\]</p>
+<p>Простіше кажучи, критерій Коші для послідовностей вимагає, щоб:</p>
+<p>\[
+|s_{n+p} - s_n| &lt; \varepsilon
+\]</p>
+<p>для всіх \( p \in \mathbb{N} \), за умови, що \( n \) достатньо велике. У нашому випадку вираз:</p>
+<p>\[
+\left| \sum_{k=n+1}^{n+p} a_k \right|
+\]</p>
+<p>представляє собою «хвіст» ряду. Якщо цей хвіст стає малим, коли \( n \) достатньо велике, тоді він поводиться точно так само, як \( \varepsilon \) в умові Коші для послідовностей. Іншими словами, хвіст відіграє роль різниці, яку ми хочемо зробити довільно малою. З цієї причини критерій вважається доведеним.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 1</h2>
+<p>Скористаймося критерієм Коші, щоб довести, що <a href="geometric-series.html">геометричний ряд</a>:</p>
+<p>\[
+\sum_{k=0}^{\infty} x^k
+\]</p>
+<p>збіжний, коли \( |x| &lt; 1 \). Розглянемо хвіст ряду, починаючи з індексу \( n+1 \):</p>
+<p>\[
+\left| \sum_{k=n+1}^{n+p} x^k \right| = \left| x^{n+1} + x^{n+2} + \dots + x^{n+p} \right|
+\]</p>
+<p>Це скінченна геометрична сума, яку ми можемо обчислити явно:</p>
+<p>\[
+\left| \sum_{k=n+1}^{n+p} x^k \right| = \left| x^{n+1} \cdot \frac{1 &#8211; x^p}{1 &#8211; x} \right| = \frac{|x|^{n+1} \cdot |1 - x^p|}{|1 - x|}
+\]</p>
+<p>Оскільки \( |x| &lt; 1 \), маємо \( |x|^{n+1} \to 0 \) при \( n \to \infty \), а інші множники залишаються обмеженими. Отже, для будь-якого \( \varepsilon &gt; 0 \) ми можемо знайти \( n \) достатньо великим, щоб весь вираз був меншим за \( \varepsilon .\)</p>
+<h5>Це працює саме тому, що \( x^k \) є загальним членом <a href="geometric-sequence.html">геометричної послідовності</a>.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Це показує, що хвіст стає довільно малим, що задовольняє критерій Коші.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline pb-steps"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Приклад 2</h2>
+<p>Тепер доведемо, що геометричний ряд:</p>
+<p>\[
+\sum_{k=0}^{\infty} x^k
+\]</p>
+<p>збігається для конкретного значення, наприклад \( x = 0.5 \). Оскільки \( |x| &lt; 1 \), ми очікуємо, що ряд буде збіжним. Щоб застосувати критерій збіжності Коші, розглянемо розмір хвоста:</p>
+<p>\[
+\left| \sum_{k=n+1}^{n+p} x^k \right|
+\]</p>
+<hr>
+<p>Ми можемо обчислити суму за допомогою формули:</p>
+<p>\[
+\sum_{k=n+1}^{n+p} x^k = x^{n+1} \cdot \frac{1 &#8211; x^p}{1 &#8211; x}
+\]</p>
+<p>Взявши абсолютне значення, отримаємо:</p>
+<p>\[
+\left| \sum_{k=n+1}^{n+p} x^k \right| = \frac{(0.5)^{n+1} \cdot |1 - (0.5)^p|}{|1 - 0.5|} = 2 \cdot (0.5)^{n+1} \cdot |1 - (0.5)^p|
+\]</p>
+<hr>
+<p>Тепер зауважимо:</p>
+<ul>
+<li>\( (0.5)^{n+1} \to 0 \), коли \( n \to \infty \)</li>
+<li>\( |1 &#8211; (0.5)^p| \leq 1 \) для всіх \( p \in \mathbb{N} \)</li>
+</ul>
+<p>Отже:</p>
+<p>\[
+\left| \sum_{k=n+1}^{n+p} x^k \right| \leq 2 \cdot (0.5)^{n+1}
+\]</p>
+<hr>
+<p>Оскільки права частина прямує до нуля при \( n \to \infty \), для будь-якого \( \varepsilon &gt; 0 \) ми можемо знайти достатньо велике \( n \), щоб:</p>
+<p>\[
+\left| \sum_{k=n+1}^{n+p} x^k \right| &lt; \varepsilon \quad \text{для всіх } p \in \mathbb{N}
+\]</p>
+<hr>
+<p>Ця поведінка проілюстрована на наступному графіку, який показує, як часткові суми \( s_n \) швидко наближаються до точного значення ряду, яке дорівнює \(2\) при \( x = 0.5 \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="868" height="532" src="../images/series-cauchy-1.png" alt="" class="wp-image-15937" style="width:434px" srcset="../images/series-cauchy-1.png 868w, https://algebrica.org/wp-content/uploads/resources/images/series-cauchy-1-300x184.png 300w, https://algebrica.org/wp-content/uploads/resources/images/series-cauchy-1-768x471.png 768w" sizes="(max-width: 868px) 100vw, 868px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Це задовольняє критерій збіжності Коші. Отже, ряд збігається для \( x = 0.5 \).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-glossary"><h2>Глосарій</h2>
+<ul>
+<li>
+<p>Критерій Коші: математичний тест, що використовується для визначення збіжності послідовностей і рядів без обов'язкового знаходження границі або суми.</p>
+</li>
+<li>
+<p>Збіжний ряд: ряд, послідовність часткових сум якого наближається до скінченної границі.</p>
+</li>
+<li>
+<p>Часткові суми \( s_n \): сума перших \( n \) членів ряду, \( s_n = \sum_{k=1}^{n} a_k \).</p>
+</li>
+<li>
+<p>Послідовність Коші: послідовність, у якій члени стають довільно близькими один до одного в міру просування послідовності.</p>
+</li>
+<li>
+<p>Епсилон \( \varepsilon \): маленьке додатне число, що зазвичай використовується в означеннях granic і неперервності для представлення довільно малої відстані.</p>
+</li>
+<li>
+<p>Ню \( \nu \): індекс (зазвичай <a href="integers.html">ціле число</a>), який є достатньо великим, щоб задовольнити задану умову в означенні збіжності.</p>
+</li>
+<li>
+<p>Хвіст ряду: сума членів ряду, починаючи з певного індексу, часто представляється як \( \sum_{k=\nu+1}^{\infty} a_k \) або, в контексті критерію, скінченна частина хвоста \( \sum_{k=\nu+1}^{\nu+p} a_k \).</p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке критерій збіжності Коші?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Він стверджує, що ряд збігається, якщо суму його хвостів можна зробити довільно малою для достатньо великих індексів."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що перевіряє цей критерій?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Він перевіряє, чи стає різниця між частковими сумами довільно малою зі збільшенням індексу."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="cauchy-convergence-criterion-series.html">algebrica.org/cauchy-convergence-criterion-series</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

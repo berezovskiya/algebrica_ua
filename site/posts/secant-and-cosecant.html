@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Секанс та косеканс — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Секанс та косеканс</h1>
+        <time>2025-02-07</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-17" style="height:420px;min-height:420px;max-height:420px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:420px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="sine-and-cosine.html">Синус і Косинус</a>, <a href="unit-circle.html">Одиникове коло</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-17");
+            var dataset = {"name":"root","children":[{"name":"definitions","children":[{"name":"secant"},{"name":"cosecant"},{"name":"reciprocal of cosine"},{"name":"reciprocal of sine"},{"name":"domain restrictions"},{"name":"undefined values"}]},{"name":"geometry","children":[{"name":"unit circle"},{"name":"tangent line"},{"name":"geometric construction"},{"name":"similar triangles"},{"name":"segment interpretation"},{"name":"intersection points"}]},{"name":"properties","children":[{"name":"trigonometric identities"},{"name":"function graphs"},{"name":"asymptotes"},{"name":"periodicity"},{"name":"parity"},{"name":"range"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 420;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Секанс</h2>
+<p>Розглянемо <a href="unit-circle.html">одиничне коло</a> з центром у початку координат \(\text{O} = (0,0)\) та радіусом \(1\). Нехай \(\theta\) — кут у стандартному положенні, і позначимо \(\text{P}\) точку на колі, де перетинається з ним термінальний бік \(\theta\). Проведемо дотичну до кола в точці \(\text{P}\), і нехай \(\text{S}\) буде точкою, де ця дотична перетинає вісь \(x\). Секанс кута \(\theta\) визначається як знакове значення довжини відрізка \(\overline{OS}\), тобто абсциса \(x_S\) точки \(\text{S}\):</p>
+<p>\[
+\sec(\theta) = \overline{OS} = x_S
+\]</p>
+<p>Щоб виразити цю довжину через відомі тригонометричні величини, розглянемо прямокутний трикутник, утворений точками \(\text{O}\), \(\text{P}\) та основою перпендикуляра, опущеного з \(\text{P}\) на вісь \(x\). Оскільки \(\text{OP} = 1\) і горизонтальна компонента \(\text{P}\) дорівнює \(\cos(\theta)\), а дотична в точці \(\text{P}\) перпендикулярна до радіуса \(\overline{OP}\), за допомогою подібних трикутників можна встановити, що:</p>
+<p>\[
+\sec(\theta) = \frac{1}{\cos(\theta)}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="704" height="560" src="../images/secant-2.png" alt="Secant." class="wp-image-27955" style="width:352px" title="Secant." srcset="../images/secant-2.png 704w, https://algebrica.org/wp-content/uploads/resources/images/secant-2-300x239.png 300w" sizes="(max-width: 704px) 100vw, 704px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Оскільки секанс є оберненою величиною до <a href="sine-and-cosine.html">косинуса</a>, він визначений лише для тих кутів, де косинус не дорівнює нулю. Косинус дорівнює нулю у всіх непарних кратних \(\pi/2\), тому область визначення секанса виключає саме ці значення:</p>
+<p>\[
+\sec(\theta) = \frac{1}{\cos(\theta)}
+\qquad \forall\, \theta \neq \frac{\pi}{2} + k\pi, \quad k \in \mathbb{Z}
+\]</p>
+<p>З геометричного побудови випливає, що секанс визначає коефіцієнт, на який необхідно подовжити одиничний радіус, щоб досягти точки \(\text{S}\), де дотична в точці \(\text{P}\) перетинає вісь \(x\). Така інтерпретація пояснює, чому \(|\sec(\theta)| \geq 1\) всюди, де функція визначена: точка перетину \(\text{S}\) обов'язково лежить на відстані від початку координат, що не є меншою за радіус самого одиничного кола.</p>
+<blockquote>
+<p>У цьому розділі секанс розглядається з геометричної точки зору. Для аналітичних властивостей функції, включаючи область визначення, симетрію, границі, похідні та інтеграли, див. спеціальний розділ про <a href="secant-function.html">функцію секанс</a>.</p>
+</blockquote>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Загальні значення секанса</h2>
+<p>Нижче наведено деякі загальновідомі значення \(\sec(\theta)\) для обраних кутів, які є корисними в різних застосуваннях тригонометрії:</p>
+<p>\[
+\begin{align}
+\theta &amp;= 0^\circ = 0\,\text{рад}      &amp;&amp; \sec(\theta) = 1 \\[6pt]
+\theta &amp;= 30^\circ = \pi/6\,\text{рад} &amp;&amp; \sec(\theta) = \tfrac{2\sqrt{3}}{3} \\[6pt]
+\theta &amp;= 45^\circ = \pi/4\,\text{рад} &amp;&amp; \sec(\theta) = \sqrt{2} \\[6pt]
+\theta &amp;= 60^\circ = \pi/3\,\text{рад} &amp;&amp; \sec(\theta) = 2 \\[6pt]
+\theta &amp;= 90^\circ = \pi/2\,\text{рад} &amp;&amp; \sec(\theta) \text{ не визначено}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Тригонометричні тотожності для секанса</h2>
+<ul>
+<li>
+<p>\[ \text{1. } \quad \sec x = \frac{1}{\cos x} \]</p>
+</li>
+<li>
+<p>\[ \text{2. } \quad 1 + \tan^{2} x = \sec^{2} x \]</p>
+</li>
+<li>
+<p>\[ \text{3. } \quad \sec(-x) = \sec x \]</p>
+</li>
+<li>
+<p>\[ \text{4. } \quad \sec x \,\tan x = \frac{\sin x}{\cos^{2} x} \]</p>
+</li>
+<li>
+<p>\[ \text{5. } \quad \sec^{2} x &#8211; \tan^{2} x = 1 \]</p>
+</li>
+</ul>
+<blockquote>
+<p>Ці формули об'єднують найкорисніші тотожності з секансом, включаючи обернене визначення, теорему Піфагора, відношення симетрії та загальні алгебраїчні перетворення. Для ширшого огляду зверніться до повної збірки <a href="trigonometric-identities.html">тригонометричних тотожностей</a>.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Косеканс</h2>
+<p>Розглянемо знову ту саму побудову: дотична, проведена в точці \(\text{P}\) до одиничного кола, перетинає вісь \(y\) в точці \(\text{Q}\). Косеканс кута \(\theta\) визначається як знакове значення довжини відрізка \(\overline{OQ}\), тобто ордината \(y_Q\) точки \(\text{Q}\):</p>
+<p>\[
+\csc(\theta) = \overline{OQ} = y_Q
+\]</p>
+<p>За допомогою аргументу, аналогічного до того, що був наведений для секанса, застосування подібних трикутників до цієї конфігурації дає наступний вираз через синус:</p>
+<p>\[
+\csc(\theta) = \frac{1}{\sin(\theta)}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="858" height="562" src="../images/cosecant-2.png" alt="Cosecant." class="wp-image-27958" style="width:429px" title="Cosecant." srcset="../images/cosecant-2.png 858w, https://algebrica.org/wp-content/uploads/resources/images/cosecant-2-300x197.png 300w, https://algebrica.org/wp-content/uploads/resources/images/cosecant-2-768x503.png 768w" sizes="(max-width: 858px) 100vw, 858px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Оскільки косеканс є оберненою величиною до <a href="sine-and-cosine.html">синуса</a>, він визначений лише для тих кутів, де синус не дорівнює нулю. Синус дорівнює нулю у всіх цілих кратних \(\pi\), тому область визначення косеканса виключає саме ці значення:</p>
+<p>\[
+\csc(\theta) = \frac{1}{\sin(\theta)} \qquad \forall\, \theta \neq k\pi, \quad k \in \mathbb{Z}
+\]</p>
+<p>Аналогічно до секанса, косеканс вимірює коефіцієнт, у стількості разів радіус одиничного кола має бути продовжений, щоб досягти точки \(\text{Q}\), де дотична в точці \(\text{P}\) перетинає вісь \(y\). Така інтерпретація пояснює, чому \(|\csc(\theta)| \geq 1\) всюди, де функція визначена: точка перетину \(\text{Q}\) обов'язково лежить на відстані від початку координат, що не є меншою за радіус самого одиничного кола.</p>
+<blockquote>
+<p>У цьому розділі розглянуто косеканс з геометричної точки зору. Для ознайомлення з аналітичними властивостями функції, включаючи область визначення, симетрію, границі, похідні та інтеграли, дивіться спеціальний розділ про <a href="cosecant-function.html">функцію косеканс</a>.</p>
+</blockquote>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Обидва означення випливають з одного геометричного об'єкта: дотична, проведена в точці \(\text{P}\), одночасно визначає точку \(\text{S}\) на осі \(x\) та точку \(\text{Q}\) на осі \(y\), що дозволяє отримати секанс і косеканс з однієї побудови.</p>
+<p>Це також пояснює асиметричну поведінку двох функцій. Коли кінцевий бік \(\theta\) наближається до горизонтального положення, дотична в точці \(\text{P}\) стає майже паралельною осі \(x\), що відштовхує \(\text{S}\) у нескінченність і робить секанс необмеженим, тоді як \(\text{Q}\) залишається чітко визначеною. Ситуація змінюється на протилежну, коли кінцевий бік наближається до вертикального положення.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Загальні значення косеканса</h2>
+<p>Нижче наведено деякі загальновідомі значення \(\csc(\theta)\) для обраних кутів, які є корисними в різних застосуваннях тригонометрії:</p>
+<p>\[
+\begin{align}
+\theta &amp;= 0^\circ = 0\,\text{рад}      &amp;&amp; \csc(\theta) \text{ не визначено} \\[6pt]
+\theta &amp;= 30^\circ = \pi/6\,\text{рад} &amp;&amp; \csc(\theta) = 2 \\[6pt]
+\theta &amp;= 45^\circ = \pi/4\,\text{рад} &amp;&amp; \csc(\theta) = \sqrt{2} \\[6pt]
+\theta &amp;= 60^\circ = \pi/3\,\text{рад} &amp;&amp; \csc(\theta) = \tfrac{2\sqrt{3}}{3} \\[6pt]
+\theta &amp;= 90^\circ = \pi/2\,\text{рад} &amp;&amp; \csc(\theta) = 1
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Функції секанс і косеканс</h2>
+<p> <a href="secant-function.html">Функція секанс</a> \(f(x) = \sec(x)\) кожному куту \(x\), виміряному в радіанах, присвоює значення \(1/\cos(x)\). Її графіком є періодична крива з періодом \(2\pi\), яка має вертикальні <a href="asymptotes.html">асимптоти</a> в точках, де косинус дорівнює нулю, тобто при \(x = \pi/2 + k\pi\) для \(k \in \mathbb{Z}\). <a href="determining-the-domain-of-a-function.html">Область визначення</a> \(\sec(x)\) складається з усіх дійсних чисел, крім цих точок, а її область значень — \((-\infty, -1] \cup [1, +\infty)\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="896" height="772" src="../images/secant-function-2.png" alt="Secant function." class="wp-image-27965" style="width:448px" title="Secant function." srcset="../images/secant-function-2.png 896w, https://algebrica.org/wp-content/uploads/resources/images/secant-function-2-300x258.png 300w, https://algebrica.org/wp-content/uploads/resources/images/secant-function-2-768x662.png 768w" sizes="(max-width: 896px) 100vw, 896px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps mb-x-30"><ul>
+<li>Область визначення: \( { x \in \mathbb{R} : \cos(x) \neq 0 } = { x \in \mathbb{R} : x \neq \pi/2 + k\pi \text{ для всіх } k \in \mathbb{Z} } \)</li>
+<li>Область значень: \( y \in (-\infty, -1] \cup [1, \infty) \)</li>
+<li>Періодичність: періодична за \( x \) з періодом \( 2\pi \)</li>
+<li>Парність: <a href="even-and-odd-functions.html">парна</a>, \( \sec(-x) = \sec(x) \)</li>
+</ul>
+<hr>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p> <a href="cosecant-function.html">Функція косеканс</a> \(f(x) = \csc(x)\) кожному куту \(x\), виміряному в радіанах, присвоює значення \(1/\sin(x)\). Її графіком є періодична крива з періодом \(2\pi\), яка має вертикальні асимптоти в точках, де синус дорівнює нулю, тобто при \(x = k\pi\) для \(k \in \mathbb{Z}\). <a href="determining-the-domain-of-a-function.html">Область визначення</a> \(\csc(x)\) складається з усіх дійсних чисел, крім цих точок, а її область значень — \((-\infty, -1] \cup [1, +\infty)\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="852" height="732" src="../images/cosecant-function.png" alt="Cosecant function." class="wp-image-27967" style="width:426px" title="Cosecant function." srcset="../images/cosecant-function.png 852w, https://algebrica.org/wp-content/uploads/resources/images/cosecant-function-300x258.png 300w, https://algebrica.org/wp-content/uploads/resources/images/cosecant-function-768x660.png 768w" sizes="(max-width: 852px) 100vw, 852px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Область визначення: \( { x \in \mathbb{R} : \sin(x) \neq 0 } = { x \in \mathbb{R} : x \neq k\pi \text{ для всіх } k \in \mathbb{Z} } \)</li>
+<li>Область значень: \( y \in (-\infty, -1] \cup [1, \infty) \)</li>
+<li>Періодичність: періодична за \( x \) з періодом \( 2\pi \)</li>
+<li>Парність: <a href="even-and-odd-functions.html">непарна</a>, \( \csc(-x) = -\csc(x) \)</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Тригонометричні тотожності для косеканса</h2>
+<ul>
+<li>
+<p>\[ \text{1. } \quad \csc x = \frac{1}{\sin x} \]</p>
+</li>
+<li>
+<p>\[ \text{2. } \quad 1 + \cot^{2} x = \csc^{2} x \]</p>
+</li>
+<li>
+<p>\[ \text{3. } \quad \csc(-x) = -\,\csc x \]</p>
+</li>
+<li>
+<p>\[ \text{4. } \quad \csc x \,\cot x = \frac{\cos x}{\sin^{2} x} \]</p>
+</li>
+<li>
+<p>\[ \text{5. } \quad \csc^{2} x - \cot^{2} x = 1 \]</p>
+</li>
+</ul>
+<blockquote>
+<p>Ці формули об'єднують найкорисніші тотожності з косекансом, включаючи обернене означення, теорему Піфагора, відношення симетрії та поширені алгебраїчні перетворення. Для ширшого огляду зверніться до повної збірки <a href="trigonometric-identities.html">тригонометричних тотожностей</a>.</p>
+</blockquote>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке функція секанс?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функція секанс, що позначається як sec(x), визначається як обернена до функції косинус. Вона присвоює кожному куту x (виміряному в радіанах) значення 1/cos(x)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка область визначення функції секанс?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Область визначення функції секанс включає всі дійсні числа, за винятком тих, де функція косинус дорівнює нулю, а саме при x = π/2 + kπ, де k належить множині цілих чисел."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке функція косеканс?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функція косеканс, що позначається як csc(x), визначається як обернена до функції синус. Вона присвоює кожному куту x (виміряному в радіанах) значення 1/sin(x)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка область визначення функції косеканс?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Область визначення функції косеканс включає всі дійсні числа, за винятком тих, де функція синус дорівнює нулю, а саме при x = kπ, де k належить множині цілих чисел."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="secant-and-cosecant.html">algebrica.org/secant-and-cosecant</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

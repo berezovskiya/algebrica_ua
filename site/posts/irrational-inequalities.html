@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ірраціональні нерівності — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Нерівності</span>
+    </nav>
+    <article>
+        <h1>Ірраціональні нерівності</h1>
+        <time>2025-02-13</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-11" style="height:420px;min-height:420px;max-height:420px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:420px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">4</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="determining-the-domain-of-a-function.html">Визначення області визначення функції</a>, <a href="quadratic-inequalities.html">Квадратні нерівності</a>, <a href="radicals.html">Коріні</a>, <a href="sign-analysis-in-inequalities.html">Аналіз знаків у нерівностях</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-11");
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"ірраціональна нерівність"},{"name":"коріні"},{"name":"дробові показники"},{"name":"обмеження області визначення"},{"name":"допустимі значення"}]},{"name":"методи","children":[{"name":"визначення області визначення"},{"name":"аналіз знаків"},{"name":"випадок парного показника"},{"name":"випадок непарного показника"},{"name":"піднесення до квадрата"},{"name":"перевірка розв'язання"}]},{"name":"випадки","children":[{"name":"нерівності з квадратним коренем"},{"name":"випадки з параметрами"},{"name":"вкладені корені"},{"name":"два корені"},{"name":"кілька коренів"},{"name":"перетин розв'язків"},{"name":"сторонні розв'язки"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 420;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Означення</h2>
+<p>Ірраціональна нерівність — це нерівність, у якій невідоме знаходиться під знаком <a href="radicals.html">корня</a> або піднесено до дробового <a href="powers.html">показника</a>. Точніше, це нерівність вигляду \(F(x) \geq 0\) або \(F(x) &gt; 0\), у якій хоча б один член містить вираз типу \(\sqrt[n]{f(x)}\) або, що еквівалентно, \(f(x)^{p/q}\) при \(q &gt; 1\). Як і у випадку з ірраціональними рівняннями, наявність коренів накладає обмеження на <a href="determining-the-domain-of-a-function.html">область визначення</a>, і ці обмеження нетривіально взаємодіють із напрямком нерівності.</p>
+<p>Центральна складність, що відрізняє ірраціональні нерівності від відповідних рівнянь, полягає в тому, що піднесення обох частин до степеня є монотонною операцією лише за певних умов знака:</p>
+<ul>
+<li>Коли обидві частини є невід'ємними, нерівність зберігається при піднесенні до степеня з парним показником.</li>
+<li>Коли знак однієї з частин невизначений, напрямок нерівності може змінитися на протилежний або така операція може бути взагалі невиправданою.</li>
+</ul>
+<h6>На практиці розв'язання ірраціональних нерівностей потребує ретельного контролю допустимих значень, оскільки алгебраїчні перетворення можуть призвести до появи сторонніх розв'язків, які необхідно перевірити за допомогою початкової нерівності.</h6>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Корені з парним та непарним показником</h2>
+<p>Поведінка ірраціональної нерівності фундаментально залежить від того, чи є показник \(n\) кореня парним чи непарним, і ця відмінність визначає всю стратегію розв'язання. Коли показник є непарним, функція \(\sqrt[n]{x}\) визначена і є строго зростаючою на всій дійсній прямій, за умови прийняття конвенції дійсних значень, яка використовує <a href="sign-function.html">функцію знака</a>:</p>
+<p>\[\sqrt[n]{x} = \text{sign}(x) \cdot |x|^{1/n}\]</p>
+<p>що поширює поняття кореня непарного степеня на від'ємні аргументи. За цієї конвенції \(\sqrt[3]{-8} = -2\), і загалом корінь з непарним показником є оберненою функцією до функції степеня з непарним показником \(t \mapsto t^n\). Як наслідок, маємо:</p>
+<p>\[
+\sqrt[n]{f(x)} \leq \sqrt[n]{g(x)}
+\;\Longleftrightarrow\;
+f(x) \leq g(x)
+\]</p>
+<p>без будь-яких додаткових умов на область визначення, оскільки функція є монотонною на всій \(\mathbb{R}\). Таким чином, випадок з непарним показником є простішим і повторює підхід до розв'язання ірраціональних рівнянь з непарним показником.</p>
+<hr>
+<p>Коли показник є парним, ситуація стає складнішою. Функція \(\sqrt[n]{x}\) визначена лише для невід'ємних аргументів, а її область значень обмежена невід'ємними значеннями. Це означає, що будь-яка нерівність вигляду \(\sqrt[n]{f(x)} \leq g(x)\) при парному \(n\) містить неявні обмеження.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="582" height="450" src="../images/irr-ineq-1.png" alt="" class="wp-image-26515" style="width:291px" srcset="../images/irr-ineq-1.png 582w, https://algebrica.org/wp-content/uploads/resources/images/irr-ineq-1-300x232.png 300w" sizes="(max-width: 582px) 100vw, 582px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Підкореневий вираз має бути невід'ємним, і, залежно від знака \(g(x)\), нерівність може виконуватися тривіально або потребувати піднесення до квадрата. Таким чином, випадок з парним показником природно розбивається на підвипадки залежно від знака правої частини.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Загальні форми та стратегії розв'язання</h2>
+<p>Нижче наведено найпоширеніші ірраціональні нерівності, що містять квадратний корінь. Кожен тип потребує специфічного методу розв'язання. Для нерівності вигляду:</p>
+<p>\[\sqrt{f(x)} \leq g(x)\]</p>
+<p>розв'язання відбувається наступним чином. Якщо \(g(x) &lt; 0\), нерівність не має розв'язків у цій точці, оскільки квадратний корінь завжди невід'ємний. Якщо \(g(x) \geq 0\), нерівність еквівалентна піднесенню обох частин до квадрата, що є допустимим, оскільки обидві частини невід'ємні. Повна умова, отже, є наступною системою.</p>
+<p>\[
+\begin{cases} f(x) \geq 0 \\[6pt] g(x) \geq 0 \\[6pt] f(x) \leq \bigl(g(x)\bigr)^2 \end{cases}
+\]</p>
+<hr>
+<p>Для наступного випадку необхідно розрізнити два підвипадки:</p>
+<p>\[\sqrt{f(x)} \geq g(x)\]</p>
+<ul>
+<li>
+<p>Коли \(g(x) &lt; 0\), нерівність автоматично виконується для кожного \(x\) в області визначення \(\sqrt{f(x)}\), оскільки ліва частина є невід'ємною і, отже, завжди більша за від'ємну величину.</p>
+</li>
+<li>
+<p>Коли \(g(x) \geq 0\), обидві частини є невід'ємними, і можна піднести їх до квадрата, отримавши наступну систему.</p>
+</li>
+</ul>
+<p>\[
+\begin{cases} f(x) \geq 0 \\[6pt] g(x) \geq 0 \\[6pt] f(x) \geq \bigl(g(x)\bigr)^2 \end{cases}
+\]</p>
+<p>Повне розв'язання тоді є об'єднанням двох підвипадків.</p>
+<hr>
+<p>Для нерівності вигляду:</p>
+<p>\[\sqrt{f(x)} \leq \sqrt{g(x)}\]</p>
+<p>оскільки обидві частини є невід'ємними всюди, де вони визначені, піднесення до квадрата завжди є допустимим, коли обидва підкореневі вирази невід'ємні, і система зводиться до наступної.</p>
+<p>\[
+\begin{cases} f(x) \geq 0 \\[6pt] g(x) \geq 0 \\[6pt] f(x) \leq g(x) \end{cases}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Розв'язання ірраціональної нерівності базується на тому самому основоположному принципі, що і розв'язання ірраціонального рівняння: радикальний знак усувається шляхом піднесення обох частин до відповідного степеня, після чого аналізується отримане алгебраїчне рівняння разом із умовами області визначення, що накладаються радикалом. Ключова відмінність полягає в тому, що на кожному кроці необхідно ретельно стежити за напрямком нерівності, оскільки піднесення до квадрата є монотонною операцією лише для невипадкових дійсних чисел.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Типові кроки розв'язання</h2>
+<p>Незалежно від конкретного вигляду нерівності, процес розв'язання складається з послідовного виконання таких кроків.</p>
+<ul>
+<li>Визначити область визначення, що накладається радикалами.</li>
+<li>Проаналізувати знак частини, що не містить радикалів.</li>
+<li>Підносити до квадрата лише тоді, коли обидві частини є невипадковими.</li>
+<li>Розв'язати отриману алгебраїчну нерівність.</li>
+<li>Знайти перетин з умовами області визначення.</li>
+</ul>
+<h6>Кожен крок залежить від попереднього: пропуск аналізу області визначення або ігнорування знака правої частини є двома найпоширенішими джерелами помилок при розв'язанні ірраціональних нерівностей.</h6>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо наступну нерівність:</p>
+<p>\[
+\sqrt{2x &#8211; 1} \leq x - 2
+\]</p>
+<p>Ліва частина визначена лише тоді, коли підрадикальний вираз є невипадковим, тому першою умовою є \(2x - 1 \geq 0\), тобто \(x \geq \frac{1}{2}\). Оскільки квадратний корінь завжди є невипадковим, права частина також має бути невипадковою, щоб нерівність мала розв'язання: вимагається \(x &#8211; 2 \geq 0\), тобто \(x \geq 2\).</p>
+<p>За цих двох умов обидві частини є невипадковими, і піднесення обох частин до квадрата є правильною операцією, що зберігає напрямок нерівності. Задача зводиться до наступної системи.</p>
+<p>\[
+\begin{cases} x \geq \dfrac{1}{2} \\[6pt] x \geq 2 \\[6pt] 2x &#8211; 1 \leq (x-2)^2 \end{cases}
+\]</p>
+<p>Розкриття дужок у правій частині третьої нерівності дає \((x-2)^2 = x^2 &#8211; 4x + 4\), отже нерівність набуває вигляду \(2x &#8211; 1 \leq x^2 - 4x + 4\), тобто \(x^2 - 6x + 5 \geq 0\). <a href="roots-of-a-polynomial.html">Корені</a> відповідного <a href="quadratic-equations.html">квадратного рівняння</a> \(x^2 &#8211; 6x + 5 = 0\) дорівнюють \(x = 1\) та \(x = 5\), отже квадратний тричлен є невипадковим поза проміжком \([1, 5]\), що дає \(x \leq 1\) або \(x \geq 5\).</p>
+<p>Знаходячи перетин усіх трьох умов: перші дві вимагають \(x \geq 2\), а третя вимагає \(x \leq 1\) або \(x \geq 5\). У області \(x \geq 2\) виживає лише частина \(x \geq 5\). Зображення цих умов на числовій прямій дає наступну картину.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain mt-m-20">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[\dfrac{1}{2}\]</th>
+<th>\[1\]</th>
+<th>\[2\]</th>
+<th>\[5\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-right -closed"></div></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -closed -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Виділений рядок представляє перетин умов: розв'язанням є множина значень \(x\), для яких обидві нерівності виконуються одночасно.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язанням є проміжок \([5, +\infty)\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо наступну нерівність:</p>
+<p>\[
+\sqrt{x^2 &#8211; 3x} \geq x - 1
+\]</p>
+<p><a href="determining-the-domain-of-a-function.html">Область визначення</a> вимагає \(x^2 - 3x \geq 0\), тобто \(x(x-3) \geq 0\), що виконується при \(x \leq 0\) або \(x \geq 3\). Тепер розрізняємо два підвипадки залежно від знака правої частини.</p>
+<p>Перший випадок: \(x - 1 &lt; 0\), тобто \(x &lt; 1\). У цій області права частина від'ємна, а ліва частина невід'ємна, тому нерівність автоматично задоволена. Результатом цього підвипадку є перетин \(x &lt; 1\) з областю визначення \(x \leq 0\) або \(x \geq 3\), що дає \(x \leq 0\).</p>
+<p>Другий випадок: \(x &#8211; 1 \geq 0\), тобто \(x \geq 1\). Обидві частини невід'ємні, і піднесення до квадрата є допустимим. Нерівність набуває вигляду \(x^2 &#8211; 3x \geq (x-1)^2 = x^2 - 2x + 1\), тобто \(-3x \geq -2x + 1\), звідси \(-x \geq 1\), що дає \(x \leq -1\). Це необхідно перетнути з \(x \geq 1\) та з областю визначення: перетин є порожнім.</p>
+<p>Збираючи два підвипадки, повне розв'язання становить \((-\infty, 0]\). Зо zobrazження умов на дійсній прямій дає наступну картину.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain mt-m-20">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[0\]</th>
+<th>\[1\]</th>
+<th>\[3\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-right -closed"></div></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-right -closed"></div></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-point-c"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-right -closed -highlight"></div></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Виділений рядок представляє перетин умов: розв'язанням є множина значень \(x\), для яких обидві нерівності задоволені одночасно.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язанням є проміжок \((-\infty, 0]\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Розглянемо наступну нерівність:</p>
+<p>\[
+\sqrt{x^2 &#8211; x &#8211; 6} \leq \sqrt{2x + 2}
+\]</p>
+<p>Оскільки обидві частини містять квадратні корені, обидва підкореневі вирази мають бути невід'ємними. Умови області визначення: \(x^2 &#8211; x &#8211; 6 \geq 0\) та \(2x + 2 \geq 0\). Перша розкладається як \((x-3)(x+2) \geq 0\), що дає \(x \leq -2\) або \(x \geq 3\). Друга дає \(x \geq -1\). Перетином цих двох умов є \(x \geq 3\).</p>
+<p>Оскільки в області визначення обидві частини невід'ємні, піднесення до квадрата є допустимим, і нерівність еквівалентна \(x^2 - x - 6 \leq 2x + 2\), тобто \(x^2 &#8211; 3x &#8211; 8 \leq 0\). Корені рівняння \(x^2 - 3x - 8 = 0\) є наступними:</p>
+<p>\[
+x = \frac{3 \pm \sqrt{9 + 32}}{2} = \frac{3 \pm \sqrt{41}}{2}
+\]</p>
+<p>Оскільки \(\sqrt{41} \approx 6.40\), корені приблизно дорівнюють \(x \approx -1.70\) та \(x \approx 4.70\). Квадратичний поліном є невід'ємним між коренями, тому нерівність виконується при:</p>
+<p>\[\frac{3 &#8211; \sqrt{41}}{2} \leq x \leq \frac{3 + \sqrt{41}}{2}\]</p>
+<p>Зображення умов на дійсній прямій дає наступну картину.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain mt-m-20">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[-2\]</th>
+<th>\[\frac{3-\sqrt{41}}{2}\]</th>
+<th>\[-1\]</th>
+<th>\[3\]</th>
+<th>\[\frac{3+\sqrt{41}}{2}\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-right -closed"></div></td>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -closed"></div></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left-in -closed"></div></td>
+<td><div class="sign-spacer"></div></td>
+<td></td>
+<td><div class="sign-plus-right-in -closed"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left-in -closed -highlight"></div></td>
+<td><div class="sign-plus-right-in -closed -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Виділений рядок представляє перетин умов: розв'язанням є множина значень \(x\), для яких обидві нерівності задоволені одночасно.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язанням є замкнений проміжок:</p>
+<p>\[\left[3,\, \dfrac{3 + \sqrt{41}}{2}\right]\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 4</h2>
+<p>Тепер розглянемо більш загальну ситуацію, в якій права частина містить <a href="equations-with-parameters.html">дійсний параметр</a> \(k\). Структура множини розв'язків залежить від значення \(k\), і повний аналіз потребує розгляду окремих випадків. Розглянемо наступну нерівність.</p>
+<p>\[
+\sqrt{x + 4} \leq k
+\]</p>
+<p>Область визначення вимагає \(x + 4 \geq 0\), тобто \(x \geq -4\). Поведінка розв'язання тоді залежить від знака \(k\).</p>
+<p>Якщо \(k &lt; 0\), права частина є від'ємною, тоді як ліва частина завжди є невиємною, тому нерівність ніколи не виконується. Розв'язків немає.</p>
+<p>Якщо \(k = 0\), нерівність зводиться до \(\sqrt{x + 4} \leq 0\). Оскільки квадратний корінь завжди є невиємним, єдина можливість — це \(\sqrt{x + 4} = 0\), тобто \(x = -4\). Розв'язком є одна точка \({-4}\).</p>
+<p>Якщо \(k &gt; 0\), обидві частини є невиємними, і піднесення до квадрата є допустимим. Нерівність набуває вигляду \(x + 4 \leq k^2\), тобто \(x \leq k^2 - 4\). Перетином з областю визначення \(x \geq -4\) є наступний замкнений проміжок.</p>
+<p>\[
+-4 \leq x \leq k^2 &#8211; 4
+\]</p>
+<p>Цей проміжок є непустим завжди, коли \(k^2 &#8211; 4 \geq -4\), тобто коли \(k^2 \geq 0\), що завжди є істиною. Зображення розв'язання на дійсній прямій для випадку \(k &gt; 0\) дає наступну картину.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain mt-m-20">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[-4\]</th>
+<th>\[k^2-4\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-left-in -closed"></div></td>
+<td><div class="sign-plus-right-in -closed"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-left-in -closed -highlight"></div></td>
+<td><div class="sign-plus-right-in -closed -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Зауважимо, що при \(k \to 0^+\) правий кінець \(k^2 - 4\) наближається до \(-4\) справа, і проміжок звужується до однієї точки \({-4}\), що узгоджується з випадком \(k = 0\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, розв'язком є замкнений проміжок:</p>
+<p>\[[-4,\, k^2 &#8211; 4]\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Вкладені радикали</h2>
+<p>Подальший рівень складності виникає, коли радикали є вкладеними, як у нерівностях вигляду:</p>
+<p>\[\sqrt{a + \sqrt{f(x)}} \leq g(x)\]</p>
+<p>У таких випадках описана вище процедура має застосовуватися ітеративно: спочатку ізолюють зовнішній радикал і підносять до квадрата, потім працюють із внутрішнім радикалом, повторюючи той самий аналіз. На кожному кроці умови області визначення накопичуються, і перетин усіх них має бути врахований у кінцевому розв'язанні. Ті самі міркування щодо монотонності застосовуються на кожному рівні вкладення.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="irrational-inequalities.html">algebrica.org/irrational-inequalities</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

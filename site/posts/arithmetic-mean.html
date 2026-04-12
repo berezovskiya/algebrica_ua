@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Середнє арифметичне — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теорія ймовірностей та статистика</span>
+    </nav>
+    <article>
+        <h1>Середнє арифметичне</h1>
+        <time>2025-05-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax mb-x-30"><h2>Що таке середнє арифметичне?</h2>
+<p> <strong>Середнє арифметичне</strong> — це найпоширеніша та найінтуїтивніша форма середнього значення. Як особливий випадок у ширшому сімействі степеневих середніх, воно виражає репрезентативне значення набору даних шляхом ділення загальної суми всіх спостережень на їхню <a href="types-of-numbers.html">кількість</a>. Оскільки воно ґрунтується на адитивній агрегації, середнє арифметичне ідеально підходить для опису величин, що комбінуються лінійно (наприклад, сирі вимірювання або значення, що не змінюються пропорційно або <a href="exponential-function.html">експоненціально</a>). По суті, воно визначає точку рівноваги розподілу, значення, навколо якого дані мають тенденцію до балансування.</p>
+<hr>
+<p>У загальному вигляді середнє арифметичне виражається як:</p>
+<p>\[
+M_a = \frac{1}{n}\sum_{i=1}^{n} x_i
+\]</p>
+<p>де \( x_1, x_2, \dots, x_n \) — це значення спостережень, а \( n \) — загальна кількість елементів.</p>
+<ul>
+<li>Середнє арифметичне може бути застосоване до будь-якої множини <a href="types-of-numbers.html">дійсних чисел</a>, включаючи від'ємні значення та нуль.</li>
+<li>Оскільки воно чутливе до екстремальних значень, середнє арифметичне може бути викривлене викидами, що робить інші середні, такі як медіана або <a href="geometric-mean.html">середнє геометричне</a>, більш доречними в деяких випадках.</li>
+<li>Середнє арифметичне завжди більше або дорівнює середньому геометричному.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline pb-table-to-content"><h2>Приклад 1</h2>
+<p>Розглянемо наступний набір даних із п'яти числових значень і обчислимо середнє арифметичне:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">\(\mathbf{xᵢ}\)</th>
+<th style="text-align:center"><strong>Значення</strong></strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">x₁</td>
+<td style="text-align:center">7.2</td>
+</tr>
+<tr>
+<td style="text-align:center">x₂</td>
+<td style="text-align:center">4.8</td>
+</tr>
+<tr>
+<td style="text-align:center">x₃</td>
+<td style="text-align:center">9.1</td>
+</tr>
+<tr>
+<td style="text-align:center">x₄</td>
+<td style="text-align:center">5.5</td>
+</tr>
+<tr>
+<td style="text-align:center">x₅</td>
+<td style="text-align:center">6.4</td>
+</tr>
+</tbody>
+</table>
+<p>У цьому випадку \( n = 5 \). Підставляючи значення, отримаємо:</p>
+<p>\[
+M_a = \frac{7.2 + 4.8 + 9.1 + 5.5 + 6.4}{5} = \frac{33.0}{5} = 6.6
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, середнє арифметичне цього ряду приблизно дорівнює:
+\[
+M_a = 6.6
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax mb-x-30"><h2>Зважене середнє арифметичне</h2>
+<p>У деяких випадках не всі точки даних вносять рівний вклад у загальний результат. Зважене середнє арифметичне розширює ідею простого середнього арифметичного, присвоюючи кожному спостереженню \( x_i \) вагу \( w_i \), що відображає його відносну важливість або частоту в наборі даних. Воно визначається як:</p>
+<p>\[
+M_{aw} = \frac{\sum_{i=1}^{n} w_i x_i}{\sum_{i=1}^{n} w_i}
+\]</p>
+<p>де \( x_i \) — значення спостережень, а \( w_i &gt; 0 \) — відповідні їм ваги.</p>
+<ul>
+<li>Зважене середнє арифметичне узагальнює просте середнє арифметичне шляхом введення коефіцієнтів важливості \( w_i \).</li>
+<li>Це забезпечує сильніший вплив більших або більш релевантних спостережень на кінцевий результат.</li>
+<li>Коли всі ваги рівні, зважене середнє арифметичне зводиться до стандартного середнього арифметичного.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline pb-table-to-content"><h2>Приклад 2</h2>
+<p>Розглянемо бізнес-кейс, де компанія хоче обчислити зважене середнє арифметичне своїх щомісячних продажів. Кожен місяць має різну кількість робочих днів, які слугують вагами для обчислення.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>Місяць</strong></th>
+<th style="text-align:center">\(x_i\) <strong>= щоденні продажі в $</strong></th>
+<th style="text-align:center">\(w_i\) <strong>= робочі дні</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Січень</td>
+<td style="text-align:center">420</td>
+<td style="text-align:center">20</td>
+</tr>
+<tr>
+<td style="text-align:center">Лютий</td>
+<td style="text-align:center">380</td>
+<td style="text-align:center">22</td>
+</tr>
+<tr>
+<td style="text-align:center">Березень</td>
+<td style="text-align:center">460</td>
+<td style="text-align:center">18</td>
+</tr>
+<tr>
+<td style="text-align:center">Квітень</td>
+<td style="text-align:center">400</td>
+<td style="text-align:center">21</td>
+</tr>
+<tr>
+<td style="text-align:center">Травень</td>
+<td style="text-align:center">440</td>
+<td style="text-align:center">19</td>
+</tr>
+</tbody>
+</table>
+<p>Застосувавши формулу зваженого середнього арифметичного, отримаємо:</p>
+<p>\[
+\begin{align}
+M_{aw} &amp;= \frac{(420 \times 20) + (380 \times 22) + (460 \times 18) + (400 \times 21) + (440 \times 19)}{20 + 22 + 18 + 21 + 19} \\[10pt]
+&amp;= \frac{8400 + 8360 + 8280 + 8400 + 8360}{100} \\[3pt]
+&amp;= \frac{41800}{100} \\[10pt]
+&amp;= 418
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Звідси, зважене середнє арифметичне продажів компанії становить \(M_{aw} = 418\) $ на день.</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке середнє арифметичне?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Середнє арифметичне, або просте середнє, — це сума всіх значень даних, поділена на кількість цих значень. Воно представляє центральне значення набору даних і підходить для величин, що комбінуються адитивно."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка різниця між середнім арифметичним і зваженим середнім?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Середнє арифметичне надає однакову важливість усім точкам даних, тоді як зважене середнє присвоює кожному значенню різні ваги залежно від його значущості або частоти, що забезпечує точніший показник, коли деякі значення є більш релевантними, ніж інші."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="arithmetic-mean.html">algebrica.org/arithmetic-mean</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

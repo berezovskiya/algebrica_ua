@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Опуклість та угнутість функцій — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Опуклість та угнутість функцій</h1>
+        <time>2025-02-24</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Вступ</h2>
+<p>Дослідження <a href="analyzing-the-graphs-of-functions.html">поведінки функції</a> передбачає не лише визначення того, де вона <a href="increasing-and-decreasing-functions.html">зростає або спадає</a>, але й розуміння того, як її графік вигинається на проміжку. <a href="functions.html">Функція</a> може бути повністю зростаючою або спадаючою на певній області, при цьому все одно мати різні геометричні форми: крива може бути вигнутою вгору або вниз, що впливає на загальний вигляд графіка та характер її зміни.</p>
+<p>Ці якісні особливості описуються поняттями <strong>випуклості</strong> та <strong>вгнутості</strong>. З геометричної точки зору вони характеризують, чи лежить графік вище або нижче своїх дотичних; аналітично вони визначаються через знак другої <a href="derivatives.html">похідної
+</a>, яка кількісно визначає кривизну функції. Встановлення цього зв'язку забезпечує точний критерій для визначення того, як функція вигинається на своїй області визначення.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Випуклість</h2>
+<p>Кажуть, що функція \(f\) є випуклою на проміжку, якщо для будь-яких двох точок \(a\) та \(b\) на цьому проміжку пряма, що з'єднує \((a, f(a))\) та \((b, f(b))\), залишається вище графіка \(f\) у кожній точці між \(a\) та \(b\). Іншими словами, хорда, що з'єднує ці дві точки, не опускається нижче кривої.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="560" src="../images/convexity-1-1.png" alt="" class="wp-image-21790" style="width:306px" title="Графік ілюструє, як випуклість функції гарантує, що кожна січна лежить вище кривої." srcset="../images/convexity-1-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/convexity-1-1-300x275.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Рівняння січної, що проходить через точки \((a, f(a))\) та \((b, f(b))\), має вигляд</p>
+<p>\[
+h(x) = \frac{f(b)-f(a)}{b-a}(x-a) + f(a)
+\]</p>
+<p>Щоб функція \(f\) була випуклою, ця пряма повинна лежати вище графіка \(f\) для кожного \(x\) на проміжку між \(a\) та \(b\). Цю вимогу можна виразити нерівністю \(h(x) &gt; f(x)\), яка в розгорнутому вигляді має вигляд:</p>
+<p>\[
+\frac{f(b)-f(a)}{b-a}(x-a) + f(a) &gt; f(x)
+\]</p>
+<p>Перегрупувавши доданки, отримаємо:</p>
+<p>\[
+\frac{f(b)-f(a)}{b-a}(x-a) &gt; f(x) &#8211; f(a)
+\]</p>
+<p>і, як наслідок:</p>
+<p>\[
+\frac{f(b)-f(a)}{b-a} &gt; \frac{f(x)-f(a)}{x-a}
+\]</p>
+<h5>Цей вираз підкреслює, як випуклість змушує кутовий коефіцієнт січної на всьому проміжку \([a,b]\) бути більшим за кутові коефіцієнти на будь-якому коротшому підпроміжку, що починається в \(a\) (наприклад, пряма, що з'єднує \((f, f(a)))\) та \((k, f(k))\).</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Вгнутість</h2>
+<p>Функція \(f\) є вгнутою на проміжку, якщо для будь-яких двох точок \(a\) та \(b\) на цьому проміжку відрізок прямої, що з'єднує \((a, f(a))\) та \((b, f(b))\), лежить нижче графіка \(f\) для кожної точки між \(a\) та \(b\). Еквівалентно, хорда, що з'єднує дві точки, ніколи не піднімається вище кривої.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="560" src="../images/convexity-1-2.png" alt="Графік ілюструє, як вгнутість функції гарантує, що кожна січна лежить нижче кривої." class="wp-image-21795" style="width:307px" title="Графік ілюструє, як вгнутість функції гарантує, що кожна січна лежить нижче кривої." srcset="../images/convexity-1-2.png 612w, https://algebrica.org/wp-content/uploads/resources/images/convexity-1-2-300x275.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Аналогічно до випадку з випуклістю, рівняння січної, що проходить через точки ((a, f(a))) та ((b, f(b))), має вигляд</p>
+<p>\[
+h(x) = \frac{f(b)-f(a)}{b-a}(x-a) + f(a)
+\]</p>
+<p>Щоб функція \(f\) була вгнутою, ця пряма повинна лежати <em>нижче</em> графіка \(f\) для кожного \(x\) на проміжку між \(a\) та \(b\). Цю умову можна виразити нерівністю (h(x) &lt; f(x)), яка в розгорнутому вигляді має вигляд:</p>
+<p>\[
+\frac{f(b)-f(a)}{b-a}(x-a) + f(a) &lt; f(x)
+\]</p>
+<p>Перегрупувавши доданки, отримаємо:</p>
+<p>\[
+\frac{f(b)-f(a)}{b-a}(x-a) &lt; f(x) - f(a)
+\]</p>
+<p>і, як наслідок:</p>
+<p>\[
+\frac{f(b)-f(a)}{b-a} &lt; \frac{f(x)-f(a)}{x-a}
+\]</p>
+<h5>Цей вираз ілюструє, як вгнутість змушує кутовий коефіцієнт січної на всьому проміжку \([a,b]\) бути меншим за кутові коефіцієнти на будь-якому коротшому підпроміжку, що починається в \(a\) (наприклад, пряма, що з'єднує \((a, f(a))\) та \((k, f(k))\).</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps"><h2>Критерії другої похідної для опуклості та ввігнутості</h2>
+<p>Прямим способом визначити кривизну функції з точки зору ввігнутості та опуклості є дослідження її другої похідної. Якщо функція \(f(x)\) є диференційовною, поведінка її другої похідної \(f’'(x)\) визначає проміжки, на яких функція є ввігнутою або опуклою. Іншими словами, маємо:</p>
+<ul>
+<li>\(f’'(x) &gt; 0\), функція \(f(x)\) є опуклою.</li>
+<li>\(f’'(x) &lt; 0\), функція \(f(x)\) є ввігнутою.</li>
+<li>Точки, де \(f’'(x) = 0\), є кандидатами на зміну кривизни, позначаючи місця, де функція може змінювати ввігнутість на опуклість.</li>
+</ul>
+<hr>
+<p>Розглянемо, наприклад, простий <a href="polynomial-function.html">поліном</a>:</p>
+<p>\[f(x) = x^{3} - 3x^{2} + 2x\]</p>
+<p>Дослідимо ввігнутість та опуклість функції, аналізуючи поведінку її другої похідної. Як перший крок, обчислимо першу похідну \(f(x)\), яку, оскільки це поліном, можна отримати негайно:</p>
+<p>\[f’(x)=3x^2−6x+2\]</p>
+<p>Розв'язавши відповідну <a href="quadratic-inequalities.html">квадратну нерівність</a>, ми визначимо значення, при яких перша похідна є додатною або від'ємною, і, отже, проміжки, на яких \(f(x)\) зростає або спадає. Для:</p>
+<p>\[f’(x)=3x^2−6x+2 \gt 0\]</p>
+<p>отримаємо:</p>
+<p>\[x &lt; \frac{3 - \sqrt{3}}{3} \quad \lor \quad x &gt; \frac{3 + \sqrt{3}}{3}\]</p>
+<p>Зобразивши розв'язання на дійсній прямій, ми можемо візуалізувати проміжки, на яких функція \(f(x)\) зростає або спадає:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign mt-m-20 mb-x-30"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ \frac{3 &#8211; \sqrt{3}}{3} \]</th>
+<th style="text-align:center">\[\frac{3 + \sqrt{3}}{3} \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\(f’(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\(f(x) \)</td>
+<td style="text-align:center">\( \nearrow \)</td>
+<td style="text-align:center">\( \searrow \)</td>
+<td style="text-align:center">\( \nearrow \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Тепер проаналізуємо поведінку \(f(x)\) стосовно її опуклості та ввігнутості. Для цього обчислимо другу похідну \(f(x)\), яка задана як:</p>
+<p>\[f’'(x) = 6x - 6 = 0 \]</p>
+<p>Рівняння виконується при \(x = 1\). Для \(x &lt; 1\) друга похідна є від'ємною, що означає, що функція є ввігнутою на цьому проміжку. Для \(x &gt; 1\) друга похідна стає додатною, отже функція є опуклою.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign mt-m-20"><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ 1 \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\(f’'(x) \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:center">\(f(x) \)</td>
+<td style="text-align:center">\( \bigcap \)</td>
+<td style="text-align:center">\( \bigcup \)</td>
+</tr>
+<tr>
+<td style="text-align:center">Ввігнутість/Опуклість</td>
+<td style="text-align:center">Вниз</td>
+<td style="text-align:center">Вгору</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>При \(x = 1\) друга похідна стає рівною нулю, що показує, що функція має <a href="maximum-minimum-and-inflection-points.html">точку перегину</a> в \((1, 0)\). Дійсно, маємо:</p>
+<p>\[f(1)=13−3⋅12+2⋅1=0\]</p>
+<h5 style="text-align:left">Це підтверджує ефективність другої похідної в описі змін кривизни та виявленні точок перегину.</h5>
+</div>
+</div></div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="convexity-and-concavity-of-functions.html">algebrica.org/convexity-and-concavity-of-functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

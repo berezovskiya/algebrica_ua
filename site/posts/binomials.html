@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Біноми — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Поліноми</span>
+    </nav>
+    <article>
+        <h1>Біноми</h1>
+        <time>2025-02-09</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-8" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Поняття                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">4</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="monomials.html">Одночлени</a>, <a href="polynomials.html">Поліноми</a>, <a href="powers.html">Степені</a>, <a href="types-of-numbers.html">Типи чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-8");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"definition"},{"name":"terms"},{"name":"degree"},{"name":"notation"},{"name":"unlike terms"},{"name":"polynomial relation"}]},{"name":"operations","children":[{"name":"foil method"},{"name":"expansion"},{"name":"distributive"},{"name":"associative"},{"name":"commutative"},{"name":"multiplication"},{"name":"simplification"}]},{"name":"structures","children":[{"name":"notable products"},{"name":"binomial theorem"},{"name":"binomial coefficient"},{"name":"pascal triangle"},{"name":"factorization"},{"name":"polynomial context"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Що таке біноми</h2>
+<p>Біном — це <a href="polynomials.html">поліном</a>, який містить рівно два ненульові доданки. Його загальний вигляд виражається як \( (a + b)\) або \( (a - b) \).</p>
+<p>У цьому контексті \(a\) та \(b\) представляють ненульові, різні доданки, що означає, що їх не можна об'єднати в один доданок. Ступінь бінома відповідає найвищому ступеню серед його доданків. Наприклад, \(x^3 + 2\) — це біном 3-го ступеня, тоді як \(3x - 5\) — це біном ступеня \(1\).</p>
+<p>Біноми мають властивості, що полегшують алгебраїчні перетворення. Серед цих властивостей є <a href="notable-products.html">залишаючі формули (помітні добутки)</a>, які є специфічними добутками, що включають <a href="powers.html">степені</a>, біноми та <a href="trinomials.html">триноми</a>. Ці добутки є фундаментальними для розв'язання рівнянь та визначення спільних математичних закономірностей.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps alignCenterMathjax"><h2>Множення двох біномів: Метод FOIL</h2>
+<p>При множенні двох біномів, таких як \((a + b)(c + d)\), ми використовуємо метод FOIL для розкриття дужок. FOIL — це акронім, який допомагає запам'ятати чотири кроки:</p>
+<ul>
+<li>F (First): помножити перші доданки: \( a \cdot c \)</li>
+<li>O (Outer): помножити зовнішні доданки: \( a \cdot d \)</li>
+<li>I (Inner): помножити внутрішні доданки: \( b \cdot c \)</li>
+<li>L (Last): помножити останні доданки: \( b \cdot d \)</li>
+</ul>
+<p>Об'єднавши все разом, маємо:</p>
+<p>\[
+(a + b)(c + d) = ac + ad + bc + bd
+\]</p>
+<p>Метод FOIL застосовується виключно до множення двох біномів. Для добутків, що включають поліноми з більш ніж двома доданками, слід використовувати загальну розподільну властивість.</p>
+<blockquote>
+<p>Цей метод забезпечує ефективний і систематичний підхід до розкриття біномів, особливо коли кожен біном містить два доданки. Він гарантує повне множення та підтримує організаційну чіткість протягом усього процесу.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Щоб побачити практичний приклад множення двох біномів, розглянемо вираз:
+\[(x + 3)(x + 5)\]</p>
+<p>Ми можемо застосувати метод FOIL, який допомагає згадати правильний порядок кроків при множенні доданків кожного бінома.</p>
+<ul>
+<li>Спочатку помножте перші доданки: \(x \cdot x = x^2\).</li>
+<li>Потім помножте зовнішні доданки: \(x \cdot 5 = 5x\).</li>
+<li>Далі помножте внутрішні доданки: \(3 \cdot x = 3x\).</li>
+<li>Нарешті помножте останні доданки: \(3 \cdot 5 = 15\).</li>
+</ul>
+<p>Об'єднавши всі результати, отримаємо:<br>
+\[
+x^2 + 5x + 3x + 15 = x^2 + 8x + 15
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Кінцевий результат показує, що:<br>
+\[
+(x + 3)(x + 5) = x^2 + 8x + 15
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Тепер розглянемо інший приклад, який включає добуток двох біномів, що містять <a href="complex-numbers-introduction.html">комплексні числа</a>. Розглянемо наступний вираз:</p>
+<p>\[
+(2x - i)(x + 4i)
+\]</p>
+<p>Ми можемо застосувати метод FOIL, дотримуючись того самого порядку множення.</p>
+<ul>
+<li>Спочатку помножте перші доданки: \(2x \cdot x = 2x^2\).</li>
+<li>Потім помножте зовнішні доданки: \(2x \cdot 4i = 8xi\).</li>
+<li>Далі помножте внутрішні доданки: \(-i \cdot x = -xi\).</li>
+<li>Нарешті помножте останні доданки: \(-i \cdot 4i = -4i^2\).</li>
+</ul>
+<p>Об'єднавши всі результати, отримаємо:<br>
+\[
+2x^2 + 8xi - xi - 4i^2
+\]</p>
+<p>Тепер спростимо, об'єднавши подібні доданки та пам'ятаючи, що \(i^2 = -1\):<br>
+\[
+2x^2 + 7xi - 4(-1) = 2x^2 + 7xi + 4
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Кінцевий результат показує, що:<br>
+\[
+(2x - i)(x + 4i) = 2x^2 + 7xi + 4
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Асоціативні, дистрибутивні та комутативні властивості</h2>
+<p>Асоціативна властивість стверджує, що при додаванні або множенні трьох або більше біномів групування не впливає на кінцевий результат. Для додавання, якщо задано три біноми \((a + b)\), \((c + d)\) та \((e + f)\), виконується наступне:</p>
+<p>\[((a + b) + (c + d)) + (e + f) = (a + b) + ((c + d) + (e + f))\]</p>
+<p>Для множення:</p>
+<p>\[((a + b) \cdot (c + d)) \cdot (e + f) = (a + b) \cdot ((c + d) \cdot (e + f))\]</p>
+<p>В обох випадках групування біномів можна змінювати вільно без зміни загального результату.</p>
+<hr>
+<p>Дистрибутивна властивість — це принцип, що встановлює зв'язок між множенням та додаванням або відніманням. Зокрема, вона стверджує, що множення члена на суму або різницю двох інших членів еквівалентне розподілу множення на кожен член. Формально:</p>
+<p>\[
+\begin{align}
+a(b + c) &amp;= ab + ac \\[0.5em]
+a(b &#8211; c) &amp;= ab &#8211; ac
+\end{align}
+\]</p>
+<p>У цих виразах \(a\), \(b\) та \(c\) можуть представляти дійсні числа, змінні або складніші алгебраїчні вирази. Наприклад, при застосуванні до бінома:</p>
+<p>\[x(x + 3) = x^2 + 3x\]</p>
+<p>Дистрибутивна властивість слугує базовим інструментом для розкриття та <a href="factoring-ac-method.html">розкладання на множники</a> виразів, розв'язання рівнянь та спрощення алгебраїчних виразів.</p>
+<hr>
+<p>Комутативна властивість стверджує, що порядок доданків або множників при додаванні чи множенні біномів не впливає на кінцевий результат. Наприклад, якщо задано два біноми \((a + b)\) та \((c + d)\), зміна їхнього порядку не змінює загального значення.</p>
+<p>У випадку додавання:
+\[(a + b) + (c + d) = (c + d) + (a + b)\]</p>
+<p>У випадку множення:
+\[(a + b) \cdot (c + d) = (c + d) \cdot (a + b)\]</p>
+<p>В обох операціях перестановка порядку двох біномів не змінює результату.</p>
+<blockquote>
+<p>Ці структурні принципи поширюються і за межі біномів, вони випливають із фундаментальної алгебраїчної структури системи дійсних чисел. Детальний формальний виклад доступний у розділі про <a href="properties-of-real-numbers.html">властивості дійсних чисел</a>.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Особливі випадки: формули скороченого множення</h2>
+<p>Два фундаментальні приклади <a href="notable-products.html">формул скороченого множення</a>, що виникають при множенні біномів, включають наступне:</p>
+<p>\[(a+b)^2 = a^2 + 2ab + b^2\]
+\[(a-b)(a+b) = a^2 - b^2\]</p>
+<p>Ці тотожності є результатом повторного застосування дистрибутивної властивості та ілюструють повторювані алгебраїчні закономірності. Вони є важливими для алгебраїчного розкриття, спрощення та розкладання на множники. Вичерпне та систематичне обговорення наведено на відповідній сторінці.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown p"><h2>Розкриття біноміального виразу</h2>
+<p>Для будь-якого натурального числа \( n \) розкриття бінома \( (a + b)^n \) визначається за допомогою <a href="binomial-theorem.html">біноміальної теореми</a>:</p>
+<p>\[
+(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n - k}b^k
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Де \( \dbinom{n}{k} \) представляє <a href="binomial-coefficient.html">біноміальний коефіцієнт</a>, який обчислюється як:<br>
+\[
+\binom{n}{k} = \frac{n!}{k!(n &#8211; k)!}
+\]</p>
+<p>Сума вказує на те, що всі доданки підсумовуються для \( k \) від \( 0 \) до \( n \), а \( a^{n &#8211; k}b^k \) представляє часткові члени розкладання.</p>
+<hr>
+<p>Щоб краще зрозуміти, як працює розкриття бінома за допомогою біноміальної теореми, розглянемо розкриття наступного виразу за формулою:</p>
+<p>\[
+(a + b)^5
+\]</p>
+<p>Згідно з біноміальною теоремою, ми можемо записати:</p>
+<p>\[
+(a + b)^5 = \sum_{k=0}^{5} \binom{5}{k} a^{5-k} b^k
+\]</p>
+<p>Розкриваючи кожен член крок за кроком:</p>
+<p>\[
+\begin{aligned}
+(a + b)^5 &amp;= \binom{5}{0}a^5b^0 + \binom{5}{1}a^4b^1 + \binom{5}{2}a^3b^2 + \binom{5}{3}a^2b^3 + \binom{5}{4}a^1b^4 + \binom{5}{5}a^0b^5 \\[6pt]
+&amp;= 1 \cdot a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + 1 \cdot b^5
+\end{aligned}
+\]</p>
+<p>Об'єднуючи всі члени, ми отримаємо розкриту форму:</p>
+<p>\[
+(a + b)^5 = a^5 + 5a^4b + 10a^3b^2 + 10a^2b^3 + 5ab^4 + b^5
+\]</p>
+<p>Цей приклад показує, як біноміальна теорема забезпечує систематичний спосіб розкриття степенів біноміального виразу, де кожен коефіцієнт відповідає члену в п'ятому рядку <a href="binomial-coefficient.html">трикутника Паскаля</a>.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Вправи</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad (x &#8211; 4)(x + 5)\]</p>
+</li>
+<li>
+<p>\[\text{2. } \quad (\sqrt{2}x + 3)(x - \sqrt{3})\]</p>
+</li>
+<li>
+<p>\[\text{3. } \quad (\log x + 2)(\log x &#8211; 1)\]</p>
+</li>
+<li>
+<p>\[\text{4. } \quad (e^x + 1)(e^x &#8211; 2)\]</p>
+</li>
+<li>
+<p>\[\text{5. } \quad (x + 2i)(x &#8211; i)\]</p>
+</li>
+<li>
+<p>\[\text{6. } \quad (\sin x + 2)(\sin x &#8211; 3)\]</p>
+</li>
+</ul>
+<blockquote>
+<p>Кожен вираз представляє різні випадки розкладання бінома, що збільшуються за складністю. Вони включають дійсні коефіцієнти, <a href="radicals.html">ірраціональності</a>, <a href="logarithms.html">логарифмічні</a> та <a href="powers.html">показникові</a> члени, <a href="complex-numbers-introduction.html">комплексні числа</a> та <a href="sine-and-cosine.html">тригонометричні функції</a>, що є корисним для практики того, як алгебраїчні операції поширюються на різні математичні форми.</p>
+</blockquote>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке біном?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Біном — це алгебраїчний вираз, який містить рівно два члени, зазвичай з'єднані знаком плюс або мінус. Наприклад, (x + y) та (a - 3b) є біномами."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як помножити два біноми?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб помножити два біноми, скористайтеся розподільчою властивістю або методом FOIL, який передбачає множення Першого, Зовнішнього, Внутрішнього та Останнього членів."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке теорема про біном?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема про біном надає формулу для розкладання степенів біномного виразу. Вона включає біномні коефіцієнти, які можна знайти за допомогою трикутника Паскаля або формули n над k."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="binomials.html">algebrica.org/binomials</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

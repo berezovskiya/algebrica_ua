@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обчислення площ за допомогою інтегрування — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Інтеграли</span>
+    </nav>
+    <article>
+        <h1>Обчислення площ за допомогою інтегрування</h1>
+        <time>2025-03-01</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Площа між двома кривими за допомогою визначених інтегралів</h2>
+<p>Спираючись на концепцію <a href="definite-integrals.html">визначених інтегралів</a>, які вимірюють площу між кривою та віссю x, ми можемо розширити цю ідею для знаходження площі, обмеженої двома кривими. Нехай \( f(x) \) та \( g(x) \) будуть двома <a href="continuous-functions.html">неперервними</a> функціями, визначеними на одному й тому самому <a href="intervals.html">проміжку</a> \([a, b]\), такими що \( f(x) \geq g(x) \) для кожного \( x \in [a, b] \), і припустимо, що їхні графи обмежують область. Площа цієї області задається формулою:</p>
+<p>\[
+A = \int_a^b [f(x) &#8211; g(x)] \, dx \tag{1}
+\]</p>
+<h5>Оскільки і \( f \), і \( g \) є неперервними на \([a,b]\), їхня різниця \( f(x) &#8211; g(x) \) також є неперервною на тому самому проміжку. Неперервна функція на замкненому та обмеженому проміжку є <a href="riemann-integrability-criteria.html">інтегруемою за Ріманом</a>. Отже, функція \( f(x) &#8211; g(x) \) є інтегруемою на \([a,b]\), і площа між двома кривими є добре визначеною через визначений інтеграл.</h5>
+<hr>
+<p>Ми хочемо обчислити площу сірої заштрихованої області між кривими \( f(x) \) та \( g(x) \):</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="676" height="584" src="../images/areas-by-integration-1.png" alt="Finding areas by integration
+" class="wp-image-10345" style="width:338px" srcset="../images/areas-by-integration-1.png 676w, https://algebrica.org/wp-content/uploads/resources/images/areas-by-integration-1-300x259.png 300w" sizes="(max-width: 676px) 100vw, 676px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Інтуїтивно ми бачимо, що площа \( A \) визначається як різниця між площею під кривою \( f(x) \) та площею під кривою \( g(x) \). Іншими словами, формально:</p>
+<p>\[
+A = \int_a^b f(x) \, dx  \,\,- \int_a^b g(x) \, dx
+\]</p>
+<p>Завдяки лінійності <a href="indefinite-integrals.html">інтеграла</a>, це перетворюється на рівняння \(1\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Площі між кривими, що перетинаються</h2>
+<p>До цього ми припускали, що \( f(x) \geq g(x) \) на всьому проміжку \( [a, b] \). Однак у багатьох випадках сам проміжок не є заданим: його визначають дві криві, і першим кроком є знаходження точок їхнього перетину. Щоб знайти точки перетину, прирівняйте \( f(x) = g(x) \) і розв'яжіть відносно \( x \). Розв'язання будуть границами інтегрування.</p>
+<p>Після того як проміжок відомий, дві криві можуть перетнутися всередині нього, що означає, що \( f(x) \) та \( g(x) \) змінюють своє відносне положення в деякій внутрішній точці \( c \). Коли це стається, підінтегральна функція \( f(x) - g(x) \) змінює знак, і один інтеграл по \( [a, b] \) призведе до того, що площі вище і нижче осі x взаємно знищаться, що дасть неправильний результат.</p>
+<hr>
+<p>Правильний підхід полягає в тому, щоб розділити проміжок у кожній точці перетину та інтегрувати окремо по кожному підпроміжку, завжди віднімаючи нижню криву від верхньої:</p>
+<p>\[
+A = \int_{a}^{c} [f(x) &#8211; g(x)] \, dx + \int_{c}^{b} [g(x) &#8211; f(x)] \, dx
+\]</p>
+<p>Компактний спосіб записати це, не відстежуючи, яка крива знаходиться зверху:</p>
+<p>\[
+A = \int_{a}^{b} |f(x) &#8211; g(x)| \, dx
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="504" src="../images/finding-areas-by-integration-5.png" alt="" class="wp-image-23422" style="width:306px" srcset="../images/finding-areas-by-integration-5.png 612w, https://algebrica.org/wp-content/uploads/resources/images/finding-areas-by-integration-5-300x247.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p><a href="absolute-value.html">Модуль</a> гарантує, що кожна частина площі рахується як додатна, незалежно від того, яка <a href="functions.html">функція</a> є більшою на цьому підпроміжку.</p>
+<h6>Формула \( A = \int_a^b |f(x)-g(x)|\,dx \) є правильною за умови, що всі точки перетину двох кривих включені до границ інтегрування. Модуль забезпечує, щоб різниця між двома функціями завжди була додатною, так щоб жовна частина обмеженої області не знищилася, коли криві змінюють своє відносне положення.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Приклад 1</h2>
+<p>Припустимо, ми хочемо знайти площу, обмежену кривими \(y_1 = e^x\) та \(y_2 = x^2 - 1\) на проміжку \( x \in [-1, 1] \). Графічно ми маємо наступну ситуацію:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="608" src="../images/areas-by-integration-2.png" alt="" class="wp-image-10359" style="width:306px" srcset="../images/areas-by-integration-2.png 612w, https://algebrica.org/wp-content/uploads/resources/images/areas-by-integration-2-300x298.png 300w, https://algebrica.org/wp-content/uploads/resources/images/areas-by-integration-2-150x150.png 150w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Щоб обчислити площу, ми використаємо рівняння \((1)\) і складемо наступний визначений інтеграл:</p>
+<p>\[
+A = \int_{-1}^{1} \left[ e^x &#8211; (x^2 &#8211; 1) \right] \, dx
+\]</p>
+<hr>
+<p>Розв'язуючи інтеграл, отримаємо:</p>
+<p>\[
+\begin{aligned}
+A &amp;= \int_{-1}^{1} \left[ e^x - x^2 + 1 \right] \, dx \\
+&amp;= \left[ e^x &#8211; \frac{x^3}{3} + x \right]_{-1}^{1} \\
+&amp;= \left( e - \frac{1}{3} + 1 \right) - \left( e^{-1} + \frac{1}{3} - 1 \right) \\
+&amp;= e &#8211; \frac{1}{e} + \frac{4}{3}
+\end{aligned}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отже, площа між двома кривими дорівнює:</p>
+<p>\[
+A = e - \frac{1}{e} + \frac{4}{3}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Знайти площу області, обмеженої кривими \(f(x) = x^3 - 3x\) та \(g(x) = x
+\). Проміжок не задано. Почнемо з пошуку точок перетину двох кривих, розв'язавши рівняння \( f(x) = g(x) \):</p>
+<p>\[
+\begin{aligned}
+x^3 &#8211; 3x &amp;= x \\[6pt]
+x^3 &#8211; 4x &amp;= 0 \\[6pt]
+x(x^2 &#8211; 4) &amp;= 0
+\end{aligned}
+\]</p>
+<p>Розв'язками є \( x = -2 \), \( x = 0 \) та \( x = 2 \). Це межі інтегрування.</p>
+<hr>
+<p>Оскільки криві перетинаються в точці \( x = 0 \), перевіримо, яка функція знаходиться вище на кожному підпроміжку. Обчисливши значення при \( x = -1 \), отримаємо:</p>
+<p>\[
+\begin{aligned}
+f(-1) &amp;= (-1)^3 &#8211; 3(-1) = 2 \\
+g(-1) &amp;= -1
+\end{aligned}
+\]</p>
+<p>Отже, \( f(x) \geq g(x) \) на \( [-2, 0] \). За симетрією, \( g(x) \geq f(x) \) на \( [0, 2] \).</p>
+<hr>
+<p>Тепер відповідним чином розіб'ємо інтеграл:</p>
+<p>\[
+A = \int_{-2}^{0} [f(x) &#8211; g(x)] \, dx + \int_{0}^{2} [g(x) &#8211; f(x)] \, dx
+\]</p>
+<p>\[
+A = \int_{-2}^{0} (x^3 &#8211; 4x) \, dx + \int_{0}^{2} (4x &#8211; x^3) \, dx
+\]</p>
+<hr>
+<p>Обчислюючи перший інтеграл, маємо:</p>
+<p>\[
+\begin{aligned}
+\int_{-2}^{0} (x^3 - 4x) \, dx &amp;= \left[ \frac{x^4}{4} &#8211; 2x^2 \right]_{-2}^{0} \\
+&amp;= \left(0\right) - \left(\frac{16}{4} - 2 \cdot 4\right) \\
+&amp;= 0 - (4 - 8) \\
+&amp;= 4
+\end{aligned}
+\]</p>
+<p>Обчислюючи другий інтеграл, отримаємо:</p>
+<p>\[
+\begin{aligned}
+\int_{0}^{2} (4x &#8211; x^3) \, dx &amp;= \left[ 2x^2 &#8211; \frac{x^4}{4} \right]_{0}^{2} \\
+&amp;= \left(2 \cdot 4 &#8211; \frac{16}{4}\right) &#8211; 0 \\
+&amp;= 8 &#8211; 4 \\
+&amp;= 4
+\end{aligned}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Загальна площа дорівнює:</p>
+<p>\[
+A = 4 + 4 = 8
+\]</p>
+<p>Симетрія результату не є випадковою: \( f(x) = x^3 - 3x \) є <a href="even-and-odd-functions.html">непарною функцією</a>, а дві області є дзеркальними відображеннями одна одної відносно початку координат.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>New York University, S.R.S. Varadhan</strong>. <a href="https://math.nyu.edu/~varadhan/Calculus09/Notes12.pdf">Area Between Curves</a></p>
+</li>
+<li>
+<p><strong>University of Washington, A. Nichifor</strong>. <a href="https://sites.math.washington.edu//~nichifor/125_2012_Winter/2012%20Handout%206_1%20Areas.pdf">Areas Between Curves: Applications of Integration</a></p>
+</li>
+<li>
+<p><strong>University of Washington</strong>. <a href="https://sites.math.washington.edu/~m125/Worksheets/AreaBetweenCurves.pdf">Area Between Curves</a></p>
+</li>
+<li>
+<p><strong>UC Davis, D. Kouba</strong>. <a href="https://www.math.ucdavis.edu/~kouba/CalcTwoDIRECTORY/areadirectory/Area.html">Areas of Enclosed Regions</a></p>
+</li>
+<li>
+<p><strong>Columbia University, A. Vizeff</strong>. <a href="https://www.math.columbia.edu/~avizeff/calculus-I-F22/lecture-20.pdf">Applications of Integration</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Яка основна концепція знаходження площ за допомогою інтегрування?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Знаходження площ за допомогою інтегрування передбачає обчислення площі під кривою за допомогою визначених інтегралів. Цей метод можна застосувати для знаходження площі між кривою та віссю x або між двома кривими."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як знайти площу між кривою та віссю x?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб знайти площу між кривою та віссю x, потрібно скласти визначений інтеграл, де межі інтегрування відповідають точкам перетину кривої з віссю x. Інтеграл від функції в цих межах дає шукану площу."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи можна використовувати інтегрування для знаходження площі між двома кривими?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так, інтегрування можна використовувати для знаходження площі між двома кривими. Це робиться шляхом інтегрування різниці між двома функціями на проміжку, де вони перетинаються."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="finding-areas-by-integration.html">algebrica.org/finding-areas-by-integration</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

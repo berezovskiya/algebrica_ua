@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цілі числа — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Множини та числа</span>
+    </nav>
+    <article>
+        <h1>Цілі числа</h1>
+        <time>2025-02-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-9" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легкий</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="types-of-numbers.html">Типи чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-9");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"definition"},{"name":"extension of naturals"},{"name":"notation Z"},{"name":"number line"},{"name":"construction pairs"},{"name":"equivalence relation"},{"name":"additive opposites"}]},{"name":"operations","children":[{"name":"addition"},{"name":"multiplication"},{"name":"closure"},{"name":"associativity"},{"name":"commutativity"},{"name":"distributivity"},{"name":"identities"},{"name":"additive inverse"}]},{"name":"structures","children":[{"name":"ring structure"},{"name":"order"},{"name":"decimal system"},{"name":"binary system"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 pb-steps alignCenterMathjax"><h2>Формальне означення цілих чисел</h2>
+<p>Серед різних <a href="types-of-numbers.html">типів чисел</a> цілі числа виникають тоді, коли ми розширюємо натуральні числа, щоб включити адитивні протилежні значення для кожної позитивної величини. У цій розширеній системі ми знаходимо всі цілі величини, як позитивні, так і негативні, разом із нулем. <a href="sets.html">Множина</a> позначається як \(\mathbb{Z}\). Символічно ми пишемо:
+\[
+\mathbb{Z} = {\ldots,-3,-2,-1,0,1,2,3,\ldots}
+\]
+нескінченна сукупність рівномірно розташованих точок уздовж числової <a href="lines.html">прямої</a>.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="724" height="502" src="../images/integers.png" alt="Integers." class="wp-image-27542" style="width:362px" title="Integers." srcset="../images/integers.png 724w, https://algebrica.org/wp-content/uploads/resources/images/integers-300x208.png 300w" sizes="(max-width: 724px) 100vw, 724px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax"><p>Суворе побудова моделює кожне ціле число як клас впорядкованих пар натуральних чисел. Візьмемо пари \((a,b)\) з \(a,b \in \mathbb{N}\) і скажемо, що дві пари належать до одного класу тоді, коли:
+\[
+(a,b) \sim (c,d) \quad \longleftrightarrow \quad a + d = b + c
+\]</p>
+<p>Пара \((a,b)\) представляє чисту різницю між \(a\) та \(b\):</p>
+<ul>
+<li>Пари з рівними компонентами утворюють клас, що відповідає \(0\).</li>
+<li>Пари, де перший компонент переважає, утворюють додатні цілі числа.</li>
+<li>Пари, де переважає другий компонент, утворюють від'ємні цілі числа.</li>
+</ul>
+<p>Наприклад, розглянемо пару натуральних чисел \((2,5).\) У побудові, що створює цілі числа з впорядкованих пар, цей елемент представляє чисту величину, отриману шляхом порівняння двох його компонентів. Оскільки другий запис більший за перший, пара відповідає від'ємному цілому числу:
+\[
+2 - 5 = -3
+\]</p>
+<p>Така інтерпретація обґрунтована тим фактом, що дві пари представляють одне й те саме ціле число саме тоді, коли вони потрапляють в один і той самий клас еквівалентності, що відбувається тоді, коли:
+\[
+(a,b) \sim (c,d) \quad \longleftrightarrow \quad a + d = b + c
+\]</p>
+<p>Наприклад, пара \((4,7)\) лежить у тому самому класі, що й \((2,5)\), тому що:
+\[
+4 + 5 = 9 \qquad \text{та} \qquad 7 + 2 = 9
+\]</p>
+<p>Хоча компоненти відрізняються, обидві пари кодують одну й ту саму загальну різницю, ціле число \(-3.\)</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Цілі числа як алгебраїчне кільце</h2>
+<p>Коли ми кажемо, що цілі числа утворюють кільце, ми маємо на увазі, що множина \(\mathbb{Z}\) оснащена двома операціями, додаванням і множенням, які взаємодіють структурованим і передбачуваним чином. Ця структура гарантує, що арифметика з цілими числами поводиться послідовно, незалежно від того, наскільки великими або малими можуть бути відповідні числа.</p>
+<p>Аксіоми кільця для \((\mathbb{Z}, +, \cdot)\) наступні. Для всіх \(a, b, c \in \mathbb{Z}\):</p>
+<ul>
+<li>Замкненість: сума та добуток будь-яких двох цілих чисел знову є цілими числами: \(a + b \in \mathbb{Z}\) та \(ab \in \mathbb{Z}.\)</li>
+<li>Асоціативність: обидві операції є асоціативними: \(a + (b+c) = (a+b) + c\) та \(a(bc) = (ab)c.\)</li>
+<li>Нейтральні елементи: існують нейтральні елементи для обох операцій: \(a + 0 = a\) та \(a \cdot 1 = a.\)</li>
+<li>Адитивні обернені: кожне ціле число має протилежне: \(a + (-a) = 0.\)</li>
+<li>Комутативність додавання: порядок доданків не впливає на результат: \(a + b = b + a.\)</li>
+<li>Дистрибутивність: множення дистрибутивне відносно додавання: \(a(b+c) = ab + ac.\)</li>
+</ul>
+<p>Множення в \(\mathbb{Z}\) також є комутативним, тобто \(ab = ba\) для всіх \(a, b \in \mathbb{Z}\), що робить \((\mathbb{Z}, +, \cdot)\) комутативним кільцем. Зауважимо, що цілі числа загалом не мають мультиплікативних обернених: єдиними цілими числами \(a\), для яких \(a^{-1} \in \mathbb{Z}\), є \(a = 1\) та \(a = -1\), ось чому \(\mathbb{Z}\) є кільцем, але не полем.</p>
+<blockquote>
+<p>Поле розширює структуру кільця, вимагаючи, щоб кожен ненульовий елемент також мав мультиплікативний обернений. Раціональні числа \(\mathbb{Q}\) та дійсні числа \(\mathbb{R}\) є стандартними прикладами; цілі числа не є полем, оскільки \(2^{-1} \notin \mathbb{Z}\).</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Фундаментальні властивості цілих чисел</h2>
+<p>Сумісність із рівністю: якщо два цілих числа задовольняють \(a = b\), будь-яка операція, застосована до обох сторін, зберігає цю рівність. Зокрема:
+\[a + c = b + c \]
+\[ac = bc\]</p>
+<hr>
+<p>Комутативні закони: порядок операндів не впливає на результат:
+\[a\ + b = b + a \]
+\[ab = ba\]</p>
+<hr>
+<p>Асоціативні закони: групування доданків не змінює результат:
+\[a + (b + c) = (a + b) + c \]
+\[a(bc) = (ab)c \]</p>
+<hr>
+<p>Дистрибутивний закон: множення дистрибутивне відносно додавання:
+\[
+a(b + c) = ab + ac
+\]</p>
+<hr>
+<p>Цілі числа також включають нейтральні елементи для двох операцій: додавання нуля залишає будь-яке ціле число незмінним, а множення на одиницю зберігає його значення:
+\[
+a + 0 = a \qquad a \cdot 1 = a
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax pb-table-to-content alignCenterTable"><h2>Цілі числа в системі з основою 10</h2>
+<p>Цілі числа зазвичай записують за допомогою десяткової системи, тобто системи з основою 10. Кожна цифра в числі має позиційну вагу, що визначається відповідним степенем десяти. Комбінуючи ці зважені цифри, ми можемо відтворити все значення цілого числа. Розглянемо, наприклад, число \(235.\) Використовуючи позиційний принцип, ми можемо представити число як суму степенів десяти:
+\[
+235 = 2 \times 10^{2} + 3 \times 10^{1} + 5 \times 10^{0}
+\]</p>
+<p>Цей розклад точно показує, як кожна цифра впливає на кінцеве значення. У наступній таблиці узагальнено структуру числа:</p>
+<table>
+<thead>
+<tr>
+<th>Цифра</th>
+<th>Розрядне значення</th>
+<th>Внесок</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>\(10^{2}\) (сотні)</td>
+<td>\(2 \times 10^{2} = 200\)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>\(10^{1}\) (десятки)</td>
+<td>\(3 \times 10^{1} = 30\)</td>
+</tr>
+<tr>
+<td>5</td>
+<td>\(10^{0}\) (одиниці)</td>
+<td>\(5 \times 10^{0} = 5\)</td>
+</tr>
+</tbody>
+</table>
+<p>Додавання цих внесків відновлює ціле число:
+\[
+235 = 200 + 30 + 5
+\]</p>
+<blockquote>
+<p>Аналогічний механізм застосовується до будь-якого цілого числа, записаного в десятковому позначенні. Кожна цифра виступає як коефіцієнт, що множить певний степінь десяти, а саме ціле число отримують шляхом підсумовування всіх цих позиційних внесків.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax pb-table-to-content alignCenterTable"><h2>Двійкова система</h2>
+<p>Хоча цілі числа зазвичай записують в основі 10, інші системи числення є так само правильними, а іноді й зручнішими. Особливо важливою альтернативою є основа 2, або двійкова система, яка використовує лише цифри \(0\) та \(1\). Це представлення є фундаментальним у комп'ютерних науках та цифровій електроніці, де інформація зберігається та обробляється за допомогою двостанових пристроїв. У системі з основою 2 кожна позиція відповідає степеню двійки, а не степеню десяти. Будь-яке ціле число можна переписати в двійковій системі, розклавши його як суму зважених степенів двійки. Наприклад, розглянемо ціле число:
+\[
+53
+\]
+Щоб перевести його в двійкову систему, ми неодноразово ділимо на \(2\) і записуємо остачі. Читаючи остачі знизу вгору, ми отримуємо двійковий розклад.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Ділення на 2</th>
+<th style="text-align:center">Частка</th>
+<th style="text-align:center">Остача</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">\(53 \div 2\)</td>
+<td style="text-align:center">\(26\)</td>
+<td style="text-align:center">\(1\)</td>
+</tr>
+<tr>
+<td style="text-align:right">\(26 \div 2\)</td>
+<td style="text-align:center">\(13\)</td>
+<td style="text-align:center">\(0\)</td>
+</tr>
+<tr>
+<td style="text-align:right">\(13 \div 2\)</td>
+<td style="text-align:center">\(6\)</td>
+<td style="text-align:center">\(1\)</td>
+</tr>
+<tr>
+<td style="text-align:right">\(6 \div 2\)</td>
+<td style="text-align:center">\(3\)</td>
+<td style="text-align:center">\(0\)</td>
+</tr>
+<tr>
+<td style="text-align:right">\(3 \div 2\)</td>
+<td style="text-align:center">\(1\)</td>
+<td style="text-align:center">\(1\)</td>
+</tr>
+<tr>
+<td style="text-align:right">\(1 \div 2\)</td>
+<td style="text-align:center">\(0\)</td>
+<td style="text-align:center">\(1\)</td>
+</tr>
+</tbody>
+</table>
+<p>Читаючи остачі вгору, отримуємо двійкове представлення \(53 = 110101.\) Ми можемо перевірити перетворення, розклавши двійкові цифри за степенями двійки:</p>
+<table>
+<thead>
+<tr>
+<th>Двійкова цифра</th>
+<th>Степінь двійки</th>
+<th>Внесок</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\(1\)</td>
+<td>\(2^{5}\)</td>
+<td>\(1 \times 2^{5} = 32\)</td>
+</tr>
+<tr>
+<td>\(1\)</td>
+<td>\(2^{4}\)</td>
+<td>\(1 \times 2^{4} = 16\)</td>
+</tr>
+<tr>
+<td>\(0\)</td>
+<td>\(2^{3}\)</td>
+<td>\(0 \times 2^{3} = 0\)</td>
+</tr>
+<tr>
+<td>\(1\)</td>
+<td>\(2^{2}\)</td>
+<td>\(1 \times 2^{2} = 4\)</td>
+</tr>
+<tr>
+<td>\(0\)</td>
+<td>\(2^{1}\)</td>
+<td>\(0 \times 2^{1} = 0\)</td>
+</tr>
+<tr>
+<td>\(1\)</td>
+<td>\(2^{0}\)</td>
+<td>\(1 \times 2^{0} = 1\)</td>
+</tr>
+</tbody>
+</table>
+<p>Сума внесків підтверджує перетворення:
+\[
+32 + 16 + 0 + 4 + 0 + 1 = 53
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Оператор modulo</h2>
+<p>Модульна арифметика описує поведінку цілих чисел, коли нас цікавлять лише їхні остачі після ділення на фіксоване ціле число \(n\). У множині \(\mathbb{Z}\) два цілих числа називаються еквівалентними за модулем \(n\), якщо вони відрізняються на кратне \(n\). Наприклад, в арифметиці за модулем \(12\) цілі числа \(14\) та \(2\) представляють один і той самий клас виділків, оскільки \(14 &#8211; 2 = 12\). Додавання та множення виконуються як зазвичай, але кінцевий результат замінюється його остачею при діленні на \(n\). Наприклад:</p>
+<p>\[7 + 9 \equiv 4 \pmod{12}\]
+\[ 5 \times 7 \equiv 11 \pmod{12}\]</p>
+<blockquote>
+<p>У випадку \(5 \times 7\) добуток дорівнює \(35 = 24 + 11\); оскільки \(24\) є кратним \(12\), значенням добутку за модулем \(12\) є остача \(11\).</p>
+</blockquote>
+<hr>
+<p>Такого роду арифметика широко використовується поза межами чистої математики. У комп'ютерних науках оператор modulo є незамінним для отримання остач, створення циклічних шаблонів та утримання значень у визначеному діапазоні. Знайомим прикладом є місяці року: додавання \(n\) місяців природно обробляється за модулем \(12\), оскільки підрахунок місяців починається заново після грудня.</p>
+<p>У багатьох мовах програмування, включаючи Java, оператор modulo записується як <strong>%</strong>. Наступний приклад обчислює місяць, що наступає через три місяці після жовтня:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-code"><pre><code>int month = 10; // Жовтень
+int result = (month + 3) % 12;  
+System.out.println(result);  // Вивід: 1  (Січень)
+// Використовуючи операцію modulo 12, вираз (month + 3) не дає 13.
+// Замість цього, 13 замінюється на його остачу від ділення на 12, яка дорівнює 1.
+</code></pre>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Цілі числа та роль індукції</h2>
+<p>У математиці кілька структурних властивостей цілих чисел залежать від рекурсивної природи натуральних чисел. Натуральні числа формують основу, на якій будуються цілі числа, і багато тверджень про \( \mathbb{Z} \) можуть бути зведені до властивостей, вперше встановлених для \( \mathbb{N} \). Механізмом, який дозволяє такі покрокові побудови та доведення, є <a href="principle-of-mathematical-induction.html">Принцип математичної індукції</a>.</p>
+<p>Починаючи з формального означення індуктивної множини, розглянемо множину \( A \subseteq \mathbb{N} \), визначену властивістю \( p(n) \), таку що \(A = \lbrace n \in \mathbb{N} \mid p(n) \rbrace\). Припустимо, що виконуються наступні умови:</p>
+<ul>
+<li>\( p(0) \) є істинним, тобто \( 0 \in A. \)</li>
+<li>\( p(n) \rightarrow p(n+1) \,\forall \ n \in \mathbb{N}.\) Якщо \( n \in A \), то \( n+1 \in A.\)</li>
+</ul>
+<p>Таким чином, \( p(n) \) є істинним для кожного \( n \in \mathbb{N}.\) Конкретна ілюстрація показує, як це переноситься на цілі числа. Розглянемо твердження, що сума перших \( n \) додатних цілих чисел дорівнює:</p>
+<p>\[ \frac{n(n+1)}{2} \]</p>
+<p>Базовий випадок \( n = 1 \) є очевидним: обидві частини дорівнюють \( 1 \). Для індуктивного кроку, припустимо, що тотожність виконується для деякого \( n \), додамо \( n+1 \) до обох частин і перевіримо, що результат відповідає формулі, обчисленій для \( n+1 \). Оскільки натуральні числа вбудовуються в \( \mathbb{Z} \) як невивідні цілі числа, ця тотожність виконується і в \(\mathbb{Z}\), і той самий метод поширюється на будь-яке твердження про \(\mathbb{Z}\), яке можна звести до властивості \(\mathbb{N}\) через побудову цілих чисел з впорядкованих пар натуральних чисел.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке цілі числа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Цілі числа — це цілі числа, що включають від'ємні значення, нуль та додатні значення. Вони формують нескінченну впорядковану множину, яка симетрично розширює натуральні числа в обох напрямках уздовж числової прямої."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як цілі числа представляються в десятковій системі?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "У десятковій системі ціле число записується як послідовність цифр, кожна з яких множиться на відповідний степінь десяти. Наприклад, 235 можна розкласти як 2×10² + 3×10¹ + 5×10⁰."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи можна виразити цілі числа в інших системах числення?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Так. Цілі числа можуть бути представлені в будь-якій системі числення, наприклад, у двійковій, вісімковій або шістнадцятковій. Вибір системи змінює лише представлення, а не значення цілого числа."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як працює двійкове представлення цілого числа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "У двійковій системі ціле число виражається лише за допомогою цифр 0 і 1, де кожна позиція відповідає степеню двійки. Наприклад, десяткове число 53 стає 110101₂, оскільки 53 = 1×2⁵ + 1×2⁴ + 0×2³ + 1×2² + 0×2¹ + 1×2⁰."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="integers.html">algebrica.org/integers</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

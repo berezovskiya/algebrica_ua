@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поліноми — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Поліноми</span>
+    </nav>
+    <article>
+        <h1>Поліноми</h1>
+        <time>2025-02-09</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-10" style="height:460px;min-height:460px;max-height:460px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:460px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">13</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="integers.html">Цілі числа</a>, <a href="types-of-numbers.html">Типи чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-10");
+            var dataset = {"name":"root","children":[{"name":"structure","children":[{"name":"coefficients"},{"name":"degree"},{"name":"leading term"},{"name":"polynomial ring"},{"name":"standard form"},{"name":"terms"}]},{"name":"operations","children":[{"name":"addition"},{"name":"subtraction"},{"name":"multiplication"},{"name":"division"},{"name":"quotient"},{"name":"remainder"},{"name":"factorization"}]},{"name":"properties","children":[{"name":"monomials"},{"name":"binomials"},{"name":"trinomials"},{"name":"roots"},{"name":"graph behavior"},{"name":"end behavior"},{"name":"fundamental theorem"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 460;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 не доступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Означення</h2>
+<p>Нехай \(\mathbb{R}\) позначає поле дійсних чисел. Поліном від однієї змінної \(x\) з коефіцієнтами в \(\mathbb{R}\) визначається як вираз наступного вигляду:</p>
+<p>\[a_{n}x^{n}+a_{n-1}x^{n-1}+\dotsb +a_{1}x+a_{0}\]</p>
+<p>\(n\) є невивідним цілим числом, а \(a_0, a_1, \ldots, a_n \in \mathbb{R}\) називаються коефіцієнтами, при цьому \(a_n \neq 0\). Кожен доданок \(a_k x^k\) відомий як одночлен степеня \(k\). Поліноми зазвичай позначаються як \(P(x)\) або \(p(x)\). Множина всіх поліномів від \(x\) з дійсними коефіцієнтами позначається \(\mathbb{R}[x]\). Ця множина утворює кільце за двома стандартними операціями. Для двох поліномів:</p>
+<p>\[P(x) = \sum_{k=0}^{n} a_k x^k\]
+\[Q(x) = \sum_{k=0}^{m} b_k x^k\]</p>
+<p>їхня сума визначається додаванням коефіцієнтів відповідних степенів:</p>
+<p>\[(P + Q)(x) = \sum_{k=0}^{\max(n,m)} (a_k + b_k) \, x^k\]</p>
+<p>Добуток двох поліномів визначається за допомогою згортки Коші їхніх послідовностей коефіцієнтів:</p>
+<p>\[(P \cdot Q)(x) = \sum_{k=0}^{n+m} \left( \sum_{j=0}^{k} a_j b_{k-j} \right) x^k\]</p>
+<p>Коефіцієнти з індексами, що перевищують степінь відповідного полінома, визначені як нулі. За цих двох операцій \(\mathbb{R}[x]\) утворює комутативне кільце з одиницею і є цілісним доменом, оскільки добуток двох ненульових поліномів ніколи не є нульовим поліномом.</p>
+<h6>Множина \(\mathbb{R}[x]\) становить кільце за стандартними операціями додавання та множення, оскільки сума, різниця або добуток будь-яких двох поліномів у \(\mathbb{R}[x]\) дає інший поліном у тій самій множині.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Степінь полінома</h2>
+<p>Степінь полінома \(P(x)\) визначається як найбільше ціле число \(k\), таке що коефіцієнт \(a_k\) є ненульовим. Цей степінь позначається як \(\deg P\) або \(\deg P(x)\). Наприклад, розглянемо поліном:</p>
+<p>\[P(x) = 2x^3 &#8211; 5x^2 + 3x &#8211; 7\]</p>
+<p>\(P(x)\) має степінь 3, оскільки найбільший показник степеня, що з'являється з ненульовим коефіцієнтом, дорівнює 3. Поліном може мати степінь 3, навіть якщо деякі проміжні доданки відсутні: поліном \(P(x) = 4x^3 + x &#8211; 2\) також має степінь 3, незважаючи на відсутність квадратичного члена.</p>
+<p>Степінь визначений однозначно завдяки вимозі, що \(a_n \neq 0\) в означенні. Провідний коефіцієнт однозначно визначає доданок найвищого степеня, відомий як провідний член.</p>
+<p>Нульовий поліном, де всі коефіцієнти дорівнюють нулю, є єдиним поліномом, якому не присвоюється степінь у звичайному розумінні. За домовленістю, \(\deg 0 = -\infty\), вибір якого обґрунтований вимогою, щоб наступна тотожність залишалася правильною, навіть коли один із двох множників є нульовим поліномом:</p>
+<p>\[\deg(P \cdot Q) = \deg P + \deg Q\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Інтерполяція та степінь полінома</h2>
+<p>Важливим наслідком концепції степеня полінома є його роль в інтерполяції. Дано \(n+1\) різних точок \(\alpha_0, \alpha_1, \dots, \alpha_n \in \mathbb{R}\) та відповідні значення \(\beta_0, \beta_1, \dots, \beta_n \in \mathbb{R}\), існує єдиний поліном \(p(x) \in \mathbb{R}[x]\) степеня не більше \(n\), який задовольняє наступні умови:</p>
+<p>\[p(\alpha_i) = \beta_i \quad \forall , i = 0, 1, \dots, n\]</p>
+<p>Цей результат демонструє прямий зв'язок між степенем полінома та кількістю точок даних, необхідних для його однозначного визначення. Зокрема, поліном степеня не більше \(n\) однозначно визначається \(n+1\) різними вузлами інтерполяції. Процес побудови такого полінома відомий як поліноміальна інтерполяція. Для цієї мети доступно кілька явних методів, причому формула інтерполяції Лагранжа є найбільш класичним підходом.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Степінь полінома та його геометрична інтерпретація</h2>
+<p>Степінь полінома безпосередньо впливає на форму його графіка в декартовій площині, визначаючи загальну поведінку та геометрію кривої. Поліном першого степеня, який також називають лінійним поліномом, створює графік, що є прямою лінією вигляду:</p>
+<p>\[y = mx + q\]</p>
+<p>У цьому рівнянні \(m\) представляє кутовий коефіцієнт (нахил), а \(q\) позначає перетин з віссю y. Наприклад, рівняння \(y = 2x + 1\) визначає конкретну пряму лінію. Графік показує рівняння прямої \( y = 2x + 1 \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="796" height="482" src="../images/polynomials-1-4.png" alt="" class="wp-image-26126" style="width:398px" srcset="../images/polynomials-1-4.png 796w, https://algebrica.org/wp-content/uploads/resources/images/polynomials-1-4-300x182.png 300w, https://algebrica.org/wp-content/uploads/resources/images/polynomials-1-4-768x465.png 768w" sizes="(max-width: 796px) 100vw, 796px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h5>У рівнянні прямої кутовий коефіцієнт \( m \) відповідає <a href="derivatives.html">похідній</a>, коли пряма є дотичною до графіка функції в заданій точці. Загалом, похідна функції в точці дає кутовий коефіцієнт дотичної в цій точці.</h5>
+<hr>
+<p>Поліноми другого степеня, також відомі як квадратні поліноми, мають графік, що відповідає <a href="parabola.html">параболі</a> вигляду:</p>
+<p>\[y = ax^2 + bx + c \]</p>
+<p>\(a\) визначає випуклість параболи, \(b\) та \(c\) спільно визначають
+положення вершини, а \(c\) представляє перетин з віссю y. На графіку показано рівняння параболи \( y = x^2 + 4x &#8211; 4.\) У цьому випадку парабола відкривається вгору, оскільки коефіцієнт при \( x^2 \) є додатним.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="820" height="608" src="../images/quadratic-formula-1-2.png" alt="" class="wp-image-25467" style="width:410px" srcset="../images/quadratic-formula-1-2.png 820w, https://algebrica.org/wp-content/uploads/resources/images/quadratic-formula-1-2-300x222.png 300w, https://algebrica.org/wp-content/uploads/resources/images/quadratic-formula-1-2-768x569.png 768w" sizes="(max-width: 820px) 100vw, 820px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><hr>
+<p>Поліноми третього степеня, також відомі як кубічні поліноми, мають графік, що відповідає кубічній кривій вигляду:<br>
+\[y = ax^3 + bx^2 + cx + d \]
+де \( a \) визначає загальну форму та орієнтацію кривої, \( b \) та \( c \) впливають на кривизну та точки перегину, а \( d \) представляє перетин з віссю y.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 pb-steps pb-table-to-content alignCenterTable"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Кінцева поведінка полінома</h2>
+<p>Кінцева поведінка полінома визначається виключно його старшим членом, тобто членом найвищого степеня \(a_n x^n\). Коли \(|x|\) наближається до нескінченності, всі члени нижчого степеня стають <a href="asymptotes.html">асимптотично</a> нехтовними порівняно зі зростанням, що забезпечується степенем \(x^n\).</p>
+<p>Відповідно, опис поведінки полінома для \(x \to -\infty\) та \(x \to +\infty\) зводиться до аналізу взаємозв'язку між парністю степеня \(n\) та знаком старшого коефіцієнта \(a_n\).</p>
+<ul>
+<li>
+<p>Коли степінь є парним, функція \(x^n\) є невід'ємною для всіх дійсних значень \(x\), і кінцева поведінка, отже, є симетричною: поліном розбігається до \(+\infty\), якщо \(a_n &gt; 0\), і до \(-\infty\), якщо \(a_n &lt; 0\).</p>
+</li>
+<li>
+<p>Коли степінь є непарним, степінь \(x^n\) змінює знак разом із \(x\), що дає несиметричну конфігурацію, за якої два кінці графіка спрямовані в протилежні сторони.</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><table>
+<thead>
+<tr>
+<th>Степінь \(n\)</th>
+<th>\(a_n\)</th>
+<th>\(x \to -\infty\)</th>
+<th>\(x \to +\infty\)</th>
+<th>Напрямок</th>
+<th>Кінцева орієнтація</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>парний</td>
+<td>\(&gt;0\)</td>
+<td>\(+\infty\)</td>
+<td>\(+\infty\)</td>
+<td>той самий</td>
+<td>\( \nwarrow \) \( \nearrow \)</td>
+</tr>
+<tr>
+<td>парний</td>
+<td>\(&lt;0\)</td>
+<td>\(-\infty\)</td>
+<td>\(-\infty\)</td>
+<td>той самий</td>
+<td>\( \swarrow \) \( \searrow \)</td>
+</tr>
+<tr>
+<td>непарний</td>
+<td>\(&gt;0\)</td>
+<td>\(-\infty\)</td>
+<td>\(+\infty\)</td>
+<td>протилежний</td>
+<td>\( \swarrow \) \( \nearrow \)</td>
+</tr>
+<tr>
+<td>непарний</td>
+<td>\(&lt;0\)</td>
+<td>\(+\infty\)</td>
+<td>\(-\infty\)</td>
+<td>протилежний</td>
+<td>\( \nwarrow \)  \( \searrow \)</td>
+</tr>
+</tbody>
+</table>
+<h5>У всіх випадках старший член повністю визначає асимптотичну поведінку полінома, тоді як внесок решти членів поступово зменшується зі зростанням \(|x|\).</h5>
+<hr>
+<p>Щоб більше роз'яснити цю концепцію, розглянемо випадок у третьому рядку з наступним поліномом:
+\[ x^3 + 5x^2 + 5x + 1 \]</p>
+<p>У цьому випадку поліном демонструє характерну кінцеву поведінку кубічної функції з додатним старшим коефіцієнтом. Коли \(x\) рухається до \(-\infty\), член найвищого степеня домінує і змушує графік необмежено спадати, через що крива йде вниз з лівого боку. Навпаки, коли \(x\) наближається до \(+\infty\), старший член стає дедалі більш додатним і тягне весь вираз вгору, через що графік необмежено зростає з правого боку.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="722" height="700" src="../images/polynomials-7.png" alt="The graph illustrates the typical end behavior of an odd–degree polynomial with a positive leading coefficient: the curve approaches −∞ as x→−∞ and rises toward +∞ as x→+∞." class="wp-image-21584" style="width:361px" srcset="../images/polynomials-7.png 722w, https://algebrica.org/wp-content/uploads/resources/images/polynomials-7-300x291.png 300w" sizes="(max-width: 722px) 100vw, 722px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><table>
+<thead>
+<tr>
+<th>Ступінь \(n\)</th>
+<th>\(a_n\)</th>
+<th>\(x \to -\infty\)</th>
+<th>\(x \to +\infty\)</th>
+<th>Напрямок</th>
+<th>Кінцева орієнтація</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>непарний</td>
+<td>\(&gt;0\)</td>
+<td>\(-\infty\)</td>
+<td>\(+\infty\)</td>
+<td>протилежний</td>
+<td>\( \swarrow \) \( \nearrow \)</td>
+</tr>
+</tbody>
+</table>
+<p>Така поведінка створює знайому орієнтацію «знизу-вгору», характерну для всіх поліномів непарного ступеня з додатним провідним коефіцієнтом. Розуміння кінцевої поведінки полінома безпосередньо з його алгебраїчної структури є особливо цінним при вивченні загальної <a href="analyzing-the-graphs-of-functions.html">поведінки функцій</a>. Зосередившись на провідному члені \(a_n x^n\), можна передбачити, як змінюється графік при \(x \to +\infty\) або \(x \to -\infty\), оскільки швидкий ріст \(x^n\) домінує та робить усі доданки нижчого ступеня нехтовними. У багатьох випадках визначення ступеня полінома та знака його провідного коефіцієнта вже дає чітку, негайну вказівку на глобальну форму функції.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Одночлени, двочлени, тричлени</h2>
+<p><a href="monomials.html">Одночлен</a> — це поліномний вираз, що складається лише з одного члена: сталі, однієї змінної або комбінації сталих і змінних, піднесених до цілих невід'ємних степенів. Наприклад, \(3x^2\) та \(-5y\) є одночленами.</p>
+<p><a href="binomials.html">Двочлен</a> — це поліномний вираз, що складається з двох членів: сталих, змінних або добутків сталих і змінних, піднесених до цілих невід'ємних степенів. Наприклад, \(3x + 7\) та \(-2y^2 + 5y\) є двочленами.</p>
+<p><a href="trinomials.html">Тричлен</a> — це поліномний вираз, що складається з трьох членів, які також можуть бути сталими, змінними або добутками сталих і змінних, піднесених до цілих невід'ємних степенів. Наприклад, \(x^2-2x + 4\) та \(3y^3 + 2y^2- y\) є тричленами.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Сума або різниця двох поліномів</h2>
+<p><a href="adding-and-subtracting-polynomials.html">Сума або різниця</a> двох поліномів однакового ступеня призводить до полінома того ж ступеня, або нижчого ступеня, якщо члени найвищого ступеня взаємознищуються. Наприклад, якщо ми маємо два поліноми ступеня \(n\), скажімо \(P(x)\) та \(Q(x)\), то їхня сума або різниця, що позначається як \(P(x) ± Q(x)\), також є поліномом ступеня \(\leq n\).</p>
+<p>Сума або різниця двох поліномів отримується шляхом додавання або віднімання відповідних коефіцієнтів подібних членів.</p>
+<p>\[
+\begin{align*}
+P(x) + Q(x) &amp;= (ax^n + bx^{n-1} + \ldots + z) + (px^n + qx^{n-1} + \ldots + w) \\[0.6em]
+&amp;= (a+p)x^n + (b+q)x^{n-1} + \ldots + (z+w) \\[0.6em]
+P(x)-Q(x) &amp;= (ax^n + bx^{n-1} + \ldots + z) &#8211; (px^n + qx^{n-1} + \ldots + w) \\[0.6em]
+&amp;= (a-p)x^n + (b-q)x^{n-1} + \ldots + (z-w)
+\end{align*}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Дано два поліноми \(P(x)\) та \(Q(x)\), обчислити суму \(P(x)\) + \(Q(x)\):</p>
+<p>\[ P(x) = x^2 + 3x-1  \]
+\[ Q(x) = 2x^2-x + 5 \]</p>
+<p>Їхня сума визначається як:</p>
+<p>\[ P(x) + Q(x) = \left( x^2 + 3x-1 \right) + (2x^2-x + 5) \]</p>
+<hr>
+<p>Розкриваючи дужки та збираючи члени однакового ступеня, отримаємо:</p>
+<p>\[
+\begin{align}
+P(x) + Q(x) &amp;= x^2 + 3x &#8211; 1 + 2x^2 &#8211; x + 5 \\[0.5em]
+&amp;= (x^2 + 2x^2) + (3x &#8211; x) + (-1 + 5) \\[0.5em]
+&amp;= 3x^2 + 2x + 4
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Результат додавання двох поліномів \(P(x) + Q(x)\) виражається як:</p>
+<p>\[3x^2 + 2x + 4 \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо два поліноми \(P(x)\) та \(Q(x)\) ступеня \(n\). Як було встановлено вище, їхня сума або різниця є поліномом ступеня щонайбільше \(n\). Наступний приклад ілюструє випадок, коли ступінь строго зменшується.</p>
+<p>\[ P(x) = 2x^2+3x-1 \]
+\[ Q(x) = 2x^2-x+5 \]</p>
+<p>Різниця \(P(x)-Q(x)\) дорівнює:</p>
+<p>\[ P(x)-Q(x) = \left( 2x^2+3x-1 \right)-\left( 2x^2-x+5 \right) \]</p>
+<p>Розкриваючи дужки та збираючи члени однакового ступеня:</p>
+<p>\[
+\begin{align*}
+P(x)-Q(x) &amp;= 2x^2+3x-1-2x^2+x-5 \\[0.5em]
+&amp;= (2x^2-2x^2)+(3x+x)+(-1-5) \\[0.5em]
+&amp;= 4x-6
+\end{align*}
+\]</p>
+<h5>Провідні члени ступеня \(n=2\) повністю взаємознищуються, в результаті чого отримуємо поліном ступеня \(n-1=1\). Це підтверджує, що ступінь суми або різниці може бути строго меншим за ступінь доданків.</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Як поділити два поліноми</h2>
+<p><a href="polynomial-division.html">Ділення двох поліномів</a> — це більш складний процес порівняно з їх додаванням або відніманням. Дано два поліноми \( P(x) \) та \( D(x) \), завжди можливо визначити два поліноми \( Q(x) \) та \( R(x) \), такі що:</p>
+<p>\[P(x) = Q(x) D(x) + R(x) \]</p>
+<ul>
+<li>\( Q(x) \) — це частка від ділення.</li>
+<li>\( R(x) \) — це остача.</li>
+<li>Степ \( R(x) \) строго менший за степінь \( D(x) \)</li>
+</ul>
+<h5>Цей результат відомий як алгоритм ділення поліномів, або ділення поліномів «у стовпчик». Він забезпечує систематичну процедуру ділення будь-якого полінома на ненульовий поліном нижчого або рівного степеня, гарантуючи, що остача дорівнює нулю або має строго менший степінь, ніж дільник.</h5>
+<hr>
+<p>Коли ділення двох поліномів виражається як скорочений часткий вираз (без явного показу остачі), ми отримуємо раціональну функцію, визначену як:</p>
+<p>\[
+R(x) = \frac{P(x)}{Q(x)}
+\]</p>
+<p>де \( P(x) \) та \( Q(x) \) — поліноми і \( Q(x) \ne 0 \).</p>
+<h5>У цьому контексті варто розглянути <a href="rational-equations.html">раціональні рівняння</a> та раціональні нерівності, які містять вирази, де і чисельник, і знаменник є поліномами.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30 alignCenterMathjax"><h2>Розкладання поліномів на множники</h2>
+<p>Число \( \alpha \) називається <a href="roots-of-a-polynomial.html">коренем</a> полінома \( P(x) \), якщо \( P(\alpha) = 0 \). Корінь \( \alpha \) називається цілим, раціональним, дійсним або комплексним залежно від того, чи є \( \alpha \) цілим числом, <a href="types-of-numbers.html">раціональним числом</a>, дійсним числом або <a href="complex-numbers-introduction.html">комплексним числом</a>.</p>
+<hr>
+<p>Існування коренів над \( \mathbb{C} \) гарантується <a href="roots-of-a-polynomial.html">Основною теоремою алгебри</a>, яка стверджує, що кожен несталий поліном з комплексними коефіцієнтами має принаймні один комплексний корінь. Як наслідок, будь-який поліном степеня \( n \) над \( \mathbb{C} \) розкладається рівно на \( n \) лінійних множників, враховуючи кратність. Над \( \mathbb{R} \) ситуація більш нюансована: дійсні корені можуть існувати не завжди, і в розкладанні можуть з'явитися незвідні квадратні множники без дійсних коренів.</p>
+<p>За припущенням, що всі корені відомі, будь-який поліном \( P(x) \) з \( P(0) \ne 0 \) допускає розкладене представлення через свої корені:</p>
+<p>\[
+P(x) = P(0) \prod_{\rho} \left(1 &#8211; \frac{x}{\rho} \right)
+\]</p>
+<p>де добуток здійснюється по всіх коренях \( \rho \) полінома, дійсних або комплексних, враховуючи кратність. Це представлення виражає поліном повністю через значення, при яких він перетворюється на нуль, і робить роль кожного кореня явною в структурі виразу.</p>
+<hr>
+<p>Маніпуляції з поліномами разом із глибоким розумінням їхніх структурних властивостей лежать в основі широкого спектра методів алгебри та аналізу. Наступні теми розширюють матеріал, розглянутий на цій сторінці, і рекомендуються як природне продовження.</p>
+<ul>
+<li><a href="notable-products.html">Помітні добутки (формули скороченого множення)</a></li>
+<li><a href="factoring-ac-method.html">Метод AC</a></li>
+<li><a href="factoring-completing-the-square.html">Доповнення до повного квадрата</a></li>
+<li>Правило Руффіні</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Поліноміальні рівняння</h2>
+<p><a href="polynomial-equations.html">Поліноміальне рівняння</a> — це рівняння вигляду:</p>
+<p>\[a_{n}x^{n}+a_{n-1}x^{n-1}+\dotsb +a_{2}x^{2}+a_{1}x+a_{0} = 0\]</p>
+<p>Поліноміальні рівняння класифікують за степенем старшого члена. Залежно від їхнього степеня, їх називають <a href="linear-equations.html">лінійними</a> (степінь 1), <a href="quadratic-equations.html">квадратними</a> (степінь 2), <a href="polynomial-equations.html">кубічними</a> (степінь 3) або рівняннями вищого степеня, коли \(n &gt; 3\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax pb-steps"><h2>Поліноміальні функції</h2>
+<p><a href="polynomial-function.html">Поліноміальна функція</a> — це <a href="functions.html">функція</a> вигляду:</p>
+<p>\[y = a_{n}x^{n}+a_{n-1}x^{n-1}+\dotsb +a_{2}x^{2}+a_{1}x+a_{0} \]</p>
+<p>Нехай \( p(x) \) та \( q(x) \) будуть двома поліномами. Якщо дві поліноміальні функції рівні для кожного значення \( x \), тобто:</p>
+<p>\[ p(x) = q(x) \quad \text{для всіх } x \]</p>
+<p>тоді ці два поліноми є ідентичними, що означає, що вони мають однакові коефіцієнти. Це відомо як принцип тотожності поліномів.</p>
+<hr>
+<p>Поліноміальні функції мають кілька помітних аналітичних властивостей.</p>
+<ul>
+<li>Їхня область визначення — вся дійсна пряма \(\mathbb{R}\), і вони є <a href="continuous-functions.html">неперервними</a> та гладкими в кожній точці, без <a href="discontinuities-of-real-functions.html">точок розриву</a>, сингулярностей, заломів або кутів.</li>
+<li>Як наслідок їхньої глобальної регулярності, поліноміальні функції не мають <a href="asymptotes.html">асимптот</a> будь-якого виду.</li>
+<li>Щодо <a href="even-and-odd-functions.html">симетрії</a>, непарна поліноміальна функція має <a href="maximum-minimum-and-inflection-points.html">точку перегину</a> в початку координат \((0,0)\), тоді як парна поліноміальна функція досягає локального максимуму або мінімуму при \(x = 0\).</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке поліном в алгебрі?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Поліном — це алгебраїчний вираз, що складається зі змінних, коефіцієнтів та невипадкових цілих додатних показників степеня, об'єднаних за допомогою додавання, віднімання та множення."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як визначити ступінь полінома?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ступінь полінома — це найвищий показник степеня змінної у виразі. Він вказує на швидкість зростання полінома та форму його графіка."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи може поліном мати від'ємний або дробовий показник степеня?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ні, поліном не може мати від'ємних або дробових показників степеня. Усі показники степеня в поліномі повинні бути цілими числами (невід'ємними цілими числами)."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="polynomials.html">algebrica.org/polynomials</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

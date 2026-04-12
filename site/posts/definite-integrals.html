@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Визначені інтеграли — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Інтеграли</span>
+    </nav>
+    <article>
+        <h1>Визначені інтеграли</h1>
+        <time>2025-03-01</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Площа під функцією: від кривої до інтеграла</h2>
+<p>Щоб ввести поняття визначеного інтеграла, розглянемо <a href="functions.html">функцію</a> \( f(x) \), визначену на <a href="intervals.html">замкненому проміжку</a> \( [a, b] \). Визначений інтеграл функції \( f(x) \) на цьому проміжку визначається як орієнтована площа області, обмеженої графіком функції, віссю x та вертикальними прямими \( x = a \) і \( x = b \), і представляється формулою:</p>
+<p>\[\int_{a}^{b} f(x) \, dx \]</p>
+<p>Дано функцію \( y = f(x) \) та замкнений і обмежений проміжок \( [a, b] \), на якому функція є <a href="continuous-functions.html">неперервною</a>; криволінійна трапеція — це плоска область, обмежена графіком \( f(x) \), віссю x та вертикальними прямими \( x = a \) і \( x = b \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="400" src="../images/definite-integrals-1.png" alt="" class="wp-image-9275" style="width:306px" srcset="../images/definite-integrals-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/definite-integrals-1-300x196.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><p>Ця область, по суті, є чотирикутником із вигнутою верхньою стороною, і її площа, як показано на діаграмі, не може бути прямо визначена за допомогою класичних формул для плоских фігур з геометрії. Труднощі полягають у нерівномірності кривої, що вимагає більш складного підходу для точного вимірювання площі.</p>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Наближення площі за допомогою прямокутних сум</h2>
+<p>В принципі, площу криволінійної трапеції можна наблизити, розглянувши послідовність \( n \) підпроміжків, отриманих шляхом поділу відрізка \( [a, b] \) на рівні частини. Ширина кожного підпроміжку обчислюється за формулою:</p>
+<p>\[\Delta x = \frac{b - a}{n} \]</p>
+<p>Цей підхід розбиває складну область на простіші фігури, площі яких можна легше обчислити, а потім підсумувати, щоб наблизити загальну площу криволінійної трапеції.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="618" height="612" src="../images/definite-integrals-2.png" alt="" class="wp-image-9279" style="width:309px" srcset="../images/definite-integrals-2.png 618w, https://algebrica.org/wp-content/uploads/resources/images/definite-integrals-2-300x297.png 300w, https://algebrica.org/wp-content/uploads/resources/images/definite-integrals-2-150x150.png 150w" sizes="(max-width: 618px) 100vw, 618px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Нехай \( m_i \) — мінімальне значення, яке набуває функція \( f(x) \) на i-му підпроміжку. Тоді площа криволінійної трапеції наближається знизу величиною \( s_n^{-} \), яка представляє собою суму площ усіх цих \( n \) прямокутників:</p>
+<p>\[
+s_n^{-} = m_1 \Delta x_1 + m_2 \Delta x_2 + \ldots + m_n \Delta x_n = \sum_{i=1}^{n} m_i \Delta x_i
+\]</p>
+<p>Це наближення є нижньою сумою, оскільки воно використовує мінімальне значення функції на кожному підпроміжку. Аналогічно, ми можемо обчислити верхню суму:</p>
+<p>\[
+s_n^{+} = M_1 \Delta x_1 + M_2 \Delta x_2 + \ldots + M_n \Delta x_n = \sum_{i=1}^{n} M_i \Delta x_i
+\]</p>
+<p>Де \( M_i \) — максимальне значення функції \( f(x) \) на i-му підпроміжку.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="618" height="580" src="../images/definite-integrals-3.png" alt="" class="wp-image-9287" style="width:309px" srcset="../images/definite-integrals-3.png 618w, https://algebrica.org/wp-content/uploads/resources/images/definite-integrals-3-300x282.png 300w" sizes="(max-width: 618px) 100vw, 618px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><p>Отже, ці дві суми представляють нижнє та верхнє наближення площі криволінійної трапеції, яку ми хочемо визначити. У міру того як ширини \( \Delta x \) прямокутників зменшуються, ці суми забезпечують точніше наближення площі криволінійної трапеції. Коли ширини \( \Delta x \) наближаються до нуля, верхня та нижня суми збігаються до одного й того самого значення \( I \). Ця спільна <a href="limits.html">границя</a> двох сум і є значенням визначеного інтеграла. Такий підхід, заснований на збіжності нижніх і верхніх сум, відомий як <a href="riemann-integrability-criteria.html">визначення Рімана</a> для інтеграла.</p>
+<p>Функція \( f(x) \), яка є обмеженою на замкненому проміжку \( [a, b] \), називається інтегруючою, якщо:</p>
+<p>\[\lim_{\Delta x \to 0} s_n^{-} = \lim_{\Delta x \to 0} s_n^{+} = I \]</p>
+<p>Значення \( I \) називається визначеним інтегралом \( f(x) \) на \( [a, b] \) і визначається як:</p>
+<p>\[I = \int_{a}^{b} f(x) \, dx \]</p>
+<p>Кінці \( [a, b]\) проміжку називаються межами інтегрування, де \( a \) — нижня межа, а \( b \) — верхня межа. Функція \( f(x) \) називається підінтегральною функцією. З геометричної точки зору величини \( dx \) та \( f(x) \) представляють відповідно основу та висоту інфінітезимальних прямокутників, що використовуються для наближення площі під кривою.</p>
+</div>
+</div></div><div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax"><h2>Обчислення визначених інтегралів</h2>
+<p>Як практично обчислити значення визначеного інтеграла? Якщо \( f(x) \) є неперервною функцією на \( [a, b] \) і \( F(x) \) є будь-якою <a href="indefinite-integrals.html">первообразною</a> \( f(x) \), то виконується наступне:</p>
+<p>\[\int_{a}^{b} f(x) \, dx = F(b) - F(a)\]</p>
+<ul>
+<li>\( F(x) \) така, що \( F’(x) = f(x) \) для всіх \( x \in [a, b] \).</li>
+<li>\( F(b) \) та \( F(a) \) представляють значення первообразної, обчислені у верхній та нижній границах інтегрування відповідно.</li>
+</ul>
+<p>Ця формула є висновком Другої фундаментальної теореми числення, яка доводить, що для будь-якої неперервної функції \( f \) на \( [a, b] \) визначений інтеграл можна обчислити, знайшовши значення первообразної у двох кінцевих точках проміжку. Друга теорема ґрунтується на Першій фундаментальній теоремі числення, яка показує, що функція, визначена як накопичення площі від фіксованої точки:</p>
+<p>\[
+F(x) = \int_a^x f(t)\,dt
+\]</p>
+<p>є диференційовною, і її похідна — це саме початкова функція: \( F’(x) = f(x) \). Саме це робить диференціювання та інтегрування оберненими операціями в точному сенсі. Обидва результати разом із їхніми доведеннями та прикладами розглянуті на окремій сторінці про <a href="fundamental-theorem-of-calculus.html">Фундаментальну теорему числення</a>.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-outline alignCenterMathjax"><h2>Властивості</h2>
+<p>Коли дві <a href="limits.html">границі</a> інтегрування збігаються, інтеграл дорівнює нулю:</p>
+<p>\[\int_{a}^{a} f(x) \, dx = 0\]</p>
+<p>Це випливає безпосередньо з означення: якщо проміжок не має ширини, то немає площі, яку можна було б накопичити.</p>
+<hr>
+<p>Зміна granic інтегрування на протилежні змінює знак інтеграла:</p>
+<p>\[\int_{a}^{b} f(x) \, dx = -\int_{b}^{a} f(x) \, dx\]</p>
+<p>Це відображає орієнтовану природу визначеного інтеграла. Коли ви інтегруєте від \( b \) до \( a \) замість того, щоб інтегрувати від \( a \) до \( b \), ви проходите по проміжку у протилежному напрямку, і знак накопиченої площі відповідно змінюється.</p>
+<hr>
+<p>Якщо функція \( f(x) \) є сталою на проміжку \( [a, b] \), тобто \( f(x) = k \), тоді визначений інтеграл можна обчислити наступним чином:</p>
+<p>\[\int_{a}^{b} k \, dx = k(b &#8211; a)\]</p>
+<p>Цей результат випливає з того, що площа під сталою функцією — це просто прямокутник з висотою \( k \) та основою \( b &#8211; a \).</p>
+<hr>
+<p>Якщо \( f(x) \) є неперервною на \( [a, b] \) і \( k \) є сталою, то сталий множник можна винести за знак інтеграла:</p>
+<p>\[\int_{a}^{b} k \cdot f(x) \, dx = k \int_{a}^{b} f(x) \, dx\]</p>
+<p>Ця властивість у поєднанні з адитивністю інтеграла по сумах робить визначений інтеграл лінійним оператором.</p>
+<hr>
+<p>Якщо \( f(x) \) та \( g(x) \) є неперервними функціями на \( [a, b] \), то їхня сума \( f(x) + g(x) \) також є неперервною на \( [a, b] \). Інтеграл від суми цих функцій визначається так:</p>
+<p>\[\int_{a}^{b} \left( f(x) + g(x) \right) \, dx = \int_{a}^{b} f(x) \, dx + \int_{a}^{b} g(x) \, dx\]</p>
+<hr>
+<p>Якщо \( f(x) \) є неперервною на проміжку і \( a \), \( b \) та \( c \) є точками в цьому проміжку, то виконується наступна властивість:</p>
+<p>\[
+\int_{a}^{c} f(x) \, dx = \int_{a}^{b} f(x) \, dx + \int_{b}^{c} f(x) \, dx
+\]</p>
+<hr>
+<p>Тепер розглянемо порівняння інтегралів двох функцій \( f(x) \) та \( g(x) \), які є неперервними на проміжку \( [a, b] \) і такими, що \( f(x) \leq g(x) \) для кожної точки в проміжку. Якщо ці умови виконуються, то:</p>
+<p>\[\int_{a}^{b} f(x) \, dx \leq \int_{a}^{b} g(x) \, dx\]</p>
+<p>Ця властивість стверджує, що якщо одна функція завжди менша або дорівнює іншій на проміжку \( [a, b] \), то інтеграл від першої функції менший або дорівнює інтегралу від другої функції.</p>
+<h5>Це відомо як властивість порівняння інтегралів і є важливою для встановлення нерівностей, що містять інтеграли. У геометричному сенсі це означає, що площа під кривою функції \( f(x) \) менша або дорівнює площі під кривою функції \( g(x) \).</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Теорема про середнє значення для інтегралів</h2>
+<p>Якщо \( f(x) \) є неперервною на \( [a, b] \), то існує принаймні одна точка \( c \in (a, b) \), така що:</p>
+<p>\[
+\int_{a}^{b} f(x) \, dx = f(c)(b &#8211; a)
+\]</p>
+<p>Значення \( f(c) \) є середнім значенням функції на проміжку. Геометрично це означає, що завжди існує прямокутник з основою \( b &#8211; a \) і висотою \( f(c) \), площа якого точно дорівнює площі під кривою. Теорема гарантує існування такої точки, але не вказує, як її знайти — це залежить від конкретної функції.</p>
+<p>Середнє значення \( f \) на \( [a, b] \) можна записати явно як:</p>
+<p>\[
+f(c) = \frac{1}{b - a} \int_{a}^{b} f(x) \, dx
+\]</p>
+<h5>Теорема про середнє значення для інтегралів є інтегральним аналогом <a href="lagrange-theorem.html">теореми Лагранжа про середнє значення</a>. У той час як остання гарантує точку, де миттєва швидкість зміни дорівнює середній швидкості зміни, ця теорема гарантує точку, де значення функції дорівнює середньому значенню на проміжку. Обидва результати говорять про схоже: неперервні функції не можуть «уникнути» своїх середніх значень.</h5>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Обчислимо визначений інтеграл наступної функції:</p>
+<p>\[\int_{0}^{3} (3x &#8211; x^2) \, dx\]</p>
+<h5>Перш ніж переходити до обчислень, корисно заглибитися в метод знаходження <a href="indefinite-integrals.html">первообразних</a> функцій та їхні властивості.</h5>
+<hr>
+<p>Застосовуючи властивість лінійності, інтеграл можна розбити на два окремі інтеграли:</p>
+<p>\[\int_{0}^{3} 3x \, dx - \int_{0}^{3} x^2 \, dx\]</p>
+<p>Виносячи сталий множник за знак першого інтеграла:</p>
+<p>\[3\int_{0}^{3} x \, dx - \int_{0}^{3} x^2 \, dx\]</p>
+<hr>
+<p>Обчислюючи первообразну кожного доданка, отримаємо:</p>
+<p>\[F(x) = \frac{3x^2}{2} &#8211; \frac{x^3}{3}\]</p>
+<hr>
+<p>Застосовуючи Другу фундаментальну теорему числення, \( F(b) - F(a) \), де \( a = 0 \) та \( b = 3 \):</p>
+<p>\[
+\begin{aligned}
+F(3) &#8211; F(0) &amp;= \left( \frac{3 \cdot 9}{2} - \frac{27}{3} \right) - \left( \frac{3 \cdot 0}{2} &#8211; \frac{0}{3} \right) \\[6pt]
+&amp;= \frac{27}{2} - 9 - 0 \\[6pt]
+&amp;= \frac{27 &#8211; 18}{2} \\[6pt]
+&amp;= \frac{9}{2}
+\end{aligned}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отже, площа плоскої фігури, обмеженої <a href="parabola.html">параболічною</a> дугою та віссю \( x \) на проміжку \( [0, 3] \), дорівнює:</p>
+<p>\[
+\frac{9}{2}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Це лише простий приклад, який загалом демонструє процедуру обчислення визначених інтегралів. Дуже часто інтеграли не так просто обчислити, і необхідно вдатися до інших методів розв'язання, таких як <a href="integration-by-substitution.html">заміна змінної</a> та <a href="integration-by-parts.html">інтегрування частинами</a>.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Обчислимо визначений інтеграл наступної функції:</p>
+<p>\[\int_{0}^{\pi} (x + \sin(x)) \, dx\]</p>
+<h5>Цей приклад поєднує поліном з тригонометричною функцією. Перед початком може бути корисно повторити <a href="integral-of-trigonometric-functions.html">інтеграли тригонометричних функцій</a>.</h5>
+<hr>
+<p>Застосовуючи властивість лінійності, інтеграл можна розбити на два окремі інтеграли:</p>
+<p>\[\int_{0}^{\pi} x \, dx + \int_{0}^{\pi} \sin(x) \, dx\]</p>
+<hr>
+<p>Обчислюючи первообразну кожного доданка:</p>
+<p>\[F(x) = \frac{x^2}{2} - \cos(x)\]</p>
+<hr>
+<p>Застосовуючи Другу фундаментальну теорему числення, \( F(b) &#8211; F(a) \), де \( a = 0 \) та \( b = \pi \):</p>
+<p>\[
+\begin{aligned}
+F(\pi) - F(0) &amp;= \left( \frac{\pi^2}{2} &#8211; \cos(\pi) \right) - \left( \frac{0^2}{2} - \cos(0) \right) \\
+&amp;= \left( \frac{\pi^2}{2} + 1 \right) - \left( 0 &#8211; 1 \right) \\
+&amp;= \frac{\pi^2}{2} + 1 + 1 \\
+&amp;= \frac{\pi^2}{2} + 2
+\end{aligned}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, площа плоскої фігури, обмеженої кривою \( x + \sin(x) \) та віссю \( x \) на проміжку \( [0, \pi] \), дорівнює:</p>
+<p>\[
+\frac{\pi^2}{2} + 2
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Робота з визначеними інтегралами з додатними та від'ємними площами</h2>
+<p>Ми побачили, що визначений інтеграл представляє площу області, обмеженої графіком \( f(x) \), віссю x та вертикальними прямими \( x = a \) і \( x = b \).</p>
+<p>\[\int_{a}^{b} f(x) \, dx \]</p>
+<p>Це справедливо, коли \( f(x) \) завжди більше нуля на проміжку, де ми обчислюємо площу криволінійного трапецієподібного елемента. Однак, коли \( f(x) \) змінює знак на проміжку \( [a, b] \), ми повинні діяти інакше. Таку поведінку можна спостерігати на наступному зображенні:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="556" src="../images/definite-integrals-4.png" alt="" class="wp-image-9348" style="width:306px" srcset="../images/definite-integrals-4.png 612w, https://algebrica.org/wp-content/uploads/resources/images/definite-integrals-4-300x273.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>У цьому випадку проміжок \( [a, b] \) необхідно розділити на підпроміжки, на яких функція зберігає той самий знак. Наприклад, \( [a, c] \), де функція \( f(x) \) є додатною, та \( [c, b] \), де функція є від'ємною.</p>
+<p>Визначені інтеграли потім обчислюються окремо на кожному підпроміжку, а результати комбінуються алгебраїчно з урахуванням їхніх знаків. Цей процес гарантує, що площі нижче осі x рахуються як від'ємні, тоді як площі вище осі x рахуються як додатні. У цьому випадку маємо:</p>
+<p>\[\int_{a}^{b} f(x) \, dx = \int_{a}^{c} f(x) \, dx + \int_{c}^{b} f(x) \, dx \]</p>
+<hr>
+<p>У випадку <a href="even-and-odd-functions.html">парної функції</a> (симетричної відносно осі y), площа між \( [-a, 0] \) дорівнює площі між \( [0, a] \). Отже, визначений інтеграл дорівнює:</p>
+<p>\[
+\int_{-a}^{a} f(x) \, dx = 2 \int_{0}^{a} f(x) \, dx
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="660" height="522" src="../images/definite-integrals-5.png" alt="" class="wp-image-9358" style="width:330px" srcset="../images/definite-integrals-5.png 660w, https://algebrica.org/wp-content/uploads/resources/images/definite-integrals-5-300x237.png 300w" sizes="(max-width: 660px) 100vw, 660px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>У випадку <a href="even-and-odd-functions.html">непарної функції</a> (симетричної відносно початку координат), площа між \( [-a, 0] \) дорівнює за величиною, але протилежна за знаком площі між \( [0, a] \). Отже, визначений інтеграл дорівнює:</p>
+<p>\[
+\int_{-a}^{a} f(x) \, dx = 0
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="458" src="../images/definite-integrals-6.png" alt="" class="wp-image-9363" style="width:306px" srcset="../images/definite-integrals-6.png 612w, https://algebrica.org/wp-content/uploads/resources/images/definite-integrals-6-300x225.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>У випадку парної функції площа, обмежена графіком \( f(x) \) та віссю \( x \) на проміжку \( [-a, a] \), становить:</p>
+<p>\[
+S = 2\int_{0}^{a} f(x) \, dx
+\]</p>
+<p>У випадку непарної функції, де внески вище та нижче осі \( x \) взаємознищуються у визначеному інтегралі, геометрична площа становить:</p>
+<p>\[
+S = 2\int_{0}^{a} |f(x)| \, dx
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Невластиві інтеграли</h2>
+<p>Все розглянуте на цій сторінці передбачає, що проміжок \( [a, b] \) є скінченним і що \( f(x) \) залишається обмеженою на всьому проміжку. На практиці ці умови не завжди виконуються. Часто трапляються інтеграли на проміжках, що тягнуться до нескінченності, або <a href="functions.html">функції</a>, які розбігаються в деякій точці всередині <a href="determining-the-domain-of-a-function.html">області визначення</a>.</p>
+<p>Стандартний інтеграл Рімана не може обробляти такі випадки безпосередньо. Виходом є заміна проблемної межі границею та питання про те, чи збігається ця границя до скінченного значення. Наприклад, інтеграл на необмеженому проміжку визначається як:</p>
+<p>\[
+\int_{a}^{+\infty} f(x) \, dx = \lim_{t \to +\infty} \int_{a}^{t} f(x) \, dx
+\]</p>
+<p>Коли границя існує і є скінченною, інтеграл збігається. Коли ні — він розбігається. Інтеграли такого типу детально вивчаються на спеціальній сторінці про <a href="improper-integrals.html">невластиві інтеграли</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Визначений інтеграл, розглянутий на цій сторінці, вимірює орієнтовану площу та надає точний спосіб обчислення накопичених величин. Одним із найпряміших застосувань є знаходження площ областей, обмежених кривими, — задача, яка повністю зводиться до побудови та обчислення визначених інтегралів такого типу, як ті, що вивчалися тут. Це детально розглянуто на спеціальній сторінці про <a href="finding-areas-by-integration.html">знаходження площ шляхом інтегрування</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>Гарвардський університет, О. Кнілл</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/fall2023/handouts/lecture02.pdf">Щільність та визначений інтеграл</a></p>
+</li>
+<li>
+<p><strong>MIT, Г. Странг</strong>. <a href="https://ocw.mit.edu/courses/res-18-001-calculus-fall-2023/mitres_18_001_f17_ch05.pdf">Інтеграли</a></p>
+</li>
+<li>
+<p><strong>Університет Каліфорнії в Дейвісі, Дж. Хантер</strong>. <a href="https://www.math.ucdavis.edu/~hunter/intro_analysis_pdf/ch12.pdf">Властивості та застосування інтеграла</a></p>
+</li>
+<li>
+<p><strong>MIT, Д. Джерісон</strong>. <a href="https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/e5e4813ac3a0b21f61532842c7ce8a8c_MIT18_01SCF10_Ses52b.pdf">Доведення першої фундаментальної теореми числення</a></p>
+</li>
+<li>
+<p><strong>Університет Каліфорнії в Берклі, Т. Сканлон</strong>. <a href="https://math.berkeley.edu/~scanlon/m16bs04/ln/16b2lec15.pdf">Наближення визначених інтегралів</a></p>
+</li>
+<li>
+<p><strong>Університет Каліфорнії в Дейвісі, Дж. Хантер</strong>. <a href="https://www.math.ucdavis.edu/~hunter/m125b/ch1.pdf">Інтеграл Рімана</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке визначений інтеграл?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Визначений інтеграл представляє алгебраїчну площу під кривою між двома заданими границами, зазвичай записується як ∫ᵃᵇ f(x) dx. Він обчислює загальне накопичення величини на проміжку."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чим визначений інтеграл відрізняється від невизначеного інтеграла?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Результатом визначеного інтеграла є числове значення, що представляє площу або накопичення на конкретному проміжку, тоді як невизначений інтеграл представляє загальну первісну і включає сталу інтегрування."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що говорить фундаментальна теорема числення про визначені інтеграли?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Фундаментальна теорема числення стверджує, що якщо F є первісною для f, то визначений інтеграл від a до b від f(x) dx дорівнює F(b) − F(a). Вона пов'язує диференціювання та інтегрування."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="definite-integrals.html">algebrica.org/definite-integrals</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

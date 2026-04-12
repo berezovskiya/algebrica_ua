@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Раціональні нерівності — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Нерівності</span>
+    </nav>
+    <article>
+        <h1>Раціональні нерівності</h1>
+        <time>2025-02-13</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Вступ</h2>
+<p>Раціональною нерівністю називають нерівність, що містить принаймні один раціональний вираз, тобто відношення, в якому і чисельник, і знаменник є <a href="polynomials.html">поліномами</a>. Природною областю визначення такого виразу є множина всіх дійсних чисел, для яких знаменник не перетворюється на нуль; будь-яке значення \(x\), що робить знаменник рівним нулю, виключається з області визначення і не може належати до множини розв'язків. Будь-яка раціональна нерівність може бути зведена до однієї з наступних канонічних форм.</p>
+<p>\[\frac{P(x)}{Q(x)} &gt; 0 \qquad \frac{P(x)}{Q(x)} \geq 0\]
+\[ \frac{P(x)}{Q(x)} &lt; 0 \qquad \frac{P(x)}{Q(x)} \leq 0\]</p>
+<p>У кожному випадку \(P(x)\) та \(Q(x)\) є поліномами з дійсними коефіцієнтами, а вираз у лівій частині визначений лише там, де \(Q(x) \neq 0\). Ці нерівності отримали свою назву від поняття раціональної функції, так само як і <a href="rational-equations.html">раціональні рівняння</a>. Усі чотири форми розв'язуються одним і тим самим методом, як показано в прикладах нижче.</p>
+<hr>
+<p>Розв'язати раціональну нерівність означає знайти всі значення \(x\) у природній області визначення виразу, для яких нерівність виконується. Стандартний підхід складається з наступних кроків.</p>
+<ul>
+<li>Перший крок полягає в тому, щоб переписати нерівність так, щоб усі члени знаходилися в лівій частині, а в правій частині був нуль, зводячи таким чином задачу до однієї з вищезазначених канонічних форм. Це дозволяє досліджувати знак одного раціонального виразу замість порівняння двох окремих виразів.</li>
+<li>Другий крок — визначити природну <a href="determining-the-domain-of-a-function.html">область визначення</a> раціонального виразу, знайшовши всі значення \(x\), при яких знаменник перетворюється на нуль. Ці значення мають бути виключені з множини розв'язків незалежно від знака нерівності.</li>
+<li>Третій крок — окремо знайти нулі чисельника та нулі знаменника. Ці критичні точки разом розбивають дійсну пряму на відкриті інтервали, на яких раціональний вираз зберігає постійний знак, оскільки знак відношення може змінитися лише там, де чисельник або знаменник дорівнює нулю.</li>
+<li>Четвертий крок — побудувати <a href="sign-analysis-in-inequalities.html">таблицю знаків</a>, зафіксувавши знак чисельника та знак знаменника в кожному інтервалі, а потім визначити знак відношення за стандартним правилом: відношення є додатним, коли чисельник і знаменник мають однаковий знак, і від'ємним, коли вони мають протилежні знаки.</li>
+<li>П'ятий крок — зібрати інтервали, де знак виразу відповідає початковій нерівності, пам'ятаючи, що нулі чисельника включаються тоді і тільки тоді, коли нерівність нестрога, а нулі знаменника виключаються в будь-якому випадку.</li>
+</ul>
+<h5>Ключовим спостереженням, що лежить в основі цього методу, є те, що раціональний вираз \(P(x)/Q(x)\) може змінити знак лише в нулі \(P(x)\) або в нулі \(Q(x)\). Між будь-якими двома послідовними критичними точками вираз є або строго додатним, або строго від'ємним на всьому проміжку, що дозволяє перевірити лише одне репрезентативне значення в кожному інтервалі.</h5>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Кратність і зміна знаків</h2>
+<p>Кратність кожного нуля є вирішальною для визначення того, як змінюється знак раціонального виразу в його критичних точках. Нуль непарної кратності, незалежно від того, чи знаходиться він у чисельнику чи в знаменнику, призводить до зміни знака виразу при переході \(x\) через цю точку. Вираз є додатним з одного боку і від'ємним з іншого.</p>
+<p>Натомість нуль парної кратності не викликає зміни знака. Вираз зберігає той самий знак по обидва боки цієї точки, оскільки відповідний множник підноситься до парного степеня, який не змінює знак в околі нуля.</p>
+<p>Цю особливість необхідно явно враховувати при побудові таблиці знаків. Розгляд усіх критичних точок як точок зміни знака, незалежно від кратності, є поширеною помилкою, яка призводить до неправильних множин розв'язків, коли в чисельнику або знаменнику з'являються повторювані множники.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><hr>
+<p>Розглянемо наступну нерівність, яка демонструє вплив парної кратності на таблицю знаків.</p>
+<p>\[\frac{(x-1)^2}{x-3} \geq 0\]</p>
+<p>Знаменник перетворюється на нуль при \(x = 3\), тому це значення має бути виключене з множини розв'язків незалежно від знака нерівності, оскільки вираз у цій точці не визначений. Таким чином, природною областю визначення є множина всіх дійсних чисел, де \(x \neq 3\). Чисельник перетворюється на нуль при \(x = 1\), що є нулем кратності два. Критичними точками є \(x = 1\) та \(x = 3\), і вони розбивають дійсну пряму на три інтервали.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign"><table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[1\]</th>
+<th style="text-align:center">\[3\]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\[(x-1)^2 \geq 0\]</td>
+<td style="text-align:center">\(\boldsymbol{+}\)</td>
+<td style="text-align:center">\(\boldsymbol{+}\)</td>
+<td style="text-align:center">\(\boldsymbol{+}\)</td>
+</tr>
+<tr>
+<td style="text-align:left">\[x - 3 \geq 0\]</td>
+<td style="text-align:center">\(\boldsymbol{-}\)</td>
+<td style="text-align:center">\(\boldsymbol{-}\)</td>
+<td style="text-align:center">\(\boldsymbol{+}\)</td>
+</tr>
+<tr>
+<td style="text-align:left">\[\frac{(x-1)^2}{x-3} \geq 0\]</td>
+<td style="text-align:center">\(\boldsymbol{-}\)</td>
+<td style="text-align:center">\(\boldsymbol{-}\)</td>
+<td style="text-align:center">\(\boldsymbol{+}\)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Оскільки \((x-1)^2\) є невипадковою для всіх дійсних \(x\) і дорівнює нулю тільки при \(x = 1\), вона не змінює знак при переході \(x\) через \(x = 1\). Знак усього виразу, отже, визначається виключно знаком знаменника \(x &#8211; 3\).</p>
+<p>Вираз є невипадковою, коли \(x &gt; 3\), і він дорівнює нулю при \(x = 1\). Точка \(x = 3\) виключається з множини розв'язків, оскільки вона не належить до природної області визначення виразу. Множина розв'язків є наступною.</p>
+<p>\[\{1\} \cup (3, +\infty)\]</p>
+<p>Точка \(x = 1\) з'являється як ізольована точка в множині розв'язків, що є наслідком парної кратності відповідного нуля.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Структура множини розв'язків</h2>
+<p>Множина розв'язків раціональної нерівності завжди є об'єднанням проміжків дійсної прямої, можливо, доповненим ізольованими точками. Кожен проміжок у множині розв'язків обмежений критичними точками, а його кінці є або нулями чисельника, які можуть бути включені, якщо нерівність нестрога, або нулями знаменника, які завжди виключаються. Коли в чисельнику з'являється нуль парної кратності, він дає ізольовану точку в множині розв'язків, а не проміжок, як обговорювалося в попередньому розділі про кратність і зміну знаків.</p>
+<p>Для конкретизації розглянемо раціональний вираз із критичними точками \(x = 1\), \(x = 2\) та \(x = 4\), де \(x = 2\) є нулем знаменника. Якщо таблиця знаків показує, що вираз є невипадковим на \([1, 2)\) та на \((2, 4]\), то множина розв'язків є наступною.</p>
+<p>\[[1, 2) \;\cup\; (2, 4]\]</p>
+<p>Точка \(x = 2\) відсутня в обох проміжках, оскільки вона не належить до природної області визначення виразу, навіть попри те, що сусідні проміжки наближаються до неї з обох сторін.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Визначте значення \(x\), що задовольняють наступну нерівність.</p>
+<p>\[
+\frac{x &#8211; 1}{2 &#8211; x} &lt; 0
+\]</p>
+<p>Нерівність уже перебуває в канонічній формі. Знаменник \(2 &#8211; x\) зникає при \(x = 2\), тому це значення має бути виключене з множини розв'язків. Природна область визначення виразу є наступною.</p>
+<p>\[
+D = \lbrace x \in \mathbb{R} : x \neq 2 \rbrace
+\]</p>
+<p>Щоб визначити проміжки, на яких виконується нерівність, скористаємося тим фактом, що раціональний вираз є від'ємним тоді і тільки тоді, коли чисельник і знаменник мають протилежні знаки. Чисельник \(x - 1\) є від'ємним, коли \(x &lt; 1\), тоді як знаменник \(2 - x\) є від'ємним, коли \(x &gt; 2\). Побудувавши <a href="sign-analysis-in-inequalities.html">таблицю знаків</a>, отримаємо:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign"><table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[1\]</th>
+<th style="text-align:center">\[2\]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\[ x - 1 \lt 0 \]</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:left">\[ 2 - x \lt 0 \]</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+</tr>
+<tr>
+<td style="text-align:left">\[ \frac{x-1}{2-x} \lt 0 \]</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>З таблиці знаків випливає, що вираз є від'ємним на проміжках \(x &lt; 1\) та \(x &gt; 2\). Оскільки нерівність є строгою, кінцеві точки виключаються, і множина розв'язків є наступною:</p>
+<p>\[
+(-\infty,\, 1) \;\cup\; (2,\, +\infty)
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Визначте значення \(x\), що задовольняють наступну нерівність.</p>
+<p>\[
+\frac{x &#8211; 1}{x^2 &#8211; 5x + 6} \geq 0
+\]</p>
+<p>Знаменник є квадратичним поліномом, нулі якого знаходяться шляхом розв&#39;язання відповідного <a href="quadratic-equations.html">квадратного рівняння</a>. Поліном <a href="factoring-quadratic-equations.html">розкладається на множники</a> наступним чином.</p>
+<p>\[(x-3)(x-2) = 0\]</p>
+<p>Це дає \(x = 2\) та \(x = 3\), які є значеннями, що роблять знаменник рівним нулю, і тому мають бути виключені з множини розв&#39;язків. Природна область визначення є наступною.</p>
+<p>\[
+D = \lbrace \, x \in \mathbb{R} : x \neq 2,  \, x \neq 3 \,\rbrace
+\]</p>
+<p>Чисельник перетворюється на нуль при \(x = 1\), що разом із \(x = 2\) та \(x = 3\) дає три критичні точки, які розбивають дійсну пряму на чотири відкриті інтервали. Тепер представимо їхні знаки на <a href="sign-analysis-in-inequalities.html">таблиці знаків</a>:</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-sign"><table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center">\[ 1 \]</th>
+<th style="text-align:center">\[2 \]</th>
+<th style="text-align:center">\[3 \]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">\[ x-1 \geq 0 \]</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:left">\[ x^2 - 5x + 6 \geq 0 \]</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+<tr>
+<td style="text-align:left">\[\frac{x - 1}{x^2 - 5x + 6} \geq 0\]</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+<td style="text-align:center">\( \boldsymbol{-} \)</td>
+<td style="text-align:center">\( \boldsymbol{+} \)</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>З таблиці знаків видно, що вираз є невикладним на інтервалі \(1 \leq x &lt; 2\) та на інтервалі \(x &gt; 3\). Кінцеві точки \(x = 2\) та \(x = 3\) виключені, оскільки вони не належать до природної області визначення, тоді як \(x = 1\) включена, оскільки нерівність не є строгою і чисельник там перетворюється на нуль.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Множина розв&#39;язків є наступною:</p>
+<p>\[
+[1, 2) \;\cup\; (3, +\infty)
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Зведення до канонічного вигляду</h2>
+<p>Метод, описаний вище, передбачає, що нерівність уже має канонічний вигляд, з одним раціональним виразом у лівій частині та нулем у правій. На практиці нерівності не завжди мають такий вигляд. Поширеним випадком є той, коли раціональний вираз з&#39;являється з обох сторін, як-от у наступному прикладі.</p>
+<p>\[\frac{2x + 1}{x &#8211; 3} \geq \frac{1}{x + 1}\]</p>
+<p>Правильний підхід полягає в тому, щоб перенести всі доданки в ліву частину і об&#39;єднати їх у один раціональний вираз. Віднімаючи праву частину від обох сторін, отримаємо наступне.</p>
+<p>\[\frac{2x + 1}{x - 3} - \frac{1}{x + 1} \geq 0\]</p>
+<p>Потім два дроби об&#39;єднуються за допомогою спільного знаменника.</p>
+<p>\[\frac{(2x + 1)(x + 1) &#8211; (x &#8211; 3)}{(x &#8211; 3)(x + 1)} \geq 0\]</p>
+<p>Розкриття дужок у чисельнику дає наступне.</p>
+<p>\[\frac{2x^2 + 3x + 1 &#8211; x + 3}{(x &#8211; 3)(x + 1)} \geq 0\]</p>
+<p>що спрощується до наступного.</p>
+<p>\[\frac{2x^2 + 2x + 4}{(x &#8211; 3)(x + 1)} \geq 0\]</p>
+<p>Чисельник \(2x^2 + 2x + 4\) можна записати як \(2(x^2 + x + 2)\). Дискримінант \(x^2 + x + 2\) дорівнює \(\Delta = 1 &#8211; 8 = -7 &lt; 0\), отже, квадратний тричлен <a href="quadratic-equations-with-complex-solutions.html">не має дійсних коренів</a> і є строго додатним для всіх дійсних \(x\). Таким чином, знак усього виразу визначається виключно знаком знаменника \((x-3)(x+1)\), який є додатним, коли \(x &lt; -1\) або \(x &gt; 3\). Оскільки чисельник ніколи не дорівнює нулю, жодна кінцева точка не може бути включена, і множина розв&#39;язків є наступною.</p>
+<p>\[
+(-\infty, -1) \;\cup\; (3, +\infty)
+\]</p>
+<p>Поширеною помилкою в задачах такого типу є множення обох частин початкової нерівності на \(x - 3\) або \(x + 1\) без урахування знака цих множників. Оскільки знак лінійного виразу залежить від \(x\), таке множення потребувало б аналізу випадків і є більш схильним до помилок, ніж зведення до канонічного вигляду, продемонстроване вище.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li><strong>University of Rhode Island, L. Barnes</strong>. <a href="https://www.math.uri.edu/~lbarnes/classes/2019-2020/spring/Inequality%20Lecture%20Notes.pdf">Solving Polynomial and Rational Inequalities</a></li>
+<li><strong>Florida State University, P. Kirby</strong>. <a href="https://www.math.fsu.edu/~pkirby/mac1140/5_4Inequalities.pdf">Solving Polynomial and Rational Inequalities</a></li>
+<li><strong>Stitz-Zeager Open Mathematics, C. Stitz, J. Zeager</strong>. <a href="https://stitz-zeager.com/szprecalc08262010.pdf">Rational Inequalities and Applications</a></li>
+<li><strong>Lamar University, P. Dawkins</strong>. <a href="https://tutorial.math.lamar.edu/classes/alg/SolveRationalInequalities.aspx">Rational Inequalities</a></li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="rational-inequalities.html">algebrica.org/rational-inequalities</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

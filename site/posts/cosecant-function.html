@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функція косеканса — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Функція косеканса</h1>
+        <time>2025-02-25</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Функція косеканс</h2>
+<p>Функція <a href="secant-and-cosecant.html">косеканс</a> \(f(x) = \csc(x)\) визначається як обернена до <a href="sine-and-cosine.html">функції синус</a>. Для будь-якого дійсного кута \(x\) (виміряного в радіанах), косеканс набуває значення:</p>
+<p>\[
+\csc(x) = \frac{1}{\sin(x)}
+\]</p>
+<p>за умови, що \(\sin(x) \neq 0\). Через таку обернену структуру поведінка функції косеканс повністю визначається властивостями функції синус.</p>
+<h6>Цей розділ присвячений аналітичним властивостям функції косеканс. Для геометричної інтерпретації на основі <a href="unit-circle.html">одиничного кола</a>, включаючи те, як косеканс виникає з продовження радіуса та відповідної побудови прямокутного трикутника, див. спеціальний розділ.</h6>
+<hr>
+<p>Її графік є періодичною кривою з періодом \(2\pi\). Оскільки функція синус досягає нуля в ізольованих і рівномірно розташованих точках, функція косеканс має вертикальні <a href="asymptotes.html">асимптоти</a> в точках:</p>
+<p>\[
+x = k\pi \qquad k \in \mathbb{Z}
+\]</p>
+<p>де обернена величина \(1/\sin(x)\) стає невизначеною.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="848" height="732" src="../images/cosecant-1.png" alt="Cosecant graph with asymptotic behaviour." class="wp-image-20596" style="width:424px" title="Cosecant graph with asymptotic behaviour." srcset="../images/cosecant-1.png 848w, https://algebrica.org/wp-content/uploads/resources/images/cosecant-1-300x259.png 300w, https://algebrica.org/wp-content/uploads/resources/images/cosecant-1-768x663.png 768w" sizes="(max-width: 848px) 100vw, 848px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Ці асимптоти поділяють графік на окремі гілки, кожна з яких необмежено зростає або спадає, коли кут наближається до цих точок. <a href="determining-the-domain-of-a-function.html">Область визначення</a> \(\csc(x)\) включає всі дійсні числа, крім кутів, де \(\sin(x) = 0\). Її область значень складається з двох <a href="intervals.html">необмежених проміжків</a> \((-\infty, -1] \cup [1, \infty)\), що відображає той факт, що функція синус ніколи не перевищує 1 за абсолютним значенням, тому її обернена величина завжди повинна мати модуль принаймні 1.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30 pb-steps"><h2>Ключові властивості</h2>
+<ul>
+<li>Область визначення: \( { x \in \mathbb{R} : \sin(x) \neq 0 } = { x \in \mathbb{R} : x \neq k\pi \text{ для всіх } k \in \mathbb{Z} } .\)</li>
+<li>Область значень: \( y \in (-\infty, -1] \cup [1, \infty) .\)</li>
+<li>Періодичність: періодична за \( x \) з періодом \( 2\pi .\)</li>
+<li>Парність: <a href="even-and-odd-functions.html">непарна</a>, \( \csc(-x) = -\csc(x) .\)</li>
+<li>Графік має вертикальні асимптоти в точках \( x = k\pi .\)</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Додаткова тотожність</h2>
+<p>Корисний зв'язок існує між косекансом та <a href="tangent-function.html">котангенсом</a>. Виходячи з <a href="pythagorean-identity.html">піфагорової тотожності</a> для синуса та косинуса і переписуючи все через синус, ми отримаємо:</p>
+<p>\[
+\csc^{2}(x) = 1 + \cot^{2}(x)
+\]</p>
+<p>Ця тотожність підкреслює тісний зв'язок між двома функціями: коли модуль котангенса зростає, косеканс також збільшується, і обидві функції мають однакові вертикальні асимптоти. Це практичний зв'язок, який часто зустрічається в математичному аналізі, особливо при роботі з похідними, інтегралами або тригонометричними рівняннями, що містять обернені функції.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section"><h2>Границі, похідні та інтеграли косеканса</h2>
+<p>Кілька granic допомагають прояснити, як поводиться функція косеканса поблизу критичних точок її області визначення. Коли кут наближається до значень, де синус близький до одиниці, косеканс залишається обмеженим і наближається до скінченного значення. Коли кут наближається до тих точок, у яких синус прагне до нуля, обернена величина зростає без обмеження, що призводить до появи вертикальних асимптот, типових для цієї функції. Цю поведінку можна підсумувати наступними границями:</p>
+<p>\[1. \quad \lim_{x \to 0^+} \csc(x) = +\infty\]
+\[2. \quad \lim_{x \to \pi/2} \csc(x) = 1\]
+\[3. \quad \lim_{x \to k\pi^-} \csc(x) = -\infty\]
+\[4. \quad \lim_{x \to k\pi^+} \csc(x) = +\infty\]</p>
+<hr>
+<p>Функція косеканса є <a href="continuous-functions.html">неперервною</a> та диференційовною в кожній точці, де вона визначена, тобто на всій дійсній прямій, за винятком кутів, де функція синуса перетворюється в нуль. У цій області визначення вона змінюється плавно, а швидкість її зміни випливає з диференціювання оберненої величини до синуса. Застосування стандартних правил диференціювання дає:</p>
+<p>\[
+5. \quad \frac{d}{dx}\csc(x) = -\csc(x)\cot(x)
+\]</p>
+<p>що описує, як косеканс зростає або спадає залежно від комбінованої поведінки \(\csc(x)\) та \(\cot(x)\).</p>
+<hr>
+<p>Первообраз функції косеканса може бути отриманий за допомогою класичної підстановки, яка переписує підінтегральний вираз у формі, приданій для логарифмічного інтегрування. Це призводить до компактного виразу, що включає як косеканс, так і котангенс. Отриманий <a href="indefinite-integral.html">невизначений інтеграл</a> має вигляд:</p>
+<p>\[
+6. \int \csc(x)\, dx = -\,\ln\!\left|\, \csc(x) + \cot(x) \,\right| + c
+\]</p>
+<h5>Комплексний огляд тригонометричних інтегралів, разом із найкориснішими методами перетворення та підстановки для обробки складніших випадків, доступний на сторінці про <a href="integral-of-trigonometric-functions.html">інтеграли тригонометричних функцій</a>.</h5>
+<hr>
+<p>Інше аналітичне представлення \(\csc(x)\) можна отримати, виразивши синус в експоненціальній формі через тотожність <a href="euler-number-limit-sequence.html">Ейлера</a>. Цей зв'язок часто є корисним у таких областях, як <a href="fourier-series.html">аналіз Фур'є</a> та комплексне інтегрування. Використовуючи тотожність:</p>
+<p>\[
+7. \quad \sin(x) = \frac{e^{ix} &#8211; e^{-ix}}{2i}
+\]</p>
+<p>функцію косеканса можна записати як обернену до цього виразу, що дає:</p>
+<p>\[
+8. \quad \csc(x) = \frac{2i}{\,e^{ix} &#8211; e^{-ix}\,}
+\]</p>
+<p>Це формулювання підкреслює аналітичну структуру \(\csc(x)\) та пов'язує його тригонометричне означення з його комплексним експоненціальним представленням.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="cosecant-function.html">algebrica.org/cosecant-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корені полінома — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Поліноми</span>
+    </nav>
+    <article>
+        <h1>Корені полінома</h1>
+        <time>2025-02-09</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-6" style="height:420px;min-height:420px;max-height:420px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:420px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">9</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="polynomials.html">Поліноми</a>, є необхідними попередніми вимогами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-6");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"polynomial zero"},{"name":"evaluation p\u00ae=0"},{"name":"x-intercepts"},{"name":"root multiplicity"},{"name":"simple roots"},{"name":"repeated roots"}]},{"name":"theorems","children":[{"name":"fundamental theorem"},{"name":"number of roots"},{"name":"complex roots"},{"name":"rational root theorem"},{"name":"constant divisors"},{"name":"leading divisors"}]},{"name":"properties","children":[{"name":"factorization"},{"name":"even multiplicity"},{"name":"odd multiplicity"},{"name":"sign behavior"},{"name":"axis crossing"},{"name":"axis touching"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 420;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps mb-x-30"><h2>Означення</h2>
+<p>Нехай \( p(x) \) — <a href="polynomials.html">поліном</a> з коефіцієнтами в полі \( \mathbb{F} \), зазвичай \( \mathbb{R} \) або \( \mathbb{C} \). Коренем або нулем \( p \) називається будь-який елемент \( r \in \mathbb{F} \), такий що</p>
+<p>\[ p(r) = 0 \]</p>
+<p>Точніше, якщо ми маємо поліном:</p>
+<p>\[ p(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0 \]</p>
+<p>де \( a_n \neq 0 \), то \( r \) є коренем. Підстановка \( x = r \) дає лінійну комбінацію коефіцієнтів, що дорівнює нулю. Терміни «корінь» та «нуль» використовуються як взаємозамінні.</p>
+<hr>
+<p>Для полінома \( p : \mathbb{R} \to \mathbb{R} \) дійсні корені є точками перетину його графіка з віссю \( x \). Кратність кореня впливає на графік локально. У простого кореня (кратність один) графік чисто перетинає вісь \( x \) і не є дотичним.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="512" src="../images/roots-1.png" alt="Roots of a polynomial." class="wp-image-25288" style="width:306px" title="Roots of a polynomial." srcset="../images/roots-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/roots-1-300x251.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Для кореня з парною кратністю графік торкається осі \( x \), але не перетинає її. Оскільки \( (x &#8211; r)^m \geq 0 \) для парного \( m \), поліном не <a href="sign-analysis-in-inequalities.html">змінює знак</a> у точці \( r \), і графік повертається на той самий бік осі.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="610" height="666" src="../images/roots-2.png" alt="Roots of a polynomial." class="wp-image-25293" style="width:305px" title="Roots of a polynomial." srcset="../images/roots-2.png 610w, https://algebrica.org/wp-content/uploads/resources/images/roots-2-275x300.png 275w" sizes="(max-width: 610px) 100vw, 610px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Для коренів з непарною кратністю, більшою за один (\( m \geq 3 \)), графік перетинає вісь, але виглядає більш плоским у точці перетину; це сплощення стає більш помітним зі збільшенням кратності, що надає вигляду, схожого на <a href="maximum-minimum-and-inflection-points.html">точку перегину</a>.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="752" height="506" src="../images/roots-3.png" alt="Roots of a polynomial." class="wp-image-25296" style="width:376px" title="Roots of a polynomial." srcset="../images/roots-3.png 752w, https://algebrica.org/wp-content/uploads/resources/images/roots-3-300x202.png 300w" sizes="(max-width: 752px) 100vw, 752px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps"><hr>
+<p>Ці властивості випливають з локального розкладу:</p>
+<p>\[ p(x) = (x &#8211; r)^m q(x) \]</p>
+<p>де \( q(r) \neq 0 \). Оскільки \( q \) є <a href="continuous-functions.html">неперервною</a> та ненульовою в точці \( r \), вона зберігає постійний знак у деякому околі \( r \), тому знак \( p(x) \) поблизу \( r \) повністю визначається множником \( (x - r)^m \).</p>
+<ul>
+<li>Коли \( m \) непарне, \( (x - r)^m \) змінює знак при проходженні \( x \) через \( r \), тому \( p \) перетинає вісь.</li>
+<li>Коли \( m \) парне, \( (x - r)^m \geq 0 \) по обидва боки від \( r \), тому \( p \) не змінює знак і графік повертається на той самий бік осі.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 alignCenterMathjax pb-radius"><p>Ненульовий поліном степеня \( n \) над будь-яким полем має не більше \( n \) коренів, якщо рахувати з кратністю. Це випливає з того факту, що поліном степеня \( n \) не може бути поділеним на більше ніж \( n \) лінійних множників.</p>
+<h6>Зокрема, два різні поліноми степеня не більше \( n \) не можуть збігатися у більше ніж \( n \) точках. Якщо \( p(x) &#8211; q(x) \) має степінь не більше \( n \) і зникає в \( n + 1 \) точках, то \( p \equiv q \).</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Теорема про раціональні корені</h2>
+<p>Нехай задано поліном із цілими коефіцієнтами:</p>
+<p>\[ p(x) = a_n x^n + \cdots + a_0 \in \mathbb{Z}[x] \]</p>
+<p><a href="polynomial-equations.html">Теорема про раціональні корені</a> визначає скінченну множину кандидатів на раціональні корені. Якщо \( r = s/q \) у нескороченому вигляді, де \( s, q \in \mathbb{Z} \) та \( q &gt; 0 \), є коренем \( p(x) \), то необхідно, щоб \( s \mid a_0 \) та \( q \mid a_n \).</p>
+<p>Це зводить пошук раціональних коренів до скінченної сукупності дробів, кожен з яких можна перевірити шляхом прямої підстановки або <a href="syntetic-division.html">схеми Горнера (синтетичного ділення)</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Основна теорема алгебри</h2>
+<p>У полі \( \mathbb{C} \) <a href="complex-numbers-introduction.html">комплексних чисел</a> кожен непостійний поліном має принаймні один корінь. Застосовуючи теорему про розклад на множники неодноразово, будь-який поліном степеня \( n \geq 1 \) повністю розкладається на лінійні множники над \( \mathbb{C} \):</p>
+<p>\[ p(x) = a_n (x - r_1)^{m_1}(x - r_2)^{m_2} \cdots (x &#8211; r_k)^{m_k} \]</p>
+<p>де \( m_1 + m_2 + \cdots + m_k = n \). Рахуючи корені з урахуванням їхньої кратності, поліном степеня \( n \) має рівно \( n \) коренів у \( \mathbb{C} \). Ця властивість характеризує \( \mathbb{C} \) як алгебраїчно замкнене поле.</p>
+<p>Над \( \mathbb{R} \) комплексні корені дійсного полінома виникають спряженими парами. Якщо \( r = \alpha + \beta i \) при \( \beta \neq 0 \) є коренем \( p \in \mathbb{R}[x] \), то \( \bar{r} = \alpha &#8211; \beta i \) також є коренем, і два множники об'єднуються в незвідний квадратний тричлен над \( \mathbb{R} \):</p>
+<p>\[ (x &#8211; r)(x &#8211; \bar{r}) = x^2 - 2\alpha x + (\alpha^2 + \beta^2) \]</p>
+<p>Відповідно, кожен дійсний поліном непарного степеня має принаймні один дійсний корінь. Розкладена форма також встановлює прямий зв'язок між коренями та коефіцієнтами. Розкриваючи дужки, маємо:</p>
+<p>\[ a_n(x &#8211; r_1)(x &#8211; r_2)\cdots(x - r_n) \]</p>
+<p>Порівнюючи з:</p>
+<p>\[ a_n x^n + a_{n-1}x^{n-1} + \cdots + a_0 \]</p>
+<p>це дає формули Вієта, які виражають кожен коефіцієнт як елементарний симетричний поліном від коренів. Зокрема:</p>
+<p>\[ r_1 + r_2 + \cdots + r_n = \frac{-a_{n-1}}{a_n} \]
+\[ r_1 r_2 \cdots r_n = \frac{(-1)^n a_0}{a_n} \]</p>
+<p>Квадратний випадок детально розглянуто на сторінці про <a href="trinomials.html">трикутники (квадратні тричлени)</a>.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Знаходження коренів: огляд методів</h2>
+<p>Для поліномів степеня 1 та 2 точні формули є елементарними. Лінійний поліном \( ax + b \) має єдиний корінь \( x = -b/a \). Для квадратного полінома \( ax^2 + bx + c \) корені визначаються за допомогою формули квадратного рівняння:</p>
+<p>\[ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a} \]</p>
+<p>Величина \( \Delta = b^2 &#8211; 4ac \) є дискримінантом.</p>
+<ul>
+<li>Якщо \( \Delta &gt; 0 \), поліном має два різні дійсні корені.</li>
+<li>Якщо \( \Delta = 0 \), він має один дійсний корінь кратності 2.</li>
+<li>Якщо \( \Delta &lt; 0 \), він має два комплексних спряжених корені.</li>
+</ul>
+<h6>Розв'язання у закритій формі також існують для степеня 3 (формула Кардано) та степеня 4 (метод Феррарі), хоча вони значно складніші. Для вищих степенів проблема потребує більш просунутих методів.</h6>
+<hr>
+<p>Корені полінома — це саме розв'язання відповідного <a href="polynomial-equations.html">поліноміального рівняння</a> \( p(x) = 0 \), і викладені вище методи застосовуються безпосередньо до обох випадків.</p>
+<hr>
+<p>Важливе застосування коренів полінома зустрічається при <a href="partial-fraction-decomposition.html">розкладі на прості дроби</a>, де раціональна функція \( P(x)/Q(x) \) виражається як сума простіших доданків. Структура цих доданків визначається коренями та кратністю знаменника \( Q(x) \). Прості корені \( Q(x) \) відповідають різним лінійним множникам, тоді як кратні корені призводять до послідовностей доданків зі зростаючим порядком.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>University of Maryland,m C. D. Levermore</strong>. <a href="https://terpconnect.umd.edu/~lvrmr/2019-2020-F/Classes/MATH410/NOTES/Zeros.pdf">Formulas for Roots of Polynomials</a></p>
+</li>
+<li>
+<p><strong>Stanford University, S. Boyd</strong>. <a href="https://web.stanford.edu/~boyd/ee102/rational.pdf">Rational Functions and Partial Fraction Expansion</a></p>
+</li>
+<li>
+<p><strong>Northeastern University</strong>. <a href="https://dummit.cos.northeastern.edu/teaching_sp20_3527/3527_lecture_24_factorization_in_F%5Bx%5D.pdf">Polynomial Functions, Factorization in \(F[x]\)</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="roots-of-a-polynomial.html">algebrica.org/roots-of-a-polynomial</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теорема Коші — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теореми диференціального числення</span>
+    </nav>
+    <article>
+        <h1>Теорема Коші</h1>
+        <time>2025-02-23</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section"><h2>Вступ</h2>
+<p><strong>Теорема Коші</strong> встановлює зв'язок між змінами двох функцій на заданому проміжку. Зокрема, якщо \( f(x) \) та \( g(x) \) є <a href="continuous-functions.html">неперервними</a> на замкненому проміжку \([a, b]\) і диференційовними всередині нього, при цьому \( g’(x) \neq 0 \), то існує принаймні одна точка \( c \) у \( (a, b) \), де відношення їхніх <a href="derivatives.html">похідних</a> дорівнює відношенню їхніх загальних змін на проміжку:</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Формулювання</h2>
+<p>Теорема Коші стверджує наступне. Нехай \( f(x) \) та \( g(x) \) — дві функції такі, що:</p>
+<ul>
+<li>\( f(x) \) та \( g(x) \) є неперервними на проміжку \([a, b]\).</li>
+<li>\( f(x) \) та \( g(x) \) є диференційовними в кожній точці всередині проміжку.</li>
+<li>\( g’(x) \neq 0 \) для кожного \( x \) всередині \([a, b]\).</li>
+</ul>
+<p>Тоді існує принаймні одна точка \( c \) всередині проміжку \([a, b]\) така, що:</p>
+<p>\[
+\frac{f’ \left(c \right)}{g’ \left(c \right)} = \frac{f(b)-f(a)}{g(b)-g(a)}
+\]</p>
+<p>тобто відношення прирістів функцій \( f(x) \) та \( g(x) \) на проміжку \([a, b]\) дорівнює відношенню їхніх відповідних похідних, обчислених у точці \( c \) всередині проміжку.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>При виборі \(g(x) = x\) теорема Коші зводиться безпосередньо до <a href="lagrange-theorem.html">теореми Лагранжа</a>. Оскільки \(g’(x) = 1\) та \(g(b) - g(a) = b - a\), висновок набуває вигляду:
+\[
+\frac{f’(c)}{1} = \frac{f(b) - f(a)}{b - a}
+\]
+Таким чином, теорема Лагранжа є особливим випадком теореми Коші, що отримується, коли одна з двох функцій є тотожністю.</p>
+<h5>Теорема Коші забезпечує теоретичну базу для доведення <a href="hopital-rule.html">правила Лопіталя</a>.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Доведення теореми Коші</h2>
+<p>Щоб довести теорему, визначимо нову функцію \( \varphi(x) \), де \( \lambda \) — стала, яку необхідно визначити:</p>
+<p>\[
+\varphi(x) = f(x)-\lambda g(x)
+\]</p>
+<p>Ми хочемо обрати \( \lambda \) так, щоб \( \varphi(a) = \varphi(b) \). З цієї умови ми отримаємо:</p>
+<p>\[
+\lambda = \frac{f(b)-f(a)}{g(b)-g(a)}
+\]</p>
+<hr>
+<p>Тепер функція \( \varphi(x) \) є неперервною на \([a, b]\) та диференційовною на \((a, b)\), при цьому \( \varphi(a) = \varphi(b) \). Ми можемо застосувати <a href="rolles-theorem.html">теорему Ролля</a>, яка гарантує, що існує принаймні одна точка \( c \in (a, b) \), така що \( \varphi’ \left(c \right) = 0 \). Обчисливши похідну \( \varphi(x) \) та прирівнявши \( \varphi’ \left(c \right) = 0 \), ми отримаємо:</p>
+<p>\[\varphi’(x) = f’(x) &#8211; \lambda g’(x) \]
+\[f’ \left(c \right) = \lambda g’ \left(c \right) \]</p>
+<hr>
+<p>Підставивши значення \( \lambda \), отримаємо:</p>
+<p>\[
+f’ \left(c \right) = \frac{f(b) &#8211; f(a)}{g(b) &#8211; g(a)} g’ \left(c \right)
+\]</p>
+<p>Поділивши обидві частини на \( g’ \left(c \right ) \), отримаємо:</p>
+<p>\[
+\frac{f’ \left(c \right)}{g’ \left(c \right)} = \frac{f(b) &#8211; f(a)}{g(b) &#8211; g(a)}
+\]</p>
+<p>Таким чином, ми довели висновок теореми.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Перевіримо, наприклад, що теорема застосовна до функцій \(f(x)\) та \(g(x) \) на проміжку [1,3]:</p>
+<p>\[f(x) = 2x^2-4x+2\]
+\[g(x) = x^2\]</p>
+<p>Обидві функції є <a href="polynomials.html">поліномами</a>, отже вони є неперервними та диференційовними для кожного \( x \in \mathbb{R} \). Крім того, \( g’(x) = 2x \neq 0 \). Це задовольняє гіпотези теореми.</p>
+<hr>
+<p>Тепер перевіримо існування точки \( c \in (1,3) \), такої що:</p>
+<p>\[
+\frac{f’ \left(c \right)}{g’ \left(c \right)} = \frac{f(3)-f(1)}{g(3)-g(1)}
+\]</p>
+<p>Отримаємо:</p>
+<p>\[\frac{f(3)-f(1)}{g(3)-g(1)} = \frac{18-12+2-2+4-2}{9-1} = \frac{8}{8} = 1\]</p>
+<hr>
+<p>Тепер обчислимо:</p>
+<p>\[
+\frac{f’ \left(c \right)}{g’ \left(c \right)} = \frac{4c-4}{2c}
+\]</p>
+<p>З \(1\), рівність набуває вигляду:</p>
+<p>\[
+\begin{align}
+\frac{4c - 4}{2c} &amp;= 1 \\[0.5em]
+\frac{4c &#8211; 4}{2c} &amp;= \frac{2c}{2c} \\[0.5em]
+4c - 4 &amp;= 2c \\[0.5em]
+2c &amp;= 4 \\[0.5em]
+c &amp;= 2\\
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Оскільки \( c = 2 \in [1,3] \), теорема підтверджена.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Зауваження щодо гіпотези \(g’(x) \neq 0\)</h2>
+<p>Розглянемо особливий випадок, коли \(g(b) = g(a)\). У цій ситуації знаменник наступного відношення дорівнює нулю, і вираз є невизначеним:
+\[
+\frac{f(b)-f(a)}{g(b)-g(a)}
+\]
+З цієї причини неможливо ввести сталу:
+\[
+\lambda = \frac{f(b)-f(a)}{g(b)-g(a)}
+\]
+Як наслідок, доведення з використанням наступної допоміжної функції більше не є дійсним:
+\[
+\varphi(x) = f(x) &#8211; \lambda g(x)
+\]
+За гіпотез теореми Коші така ситуація не виникає. Умова \(g’(x) \neq 0\) всередині проміжку гарантує, що \(g\) є строго монотонною, що, в свою чергу, гарантує, що \(g(b) \neq g(a)\). Отже, випадок \(g(b) = g(a)\) виключається припущеннями теореми.</p>
+</div><div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>University of Florida J. Keesling</strong>. <a href="https://people.clas.ufl.edu/kees/files/CauchyMeanValue.pdf">The Cauchy Mean Value Theorem</a></p>
+</li>
+<li>
+<p><strong>University of Maryland</strong>. <a href="https://math.umd.edu/~immortal/MATH410/lecturenotes/ch4-4.pdf">The Cauchy Mean Value Theorem and Consequences</a></p>
+</li>
+<li>
+<p><strong>UC Berkeley A. Vizeff</strong>. <a href="https://math.berkeley.edu/~avizeff/calculus-I-F23/lecture-16.pdf">Mean Value Theorem and L’Hôpital’s Rule</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке теорема Коші про середнє значення?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема Коші про середнє значення є узагальненням стандартної теореми про середнє значення в диференціальному численні. Вона стверджує, що якщо дві дійснозначні функції, f та g, є неперервними на [a, b], диференційовними на (a, b), і g'(x) ≠ 0 на всьому проміжку, то існує точка c у (a, b), така що (f'(c)/g'(c)) дорівнює відношенню змін значень функцій: (f(b) - f(a)) / (g(b) - g(a))."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому теорема Коші про середнє значення важлива в математичному аналізі?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема Коші про середнє значення відіграє ключову роль у численні та математичному аналізі. Вона надає потужний інструмент для порівняння поведінки двох функцій, особливо при аналізі відношення їхніх похідних. Ця теорема є важливою для формального доведення правила Лопіталя та розуміння взаємозв'язків між швидкостями зміни в прикладній математиці."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="cauchy-theorem.html">algebrica.org/cauchy-theorem</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

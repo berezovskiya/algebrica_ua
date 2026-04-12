@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тригонометрія прямокутного трикутника — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Тригонометрія прямокутного трикутника</h1>
+        <time>2025-02-07</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Розуміння сторін прямокутного трикутника</h2>
+<p>Тригонометрія — це фундаментальний розділ математики, що вивчає зв'язки між кутами та сторонами трикутників. Зокрема, прямокутний трикутник слугує відправною точкою для означення основних тригонометричних функцій: <a href="sine-and-cosine.html">синуса</a>, <a href="sine-and-cosine.html">косинуса</a> та <a href="tangent-and-cotangent.html">тангенса</a>. <strong>Прямокутний трикутник</strong> — це трикутник, який має кут \(90^\circ\). Якщо ми розглянемо гострий кут \(\theta\) у трикутнику, ми можемо визначити основні тригонометричні функції, використовуючи відношення між його трьома сторонами:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="696" height="488" src="../images/right-triangles-1-1.png" alt="" class="wp-image-15131" style="width:348px" srcset="../images/right-triangles-1-1.png 696w, https://algebrica.org/wp-content/uploads/resources/images/right-triangles-1-1-300x210.png 300w" sizes="(max-width: 696px) 100vw, 696px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Гіпотенуза \(h\): найдовша сторона, що лежить проти прямого кута.</li>
+<li>Протилежний катет \(y\): сторона, що лежить проти кута \(\theta\).</li>
+<li>Прилеглий катет \(x\): сторона, що прилежить до кута \(\theta\).</li>
+</ul>
+<p>Існують специфічні зв'язки між сторонами прямокутного трикутника та тригонометричними функціями синусом, косинусом і тангенсом. Ці зв'язки дозволяють нам визначити, наприклад, синус кута \( \theta \), або, за відомого значення \( \theta \) та принаймні однієї сторони, обчислити довжини інших сторін.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Метод SOH-CAH-TOA</h2>
+<p>Тепер розглянемо <a href="unit-circle.html">одиникове коло</a> та кут \(\theta\), розташований у початку координат декартової системи координат.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="304" height="316" src="../images/right-triangles-2.png" alt="" class="wp-image-15152" style="width:304px" srcset="../images/right-triangles-2.png 304w, https://algebrica.org/wp-content/uploads/resources/images/right-triangles-2-289x300.png 289w" sizes="(max-width: 304px) 100vw, 304px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Використовуючи метод SOH-CAH-TOA, ми можемо визначити три основні тригонометричні функції <a href="sine-and-cosine.html">синус і косинус</a> та <a href="tangent-and-cotangent.html">тангенс</a>, а також обернені тригонометричні функції <a href="secant-and-cosecant.html">косеканс</a>, <a href="secant-and-cosecant.html">секанс</a> та <a href="tangent-and-cotangent.html">котангенс</a> наступним чином.</p>
+<hr>
+<p>\[\text{SOH} \quad \sin(\theta) = \frac{y}{h} \quad \quad \csc(A) = \frac{h}{y}\]</p>
+<h5>Очевидно, що якщо ми хочемо знайти довжину протилежної сторони \( y \), використовуючи зв'язок SOH, знаючи кут \( \theta \) та гіпотенузу \( h \), ми отримаємо \(y = h \times \sin(\theta).\) Аналогічно це міркування можна поширити на наступні зв'язки CAH та TOA.</h5>
+<hr>
+<p>\[\text{CAH} \quad \cos(\theta) = \frac{x}{h} \quad \quad \sec(A) = \frac{h}{x} \]</p>
+<hr>
+<p>\[\text{TOA} \quad \tan(\theta) = \frac{y}{x} \quad \quad \cot(A) = \frac{x}{y}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Піфагорова тотожність</h2>
+<p>Ключовим аспектом тригонометрії є зв'язок між синусом і косинусом, що виражається <a href="pythagorean-identity.html">Піфагоровою тотожністю</a>:</p>
+<p>\[
+\sin^2(\theta) + \cos^2(\theta) = 1
+\]</p>
+<p>Піфагорова тотожність — це рівняння, що пов'язує тригонометрію та геометрію. Вона випливає безпосередньо з <a href="pythagorean-theorem.html">теореми Піфагора</a>, яка пов'язує сторони прямокутного трикутника. Якщо ми розглянемо прямокутний трикутник з гіпотенузою довжиною \(1\), тоді, визначивши гострий кут \(\theta\) на <a href="unit-circle.html">одиниковому колі</a>, довжини катетів будуть відповідно рівні синусу \(\sin(\theta)\) та косинусу \(\cos(\theta)\).</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Обчислимо довжину сторони \( x \), за умови що \( y = 5 \) та \( \theta = 30^\circ \).</p>
+<hr>
+<p>Щоб отримати сторону \( x \), використаємо:</p>
+<p>\[
+\tan(\theta) = \frac{\text{Протилежний}}{\text{Прилеглий}} \quad \text{де} \quad \theta = 30^\circ \]</p>
+<p>\[
+\tan(30^\circ) = \frac{5}{x}
+\]</p>
+<hr>
+<p>Маємо:</p>
+<p>\[
+\tan(30^\circ) \cdot x = 5
+\]</p>
+<p>\[
+x = \frac{5}{\tan(30^\circ)}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язавши відносно \( x \), отримаємо:
+\[
+x \approx 8.66
+\]</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке метод SOH-CAH-TOA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SOH-CAH-TOA — це мнемонічне правило, що використовується в тригонометрії для запам'ятовування означень функцій синуса, косинуса та тангенса у прямокутному трикутнику. 'SOH' означає, що синус (Sine) дорівнює відношенню протилежного катета (Opposite) до гіпотенузи (Hypotenuse), 'CAH' означає, що косинус (Cosine) дорівнює відношенню прилеглого катета (Adjacent) до гіпотенузи (Hypotenuse), а 'TOA' означає, що тангенс (Tangent) дорівнює відношенню протилежного катета (Opposite) до прилеглого катета (Adjacent)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як використовувати SOH-CAH-TOA для розв'язання прямокутного трикутника?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб розв'язати прямокутний трикутник за допомогою SOH-CAH-TOA, визначте потрібний кут і сторони відносно нього: протилежний катет, прилеглий катет та гіпотенузу. Потім виберіть відповідну тригонометричну функцію (синус, косинус або тангенс) залежно від відомих сторін і складіть рівняння, щоб знайти невідому сторону або кут."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому SOH-CAH-TOA важливий у тригонометрії?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SOH-CAH-TOA забезпечує простий спосіб запам'ятати ключові зв'язки між кутами та сторонами у прямокутних трикутниках. Це є фундаментальним для розв'язання задач, пов'язаних із прямокутними трикутниками, і застосовується в багатьох галузях, включаючи фізику, інженерію та архітектуру."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="right-triangle-trigonometry.html">algebrica.org/right-triangle-trigonometry</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

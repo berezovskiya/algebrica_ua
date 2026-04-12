@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теорема про стиснення — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Границі</span>
+    </nav>
+    <article>
+        <h1>Теорема про стиснення</h1>
+        <time>2025-02-19</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Що таке теорема про затискання</h2>
+<p> <strong>Теорема про затискання</strong>, також відома як теорема про «сендвіч», надає метод визначення <a href="limits.html">границі</a> <a href="functions.html">функції</a>, коли пряме обчислення є складним або коли функція демонструє складну осцилюючу поведінку поблизу певної точки. Ця теорема часто застосовується до функцій, що містять <a href="sine-and-cosine.html">синус і косинус</a>, особливо коли ці тригонометричні члени виявляють осцилюючу поведінку, що перешкоджає прямому обчисленню границі, наприклад:</p>
+<p>\[
+\sin\left(\frac{1}{x}\right) \quad \text{або} \quad \cos\left(\frac{1}{x}\right)
+\]</p>
+<p>У таких ситуаціях функція обмежена двома іншими функціями з відомими та рівними границями, що полегшує обчислення цільової границі.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Формулювання</h2>
+<p>Нехай \( x_0 \in \mathbb{R} \cup { \pm\infty } \) є граничною точкою, що означає, що кожен окіл \(x_0\) містить принаймні одну точку <a href="determining-the-domain-of-a-function.html">області визначення</a>, відмінну від \(x_0\). Нехай \( f \), \( g \) та \( h \) будуть дійснозначними функціями, визначеними на околі \(I\) точки \(x_0\). Припустимо, що для кожного \( x \in I \) виконується наступна <a href="linear-inequalities.html">нерівність</a>:</p>
+<p>\[
+g(x) \leq f(x) \leq h(x)
+\]</p>
+<p>Також припустимо, що границі \( f(x) \) та \( h(x) \) при \( x \to x_0 \) існують і дорівнюють деякому дійсному числу \( \ell \):
+\[
+\lim_{x \to x_0} g(x) = \lim_{x \to x_0} h(x) = \ell
+\]</p>
+<p>Тоді за цих гіпотез функція \( f(x) \) також має границю при \( x \to x_0 \), і ця границя дорівнює:
+\[
+\lim_{x \to x_0} f(x) = \ell
+\]</p>
+<hr>
+<p>На графіку чорна крива, що представляє \( f(x) \), лежить повністю між нижньою межею \( g(x) \) та верхньою межею \( h(x) \). Оскільки обидві обмежуючі функції прямують до \( \ell \), функція \( f(x) \) змушена наближатися до тієї самої границі.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="710" height="604" src="../images/squeeze-theorem.png" alt="" class="wp-image-17294" style="width:355px" srcset="../images/squeeze-theorem.png 710w, https://algebrica.org/wp-content/uploads/resources/images/squeeze-theorem-300x255.png 300w" sizes="(max-width: 710px) 100vw, 710px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Це демонструє геометричну інтуїцію, що лежить в основі теореми: якщо функція обмежена зверху і знизу двома функціями, які обидві збігаються до одного й того самого значення, то вона також повинна збігтися до цього значення.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Доведення теореми про затискання</h2>
+<p>Нехай \( \varepsilon &gt; 0 \) буде довільним. Наша мета — довести, що функція \( f(x) \), яка обмежена між \( g(x) \) та \( h(x) \), прямує до тієї самої границі \( \ell \) при \( x \to x_0 \). За припущенням, ми знаємо, що \( \lim_{x \to x_0} g(x) = \ell \). Це означає, що існує додатне число \( \delta_1 \), таке що для кожного \( x \), достатньо близького до \( x_0 \) (зокрема, для всіх \( x \), для яких \( 0 &lt; |x - x_0| &lt; \delta_1 \)), маємо:</p>
+<p>\[
+|g(x) &#8211; \ell| &lt; \varepsilon \quad \to \quad \ell &#8211; \varepsilon &lt; g(x) &lt; \ell + \varepsilon
+\]</p>
+<p>Аналогічно, оскільки \( \lim_{x \to x_0} h(x) = \ell \), існує інше додатне число \( \delta_2 \), таке що:</p>
+<p>\[
+|h(x) - \ell| &lt; \varepsilon \quad \to \quad \ell - \varepsilon &lt; h(x) &lt; \ell + \varepsilon
+\]</p>
+<p>Тепер нехай \( \delta = \min(\delta_1, \delta_2) \). Тоді для кожного \( x \), такого що \( 0 &lt; |x &#8211; x_0| &lt; \delta \), обидві наведені вище нерівності виконуються. Але \( f(x) \) затиснута між \( g(x) \) та \( h(x) \), отже:</p>
+<p>\[
+g(x) \leq f(x) \leq h(x)
+\]</p>
+<p>Поєднуючи це з обмеженнями для \( g(x) \) та \( h(x) \), отримаємо:</p>
+<p>\[
+\ell &#8211; \varepsilon &lt; f(x) &lt; \ell + \varepsilon
+\quad \to \quad |f(x) &#8211; \ell| &lt; \varepsilon
+\]</p>
+<p>Оскільки ця нерівність виконується для кожного \( \varepsilon &gt; 0 \), ми робимо висновок, що:</p>
+<p>\[
+\lim_{x \to x_0} f(x) = \ell
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад</h2>
+<p>Наступний приклад демонструє, як теорема застосовується для обчислення наступної границі:</p>
+<p>\[
+\lim_{x \to 0} x \cdot \sin\left( \frac{1}{x} \right)
+\]</p>
+<hr>
+<p>Член \( \sin\left( \frac{1}{x} \right) \) не має границі при \( x \to 0 \), оскільки він нескінченно осцилює між \(-1\) та \(1\). Однак для кожного <a href="types-of-numbers.html">дійсного числа</a> \( x \neq 0 \) виконується наступна нерівність:</p>
+<p>\[
+-1 \leq \sin\left( \frac{1}{x} \right) \leq 1
+\]</p>
+<p>Множачи всю нерівність на \( x \), отримаємо:</p>
+<p>\[
+-|x| \leq x \cdot \sin\left( \frac{1}{x} \right) \leq |x|
+\]</p>
+<hr>
+<p>Дійсно, коли \( x &gt; 0 \), знак нерівності зберігається, тоді як для \( x &lt; 0 \) знак нерівності змінюється, але <a href="absolute-value.html">абсолютне значення</a> гарантує, що порівняння залишається симетричним відносно нуля. Тепер зауважимо, що обидві обмежуючі функції \( -|x| \) та \( |x| \) прямують до нуля при \( x \to 0 \):</p>
+<p>\[
+\lim_{x \to 0} -|x| = 0 \qquad \lim_{x \to 0} |x| = 0
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Оскільки \( f(x) \) затиснута між двома функціями, які обидві наближаються до нуля, ми можемо застосувати теорему про затискання і зробити висновок, що:</p>
+<p>\[
+\lim_{x \to 0} x \cdot \sin\left( \frac{1}{x} \right) = 0
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>У багатьох випадках, коли осцилююча функція множиться на степінь \( x \), що наближається до нуля, загальна границя дорівнює нулю. Цей результат виникає тому, що осциляція залишається обмеженою, як це демонструють функції синуса та косинуса, які завжди обмежені значеннями від \(-1\) до \(1\). І навпаки, множник \( x^n \) наближається до нуля достатньо швидко, щоб домінувати над осциляцією, що змушує весь добуток збігатися до нуля.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-exercises"><h2>Вправи: обчислити наступні границі, використовуючи теорему про затискання</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad \lim_{x \to +\infty} \frac{\ln(3 + \sin x)}{x^3}\] <a href="#e1">розв'язання</a></p>
+</li>
+<li>
+<p>\[\text{2. } \quad \lim_{x \to 0} x^4 \cdot \cos\left(\frac{2}{x}\right) + 2 \] <a href="#e2">розв'язання</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<div id="e1" class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Вправа 1</h2>
+<p>Обчислити наступну границю:</p>
+<p>\[
+\lim_{x \to +\infty} \frac{\ln(3 + \sin x)}{x^3}
+\]</p>
+<hr>
+<p>Для початку зауважимо, що функція синуса завжди обмежена значеннями від \(-1\) до \(1\) для всіх дійсних \( x \), тому ми можемо записати:</p>
+<p>\[
+-1 \leq \sin x \leq 1
+\]</p>
+<p>З попередньої нерівності ми можемо записати:</p>
+<p>\[
+2 \leq 3 + \sin x \leq 4 \quad \text{для всіх } x \in \mathbb{R}
+\]</p>
+<hr>
+<p>Тепер, оскільки <a href="logarithmic-function.html">логарифмічна функція</a> є строго <a href="increasing-and-decreasing-functions.html">зростаючою</a>, маємо:</p>
+<p>\[
+\log 2 \leq \log(3 + \sin x) \leq \log 4
+\]</p>
+<p>Тепер ми ділимо всі частини нерівності на \( x^3 \), отримуючи:</p>
+<p>\[
+\frac{\log 2}{x^3} \leq \frac{\ln(3 + \sin x)}{x^3} \leq \frac{\log 4}{x^3} \quad \forall \, x &gt; 0
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Оскільки обидві обмежуючі функції прямують до нуля при \( x \to +\infty \), ми застосовуємо теорему про затискання і отримуємо:</p>
+<p>\[
+\lim_{x \to +\infty} \frac{\ln(3 + \sin x)}{x^3} = 0
+\]</p>
+</div>
+</div></div>
+
+
+
+<div id="e2" class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Вправа 2</h2>
+<p>Обчислити наступну границю:</p>
+<p>\[
+\lim_{x \to 0} x^4 \cdot \cos\left( \frac{2}{x} \right) + 2
+\]</p>
+<p>Для цього ми почнемо з аналізу поведінки функції \( x^4 \cdot \cos\left( \frac{2}{x} \right) \). Ми знаємо, що функція косинуса обмежена значеннями від \(-1\) до \(1\) для всіх дійсних значень:</p>
+<p>\[
+-1 \leq \cos\left( \frac{2}{x} \right) \leq 1
+\]</p>
+<p>Множачи всі частини цієї нерівності на \( x^4 \), який завжди є невиNEGATIVE, ми отримаємо:</p>
+<p>\[
+-x^4 \leq x^4 \cdot \cos\left( \frac{2}{x} \right) \leq x^4
+\]</p>
+<hr>
+<p>Тепер ми знайдемо границю лівої та правої меж при \( x \to 0 \):</p>
+<p>\[
+\lim_{x \to 0} (-x^4) = 0 \qquad \lim_{x \to 0} x^4 = 0
+\]</p>
+<p>Отже, за теоремою про затискання, ми робимо висновок:</p>
+<p>\[
+\lim_{x \to 0} x^4 \cdot \cos\left( \frac{2}{x} \right) = 0
+\]</p>
+<p>Тепер повернемося до початкового виразу:</p>
+<p>\[
+\lim_{x \to 0} \left( x^4 \cdot \cos\left( \frac{2}{x} \right) + 2 \right)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Оскільки:</p>
+<p>\[
+\lim_{x \to 0} x^4 \cdot \cos\left( \frac{2}{x} \right) = 0
+\]</p>
+<p>ми отримаємо</p>
+<p>\[
+\lim_{x \to 0} x^4 \cdot \cos\left( \frac{2}{x} \right) + 2 = 0 + 2 = 2
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li><strong>MIT OpenCourseWare, C. Rodriguez</strong>. <a href="https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/mit18_100af20_lec8.pdf">The Squeeze Theorem</a></li>
+<li><strong>University of California, Berkeley, A. Vizeff</strong>. <a href="https://math.berkeley.edu/~avizeff/calculus-I-F22/lecture-4.pdf">Limit Laws and the Squeeze Theorem</a></li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке теорема про затискання?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема про затискання — це метод, що використовується для знаходження границі функції шляхом її обмеження двома іншими функціями з такою самою granicю."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли використовується теорема про затискання?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вона зазвичай використовується, коли функція осцилює або її важко обчислити безпосередньо, але вона обмежена функціями, границі яких відомі."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="squeeze-theorem.html">algebrica.org/squeeze-theorem</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

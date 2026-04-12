@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логарифмічні нерівності — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Нерівності</span>
+    </nav>
+    <article>
+        <h1>Логарифмічні нерівності</h1>
+        <time>2025-02-13</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Вступ</h2>
+<p>Логарифмічні нерівності — це нерівності, що містять один або кілька <a href="logarithms.html">логарифмічних</a> виразів, у яких невідома змінна \(x\) з'являється або в аргументі логарифма, або, в деяких випадках, у самій основі. Перш ніж переходити до логарифмічних нерівностей, важливо мати ґрунтовне розуміння логарифмів, їхніх основних властивостей та стандартних методів, що використовуються для розв'язання <a href="logarithmic-inequalities.html">логарифмічних рівнянь</a>, оскільки ці інструменти є вирішальними для правильного підходу та розв'язання таких нерівностей.</p>
+<hr>
+<p>Логарифмічні нерівності можуть мати загальний вигляд:</p>
+<p>\[
+\log_af(x) \lesseqgtr \log_ag(x)
+\]</p>
+<ul>
+<li>\(a\) — основа логарифма, при якій (a &gt; 0) та \(a \neq 1.\)</li>
+<li>\(f(x)\) та \(g(x)\) — алгебраїчні вирази, що залежать від змінної \(x.\)</li>
+<li>Символ \(\lesseqgtr\) позначає одне з відношень \(\le\), \(=\) або \(\ge.\)</li>
+</ul>
+<p>Крім того, щоб нерівність була правильно визначеною, мають бути виконані такі умови:</p>
+<p>\[
+\begin{cases}
+f(x) &gt; 0\\[0.6em]
+g(x) &gt; 0\\[0.6em]
+\end{cases}
+\]</p>
+<hr>
+<p>Нерівність, що містить логарифмічний вираз, у якому невідома змінна не з'являється ні в аргументі, ні в основі логарифма, не є логарифмічною нерівністю. Іншими словами, така нерівність, як:
+\[
+\log_3(9) - 3x &gt; 0
+\]
+не є логарифмічною нерівністю, оскільки логарифмічний член є сталою. Натомість,<br>
+\[
+\log_3(9x) &#8211; 3x &gt; 0
+\]
+є логарифмічною нерівністю, тому що змінна \(x\) з'являється всередині аргументу логарифма і безпосередньо впливає на його область визначення та поведінку.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-steps pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Як розв'язувати логарифмічні нерівності</h2>
+<p>Процес розв'язання логарифмічних нерівностей є загальним, проте для зручності пояснення розглянемо наступну нерівність:
+\[
+\log_a f(x) \ge \log_a g(x)
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Процедуру можна розділити на чотири основні кроки:</p>
+<ul>
+<li>
+<p>Визначити <a href="determining-the-domain-of-a-function.html">область визначення</a> нерівності, встановивши умови допустимості. Аргументи всіх логарифмічних виразів мають бути строго додатними, а основа має задовольняти:
+\[
+\begin{cases}
+f(x) &gt; 0 \\[0.6em]
+g(x) &gt; 0 \\[0.6em]
+\end{cases}
+\]</p>
+</li>
+<li>
+<p>Основа має задовольняти:
+\[
+\begin{cases}
+a &gt; 0 \\[0.6em]
+a \neq 1 \\[0.6em]
+\end{cases}
+\]</p>
+</li>
+<li>
+<p>Якщо \(a &gt; 1\), логарифмічна функція є <a href="increasing-and-decreasing-functions.html">зростаючою</a>, і нерівність зберігає свій напрямок при відкиданні логарифмів.</p>
+</li>
+<li>
+<p>Якщо \(0 &lt; a &lt; 1\), логарифмічна функція є спадаючою, і напрямок нерівності має бути змінений на протилежний при відкиданні логарифмів.</p>
+</li>
+<li>
+<p>Використати монотонність логарифмічної функції, щоб відкинути логарифми та звести задачу до еквівалентної алгебраїчної нерівності, що містить \(f(x)\) та \(g(x)\).</p>
+</li>
+<li>
+<p>Розв'язати отриману алгебраїчну нерівність і знайти перетин множини розв'язків з previously визначеною областю визначення, відкинувши всі значення, що не задовольняють початкових логарифмічних умов.</p>
+</li>
+</ul>
+<hr>
+<p>Щоб пояснити роль, яку відіграє основа логарифма, згадаємо поведінку <a href="logarithmic-function.html">логарифмічної функції</a>, коли \(0 &lt; a &lt; 1\). З її графіка ми помічаємо, що функція є строго спадаючою на всій своїй області визначення, з вертикальною асимптотою вздовж осі \(y\):</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="590" src="../images/logharithm-5-1.png" alt="Graph of the logarithmic function with base between zero and one." class="wp-image-22152" style="width:306px" title="Graph of the logarithmic function with base between zero and one." srcset="../images/logharithm-5-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/logharithm-5-1-300x289.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h5>Пунктирна крива представляє логарифмічну функцію з основою \(a &gt; 1\). У цьому випадку функція є строго зростаючою. В обох випадках, коли \(x = 1\), значення логарифмічної функції дорівнює \(0\), і графіки перетинаються в точці \((1,0)\).</h5>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Приклад 1</h2>
+<p>Розглянемо логарифмічну нерівність:
+\[
+\log_{\frac{1}{2}}(x + 3) \ge \log_{\frac{1}{2}}(2x - 1)
+\]</p>
+<p>Почнемо з визначення області визначення нерівності. Аргументи логарифмів мають бути строго додатними:
+\[
+\begin{cases}
+x + 3 &gt; 0 \\[0.6em]
+2x &#8211; 1 &gt; 0
+\end{cases}
+\]</p>
+<p>Використовуючи графічне представлення та розглядаючи інтервали розв'язання <a href="linear-inequalities.html">лінійних нерівностей</a> у попередній системі, ми знайдемо, що їхній перетин, який визначає область визначення логарифмічної нерівності, саме \(x &gt; 1/2\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain"><table>
+<thead>
+<tr>
+<th></th>
+<th>\[ -3\]</th>
+<th>\[\frac{1}{2}\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-left -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Отже, область визначення \(D\) початкової нерівності задається наступним проміжком:
+\[
+\left(-\frac{1}{2}, +\infty\right)
+\]</p>
+<hr>
+<p>Далі проаналізуємо основу логарифма. Оскільки основа задовольняє умову
+\[
+0 &lt; \frac{1}{2} &lt; 1
+\]
+логарифмічна функція є строго спадною. Як наслідок, при відкиданні логарифмів знак нерівності має бути змінений на протилежний. Таким чином, дана нерівність:
+\[
+\log_{\frac{1}{2}}(x + 3) \ge \log_{\frac{1}{2}}(2x &#8211; 1)
+\]
+еквівалентна нерівності:
+\[
+x + 3 \le 2x - 1
+\]</p>
+<hr>
+<p>Тепер розв'яжемо отриману алгебраїчну нерівність:
+\[
+x + 3 \le 2x &#8211; 1 \quad \rightarrow \quad x \ge 4
+\]</p>
+<p>Нарешті, знайдемо перетин цього результату з раніше визначеною областю визначення. Оскільки область визначення вимагає \(x &gt; \frac{1}{2}\), умова \(x \ge 4\) є допустимою.</p>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Звідси, множина розв'язків логарифмічної нерівності:
+\[
+x \ge 4
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Приклад 2</h2>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Розглянемо логарифмічну нерівність:</p>
+<p>\[
+\log_{\frac{1}{2}}(x+1) &gt; \log_2(2-x)
+\]</p>
+<p>Почнемо з визначення <a href="determining-the-domain-of-a-function.html">області визначення</a>. Аргументи логарифмів мають бути строго додатними, отже:</p>
+<p>\[
+\begin{cases}
+x+1 &gt; 0 \\[0.6em]
+2-x &gt; 0 \\[0.6em]
+\end{cases}
+\]</p>
+<p>Використовуючи графічне представлення та розглянувши інтервали розв'язків лінійних нерівностей у попередній системі, ми знайдемо, що їхній перетин задається умовою \(
+-1 &lt; x &lt; 2\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown table-domain">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>\[ -1\]</th>
+<th>\[2\]</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td><div class="sign-plus-left -open"></div></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><div class="sign-plus-right -open"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td><div class="sign-plus-left-in -open -highlight"></div></td>
+<td><div class="sign-plus-right-in -open -highlight"></div></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Отже, область визначення \(D\) початкової нерівності задається наступним проміжком:
+\[
+(-1, 2)
+\]</p>
+<hr>
+<p>Далі перепишемо логарифм з основою \(\tfrac{1}{2}\) через основу \(2\). Оскільки \(\tfrac{1}{2} = 2^{-1}\), маємо
+\[
+\log_{\frac{1}{2}}(x+1)
+= \frac{\log_2(x+1)}{\log_2(\frac{1}{2})}
+= -\log_2(x+1)
+\]</p>
+<p>Підставивши це в початкову нерівність, отримаємо:</p>
+<p>\[
+\log_2(x+1) &lt; -\log_2(2-x)
+\]</p>
+<p>Переносячи всі логарифмічні доданки в один бік і застосовуючи властивості логарифмів, отримаємо:
+\[
+\log_2(x+1) + \log_2(2-x) &lt; 0
+\]</p>
+<p>що, за властивістю суми логарифмів, яка стверджує, що <a href="logarithms.html">сума двох логарифмів</a> дорівнює логарифму їхнього добутку, дозволяє нам переписати вираз наступним чином:</p>
+<p>\[
+\log_2!\bigl((x+1)(2-x)\bigr) &lt; 0
+\]</p>
+<p>Оскільки логарифмічна функція з основою \(2&gt;1\) є строго зростаючою, ця нерівність еквівалентна
+\[
+0 &lt; (x+1)(2-x) &lt; 1
+\]</p>
+<p>У межах області визначення \((-1,2)\) добуток \((x+1)(2-x)\) завжди є додатним, тому достатньо розв'язати:</p>
+<p>\[
+(x+1)(2-x) &lt; 1
+\]</p>
+<p>Розкривши дужки та спростивши, отримаємо
+\[
+x^2 &#8211; x &#8211; 1 &gt; 0
+\]</p>
+<p>Відповідне <a href="quadratic-equations.html">квадратне рівняння</a> має корені:
+\[
+x = \frac{1 \pm \sqrt{5}}{2}
+\]</p>
+</div>
+</div></div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Нерівність виконується поза проміжком, визначеним цими коренями. Перетнувши цей результат з областю визначення \((-1,2)\), ми нарешті отримаємо множину розв'язків: \[
+-1 &lt; x &lt; \frac{1-\sqrt{5}}{2}\]</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке логарифмічна нерівність?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Логарифмічна нерівність — це нерівність, що містить один або кілька логарифмічних виразів, у яких невідома змінна міститься в аргументі або в основі логарифма. Її розв'язання потребує визначення області визначення та використання монотонності логарифмічної функції."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як розв'язувати логарифмічні нерівності?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб розв'язати логарифмічну нерівність, спочатку визначте область визначення, вимагаючи, щоб усі аргументи логарифмів були додатними. Потім проаналізуйте основу логарифма: якщо основа більша за одиницю, знак нерівності зберігається; якщо вона знаходиться між нулем та одиницею, знак нерівності змінюється на протилежний при знятті логарифмів. Нарешті, розв'яжіть отриману алгебраїчну нерівність і знайдіть перетин розв'язку з областю визначення."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому знак нерівності змінюється, коли основа знаходиться між 0 та 1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Коли основа логарифма знаходиться між нулем та одиницею, логарифмічна функція є строго спадаючою. Як наслідок, застосування логарифма до обох частин нерівності змінює її напрямок на протилежний. Цю властивість необхідно враховувати для отримання правильних розв'язків."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="logarithmic-inequalities.html">algebrica.org/logarithmic-inequalities</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

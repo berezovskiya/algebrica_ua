@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функція знака — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Функція знака</h1>
+        <time>2025-02-25</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Вступ</h2>
+<p>Функція знака присвоює кожному дійсному числу його знак, не враховуючи його величину. Функція визначається наступним чином:</p>
+<p>\[
+\operatorname{sgn}(x) =
+\begin{cases}
+-1 &amp; \text{if } x &lt; 0 \\[6pt]
+0 &amp; \text{if } x = 0 \\[6pt]
+1 &amp; \text{if } x &gt; 0
+\end{cases}
+\quad \forall \, x \in \mathbb{R}
+\]</p>
+<p>Зокрема, \(\operatorname{sgn}(x)\) повертає \(-1\) для від'ємних значень, \(0\) коли \(x = 0\), та \(1\) для додатних значень. Функція не визначає величину \(x\), а лише вказує на положення \(x\) відносно нуля. Наприклад, застосовуючи означення, маємо:</p>
+<p>\[
+\operatorname{sgn}(-7) = -1 \qquad \operatorname{sgn}(0) = 0 \qquad \operatorname{sgn}(4) = 1
+\]</p>
+<hr>
+<p>Графік \(y = \operatorname{sgn}(x)\) складається з двох горизонтальних променів та однієї ізольованої точки. Промінь на \(y = -1\) простягається на всі \(x &lt; 0\), промінь на \(y = 1\) простягається на всі \(x &gt; 0\), а ізольована точка в початку координат \((0, 0)\) лежить на \(y = 0\). Обидва промені наближаються до осі y, але не перетинають її.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="610" height="492" src="../images/sign-function-1.png" alt="Sign function." class="wp-image-25487" style="width:305px" title="Sign function." srcset="../images/sign-function-1.png 610w, https://algebrica.org/wp-content/uploads/resources/images/sign-function-1-300x242.png 300w" sizes="(max-width: 610px) 100vw, 610px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Функція знака класифікується як <a href="even-and-odd-functions.html">непарна функція</a>, оскільки вона задовольняє тотожність:</p>
+<p>\[
+\operatorname{sgn}(-x) = -\operatorname{sgn}(x) \quad \forall \, x \in \mathbb{R}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Властивості</h2>
+<ul>
+<li><a href="determining-the-domain-of-a-function.html">Область визначення</a>: \(\mathbb{R}\).</li>
+<li>Область значень: \({-1,\, 0,\, 1}\).</li>
+<li>Функція є <a href="even-and-odd-functions.html">непарною</a>, оскільки \(\operatorname{sgn}(-x) = -\operatorname{sgn}(x)\).</li>
+<li>Функція має рівно один корінь при \(x = 0\), оскільки \(\operatorname{sgn}(x) = 0\) лише коли \(x = 0\).</li>
+<li>Функція є сталою на \((-\infty, 0)\) та на \((0, +\infty)\), отже <a href="increasing-and-decreasing-functions.html">зростаючою</a> в тому сенсі, що вона є неспадною на \(\mathbb{R}\).</li>
+<li>Функція має <a href="discontinuities-of-real-functions.html">розрив першого роду</a> при \(x = 0\); вона є <a href="continuous-functions.html">неперервною</a> в усіх інших точках.</li>
+<li>Функція не є диференційовною при \(x = 0\). Вона є диференційовною з нульовою <a href="derivatives.html">похідною</a> в усіх інших точках.</li>
+<li>Границі при наближенні до \(x = 0\) з кожного боку:
+\[
+\begin{align}
+\lim_{x \to 0^-} \operatorname{sgn}(x) &amp;= -1 \\[0.5em]
+\lim_{x \to 0^+} \operatorname{sgn}(x) &amp;= 1
+\end{align}
+\]</li>
+</ul>
+<p>Оскільки дві однобічні границі відрізняються, двобічна границя не існує:
+\[\lim_{x \to 0} \operatorname{sgn}(x)\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Границі на нескінченності</h2>
+<p>Коли \(x\) віддаляється від початку координат у будь-якому напрямку, функція знака стабілізується на сталому значенні:</p>
+<p>\[
+\begin{align}
+\lim_{x \to -\infty} \operatorname{sgn}(x) &amp;= -1 \\[6pt]
+\lim_{x \to +\infty} \operatorname{sgn}(x) &amp;= 1
+\end{align}
+\]</p>
+<p>Це є простим наслідком того факту, що \(\operatorname{sgn}(x) = -1\) для всіх \(x &lt; 0\) та \(\operatorname{sgn}(x) = 1\) для всіх \(x &gt; 0\), тому значення функції не змінюється при віддаленні \(x\) від нуля.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Похідна та інтеграл</h2>
+<p>На кожній з двох відкритих півпрямих, де функція знака є сталою, її <a href="derivatives.html">похідна</a> дорівнює нулю:</p>
+<p>\[
+\frac{d}{dx} \operatorname{sgn}(x) = 0 \quad \text{for } x \neq 0
+\]</p>
+<p>При \(x = 0\) похідна не існує, оскільки функція є розривною в цій точці. Однак у сенсі розподілів похідна функції знака дорівнює:</p>
+<p>\[
+\frac{d}{dx} \operatorname{sgn}(x) = 2\delta(x)
+\]</p>
+<p>\(\delta(x)\) — це дельта Дірака, узагальнена функція, яка дорівнює нулю скрізь, крім початку координат, і інтегрується до одиниці на всій числовій прямій. Ця дистрибутивна тотожність демонструє, що функція знака має розрив амплітудою \(2\) у початку координат, оскільки:</p>
+<p>\[
+\lim_{x \to 0^-} \operatorname{sgn}(x) = -1
+\]
+\[
+\lim_{x \to 0^+} \operatorname{sgn}(x) = 1
+\]</p>
+<p>Ця амплітуда пояснює наявність множника \(2\) перед дельта-функцією Дірака.</p>
+<hr>
+<p><a href="indefinite-integrals.html">Невизначений інтеграл</a> функції знака, обчислений поза початком координат, дає <a href="absolute-value-function.html">абсолютне значення</a>:</p>
+<p>\[
+\int \operatorname{sgn}(x) \, dx = |x| + c
+\]</p>
+<p>Це узгоджується з тим фактом, що похідна \(|x|\) дорівнює \(\operatorname{sgn}(x)\) скрізь, де перша є диференційовною.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Зв'язок з функцією абсолютного значення</h2>
+<p>Між функцією знака та <a href="absolute-value-function.html">абсолютним значенням</a> існує прямий алгебраїчний зв'язок. Для будь-якого \(x \neq 0\) виконується наступна тотожність:</p>
+<p>\[
+\operatorname{sgn}(x) = \frac{x}{|x|}
+\]</p>
+<p>Цей результат узгоджується з означенням: коли \(x &gt; 0\), відношення \(x / |x| = x/x = 1\). Коли \(x &lt; 0\), відношення \(x / |x| = x/(-x) = -1\). Формула не визначена при \(x = 0\), тому значення \(\operatorname{sgn}(0) = 0\) призначається окремо за домовленістю.</p>
+<p>Навпаки, абсолютне значення можна виразити через функцію знака за допомогою наступної тотожності:</p>
+<p>\[
+|x| = x \cdot \operatorname{sgn}(x)
+\]</p>
+<p>Ця тотожність виконується для всіх \(x \in \mathbb{R}\), включаючи \(x = 0\), де обидві сторони дорівнюють нулю. Разом ці дві тотожності демонструють, що \(|x|\) та \(\operatorname{sgn}(x)\) є взаємодоповнюючими: абсолютне значення зберігає величину й відкидає знак, тоді як функція знака зберігає знак й відкидає величину.</p>
+<hr>
+<p>Дві додаткові тотожності випливають зі зв'язку між функцією знака та абсолютним значенням. Перша тотожність має такий вигляд:</p>
+<p>\[
+x = |x| \cdot \operatorname{sgn}(x)
+\]</p>
+<p>Ця тотожність виражає будь-яке дійсне число як добуток його величини та його знака. Друга тотожність використовує рівність \(|x| = \sqrt{x^2}\), яка є дійсною для всіх \(x \in \mathbb{R}\), та дає альтернативне представлення функції знака для \(x \neq 0\):</p>
+<p>\[
+\operatorname{sgn}(x) = \frac{x}{\sqrt{x^2}}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown  alignCenterMathjax mb-x-30"><h2>Зв'язок з функцією Хевісайда</h2>
+<p><a href="heaviside-function.html">Функція Хевісайда</a> \(H(x)\) визначається як:</p>
+<p>\[
+H(x) =
+\begin{cases}
+0 &amp; \text{if } x &lt; 0 \\[6pt]
+\dfrac{1}{2} &amp; \text{if } x = 0 \\[8pt]
+1 &amp; \text{if } x &gt; 0
+\end{cases}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="630" height="480" src="../images/Heaviside-function-1.png" alt="Heaviside step function." class="wp-image-25514" style="width:315px" title="Heaviside step function." srcset="../images/Heaviside-function-1.png 630w, https://algebrica.org/wp-content/uploads/resources/images/Heaviside-function-1-300x229.png 300w" sizes="(max-width: 630px) 100vw, 630px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Функція знака та функція Хевісайда пов'язані простим лінійним перетворенням. Зокрема:</p>
+<p>\[
+\operatorname{sgn}(x) = 2H(x) &#8211; 1
+\]</p>
+<p>Еквівалентно, маємо:</p>
+<p>\[
+H(x) = \frac{1 + \operatorname{sgn}(x)}{2}
+\]</p>
+<p>Цей зв'язок часто використовується, оскільки перехід між цими представленнями може спростити обчислення. Функція Хевісайда відображає \((-\infty, 0)\) у \(0\) та \((0, +\infty)\) у \(1\), і тому може бути інтерпретована як зсунута та перемасштабована форма функції знака.</p>
+</div>
+</div></div>
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="sign-function.html">algebrica.org/sign-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

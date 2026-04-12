@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Визначник квадратної матриці — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Вектори та матриці</span>
+    </nav>
+    <article>
+        <h1>Визначник квадратної матриці</h1>
+        <time>2025-02-17</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-6" style="height:450px;min-height:450px;max-height:450px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:450px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли висвітлюють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                                <div class="s-c-t-c-label">Дозволяє вивчити</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="matrices.html">Матриці</a>, <a href="properties-of-real-numbers.html">Властивості дійсних чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-6");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"determinant"},{"name":"square matrix"},{"name":"notation"},{"name":"function"},{"name":"invertibility"},{"name":"volume scaling"}]},{"name":"computation","children":[{"name":"1\u00d71 determinant"},{"name":"2\u00d72 determinant"},{"name":"triangular matrices"},{"name":"diagonal matrices"},{"name":"laplace expansion"},{"name":"sarrus rule"}]},{"name":"properties","children":[{"name":"linearity"},{"name":"multiplicativity"},{"name":"transpose invariance"},{"name":"zero determinant"},{"name":"scaling factor"},{"name":"singular matrix"},{"name":"invertible matrix"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 450;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Означення</h2>
+<p>Кожній квадратній <a href="matrices.html">матриці</a> порядку \( n \) можна поставити в відповідність <a href="types-of-numbers.html">дійсне число</a>, яке називається визначником матриці та позначається \( \det(A) \) або \( |A| \). Визначник — це скалярна функція, що кодує як алгебраїчні, так і геометричні властивості відповідного лінійного перетворення:</p>
+<p>\[
+\det : M_n(\mathbb{R}) \to \mathbb{R}
+\]</p>
+<p>Він визначає, чи є матриця оберненою, і вимірює коефіцієнт, у скільки разів перетворення масштабує об'єми. Він з'являється в явному розв'язанні <a href="systems-of-linear-equations.html">систем лінійних рівнянь</a> за допомогою <a href="cramers-rule.html">правила Крамера</a> та відіграє центральну роль у вивченні <a href="eigenvalues-and-eigenvectors.html">власних значень</a> і лінійних перетворень.</p>
+<p>Визначник матриці порядку 1 — це сам елемент:</p>
+<p>\[
+A = \begin{pmatrix} a_{11} \end{pmatrix} \implies \det(A) = a_{11}
+\]</p>
+<p>Для квадратної матриці порядку 2 визначник є різницею між добутком елементів головної діагоналі та добутком елементів побічної діагоналі:</p>
+<p>\[
+A = \begin{pmatrix} a_{11} &amp; a_{12} \\[6pt] a_{21} &amp; a_{22} \end{pmatrix}
+\implies
+\det(A) = a_{11} \cdot a_{22}-a_{21} \cdot a_{12}
+\]</p>
+<p>Наприклад:</p>
+<p>\[
+A = \begin{pmatrix} 3 &amp; 2 \\[6pt] 1 &amp; 4 \end{pmatrix}
+\implies
+\det(A) = 3 \cdot 4-1 \cdot 2 = 10
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Діагональні та трикутні матриці</h2>
+<p>Для діагональної матриці, тобто квадратної матриці, в якій усі позадіагональні елементи дорівнюють нулю, визначник дорівнює добутку елементів головної діагоналі:</p>
+<p>\[
+A = \begin{pmatrix}
+a_{11} &amp; 0 &amp; \cdots &amp; 0 \\[6pt]
+0 &amp; a_{22} &amp; \cdots &amp; 0 \\[6pt]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\[6pt]
+0 &amp; 0 &amp; \cdots &amp; a_{nn}
+\end{pmatrix}
+\implies
+\det(A) = a_{11} \cdot a_{22} \cdot \ldots \cdot a_{nn}
+\]</p>
+<p>Аналогічний результат справедливий для верхніх і нижніх трикутних матриць. В обох випадках визначник є добутком діагональних елементів, оскільки всі додаткові доданки в розкладі зникають.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Розклад Лапласа</h2>
+<p>Визначник квадратної матриці порядку \( n \geq 3 \) можна обчислити рекурсивно, використовуючи розклад за алгебраїчними доповненнями, також відомий як розклад Лапласа. Нехай задано квадратну матрицю \( A = (a_{ij}) \) порядку \( n \), тоді мінор \( M_{ij} \) — це визначник підматриці розміру \( (n-1) \times (n-1) \), отриманої шляхом викреслення \( i \)-го рядка та \( j \)-го стовпця матриці \( A \). Алгебраїчне доповнення \( C_{ij} \) визначається як:</p>
+<p>\[
+C_{ij} = (-1)^{i+j} \cdot M_{ij}
+\]</p>
+<p>Множник знака \( (-1)^{i+j} \) є додатним, коли \( i+j \) парне, і від'ємним, коли \( i+j \) непарне. Визначник \( A \) тоді отримують шляхом розкладу за будь-яким рядком \( i \):</p>
+<p>\[
+\det(A) = \sum_{k=1}^{n} a_{ik} \cdot C_{ik} = \sum_{k=1}^{n} a_{ik} \cdot (-1)^{i+k} \cdot M_{ik}
+\]</p>
+<p>Такий самий результат отримаємо при розкладі за будь-яким стовпцем \( j \):</p>
+<p>\[
+\det(A) = \sum_{k=1}^{n} a_{kj} \cdot C_{kj}
+\]</p>
+<p>Наступний приклад ілюструє обчислення для матриці порядку 3. Розглянемо:</p>
+<p>\[
+A = \begin{pmatrix}
+2 &amp; 0 &amp; -1 \\[6pt]
+3 &amp; -2 &amp; 0 \\[6pt]
+1 &amp; 4 &amp; 1
+\end{pmatrix}
+\]</p>
+<p>Розкладаючи за першим рядком, обчислимо внесок алгебраїчного доповнення кожного елемента.</p>
+<hr>
+<p>Для \( a_{11} = 2 \) мінор — це визначник підматриці, отриманої шляхом викреслення 1-го рядка та 1-го стовпця:</p>
+<p>\[
+C_{11} = (-1)^{1+1} \cdot \det\begin{pmatrix} -2 &amp; 0 \\[6pt] 4 &amp; 1 \end{pmatrix} = (+1) \cdot (-2-0) = -2
+\]</p>
+<p>Внесок становить \( a_{11} \cdot C_{11} = 2 \cdot (-2) = -4 \).</p>
+<hr>
+<p>Для \( a_{12} = 0 \) мінор дорівнює:</p>
+<p>\[
+C_{12} = (-1)^{1+2} \cdot \det\begin{pmatrix} 3 &amp; 0 \\[6pt] 1 &amp; 1 \end{pmatrix} = (-1) \cdot (3-0) = -3
+\]</p>
+<p>Внесок становить \( a_{12} \cdot C_{12} = 0 \cdot (-3) = 0 \).</p>
+<hr>
+<p>Для \( a_{13} = -1 \) мінор дорівнює:</p>
+<p>\[
+C_{13} = (-1)^{1+3} \cdot \det\begin{pmatrix} 3 &amp; -2 \\[6pt] 1 &amp; 4 \end{pmatrix} = (+1) \cdot (12+2) = 14
+\]</p>
+<p>Внесок становить \( a_{13} \cdot C_{13} = (-1) \cdot 14 = -14 \).</p>
+<hr>
+<p>Додавши три внески, отримаємо:</p>
+<p>\[
+\det(A) = -4 + 0 + (-14) = -18
+\]</p>
+<blockquote>
+<p>Обчислювальна складність розкладу Лапласа зростає факторіально з порядком матриці, що призводить до часової складності \( O(n!) \). З цієї причини метод є непрактичним для великих матриць у чисельних застосуваннях, де перевага надається більш ефективним алгоритмам, таким як LU-розклад.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Правило Саррюса</h2>
+<p>Для матриць 3-го порядку визначник можна обчислити за допомогою правила Саррюса — прямого мнемонічного методу, еквівалентного розкладанню за Лапласом. Дано матрицю:</p>
+<p>\[
+A = \begin{pmatrix}
+a_{11} &amp; a_{12} &amp; a_{13} \\[6pt]
+a_{21} &amp; a_{22} &amp; a_{23} \\[6pt]
+a_{31} &amp; a_{32} &amp; a_{33}
+\end{pmatrix}
+\]</p>
+<p>визначник дорівнює:</p>
+<p>\[
+\begin{aligned}
+\det(A) &amp;= a_{11} a_{22} a_{33} + a_{12} a_{23} a_{31} + a_{13} a_{21} a_{32} \\[6pt]
+&amp;\quad &#8211; a_{13} a_{22} a_{31} &#8211; a_{11} a_{23} a_{32} &#8211; a_{12} a_{21} a_{33}
+\end{aligned}
+\]</p>
+<p>Три позитивні доданки відповідають добуткам уздовж трьох головних діагоналей (зверху-зліва вниз-направо), а три негативні доданки відповідають добуткам уздовж трьох другорядних діагоналей (зверху-справа вниз-наліво). Зручний спосіб візуалізувати це — дописати перші два стовпці \( A \) праворуч від неї:</p>
+<p>\[
+\begin{pmatrix}
+a_{11} &amp; a_{12} &amp; a_{13} &amp; \color{gray}{a_{11}} &amp; \color{gray}{a_{12}} \\[6pt]
+a_{21} &amp; a_{22} &amp; a_{23} &amp; \color{gray}{a_{21}} &amp; \color{gray}{a_{22}} \\[6pt]
+a_{31} &amp; a_{32} &amp; a_{33} &amp; \color{gray}{a_{31}} &amp; \color{gray}{a_{32}}
+\end{pmatrix}
+\]</p>
+<p>У наступному прикладі застосуємо правило Саррюса до конкретної матриці. Розглянемо:</p>
+<p>\[
+A = \begin{pmatrix}
+1 &amp; -2 &amp; 3 \\[6pt]
+0 &amp; 4 &amp; -1 \\[6pt]
+2 &amp; 1 &amp; 0
+\end{pmatrix}
+\]</p>
+<p>Отримаємо:</p>
+<p>\[
+\begin{aligned}
+\det(A) &amp;= (1)(4)(0) + (-2)(-1)(2) + (3)(0)(1) \\[6pt]
+&amp;\quad &#8211; (3)(4)(2) &#8211; (1)(-1)(1) &#8211; (-2)(0)(0) \\[6pt]
+&amp;= 0 + 4 + 0 &#8211; 24 + 1 + 0 \\[6pt]
+&amp;= -19
+\end{aligned}
+\]</p>
+<blockquote>
+<p>Правило Саррюса застосовується виключно до матриць 3-го порядку. Воно не узагальнюється для вищих порядків.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Властивості визначника</h2>
+<p>Нижче наведено основні властивості визначника.</p>
+<ul>
+<li>Якщо \( A \) має цілий рядок або стовпець із нулів, то \( \det(A) = 0 \).</li>
+<li>Якщо два рядки або два стовпці \( A \) пропорційні, то \( \det(A) = 0 \). Загалом, якщо один рядок або стовпець є <a href="linear-combinations.html">лінійною комбінацією</a> інших, то \( \det(A) = 0 \).</li>
+<li>Якщо всі елементи рядка або стовпця помножити на скаляр \( k \), визначник множиться на \( k \). Еквівалентно, скалярний множник можна винести за будь-який рядок або стовпець: \( \det(kA) = k^n \det(A) \) для матриці порядку \( n \).</li>
+<li>Визначник добутку дорівнює добутку визначників: \( \det(AB) = \det(A) \cdot \det(B) \).</li>
+<li>Визначник транспонованої матриці дорівнює визначнику вихідної матриці: \( \det(A^{\mathrm{T}}) = \det(A) \).</li>
+<li>Квадратна матриця \( A \) є оберненою тоді і тільки тоді, коли \( \det(A) \neq 0 \). Коли \( \det(A) = 0 \), матриця називається виродженою, як обговорювалося у статті про <a href="inverse-matrix.html">обернену матрицю</a>.</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="determinant.html">algebrica.org/determinant</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

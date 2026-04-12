@@ -1,0 +1,1876 @@
+{
+  "nodes": [
+    {
+      "id": 28423,
+      "title": "Сигмоїдна функція",
+      "url": "https://algebrica.org/sigmoid-function/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 5571,
+      "title": "Показникова функція",
+      "url": "https://algebrica.org/exponential-function/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 13909,
+      "title": "Функції",
+      "url": "https://algebrica.org/functions/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 28332,
+      "title": "Алгоритм зворотного поширення",
+      "url": "https://algebrica.org/backpropagation/",
+      "difficulty": ""
+    },
+    {
+      "id": 6176,
+      "title": "Похідна складених степеневих функцій",
+      "url": "https://algebrica.org/derivative-of-composite-power-functions/",
+      "difficulty": ""
+    },
+    {
+      "id": 6100,
+      "title": "Похідні",
+      "url": "https://algebrica.org/derivatives/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 11183,
+      "title": "Матриці",
+      "url": "https://algebrica.org/matrices/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 24739,
+      "title": "Частинні похідні",
+      "url": "https://algebrica.org/partial-derivatives/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 27359,
+      "title": "Вектори",
+      "url": "https://algebrica.org/vectors/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 28302,
+      "title": "Діагоналізація матриці",
+      "url": "https://algebrica.org/matrix-diagonalization/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 28225,
+      "title": "Власні значення та власні вектори",
+      "url": "https://algebrica.org/eigenvalues-and-eigenvectors/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 28134,
+      "title": "Векторні простори",
+      "url": "https://algebrica.org/vector-spaces/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 11589,
+      "title": "Визначник квадратної матриці",
+      "url": "https://algebrica.org/determinant/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 26028,
+      "title": "Поліноміальні рівняння",
+      "url": "https://algebrica.org/polynomial-equations/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 28167,
+      "title": "Гіперболічний тангенс та котангенс",
+      "url": "https://algebrica.org/hyperbolic-tangent-and-cotangent/",
+      "difficulty": ""
+    },
+    {
+      "id": 12884,
+      "title": "Гіпербола",
+      "url": "https://algebrica.org/hyperbola/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 20895,
+      "title": "Гіперболічний синус та косинус",
+      "url": "https://algebrica.org/hyperbolic-sine-and-cosine/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 28106,
+      "title": "Поля",
+      "url": "https://algebrica.org/fields/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 27667,
+      "title": "Групи",
+      "url": "https://algebrica.org/groups/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 27974,
+      "title": "Кільця",
+      "url": "https://algebrica.org/rings/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 25636,
+      "title": "Множини",
+      "url": "https://algebrica.org/sets/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 15487,
+      "title": "Складені функції",
+      "url": "https://algebrica.org/composite-functions/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 23455,
+      "title": "Критерії інтегровності за Ріманом",
+      "url": "https://algebrica.org/riemann-integrability-criteria/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 17006,
+      "title": "Неперервні функції",
+      "url": "https://algebrica.org/continuous-functions/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 9267,
+      "title": "Визначені інтеграли",
+      "url": "https://algebrica.org/definite-integrals/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 8841,
+      "title": "Границі",
+      "url": "https://algebrica.org/limits/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 22762,
+      "title": "Невласні інтеграли",
+      "url": "https://algebrica.org/improper-integrals/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 22458,
+      "title": "Тригонометрична підстановка в інтегралах",
+      "url": "https://algebrica.org/trigonometric-substitution-for-integrals/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 7797,
+      "title": "Невизначені інтеграли",
+      "url": "https://algebrica.org/indefinite-integrals/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 7914,
+      "title": "Інтегрування підстановкою",
+      "url": "https://algebrica.org/integration-by-substitution/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 7040,
+      "title": "Основна тригонометрична тотожність",
+      "url": "https://algebrica.org/pythagorean-identity/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 8704,
+      "title": "Інтеграл раціональних функцій",
+      "url": "https://algebrica.org/integral-of-rational-functions/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 21912,
+      "title": "Розкладання на елементарні дроби",
+      "url": "https://algebrica.org/partial-fraction-decomposition/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 2326,
+      "title": "Поліноми",
+      "url": "https://algebrica.org/polynomials/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 21621,
+      "title": "Інтеграл тригонометричних функцій",
+      "url": "https://algebrica.org/integral-of-trigonometric-functions/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 8073,
+      "title": "Інтеграл показникової функції",
+      "url": "https://algebrica.org/integral-of-the-exponential-function/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 10340,
+      "title": "Обчислення площ за допомогою інтегрування",
+      "url": "https://algebrica.org/finding-areas-by-integration/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 23007,
+      "title": "Основна теорема математичного аналізу",
+      "url": "https://algebrica.org/fundamental-theorem-of-calculus/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 8037,
+      "title": "Інтегрування частинами",
+      "url": "https://algebrica.org/integration-by-parts/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 6132,
+      "title": "Похідна складеної функції",
+      "url": "https://algebrica.org/the-derivative-of-a-composite-function/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 25215,
+      "title": "Функція Діріхле",
+      "url": "https://algebrica.org/dirichlet-function/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 24269,
+      "title": "Розриви дійсних функцій",
+      "url": "https://algebrica.org/discontinuities-of-real-functions/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 25483,
+      "title": "Функція знака",
+      "url": "https://algebrica.org/sign-function/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 14326,
+      "title": "Модуль числа",
+      "url": "https://algebrica.org/absolute-value/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 10388,
+      "title": "Функція модуля",
+      "url": "https://algebrica.org/absolute-value-function/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 27108,
+      "title": "Поліноміальна функція",
+      "url": "https://algebrica.org/polynomial-function/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 24413,
+      "title": "Рівномірна неперервність",
+      "url": "https://algebrica.org/uniform-continuity/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 7996,
+      "title": "Типи чисел",
+      "url": "https://algebrica.org/types-of-numbers/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 8358,
+      "title": "Правило Лопіталя",
+      "url": "https://algebrica.org/hopital-rule/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 6206,
+      "title": "Теорема Коші",
+      "url": "https://algebrica.org/cauchy-theorem/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 6158,
+      "title": "Теорема Ролля",
+      "url": "https://algebrica.org/rolles-theorem/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 6193,
+      "title": "Теорема Лагранжа",
+      "url": "https://algebrica.org/lagrange-theorem/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 15277,
+      "title": "Теорема Ферма",
+      "url": "https://algebrica.org/fermat-theorem/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 23668,
+      "title": "Теорема Вейєрштрасса",
+      "url": "https://algebrica.org/weierstrass-theorem/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 17698,
+      "title": "Нотація \"велике O\"",
+      "url": "https://algebrica.org/big-o-notation/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 17481,
+      "title": "Нотація \"мале o\"",
+      "url": "https://algebrica.org/little-o-notation/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 23730,
+      "title": "Невизначені форми границь",
+      "url": "https://algebrica.org/indeterminate-forms/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 17110,
+      "title": "Асимптоти",
+      "url": "https://algebrica.org/asymptotes/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 23976,
+      "title": "Чудові границі",
+      "url": "https://algebrica.org/remarkable-limits/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 17277,
+      "title": "Теорема про стиснення",
+      "url": "https://algebrica.org/squeeze-theorem/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 9581,
+      "title": "Лінійні нерівності",
+      "url": "https://algebrica.org/linear-inequalities/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 24043,
+      "title": "Алгебра границь",
+      "url": "https://algebrica.org/algebra-of-limits/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 22580,
+      "title": "Властивості дійсних чисел",
+      "url": "https://algebrica.org/properties-of-real-numbers/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 15726,
+      "title": "Число Ейлера як границя послідовності",
+      "url": "https://algebrica.org/euler-number-limit-sequence/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 3582,
+      "title": "Біноміальна теорема",
+      "url": "https://algebrica.org/binomial-theorem/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 16443,
+      "title": "Геометричний ряд",
+      "url": "https://algebrica.org/geometric-series/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 13906,
+      "title": "Послідовності",
+      "url": "https://algebrica.org/sequences/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 26224,
+      "title": "Монотонні послідовності",
+      "url": "https://algebrica.org/monotone-sequences/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 25375,
+      "title": "Супремум та інфімум",
+      "url": "https://algebrica.org/supremum-and-infimum/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 11896,
+      "title": "Системи лінійних рівнянь",
+      "url": "https://algebrica.org/systems-of-linear-equations/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 22382,
+      "title": "Лінійні комбінації",
+      "url": "https://algebrica.org/linear-combinations/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 12652,
+      "title": "Ранг матриці",
+      "url": "https://algebrica.org/rank-of-a-matrix/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 11787,
+      "title": "Обернена матриця",
+      "url": "https://algebrica.org/inverse-matrix/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 13280,
+      "title": "Векторне та параметричне рівняння прямої",
+      "url": "https://algebrica.org/vector-and-parametric-equations-of-a-line/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 25869,
+      "title": "Тригонометричні нерівності",
+      "url": "https://algebrica.org/trigonometric-inequalities/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 3918,
+      "title": "Тригонометричні рівняння: частина 1",
+      "url": "https://algebrica.org/trigonometric-equations/",
+      "difficulty": ""
+    },
+    {
+      "id": 6821,
+      "title": "Одиничне коло",
+      "url": "https://algebrica.org/unit-circle/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 26405,
+      "title": "Нерівності з модулем",
+      "url": "https://algebrica.org/inequalities-with-absolute-value/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 9739,
+      "title": "Системи нерівностей",
+      "url": "https://algebrica.org/systems-of-inequalities/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 26490,
+      "title": "Ірраціональні нерівності",
+      "url": "https://algebrica.org/irrational-inequalities/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 19880,
+      "title": "Визначення області визначення функції",
+      "url": "https://algebrica.org/determining-the-domain-of-a-function/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 2523,
+      "title": "Квадратні нерівності",
+      "url": "https://algebrica.org/quadratic-inequalities/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 4727,
+      "title": "Радикали",
+      "url": "https://algebrica.org/radicals/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 9819,
+      "title": "Метод інтервалів у нерівностях",
+      "url": "https://algebrica.org/sign-analysis-in-inequalities/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 10672,
+      "title": "Раціональні нерівності",
+      "url": "https://algebrica.org/rational-inequalities/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 2425,
+      "title": "Розкладання поліномів: метод AC",
+      "url": "https://algebrica.org/factoring-ac-method/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 472,
+      "title": "Квадратні рівняння",
+      "url": "https://algebrica.org/quadratic-equations/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 20674,
+      "title": "Лінійні рівняння з параметрами",
+      "url": "https://algebrica.org/linear-equations-with-parameters/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 1241,
+      "title": "Рівняння",
+      "url": "https://algebrica.org/equations/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 3910,
+      "title": "Лінійні рівняння",
+      "url": "https://algebrica.org/linear-equations/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 25734,
+      "title": "Рівняння з параметрами",
+      "url": "https://algebrica.org/equations-with-parameters/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 2125,
+      "title": "Ірраціональні рівняння",
+      "url": "https://algebrica.org/irrational-equations/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 4637,
+      "title": "Степені",
+      "url": "https://algebrica.org/powers/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 4327,
+      "title": "Триноміальні рівняння",
+      "url": "https://algebrica.org/trinomial-equations/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 25278,
+      "title": "Корені полінома",
+      "url": "https://algebrica.org/roots-of-a-polynomial/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 7479,
+      "title": "Квадратні рівняння з комплексними розв'язками",
+      "url": "https://algebrica.org/quadratic-equations-with-complex-solutions/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 697,
+      "title": "Втрата коренів",
+      "url": "https://algebrica.org/loss-of-roots/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 478,
+      "title": "Формула коренів квадратного рівняння",
+      "url": "https://algebrica.org/quadratic-formula/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 2498,
+      "title": "Виділення повного квадрата",
+      "url": "https://algebrica.org/completing-the-square/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 777,
+      "title": "Формули скороченого множення",
+      "url": "https://algebrica.org/notable-products/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 3783,
+      "title": "Біноми",
+      "url": "https://algebrica.org/binomials/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 3781,
+      "title": "Мономи",
+      "url": "https://algebrica.org/monomials/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 3785,
+      "title": "Триноми",
+      "url": "https://algebrica.org/trinomials/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 1546,
+      "title": "Біноміальний коефіцієнт",
+      "url": "https://algebrica.org/binomial-coefficient/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 1411,
+      "title": "Факторіал",
+      "url": "https://algebrica.org/factorial/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 5063,
+      "title": "Метод синтетичного ділення",
+      "url": "https://algebrica.org/syntetic-division/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 25059,
+      "title": "Ділення поліномів",
+      "url": "https://algebrica.org/polynomial-division/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 3804,
+      "title": "Додавання та віднімання поліномів",
+      "url": "https://algebrica.org/adding-and-subtracting-polynomials/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 21277,
+      "title": "Цілі числа",
+      "url": "https://algebrica.org/integers/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 7152,
+      "title": "Теорема косинусів",
+      "url": "https://algebrica.org/law-of-cosines/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 8175,
+      "title": "Тригонометрія прямокутного трикутника",
+      "url": "https://algebrica.org/right-triangle-trigonometry/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 6309,
+      "title": "Синус та косинус",
+      "url": "https://algebrica.org/sine-and-cosine/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 6669,
+      "title": "Теорема синусів",
+      "url": "https://algebrica.org/law-of-sines/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 16586,
+      "title": "Теорема Піфагора",
+      "url": "https://algebrica.org/pythagorean-theorem/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 6908,
+      "title": "Арктангенс та арккотангенс",
+      "url": "https://algebrica.org/arctangent-and-arccotangent/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 6450,
+      "title": "Тангенс та котангенс",
+      "url": "https://algebrica.org/tangent-and-cotangent/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 6905,
+      "title": "Арксинус та арккосинус",
+      "url": "https://algebrica.org/arcsine-and-arccosine/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 14110,
+      "title": "Обернена функція",
+      "url": "https://algebrica.org/inverse-function/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 6624,
+      "title": "Секанс та косеканс",
+      "url": "https://algebrica.org/secant-and-cosecant/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 10954,
+      "title": "Коло",
+      "url": "https://algebrica.org/circumference/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 11083,
+      "title": "Формула Муавра",
+      "url": "https://algebrica.org/de-moivre-theorem/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 7256,
+      "title": "Комплексні числа",
+      "url": "https://algebrica.org/complex-numbers-introduction/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 7355,
+      "title": "Комплексні числа в тригонометричній формі",
+      "url": "https://algebrica.org/complex-numbers-trigonometric-form/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 7556,
+      "title": "Комплексні числа в експоненціальній формі",
+      "url": "https://algebrica.org/complex-numbers-exponential-form/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 7437,
+      "title": "Операції з комплексними числами",
+      "url": "https://algebrica.org/complex-number-operations/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 4693,
+      "title": "Логарифми",
+      "url": "https://algebrica.org/logarithms/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 26820,
+      "title": "Корені з одиниці",
+      "url": "https://algebrica.org/roots-of-unity/",
+      "difficulty": "expert"
+    },
+    {
+      "id": 27010,
+      "title": "Інтервали",
+      "url": "https://algebrica.org/intervals/",
+      "difficulty": "легкий"
+    },
+    {
+      "id": 5852,
+      "title": "Логіка висловлювань",
+      "url": "https://algebrica.org/propositional-logic/",
+      "difficulty": "середній"
+    },
+    {
+      "id": 5613,
+      "title": "Косинусна подібність",
+      "url": "https://algebrica.org/cosine-similarity/",
+      "difficulty": "складний"
+    },
+    {
+      "id": 6430,
+      "title": "Функція косинуса",
+      "url": "https://algebrica.org/cosine-function/",
+      "difficulty": "середній"
+    }
+  ],
+  "links": [
+    {
+      "source": 5571,
+      "target": 28423
+    },
+    {
+      "source": 13909,
+      "target": 28423
+    },
+    {
+      "source": 6176,
+      "target": 28332
+    },
+    {
+      "source": 6100,
+      "target": 28332
+    },
+    {
+      "source": 11183,
+      "target": 28332
+    },
+    {
+      "source": 24739,
+      "target": 28332
+    },
+    {
+      "source": 27359,
+      "target": 28332
+    },
+    {
+      "source": 28225,
+      "target": 28302
+    },
+    {
+      "source": 11183,
+      "target": 28302
+    },
+    {
+      "source": 28134,
+      "target": 28302
+    },
+    {
+      "source": 11589,
+      "target": 28225
+    },
+    {
+      "source": 11183,
+      "target": 28225
+    },
+    {
+      "source": 26028,
+      "target": 28225
+    },
+    {
+      "source": 27359,
+      "target": 28225
+    },
+    {
+      "source": 5571,
+      "target": 28167
+    },
+    {
+      "source": 12884,
+      "target": 28167
+    },
+    {
+      "source": 20895,
+      "target": 28167
+    },
+    {
+      "source": 28106,
+      "target": 28134
+    },
+    {
+      "source": 27667,
+      "target": 28134
+    },
+    {
+      "source": 27359,
+      "target": 28134
+    },
+    {
+      "source": 27667,
+      "target": 28106
+    },
+    {
+      "source": 27974,
+      "target": 28106
+    },
+    {
+      "source": 25636,
+      "target": 28106
+    },
+    {
+      "source": 27667,
+      "target": 27974
+    },
+    {
+      "source": 25636,
+      "target": 27974
+    },
+    {
+      "source": 15487,
+      "target": 27667
+    },
+    {
+      "source": 25636,
+      "target": 27667
+    },
+    {
+      "source": 17006,
+      "target": 23455
+    },
+    {
+      "source": 9267,
+      "target": 23455
+    },
+    {
+      "source": 8841,
+      "target": 23455
+    },
+    {
+      "source": 9267,
+      "target": 22762
+    },
+    {
+      "source": 8841,
+      "target": 22762
+    },
+    {
+      "source": 7797,
+      "target": 22458
+    },
+    {
+      "source": 7914,
+      "target": 22458
+    },
+    {
+      "source": 7040,
+      "target": 22458
+    },
+    {
+      "source": 7797,
+      "target": 8704
+    },
+    {
+      "source": 21912,
+      "target": 8704
+    },
+    {
+      "source": 2326,
+      "target": 8704
+    },
+    {
+      "source": 7797,
+      "target": 21621
+    },
+    {
+      "source": 6100,
+      "target": 8073
+    },
+    {
+      "source": 5571,
+      "target": 8073
+    },
+    {
+      "source": 7797,
+      "target": 8073
+    },
+    {
+      "source": 9267,
+      "target": 10340
+    },
+    {
+      "source": 23007,
+      "target": 10340
+    },
+    {
+      "source": 6100,
+      "target": 8037
+    },
+    {
+      "source": 7797,
+      "target": 8037
+    },
+    {
+      "source": 6132,
+      "target": 7914
+    },
+    {
+      "source": 7797,
+      "target": 7914
+    },
+    {
+      "source": 9267,
+      "target": 23007
+    },
+    {
+      "source": 7797,
+      "target": 23007
+    },
+    {
+      "source": 17006,
+      "target": 9267
+    },
+    {
+      "source": 8841,
+      "target": 9267
+    },
+    {
+      "source": 6100,
+      "target": 7797
+    },
+    {
+      "source": 24269,
+      "target": 25215
+    },
+    {
+      "source": 13909,
+      "target": 25215
+    },
+    {
+      "source": 8841,
+      "target": 25215
+    },
+    {
+      "source": 23455,
+      "target": 25215
+    },
+    {
+      "source": 14326,
+      "target": 25483
+    },
+    {
+      "source": 13909,
+      "target": 25483
+    },
+    {
+      "source": 25483,
+      "target": 10388
+    },
+    {
+      "source": 13909,
+      "target": 5571
+    },
+    {
+      "source": 13909,
+      "target": 27108
+    },
+    {
+      "source": 2326,
+      "target": 27108
+    },
+    {
+      "source": 17006,
+      "target": 24269
+    },
+    {
+      "source": 8841,
+      "target": 24269
+    },
+    {
+      "source": 17006,
+      "target": 24413
+    },
+    {
+      "source": 13909,
+      "target": 24413
+    },
+    {
+      "source": 8841,
+      "target": 24413
+    },
+    {
+      "source": 8841,
+      "target": 17006
+    },
+    {
+      "source": 7996,
+      "target": 13909
+    },
+    {
+      "source": 6100,
+      "target": 8358
+    },
+    {
+      "source": 13909,
+      "target": 8358
+    },
+    {
+      "source": 8841,
+      "target": 8358
+    },
+    {
+      "source": 7996,
+      "target": 8358
+    },
+    {
+      "source": 17006,
+      "target": 6206
+    },
+    {
+      "source": 6100,
+      "target": 6206
+    },
+    {
+      "source": 13909,
+      "target": 6206
+    },
+    {
+      "source": 6158,
+      "target": 6206
+    },
+    {
+      "source": 17006,
+      "target": 6193
+    },
+    {
+      "source": 6100,
+      "target": 6193
+    },
+    {
+      "source": 6158,
+      "target": 6193
+    },
+    {
+      "source": 17006,
+      "target": 6158
+    },
+    {
+      "source": 6100,
+      "target": 6158
+    },
+    {
+      "source": 13909,
+      "target": 6158
+    },
+    {
+      "source": 8841,
+      "target": 6158
+    },
+    {
+      "source": 6100,
+      "target": 15277
+    },
+    {
+      "source": 13909,
+      "target": 15277
+    },
+    {
+      "source": 7996,
+      "target": 15277
+    },
+    {
+      "source": 17006,
+      "target": 23668
+    },
+    {
+      "source": 13909,
+      "target": 23668
+    },
+    {
+      "source": 6100,
+      "target": 24739
+    },
+    {
+      "source": 13909,
+      "target": 24739
+    },
+    {
+      "source": 8841,
+      "target": 24739
+    },
+    {
+      "source": 11183,
+      "target": 24739
+    },
+    {
+      "source": 15487,
+      "target": 6132
+    },
+    {
+      "source": 6100,
+      "target": 6132
+    },
+    {
+      "source": 8841,
+      "target": 6100
+    },
+    {
+      "source": 13909,
+      "target": 17698
+    },
+    {
+      "source": 8841,
+      "target": 17698
+    },
+    {
+      "source": 13909,
+      "target": 17481
+    },
+    {
+      "source": 8841,
+      "target": 17481
+    },
+    {
+      "source": 13909,
+      "target": 23730
+    },
+    {
+      "source": 8841,
+      "target": 23730
+    },
+    {
+      "source": 13909,
+      "target": 17110
+    },
+    {
+      "source": 8841,
+      "target": 17110
+    },
+    {
+      "source": 8841,
+      "target": 23976
+    },
+    {
+      "source": 13909,
+      "target": 17277
+    },
+    {
+      "source": 8841,
+      "target": 17277
+    },
+    {
+      "source": 9581,
+      "target": 17277
+    },
+    {
+      "source": 17006,
+      "target": 24043
+    },
+    {
+      "source": 8841,
+      "target": 24043
+    },
+    {
+      "source": 22580,
+      "target": 24043
+    },
+    {
+      "source": 23976,
+      "target": 24043
+    },
+    {
+      "source": 13909,
+      "target": 8841
+    },
+    {
+      "source": 3582,
+      "target": 15726
+    },
+    {
+      "source": 16443,
+      "target": 15726
+    },
+    {
+      "source": 13906,
+      "target": 15726
+    },
+    {
+      "source": 22580,
+      "target": 26224
+    },
+    {
+      "source": 13906,
+      "target": 26224
+    },
+    {
+      "source": 25375,
+      "target": 26224
+    },
+    {
+      "source": 27359,
+      "target": 11896
+    },
+    {
+      "source": 11183,
+      "target": 22382
+    },
+    {
+      "source": 28134,
+      "target": 22382
+    },
+    {
+      "source": 27359,
+      "target": 22382
+    },
+    {
+      "source": 11589,
+      "target": 12652
+    },
+    {
+      "source": 11183,
+      "target": 12652
+    },
+    {
+      "source": 27359,
+      "target": 12652
+    },
+    {
+      "source": 11183,
+      "target": 11787
+    },
+    {
+      "source": 27359,
+      "target": 11787
+    },
+    {
+      "source": 11183,
+      "target": 11589
+    },
+    {
+      "source": 22580,
+      "target": 11589
+    },
+    {
+      "source": 13909,
+      "target": 11183
+    },
+    {
+      "source": 22580,
+      "target": 11183
+    },
+    {
+      "source": 25636,
+      "target": 11183
+    },
+    {
+      "source": 27359,
+      "target": 11183
+    },
+    {
+      "source": 22382,
+      "target": 27359
+    },
+    {
+      "source": 22580,
+      "target": 27359
+    },
+    {
+      "source": 27359,
+      "target": 13280
+    },
+    {
+      "source": 3918,
+      "target": 25869
+    },
+    {
+      "source": 6821,
+      "target": 25869
+    },
+    {
+      "source": 14326,
+      "target": 26405
+    },
+    {
+      "source": 9581,
+      "target": 26405
+    },
+    {
+      "source": 22580,
+      "target": 26405
+    },
+    {
+      "source": 9739,
+      "target": 26405
+    },
+    {
+      "source": 19880,
+      "target": 26490
+    },
+    {
+      "source": 2523,
+      "target": 26490
+    },
+    {
+      "source": 4727,
+      "target": 26490
+    },
+    {
+      "source": 9819,
+      "target": 26490
+    },
+    {
+      "source": 2326,
+      "target": 10672
+    },
+    {
+      "source": 9819,
+      "target": 10672
+    },
+    {
+      "source": 2425,
+      "target": 9819
+    },
+    {
+      "source": 2326,
+      "target": 9819
+    },
+    {
+      "source": 22580,
+      "target": 9819
+    },
+    {
+      "source": 2326,
+      "target": 2523
+    },
+    {
+      "source": 472,
+      "target": 2523
+    },
+    {
+      "source": 1241,
+      "target": 20674
+    },
+    {
+      "source": 3910,
+      "target": 20674
+    },
+    {
+      "source": 1241,
+      "target": 25734
+    },
+    {
+      "source": 3910,
+      "target": 25734
+    },
+    {
+      "source": 472,
+      "target": 25734
+    },
+    {
+      "source": 1241,
+      "target": 2125
+    },
+    {
+      "source": 4637,
+      "target": 2125
+    },
+    {
+      "source": 4727,
+      "target": 2125
+    },
+    {
+      "source": 9739,
+      "target": 2125
+    },
+    {
+      "source": 25278,
+      "target": 4327
+    },
+    {
+      "source": 25278,
+      "target": 7479
+    },
+    {
+      "source": 1241,
+      "target": 697
+    },
+    {
+      "source": 472,
+      "target": 697
+    },
+    {
+      "source": 25278,
+      "target": 697
+    },
+    {
+      "source": 2498,
+      "target": 478
+    },
+    {
+      "source": 2326,
+      "target": 478
+    },
+    {
+      "source": 472,
+      "target": 478
+    },
+    {
+      "source": 25278,
+      "target": 472
+    },
+    {
+      "source": 2326,
+      "target": 26028
+    },
+    {
+      "source": 25278,
+      "target": 26028
+    },
+    {
+      "source": 2326,
+      "target": 1241
+    },
+    {
+      "source": 25278,
+      "target": 1241
+    },
+    {
+      "source": 7996,
+      "target": 1241
+    },
+    {
+      "source": 3582,
+      "target": 777
+    },
+    {
+      "source": 3783,
+      "target": 777
+    },
+    {
+      "source": 3781,
+      "target": 777
+    },
+    {
+      "source": 3783,
+      "target": 2425
+    },
+    {
+      "source": 3781,
+      "target": 2425
+    },
+    {
+      "source": 2326,
+      "target": 2425
+    },
+    {
+      "source": 25278,
+      "target": 2425
+    },
+    {
+      "source": 777,
+      "target": 2498
+    },
+    {
+      "source": 3785,
+      "target": 2498
+    },
+    {
+      "source": 1546,
+      "target": 3582
+    },
+    {
+      "source": 1411,
+      "target": 3582
+    },
+    {
+      "source": 4637,
+      "target": 3582
+    },
+    {
+      "source": 2326,
+      "target": 25278
+    },
+    {
+      "source": 25278,
+      "target": 5063
+    },
+    {
+      "source": 3781,
+      "target": 25059
+    },
+    {
+      "source": 2326,
+      "target": 25059
+    },
+    {
+      "source": 4637,
+      "target": 25059
+    },
+    {
+      "source": 22580,
+      "target": 25059
+    },
+    {
+      "source": 25278,
+      "target": 25059
+    },
+    {
+      "source": 21277,
+      "target": 3804
+    },
+    {
+      "source": 3781,
+      "target": 3804
+    },
+    {
+      "source": 3785,
+      "target": 3804
+    },
+    {
+      "source": 3783,
+      "target": 3785
+    },
+    {
+      "source": 3781,
+      "target": 3785
+    },
+    {
+      "source": 2326,
+      "target": 3785
+    },
+    {
+      "source": 4637,
+      "target": 3785
+    },
+    {
+      "source": 3781,
+      "target": 3783
+    },
+    {
+      "source": 2326,
+      "target": 3783
+    },
+    {
+      "source": 4637,
+      "target": 3783
+    },
+    {
+      "source": 7996,
+      "target": 3783
+    },
+    {
+      "source": 21277,
+      "target": 3781
+    },
+    {
+      "source": 4637,
+      "target": 3781
+    },
+    {
+      "source": 22580,
+      "target": 3781
+    },
+    {
+      "source": 21277,
+      "target": 2326
+    },
+    {
+      "source": 7996,
+      "target": 2326
+    },
+    {
+      "source": 8175,
+      "target": 7152
+    },
+    {
+      "source": 6309,
+      "target": 7152
+    },
+    {
+      "source": 8175,
+      "target": 6669
+    },
+    {
+      "source": 6309,
+      "target": 6669
+    },
+    {
+      "source": 16586,
+      "target": 7040
+    },
+    {
+      "source": 6309,
+      "target": 7040
+    },
+    {
+      "source": 6821,
+      "target": 7040
+    },
+    {
+      "source": 5571,
+      "target": 20895
+    },
+    {
+      "source": 12884,
+      "target": 20895
+    },
+    {
+      "source": 16586,
+      "target": 6908
+    },
+    {
+      "source": 6450,
+      "target": 6908
+    },
+    {
+      "source": 6821,
+      "target": 6908
+    },
+    {
+      "source": 14110,
+      "target": 6905
+    },
+    {
+      "source": 6309,
+      "target": 6905
+    },
+    {
+      "source": 6821,
+      "target": 6905
+    },
+    {
+      "source": 6309,
+      "target": 6624
+    },
+    {
+      "source": 6821,
+      "target": 6624
+    },
+    {
+      "source": 6309,
+      "target": 6450
+    },
+    {
+      "source": 6821,
+      "target": 6450
+    },
+    {
+      "source": 6821,
+      "target": 6309
+    },
+    {
+      "source": 10954,
+      "target": 6821
+    },
+    {
+      "source": 6309,
+      "target": 6821
+    },
+    {
+      "source": 7256,
+      "target": 11083
+    },
+    {
+      "source": 7355,
+      "target": 11083
+    },
+    {
+      "source": 7256,
+      "target": 7556
+    },
+    {
+      "source": 7355,
+      "target": 7556
+    },
+    {
+      "source": 7256,
+      "target": 7355
+    },
+    {
+      "source": 7437,
+      "target": 7355
+    },
+    {
+      "source": 16586,
+      "target": 7355
+    },
+    {
+      "source": 6309,
+      "target": 7355
+    },
+    {
+      "source": 7256,
+      "target": 7437
+    },
+    {
+      "source": 22580,
+      "target": 7437
+    },
+    {
+      "source": 472,
+      "target": 7256
+    },
+    {
+      "source": 7996,
+      "target": 7256
+    },
+    {
+      "source": 4637,
+      "target": 4693
+    },
+    {
+      "source": 4637,
+      "target": 4727
+    },
+    {
+      "source": 22580,
+      "target": 4727
+    },
+    {
+      "source": 5571,
+      "target": 4637
+    },
+    {
+      "source": 4693,
+      "target": 4637
+    },
+    {
+      "source": 7996,
+      "target": 4637
+    },
+    {
+      "source": 7256,
+      "target": 26820
+    },
+    {
+      "source": 7556,
+      "target": 26820
+    },
+    {
+      "source": 11083,
+      "target": 26820
+    },
+    {
+      "source": 1411,
+      "target": 1546
+    },
+    {
+      "source": 22580,
+      "target": 25375
+    },
+    {
+      "source": 7996,
+      "target": 25375
+    },
+    {
+      "source": 22580,
+      "target": 27010
+    },
+    {
+      "source": 25636,
+      "target": 27010
+    },
+    {
+      "source": 22580,
+      "target": 14326
+    },
+    {
+      "source": 7996,
+      "target": 14326
+    },
+    {
+      "source": 7996,
+      "target": 22580
+    },
+    {
+      "source": 7996,
+      "target": 21277
+    },
+    {
+      "source": 25636,
+      "target": 7996
+    },
+    {
+      "source": 13909,
+      "target": 5852
+    },
+    {
+      "source": 25636,
+      "target": 5852
+    },
+    {
+      "source": 6430,
+      "target": 5613
+    },
+    {
+      "source": 28134,
+      "target": 5613
+    },
+    {
+      "source": 27359,
+      "target": 5613
+    }
+  ]
+}

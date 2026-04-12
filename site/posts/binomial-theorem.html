@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Біноміальна теорема — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Поліноми</span>
+    </nav>
+    <article>
+        <h1>Біноміальна теорема</h1>
+        <time>2025-02-09</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h2>Формулювання</h2>
+<p>Біномна теорема стверджує, що для будь-якого натурального числа \(n\) вираз \((a+b)^n\) може бути розкладений у скінченну суму \(n+1\) доданків. Кожен доданок складається з біномного коефіцієнта, помноженого на <a href="powers.html">степінь</a> \(a\) та степінь \(b\):
+\[(a + b)^n = \binom{n}{0} a^n b^0 + \binom{n}{1} a^{n-1} b^1 + \ldots + \binom{n}{n-1} a^1 b^{n-1} + \binom{n}{n} a^0 b^n \]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><hr>
+<p>Формула складається з наступних елементів:</p>
+<ul>
+<li>\(n\), показник степеня, є натуральним числом \(n \in \mathbb{N}^+\).</li>
+<li>\(a\) підноситься до степеня, що зменшується, від \(n\) до \(0\).</li>
+<li>\(b\) підноситься до степеня, що збільшується, від \(0\) до \(n\).</li>
+<li>Доданок \(\dbinom{n}{k}\) є <a href="binomial-coefficient.html">біномним коефіцієнтом</a>, де \(k\) набуває значень від \(0\) до \(n\).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><h6>Коефіцієнти \(\binom{n}{k}\), що з'являються в розкладі, точно відповідають елементам \(n\)-го рядка <a href="binomial-coefficient.html">трикутника Паскаля</a>. Симетрія \(\binom{n}{k} = \binom{n}{n-k}\) відображає той факт, що вибір \(k\) елементів із \(n\) еквівалентний виключенню \(n-k\) елементів.</h6>
+<hr>
+<p>У компактній формі біномна теорема може бути виражена як сума \( n + 1 \) доданків:</p>
+<p>\[
+(a + b)^n = \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Біномний коефіцієнт</h2>
+<p><a href="binomial-coefficient.html">Біномний коефіцієнт</a> представляє кількість способів вибрати \( k \) елементів із більшої множини з \( n \) елементів, ігноруючи порядок вибору. У комбінаториці його зазвичай називають «n по k» і позначають так:</p>
+<p>\[
+\binom {n}{k} = \begin{cases}
+\displaystyle{\frac {n!}{k!(n-k)!}} &amp; 0 \leq k \leq n \\[1em]
+0 &amp; \, n &lt; k
+\end{cases}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-steps-no-margin"><ul>
+<li>\(n, k \in \mathbb{N}\).</li>
+<li>\( n \) — загальна кількість елементів у множині.</li>
+<li>\( k \) — кількість елементів, що мають бути вибрані.</li>
+<li>\( n! \) та \( (n &#8211; k)! \) — <a href="factorial.html">факторіали</a> натуральних чисел \( n \) та \( n &#8211; k \) відповідно.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Доведення</h2>
+<p>Існує два стандартних доведення цієї теореми. Перше ґрунтується на комбінаторному аргументі. Розклад \((a+b)^n\) можна розглядати як добуток \(n\) однакових множників:</p>
+<p>\[ (a+b)^n = \underbrace{(a+b)(a+b)\cdots(a+b)}_{n \text{ множників}} \]</p>
+<p>Кожен доданок у розкладеному добутку виникає в результаті вибору або \(a\), або \(b\) з кожного множника. Доданок вигляду \(a^{n-k} b^k\) виникає тоді, коли \(b\) вибирається рівно з \(k\) множників із \(n\), а \(a\) — з решти \(n-k\). Кількість таких виборів дорівнює \(\binom{n}{k}\), що перелічує підмножини з \(k\) елементів із \(n\) множників. Сумування по всіх можливих значеннях \(k\) від \(0\) до \(n\) доводить теорему.</p>
+<hr>
+<p>Друге доведення використовує <a href="principle-of-mathematical-induction.html">математичну індукцію</a> по \(n\). Для \(n = 1\) тотожність набуває вигляду \((a+b)^1 = a + b\), що є очевидно правильним. Припустимо, що теорема виконується для деякого цілого числа \(n \geq 1\). Множачи обидві частини індукційної гіпотези на \((a+b)\), отримаємо:</p>
+<p>\[
+\begin{align}
+(a+b)^{n+1} &amp;= (a+b) \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^k \\
+&amp;= \sum_{k=0}^{n} \binom{n}{k} a^{n-k+1} b^k + \sum_{k=0}^{n} \binom{n}{k} a^{n-k} b^{k+1}
+\end{align}
+\]</p>
+<p>Змінимо індекс другої суми, нехай \(j = k+1\), і відокремимо граничні доданки наступним чином:</p>
+<p>\[ = a^{n+1} + \sum_{k=1}^{n} \left[\binom{n}{k} + \binom{n}{k-1}\right] a^{n+1-k} b^{k} + b^{n+1} \]</p>
+<p>Застосуємо тотожність Паскаля, \(\binom{n}{k} + \binom{n}{k-1} = \binom{n+1}{k}\), до внутрішніх доданків, щоб отримати:</p>
+<p>\[ (a+b)^{n+1} = \sum_{k=0}^{n+1} \binom{n+1}{k} a^{n+1-k} b^k \]</p>
+<p>Цей вираз є біномною теоремою для \(n+1\), що завершує індукцію.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax pb-steps"><h2>Приклад 1</h2>
+<p>Розкладіть \((x + 2)^4\), використовуючи біномну теорему, де \(a = x\), \(b = 2\) та \(n = 4\).</p>
+<p>Застосуємо формулу:</p>
+<p>\[
+(x + 2)^4 = \sum_{k=0}^{4} \binom{4}{k} x^{4-k} \cdot 2^k
+\]</p>
+<p>Обчислимо кожен доданок:</p>
+<p>\[
+\begin{align}
+k = 0 &amp;\quad \binom{4}{0} x^4 \cdot 2^0 = x^4 \\[6pt]
+k = 1 &amp;\quad \binom{4}{1} x^3 \cdot 2^1 = 8x^3 \\[6pt]
+k = 2 &amp;\quad \binom{4}{2} x^2 \cdot 2^2 = 24x^2 \\[6pt]
+k = 3 &amp;\quad \binom{4}{3} x^1 \cdot 2^3 = 32x \\[6pt]
+k = 4 &amp;\quad \binom{4}{4} x^0 \cdot 2^4 = 16
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Додавши всі доданки, отримаємо:
+\[(x+2)^4 = x^4 + 8x^3 + 24x^2 + 32x + 16\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax pb-steps"><h2>Приклад 2</h2>
+<p>Для бінома, що містить віднімання, теорема про біном застосовується із заміною \(b\) від'ємним значенням. Знаки в розкладанні чергуються, оскільки \((-1)^k\) дає додатне значення для парних \(k\) та від'ємне значення для непарних \(k\). Розкладання \((x - 1)^5\), де \(a = x\), \(b = -1\) та \(n = 5\), має такий вигляд:</p>
+<p>\[ (x - 1)^5 = \sum_{k=0}^{5} \binom{5}{k} x^{5-k} \cdot (-1)^k \]</p>
+<p>Кожен член розкладання обчислюється наступним чином:</p>
+<p>\[
+\begin{align}
+k = 0 &amp;\quad \binom{5}{0} x^5 \cdot (-1)^0 = x^5 \\[6pt]
+k = 1 &amp;\quad \binom{5}{1} x^4 \cdot (-1)^1 = -5x^4 \\[6pt]
+k = 2 &amp;\quad \binom{5}{2} x^3 \cdot (-1)^2 = 10x^3 \\[6pt]
+k = 3 &amp;\quad \binom{5}{3} x^2 \cdot (-1)^3 = -10x^2 \\[6pt]
+k = 4 &amp;\quad \binom{5}{4} x^1 \cdot (-1)^4 = 5x \\[6pt]
+k = 5 &amp;\quad \binom{5}{5} x^0 \cdot (-1)^5 = -1
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Додавши всі члени, маємо:</p>
+<p>\[ (x &#8211; 1)^5 = x^5 &#8211; 5x^4 + 10x^3 &#8211; 10x^2 + 5x &#8211; 1 \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрані ресурси</h2>
+<ul>
+<li><strong>University of Connecticut, W. Abikoff</strong>. <a href="https://www2.math.uconn.edu/~abikoff/math2142s11/binomial.pdf">The Binomial Theorem</a></li>
+<li><strong>University of California S. Barbara, H. McGahagan</strong>. <a href="https://web.math.ucsb.edu/~helena/teaching/math8/handouts/induction.pdf">Induction and the Binomial Theorem</a></li>
+<li><strong>MIT,D. Karger, N. Lynch</strong>. <a href="https://courses.csail.mit.edu/6.042/past-devel/archive/spring00/archive/lectures/L16.pdf">Binomial Coefficients and Identities</a></li>
+<li><strong>Harvard University, C. Wang</strong>. <a href="https://people.math.harvard.edu/~cmwang/teaching/55/3-5sol.pdf">Binomial Theorem and Combinatorial Proofs</a></li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке теорема про біном?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема про біном надає формулу для розкладання виразів вигляду (a + b)^n у суму, що складається з членів вигляду C(n, k)·a^(n−k)·b^k, де C(n, k) — біноміальний коефіцієнт."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="binomial-theorem.html">algebrica.org/binomial-theorem</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

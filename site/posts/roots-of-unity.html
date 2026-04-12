@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корені з одиниці — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Комплексні числа</span>
+    </nav>
+    <article>
+        <h1>Корені з одиниці</h1>
+        <time>2025-02-02</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-2" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-4"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Експерт</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="complex-numbers-introduction.html">Комплексні числа</a>, <a href="complex-numbers-exponential-form.html">Комплексні числа в експоненціальній формі</a>, <a href="de-moivre-theorem.html">Теорема де Муавра</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-2");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"nth roots"},{"name":"exponential form"},{"name":"unit circle"},{"name":"complex roots"},{"name":"principal root"},{"name":"angle spacing"}]},{"name":"structure","children":[{"name":"cyclic group"},{"name":"subgroups"},{"name":"generators"},{"name":"primitive roots"},{"name":"group order"},{"name":"closure"}]},{"name":"properties","children":[{"name":"sum of roots"},{"name":"product of roots"},{"name":"regular polygon"},{"name":"angular spacing"},{"name":"symmetry"},{"name":"cyclotomic polynomials"},{"name":"totient function"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Означення</h2>
+<p>Дано натуральне число \(n\), тоді коренем одиниці порядку \(n\) називається <a href="complex-numbers-introduction.html">комплексне число</a> \(z\), що задовольняє <a href="equations.html">рівняння</a> \[ z^n = 1 \]</p>
+<p>На комплексній площині існує рівно \(n\) таких чисел, і їх можна описати цілком явно за допомогою формули Ейлера, яка стверджує, що:
+\[
+e^{i\theta} = \cos\theta + i\,\sin\theta
+\]
+для будь-якого дійсного \(\theta\). Існування рівно \(n\) розв'язків випливає з <a href="roots-of-a-polynomial.html">основної теореми алгебри</a>: поліном \(z^n &#8211; 1\) має ступінь \(n\) і, отже, має не більше \(n\) коренів у \(\mathbb{C}\), і можна безпосередньо перевірити, що всі \(n\) сконструйованих нижче кандидатів є відмінними.</p>
+<p>Щоб вивести явну форму коренів, запишуть комплексне число одиничного модуля як \(z = e^{i\theta}\) і накладуть умову \(e^{in\theta} = 1\). Оскільки комплексна експонента є періодичною з періодом \(2\pi\), це вимагає, щоб \(n\theta = 2\pi k\) для деякого цілого \(k\), звідси \(\theta = 2\pi k/n\). Коли \(k\) набуває будь-яких \(n\) послідовних <a href="integers.html">цілих чисел</a>, отримані значення \(\theta\) дають \(n\) відмінних точок на одиничному колі. Зазвичай беруть \(k = 0, 1, \ldots, n-1\), що дає \(n\)-ті корені одиниці у вигляді:</p>
+<p>\[z_k = e^{2\pi i k/n}\]
+\[k = 0, 1, \ldots, n-1\]</p>
+<p>Розкладаючи за формулою Ейлера, кожен корінь можна записати в прямокутних координатах як:</p>
+<p>\[
+z_k = \cos\!\left(\frac{2\pi k}{n}\right) + i\,\sin\!\left(\frac{2\pi k}{n}\right)
+\]</p>
+<p>Для \(k = 0\) отримують \(z_0 = 1\), що завжди є коренем незалежно від \(n\). При \(n = 2\) двома коренями є \(1\) та \(-1\). При \(n = 4\) чотирма коренями є \(1, i, -1, -i\), які відомі з арифметики цілих гауссових чисел. Для загального \(n\) корені виступають спряженими парами: оскільки аргументи \(2\pi k/n\) та \(2\pi(n-k)/n\) в сумі дають \(2\pi\), маємо \(z_{n-k} = \overline{z_k}\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Групова структура</h2>
+<p>Множина \(\mu_n\) всіх \(n\)-тих коренів одиниці, оснащена операцією комплексного множення, утворює групу. Замкненість виконується, оскільки \(z_j \cdot z_k = e^{2\pi i(j+k)/n}\), що знову є \(n\)-тим коренем одиниці, оскільки:</p>
+<p>\[(z_j z_k)^n = z_j^n z_k^n = 1\]</p>
+<p>Нейтральним елементом є \(z_0 = 1\), а оберненим до \(z_k\) є \(z_{n-k}\), що збігається з комплексним спряженим \(\overline{z_k}\), оскільки \(|z_k| = 1\). Точніше, маємо:</p>
+<p>\[
+z_j \cdot z_k = z_{(j+k) \bmod n}
+\]</p>
+<p>Це показує, що \(\mu_n\) є <a href="groups.html">циклічною групою</a> порядку \(n\), що породжується одним елементом \(z_1 = e^{2\pi i/n}.\) Кожен інший корінь є степенем \(z_1\), оскільки \(z_k = z_1^k\). Ця група ізоморфна \(\mathbb{Z}/n\mathbb{Z}\) за додаванням за модулем \(n\), причому ізоморфізм задано явно як \(z_k \mapsto k\).</p>
+<p>Зокрема, \(\mu_n\) є абелевою, і структура її підгруп відображає структуру \(\mathbb{Z}/n\mathbb{Z}\): для кожного дільника \(d\) числа \(n\) існує єдина підгрупа порядку \(d\), а саме \(\mu_d\), яка природно вкладена в \(\mu_n\).</p>
+<h6>Ізоморфізм з \(\mathbb{Z}/n\mathbb{Z}\) задано явно як \(z_k \mapsto k\), і він зберігає групову операцію в тому сенсі, що множення коренів відповідає додаванню індексів за модулем \(n\). Оскільки \(\mathbb{Z}/n\mathbb{Z}\) є абелевою, то і \(\mu_n\) також є абелевою: порядок, у якому множаться два корені, не має значення, оскільки \(z_j z_k = z_k z_j\) випливає безпосередньо з комутативності додавання показників степенів.</h6>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown  alignCenterMathjax mb-x-30"><h2>Геометрична інтерпретація</h2>
+<p>На комплексній площині \(n\)-ті корені одиниці розташовані у вершинах правильного \(n\)-кутника, вписаного в одиничне коло, з однією вершиною у точці \(1\) на дійсній осі. Вершини рівномірно розподілені, з кутовою відстанню \(2\pi/n\) радіан між будь-якими двома послідовними коренями.</p>
+<p>Ця геометрична регулярність є прямим наслідком рівномірного розподілу аргументів \(2\pi k/n\). Коли \(k\) збільшується на одиницю, відповідна точка на одиничному колі зміщується на фіксований кут. Випадки \(n = 3, 4, 6\) є особливо природними, оскільки відповідні правильні багатокутники заповнюють площину. Для \(n = 3\), наприклад, отримують рівносторонній трикутник з вершинами в точках:</p>
+<p>\begin{align}
+z_0 &amp;= 1 \\[6pt]
+z_1 &amp;= e^{2\pi i/3} = -\frac{1}{2} + \frac{\sqrt{3}}{2}\,i \\[6pt]
+z_2 &amp;= e^{4\pi i/3} = -\frac{1}{2} &#8211; \frac{\sqrt{3}}{2}\,i
+\end{align}</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="742" height="532" src="../images/roots-of-unit.png" alt="Roots of unit." class="wp-image-26842" style="width:371px" title="Roots of unit." srcset="../images/roots-of-unit.png 742w, https://algebrica.org/wp-content/uploads/resources/images/roots-of-unit-300x215.png 300w" sizes="(max-width: 742px) 100vw, 742px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><h6>Для \(n = 6\) шість коренів є вершинами правильного шестикутника, і вони містять як підмножину корені для \(n = 2\) та \(n = 3\), що відображає дільність \(2 \mid 6\) та \(3 \mid 6\) і відповідні включення підгруп \(\mu_2, \mu_3 \subset \mu_6\).</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Примітивні корені</h2>
+<p>Корінь одниці \(z_k \in \mu_n\) називається примітивним, якщо його порядок у групі дорівнює точно \(n\), тобто \(z_k^m \neq 1\) для кожного цілого додатного \(m &lt; n\). Еквівалентно, \(z_k\) є генератором \(\mu_n\): кожен елемент групи можна представити як степінь \(z_k\). Оскільки \(z_k = z_1^k\), порядок \(z_k\) у циклічній групі \(\mu_n\) дорівнює \(n / \gcd(k, n)\). Отже, \(z_k\) є примітивним тоді і тільки тоді, коли \(\gcd(k, n) = 1\).</p>
+<p>Кількість примітивних \(n\)-их коренів одниці, відповідно, дорівнює кількості цілих чисел у \({1, 2, \ldots, n}\), які взаємно прості з \(n\), що за означенням є функцією Ейлера \(\varphi(n)\).</p>
+<p>Наприклад, при \(n = 6\) маємо \(\varphi(6) = 2\), і примітивними коренями є \(z_1 = e^{\pi i/3}\) та \(z_5 = e^{5\pi i/3}\), що відповідають \(k = 1\) та \(k = 5\). Коли \(n\) є простим числом, кожен корінь, окрім \(z_0 = 1\), є примітивним, оскільки \(\gcd(k, n) = 1\) для всіх \(k \in {1, \ldots, n-1}\), і відповідно \(\varphi(n) = n - 1\). Якщо \(\zeta\) — будь-який примітивний \(n\)-ий корінь одниці, то повну множину \(\mu_n\) можна відновити як:</p>
+<p>\[{1, \zeta, \zeta^2, \ldots, \zeta^{n-1}}\]</p>
+<p>Це робить вибір примітивного кореня питанням угомовності, а не математичної суті, оскільки всі примітивні корені генерують одну й ту саму групу.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Сума коренів</h2>
+<p>Сума всіх \(n\)-их коренів одниці дорівнює нулю для кожного \(n \geq 2\). Щоб переконатися в цьому, зауважимо, що <a href="polynomials.html">поліном</a> \(z^n &#8211; 1\) повністю розкладається над \(\mathbb{C}\) як:</p>
+<p>\[
+z^n - 1 = (z - z_0)(z - z_1)\cdots(z &#8211; z_{n-1})
+\]</p>
+<p>Розкривши праву частину та порівнявши коефіцієнт при \(z^{n-1}\) в обох частинах, отримаємо, що цей коефіцієнт дорівнює нулю зліва і \( -(z_0 + z_1 + \cdots + z_{n-1}) \) справа. Звідси випливає, що:</p>
+<p>\[
+\sum_{k=0}^{n-1} z_k = 0
+\]</p>
+<p>Альтернативна перевірка використовує формулу для <a href="geometric-series.html">геометричного ряду</a>: оскільки \(z_1 \neq 1\) при \(n \geq 2\), маємо:</p>
+<p>\[
+\sum_{k=0}^{n-1} z_1^k = \frac{z_1^n &#8211; 1}{z_1 &#8211; 1} = \frac{1 - 1}{z_1 - 1} = 0
+\]</p>
+<p>Геометрично цей результат означає, що центроїд вершин правильного \(n\)-кутника, вписаного в одиничне коло, збігається з початком координат, що є геометрично очевидним через симетрію.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Добуток коренів</h2>
+<p>Добуток усіх \(n\)-их коренів одниці задається наступною тотожністю. Оскільки стала частина \(z^n - 1\) дорівнює \(-1\), а старший коефіцієнт дорівнює \(1\), порівняння коефіцієнтів у розкладі:</p>
+<p>\[
+z^n - 1 = (z - z_0)(z - z_1)\cdots(z &#8211; z_{n-1})
+\]</p>
+<p>дає:</p>
+<p>\[
+\prod_{k=0}^{n-1} z_k = (-1)^{n+1}
+\]</p>
+<p>Цей результат є прямим наслідком <a href="trinomials.html">формул Вієта</a>, які пов'язують коефіцієнти полінома з елементарними симетричними поліномами його коренів. Наприклад, при \(n = 2\) коренями є \(1\) та \(-1\), їхній добуток дорівнює \(-1 = (-1)^3\), а при \(n = 3\) коренями є три кубічні корені одниці, їхній добуток дорівнює \(1 = (-1)^4\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Циклотомічні поліноми</h2>
+<p>Примітивні \(n\)-і корені одниці — це саме корені \(n\)-го циклотомічного полінома \(\Phi_n(x)\), визначеного як монічний поліном, коренями якого є саме примітивні \(n\)-і корені одниці. Маємо:</p>
+<p>\[
+\Phi_n(x) = \prod_{\substack{k=1 \ \gcd(k,,n)=1}}^{n} \left(x &#8211; e^{2\pi i k/n}\right)
+\]</p>
+<p>Степ \(\Phi_n(x)\) дорівнює \(\varphi(n)\). Перші кілька прикладів наступні: \(\Phi_1(x) = x - 1\), \(\Phi_2(x) = x + 1\), \(\Phi_3(x) = x^2 + x + 1\) та \(\Phi_4(x) = x^2 + 1\). Важлива тотожність пов'язує циклотомічні поліноми з <a href="factoring-ac-method.html">розкладанням</a> \(z^n &#8211; 1\): оскільки кожен \(n\)-ий корінь одниці є примітивним \(d\)-им коренем для одного-єдиного дільника \(d\) числа \(n\), маємо:</p>
+<p>\[
+z^n &#8211; 1 = \prod_{d \mid n} \Phi_d(z)
+\]</p>
+<p>Ця тотожність дозволяє обчислювати циклотомічні поліноми рекурсивно. Фундаментальна теорема алгебраїчної теорії чисел стверджує, що \(\Phi_n(x)\) є незвідним над \(\mathbb{Q}\) для кожного цілого додатного \(n\): це детально розглянуто в окремому розділі про циклотомічні поліноми.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="roots-of-unity.html">algebrica.org/roots-of-unity</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

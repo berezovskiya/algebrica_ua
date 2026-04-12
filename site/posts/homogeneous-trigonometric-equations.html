@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Однорідні тригонометричні рівняння — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Однорідні тригонометричні рівняння</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Що таке однорідні тригонометричні рівняння</h2>
+<p>Однорідні тригонометричні рівняння — це <a href="equations.html">рівняння</a>, у яких усі доданки містять тригонометричні функції, такі як <a href="sine-and-cosine.html">синус і косинус</a>, <a href="powers.html">піднесені</a> до одного й того самого степеня. Однорідне тригонометричне рівняння першого степеня зазвичай представлене у вигляді:</p>
+<p>\[
+a \sin x + b \cos x = 0
+\]</p>
+<p>Кожен доданок у рівнянні має степінь \(1\), а \( a \) та \( b \) є <a href="types-of-numbers.html">дійсними коефіцієнтами</a>. Загальний вигляд тригонометричного рівняння першого степеня такий:</p>
+<p>\[a \sin x + b \cos x + c = 0 \]</p>
+<p>Це рівняння вважається однорідним, коли стала \( c = 0 \). Аналогічні міркування застосовуються до однорідних тригонометричних рівнянь другого степеня, які містять лише доданки другого степеня. Ці рівняння зазвичай записуються у вигляді:</p>
+<p>\[
+a \sin^2 x + b \sin x \cos x + c \cos^2 x = 0
+\]</p>
+<h5>Це означення можна узагальнити для рівнянь третього, четвертого, п'ятого степенів і так далі. У цих випадках усі доданки повинні містити тригонометричні <a href="functions.html">функції</a>, піднесені до одного й того самого степеня, щоб рівняння залишалося однорідним.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Однорідні рівняння степеня \( n \) можна розв'язати, поділивши кожен доданок рівняння на \( \cos^n x \), тим самим перетворивши рівняння на таке, що виражене через \( \tan x \).</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 1</h2>
+<p>Розв'яжемо однорідне тригонометричне рівняння першого степеня:
+\[
+\sin x &#8211; \sqrt{3} \cos x  = 0
+\]</p>
+<hr>
+<p>Поділивши рівняння на \( \cos x \), отримаємо:</p>
+<p>\[\frac{\sin x}{\cos x} &#8211; \sqrt{3} = 0\]</p>
+<p>Оскільки відношення синуса до косинуса дорівнює <a href="tangent-and-cotangent.html">тангенсу</a>, ми можемо переписати рівняння через \( \tan x. \)</p>
+<p>\[\tan x = \sqrt{3}\]</p>
+<p>Розв'язуючи рівняння, отримаємо значення:</p>
+<p>\[
+x = \arctan(\sqrt{3}) = \frac{\pi}{3}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Оскільки функція тангенса є періодичною з періодом \( \pi \), загальний розв'язок такий:</p>
+<p>\[
+x = \frac{\pi}{3} + k\pi, \quad k \in \mathbb{Z}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Коли <a href="trigonometric-identities.html">тригонометричні тотожності</a> дозволяють нам переписати тригонометричне рівняння в однорідній формі, зазвичай бажано це зробити, оскільки це може спростити обчислення та зробити процес розв'язання зручнішим.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад 2</h2>
+<p>Тепер розглянемо тригонометричне рівняння другого степеня:</p>
+<p>\[
+\sin^2 x + \sin 2x - \cos^2 x = 0
+\]</p>
+<p>На перший погляд, це не однорідне рівняння, оскільки не всі доданки мають однаковий степінь. Зокрема, \( \sin 2x \) є доданком першого степеня, тоді як \( \sin^2 x \) та \( \cos^2 x \) містять вирази другого степеня. У такому рівнянні ми не можемо поділити всі доданки на \( \cos^2 x \), оскільки доданок першого степеня не перетвориться на корисний вираз для розв'язання рівняння. Фактично, цей метод працює лише тоді, коли всі доданки мають однаковий степінь, як в однорідних рівняннях.</p>
+<hr>
+<p>Однак, використовуючи <a href="trigonometric-identities.html">тригонометричні тотожності</a>, а саме формулу подвійного кута, ми можемо переписати \( \sin(2x) \) як \( 2\sin(x)\cos(x) \). Тоді рівняння набуває вигляду:</p>
+<p>\[
+\sin^2 x + 2\sin x \cos x &#8211; \cos^2 x = 0
+\]</p>
+<p>Таким чином, ми перетворили початкове рівняння на однорідне тригонометричне рівняння другого степеня, яке тепер можна розв'язати, поділивши всі доданки на \( \cos^2 x \). Рівняння набуває вигляду:</p>
+<p>\[
+\frac{\sin^2 x}{\cos^2 x} + \frac{2\sin x \cos x}{\cos^2 x} - \frac{\cos^2 x}{\cos^2 x} = 0
+\]</p>
+<hr>
+<p>Спростивши кожен доданок, отримаємо:</p>
+<p>\[
+\tan^2 x + 2\tan x &#8211; 1 = 0
+\]</p>
+<p>Це <a href="quadratic-equations.html">квадратне рівняння</a> відносно \( \tan x \), і тепер його можна розв'язати за допомогою <a href="quadratic-formula.html">формули коренів квадратного рівняння</a>. Нехай \( t = \tan x \). Рівняння набуває вигляду:</p>
+<p>\[
+t^2 + 2t &#8211; 1 = 0
+\]</p>
+<p>Використовуючи формулу квадратного рівняння, маємо:</p>
+<p>\[
+t = \frac{-2 \pm \sqrt{4 + 4}}{2} = \frac{-2 \pm 2\sqrt{2}}{2} = -1 \pm \sqrt{2}
+\]</p>
+<p>Два розв'язки такі:</p>
+<p>\[
+t_1 = -1 + \sqrt{2}, \quad t_2 = -1 &#8211; \sqrt{2}
+\]</p>
+<hr>
+<p>Повертаючись до заміни \( t = \tan x \), отримаємо розв'язки:</p>
+<p>\[
+\tan x = -1 + \sqrt{2} \quad \text{та} \quad \tan x = -1 &#8211; \sqrt{2}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Загальними розв'язаннями є:</p>
+<p>\[
+x_1 = \arctan(-1 + \sqrt{2}) + k\pi \quad k \in \mathbb{Z}
+\]
+\[
+x_2 = \arctan(-1 &#8211; \sqrt{2}) + k\pi \quad k \in \mathbb{Z}
+\]</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке однорідне тригонометричне рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Однорідне тригонометричне рівняння — це рівняння, у якому всі доданки мають однаковий степінь і містять тригонометричні функції, такі як синус і косинус."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як можна розв'язати однорідне тригонометричне рівняння?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Однорідні тригонометричні рівняння часто можна розв'язати, поділивши всі доданки на спільний тригонометричний вираз, наприклад cos^n(x), щоб представити рівняння через одну функцію, таку як tan(x)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чому при розв'язуванні тригонометричних рівнянь віддають перевагу однорідним формам?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Перезапис тригонометричного рівняння в однорідній формі може спростити задачу, зменшити складність і часто полегшує застосування тотожностей та розв'язання рівняння."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="homogeneous-trigonometric-equations.html">algebrica.org/homogeneous-trigonometric-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

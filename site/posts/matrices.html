@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Матриці — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Вектори та матриці</span>
+    </nav>
+    <article>
+        <h1>Матриці</h1>
+        <time>2025-02-17</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-7" style="height:480px;min-height:480px;max-height:480px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:480px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті показана на концептуальній карті, де кожна гілка представляє основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">4</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">8</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="functions.html">Функції</a>, <a href="properties-of-real-numbers.html">Властивості дійсних чисел</a>, <a href="sets.html">Множини</a>, <a href="vectors.html">Вектори</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-7");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"matrix"},{"name":"dimensions"},{"name":"entries"},{"name":"notation"},{"name":"row vector"},{"name":"column vector"},{"name":"zero matrix"}]},{"name":"types","children":[{"name":"square matrix"},{"name":"diagonal matrix"},{"name":"triangular matrix"},{"name":"symmetric matrix"},{"name":"main diagonal"},{"name":"transpose"},{"name":"identity matrix"}]},{"name":"operations","children":[{"name":"matrix addition"},{"name":"matrix subtraction"},{"name":"scalar multiplication"},{"name":"matrix multiplication"},{"name":"additive inverse"},{"name":"dot product"},{"name":"determinant"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 480;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Вступ</h2>
+<p>Матриця — це прямокутний масив <a href="types-of-numbers.html">дійсних чисел</a>, розташованих у рядках і стовпцях. Кажуть, що матриця з \( m \) рядками та \( n \) стовпцями має розмір \( m \times n \), і називають її матрицею \( m \times n \). Наприклад, матриця \( 3 \times 2 \) має 3 рядки та 2 стовпці. Кожне число, що з'являється в матриці, називається елементом. Елементи визначаються двома нижніми індексами: перший вказує на рядок, а другий — на стовпець. Таким чином, \( a_{2,3} \) позначає елемент у другому рядку та третьому стовпці. Матриця \( A \) розміру \( m \times n \) записується наступним чином:</p>
+<p>\[
+A = \begin{pmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\[6pt]
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\[6pt]
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\[6pt]
+a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn}
+\end{pmatrix}
+\]</p>
+<p>Це також записується в компактній формі як \( A = (a_{ij}) \), де \( a_{ij} \) позначає елемент у \( i \)-му рядку та \( j \)-му стовпці, при цьому \( 1 \leq i \leq m \) та \( 1 \leq j \leq n \).</p>
+<blockquote>
+<p>Множина всіх матриць \( m \times n \) з дійсними записами утворює абелеву групу за операцією додавання. При обмеженні на квадратні матриці порядку \( n \), додаткова структура множення матриць перетворює \( M_{n\times n}(\mathbb{R}) \) на кільце. Підмножина обернених матриць порядку \( n \) утворює <a href="groups.html">групу</a> за операцією множення, відому як загальна лінійна група \( GL(n, \mathbb{R}) \).</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Вектори та нульова матриця</h2>
+<p>Матриця, що складається з одного рядка, називається <a href="vectors.html">вектором</a>-рядком, а матриця, що складається з одного стовпця, називається вектором-стовпцем. Нижче наведено вектор-рядок \( A \) з 3 стовпцями та вектор-стовпець \( B \) з 3 рядками:</p>
+<p>\[
+A = \begin{pmatrix} a_1 &amp; a_2 &amp; a_3 \end{pmatrix}
+\qquad
+B = \begin{pmatrix} b_1 \\[6pt] b_2 \\[6pt] b_3 \end{pmatrix}
+\]</p>
+<p>Матриця, в якій кожен елемент дорівнює нулю, називається нульовою матрицею, що позначається \( O \). Нульова матриця відіграє роль нейтрального елемента за додаванням при додаванні матриць, як розглянуто нижче.</p>
+<blockquote>
+<p>Вектори-рядки та вектори-стовпці є матрицями у звичайному розумінні та підпорядковуються тим самим алгебраїчним правилам. Тут вони розглядаються як особливі випадки для ясності, але вивчаються більш детально в контексті <a href="linear-combinations.html">лінійних комбінацій</a> та векторних просторів.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Квадратні матриці та особливі типи</h2>
+<p>Матриця називається квадратною, коли кількість її рядків дорівнює кількості її стовпців, тобто коли вона має розмір \( n \times n \). Ціле число \( n \) називається порядком матриці. У квадратній матриці елементи \( a_{ij} \), для яких \( i = j \), утворюють головну діагональ. Елементи, для яких \( i + j = n+1 \), утворюють побічну діагональ:</p>
+<p>\[
+A = \begin{pmatrix}
+\boldsymbol{a_{11}} &amp; a_{12} &amp; a_{13} \\[6pt]
+a_{21} &amp; \boldsymbol{a_{22}} &amp; a_{23} \\[6pt]
+a_{31} &amp; a_{32} &amp; \boldsymbol{a_{33}}
+\end{pmatrix}
+\]</p>
+<p>Квадратна матриця, в якій усі елементи за межами головної діагоналі дорівнюють нулю, називається діагональною матрицею. Нижче наведено приклад діагональної матриці \( 3 \times 3 \):</p>
+<p>\[
+D = \begin{pmatrix}
+4 &amp; 0 &amp; 0 \\[6pt]
+0 &amp; 5 &amp; 0 \\[6pt]
+0 &amp; 0 &amp; 6
+\end{pmatrix}
+\]</p>
+<p>Квадратна матриця називається верхньотрикутною, якщо всі елементи нижче головної діагоналі дорівнюють нулю, і нижньотрикутною, якщо всі елементи вище головної діагоналі дорівнюють нулю:</p>
+<p>\[
+U = \begin{pmatrix}
+2 &amp; -1 &amp; 3 \\[6pt]
+0 &amp; 5 &amp; 4 \\[6pt]
+0 &amp; 0 &amp; 7
+\end{pmatrix}
+\qquad
+L = \begin{pmatrix}
+3 &amp; 0 &amp; 0 \\[6pt]
+-2 &amp; 6 &amp; 0 \\[6pt]
+5 &amp; 1 &amp; 4
+\end{pmatrix}
+\]</p>
+<p>Квадратна матриця \( A \) називається симетричною, якщо вона дорівнює своїй транспонованій матриці, тобто якщо \( A = A^{\mathrm{T}} \). Це означає, що \( a_{ij} = a_{ji} \) для всіх \( i \) та \( j \): елемент у рядку \( i \) та стовпці \( j \) дорівнює елементу в рядку \( j \) та стовпці \( i \). Нижче наведено симетричну матрицю \( 3 \times 3 \):</p>
+<p>\[
+S = \begin{pmatrix}
+1 &amp; 3 &amp; -2 \\[6pt]
+3 &amp; 0 &amp; 5 \\[6pt]
+-2 &amp; 5 &amp; 4
+\end{pmatrix}
+\]</p>
+<blockquote>
+<p>Симетричні матриці природно виникають у багатьох областях математики, включаючи квадратичні форми, простори з внутрішнім добутком та спектральну теорію. Кожна дійсна симетрична матриця має дійсні <a href="eigenvalues-and-eigenvectors.html">власні значення</a> та ортогональний базис власних векторів, результат, відомий як спектральна теорема.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Транспонована матриця</h2>
+<p>Транспонованою матрицею матриці \( A \) розміром \( m \times n \), що позначається \( A^{\mathrm{T}} \), є матриця розміром \( n \times m \), отримана шляхом перестановки рядків і стовпців \( A \). Формально, елемент у позиції \( (i,j) \) матриці \( A^{\mathrm{T}} \) є елементом у позиції \( (j,i) \) матриці \( A \). Наприклад:</p>
+<p>\[
+A = \begin{pmatrix}
+2 &amp; -1 &amp; 3 \\[6pt]
+7 &amp; 5 &amp; 4 \\[6pt]
+9 &amp; 6 &amp; 8
+\end{pmatrix}
+\qquad
+A^{\mathrm{T}} = \begin{pmatrix}
+2 &amp; 7 &amp; 9 \\[6pt]
+-1 &amp; 5 &amp; 6 \\[6pt]
+3 &amp; 4 &amp; 8
+\end{pmatrix}
+\]</p>
+<p>Транспонування задовольняє наступні властивості для матриць \( A \) та \( B \) відповідних розмірів і будь-якого скаляра \( k \):</p>
+<ul>
+<li>\( (A^{\mathrm{T}})^{\mathrm{T}} = A \)</li>
+<li>\( (A + B)^{\mathrm{T}} = A^{\mathrm{T}} + B^{\mathrm{T}} \)</li>
+<li>\( (kA)^{\mathrm{T}} = k A^{\mathrm{T}} \)</li>
+<li>\( (AB)^{\mathrm{T}} = B^{\mathrm{T}} A^{\mathrm{T}} \)</li>
+</ul>
+<blockquote>
+<p>Тотожність \( (AB)^{\mathrm{T}} = B^{\mathrm{T}} A^{\mathrm{T}} \) змінює порядок множників на протилежний. Ця зміна є необхідною, оскільки множення матриць не є комутативним, і це повторюється в кількох інших контекстах, зокрема при знаходженні оберненої матриці до добутку.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Протилежна матриця</h2>
+<p>Протилежною матрицею до матриці \( A \), що позначається \( -A \), є матриця, отримана шляхом зміни знака кожного елемента \( A \): кожен елемент \( a_{ij} \) стає \( -a_{ij} \). Матриці \( A \) та \( -A \) мають однакові розміри, а їхня сума є нульовою матрицею:</p>
+<p>\[
+A + (-A) = O
+\]</p>
+<p>Наприклад:</p>
+<p>\[
+A = \begin{pmatrix}
+2 &amp; -1 &amp; 3 \\[6pt]
+7 &amp; 5 &amp; 4 \\[6pt]
+9 &amp; 6 &amp; 8
+\end{pmatrix}
+\qquad
+-A = \begin{pmatrix}
+-2 &amp; 1 &amp; -3 \\[6pt]
+-7 &amp; -5 &amp; -4 \\[6pt]
+-9 &amp; -6 &amp; -8
+\end{pmatrix}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Додавання та віднімання матриць</h2>
+<p>Дві матриці можна додавати або віднімати лише тоді, коли вони мають однакові розміри. Дано дві матриці \( m \times n \), \( A = (a_{ij}) \) та \( B = (b_{ij}) \), їхня сума \( C = A + B \) — це матриця \( m \times n \), визначена як:</p>
+<p>\[
+c_{ij} = a_{ij}+b_{ij}
+\]</p>
+<p>Тобто кожен елемент \( C \) є сумою відповідних елементів \( A \) та \( B \). Наступний приклад ілюструє обчислення для двох матриць розміром \( 2 \times 3 \):</p>
+<p>\[
+A = \begin{pmatrix}
+2 &amp; -1 &amp; 3 \\[6pt]
+7 &amp; 5 &amp; 4
+\end{pmatrix}
+\qquad
+B = \begin{pmatrix}
+4 &amp; 0 &amp; -2 \\[6pt]
+1 &amp; 3 &amp; 6
+\end{pmatrix}
+\]</p>
+<p>Сума дорівнює:</p>
+<p>\[
+\begin{aligned}
+A+B &amp;= \begin{pmatrix}
+2+4 &amp; -1+0 &amp; 3+(-2) \\[6pt]
+7+1 &amp; 5+3 &amp; 4+6
+\end{pmatrix} \\[12pt]
+&amp;= \begin{pmatrix}
+6 &amp; -1 &amp; 1 \\[6pt]
+8 &amp; 8 &amp; 10
+\end{pmatrix}
+\end{aligned}\\[20pt]
+\]</p>
+<p>Різниця \( A-B \) визначається як \( A+(-B) \), тобто сума \( A \) та протилежної матриці до \( B \). Додавання матриць задовольняє наступні властивості для будь-яких матриць \( A \), \( B \), \( C \) розміром \( m \times n \):</p>
+<ul>
+<li>Комутативність: \( A+B = B+A \). Порядок, у якому додаються дві матриці, не впливає на результат.</li>
+<li>Асоціативність: \( (A+B)+C = A+(B+C) \). Суми трьох або більше матриць можна обчислювати в будь-якому групуванні.</li>
+<li>Нейтральний елемент додавання: \( A+O = A \), де \( O \) — нульова матриця того ж розміру. Додавання нульової матриці залишає \( A \) незмінною.</li>
+<li>Протилежний елемент: \( A+(-A) = O \). Кожна матриця має єдину протилежну матрицю.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Множення на скаляр</h2>
+<p>Дано матрицю \( A = (a_{ij}) \) розміром \( m \times n \) та дійсне число \( k \), тоді добуток скаляра на матрицю \( kA \) — це матриця \( m \times n \), чий елемент у позиції \( (i,j) \) дорівнює \( k \cdot a_{ij} \). Кожен елемент матриці множиться на \( k \). Наприклад, при \( k = 2 \):</p>
+<p>\[
+A = \begin{pmatrix}
+1 &amp; -2 &amp; 4 \\[6pt]
+0 &amp; 3 &amp; -1
+\end{pmatrix}
+\qquad
+2A = \begin{pmatrix}
+2 &amp; -4 &amp; 8 \\[6pt]
+0 &amp; 6 &amp; -2
+\end{pmatrix}
+\]</p>
+<p>Множення на скаляр задовольняє наступні властивості для матриць \( A \) та \( B \) однакових розмірів і дійсних чисел \( k \) та \( h \):</p>
+<ul>
+<li>Асоціативність: \( k(hA) = (kh)A \). Послідовні множення на скаляри можна об'єднати в одне.</li>
+<li>Дистрибутивність відносно додавання матриць: \( k(A+B) = kA+kB \). Скаляр дистрибується відносно суми матриць.</li>
+<li>Дистрибутивність відносно додавання скалярів: \( (k+h)A = kA+hA \). Сума скалярів дистрибується відносно однієї матриці.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Множення матриць</h2>
+<p>Множення матриць визначається за умови сумісності: добуток \( AB \) визначений лише тоді, коли кількість стовпців матриці \( A \) дорівнює кількості рядків матриці \( B \). Якщо \( A \) має розмір \( m \times n \), а \( B \) має розмір \( n \times p \), то добуток \( C = AB \) є матрицею розміру \( m \times p \), елемент якої в позиції \( (i,j) \) визначається як:</p>
+<p>\[
+c_{ij} = \sum_{k=1}^{n} a_{ik}\,b_{kj}
+\]</p>
+<p>Кожен елемент \( c_{ij} \) обчислюється як скалярний добуток \( i \)-го рядка матриці \( A \) та \( j \)-го стовпця матриці \( B \): відповідні елементи множаться попарно, а результати додаються. У наступному прикладі обчислюється добуток матриці \( A \) розміром \( 2 \times 3 \) та матриці \( B \) розміром \( 3 \times 2 \):</p>
+<p>\[
+A = \begin{pmatrix}
+1 &amp; -2 &amp; 3 \\[6pt]
+0 &amp; 4 &amp; -1
+\end{pmatrix}
+\qquad
+B = \begin{pmatrix}
+2 &amp; 0 \\[6pt]
+-1 &amp; 5 \\[6pt]
+4 &amp; -3
+\end{pmatrix}
+\]</p>
+<p>Елементи \( c_{ij} \) матриці-добутку \( AB \) отримуємо, множачи кожен рядок \( A \) на кожен стовпець \( B \):</p>
+<p>\[
+\begin{aligned}
+c_{11} &amp;= (1)(2)+(-2)(-1)+(3)(4) = 16 \\[6pt]
+c_{12} &amp;= (1)(0)+(-2)(5)+(3)(-3) = -19 \\[6pt]
+c_{21} &amp;= (0)(2)+(4)(-1)+(-1)(4) = -8 \\[6pt]
+c_{22} &amp;= (0)(0)+(4)(5)+(-1)(-3) = 23
+\end{aligned}
+\]</p>
+<p>Результатом є матриця \( 2 \times 2 \), що відповідає розмірам \( m \times p = 2 \times 2 \).</p>
+<p>\[
+C = AB = \begin{pmatrix}
+16 &amp; -19 \\[6pt]
+-8 &amp; 23
+\end{pmatrix}
+\]</p>
+<blockquote>
+<p>Множення матриць загалом не є комутативним: навіть якщо обидва добутки \( AB \) та \( BA \) визначені, зазвичай виконується \( AB \neq BA \). Це відрізняє множення матриць від множення дійсних чисел і є однією з його найважливіших властивостей.</p>
+</blockquote>
+<hr>
+<p>Однодинична матриця порядку \( n \), що позначається \( I_n \), — це квадратна матриця розміру \( n \times n \) з одиницями на головній діагоналі та нулями в інших позиціях. Вона відіграє роль нейтрального елемента щодо множення: для будь-якої матриці \( A \) сумісних розмірів,</p>
+<p>\[
+A \cdot I = I \cdot A = A
+\]</p>
+<p>Наприклад:</p>
+<p>\[
+\begin{pmatrix}
+3 &amp; 5 \\[6pt]
+1 &amp; -2
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+1 &amp; 0 \\[6pt]
+0 &amp; 1
+\end{pmatrix}
+=
+\begin{pmatrix}
+3 &amp; 5 \\[6pt]
+1 &amp; -2
+\end{pmatrix}
+\]</p>
+<p>Множення матриць задовольняє наступні властивості для матриць сумісних розмірів:</p>
+<ul>
+<li>Асоціативність: \( (AB)C = A(BC) \). Порядок, у якому обчислюються послідовні добутки, не впливає на результат.</li>
+<li>Лівий розподільний закон: \( A(B+C) = AB+AC \). Множення розподіляється відліво щодо додавання.</li>
+<li>Правий розподільний закон: \( (B+C)A = BA+CA \). Множення розподіляється справа щодо додавання.</li>
+<li>Некомутативність: загалом \( AB \neq BA \), навіть якщо обидва добутки визначені.</li>
+</ul>
+<hr>
+<p>Кожній квадратній матриці порядку \( n \) ставлять у відповідність дійсне число, яке називають <a href="determinant.html">визначником</a> матриці, що позначається \( \det(A) \). Визначник містить фундаментальну інформацію про матрицю, зокрема про те, чи є вона оберненою, як обговорюється в розділі про <a href="inverse-matrix.html">обернену матрицю</a>.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке матриця в математиці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Матриця — це прямокутний масив чисел, розташованих у рядках і стовпцях. Вона часто використовується для розв'язання систем рівнянь, виконання перетворень та представлення даних у лінійній алгебрі."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Які існують типи матриць?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Поширені типи матриць включають квадратні матриці, діагональні матриці, однодиничні матриці, нульові матриці, вектори-рядки та вектори-стовпці, а також трикутні матриці. Кожен тип має специфічні властивості та застосування."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Коли дві матриці можна додавати або віднімати?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Дві матриці можна додавати або віднімати лише тоді, коли вони мають однакові розміри, тобто однакову кількість рядків і стовпців. Операція виконується поелементно."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке транспонування матриці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Транспонована матриця утворюється шляхом заміни її рядків на стовпці. Якщо вихідна матриця має розмір n × m, то транспонована матриця матиме розмір m × n."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке однодинична матриця?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Однодинична матриця — це квадратна матриця з одиницями на головній діагоналі та нулями в інших позиціях. Вона виступає як нейтральний елемент при множенні матриць."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке протилежна матриця?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Протилежною до матриці A, що записується як -A, є матриця, де кожен елемент є протилежним за знаком до відповідного елемента в A. Тобто кожен елемент aᵢⱼ стає -aᵢⱼ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як помножити матрицю на дійсне число?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Щоб помножити матрицю на дійсне число (яке також називають скаляром), потрібно помножити кожен елемент матриці на це число. Ця операція масштабує всю матрицю, зберігаючи її форму."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="matrices.html">algebrica.org/matrices</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теорема Лагранжа — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теореми диференціального числення</span>
+    </nav>
+    <article>
+        <h1>Теорема Лагранжа</h1>
+        <time>2025-02-23</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Формулювання</h2>
+<p>Теорема Лагранжа, також відома як теорема про середнє значення, стверджує наступне. Розглянемо функцію \( f(x) \), <a href="continuous-functions.html">неперервну</a> на замкненому та обмеженому проміжку \([a, b]\) і диференційовну в кожній точці всередині проміжку. Тоді існує принаймні одна точка \( c \) всередині проміжку, така що виконується наступне співвідношення:</p>
+<p>\[
+f’ \left (c \right ) = \frac{f(b)-f(a)}{b-a}
+\]</p>
+<h5>Це означає, що існує принаймні одна точка, де похідна функції дорівнює кутовому коефіцієнту січної, що з'єднує точки \(a\) та \(b\). Іншими словами, у деякій точці проміжку миттєва швидкість зміни функції збігається з її середньою швидкістю зміни.</h5>
+</div>
+
+
+
+<div class="wp-block-group pb-section-inverse mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Геометричний погляд на теорему Лагранжа</h2>
+<p>З геометричної точки зору теорема стверджує, що існує принаймні одна точка \( c \), де дотична в цій точці паралельна січній, що з'єднує точки \( A \) та \( B \) на графіку.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="664" height="608" src="../images/lagrange-theoreme-4.png" alt="Lagrange’s theorem." class="wp-image-23651" style="width:332px" title="Lagrange’s theorem." srcset="../images/lagrange-theoreme-4.png 664w, https://algebrica.org/wp-content/uploads/resources/images/lagrange-theoreme-4-300x275.png 300w" sizes="(max-width: 664px) 100vw, 664px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>У прямокутному трикутнику \( ABH \) маємо \(\overline{BH} = \overline{AH} \cdot \tan{\alpha}\), тобто:</p>
+<p>\[\tan{\alpha} = \frac{\overline{BH}}{\overline{AH}} \]</p>
+<p>Маємо:</p>
+<p>\[\overline{BH} = f(b)-f(a), \quad \overline{AH} = b-a \]</p>
+<p>Кутовий коефіцієнт відрізка \( AB \) дорівнює \(\tan\alpha\), тобто:</p>
+<p>\[\tan{\alpha} = \frac{f(b)-f(a)}{b-a} \]</p>
+<p>Оскільки дотична в точці \( c \) до кривої паралельна \( AB \), вони обидві мають однаковий кутовий коефіцієнт, звідси:</p>
+<p>\[f’ \left(c \right) = \frac{f(b)-f(a)}{b-a} \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax"><h2>Доведення</h2>
+<p>Щоб довести теорему Лагранжа, визначимо допоміжну функцію \( \varphi(x) \) наступним чином:</p>
+<p>\[
+\varphi(x) = f(x)-f(a)-\frac{f(b)-f(a)}{b-a} \cdot (x-a)
+\]</p>
+<p>Перевіримо, що \( \varphi(x) \) задовольняє гіпотези <a href="rolles-theorem.html">теореми Ролля</a>:</p>
+<ul>
+<li>\(f(x)\) є неперервною на замкненому проміжку \([a, b]\).</li>
+<li>\(f(x)\) є диференційовною на відкритому проміжку \((a, b)\).</li>
+<li>\(\varphi(a) = \varphi(b)\).</li>
+</ul>
+<p>Обчисливши \( \varphi(a) \) та \( \varphi(b) \), отримаємо:</p>
+<p>\[
+\varphi(a) = f(a)-f(a)-\frac{f(b)-f(a)}{b-a} \cdot (a-a) = 0
+\]</p>
+<p>\[
+\begin{align}
+\varphi(b) &amp;= f(b)-f(a)-\frac{f(b)-f(a)}{b-a} \cdot (b-a)\\[0.5em]
+&amp;= f(b)-(f(b)-f(a)) = 0
+\end{align}
+\]</p>
+<p>Отже, \( \varphi(a) = \varphi(b) = 0 \).</p>
+<hr>
+<p>Застосовуючи теорему Ролля до \( \varphi(x) \), знайдемо, що існує принаймні одна точка \( c \) всередині проміжку \( ]a, b[ \), така що \( \varphi’ \left(c \right) = 0 \). Обчисливши похідну \( \varphi(x) \), маємо:</p>
+<p>\[ \varphi’(x) = f’(x)-\frac{f(b)-f(a)}{b-a}\]</p>
+<hr>
+<p>Тепер обчислимо похідну \( \varphi(x) \) у точці \( c \) і прирівняємо її до 0. З цього отримаємо:</p>
+<p>\[ \varphi’ \left(c \right) = f’ \left(c \right)-\frac{f(b)-f(a)}{b-a} = 0\]</p>
+<p>Тобто:</p>
+<p>\[ f’ \left(c \right)=\frac{f(b)-f(a)}{b-a}\]</p>
+<p>що точно відповідає тезі, яку ми хотіли довести.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Особливий випадок: коли похідна всюди дорівнює нулю</h2>
+<p>З теореми Лагранжа випливає, що якщо функція \( f(x) \) є неперервною на проміжку \([a,b]\), диференційовною на проміжку \( ]a,b[ \), і \( f’(x) \) дорівнює нулю в кожній точці всередині проміжку, то \( f(x) \) є сталою на всьому проміжку \([a,b]\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="788" height="488" src="../images/lagrange-theorem-2.png" alt="" class="wp-image-12101" style="width:394px" srcset="../images/lagrange-theorem-2.png 788w, https://algebrica.org/wp-content/uploads/resources/images/lagrange-theorem-2-300x186.png 300w, https://algebrica.org/wp-content/uploads/resources/images/lagrange-theorem-2-768x476.png 768w" sizes="(max-width: 788px) 100vw, 788px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Дійсно, якщо ми візьмемо точку \(\overline{x} \in [a,b]\) і застосуємо теорему до проміжку \([a, \overline{x}]\), то існує точка \(c \in ]a, \overline{x}[\) така, що:
+\[ f’\left( c \right) = \frac{f(\overline{x})-f(a)}{\overline{x}-a} \]</p>
+<p>Оскільки \( f’(\overline{x}) = 0 \) для кожної точки в \( ]a,b[ \), звідси випливає, що \( f’\left( c \right) = 0 \) також. З цієї причини має бути:</p>
+<p>\[f(\overline{x}) – f(a) = 0 \rightarrow f(\overline{x}) = f(a) \, \forall \, \overline{x} \in [a,b] \]</p>
+<p>З цієї причини \( f \) є сталою на всьому проміжку \([a,b]\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Числовий приклад</h2>
+<p>Щоб побачити теорему в дії, розглянемо конкретний випадок. Ми хочемо знайти точку \( c \) всередині заданого проміжку, де миттєва швидкість зміни функції збігається з її середньою швидкістю зміни на цьому проміжку. Обчислення також показують, що таку точку зазвичай неможливо передбачити шляхом простого огляду. Розглянемо <a href="polynomials.html">поліном</a>:</p>
+<p>\[
+f(x) = x^3 &#8211; 4x^2 + x + 6
+\]</p>
+<p>на замкненому проміжку \( [1,4] \). Оскільки \( f \) є поліномом, вона <a href="continuous-functions.html">неперервна</a> на \( [1,4] \) та диференційовна на \( (1,4) \). Отже, припущення теореми Лагранжа задоволені. Почнемо з обчислення значення функції в кінцевих точках:</p>
+<p>\[
+f(1) = 1 &#8211; 4 + 1 + 6 = 4
+\]
+\[
+f(4) = 64 &#8211; 64 + 4 + 6 = 10
+\]</p>
+<p>Кутовий коефіцієнт січної, що проходить через точки \( (1,4) \) та \( (4,10) \), дорівнює</p>
+<p>\[
+\frac{f(4) - f(1)}{4 - 1}
+=
+\frac{10 &#8211; 4}{3}
+=
+2
+\]</p>
+<p>Це число представляє середню швидкість зміни \( f \) на \( [1,4] \). Далі обчислимо похідну:</p>
+<p>\[
+f’(x) = 3x^2 &#8211; 8x + 1
+\]</p>
+<p>Шукаємо значення \( c \), такі що \(f’(c) = 2.\) Це призводить до рівняння:</p>
+<p>\[
+3c^2 &#8211; 8c + 1 = 2
+\]
+\[
+3c^2 &#8211; 8c &#8211; 1 = 0
+\]</p>
+<p>Застосування <a href="quadratic-formula.html">квадратного рівняння</a> дає:</p>
+<p>\[
+c = \frac{8 \pm \sqrt{64 + 12}}{6}
+=
+\frac{8 \pm \sqrt{76}}{6}
+=
+\frac{4 \pm \sqrt{19}}{3}
+\]</p>
+<p>Отримаємо двох кандидатів:</p>
+<p>\[
+c_1 = \frac{4 &#8211; \sqrt{19}}{3} \approx 0.21
+\]
+\[
+c_2 = \frac{4 + \sqrt{19}}{3} \approx 2.79
+\]</p>
+<p>Теорема Лагранжа гарантує розв'язання всередині відкритого проміжку \( ]1,4[ \). Серед двох знайдених значень тільки:</p>
+<p>\[
+c = \frac{4 + \sqrt{19}}{3} \approx 2.79
+\]</p>
+<p>лежить у \( ]1,4[ \). Інший корінь виходить за межі проміжку і, отже, не є релевантним у цьому контексті. У цій точці дотична до графіка \( f \) паралельна січній, що з'єднує \( (1,48) \) та \( (4,10) \).</p>
+<h6>Цей приклад показує, що рівняння \( f’(c)=2 \) може мати більше одного розв'язання, проте для теореми мають значення лише ті, що лежать всередині проміжку.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язання:
+\[ c = \dfrac{4+\sqrt{19}}{3} \]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>Harvard University, O. Knill</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/math1a_2014/handouts/26-rolle.pdf">The Mean Value Theorem</a></p>
+</li>
+<li>
+<p><strong>Stony Brook University</strong>. <a href="https://www.math.stonybrook.edu/Videos/MAT131Online/Handouts/Lecture-18-Handout.pdf">Lecture 18: Mean Value Theorem</a></p>
+</li>
+<li>
+<p><strong>University of California Davis, D. Kouba</strong>. <a href="https://www.math.ucdavis.edu/~kouba/CalcOneDIRECTORY/meanvaluetheoremdirectory/MeanValueTheorem.html">Mean Value Theorem – Problems and Proofs</a></p>
+</li>
+<li>
+<p><strong>University of Cambridge, W. T. Gowers</strong>. <a href="https://www.dpmms.cam.ac.uk/~wtg10/meanvalue.html">What is the point of the Mean Value Theorem?</a></p>
+</li>
+</ul>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке теорема Лагранжа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Теорема Лагранжа стверджує, що якщо функція є неперервною на замкненому проміжку [a, b] і диференційною на відкритому проміжку (a, b), то існує принаймні одна точка c у (a, b), така що f'(c) дорівнює середній швидкості зміни на [a, b]."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чим теорема Лагранжа відрізняється від теореми Ролля?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "У той час як теорема Ролля вимагає, щоб f(a) = f(b), теорема Лагранжа узагальнює цей результат, скасовуючи цю умову. Замість цього вона пов'язує похідну в певній точці із середньою швидкістю зміни на проміжку."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="lagrange-theorem.html">algebrica.org/lagrange-theorem</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Розриви дійсних функцій — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Розриви дійсних функцій</h1>
+        <time>2025-02-24</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Вступ</h2>
+<p>Неперервність — це властивість <a href="functions.html">функції</a>, при якій малі зміни аргументу призводять до відповідно малих змін значення функції в околі заданої точки. Якщо така локальна стабільність відсутня, функція вважається розривною. Розриви зазвичай класифікують на три окремі типи:</p>
+<ul>
+<li>Усувний розрив виникає, коли границя існує і є скінченною, але функція або не визначена в цій точці, або її значення не дорівнює цій границі.</li>
+<li>Стрибкоподібний розрив присутній, коли і лівостороння, і правобічна границі існують і є скінченними, але ці границі не рівні між собою.</li>
+<li>Нескінченний розрив виникає, коли принаймні одна з однобічних granic є нескінченною, що призводить до розбіжності функції біля точки замість наближення до скінченного значення.</li>
+</ul>
+<p>Розрив у точці \(x_0\) може виникнути рівно одним із трьох взаємовиключних способів, описаних вище. Точка не може одночасно мати більше одного типу розриву.</p>
+<h6>Кожен із цих типів буде детально розглянуто в наступних розділах. У цьому обговоренні \( f \) позначає дійснозначенну функцію, а \( x_0 \) представляє точку в її <a href="determining-the-domain-of-a-function.html">області визначення</a> або точку, в якій функція може бути не визначена.</h6>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown  pb-steps alignCenterMathjax mb-x-30"><h2>Нагадування про неперервність</h2>
+<p>Функція \( f \) є <a href="continuous-functions.html">неперервною</a> в точці \( x_0 \), якщо границя при \( x \to x_0 \) існує, є скінченною і збігається зі значенням функції в цій точці. Ця умова виражається наступною <a href="limits.html">границею</a>:</p>
+<p>\[
+\lim_{x \to x_0} f(x) = f(x_0)
+\]</p>
+<p><a href="polynomials.html">Поліноми</a> становлять фундаментальний клас елементарних неперервних функцій. Ці функції представляють гладкі криві на площині та не мають точок розриву. Нижче наведено графік квадратичної функції \( x^2 + 2x + 1 \), яка представляє собою <a href="parabola.html">параболу</a>:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="726" height="616" src="../images/discontinuity.png" alt="The graph of a second-degree polynomial is a continuous parabola, with no jumps or interruptions." class="wp-image-24287" style="width:363px" title="The graph of a second-degree polynomial is a continuous parabola, with no jumps or interruptions." srcset="../images/discontinuity.png 726w, https://algebrica.org/wp-content/uploads/resources/images/discontinuity-300x255.png 300w" sizes="(max-width: 726px) 100vw, 726px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Розрив у точці \( x_0 \) виникає щоразу, коли ця рівність не виконується, і конкретний спосіб, за якого умова не виконується, визначає тип розриву.</p>
+<h6>Інтуїтивно, функція є неперервною, якщо її графік можна намалювати на площині без будь-яких перерв, розривів або раптових стрибків.</h6>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax pb-section mb-x-30"><h2>Усувний розрив</h2>
+<p>Усувний розрив виникає, коли функція має чітко визначену скінченну границю в точці \( x_0 \), проте значення функції в цій точці або не визначене, або не збігається з цією granicю. Формально, функція \( f \) має усувний розрив у точці \( x_0 \), якщо наступна границя існує і є скінченною:</p>
+<p>\[\lim_{x \to x_0} f(x) = \ell \in \mathbb{R}\]</p>
+<p>Крім того, виконується принаймні одна з наступних умов:</p>
+<ul>
+<li>\( f(x_0) \) не визначена.</li>
+<li>\( f(x_0) \neq \ell \).</li>
+</ul>
+<p>У таких випадках розрив можна усунути, переозначивши функцію в одній точці наступним чином:
+\[
+g(x) =
+\begin{cases}
+\ell &amp; \text{якщо } x = x_0 \\[6pt]
+f(x) &amp; \text{якщо } x \ne x_0
+\end{cases}
+\]</p>
+<p>З таким означенням функція \( g \) стає неперервною в точці \( x_0 \). Термін «усувний» стосується того факту, що розрив може бути усунений таким чином.</p>
+<h6>Усувні розриви зазвичай виникають у раціональних функціях, що містять множники, які можна скоротити, що призводить до появи «дірки» на графіку. Вони також можуть бути присутні у функціях, заданих відрізками, або у функціях, де значення в одній точці було змінено, за умови, що границя в цій точці існує і є скінченною.</h6>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-outline"><h2>Приклад 1</h2>
+<p>Розглянемо функцію, задану наступним <a href="rational-functions.html">раціональним</a> виразом, яка не визначена при \( x = 1 \):</p>
+<p>\[ f(x) = \frac{x^2 &#8211; 1}{x &#8211; 1} \]</p>
+<p><a href="factoring-ac-method.html">Розкладання</a> чисельника на множники демонструє, що вираз спрощується для всіх значень \( x \), крім \(1\), оскільки при \(x=1\) знаменник дорівнює нулю, і функція стає невизначеною.</p>
+<p>\[ x^2 &#8211; 1 = (x &#8211; 1)(x + 1) \]</p>
+<p>Для всіх \( x \neq 1 \) функція еквівалентна лінійній функції:
+\[ f(x) = x + 1 \]</p>
+<p>Хоча функція не визначена при \( x = 1 \), границя при наближенні \( x \) до \(1\) існує і є скінченною:</p>
+<p>\[ \lim_{x \to 1} \frac{x^2 &#8211; 1}{x &#8211; 1} = 2 \]</p>
+<p>Це демонструє, що \( x = 1 \) є усувним розривом, оскільки графік відповідає прямій \( y = x + 1 \) з однією відсутньою точкою у \( (1,2) .\)</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Перевизначення функції в цій точці шляхом присвоєння їй значення границі усуває розрив:
+\[ g(x) = \begin{cases} 2 &amp; \text{якщо } x = 1 \\[6pt] f(x) &amp; \text{якщо } x \ne 1 \end{cases} \]</p>
+<h6>З цією модифікацією функція є неперервною при \( x = 1 \).</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Розрив першого роду (стрибкоподібний розрив)</h2>
+<p>Стрибкоподібний розрив виникає, коли і ліва, і права границі в точці \( x_0 \) існують і є скінченними, проте ці границі не рівні між собою. Формально, \( f \) має стрибкоподібний розрив у точці \( x_0 \), якщо:</p>
+<p>\[
+\begin{align}
+\lim_{x \to x_0^-} f(x) &amp;= \ell_1 \in \mathbb{R} \\[6pt]
+\lim_{x \to x_0^+} f(x) &amp;= \ell_2 \in \mathbb{R} \\[6pt]
+\ell_1 &amp;\neq \ell_2
+\end{align}
+\]</p>
+<p>У цьому випадку границя \( \lim_{x \to x_0} f(x) \) не існує. Функція наближається до двох різних скінченних значень залежно від напрямку наближення. На відміну від усувного розриву, цей тип не можна усунути шляхом перевизначення функції в одній точці, оскільки розбіжність є властивою локальній поведінці.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Приклад 2</h2>
+<p>Щоб проаналізувати стрибкоподібний розрив, розглянемо наступну просту функцію, яка має розрив у точці \(x = 1.\)</p>
+<p>\[
+f(x) = \begin{cases} 0 &amp; \text{якщо } x &lt; 1 \\[6pt]
+2 &amp; \text{якщо } x \ge 1 \end{cases}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="690" height="602" src="../images/discontinuity-2.png" alt="" class="wp-image-24329" style="width:345px" srcset="../images/discontinuity-2.png 690w, https://algebrica.org/wp-content/uploads/resources/images/discontinuity-2-300x262.png 300w" sizes="(max-width: 690px) 100vw, 690px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Для значень \(x\), що наближаються до \(1\) зліва, функція залишається сталою і дорівнює \(0\). Отже:</p>
+<p>\[ \lim_{x \to 1^-} f(x) = 0 \]</p>
+<p>Для значень \( x \), що наближаються до 1 справа, функція залишається постійно рівною \(2\), і тому границя дорівнює:
+\[ \lim_{x \to 1^+} f(x) = 2 \]</p>
+<p>Обидві односторонні границі існують і є скінченними, але вони не рівні. Оскільки \( 0 \neq 2 \), звідси випливає, що дві односторонні границі не збігаються, і, як наслідок, границя \(\lim_{x \to 1} f(x)\) не існує. Графік функції показує вертикальний стрибок у точці \(x = 1\), переходячи від \(0\) до \(2\).</p>
+</div>
+</div></div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Цей розрив не можна усунути шляхом перевизначення функції в точці \(x = 1\), оскільки різниця між двома граничними значеннями вказує на розрив у локальній поведінці функції.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Нескінченний розрив</h2>
+<p>Нескінченний розрив виникає, коли функція розбігається при наближенні \( x \) до \( x_0 \), причому принаймні одна з односторонніх granic є нескінченною. Формально, функція \( f \) має нескінченний розрив у точці \( x_0 \), якщо виконується принаймні одна з наступних умов:</p>
+<p>\[
+\begin{align}
+\lim_{x \to x_0^-} f(x) &amp;= \pm \infty \\[6pt]
+\lim_{x \to x_0^+} f(x) &amp;= \pm \infty
+\end{align}
+\]</p>
+<p>У таких випадках функція не наближається до жодного скінченного значення при наближенні \( x \) до \( x_0 \). Графік зазвичай має вертикальну <a href="asymptotes.html">асимптоту</a>. Цей розрив відображає необмежений ріст, а не скінченний розрив.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-group pb-outline"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Приклад 3</h2>
+<p>Наприклад, розглянемо наступну функцію:</p>
+<p>\[
+f(x) = \frac{1}{x - 2}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="792" height="584" src="../images/discontinuity-3.png" alt="" class="wp-image-24364" style="width:396px" srcset="../images/discontinuity-3.png 792w, https://algebrica.org/wp-content/uploads/resources/images/discontinuity-3-300x221.png 300w, https://algebrica.org/wp-content/uploads/resources/images/discontinuity-3-768x566.png 768w" sizes="(max-width: 792px) 100vw, 792px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Поведінка цієї функції біля \( x_0 = 2 \) аналізується наступним чином. Оскільки \( x \to 2^- \), знаменник \( x &#8211; 2 \) стає від'ємним і наближається до нуля, що призводить до необмеженого зменшення функції. Отже, маємо:</p>
+<p>\[
+\lim_{x \to 2^-} f(x) = -\infty
+\]</p>
+<p>Оскільки \( x \to 2^+ \), знаменник є додатним і наближається до нуля, що призводить до необмеженого зростання функції. Границя дорівнює:</p>
+<p>\[
+\lim_{x \to 2^+} f(x) = +\infty
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution alignCenterMathjax"><p>Принаймні одна з односторонніх granic є нескінченною, і вони розбігаються з протилежними знаками. Відповідно, функція має нескінченний розрив при \( x = 2 \). Графік відображає <a href="asymptotes.html">вертикальну асимптоту</a> на прямій \( x = 2 \), і ця розбіжність вказує на необмежений ріст, а не на скінченний стрибок або усунуваний розрив.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Розрив, неперервність та диференційовність</h2>
+<p>Було б корисно встановити точний зв'язок між поняттями розриву та <a href="derivatives.html">диференційовності</a>. Ми знаємо, що якщо функція f є диференційовною в точці \(x_0\), вона також має бути <a href="continuous-functions.html">неперервною</a> в цій точці. Існування похідної гарантує, що функція задовольняє умову неперервності:</p>
+<p>\[
+f’(x_0) = \lim_{x \to x_0} \frac{f(x) &#8211; f(x_0)}{x &#8211; x_0}
+\]
+\[
+\lim_{x \to x_0} f(x) = f(x_0)
+\]</p>
+<p>Отже, якщо функція має розрив описаного типу при \( x_0 \), тобто границя не існує або не дорівнює значенню функції, то похідна в цій точці не існує.</p>
+<p>Однак, зворотне твердження не є правильним. Функція може бути неперервною в \(x_0\), але не бути диференційовною там. Така ситуація виникає, коли односторонні похідні існують, але відрізняються, коли принаймні одна з них є нескінченною, або коли одна з granic розбігається.</p>
+<p>\[
+\lim_{x \to x_0^-} \frac{f(x) - f(x_0)}{x - x_0}
+\neq
+\lim_{x \to x_0^+} \frac{f(x) - f(x_0)}{x - x_0}
+\]</p>
+<p>Поширеним прикладом є <a href="absolute-value-function.html">функція модуля</a>, яка є неперервною при \(x = 0\), але не є диференційовною там, що створює «кут» на її графіку. Підсумовуючи, кожен розрив передбачає недиференційовність, тоді як не кожна точка недиференційовності пов'язана з розривом.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Особливий випадок: істотний розрив</h2>
+<p>Додаткова категорія, відома як істотний розрив, іноді визнається, але не завжди приймається як формальна класифікація. Цей тип виникає, коли границя не існує і не може бути описана як нескінченна. На відміну від розриву стрибка, де обидві односторонні границі існують, але не рівні, або нескінченного розриву, де функція розбігається в певному напрямку, істотний розрив відображає фундаментально неправильну поведінку, яку не можна звести до простіших форм.</p>
+<p>Класичним прикладом є наступна функція, яка має істотний розрив при \(x = 0\):</p>
+<p>\[ f(x) = \sin\left(\frac{1}{x}\right) \]</p>
+<p>Коли \(x\) наближається до \(0\), аргумент \(1/x\) зростає необмежено, що змушує функцію коливатися між \(-1\) та \(1\) із дедалі більшою частотою. Жодна з односторонніх granic не існує, і неможливо призначити жодного значення \(f(0)\), яке б відновило будь-яку форму неперервності.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
+<ul>
+<li>
+<p><strong>Harvard University N. Masson</strong>. <a href="https://people.math.harvard.edu/~nate/teaching/UPenn/2009/spring/math_360/lectures/week_8/lecture_14/lecture_14.pdf">Discontinuities and Monotonic Functions</a></p>
+</li>
+<li>
+<p><strong>Harvard University O. Knill</strong>. <a href="https://people.math.harvard.edu/~knill/teaching/math1a_2012/handouts/14-continuity.pdf">Introduction to Functions and Calculus – Continuity</a></p>
+</li>
+<li>
+<p><strong>UC Berkeley A. Vizeff</strong>. <a href="https://math.berkeley.edu/~avizeff/calculus-I-F22/lecture-5.pdf">Lecture 5: Continuity and Discontinuities</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="discontinuities-of-real-functions.html">algebrica.org/discontinuities-of-real-functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

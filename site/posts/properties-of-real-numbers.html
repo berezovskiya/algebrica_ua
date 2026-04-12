@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Властивості дійсних чисел — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Множини та числа</span>
+    </nav>
+    <article>
+        <h1>Властивості дійсних чисел</h1>
+        <time>2025-02-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-8" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">14</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="types-of-numbers.html">Типи чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-8");
+            var dataset = {"name":"root","children":[{"name":"операції","children":[{"name":"порядок операцій"},{"name":"додавання"},{"name":"множення"},{"name":"віднімання"},{"name":"ділення"},{"name":"піднесення до степеня"}]},{"name":"алгебраїчні властивості","children":[{"name":"замкненість"},{"name":"комутативність"},{"name":"асоціативність"},{"name":"дистрибутивність"},{"name":"нейтральний елемент"},{"name":"обернений елемент"}]},{"name":"порядок і структура","children":[{"name":"порядок"},{"name":"нерівності"},{"name":"щільність"},{"name":"повнота"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Порядок операцій</h2>
+<p>Перед обговоренням алгебраїчних властивостей <a href="types-of-numbers.html">дійсних чисел</a> необхідно прояснити, як виконуються операції у виразі. Фундаментальні властивості дійсних чисел дозволяють нам маніпулювати виразами, але порядок операцій гарантує, що кожен вираз має чітко визначене та однозначне значення. Коли вираз містить кілька операцій одночасно, ми дотримуємося точної та загальноприйнятої послідовності. Поширеним мнемонічним правилом є PEMDAS:</p>
+<ul>
+<li>P = Parentheses (Дужки)</li>
+<li>E = Exponents (Степені)</li>
+<li>M = Multiplication (Множення)</li>
+<li>D = Division (Ділення)</li>
+<li>A = Addition (Додавання)</li>
+<li>S = Subtraction (Віднімання)</li>
+</ul>
+<p>Це означає, що вирази в дужках обчислюються першими. Далі обчислюються степені. Множення та ділення виконуються зліва направо. Потім додавання та віднімання виконуються зліва направо.</p>
+<h6>Множення та ділення мають однаковий пріоритет (так само як додавання та віднімання). Коли дві операції мають однаковий пріоритет, вони обчислюються зліва направо.</h6>
+<hr>
+<ul>
+<li>
+<p>Розглянемо \(3 + 4 \cdot 2\). Згідно з пріоритетом, множення виконується перед додаванням: \(4 \cdot 2 = 8\), отже \(3 + 8 = 11\).</p>
+</li>
+<li>
+<p>Розглянемо тепер \((3 + 4) \cdot 2\). Дужки змінюють природний пріоритет: \(3 + 4 = 7\), потім \(7 \cdot 2 = 14\).</p>
+</li>
+<li>
+<p>Розглянемо вираз \(5 + 2^3 \cdot 4\). Спочатку обчислимо степінь: \(2^3 = 8.\) Потім помножимо: \(8 \cdot 4 = 32\). Нарешті додамо: \(5 + 32 = 37\).</p>
+</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Кажуть, що дійсні числа є щільними: між будь-якими двома різними дійсними числами завжди існує інше. Формально, для будь-яких \(a, b \in \mathbb{R}\) при \(a &lt; b\), існує \(c \in \mathbb{R}\) таке, що \(a &lt; c &lt; b\). Одним із природних виборів є <a href="arithmetic-mean.html">середнє арифметичне</a> \(c = (a+b)/2\), але існує безліч таких значень.</p>
+<p>Це відрізняє \(\mathbb{R}\) від цілих чисел, де проміжки чітко помітні: між \(2\) та \(3\) немає цілого числа. Раціональні числа \(\mathbb{Q}\) також є щільними, проте неповними: вони мають прогалини в таких точках, як \(\sqrt{2}\) та \(\pi\), які є дійсними, але не раціональними.</p>
+<blockquote>
+<p>Дійсні числа вирізняються тим, що вони є одночасно щільними та повними: кожен проміжок заповнений, і числова пряма не має відсутніх точок. Повнота є глибшою структурною властивістю: кожна непорожня підмножина \(\mathbb{R}\), обмежена зверху, має найменшу верхню межу (супремум) у \(\mathbb{R}\), і кожна <a href="cauchy-sequence.html">послідовність Коші</a> дійсних чисел збігається до дійсної границі. Натомість \(\mathbb{Q}\) є щільною, але не повною: існують послідовності Коші раціональних чисел, що збігаються до ірраціональної границі.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Властивість замкненості</h2>
+<p>Серед усіх властивостей, що характеризують дійсні числа, замкненість у певному сенсі є найфундаментальнішою: вона гарантує, що множина \(\mathbb{R}\) є самодостатньою відносно своїх основних операцій. Формально, для всіх \(a, b \in \mathbb{R}\):</p>
+<p>\[
+a + b \in \mathbb{R}
+\]</p>
+<p>\[
+a \cdot b \in \mathbb{R}
+\]</p>
+<p>Простими словами: коли ви додаєте або множите два дійсні числа, ви завжди отримуєте дійсне число. Результат ніколи не виходить за межі множини. Це може здатися тривіальним спостереженням, але замкненість далеко не автоматична при роботі з іншими сукупностями чисел. <a href="integers.html">Цілі числа</a>, наприклад, замкнені відносно додавання та множення, але ділення виводить за їхні межі: \(1 \div 2\) не є цілим числом. Зробімо ще один крок і віднімемо в межах натуральних чисел: \(3 - 5\) не має розв'язання в цій множині. Отже, замкненість не є вродженим правом кожної числової множини, а чимось, що має бути задокументоване, перевірене операція за операцією, множина за множиною.</p>
+<blockquote>
+<p>В аксіоматичному викладі дійсних чисел замкненість зазвичай перелікується як перша аксіома поля. Без неї запис \(a + b\) був би безглуздим — не було б гарантії, що сума двох дійсних чисел сама є дійсним числом, і вся арифметика \(\mathbb{R}\) ґрунтувалася б на невпевненому підґрунті.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Комутативна властивість</h2>
+<p>Комутативна властивість виражає структурну симетрію системи дійсних чисел. Вона стверджує, що результат операції не залежить від порядку операндів. У множині дійсних чисел ця властивість виконується як для додавання, так і для множення. Формально, для всіх дійсних чисел \( a, b \in \mathbb{R} \):</p>
+<p>\[
+a + b = b + a
+\]</p>
+<p>\[
+a \cdot b = b \cdot a
+\]</p>
+<p>Ця властивість не є обчислювальним спрощенням, а є внутрішньою особливістю алгебраїчної структури \( \mathbb{R} \). Фактично, дійсні числа утворюють комутативне поле, що означає, що і додавання, і множення є комутативними бінарними операціями. Важливо зауважити, що комутативність застосовується не до кожної алгебраїчної операції. Віднімання та ділення, наприклад, загалом не є комутативними:</p>
+<p>\[
+a - b \neq b &#8211; a \quad \text{and} \quad
+\frac{a}{b} \neq \frac{b}{a}
+\]</p>
+<p>Таким чином, комутативність характеризує специфічні операції та відіграє фундаментальну роль у спрощенні виразів і перегрупуванні доданків. Нехай \( a = 3 \) і \( b = 7 \). Тоді \(3 + 7 = 10\) і \(7 + 3 = 10\). Аналогічно, \(3 \cdot 7 = 21\) і \(7 \cdot 3 = 21.\) Рівність результатів ілюструє, що порядок операндів не впливає на результат.</p>
+<blockquote>
+<p>У більш загальному випадку, при алгебраїчних перетвореннях комутативність дозволяє нам змінювати порядок доданків у сумах або множників у добутках. Наприклад, \(2x + 5 = 5 + 2x\), що може бути корисним при групуванні подібних доданків або приведенні виразів до стандартного вигляду.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Асоціативна властивість</h2>
+<p>Асоціативна властивість стосується того, як групуються операнди, коли більше двох чисел об'єднуються за допомогою однієї і тієї ж операції. У той час як комутативна властивість дозволяє нам змінювати порядок доданків, асоціативна властивість дозволяє змінювати їхнє групування без впливу на результат. Для дійсних чисел асоціативність виконується як для додавання, так і для множення. Формально, для всіх \( a, b, c \in \mathbb{R} \):</p>
+<p>\[
+a + (b + c) = (a + b) + c
+\]</p>
+<p>\[
+a \cdot (b \cdot c) = (a \cdot b) \cdot c
+\]</p>
+<p>Ці рівності стверджують, що при додаванні або множенні трьох дійсних чисел розташування дужок не змінює кінцевого значення. Таким чином, операція може бути виконана послідовними кроками без двозначності. Як і в комутативному випадку, асоціативність виконується не для всіх операцій. Віднімання та ділення загалом не є асоціативними:</p>
+<p>\[
+a &#8211; (b &#8211; c) \neq (a - b) - c
+\]</p>
+<p>\[
+a \div (b \div c) \neq (a \div b) \div c
+\]</p>
+<p>Таким чином, асоціативність є специфічною структурною властивістю додавання та множення в дійсних числах.</p>
+<hr>
+<p>Нехай \( a = 2 \), \( b = 3 \), і \( c = 4 \). Для додавання:</p>
+<p>\[
+2 + (3 + 4) = 2 + 7 = 9
+\]</p>
+<p>\[
+(2 + 3) + 4 = 5 + 4 = 9
+\]</p>
+<p>Для множення:</p>
+<p>\[
+2 \cdot (3 \cdot 4) = 2 \cdot 12 = 24
+\]</p>
+<p>\[
+(2 \cdot 3) \cdot 4 = 6 \cdot 4 = 24
+\]</p>
+<p>В обох випадках значення не змінюється при перегрупуванні. З структурної точки зору, асоціативність гарантує, що вирази, які містять повторюване додавання або множення, можна записувати без дужок. Наприклад, \(a + b + c\) є однозначним, оскільки будь-яке групування дає однаковий результат. Ця властивість є фундаментальною в алгебрі, оскільки вона дозволяє маніпулювати довгими сумами та добутками, спрощувати та реорганізувати їх без зміни їхнього значення.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Дистрибутивна властивість</h2>
+<p>Дистрибутивна властивість описує взаємодію між множенням і додаванням. У той час як комутативність і асоціативність стосуються однієї операції, дистрибутивна властивість пов'язує дві різні операції та пояснює, як одна розподіляється відносно іншої. У дійсних числах множення дистрибутивне відносно додавання. Формально, для всіх \( a, b, c \in \mathbb{R} \):</p>
+<p>\[
+a \cdot (b + c) = a \cdot b + a \cdot c
+\]</p>
+<p>\[
+(b + c) \cdot a = b \cdot a + c \cdot a
+\]</p>
+<p>Ця властивість стверджує, що множення суми на дійсне число еквівалентне множенню кожного доданка суми окремо з наступним додаванням результатів. Закон дистрибутивності також природно поширюється на віднімання, оскільки віднімання можна інтерпретувати як додавання протилежного елемента:</p>
+<p>\[
+a \cdot (b - c) = a \cdot b &#8211; a \cdot c
+\]</p>
+<hr>
+<p>Нехай \( a = 3 \), \( b = 4 \), і \( c = 5 \). Обчислимо ліву частину:</p>
+<p>\[
+3 \cdot (4 + 5) = 3 \cdot 9 = 27
+\]</p>
+<p>Тепер обчислимо праву частину:</p>
+<p>\[
+3 \cdot 4 + 3 \cdot 5 = 12 + 15 = 27
+\]</p>
+<p>Обидва вирази дають однаковий результат, що підтверджує дистрибутивну властивість. Дистрибутивна властивість є фундаментальною в алгебраїчних перетвореннях. Вона дозволяє нам розкривати вирази, такі як \(a(x + y)\), у вигляді \(ax + ay\) і навпаки, розкладати вирази на кшталт \(ax + ay\) у вигляді \(a(x + y)\).</p>
+<p>Таким чином, закон дистрибутивності лежить в основі як розкриття дужок, так і винесення спільного множника за дужки. Він забезпечує структурний зв'язок між додаванням і множенням у системі дійсних чисел і є необхідним для спрощення виразів, розв'язання рівнянь та розвитку алгебри поліномів.</p>
+<blockquote>
+<p>У рамках дійсних чисел дистрибутивна властивість є однією з визначальних аксіом поля, що забезпечує узгодженість між адитивною та мультиплікативною структурами.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Властивості нейтральних елементів</h2>
+<p>Властивості нейтральних елементів описують існування особливих елементів у дійсних числах, які залишають інші елементи незмінними під час виконання певної операції. Ці елементи називаються нейтральними, оскільки вони зберігають значення числа при комбінуванні з ним. У системі дійсних чисел існують два нейтральні елементи: один для додавання та один для множення.</p>
+<hr>
+<p>Існує єдине дійсне число, що позначається \( 0 \), таке, що для кожного \( a \in \mathbb{R} \):</p>
+<p>\[
+a + 0 = a \quad \text{та} \quad 0 + a = a
+\]</p>
+<p>Число \( 0 \) називається нейтральним елементом по додаванню, оскільки додавання нуля не змінює значення дійсного числа. Єдиність цього елемента є важливою. Якщо число \( n \) задовольняє \(a + n = a \quad \forall \, a \in \mathbb{R}\), то необхідно, що \( n = 0 \).</p>
+<hr>
+<p>Також існує єдине дійсне число, що позначається \( 1 \), таке, що для кожного \( a \in \mathbb{R} \):</p>
+<p>\[
+a \cdot 1 = a \quad \text{та} \quad 1 \cdot a = a
+\]</p>
+<p>Число \( 1 \) називається нейтральним елементом по множенню, оскільки множення на одиницю залишає будь-яке дійсне число незмінним. Як і в випадку з додаванням, цей нейтральний елемент є єдиним. Якщо число \( n \) задовольняє \(a \cdot n = a \quad \forall \, a \in \mathbb{R}\), то необхідно, що \( n = 1 \).</p>
+<h6>Існування нейтральних елементів є однією з визначальних характеристик дійсних чисел як поля. Нейтральний елемент по додаванню \( 0 \) є основою адитивної структури, тоді як нейтральний елемент по множенню \( 1 \) є основою мультиплікативної структури.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Властивість обернених елементів</h2>
+<p>Властивість обернених елементів доповнює властивість нейтральних елементів. У той час як нейтральні елементи залишають числа незмінними, обернені елементи «скасовують» операцію та повертають нейтральний елемент. У системі дійсних чисел кожен елемент має оберненний елемент по додаванню, а кожен ненульовий елемент має оберненний елемент по множенню.</p>
+<p>Для кожного \( a \in \mathbb{R} \) існує дійсне число, що позначається \( -a \), таке, що:</p>
+<p>\[
+a + (-a) = 0
+\]</p>
+<p>Число \( -a \) називається оберненим елементом по додаванню (або протилежним числом) до \( a \). Його визначальною властивістю є те, що при додаванні до \( a \) результатом є нейтральний елемент по додаванню \( 0 \). Обернений елемент по додаванню є єдиним. Якщо число \( b \) задовольняє \(a + b = 0\), то необхідно, що \( b = -a \).</p>
+<hr>
+<p>Для кожного ненульового дійсного числа \(a \in \mathbb{R}\) існує єдине дійсне число \(\dfrac{1}{a}\), таке, що:</p>
+<p>\[
+a \cdot \frac{1}{a} = 1
+\]</p>
+<p>Число \( \dfrac{1}{a} \) називається оберненим елементом по множенню (або оберненим числом) до \( a \). Воно визначене лише для \( a \neq 0 \), оскільки жодне дійсне число при множенні на \( 0 \) не може дати нейтральний елемент по множенню \( 1 \). Як і в випадку з додаванням, обернений елемент по множенню є єдиним. Якщо число \( b \) задовольняє \(a \cdot b = 1\), то необхідно, що \( b = \dfrac{1}{a} \).</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="properties-of-real-numbers.html">algebrica.org/properties-of-real-numbers</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

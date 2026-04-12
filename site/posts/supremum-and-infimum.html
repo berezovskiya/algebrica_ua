@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Супремум та інфімум — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Множини та числа</span>
+    </nav>
+    <article>
+        <h1>Супремум та інфімум</h1>
+        <time>2025-02-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-5" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="properties-of-real-numbers.html">Властивості дійсних чисел</a>, <a href="types-of-numbers.html">Типи чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-5");
+            var dataset = {"name":"root","children":[{"name":"дійсні числа","children":[{"name":"аксіома повноти"},{"name":"обмежені множини"},{"name":"верхні межі"},{"name":"нижні межі"},{"name":"властивості порядку"},{"name":"властивість щільності"}]},{"name":"екстремуми","children":[{"name":"супремум"},{"name":"інфімум"},{"name":"найменша верхня межа"},{"name":"найбільша нижня межа"},{"name":"максимум"},{"name":"мінімум"},{"name":"умови існування"}]},{"name":"властивості","children":[{"name":"епсилон-характеристика"},{"name":"єдиність"},{"name":"наближені послідовності"},{"name":"порівняння меж"},{"name":"sup проти max"},{"name":"inf проти min"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30"><h2>Аксіома повноти</h2>
+<p>Хоча <a href="properties-of-real-numbers.html">дійсні числа</a> часто вводяться через їхні алгебраїчні властивості, істотна відмінність між \( \mathbb{R} \) та \( \mathbb{Q} \) полягає в їхній структурі порядку, зокрема в унікальній властивості цього порядку. Зокрема, кожна непорожня підмножина \( \mathbb{R} \), яка обмежена зверху, має найменшу верхню межу, що належить \( \mathbb{R} \). Ця властивість відома як аксіома повноти та слугує фундаментальною характеристикою дійсної прямої. Поняття супремуму та інфімуму надають практичні засоби застосування цієї аксіоми.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Верхні та нижні межі</h2>
+<p>Розглянемо непорожню множину \( A \subseteq \mathbb{R} \). Дійсне число \( M \) називається верхньою межею \( A \), якщо:</p>
+<p>\[ a \leq M \quad \forall \, a \in A \]</p>
+<p>Якщо таке число існує, множина \( A \) обмежена зверху. Аналогічно, дійсне число \( m \) є нижньою межею \( A \), якщо:</p>
+<p>\[ a \geq m \quad \forall \, a \in A \]</p>
+<p>У цьому випадку \( A \) обмежена знизу. Множина вважається обмеженою, якщо вона обмежена і зверху, і знизу, тобто існує \( K &gt; 0 \), таке що:</p>
+<p>\[ |a| \leq K \quad \forall \, a \in A \]</p>
+<p>Верхні межі, якщо вони існують, зазвичай не є єдиними. Наприклад, якщо \( M \) є верхньою межею \( A \), то \( M + 1 \) та \( M + 100 \) також є верхніми межами. Те саме симетрично стосується і нижніх меж. Якщо \( m \) є нижньою межею \( A \), то \( m &#8211; 1 \) також є такою. Найменша верхня межа називається супремумом, а найбільша нижня межа називається інфімумом.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="686" height="358" src="../images/supremum-infimum-1.png" alt="Supremum and Infimum." class="wp-image-25425" style="width:343px" title="Supremum and Infimum." srcset="../images/supremum-infimum-1.png 686w, https://algebrica.org/wp-content/uploads/resources/images/supremum-infimum-1-300x157.png 300w" sizes="(max-width: 686px) 100vw, 686px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax pb-steps"><hr>
+<ul>
+<li>
+<p>Якщо \( A \) непорожня, але не обмежена зверху, супремум за домовленістю визначається як \(\sup A = +\infty \). Аналогічно,</p>
+</li>
+<li>
+<p>якщо \( A \) не обмежена знизу, інфімум визначається як \( \inf A = -\infty \).</p>
+</li>
+<li>
+<p>Для порожньої множини використовуються домовленіності \( \sup \emptyset = -\infty \) та \( \inf \emptyset = +\infty \).</p>
+</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Супремум</h2>
+<p>Розглянемо непорожню підмножину \( A \subseteq \mathbb{R} \), яка обмежена зверху. Супремум \( A \), що позначається \( \sup A \), визначається як її найменша верхня межа. Дійсне число \( s \) дорівнює \( \sup A \) тоді і тільки тоді, коли виконуються обидві наступні умови. Перша умова говорить про те, що \( s \) є верхньою межею \( A \):
+\[ a \leq s \quad \forall \, a \in A \]</p>
+<p>Друга умова гарантує, що будь-яке число, строго менше за \( s \), перевичине якесь значення елемента з \( A \):
+\[ \forall \; \varepsilon &gt; 0 \quad \exists \, a \in A : a &gt; s &#8211; \varepsilon \]</p>
+<p>Разом ці умови однозначно визначають \( s \). Може бути лише одна найменша верхня межа. Якщо і \( s \), і \( s’ \) задовольняють означення, то маємо</p>
+<p>\[ s \leq s’ \, \wedge \, s’ \leq s \, \to s = s’ \]</p>
+<p>Еквівалентна характеристика стверджує, що \( s = \sup A \) тоді і тільки тоді, коли \( s \) є верхньою межею \( A \) і існує <a href="sequences.html">послідовність</a> \( (a_n) \subseteq A \), така що \( a_n \to s \).</p>
+<h6>Аксіома повноти гарантує, що \( \sup A \) існує в \( \mathbb{R} \) щоразу, коли \( A \) непорожня та обмежена зверху. Ця властивість не виконується в \( \mathbb{Q} \). Наприклад, множина \( {q \in \mathbb{Q} : q^2 &lt; 2} \) обмежена зверху в \( \mathbb{Q} \), але її найменша верхня межа \( \sqrt{2} \) не є раціональним числом. У цьому випадку супремум існує, але він не належить до простору. Така ситуація не може виникнути в \( \mathbb{R} \).</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Інфімум</h2>
+<p>Розглянемо непорожню підмножину \( A \subseteq \mathbb{R} \), яка обмежена знизу. Інфімум \( A \), що позначається \( \inf A \), визначається як її найбільша нижня межа. Дійсне число \( i \) дорівнює \( \inf A \) тоді і тільки тоді, коли виконуються обидві наступні умови. Перша умова говорить про те, що \( i \) є нижньою межею \( A \):</p>
+<p>\[ a \geq i \quad \forall \, a \in A \]</p>
+<p>Друга умова гарантує, що будь-яке число, строго більше за \( i \), передує якомусь елементу з \( A \):</p>
+<p>\[ \forall \; \varepsilon &gt; 0 \quad \exists \, a \in A : a &lt; i + \varepsilon \]</p>
+<p>Разом ці умови однозначно визначають \( i \). Може бути лише одна найбільша нижня межа. Якщо і \( i \), і \( i’ \) задовольняють означення, то маємо</p>
+<p>\[ i \geq i’ \, \wedge \, i’ \geq i \, \to i = i’ \]</p>
+<p>Еквівалентна характеристика стверджує, що \( i = \inf A \) тоді і тільки тоді, коли \( i \) є нижньою межею \( A \) і існує <a href="sequences.html">послідовність</a> \( (a_n) \subseteq A \), така що \( a_n \to i \).</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Супремум і максимум, інфімум і мінімум</h2>
+<p>Зв'язок між супремумом і максимумом, а також між інфімумом і мінімумом часто розуміють неправильно. Максимум множини \( A \) визначається як елемент \( A \), який є більшим або рівним будь-якому іншому елементу. Коли максимум існує, маємо:</p>
+<p>\[ \max A = \sup A \]</p>
+<p>Супремум не обов'язково належить до множини \( A \). Наприклад, розглянемо \( A = (0, 1) \). Кожен елемент \( A \) строго менший за 1, отже \( \sup A = 1 \). Оскільки \( 1 \notin A \), множина \( A \) не має максимуму. Число 1 слугує найменшою верхньою гранню, але воно не є елементом \( A \). Аналогічно, \( \inf A = 0 \), проте \( 0 \notin A \), тому \( A \) не має мінімуму. Натомість для \( B = [0,1] \) маємо:</p>
+<p>\[ \sup B = \max B = 1 \qquad \inf B = \min B = 0 \]</p>
+<p>оскільки граничні точки входять до множини.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="840" height="700" src="../images/supremum-infimum-2.png" alt="Supremum and maximum, infimum and minimum." class="wp-image-25430" style="width:420px" title="Supremum and maximum, infimum and minimum." srcset="../images/supremum-infimum-2.png 840w, https://algebrica.org/wp-content/uploads/resources/images/supremum-infimum-2-300x250.png 300w, https://algebrica.org/wp-content/uploads/resources/images/supremum-infimum-2-768x640.png 768w" sizes="(max-width: 840px) 100vw, 840px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><hr>
+<p>Загалом, виконується наступне:</p>
+<p>\[ \max A \text{ існує} \to \max A = \sup A \]
+\[ \min A \text{ існує} \to \min A = \inf A \]</p>
+<p>Обернене твердження загалом не є вірним. Питання про те, чи досягає функція насправді свого супремуму, є нетривіальним. <a href="weierstrass-theorem.html">Теорема Вейєрштрасса</a> дає достатню умову: якщо функція є неперервною на замкненому та обмеженому проміжку, то супремум та інфімум досягаються, і максимум та мінімум існують. Поза цими умовами питання необхідно розглядати для кожного випадку окремо.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Супремум та інфімум функцій</h2>
+<p>Поняття супремуму та інфімуму природно поширюються на <a href="functions.html">функції</a>. Для функції \( f : D \to \mathbb{R} \) супремум \( f \) на \( D \) визначається як супремум її області значень:</p>
+<p>\[ \sup_{x \in D} f(x) = \sup { f(x) : x \in D } \]</p>
+<p>Аналогічно, інфімум визначається як:</p>
+<p>\[ \inf_{x \in D} f(x) = \inf { f(x) : x \in D } \]</p>
+<p>Ці величини представляють найменшу верхню грань і найбільшу нижню грань значень, які набуває \( f \), без вимоги, щоб ці грані були насправді досягнуті.</p>
+<ul>
+<li>
+<p>Дійсне число \( s \) дорівнює \( \sup_{x \in D} f(x) \) тоді і тільки тоді, коли \( f(x) \leq s \) для всіх \( x \in D \), і для кожного \( \varepsilon &gt; 0 \) існує \( x \in D \), такий що \( f(x) &gt; s - \varepsilon \).</p>
+</li>
+<li>
+<p>Симетрично, дійсне число \( i \) дорівнює \( \inf_{x \in D} f(x) \) тоді і тільки тоді, коли \( f(x) \geq i \) для всіх \( x \in D \), і для кожного \( \varepsilon &gt; 0 \) існує \( x \in D \), такий що \( f(x) &lt; i + \varepsilon \).</p>
+</li>
+</ul>
+<p>Супремум та інфімум функції не обов'язково досягаються. Наприклад, для \( f(x) = x \), визначеної на відкритому проміжку \( (0, 1) \), \( \sup_{x \in (0,1)} f(x) = 1 \), проте не існує такого \( x \in (0, 1) \), що \( f(x) = 1 \). Якщо супремум досягається в деякій точці \( x_0 \in D \), тобто \( f(x_0) = \sup_{x \in D} f(x) \), він збігається з максимумом \( f \) на \( D \). Такий самий зв'язок існує між інфімумом і мінімумом.</p>
+<h6>Означення супремуму та інфімуму для функції спонукають розглянути їхню відмінність від значень <a href="maximum-minimum-and-inflection-points.html">максимуму та мінімуму</a>. Супремум та інфімум представляють грані, до яких функція може наближатися, але не обов'язково досягати, тоді як максимум і мінімум стосуються значень, яких функція насправді досягає в конкретних точках у \( D \).</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Властивість наближення</h2>
+<p> \( \varepsilon \)-характеристика супремуму та інфімуму є більше ніж просто деталью означення; це форма, в якій ці поняття найчастіше з'являються в доведеннях. Ця характеристика часто представляється як окрема властивість. Якщо \( s = \sup A \), то для кожного \( \varepsilon &gt; 0 \) існує елемент \( a \in A \), такий що</p>
+<p>\[ s - \varepsilon &lt; a \leq s \]</p>
+<p>Еквівалентно, жодне число, що є строго меншим за \( s \), не слугує верхньою гранню для \( A \). Аналогічне твердження стосується інфімуму: якщо \( i = \inf A \), то для кожного \( \varepsilon &gt; 0 \) існує \( a \in A \), такий що:</p>
+<p>\[ i \leq a &lt; i + \varepsilon. \]</p>
+<p>Ця властивість використовується в усьому аналізі щоразу, коли потрібно виділити елементи множини, довільно близькі до її супремуму або інфімуму, і вона природно з'являється в аргументах існування, таких як доведення теореми Больцано-Вейєрштрасса та побудова <a href="riemann-integrability-criteria.html">інтеграла Рімана</a>.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="supremum-and-infimum.html">algebrica.org/supremum-and-infimum</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

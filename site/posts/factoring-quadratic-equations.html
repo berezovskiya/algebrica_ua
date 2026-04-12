@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Розкладання квадратних рівнянь — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Розкладання квадратних рівнянь</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><h2>Вступ</h2>
+<p><a href="quadratic-equations.html">Квадратне рівняння</a> — це тип <a href="polynomials.html">полінома</a>, який складається з одного або кількох доданків, де кожен доданок є добутком сталої коефіцієнта, змінної в <a href="powers.html">ступені</a> та можливого сталого члена. Розкладання полінома на множники полягає у представленні його як добутку незвідних множників, зазвичай нижчого степеня.</p>
+<p>Квадратне рівняння у вигляді \(ax^{2}+bx+c=0 \) може бути розкладене на множники в еквівалентне рівняння, якщо його <a href="quadratic-formula.html">дискримінант</a> не є від'ємним:</p>
+<p>\[a(x-x_1)(x-x_2)=0 \]</p>
+<p>де \(x_1\) та \(x_2\) є коренями рівняння.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Демонстрація</h2>
+<p>Доведення виразу вище є простим. Ми наводимо його тут для повноти.</p>
+<p>\[ P(x) = ax^2 + bx + c\]</p>
+<hr>
+<p>Ми можемо винести коефіцієнт \(a\) і переписати вираз:</p>
+<p>\[P(x) = a\left(x^2 + \frac{b}{a}x + \frac{c}{a}\right) \]</p>
+<hr>
+<p>Вираз стає зрозумілішим завдяки зв'язкам між розв'язаннями рівняння другого степеня та його коефіцієнтами, зокрема, через так звані <a href="quadratic-formula.html">теореми Вієта</a>:</p>
+<p>\[x_1 \cdot x_2= \frac{c}{a} \]
+\[x_1+x_2= - \frac{b}{a} \]</p>
+<p>Замінюючи значення, ми отримаємо:</p>
+<p>\[\begin{align}
+P(x) &amp;= a[x^2-(x_1+x_2)x+x_1x_2] \\[1ex]
+&amp;= a(x^2-x_1x-x_2x+x_1x_2) \\[1ex]
+&amp;= a[x(x-x_1)-x_2(x-x_1) ]\\[1ex]
+&amp;= a(x-x_1) (x-x_2)
+\end{align}\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Це демонструє вираз \((1)\).</p>
+<p>\[P(x)= ax^{2}+bx+c = a(x-x_1)(x-x_2)\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section alignCenterMathjax"><p>Цей метод розкладання поліномів на множники відомий як <a href="factoring-ac-method.html">метод AC</a>. Розв'язання рівняння можна знайти, прирівнявши кожен множник до нуля:</p>
+<p>\[(x-x_1)=0 \to x = x_1\]
+\[(x-x_2)=0 \to x = x_2\]</p>
+<p>Цей метод є ефективним для простих <a href="polynomial-equations.html">поліноміальних рівнянь</a>. Однак він стає непрактичним для складніших рівнянь. У таких випадках краще використовувати <a href="quadratic-formula.html">формулу квадратного рівняння</a>.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Поліном \(x^2-4x+3\) може бути розкладений на множники у вигляді \((x-1)(x-3)\). Нам потрібно знайти два числа, \(m, n\), добуток яких \(P\) дорівнює \(3\) \((a \cdot c = 1 \cdot 3)\), а сума \(S\) дорівнює \(-4\) \((b)\).</p>
+<hr>
+<p>Ми можемо використовувати цю просту схему, щоб знайти числа, що задовольняють наші обмеження. \begin{array}{rrrr}
+&amp; m &amp; n &amp; P &amp;   S \\ \hline
+&amp;   1 &amp;   3 &amp; 3 &amp;   4 \\
+&amp;  -1 &amp;  -3 &amp; 3 &amp;  -4 \\
+\end{array}</p>
+<hr>
+<p>Другий рядок задовольняє наші обмеження, отже рівняння, пов'язане з поліномом, набуває вигляду:
+\[x^2-4x+3 = (x-1)(x- 3) = 0\]</p>
+<p>Розв'язаннями пов'язаного рівняння є:
+\[x -1=0 \to x = 1\]
+\[x -3=0 \to x = 3\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Розв'язанням рівняння є:
+\[x_1=1 \quad \text{та} \quad x_2= 3\]</p>
+</div>
+</div></div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="factoring-quadratic-equations.html">algebrica.org/factoring-quadratic-equations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Рівняння з параметрами — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Рівняння</span>
+    </nav>
+    <article>
+        <h1>Рівняння з параметрами</h1>
+        <time>2025-02-11</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-13" style="height:390px;min-height:390px;max-height:390px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:390px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="equations.html">Рівняння</a>, <a href="linear-equations.html">Лінійні рівняння</a>, <a href="quadratic-equations.html">Квадратні рівняння</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-13");
+            var dataset = {"name":"root","children":[{"name":"поняття параметрів","children":[{"name":"параметр проти невідомого"},{"name":"сімейство рівнянь"},{"name":"параметри в коефіцієнтах"},{"name":"залежність розв'язків"}]},{"name":"лінійні рівняння","children":[{"name":"функція коефіцієнта a(k)"},{"name":"випадок єдиного розв'язку"},{"name":"випадок зникнення коефіцієнта"},{"name":"вироджене рівняння"}]},{"name":"квадратні рівняння","children":[{"name":"коефіцієнти, що залежать від параметра"},{"name":"функція дискримінанта"},{"name":"класифікація коренів"}]},{"name":"системи з параметрами","children":[{"name":"матриця коефіцієнтів"},{"name":"умова визначника"},{"name":"єдиний розв'язок"},{"name":"вироджені випадки","children":[{"name":"безліч розв'язків"},{"name":"немає розв'язків"}]}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 390;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Вступ</h2>
+<p>Параметричне рівняння відноситься до сімейства <a href="equations.html">рівнянь</a>, індексованих дійсною величиною, якій дозволено вільно змінюватися. Ця величина, відома як параметр, з'являється серед коефіцієнтів рівняння і розглядається як стала під час процесу розв'язання щодо невідомої, попри те, що її значення не визначено заздалегідь.</p>
+<p>Параметр відрізняється від звичайної невідомої тим, що його значення тимчасово фіксується, щоб розв'язати рівняння для решти змінних. Згодом аналізується поведінка розв'язків при зміні параметра. Ця відмінність є важливою від самого початку. Наприклад, у наступному рівнянні і структура, і розв'язання повністю визначені:</p>
+<p>\[
+2x + 3 = 7
+\]</p>
+<p>Ситуація змінюється, коли рівняння записане наступним чином:</p>
+<p>\[
+kx + 3 = 7
+\]</p>
+<p>У більш загальному вигляді маємо:</p>
+<p>\[
+kx + m = 0
+\]</p>
+<p>У цьому контексті \( k \) та \( m \) є дійсними параметрами, і рівняння визначає не одну алгебраїчну задачу, а ціле сімейство задач, по одній для кожної допустимої пари \( (k, m) \).</p>
+<p>Розв'язання рівняння з параметрами передбачає визначення для кожної конфігурації параметрів значень невідомих, що задовольняють рівняння, та аналіз того, як ці значення залежать від параметра.</p>
+<hr>
+<p>Параметр визначається як дійсне число, яке залишається фіксованим у конкретному випадку рівняння, тоді як невідома відноситься до змінної, для якої шукають розв'язання. Один і той самий символ може виконувати різні ролі залежно від постановки задачі.</p>
+<p>Наприклад, у рівнянні \( ax + b = 0 \), якщо метою є знайти значення \( x \), що задовольняє рівняння, то \( a \) та \( b \) слугують параметрами, а \( x \) є невідомою. І навпаки, якщо питання стосується того, які пари \( (a, b) \) дають розв'язання, що дорівнює \( 1 \), то \( a \) та \( b \) стають невідомимими.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Термін «параметричні рівняння» зазвичай зустрічається в математичному аналізі та аналітичній геометрії для опису кривих, координати яких виражені як функції спільної змінної, наприклад \( x(t) \) та \( y(t) \). Проте в цьому контексті термін відноситься до рівнянь, коефіцієнти яких залежать від одного або кількох дійсних параметрів, а розв'язання аналізуються при зміні цих параметрів.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Лінійні рівняння з параметрами</h2>
+<p>Найпростішим контекстом, у якому виникають параметри, є <a href="linear-equations-with-parameters.html">рівняння першого ступеня</a>. Загальне лінійне рівняння з однією невідомою \( x \) та дійсним параметром \( k \) може бути записане як:
+\[
+a(k) \cdot x + b(k) = 0
+\]
+Тут \( a(k) \) та \( b(k) \) представляють вирази, що містять \( k \). Аналіз цього рівняння поділяється на два випадки, залежно від того, чи дорівнює коефіцієнт при \( x \) нулю. Якщо \( a(k) \neq 0 \), рівняння має єдиний розв'язок, що визначається як:
+\[
+x = -\frac{b(k)}{a(k)}
+\]</p>
+<p>Цей розв'язок визначає <a href="functions.html">функцію</a> від параметра.</p>
+<ul>
+<li>Якщо \( a(k) = 0 \), рівняння більше не є лінійним.</li>
+<li>Якщо \( b(k) \) також дорівнює нулю, кожне дійсне число є розв'язком, і рівняння задовольняється тотожно.</li>
+<li>Якщо \( b(k) \neq 0 \), розв'язків не існує, і рівняння є несумісним.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Розглянемо наступне лінійне рівняння з параметром \( k \):
+\[
+(k - 1)x = k^2 - 1
+\]
+Коефіцієнт при \( x \) дорівнює \( a(k) = k - 1 \), а права частина \( b(k) = k^2 - 1 \). Оскільки права частина розкладається на множники як \( (k-1)(k+1) \), випадок \( k = 1 \) потребує окремого розгляду.</p>
+<p>Для \( k \neq 1 \) обидві частини можна поділити на \( k &#8211; 1 \) без двозначності, оскільки дільник не дорівнює нулю. Це дає
+\[
+x = \frac{(k-1)(k+1)}{k-1} = k + 1
+\]
+Таким чином, рівняння має єдиний розв'язок \( x = k + 1 \) для кожного дійсного значення \( k \), крім \( 1 \). Коли \( k = 1 \), обидві частини стають рівними нулю, і рівняння зводиться до \( 0 \cdot x = 0 \). Ця тотожність задовольняється кожним дійсним \( x \), отже, множиною розв'язків є \( \mathbb{R} \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Підсумовуючи, розв'язання таке:
+\[
+\begin{align}
+k = 1 &amp;\Rightarrow x \in \mathbb{R} \\[6pt]
+k \neq 1 &amp;\Rightarrow x = k + 1
+\end{align}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Квадратні рівняння з параметрами</h2>
+<p>Введення параметра в коефіцієнти <a href="quadratic-equations-with-parameters.html">квадратного рівняння</a> збільшує складність аналізу. Структура множини розв'язків залежить як від можливого зникнення коефіцієнта, так і від знака визначника (дискримінанта), який сам змінюється залежно від параметра. Загальне параметричне квадратне рівняння можна записати наступним чином:
+\[
+a(k)x^2 + b(k)x + c(k) = 0 \qquad a(k) \neq 0
+\]
+Умову \( a(k) \neq 0 \) необхідно перевірити для кожного значення параметра, інакше рівняння зводиться до лінійного вигляду. <a href="quadratic-formula.html">Дискримінант</a> стає дійснозначною функцією від \( k \):
+\[
+\Delta(k) = b(k)^2 &#8211; 4\,a(k)\,c(k)
+\]</p>
+<p>Аналіз знака дискримінанта дозволяє класифікувати розв'язки:</p>
+<ul>
+<li>Два різні дійсні корені виникають, коли \( \Delta(k) &gt; 0 \).</li>
+<li>Один кратний дійсний корінь виникає, коли \( \Delta(k) = 0 \).</li>
+<li>Два <a href="quadratic-equations-with-complex-solutions.html">комплексно-спряжених корені</a> існують, коли \( \Delta(k) &lt; 0 \).</li>
+</ul>
+<p>Значення параметра, при яких дискримінант змінює знак, представляють критичні пороги, що позначають переходи між якісно різними структурами розв'язків.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Рівняння вищих степенів та трансцендентні рівняння з параметрами</h2>
+<p>Ці міркування поширюються і на рівняння, що не є квадратними. Розглянемо загальне <a href="polynomial-equations.html">поліноміальне рівняння</a> степеня \( n \):
+\[
+a_n(k)\,x^n + a_{n-1}(k)\,x^{n-1} + \cdots + a_1(k)\,x + a_0(k) = 0
+\]
+Кількість і природа розв'язків залежать від параметра способами, які часто складніше охарактеризувати. Для \( n \geq 3 \) формули розв'язків у закритому вигляді стають дуже складними або недоступними в класичному розумінні.</p>
+<p>Параметри можуть також з'являтися в неполіноміальних рівняннях, включаючи <a href="exponential-equations.html">показникові рівняння</a> вигляду \( a^x = f(k) \), <a href="logarithmic-equations.html">логарифмічні рівняння</a>, що містять \( \log_a(x + k) \), та тригонометричні рівняння, такі як \( \sin x = k \).</p>
+<p>Наприклад, рівняння \( \sin x = k \) має розв'язки лише тоді, коли \( |k| \leq 1 \), і в цьому проміжку існує безліч розв'язків, що розподілені періодично вздовж дійсної прямої. Коли \( k \) лежить поза проміжком \( [-1, 1] \), рівняння не має розв'язків. У таких випадках параметр визначає не лише форму розв'язків, а й саму їхню наявність.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline pb-steps"><h2>Приклад 2</h2>
+<p>Наступний приклад ілюструє випадок, коли наявність розв'язків не може бути визначена лише за допомогою алгебраїчних перетворень, а потребує аналітичного аргументу, заснованого на поведінці похідної функції. Розглянемо рівняння</p>
+<p>\[
+\sin x = kx \qquad k \in \mathbb{R}
+\]</p>
+<p>Розв'язок \( x = 0 \) існує для кожного значення \( k \), оскільки \( \sin 0 = 0 \). Питання, що нас цікавить, полягає в тому, чи існують нетривіальні розв'язки. Визначивши \( f(x) = \sin x &#8211; kx \), розв'язки відповідають нулям \( f \). Оскільки \( f \) є непарною функцією, достатньо розглянути випадок \( x &gt; 0 \).</p>
+<p>Для \( x &gt; 0 \) умову \( \sin x = kx \) можна переписати як</p>
+<p>\[
+k = \frac{\sin x}{x}
+\]</p>
+<p>Функція \( g(x) = \dfrac{\sin x}{x} \) є <a href="continuous-functions.html">неперервною</a> для \( x &gt; 0 \), прямує до \( 1 \), коли \( x \to 0^+ \), і осцилює зі зменшувальною амплітудою до \( 0 \).</p>
+<p>Її <a href="maximum-minimum-and-inflection-points.html">локальні максимуми</a> утворюють строго спадну <a href="sequences.html">послідовність</a>, всі значення якої менші за \( 1 \).</p>
+<ul>
+<li>
+<p>Для \( k \geq 1 \) пряма \( y = kx \) занадто крута, щоб перетнути синусоїду поза початком координат, і нетривіальних розв'язків не існує.</p>
+</li>
+<li>
+<p>Для \( 0 &lt; k &lt; 1 \) пряма перетинає криву \( y = \sin x \) на кожній дузі, де \( |\sin x / x| &gt; k \), що дає безліч нетривіальних розв'язків, які симетрично розподілені відносно початку координат.</p>
+</li>
+</ul>
+<p>Коли \( k \to 0^+ \), кількість перетинів зростає без обмеження. Для \( k \leq 0 \) права частина \( kx \) є невидатною (недодатньою) для \( x &gt; 0 \), тоді як \( \sin x \) змінює знак, тому розв'язки все ще існують, але їхній розподіл залежить від конкретного значення \( k \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Підсумовуючи, множина розв'язків така:</p>
+<ul>
+<li>Якщо \( k \geq 1 \): \( x = 0 \) є єдиним розв'язком.</li>
+<li>Якщо \( 0 &lt; k &lt; 1 \): \( x = 0 \) та безліч симетричних нетривіальних розв'язків.</li>
+<li>Якщо \( k \leq 0 \): \( x = 0 \) та додаткові розв'язки залежно від \( k \).</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Системи рівнянь з параметрами</h2>
+<p>Параметри природним чином з'являються і в системах. <a href="systems-of-linear-equations.html">Лінійна система</a> з двох рівнянь з двома невідомими має загальний вигляд:</p>
+<p>\[
+\begin{align}
+a_{11}(k)\,x + a_{12}(k)\,y &amp;= b_1(k) \\[6pt]
+a_{21}(k)\,x + a_{22}(k)\,y &amp;= b_2(k)
+\end{align}
+\]</p>
+<p>Система має єдине розв'язання, коли <a href="matrices.html">матриця</a> коефіцієнтів є оберненою, тобто коли її визначник \(D(k)\) не дорівнює нулю:</p>
+<p>\[
+D(k) = a_{11}(k)\,a_{22}(k) - a_{12}(k)\,a_{21}(k)
+\]</p>
+<p>Коли \( D(k) = 0 \) для деякого значення параметра, система або стає несумісною, або має безліч розв'язань, залежно від того, чи є <a href="vectors.html">вектор</a> правої частини сумісним зі структурою матриці коефіцієнтів при цьому значенні.</p>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 3</h2>
+<p>Розглянемо наступну систему:</p>
+<p>\[
+\begin{align}
+kx + y &amp;= 1 \\[6pt]
+x + ky &amp;= 1
+\end{align}
+\]</p>
+<p>Визначник матриці коефіцієнтів дорівнює:</p>
+<p>\[
+D(k) = k \cdot k - 1 \cdot 1 = k^2 &#8211; 1 = (k-1)(k+1)
+\]</p>
+<p>Коли \( k \neq \pm 1 \), визначник не дорівнює нулю і безпосередньо застосовується <a href="cramers-rule.html">правило Крамера</a>, що дає єдине розв'язання. Застосувавши його, знайдемо:</p>
+<p>\[
+x = \frac{k - 1}{k^2 - 1} = \frac{1}{k+1}
+\]</p>
+<p>\[
+y = \frac{k - 1}{k^2 - 1} = \frac{1}{k+1}
+\]</p>
+<p>Отримаємо:</p>
+<p>\[x = y = \dfrac{1}{k+1} \, \forall \, k \neq \pm 1 \]</p>
+<p>При \( k = 1 \) обидва рівняння набувають вигляду \( x + y = 1 \), отже система зводиться до одного рівняння. Дві прямі збігаються, і кожна точка на прямій \( x + y = 1 \) є розв'язком. Множина розв'язків є нескінченною і може бути параметризована як \( x = t \), \( y = 1 &#8211; t \) для \( t \in \mathbb{R} \).</p>
+<p>При \( k = -1 \) перше рівняння дає \( -x + y = 1 \), а друге \( x &#8211; y = 1 \). Ці два співвідношення є несумісними: їх додавання дає \( 0 = 2 \), що є суперечністю. Прямі паралельні та розрізнені, і система не має розв'язання.</p>
+<p>Отже, два значення \( k = \pm 1 \) є не просто особливими, а структурно протилежними: одне призводить до недовизначеності, а інше — до несумісності.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Підсумовуючи, розв'язання таке:</p>
+<ul>
+<li>Якщо \( k = 1 \): безліч розв'язків, \( x = t \), \( y = 1 - t \) для \( t \in \mathbb{R} \).</li>
+<li>Якщо \( k = -1 \): розв'язків немає.</li>
+<li>Якщо \( k \neq \pm 1 \): єдине розв'язання \( x = y = \dfrac{1}{k+1} \).</li>
+</ul>
+</div>
+</div></div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="equations-with-parameters.html">algebrica.org/equations-with-parameters</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

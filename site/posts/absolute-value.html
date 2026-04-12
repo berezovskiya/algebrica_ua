@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Модуль числа — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Множини та числа</span>
+    </nav>
+    <article>
+        <h1>Модуль числа</h1>
+        <time>2025-02-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-7" style="height:460px;min-height:460px;max-height:460px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:460px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті показана на концептуальній карті, де кожна гілка представляє основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="properties-of-real-numbers.html">Властивості дійсних чисел</a>, <a href="types-of-numbers.html">Типи чисел</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-7");
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"означення"},{"name":"інтерпретація відстані"},{"name":"кусочна форма"},{"name":"позначення"},{"name":"функція модуля"},{"name":"функція знака"},{"name":"відстань між точками"}]},{"name":"операції","children":[{"name":"симетрія"},{"name":"добуток"},{"name":"частка"},{"name":"степеневий зв'язок"},{"name":"порівняння"},{"name":"квадратичний зв'язок"},{"name":"тотожності"}]},{"name":"структури","children":[{"name":"нерівність трикутника"},{"name":"зворотна нерівність трикутника"},{"name":"нерівності"},{"name":"інтерпретація проміжків"},{"name":"парна функція"},{"name":"норма"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 460;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Що таке абсолютне значення</h2>
+<p>Абсолютне значення числа представляє його відстань від нуля на числовій прямій, без урахування його знака. Воно вказує нам, на якій відстані число знаходиться від нуля, незалежно від того, чи є воно додатним, чи від'ємним, і завжди є невивідним значенням. Абсолютне значення записується за допомогою вертикальних рисок ось так, \(|x|\), і визначається наступним чином:</p>
+<p>\[
+|x| =
+\begin{cases}
++x &amp; \text{якщо } x \geq 0 \\[0.5em]
+-x &amp; \text{якщо } x &lt; 0
+\end{cases}
+\quad
+\forall \; x \in \mathbb{R}
+\]</p>
+<p>Наприклад, \(|5| = 5\), і \(|-6| = -(-6) = 6\). Це означає, що вираз \(f(x) := |x|\), при \(x \in \mathbb{R}\), визначає <a href="functions.html">функцію</a> \(f: \mathbb{R} \rightarrow \mathbb{R}\), область значень якої \(f(\mathbb{R}) = [0, +\infty)\).</p>
+<hr>
+<p><a href="absolute-value-function.html">Функція абсолютного значення</a> кожному <a href="types-of-numbers.html">дійсному числу</a> присвоює його відстань від нуля на числовій прямій. Це означає, що від'ємні числа відображаються у свої додатні відповідники, тоді як додатні числа залишаються незмінними, оскільки відстань завжди є невивідною.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="724" height="344" src="../images/absolute-value-5.png" alt="Absolute value." class="wp-image-27521" style="width:362px" title="Absolute value." srcset="../images/absolute-value-5.png 724w, https://algebrica.org/wp-content/uploads/resources/images/absolute-value-5-300x143.png 300w" sizes="(max-width: 724px) 100vw, 724px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps pb-steps-no-margin"><p>Загалом, вираз абсолютного значення \(|x &#8211; a|\) можна інтерпретувати як відстань між точкою \(x\) та точкою \(a\) на числовій прямій. Маємо:</p>
+<p>\[|x-a| = |a-x| \]</p>
+<p>Наприклад, відстань між \(x = 3\) та \(a = 7\) дорівнює \(|3 &#8211; 7| = |-4| = 4\), що дорівнює \(|7 &#8211; 3| = |4| = 4\), що підтверджує симетричність відстані.</p>
+<hr>
+<p>Абсолютне значення числа \( |x| \) також можна представити за допомогою <a href="sign-function.html">функції знака</a> \( \operatorname{sgn}(x) \), як:</p>
+<p>\[
+|x| = x \cdot \operatorname{sgn}(x)
+\]</p>
+<p>Дійсно, функція знака визначається як:</p>
+<p>\[
+\operatorname{sgn}(x) =
+\begin{cases}
+-1 &amp; \text{якщо } x &lt; 0 \\[0.5em]
+0 &amp; \text{якщо } x = 0 \\[0.5em]
+1 &amp; \text{якщо } x &gt; 0
+\end{cases}
+\]</p>
+<p>Множення \( x \) на \( \operatorname{sgn}(x) \) гарантує, що результат завжди буде невивідним, як того вимагає означення абсолютного значення. Зокрема:</p>
+<ul>
+<li>Якщо \( x &gt; 0 \), то \( \operatorname{sgn}(x) = 1 \) і \( x \cdot \operatorname{sgn}(x) = x \).</li>
+<li>Якщо \( x &lt; 0 \), то \( \operatorname{sgn}(x) = -1 \) і \( x \cdot \operatorname{sgn}(x) = -x \).</li>
+<li>Якщо \( x = 0 \), то \( \operatorname{sgn}(x) = 0 \) і \( x \cdot \operatorname{sgn}(x) = 0 \).</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Властивості</h2>
+<p>Абсолютне значення числа дорівнює абсолютному значенню числа протилежного. Це випливає безпосередньо з означення: незалежно від того, починаємо ми з додатного чи від'ємного значення, відстань від початку координат однакова. Наприклад, \(|3| = |-3| = 3\).
+\[
+|x| = |-x| \quad \forall \, x \in \mathbb{R}
+\]</p>
+<hr>
+<p>Абсолютне значення добутку дорівнює добутку абсолютних значень. Ця властивість природно поширюється на будь-яку скінченну кількість множників: \(|x_1 \cdot x_2 \cdots x_n| = |x_1| \cdot |x_2| \cdots |x_n|\). Як особливий випадок, при \(x = y\) отримуємо \(|x^2| = |x|^2\), що узгоджується з тим фактом, що квадрати завжди є невивідними.
+\[
+|x \cdot y| = |x| \cdot |y| \quad \forall \, x, y \in \mathbb{R}
+\]</p>
+<hr>
+<p>Два дійсні числа мають рівні абсолютні значення тоді і тільки тоді, коли вони або рівні, або протилежні. Геометрично \(|x| = |y|\) означає, що \(x\) та \(y\) лежать на однаковій відстані від початку координат на дійсній прямій, що відбувається саме тоді, коли \(x = y\) або \(x = -y\).
+\[
+|x| = |y| \iff x = \pm y \quad \forall \, x, y \in \mathbb{R}
+\]</p>
+<hr>
+<p>Порівняння абсолютних значень еквівалентне порівнянню квадратів. Це справедливо, оскільки і \(|x|\), і \(|y|\) є невивідними, а для невивідних чисел функція піднесення до квадрата є строго зростаючою: \(a \leq b \iff a^2 \leq b^2\) завжди, коли \(a, b \geq 0\). Еквівалентність \(|x|^2 = x^2\) завершує доведення.
+\[
+|x| \leq |y| \iff x^2 \leq y^2 \quad \forall \, x, y \in \mathbb{R}
+\]</p>
+<hr>
+<p>Абсолютне значення частки дорівнює частці абсолютних значень, за умови, що знаменник не дорівнює нулю. Це є прямим наслідком мультиплікативної властивості: записавши \(x/y = x \cdot y^{-1}\) та застосувавши \(|x \cdot y^{-1}| = |x| \cdot |y^{-1}| = |x|/|y|\).
+\[
+\left| \frac{x}{y} \right| = \frac{|x|}{|y|} \quad \forall \, x, y \in \mathbb{R},\ y \ne 0
+\]</p>
+<hr>
+<p>Головний квадратний корінь з \(x^2\) — це абсолютне значення \(x\), а не саме \(x\). Оскільки символ квадратного кореня позначає невивідний корінь, маємо \(\sqrt{x^2} = x\) тільки коли \(x \geq 0\), і \(\sqrt{x^2} = -x\), коли \(x &lt; 0\). Запис \(\sqrt{x^2} = x\) без уточнень є поширеною помилкою, що є правильним лише для невивідних значень.
+\[
+\sqrt{x^2} = |x| \quad \forall \, x \in \mathbb{R}
+\]</p>
+<blockquote>
+<p>Перелічені тут властивості є основою для розв'язання <a href="absolute-value-equations.html">рівнянь з абсолютним значенням</a> та <a href="inequalities-with-absolute-value.html">нерівностей з абсолютним значенням</a>.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps alignCenterMathjax pb-table-to-content alignCenterTable"><h2>Нерівність трикутника</h2>
+<p>Нерівність трикутника представляє собою фундаментальну властивість модуля на дійсній <a href="lines.html">прямій</a>. Для будь-яких чисел \( a, b \in \mathbb{R}\) виконується наступна нерівність:</p>
+<p>\[
+|a + b| \le |a| + |b|
+\]</p>
+<p>Нерівність стверджує, що відстань суми \( a + b \) від нуля не може перевищати суму окремих відстаней \( a \) та \( b \). Рівність досягається, коли обидва числа мають однаковий знак або коли принаймні одне з них дорівнює нулю. Коли їхні знаки відрізняються і обидва числа не є нулями, відбувається часткове скасування, що призводить до строгої нерівності.</p>
+<hr>
+<p>Щоб довести нерівність, розглянемо всі можливі конфігурації знаків \( a \) та \( b \). Маємо:</p>
+<p>\[
+\begin{align}
+(1)\quad &amp; a \ge 0 \quad b \ge 0 \\
+(2)\quad &amp; a \le 0 \quad b \le 0 \\
+(3)\quad &amp; a \ge 0 \quad b \le 0 \\
+(4)\quad &amp; a \le 0 \quad b \ge 0
+\end{align}
+\]</p>
+<p>У випадку \((1)\) маємо \(a+b \geq 0\):
+\[|a + b| = a + b = |a| + |b|\]</p>
+<p>У випадку \((2)\) маємо \(a+b \leq 0\):
+\[|a + b| = -(a + b) = (-a) + (-b) = |a| + |b|\]</p>
+<p>У випадку \((3)\), оскільки \( a \ge 0 \) і \( b \le 0 \), маємо \(|a| = a\) і \(|b| = -b\), і отже \(|a| + |b| = a - b\). Ми повинні показати, що \(|a + b| \le a &#8211; b
+\)</p>
+<ul>
+<li>Коли \( a + b \ge 0 \), маємо \(|a + b| = a + b \le a &#8211; b\), оскільки \( b \le 0 \).</li>
+<li>Коли \( a + b \le 0 \), отримаємо \(|a + b| = -(a + b) = -a &#8211; b \le a - b\), що еквівалентно \( -a \le a \), умова, яка виконується, оскільки \( a \ge 0 \).</li>
+</ul>
+<p>У випадку \((4)\), де \( a \le 0 \) і \( b \ge 0 \), аргумент є симетричним до випадку \((3)\) і призводить до того самого висновку.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Корисним наслідком нерівності трикутника є обернена нерівність трикутника. Для будь-яких \( a, b \in \mathbb{R} \):</p>
+<p>\[
+\bigl||a| &#8211; |b|\bigr| \le |a &#8211; b|
+\]</p>
+<p>Це говорить нам про те, що різниця між відстанями \( a \) та \( b \) від нуля не може перевищати відстань між самими \( a \) та \( b \). Щоб зрозуміти чому, застосуємо нерівність трикутника до пари \( a = (a &#8211; b) + b \):</p>
+<p>\[
+|a| = |(a &#8211; b) + b| \le |a - b| + |b|
+\]</p>
+<p>звідси отримаємо \( |a| - |b| \le |a &#8211; b| \). За симетрією, перестановка \( a \) та \( b \) дає \( |b| &#8211; |a| \le |a - b| \). Оскільки і \( |a| - |b| \), і його від'ємне значення обмежені величиною \( |a - b| \), ми робимо висновок:</p>
+<p>\[
+\bigl||a| &#8211; |b|\bigr| \le |a &#8211; b|
+\]</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section alignCenterMathjax mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Графік \(y= |x|\)</h2>
+<p>Графік функції модуля \( |x| \) симетричний відносно осі y. Ця симетрія означає, що функція є <a href="even-and-odd-functions.html">парною</a>, тобто вона задовольняє тотожність:</p>
+<p>\[|{-x}| = |x| \quad \text{для всіх } x \in \mathbb{R} \]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="628" height="662" src="../images/absolute-value-3-1.png" alt="The graph of the absolute value function is symmetric with respect to the y-axis. This symmetry implies that the function is even." class="wp-image-22085" style="width:314px" srcset="../images/absolute-value-3-1.png 628w, https://algebrica.org/wp-content/uploads/resources/images/absolute-value-3-1-285x300.png 285w" sizes="(max-width: 628px) 100vw, 628px" /></figure>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Використання модуля в рівняннях та нерівностях</h2>
+<p>Важливо розуміти, як модуль використовується в рівняннях та нерівностях. Розв'язання таких задач зазвичай передбачає розгляд різних випадків залежно від того, чи є вираз під знаком модуля додатним чи від'ємним. Цей крок є необхідним для перетворення відносин з модулем у стандартні алгебраїчні форми, які можна розв'язати простіше. Для глибшого розуміння цих застосувань зверніться до наступних записів:</p>
+</div>
+
+
+<ul class="shortcode-post-list-updates"><li><span class="summary-post-views">1.4k</span> <a href="absolute-value-equations.html">Рівняння з модулем</a></li><li><span class="summary-post-views">966</span> <a href="inequalities-with-absolute-value.html">Нерівності з модулем</a></li><li><span class="summary-post-views">1.1k</span> <a href="absolute-value-function.html">Функція модуля</a></li></ul>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Інтерпретація нерівностей з абсолютним значенням</h2>
+<p>Нерівність, що містить абсолютне значення, виражає умову щодо відстані на числовій <a href="lines.html">прямій</a>. Запис \(|A|\) представляє відстань величини \(A\) від нуля, яка завжди є невипадковою. Розглянемо спочатку нерівність:</p>
+<p>\[
+|A| &lt; k
+\]</p>
+<p>Вона говорить нам, що відстань між \(A\) та нулем менша за \(k\). Як зазначалося раніше, геометрично всі числа, що задовольняють цю нерівність, розташовані в open <a href="intervals.html">інтервалі</a> з центром у початку координат, що простягається на \(k\) одиниць ліворуч і на \(k\) одиниць праворуч. Алгебраїчно цю умову можна переписати як:</p>
+<p>\[
+-k &lt; A &lt; k
+\]</p>
+<hr>
+<p>Якщо натомість нерівність має вигляд:</p>
+<p>\[
+|A| &gt; k
+\]</p>
+<p>значення повністю змінюється. У цьому випадку відстань \(A\) від нуля перевищує \(k\), тому допустимими значеннями \(A\) є ті, що лежать поза інтервалом \((−k, k)\). В алгебраїчних термінах нерівність набуває вигляду:</p>
+<p>\[
+A &lt; -k \quad \text{або} \quad A &gt; k
+\]</p>
+<blockquote>
+<p>Перетворення такого роду є особливо корисними при розв'язанні нерівностей, що містять абсолютні значення. Переписуючи умову без символа абсолютного значення, задача перетворюється на одну або кілька стандартних нерівностей, які можна розв'язати за допомогою знайомих алгебраїчних методів, таких як аналіз інтервалів або <a href="sign-analysis-in-inequalities.html">методи інтервалів (знакові таблиці)</a>.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Абсолютне значення як норма</h2>
+<p>Абсолютне значення — це не просто зручний запис для видалення знаків. Це, точніше, норма на \(\mathbb{R}\), функція, яка кожному дійсному числу присвоює невипадкову довжину, так само як норма у <a href="vectors.html">векторному</a> просторі вимірює розмір вектора. Норма у дійсному векторному просторі \( V \) — це функція \( |\cdot| : V \to [0, +\infty) \), що задовольняє три умови для всіх \( x, y \in V \) та всіх \( \lambda \in \mathbb{R} \):</p>
+<p>\[
+|x| = 0 \iff x = 0
+\]
+\[
+|\lambda x| = |\lambda| \cdot |x|
+\]
+\[
+|x + y| \le |x| + |y|
+\]</p>
+<p>Абсолютне значення \( |\cdot| \) задовольняє всі три умови. Перша умова виконується за означенням, оскільки \( |x| = 0 \) тоді і тільки тоді, коли \( x = 0 \). Друга випливає безпосередньо з мультиплікативної властивості \( |x \cdot y| = |x| \cdot |y| \), застосованої при \( y = \lambda \). Третя є саме нерівністю трикутника, доведеною вище.</p>
+<blockquote>
+<p>Це зауваження поміщає абсолютне значення в ширшу математичну структуру і пояснює, чому його властивості, зокрема нерівність трикутника, не є ізольованими фактами, а радше конкретними випадками загальних принципів, що повторюються в аналізі та лінійній алгебрі.</p>
+</blockquote>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке абсолютне значення числа?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Абсолютне значення числа — це його відстань від нуля на числовій прямій, незалежно від того, чи є число додатним чи від'ємним. Воно завжди є невипадковим значенням. Наприклад, абсолютне значення -5 дорівнює 5, і абсолютне значення 5 також дорівнює 5."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="absolute-value.html">algebrica.org/absolute-value</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

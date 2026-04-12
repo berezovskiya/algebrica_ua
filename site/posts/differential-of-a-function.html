@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Диференціал функції — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Похідні</span>
+    </nav>
+    <article>
+        <h1>Диференціал функції</h1>
+        <time>2025-02-21</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><p>Розглянемо \(f(x)\) як <a href="derivatives.html">диференційовну</a> функцію на проміжку \([a,b]\). Оскільки функція є диференційовною, вона також є <a href="continuous-functions.html">неперервною</a> на заданому проміжку. Нехай ми розглянемо дві точки \(x\) та \(x + \Delta x \in [a,b]\).</p>
+<p>Диференціал функції \(f(x)\) відносно точки \(x\) та приросту \(\Delta x\) визначається як добуток похідної функції в точці \(x\) та приросту \(\Delta x\):</p>
+<p>\[
+\mathrm{d}y = f’(x) \cdot \Delta x \tag{1}
+\]</p>
+<p>Диференціал незалежної змінної \(x\) дорівнює приросту самої змінної: \(\mathrm{d}x = \Delta x.\) Підставивши це значення в означення, ми отримаємо:</p>
+<p>\[
+\mathrm{d}y = f’(x) \cdot \mathrm{d}x \tag{2}
+\]</p>
+<p>З формули випливає, що перша похідна функції є відношенням диференціала функції до диференціала незалежної змінної:</p>
+<p>\[
+f’(x) = \frac{\mathrm{d}y}{\mathrm{d}x} \tag{3}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="892" height="742" src="../images/differential.png" alt="" class="wp-image-6167" style="width:446px" srcset="../images/differential.png 892w, https://algebrica.org/wp-content/uploads/resources/images/differential-300x250.png 300w, https://algebrica.org/wp-content/uploads/resources/images/differential-768x639.png 768w" sizes="(max-width: 892px) 100vw, 892px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>З геометричної точки зору розглянемо трикутник ABC. За властивостями тригонометрії та прямокутних трикутників, сторону \(\overline{BC}\) можна записати як:</p>
+<p>\[\overline{BC} = \overline{AB} \cdot \tan(\alpha) \tag{4}\]</p>
+<p>де \(\overline{AB} = \Delta x\) та \(\tan(\alpha) = f’(x)\). Рівність \((4)\) можна, таким чином, переписати як:</p>
+<p>\[
+\begin{align}
+\overline{BC} &amp;= \overline{AB} \cdot \tan(\alpha) \tag{5} \\[0.5em]
+&amp;= \Delta x \cdot f’(x) \\[0.5em]
+&amp;= \mathrm{d}y
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Іншими словами, диференціал \( dy \) — це зміна ординати дотичної до кривої при переході від точки A з абсцисою \( x \) до точки B з абсцисою \( x + \Delta x \).</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="differential-of-a-function.html">algebrica.org/differential-of-a-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

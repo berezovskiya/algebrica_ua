@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тангенс та котангенс — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Тригонометрія</span>
+    </nav>
+    <article>
+        <h1>Тангенс та котангенс</h1>
+        <time>2025-02-07</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-18" style="height:420px;min-height:420px;max-height:420px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:420px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="sine-and-cosine.html">Синус і Косинус</a>, <a href="unit-circle.html">Одиничне коло</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-18");
+            var dataset = {"name":"root","children":[{"name":"definitions","children":[{"name":"tangent"},{"name":"cotangent"},{"name":"ratio of sine and cosine"},{"name":"reciprocal relation"},{"name":"domain restrictions"},{"name":"undefined values"}]},{"name":"geometry","children":[{"name":"unit circle"},{"name":"tangent line"},{"name":"geometric construction"},{"name":"similar triangles"},{"name":"segment interpretation"},{"name":"angle representation"}]},{"name":"properties","children":[{"name":"trigonometric identities"},{"name":"periodicity"},{"name":"asymptotes"},{"name":"parity"},{"name":"function graphs"},{"name":"complex setting"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 420;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Вступ</h2>
+<p>Тангенс і котангенс — це два тригонометричні відношення, що виводяться з <a href="sine-and-cosine.html">синуса та косинуса</a>. Для заданого орієнтованого кута \(\theta\), тангенс визначається як відношення синуса \(\theta\) до його косинуса, а котангенс — як обернене відношення:</p>
+<p>\[
+\tan(\theta) = \frac{\sin(\theta)}{\cos(\theta)} \qquad \cot(\theta) = \frac{\cos(\theta)}{\sin(\theta)}
+\]</p>
+<p>Обидва мають точну геометричну інтерпретацію на <a href="unit-circle.html">одиниковому колі</a>, де вони виглядають як знакові довжини відрізків, пов'язаних із кінцевою стороною кута. На відміну від синуса та косинуса, які визначені для кожного дійсного числа, тангенс і котангенс визначені не всюди: тангенс не визначений там, де косинус дорівнює нулю, а котангенс — там, де синус дорівнює нулю.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section pb-steps mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Тангенс</h2>
+<p>Розглянемо одиникове коло з центром у початку координат \(\text{O} = (0,0)\) і радіусом 1. Нехай \(\theta\) — кут у стандартному положенні, і позначимо \(\text{P}\) точку на колі, де кінцева сторона \(\theta\) перетинає його.</p>
+<ul>
+<li>Точка \(\text{S} = (1, 0)\) — це місце, де коло перетинає вертикальну пряму \(x = 1\). Пряма, що проходить через \(\text{S}\) перпендикулярно до осі \(x\), є дотичною до <a href="unit-circle.html">одиникового кола</a> в точці \(\text{S}\).</li>
+<li>Продовжимо промінь з \(\text{O}\) через \(\text{P}\), поки він не перетне цю вертикальну дотичну в точці \(\text{T}\).</li>
+<li>Знакова довжина відрізка \(\overline{ST}\) визначає тангенс \(\theta\):</li>
+</ul>
+<p>\[
+\tan(\theta) = \overline{ST}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="654" height="542" src="../images/tangent-4.png" alt="" class="wp-image-27892" style="width:327px" srcset="../images/tangent-4.png 654w, https://algebrica.org/wp-content/uploads/resources/images/tangent-4-300x249.png 300w" sizes="(max-width: 654px) 100vw, 654px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>З означення випливає, що тригонометричний тангенс — це числове значення, що представляє відношення, тоді як геометричний тангенс — це пряма. Їх не слід плутати: тригонометричний тангенс кількісно визначає зв'язок між <a href="sine-and-cosine.html">синусом і косинусом</a> кута, тоді як геометричний тангенс — це пряма, що торкається кола рівно в одній точці.</p>
+<hr>
+<p>Трикутники \(\text{OST}\) і \(\text{ORP}\) є подібними за побудовою. Їхня пропорційність дає:</p>
+<p>\[
+\frac{\overline{ST}}{\overline{OS}} = \frac{\overline{RP}}{\overline{OR}}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="822" height="542" src="../images/tangent-2-3.png" alt="" class="wp-image-27911" style="width:411px" srcset="../images/tangent-2-3.png 822w, https://algebrica.org/wp-content/uploads/resources/images/tangent-2-3-300x198.png 300w, https://algebrica.org/wp-content/uploads/resources/images/tangent-2-3-768x506.png 768w" sizes="(max-width: 822px) 100vw, 822px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>За означенням <a href="sine-and-cosine.html">синуса та косинуса</a>, маємо \(\overline{RP} = \sin(\theta)\) та \(\overline{OR} = \cos(\theta)\), отже:</p>
+<p>\[
+\tan(\theta) = \frac{\sin(\theta)}{\cos(\theta)}
+\]</p>
+<p>Оскільки косинус дорівнює нулю при \(\theta = \dfrac{\pi}{2} + k\pi\) для кожного \(k \in \mathbb{Z}\), тангенс не визначений при цих значеннях:</p>
+<p>\[
+\tan(\theta) = \frac{\sin(\theta)}{\cos(\theta)} \qquad \theta \neq \frac{\pi}{2} + k\pi \quad k \in \mathbb{Z}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Поширені значення тангенса</h2>
+<p>У наступній таблиці зібрані значення \( \tan(x) \) для найчастіше зустрічається кутів, виражених у радіанах.</p>
+<p>\[
+\begin{align}
+x &amp;= -\pi/3  &amp;\quad&amp; \tan(-\pi/3) = -\sqrt{3} \\[6pt]
+x &amp;= -\pi/4  &amp;\quad&amp; \tan(-\pi/4) = -1 \\[6pt]
+x &amp;= -\pi/6  &amp;\quad&amp; \tan(-\pi/6) = -1/\sqrt{3} \\[6pt]
+x &amp;= 0       &amp;\quad&amp; \tan(0) = 0 \\[6pt]
+x &amp;= \pi/6   &amp;\quad&amp; \tan(\pi/6) = 1/\sqrt{3} \\[6pt]
+x &amp;= \pi/4   &amp;\quad&amp; \tan(\pi/4) = 1 \\[6pt]
+x &amp;= \pi/3   &amp;\quad&amp; \tan(\pi/3) = \sqrt{3}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list pb-section"><h2>Тригонометричні тотожності для тангенса</h2>
+<ul>
+<li>
+<p>\[  \text{1.} \quad \tan(x+y) = \frac{\tan(x) + \tan(y)}{1 - \tan(x)\tan(y)} \]</p>
+</li>
+<li>
+<p>\[ \text{2.} \quad  \tan(x-y) = \frac{\tan(x) &#8211; \tan(y)}{1 + \tan(x)\tan(y)} \]</p>
+</li>
+<li>
+<p>\[\text{3.} \quad  \tan(2x) = \frac{2\,\tan(x)}{1 - \tan^{2}(x)} \]</p>
+</li>
+<li>
+<p>\[ \text{4.} \quad  \tan\left(\frac{x}{2}\right) = \frac{\sin x}{1 + \cos x} = \frac{1 &#8211; \cos x}{\sin x} \]</p>
+</li>
+<li>
+<p>\[\text{5.} \quad  1 + \tan^{2}(x) = \sec^{2}(x)\]</p>
+</li>
+<li>
+<p>\[\text{6.} \quad  \tan(x)\,\cot(x) = 1\]</p>
+</li>
+</ul>
+<blockquote>
+<p>Ці тотожності описують поведінку тангенса при додаванні, відніманні, подвоєнні, половинному зменшенні кута та обернені зв'язках. Вони доповнюють тотожності для синуса та косинуса і є особливо корисними при спрощенні виразів або перетворенні тригонометричних рівнянь. Для ширшого огляду зверніться до повної збірки <a href="trigonometric-identities.html">тригонометричних тотожностей</a>.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"><div class="wp-block-jetpack-markdown mb-x-30"><h2>Котангенс</h2>
+<p>Оберненим значенням до тангенса називають котангенс, який позначають \(\cot(\theta).\) Геометрично він відповідає знаковій довжині відрізка \(\overline{ZV}\), побудованого на горизонтальній дотичній лінії у верхній точці одиничного кола, аналогічно до побудови тангенса. Його можна виразити як:</p>
+<p>\[
+\cot(\theta) = \frac{1}{\tan(\theta)} = \frac{\cos(\theta)}{\sin(\theta)} = \overline{ZV}
+\]</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="650" height="544" src="../images/cotangent-1.png" alt="" class="wp-image-27913" style="width:325px" srcset="../images/cotangent-1.png 650w, https://algebrica.org/wp-content/uploads/resources/images/cotangent-1-300x251.png 300w" sizes="(max-width: 650px) 100vw, 650px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Оскільки синус зникає при \(\theta = k\pi\) для кожного \(k \in \mathbb{Z}\), котангенс не визначений при цих значеннях:</p>
+<p>\[
+\cot(\theta) = \frac{\cos(\theta)}{\sin(\theta)} \qquad \theta \neq k\pi \quad k \in \mathbb{Z}
+\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Основні значення котангенса</h2>
+<p>У наступній таблиці зібрано значення \( \cot(x) \) для найчастіше зустрічається кутів, виражених у радіанах.</p>
+<p>\[
+\begin{align}
+x &amp;= -\pi/3  &amp;\quad&amp; \cot(-\pi/3) = -1/\sqrt{3} \\[6pt]
+x &amp;= -\pi/4  &amp;\quad&amp; \cot(-\pi/4) = -1 \\[6pt]
+x &amp;= -\pi/6  &amp;\quad&amp; \cot(-\pi/6) = -\sqrt{3} \\[6pt]
+x &amp;= \pi/6   &amp;\quad&amp; \cot(\pi/6) = \sqrt{3} \\[6pt]
+x &amp;= \pi/4   &amp;\quad&amp; \cot(\pi/4) = 1 \\[6pt]
+x &amp;= \pi/3   &amp;\quad&amp; \cot(\pi/3) = 1/\sqrt{3}
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list pb-section"><h2>Тригонометричні тотожності для котангенса</h2>
+<ul>
+<li>\[\text{1.} \quad  \cot(x+y) = \frac{\cot(x)\cot(y) &#8211; 1}{\cot(x) + \cot(y)}\]</li>
+<li>\[\text{2.} \quad  \cot(x-y) = \frac{\cot(x)\cot(y) + 1}{\cot(y) - \cot(x)}\]</li>
+<li>\[\text{3.} \quad  \cot(2x) = \frac{\cot^{2}(x) - 1}{2\,\cot(x)}  \]</li>
+<li>\[\text{4.} \quad \cot\left(\frac{x}{2}\right) = \frac{1 + \cos x}{\sin x}\]</li>
+<li>\[\text{5.} \quad 1 + \cot^{2}(x) = \csc^{2}(x)\]</li>
+</ul>
+<blockquote>
+<p>Ці тотожності описують поведінку котангенса при додаванні, відніманні, подвоєнні, половинні кута, а також взаємозв'язки через обернені значення.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-group pb-section pb-steps mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Функції тангенса та котангенса</h2>
+<p> <a href="tangent-function.html">Функція тангенса</a> \(f(x) = \tan(x)\) кожному куту \(x\), вираженому в радіанах, присвоює відповідне значення тангенса. Її графіком є періодична крива з періодом \(\pi\), що перетинає горизонтальну вісь у кожній цілій кратній \(\pi\) та має вертикальні <a href="asymptotes.html">асимптоти</a> при \(x = \pi/2 + k\pi\) для \(k \in \mathbb{Z}\), де косинус зникає. <a href="determining-the-domain-of-a-function.html">Область визначення</a> \(\tan(x)\) складається з усіх <a href="types-of-numbers.html">дійсних чисел</a>, крім цих значень, а її область значень — вся дійсна пряма.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="812" height="616" src="../images/tangent-function-2.png" alt="Tangent function." class="wp-image-27918" style="width:406px" title="Tangent function." srcset="../images/tangent-function-2.png 812w, https://algebrica.org/wp-content/uploads/resources/images/tangent-function-2-300x228.png 300w, https://algebrica.org/wp-content/uploads/resources/images/tangent-function-2-768x583.png 768w" sizes="(max-width: 812px) 100vw, 812px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><ul>
+<li>Область визначення: \( \left\{ x \in \mathbb{R} : x \neq \frac{\pi}{2} + k\pi \text{ для всіх } k \in \mathbb{Z} \right\} \)</li>
+<li>Область значень: \( y \in \mathbb{R} \)</li>
+<li>Періодичність: періодична за \( x \) з періодом \( \pi \)</li>
+<li>Парність: <a href="even-and-odd-functions.html">непарна</a>, \( \tan(-x) = -\tan(x) \)</li>
+</ul>
+<hr>
+<p> <a href="cotangent-function.html">Функція котангенса</a> \( f(x) = \cot(x) \) кожному куту \( x \), вираженому в радіанах, присвоює відповідне значення котангенса. Її графіком є періодична крива з періодом \( \pi \), що має вертикальні асимптоти при \( x = k\pi \) для \( k \in \mathbb{Z} \), де синус зникає. Область визначення виключає ці точки, а область значень — вся дійсна пряма.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="406" height="309" src="../images/cotangent-function-1.png" alt="Cotangent function." class="wp-image-27923" style="width:406px" title="Cotangent function." srcset="../images/cotangent-function-1.png 406w, https://algebrica.org/wp-content/uploads/resources/images/cotangent-function-1-300x228.png 300w" sizes="(max-width: 406px) 100vw, 406px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><ul>
+<li>Область визначення: \( \left\{ x \in \mathbb{R} : x \neq k\pi \text{ для всіх } k \in \mathbb{Z} \right\} \)</li>
+<li>Область значень: \( y \in \mathbb{R} \)</li>
+<li>Періодичність: періодична за \( x \) з періодом \( \pi \)</li>
+<li>Парність: <a href="even-and-odd-functions.html">непарна</a>, \( \cot(-x) = -\cot(x) \)</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Тангенс і котангенс у комплексній області</h2>
+<p>У теорії <a href="complex-numbers-introduction.html">комплексних чисел</a> тангенс і котангенс природно виникають із <a href="complex-numbers-trigonometric-form.html">тригонометричної форми</a> комплексного числа. Будь-яке комплексне число \(z = a + bi\) можна записати як:</p>
+<p>\[
+z = r(\cos\theta + i\sin\theta)
+\]</p>
+<p>де \(r = \sqrt{a^2+b^2}\) — модуль, а \(\theta\) — аргумент. У цьому представленні тангенс аргументу задовольняє рівності:</p>
+<p>\[
+\tan(\theta) = \frac{\sin(\theta)}{\cos(\theta)} = \frac{b/r}{a/r} = \frac{b}{a}
+\]</p>
+<p>отже, тангенс аргументу комплексного числа збігається з відношенням його уявної частини до дійсної частини. Це є основою формули \(\theta = \arctan(b/a)\), що використовується для відновлення аргументу з декартових компонент \(z\).</p>
+<p>Глибший зв'язок виявляється через <a href="complex-numbers-exponential-form.html">показникову форму</a>. За формулою Ейлера:</p>
+<p>\[
+e^{i\theta} = \cos\theta + i\sin\theta
+\]</p>
+<p>можна виразити тангенс повністю через комплексні показникові функції:</p>
+<p>\[
+\tan(\theta) = \frac{\sin\theta}{\cos\theta} = \frac{e^{i\theta} &#8211; e^{-i\theta}}{i(e^{i\theta} + e^{-i\theta})}
+\]</p>
+<p>Цей вираз відображає структуру <a href="hyperbolic-sine-and-cosine.html">гіперболічного тангенса</a>, який визначається як \(\tanh(x) = (e^x &#8211; e^{-x})/(e^x + e^{-x})\), і показує, що вони пов'язані заміною \(x \to i\theta\):</p>
+<p>\[
+\tan(\theta) = -i\tanh(i\theta)
+\]</p>
+<p>Ця тотожність відображає глибшу єдність між круговою та гіперболічною тригонометрією, обидві з яких виникають з одного показникового базису над комплексними числами.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Яке означення функції тангенса?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Тангенс кута (tan θ або tg θ) у прямокутному трикутнику визначається як відношення довжини сторони, протилежної до кута, до довжини сторони, прилеглої до кута. Його також можна виразити як відношення синуса кута до косинуса кута: tan θ = sin θ / cos θ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яке означення функції котангенса?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Котангенс кута (cot θ або cotg θ) є оберненим до тангенса і визначається як відношення довжини сторони, прилеглої до кута, до довжини сторони, протилежної до кута, або як відношення косинуса кута до синуса кута: cot θ = cos θ / sin θ = 1 / tan θ."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="tangent-and-cotangent.html">algebrica.org/tangent-and-cotangent</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

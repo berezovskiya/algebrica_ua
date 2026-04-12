@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Похідна складених степеневих функцій — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Похідні</span>
+    </nav>
+    <article>
+        <h1>Похідна складених степеневих функцій</h1>
+        <time>2025-02-21</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown mb-x-30 pb-steps pb-section alignCenterMathjax"><h2>Складені степеневі функції та похідні</h2>
+<p>Раніше ми розглянули, як обчислити <a href="derivatives.html">похідну</a> функції в точці, використовуючи означення <a href="difference-quotient.html">різницевої частки</a>. Ми також вивчили, як диференціювати прості функції та <a href="the-derivative-of-a-composite-function.html">складені функції</a>. Тепер розглянемо, як диференціювати степеневі функції вигляду:</p>
+<p>\[ D[f(x)]^{g(x)} \]</p>
+<p>Для обчислення похідної такої функції використовується комбінація <a href="logarithms.html">логарифмічного</a> правила та похідної <a href="exponential-function.html">показникових функцій</a>. Загальна формула похідної \(f(x)^g(x)\) за умови, що \(f\) та \(g\) є диференційовними, має такий вигляд:</p>
+<p>\[
+D[f(x)]^{g(x)} = f(x)^{g(x)} \left[ g’(x) \ln f(x) + g(x) \frac{f’(x)}{f(x)} \right ]
+\]</p>
+<p>Де:</p>
+<ul>
+<li>\( f(x)^{g(x)} \) — початкова функція.</li>
+<li>\( f’(x) \) — похідна \( f(x) \).</li>
+<li>\( \ln f(x) \) — натуральний логарифм \( f(x) \).</li>
+<li>\( g’(x) \) — похідна \( g(x) \).</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline"><h2>Приклад</h2>
+<p>Розглянемо як приклад функцію \( y = x^{2x} \) та обчислимо її похідну.</p>
+<hr>
+<p>Спочатку перепишемо функцію, застосувавши логарифм до обох частин:</p>
+<p>\[\ln y = \ln(x^{2x})\]</p>
+<p>За властивостями логарифмів \(\log_a(b^c) = c \cdot \log_a(b)\)</p>
+<p>Рівняння можна переписати як:</p>
+<p>\[\ln y = 2x \cdot \ln(x)\]</p>
+<hr>
+<p>Оскільки \(\ln y\) є складеною функцією, її похідна дорівнює</p>
+<p>\[\frac{1}{y} \cdot y’\]</p>
+<p>Обчислимо похідну для виразу в правій частині рівняння \(2x \cdot \ln(x)\):</p>
+<p>\[2 \cdot \ln(x) + 2x \cdot \frac{1}{x}\]</p>
+<p>Отримаємо:</p>
+<p>\[ \frac{1}{y} \cdot y’ = 2 \cdot \ln(x) + 2x \cdot \frac{1}{x}\]</p>
+<hr>
+<p>Рівняння можна переписати як:</p>
+<p>\[ y’ = y \cdot (2 \cdot \ln(x) + 2)\]</p>
+<p>Оскільки \(y = x^{2x}\), маємо:</p>
+<p>\[ y’ = x^{2x} \cdot (2 \cdot \ln(x) + 2)\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution mb-x-30"><p>Отже, похідна \( y = x^{2x} \) дорівнює:</p>
+<p>\[ x^{2x} \cdot (2 \cdot \ln(x) + 2)\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown post-type-test-list mb-x-30 pb-section"><h2>Перевірте себе</h2>
+<ul>
+<li>
+<p>\[\text{1. } \quad y = x^{2\cos(x)}\] розв'язання</p>
+</li>
+<li>
+<p>\[\text{2. } \quad y = x^{\ln(x)}\] розв'язання</p>
+</li>
+</ul>
+<h5>Запропоновані функції призначені для того, щоб допомогти вам закріпити розуміння похідних складених функцій. Спробуйте розв'язати їх самостійно, перш ніж перевіряти надані розв'язання.</h5>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Як обчислити похідну складених степеневих функцій?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Для обчислення похідної складених степеневих функцій вигляду D[f(x)^{g(x)}, ви використовуєте комбінацію логарифмічного правила та похідної показникових функцій."
+      }
+    }
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="derivative-of-composite-power-functions.html">algebrica.org/derivative-of-composite-power-functions</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

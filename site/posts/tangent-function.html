@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функція тангенса — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Функція тангенса</h1>
+        <time>2025-02-25</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Тангенс-функція</h2>
+<p>Функція тангенса \(f(x) = \tan(x)\) кожному куту \(x\), вираженому в радіанах, присвоює відповідне значення <a href="tangent-and-cotangent.html">тангенса</a>. Її графік є періолічною кривою з періодом \(\pi\) і має вертикальні <a href="asymptotes.html">асимптоти</a> там, де косинус \(x\) дорівнює нулю, а саме при \(x = \pi/2 + k\pi\) для \(k \in \mathbb{Z}\). Функція \(f(x) = \tan(x)\) має <a href="determining-the-domain-of-a-function.html">область визначення</a>, що складається з усіх дійсних чисел, за винятком цих точок, а її область значень — усі дійсні числа.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="411" height="290" src="../images/tangent-function.png" alt="" class="wp-image-21148" style="width:411px" srcset="../images/tangent-function.png 411w, https://algebrica.org/wp-content/uploads/resources/images/tangent-function-300x212.png 300w" sizes="(max-width: 411px) 100vw, 411px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Корисний спосіб читати цей графік — пам'ятати, що тангенс визначається як<br>
+\[
+\tan(x) = \frac{\sin(x)}{\cos(x)}
+\]
+Розгляд його як відношення допомагає зрозуміти форму кривої: тангенс змінюється плавно там, де відповідні <a href="sine-and-cosine.html">синус і косинус</a> змінюються плавно, тоді як він стрімко зростає або спадає, коли косинус наближається до нуля, що формує загальний вигляд графіка.</p>
+<h6>Графік також показує, що поблизу початку координат тангенс-функція поводиться майже як пряма: для малих значень \(x\), \( \tan(x) \) зростає плавно, перш ніж його зростання стає більш вираженим при наближенні до точок розриву.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 pb-steps"><h2>Властивості</h2>
+<ul>
+<li><a href="determining-the-domain-of-a-function.html">Область визначення</a>: \( { x \in \mathbb{R} : x \neq \frac{\pi}{2} + k\pi \text{ для всіх } k \in \mathbb{Z} } \)</li>
+<li>Область значень: \( y \in \mathbb{R} \)</li>
+<li>Періодичність: періодична за \( x \) з періодом \( \pi \)</li>
+<li>Парність: <a href="even-and-odd-functions.html">непарна</a>, \( \tan(-x) = -\tan(x) \)</li>
+<li>Корені: \(x = \pi n, \qquad n \in \mathbb{Z}\)</li>
+<li><a href="integers.html">Цілий</a> корінь: \(x = 0\)</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group pb-section"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Границі, похідні та інтеграли тангенс-функції</h2>
+<p>Тангенс \( x \) визначається як відношення між <a href="sine-and-cosine.html">синусом і косинусом</a> кута \( x \).
+\[ \tan(x) = \frac{\sin(x)}{\cos(x)} \]</p>
+<hr>
+<p>Корисною границею, яку варто пам'ятати, є:
+\[ \lim_{x \to 0} \frac{\tan(x)}{x} = 1\]
+що показує, що поблизу початку координат тангенс поводиться майже як функція \(x\). Поведінка тангенса біля його першої вертикальної асимптоти також добре описується границями. Коли \(x\) наближається до \(\pi/2\) зліва, функція зростає без обмеження:
+\[
+\lim_{x \to \frac{\pi}{2}^-} \tan(x) = +\infty
+\]
+При наближенні справа значення, натомість, розбігаються в мінус нескінченність:
+\[
+\lim_{x \to \frac{\pi}{2}^+} \tan(x) = -\infty
+\]</p>
+<hr>
+<p>Функція є <a href="continuous-functions.html">неперервною</a> та диференційовною на своїй області визначення.
+<a href="derivatives.html">Похідна</a> дорівнює:
+\[ \frac{d}{dx} \tan(x) = \sec^2(x) \]</p>
+<hr>
+<p><a href="indefinite-integrals.html">Невизначений інтеграл</a> дорівнює:
+\[ \int \tan(x) dx = -\ln |\cos(x)| + c \]</p>
+<h5>Вичерпний огляд тригонометричних інтегралів разом із найкориснішими методами перетворення та заміни для обробки складніших випадків доступний на сторінці про <a href="integral-of-trigonometric-functions.html">інтеграли тригонометричних функцій</a>.</h5>
+<hr>
+<p>Альтернативна форма функції \( \tan(x) \) з використанням уявних чисел задається формулою Ейлера. Тут \( e^{ix} \) — це <a href="exponential-function.html">показникова функція</a> з основою \( e \), а \( i \) — <a href="complex-numbers-introduction.html">уявна</a> одиниця:
+\[
+\tan(x) = \frac{e^{ix} &#8211; e^{-ix}}{i \left(e^{ix} + e^{-ix}\right)}
+\]</p>
+</div>
+</div></div>
+
+
+
+<p></p></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="tangent-function.html">algebrica.org/tangent-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

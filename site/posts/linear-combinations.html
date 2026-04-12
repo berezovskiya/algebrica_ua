@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лінійні комбінації — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Вектори та матриці</span>
+    </nav>
+    <article>
+        <h1>Лінійні комбінації</h1>
+        <time>2025-02-17</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-3" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-3"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Просунутий рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">1</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="matrices.html">Матриці</a>, <a href="vector-spaces.html">Векторні простори</a>, <a href="vectors.html">Вектори</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-3");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"definition"},{"name":"scalars and vectors"},{"name":"notation"},{"name":"coordinate form"},{"name":"geometric meaning"},{"name":"vector spaces"},{"name":"other concepts"}]},{"name":"operations","children":[{"name":"scalar multiplication"},{"name":"vector addition"},{"name":"linear combination"},{"name":"matrix-vector product"},{"name":"system Ax=b"},{"name":"solvability"},{"name":"other operations"}]},{"name":"structures","children":[{"name":"span"},{"name":"subspace"},{"name":"linear independence"},{"name":"dimension"},{"name":"solution set"},{"name":"uniqueness"},{"name":"other structures"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Означення</h2>
+<p>У лінійній алгебрі лінійна комбінація — це фундаментальна операція, що пов'язує <a href="vectors.html">вектори</a> один з одним у межах заданої сукупності. Кожен вектор множиться на дійсний коефіцієнт, а потім ці масштабовані вектори додаються для отримання нового вектора. Попри простоту цієї конструкції, вона породжує основні поняття предмета: лінійну оберненість, лінійну незалежність, <a href="rank-of-a-matrix.html">ранг</a> та розмірність. Вона також дає початок геометричним об'єктам, що структурують \( \mathbb{R}^n \), включаючи <a href="lines.html">прямі</a>, площини та багатовимірні підпростори. Нехай \( V = \mathbb{R}^n \) і розглянемо скінченну сукупність векторів:</p>
+<p>\[
+v_1, v_2, \dots, v_k \in \mathbb{R}^n
+\]</p>
+<p>Лінійною комбінацією цих векторів є будь-який вектор вигляду:</p>
+<p>\[
+c_1 v_1 + c_2 v_2 + \dots + c_k v_k
+\]</p>
+<p>де \(c_1, c_2, \dots, c_k \in \mathbb{R} \) — дійсні скаляри. Кожен вектор \( v_i \) множиться на скалярний коефіцієнт \( c_i \), і отримані масштабовані вектори додаються. Скаляри визначають, наскільки сильно кожен вектор впливає на кінцевий результат. Хоча це означення є елементарним, воно відображає фундаментальний механізм взаємодії векторів у \( \mathbb{R}^n \).</p>
+<hr>
+<p>Лінійну комбінацію не слід розглядати лише як символьний алгебраїчний вираз. Окрім формальних маніпуляцій із символами, вона має чітке та конкретне геометричне значення. Розглянемо два вектори \( v, w \in \mathbb{R}^n \). Формуючи вирази типу:</p>
+<p>\[
+a v + b w
+\]</p>
+<p>з \( a, b \in \mathbb{R} \), ми дозволяємо кожному вектору незалежно масштабуватися, а потім комбінуватися шляхом додавання векторів. Зміна коефіцієнтів \( a \) та \( b \) створює цілу сукупність векторів, усі з яких отримані з тих самих двох базових елементів.</p>
+<ul>
+<li>Якщо вектори \( v \) та \( w \) не є скалярними кратними один одного, ці комбінації утворюють площину, що проходить через початок координат. До будь-якої точки цієї площини можна дійти за допомогою відповідного вибору коефіцієнтів.</li>
+<li>Якщо ж два вектори колінеарні, всі лінійні комбінації зводяться до однієї прямої, що проходить через початок координат, оскільки один вектор вже може бути виражений через інший.</li>
+</ul>
+<blockquote>
+<p>Таким чином, лінійні комбінації природним чином породжують геометричні об'єкти, такі як прямі та площини, і загалом підмножини \( \mathbb{R}^n \), що мають лінійну структуру. Розмірність отриманого об'єкта повністю залежить від того, як вектори пов'язані між собою і чи забезпечують вони дійсно незалежні напрямки.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula pb-radius mb-x-30"><p>Вектор \( b \in \mathbb{R}^n \) називається лінійною комбінацією векторів \( v_1, v_2, \dots, v_k \in \mathbb{R}^n \) тоді і тільки тоді, коли існують скаляри \( c_1, c_2, \dots, c_k \in \mathbb{R} \), такі що:</p>
+<p>\[
+b = c_1 v_1 + c_2 v_2 + \dots + c_k v_k
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Координатний виклад</h2>
+<p>Щоб більш конкретно зрозуміти, як працюють лінійні комбінації, корисно виразити все в координатах. Оскільки вектори в \( \mathbb{R}^n \) представлені як впорядковані \( n \)-ки дійсних чисел, будь-яку операцію над векторами можна описати покомпонентно. Припустимо, що кожен вектор \( v_i \in \mathbb{R}^n \) має компоненти:</p>
+<p>\[
+v_i =
+\begin{pmatrix}
+v_{i1} \\
+v_{i2} \\
+\vdots \\
+v_{in}
+\end{pmatrix}
+\]</p>
+<p>Коли ми формуємо лінійну комбінацію цих векторів, операція розгортається покоординатно. Дійсно, ми отримаємо:</p>
+<p>\[
+c_1 v_1 + \dots + c_k v_k
+=
+\begin{pmatrix}
+c_1 v_{11} + \dots + c_k v_{k1} \\
+c_1 v_{12} + \dots + c_k v_{k2} \\
+\vdots \\
+c_1 v_{1n} + \dots + c_k v_{kn}
+\end{pmatrix}
+\]</p>
+<p>Кожен елемент отриманого вектора, отже, є лінійною комбінацією <a href="types-of-numbers.html">дійсних чисел</a>, взятих із відповідних елементів вихідних векторів. Іншими словами, скалярне множення та додавання векторів виконуються незалежно в кожній координаті. Цей явний опис підтверджує, що поняття лінійної комбінації повністю сумісне з координатною структурою \( \mathbb{R}^n \). Глобальна операція комбінування векторів зводиться до звичних арифметичних дій, що виконуються поелементно.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Матрично-векторна інтерпретація</h2>
+<p>Зв'язок між лінійними комбінаціями та <a href="matrices.html">матрицями</a> стає особливо зрозумілим, коли ми детальніше розглянемо множення матриці на вектор. Розглянемо матрицю, стовпцями якої є вектори \( v_1, \dots, v_k \):</p>
+<p>\[
+A =
+\begin{pmatrix}
+| &amp; | &amp; &amp; | \\
+v_1 &amp; v_2 &amp; \dots &amp; v_k \\
+| &amp; | &amp; &amp; |
+\end{pmatrix}
+\]</p>
+<p>Тепер візьмемо вектор скалярів:</p>
+<p>\[
+c =
+\begin{pmatrix}
+c_1 \\
+c_2 \\
+\vdots \\
+c_k
+\end{pmatrix}
+\]</p>
+<p>Коли ми обчислюємо добуток \( A c \), відбувається напрочуд проста річ: кожен стовпець \( A \) множиться на відповідний елемент \( c \), і отримані вектори додаються один до одного. Записуючи це явно, ми отримаємо:</p>
+<p>\[
+A c = c_1 v_1 + c_2 v_2 + \dots + c_k v_k
+\]</p>
+<p>Іншими словами, множення матриці на вектор — це не що інше, як формування лінійної комбінації її стовпців. Елементи вектора \( c \) відіграють роль коефіцієнтів, які визначають, наскільки сильно кожен стовпець впливає на результат.</p>
+<blockquote>
+<p>З цієї перспективи множення матриць — це не просто обчислювальне правило, що передбачає роботу з рядками та стовпцями. Це структурований спосіб збирання векторів із простіших базових елементів, і кожен добуток матриці на вектор може бути розумілим як керована лінійна комбінація стовпців матриці.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Лінійні системи та розв'язність</h2>
+<p>Нехай тепер ми повернемося до одного з центральних об'єктів лінійної алгебри: <a href="systems-of-linear-equations.html">лінійної системи</a>, записаної в матричній формі:</p>
+<p>\[
+A x = b
+\]</p>
+<p>Це рівняння представляє собою компактний спосіб запису кількох лінійних <a href="equations.html">рівнянь</a> одночасно. Однак, як тільки ми інтерпретуємо множення матриці на вектор як лінійну комбінацію стовпців, значення системи стає набагато зрозумілішим. Припустимо, що стовпцями \( A \) є вектори \( v_1, \dots, v_k \). Розгортаючи добуток \( A x \) відповідно до означення множення матриць, ми отримаємо:</p>
+<p>\[
+x_1 v_1 + x_2 v_2 + \dots + x_k v_k = b
+\]</p>
+<p>У такому вигляді розв'язання системи означає не насамперед маніпуляції з рівняннями. Це означає пошук скалярів \( x_1, \dots, x_k \), які комбінують стовпці \( A \) так, щоб отримати вектор \( b \). Таким чином, проблема розв'язності набуває геометричної інтерпретації. Питання більше не є суто алгебраїчним. Воно стає таким: чи можна зібрати вектор \( b \) зі стовпців \( A \)? Іншими словами, чи належить \( b \) до множини всіх лінійних комбінацій, породжених цими векторами?</p>
+<ul>
+<li>Якщо такі скаляри існують, система має принаймні одне розв'язання.</li>
+<li>Якщо така комбінація неможлива, система є несумісною.</li>
+</ul>
+<p>Таким чином, структура множини розв'язків повністю визначається тим, як вектор \( b \) пов'язаний із простором, породженим стовпцями \( A \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Лінійне обертання (Span)</h2>
+<p>Після того як поняття лінійної комбінації було впроваджено, виникає природне запитання: якщо задано скінченну сукупність векторів, якою є сукупність усіх векторів, що можуть бути отримані шляхом їхнього масштабування та додавання всіма можливими способами? Множина всіх лінійних комбінацій \( v_1, \dots, v_k \) називається їхнім лінійним обертанням (span):</p>
+<p>\[
+\operatorname{span}(v_1, \dots, v_k)
+=
+{ \sum_{i=1}^k c_i v_i \mid c_i \in \mathbb{R} }
+\]</p>
+<p>Іншими словами, лінійне обертання складається з кожного вектора, який можна побудувати з \( v_1, \dots, v_k \), використовуючи операції множення на скаляр і додавання векторів. Воно представляє всю область \( \mathbb{R}^n \), яка стає доступною, якщо ці вектори взяти як базові елементи.</p>
+<hr>
+<p>За визначенням, лінійне обертання є замкненим відносно додавання та множення на скаляр. Якщо два вектори належать до лінійного обертання, то будь-яка їхня лінійна комбінація також належить до нього. З цієї причини лінійне обертання є не просто підмножиною \( \mathbb{R}^n \), а підпростором \( \mathbb{R}^n \). З геометричної точки зору маємо:</p>
+<ul>
+<li>Один ненульовий вектор породжує пряму, що проходить через початок координат.</li>
+<li>Два вектори, що не є колінеарними, породжують площину, що проходить через початок координат.</li>
+<li>Три вектори, за умови, що вони задають незалежні напрямки, можуть породжувати тривимірний підпростір.</li>
+</ul>
+<hr>
+<p>Наведений вище геометричний опис свідчить про те, що лінійне обертання поводиться як плоска область, що проходить через початок координат. Цю інтуїцію можна уточнити, перевіривши, що лінійне обертання задовольняє визначальним властивостям підпростору \( \mathbb{R}^n \). По-перше, нульовий вектор належить до лінійного обертання. Дійсно, обравши всі коефіцієнти рівними нулю, ми отримаємо:</p>
+<p>\[
+0 = 0 v_1 + 0 v_2 + \dots + 0 v_k
+\]</p>
+<p>Звідси:</p>
+<p>\[
+0 \in \operatorname{span}(v_1, \dots, v_k)
+\]</p>
+<p>По-друге, лінійне обертання є замкненим відносно лінійних комбінацій. Нехай:</p>
+<p>\[
+u = \sum_{i=1}^{k} a_i v_i
+\quad
+w = \sum_{i=1}^{k} b_i v_i
+\]</p>
+<p>будуть два довільні вектори в \( \operatorname{span}(v_1, \dots, v_k) \), і нехай \( \alpha, \beta \in \mathbb{R} \). Тоді:</p>
+<p>\[
+\begin{align}
+\alpha u + \beta w &amp;= \alpha \sum_{i=1}^{k} a_i v_i + \beta \sum_{i=1}^{k} b_i v_i \\[6pt]
+&amp;= \sum_{i=1}^{k} (\alpha a_i+\beta b_i) v_i
+\end{align}
+\]</p>
+<p>Оскільки коефіцієнти \( \alpha a_i + \beta b_i \) є дійсними числами, отриманий вектор знову є лінійною комбінацією \( v_1, \dots, v_k \). Отже:</p>
+<p>\[
+\alpha u + \beta w \in \operatorname{span}(v_1, \dots, v_k)
+\]</p>
+<p>Ці властивості показують, що лінійне обертання є не просто підмножиною \( \mathbb{R}^n \), а підпростором: воно містить нульовий вектор і є замкненим відносно додавання та множення на скаляр.</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained"><div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад</h2>
+<p>Розглянемо тепер, як концепція лінійного обертання (span) працює на практиці. Коли ми кажемо, що вектор належить до обертання інших векторів, ми стверджуємо, що його можна представити як їхню лінійну комбінацію. Конкретно це означає, що повинні існувати відповідні скалярні коефіцієнти, які при застосуванні до заданих векторів та їхньому додаванні відтворюють цільовий вектор. Таким чином, перевірка того, чи лежить вектор в обертанні, зводиться до розв'язання <a href="systems-of-linear-equations.html">лінійної системи</a>. Ми розкриємо цю ідею за допомогою прямого обчислення.</p>
+<p>Розглянемо вектори в \( \mathbb{R}^3 \):</p>
+<p>\[
+v_1 =
+\begin{pmatrix}
+1 \<br>
+2 \<br>
+1
+\end{pmatrix}
+\quad
+v_2 =
+\begin{pmatrix}
+0 \<br>
+1 \<br>
+1
+\end{pmatrix}
+\]</p>
+<p>Питання полягає в тому, чи належить вектор:</p>
+<p>\[
+b =
+\begin{pmatrix}
+3 \\
+7 \\
+5
+\end{pmatrix}
+\]</p>
+<p>до \( \operatorname{span}(v_1, v_2) \). Щоб відповісти на це питання, ми повинні визначити, чи існують скаляри \( c_1, c_2 \in \mathbb{R} \), такі що:</p>
+<p>\[
+c_1 v_1 + c_2 v_2 = b
+\]</p>
+<p>Записуючи лінійну комбінацію явно, отримаємо:</p>
+<p>\[
+c_1
+\begin{pmatrix}
+1 \\
+2 \\
+1
+\end{pmatrix}
++
+c_2
+\begin{pmatrix}
+0 \\
+1 \\
+1
+\end{pmatrix}
+=
+\begin{pmatrix}
+3 \\
+7 \\
+5
+\end{pmatrix}
+\]</p>
+<p>Прирівнювання компонентів дає систему:</p>
+<p>\[
+\begin{cases}
+c_1 = 3 \\
+2c_1 + c_2 = 7 \\
+c_1 + c_2 = 5
+\end{cases}
+\]</p>
+<p>З першого рівняння отримаємо \( c_1 = 3 \). Підставляючи в друге рівняння, отримуємо:</p>
+<p>\[
+2(3) + c_2 = 7 \quad \rightarrow \quad c_2 = 1
+\]</p>
+<p>Однак, перевіривши третє рівняння:</p>
+<p>\[
+3 + 1 = 4 \neq 5
+\]</p>
+<p>Система є несумісною. Отже, жодні скаляри \( c_1, c_2 \) не дають вектора \( b \), і ми робимо висновок, що \( b \notin \operatorname{span}(v_1, v_2)\).</p>
+<hr>
+<p>Тепер розглянемо натомість:</p>
+<p>\[
+b =
+\begin{pmatrix}
+3 \\
+7 \\
+4
+\end{pmatrix}
+\]</p>
+<p>Повторюючи те саме обчислення, отримаємо:</p>
+<p>\[
+\begin{cases}
+c_1 = 3 \\
+2c_1 + c_2 = 7 \\
+c_1 + c_2 = 4
+\end{cases}
+\]</p>
+<p>Підстановка \( c_1 = 3 \) у друге рівняння дає \( c_2 = 1 \), і третє рівняння стає:</p>
+<p>\[
+3 + 1 = 4
+\]</p>
+<p>що є правильним. Звідси:</p>
+<p>\[
+b =
+3 v_1 + 1 v_2
+\]</p>
+<p>і, таким чином, \(b \in \operatorname{span}(v_1, v_2)\)</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Цей простий приклад конкретно показує, що належність до обертання є не абстрактною властивістю, а умовою розв'язності: вектор лежить в обертанні заданих векторів тоді і тільки тоді, коли відповідна лінійна система має розв'язання.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Єдиність представлення</h2>
+<p>Припустимо, що вектор \( b \) може бути записаний як лінійна комбінація векторів \( v_1, \dots, v_k \), а саме:</p>
+<p>\[
+b = c_1 v_1 + \dots + c_k v_k
+\]</p>
+<p>На цьому етапі виникає природне питання. Якщо таке представлення знайдено, чи є коефіцієнти \( c_1, \dots, c_k \) однозначно визначеними? Чи могли б існувати різні вибори скалярів, що дають той самий вектор \( b \)? Щоб дослідити це, уявімо, що дві різні сім'ї скалярів призводять до одного й того самого вектора. Віднімання двох представлень дало б вираз вигляду</p>
+<p>\[
+c_1 v_1 + \dots + c_k v_k = 0
+\]</p>
+<p>де не всі коефіцієнти дорівнюють нулю. Існування такого зв'язку означає, що сам нульовий вектор може бути отриманий як нетривіальна лінійна комбінація векторів \( v_1, \dots, v_k \). Ця ситуація має важливий структурний наслідок. Якщо нетривіальна комбінація векторів дає нульовий вектор, то принаймні один із векторів можна виразити як лінійну комбінацію інших. У такому разі початкове представлення \( b \) не обов'язково є єдиним: різні вибори коефіцієнтів можуть призвести до одного й того самого вектора.</p>
+<blockquote>
+<p>Отже, питання єдиності пов'язане з існуванням нетривіальних лінійних зв'язків між векторами. Коли такого зв'язку не існує, тобто коли єдиним способом отримати нульовий вектор є встановлення всіх коефіцієнтів в нуль, представлення будь-якого вектора в обертанні є обов'язково єдиним. Ця властивість визначає, що означає бути лінійно незалежними для сукупності векторів — концепція, яка буде детально розглянута в окремому розділі.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Загальні векторні простори</h2>
+<p>Наведене вище означення лінійної комбінації сформульовано для <a href="vectors.html">векторів</a> у \( \mathbb{R}^n \), але ця концепція без змін поширюється на будь-який векторний простір над полем. Нехай \( V \) — векторний простір над полем \( \mathbb{F} \), і нехай \( v_1, v_2, \dots, v_k \in V \). Лінійною комбінацією цих векторів є будь-який елемент \( V \) вигляду:</p>
+<p>\[
+c_1 v_1 + c_2 v_2 + \dots + c_k v_k
+\]</p>
+<p>де \( c_1, c_2, \dots, c_k \in \mathbb{F} \). Поле \( \mathbb{F} \) може бути \( \mathbb{R} \) або \( \mathbb{C} \), а векторний простір \( V \) може бути простором поліномів, матриць або неперервних функцій, серед багатьох інших. У кожному з цих випадків поняття обертання та лінійної незалежності переносяться безпосередньо, і структурні результати лінійної алгебри залишаються дійсними в повній загальності.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="linear-combinations.html">algebrica.org/linear-combinations</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

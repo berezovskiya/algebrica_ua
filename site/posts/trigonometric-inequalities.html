@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тригонометричні нерівності — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Нерівності</span>
+    </nav>
+    <article>
+        <h1>Тригонометричні нерівності</h1>
+        <time>2025-02-13</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-9" style="height:460px;min-height:460px;max-height:460px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:460px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Метод                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні розглянуті поняття.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Відкриває</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні поняття, <a href="trigonometric-equations.html">Тригонометричні рівняння: Частина 1</a>, <a href="unit-circle.html">Одиничне коло</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-9");
+            var dataset = {"name":"root","children":[{"name":"структура","children":[{"name":"тригонометричні функції"},{"name":"періодичність"},{"name":"одиничне коло"},{"name":"довідні кути"},{"name":"області визначення"},{"name":"області значень"}]},{"name":"методи","children":[{"name":"ізоляція"},{"name":"тригонометричні тотожності"},{"name":"заміна"},{"name":"квадратичне зведення"},{"name":"розкладання на множники"},{"name":"розв'язання на проміжках"},{"name":"множини розв'язків"}]},{"name":"випадки","children":[{"name":"нерівності з синусом"},{"name":"нерівності з косинусом"},{"name":"нерівності з тангенсом"},{"name":"періодичні розв'язки"},{"name":"монотонність"},{"name":"системи"},{"name":"загальні розв'язки"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 460;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Вступ</h2>
+<p>Тригонометрична нерівність — це нерівність, у якій невідома змінна виступає як аргумент однієї або кількох тригонометричних функцій. На відміну від алгебраїчних нерівностей, множина розв'язків зазвичай є нескінченним об'єднанням проміжків, що є наслідком періодичної природи відповідних функцій. На цій сторінці розглянуто три фундаментальні випадки з <a href="sine-and-cosine.html">синусом і косинусом</a>, а також <a href="tangent-and-cotangent.html">тангенсом</a>, після чого досліджено, як складніші вирази можуть бути зведені до цих стандартних форм.</p>
+<hr>
+<p>Метод розв'язання тригонометричних нерівностей ґрунтується на геометричній інтерпретації одиничного кола. Нагадаємо, що \(\sin x\) відповідає вертикальній координаті, а \(\cos x\) — горизонтальній координаті точки, визначеної кутом \(x\) на <a href="unit-circle.html">одиничному колі</a>.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="608" height="692" src="../images/unit-circle-4-1.png" alt="" class="wp-image-25879" style="width:304px" srcset="../images/unit-circle-4-1.png 608w, https://algebrica.org/wp-content/uploads/resources/images/unit-circle-4-1-264x300.png 264w" sizes="(max-width: 608px) 100vw, 608px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>
+<p>Вертикальний відрізок \( \overline{PR} \) визначено як <a href="sine-and-cosine.html">синус</a> кута \( \theta \).</p>
+</li>
+<li>
+<p>Горизонтальний відрізок \( \overline{OR} \) визначено як <a href="sine-and-cosine.html">косинус</a> кута \( \theta \).</p>
+</li>
+<li>
+<p>Вертикальний відрізок \( \overline{ST} \) визначено як <a href="tangent-and-cotangent.html">тангенс</a> кута \( \theta \).</p>
+</li>
+</ul>
+<p>Визначення того, де ці координати більші або менші за задане значення, становить геометричний підхід до розв'язання таких нерівностей. Оскільки синус і косинус є періодичними з періодом \(2\pi\), а тангенс — з періодом \(\pi\), розв'язки, знайдені в межах одного періоду, мають бути узагальнені на всю дійсну пряму шляхом додавання цілих кратних значень відповідного періоду.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax mb-x-30"><h2>Нерівності з синусом</h2>
+<p>Розглянемо нерівність такого вигляду, де \(k\) — дійсна стала, така що \(|k| \leq 1\).</p>
+<p>\[\sin x &gt; k\]</p>
+<p>Першим кроком є знаходження <a href="reduction-formulas-and-reference-angles.html">опорного кута</a> \(\alpha = \arcsin k\), який лежить у \([-\pi/2,\, \pi/2]\). На одиничному колі умова \(\sin x &gt; k\) виконується на дузі, де вертикальна координата перевищує \(k\). Ця дуга йде проти годинникової стрілки від \(\alpha\) до \(\pi - \alpha\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="686" height="544" src="../images/trig-inequ-1-2.png" alt="" class="wp-image-25917" style="width:343px" srcset="../images/trig-inequ-1-2.png 686w, https://algebrica.org/wp-content/uploads/resources/images/trig-inequ-1-2-300x238.png 300w" sizes="(max-width: 686px) 100vw, 686px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps alignCenterMathjax"><p>Отже, розв'язком у межах одного періоду є відкритий проміжок \((\alpha,\, \pi - \alpha)\), а загальним розв'язком на \(\mathbb{R}\) є наступне:</p>
+<p>\[\alpha + 2k\pi &lt; x &lt; \pi &#8211; \alpha + 2k\pi \]
+\[k \in \mathbb{Z}\]</p>
+<p>Для нестрогої версії \(\sin x \geq k\) кінцеві точки включаються, і проміжки стають замкненими.</p>
+<ul>
+<li>Якщо \(k &gt; 1\), нерівність не має розв'язків, оскільки \(\sin x \leq 1\) для всіх \(x\).</li>
+<li>Якщо \(k &lt; -1\), нерівність виконується для будь-якого дійсного числа.</li>
+</ul>
+<hr>
+<p>Наприклад, знайдіть усі дійсні розв'язки наступної нерівності:</p>
+<p>\[\sin x &gt; \frac{\sqrt{3}}{2}\]</p>
+<p>Опорний кут становить \(\arcsin(\sqrt{3}/2) = \pi/3\). Оскільки функція синуса перевищує \(\sqrt{3}/2\) на дузі між \(\pi/3\) та \(\pi - \pi/3 = 2\pi/3\), загальним розв'язком є:</p>
+<p>\[\frac{\pi}{3} + 2k\pi &lt; x &lt; \frac{2\pi}{3} + 2k\pi\]
+\[k \in \mathbb{Z}\]</p>
+<h6>Практичне зауваження: розв'язання тригонометричних нерівностей у закритій формі вимагає знання головних значень синуса та косинуса для стандартних кутів \(\pi/6\), \(\pi/4\), \(\pi/3\) та \(\pi/2\). Без цього перехід від \(\arcsin(\sqrt{3}/2)\) до \(\pi/3\) не буде миттєвим.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Нерівності з косинусом</h2>
+<p>Нерівність такого вигляду розв'язується аналогічно, хоча відповідна дуга на одиничному колі тепер симетрична відносно горизонтальної осі.</p>
+<p>\[\cos x &lt; k\]</p>
+<p>Нехай \(\alpha = \arccos k \in [0,\, \pi]\). Умова \(\cos x &lt; k\) виконується там, де горизонтальна координата точки одиничного кола менша за \(k\). Це відбувається на дузі, що йде від \(\alpha\) до \(2\pi - \alpha\) (еквівалентно, від \(\alpha\) до \(-\alpha\), рухаючись за годинниковою стрілкою через \(\pi\)).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="688" height="612" src="../images/trig-inequ-2-1.png" alt="" class="wp-image-25918" style="width:344px" srcset="../images/trig-inequ-2-1.png 688w, https://algebrica.org/wp-content/uploads/resources/images/trig-inequ-2-1-300x267.png 300w" sizes="(max-width: 688px) 100vw, 688px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Загальне розв'язання записується наступним чином:</p>
+<p>\[\alpha + 2k\pi &lt; x &lt; 2\pi &#8211; \alpha + 2k\pi\]
+\[k \in \mathbb{Z}\]</p>
+<p>Еквівалентна і часто більш компактна форма використовує симетричний проміжок навколо \(\pi\).</p>
+<hr>
+<p>Наприклад, визначте множину розв'язків наступної нерівності:</p>
+<p>\[\cos x \leq -\frac{1}{2}\]</p>
+<p>Допоміжний кут становить \(\arccos(-1/2) = 2\pi/3\). Оскільки нерівність не є строгою, розв'язком у кожному періоді є замкнений проміжок \([2\pi/3,\, 4\pi/3]\), а загальне розв'язання на \(\mathbb{R}\) є наступним.</p>
+<p>\[\frac{2\pi}{3} + 2k\pi \leq x \leq \frac{4\pi}{3} + 2k\pi\]
+\[k \in \mathbb{Z}\]</p>
+<h6>Як і у випадку з синусом, розглянутому вище, розв'язування нерівностей з косинусом у замкненій формі вимагає знання головних значень косинуса для стандартних кутів \(\pi/6\), \(\pi/4\), \(\pi/3\) та \(\pi/2\). Без цього перехід від \(\arccos(-1/2)\) до \(2\pi/3\) не буде миттєвим.</h6>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Нерівності з тангенсом</h2>
+<p>Функція тангенс має період \(\pi\) і є строго зростаючою на кожному проміжку вигляду \((-\pi/2 + k\pi,\, \pi/2 + k\pi)\). Ця монотонність значно спрощує аналіз: у кожному такому проміжку нерівність \(\tan x &gt; k\) зводиться до простого порівняння з допоміжним кутом \(\arctan k\).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="666" height="610" src="../images/trig-inequ-3.png" alt="" class="wp-image-25922" style="width:333px" srcset="../images/trig-inequ-3.png 666w, https://algebrica.org/wp-content/uploads/resources/images/trig-inequ-3-300x275.png 300w" sizes="(max-width: 666px) 100vw, 666px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Розглянемо наступну нерівність:</p>
+<p>\[\tan x &gt; k\]</p>
+<p>Загальне розв'язання:</p>
+<p>\[\arctan k + n\pi &lt; x &lt; \frac{\pi}{2} + n\pi\]
+\[n \in \mathbb{Z}\]</p>
+<p>Верхня межа \(\pi/2 + n\pi\) є вертикальною асимптотою і, відповідно, завжди виключається, незалежно від того, чи є нерівність строгою.</p>
+<hr>
+<p>Наприклад, розв'яжіть наступну нерівність:</p>
+<p>\[\tan x \leq -1\]</p>
+<p>Допоміжний кут становить \(\arctan(-1) = -\pi/4\). Оскільки <a href="tangent-and-cotangent.html">тангенс</a> зростає на кожній гілці, умова \(\tan x \leq -1\) виконується від лівої кінцевої точки кожної гілки до \(-\pi/4\) включно. Загальне розв'язання є наступним.</p>
+<p>\[-\frac{\pi}{2} + n\pi &lt; x \leq -\frac{\pi}{4} + n\pi\]
+\[n \in \mathbb{Z}\]</p>
+<p>Ліва кінцева точка виключається, оскільки функція тангенс там не визначена.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Зводимі нерівності</h2>
+<p>Багато тригонометричних нерівностей не мають стандартного вигляду, але можуть бути зведені до одного з наведених вище випадків за допомогою алгебраїчних перетворень або застосування тригонометричних тотожностей.</p>
+<p>Розглянемо наступну нерівність, отриману шляхом ізоляції функції синуса від лінійного виразу.</p>
+<p>\[2\sin x - \sqrt{2} \geq 0\]</p>
+<p>Ізоляція функції синуса дає \(\sin x \geq \sqrt{2}/2\). Тепер вона має стандартний вигляд із \(k = \sqrt{2}/2\) та опорним кутом \(\pi/4\), отже, загальний розв'язок є наступним.</p>
+<p>\[\frac{\pi}{4} + 2k\pi \leq x \leq \frac{3\pi}{4} + 2k\pi\]
+\[k \in \mathbb{Z}\]</p>
+<hr>
+<p>Другий клас зводимих нерівностей виникає, коли аргументом тригонометричної функції є не просто \(x\), а лінійний вираз від \(x\). Розглянемо наступну нерівність:</p>
+<p>\[\sin\!\left(2x - \frac{\pi}{3}\right) &gt; \frac{1}{2}\]</p>
+<p>Запровадивши заміну \(t = 2x - \pi/3\), нерівність набуває вигляду:</p>
+<p>\[\sin t &gt; 1/2\]</p>
+<p>Розв'язанням є:</p>
+<p>\[\pi/6 + 2k\pi &lt; t &lt; 5\pi/6 + 2k\pi\]</p>
+<p>Повертаючись до заміни та розв'язуючи відносно \(x\): оскільки \(t = 2x - \pi/3\), ми можемо записати:</p>
+<p>\[\pi/6 + 2k\pi &lt; 2x &#8211; \pi/3 &lt; 5\pi/6 + 2k\pi\]</p>
+<p>Додавання \(\pi/3\) до всіх частин дає:</p>
+<p>\[\pi/2 + 2k\pi &lt; 2x &lt; 7\pi/6 + 2k\pi\]</p>
+<p>Ділення кожного члена на 2, оскільки всі вирази масштабуються однорідно без зміни напрямку нерівностей, дозволяє отримати наступне.</p>
+<p>\[\frac{\pi}{4} + k\pi &lt; x &lt; \frac{7\pi}{12} + k\pi\]
+\[k \in \mathbb{Z}\]</p>
+<hr>
+<p>Третій метод зведення застосовується, коли нерівність є <a href="quadratic-equations.html">квадратичною</a> відносно тригонометричної функції. Розглянемо наступне:</p>
+<p>\[2\cos^2 x - \cos x &#8211; 1 &gt; 0\]</p>
+<p>Поклавши \(u = \cos x\), це стає <a href="quadratic-inequalities.html">квадратною нерівністю</a>:
+\[2u^2 - u - 1 &gt; 0\]</p>
+<p><a href="factoring-ac-method.html">Розкладання на множники</a> дає \((2u + 1)(u - 1) &gt; 0\), що виконується, коли \(u &lt; -1/2\) або \(u &gt; 1\). Оскільки \(\cos x \leq 1\) для всіх дійсних \(x\), умова \(\cos x &gt; 1\) ніколи не виконується.</p>
+<p>Отже, нерівність зводиться до \(\cos x &lt; -1/2\), що є стандартним випадком для косинуса з опорним кутом \(2\pi/3\), що дає наступне.</p>
+<p>\[\frac{2\pi}{3} + 2k\pi &lt; x &lt; \frac{4\pi}{3} + 2k\pi\]
+\[k \in \mathbb{Z}\]</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 1</h2>
+<p>Більш складне зведення виникає, коли нерівність містить і \(\sin x\), і \(\cos^2 x\), що робить пряму заміну неможливою без попереднього застосування <a href="trigonometric-identities.html">тригонометричної тотожності</a>. Розглянемо наступні рівняння:</p>
+<p>\[\cos^2 x - \sin x &#8211; 1 &gt; 0\]</p>
+<p>Наявність одночасно \(\cos^2 x\) та \(\sin x\) перешкоджає негайній заміні. Заміна \(\cos^2 x\) на \(1 - \sin^2 x\) за допомогою <a href="pythagorean-identity.html">основної тригонометричної тотожності</a> зводить вираз до однієї тригонометричної функції. Нерівність набуває наступного вигляду.</p>
+<p>\[1 &#8211; \sin^2 x - \sin x &#8211; 1 &gt; 0\]</p>
+<p>Спрощуючи, отримаємо \(-\sin^2 x - \sin x &gt; 0\), або еквівалентно \(\sin^2 x + \sin x &lt; 0\). Поклавши \(u = \sin x\), отримаємо:</p>
+<p>\[u^2 + u &lt; 0\]</p>
+<p>що розкладається на множники як:
+\[u(u + 1) &lt; 0\]</p>
+<p>Це виконується, коли \(-1 &lt; u &lt; 0\), тобто, коли \(-1 &lt; \sin x &lt; 0\). Оскільки граничні значення \(u = 0\) та \(u = -1\) виключені, розв'язком протягом одного періоду є відкритий проміжок \((\pi, 2\pi)\) із збереженням кінцевої точки \(x = 3\pi/2\), за винятком того, що \(\sin(3\pi/2) = -1\) виключається через строгу нерівність.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, загальний розв'язок є наступним.</p>
+<p>\[\pi + 2k\pi &lt; x &lt; 2\pi + 2k\pi, \quad k \in \mathbb{Z}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Більш складний випадок виникає, коли жодне з трьох стандартних спрощень не застосовується окремо. Розглянемо нерівність нижче, яка потребує як заміни, так і кроку розкладання на множники квадратного тричлена перед приведенням до стандартного вигляду:</p>
+<p>\[\sin^2 x - \sin x \cdot \cos x &lt; 0\]</p>
+<p>Розклавши ліву частину безпосередньо на множники, отримаємо наступне:</p>
+<p>\[\sin x (\sin x &#8211; \cos x) &lt; 0\]</p>
+<p>Цей вираз містить добуток двох множників, кожен з яких залежить від \(x\), тому ні проста заміна, ні усунення тотожності не є одразу застосовними. Ділення обох частин на \(\cos^2 x\) ввело б тангенс, але також вимагало б відстеження знака \(\cos^2 x\), який завжди є невипадковою від'ємною величиною і перетворюється на нуль в <a href="asymptotes.html">асимптотах</a>.</p>
+<hr>
+<p>Більш чистим підходом є ділення на \(\cos^2 x &gt; 0\) на кожному проміжку, де косинус не перетворюється на нуль, що не змінює напрямку нерівності, і переписування виразу через \(\tan x.\)</p>
+<p>Діливши на \(\cos^2 x\), нерівність набуває такого вигляду.</p>
+<p>\[\frac{\sin x}{\cos x}\left(\frac{\sin x}{\cos x} - 1\right) &lt; 0\]</p>
+<p>Поклавши \(u = \tan x\), це зводиться до алгебраїчної нерівності \(u(u - 1) &lt; 0\), яка виконується, коли \(0 &lt; u &lt; 1\), тобто, коли \(0 &lt; \tan x &lt; 1\). Тепер це система з двох стандартних нерівностей для тангенса, які слід розв'язати одночасно в кожній гілці функції тангенса. Нерівність \(\tan x &gt; 0\) виконується на наступному проміжку:</p>
+<p>\[(0 + n\pi,\, \tfrac{\pi}{2} + n\pi)\]</p>
+<p>Нерівність \(\tan x &lt; 1\) виконується на наступному проміжку:</p>
+<p>\[(-\tfrac{\pi}{2} + n\pi,\, \tfrac{\pi}{4} + n\pi)\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Знаходячи перетин у кожній гілці, загальне розв'язання є наступним.</p>
+<p>\[n\pi &lt; x &lt; \frac{\pi}{4} + n\pi\]
+\[n \in \mathbb{Z}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Системи тригонометричних нерівностей</h2>
+<p>Система тригонометричних нерівностей складається з двох або більше нерівностей, які мають виконуватися одночасно. Множиною розв'язків є перетин окремих множин розв'язків, обчислений поперіодно.</p>
+<hr>
+<p>Наприклад, розв'яжіть систему, утворену двома нерівностями нижче:</p>
+<p>\[\begin{cases}
+\sin x \geq 0 \\[6pt]
+\cos x &lt; \dfrac{1}{2}
+\end{cases}\]</p>
+<p>Перша нерівність, \(\sin x \geq 0\), виконується для кожного \(k \in \mathbb{Z}\) на:
+\[[0 + 2k\pi,\, \pi + 2k\pi]\]</p>
+<p>Друга нерівність, \(\cos x &lt; 1/2\), має опорний кут \(\arccos(1/2) = \pi/3\) і виконується на:</p>
+<p>\[(\pi/3 + 2k\pi,\, 5\pi/3 + 2k\pi)\]</p>
+<p>Щоб знайти перетин, достатньо працювати в межах одного періоду, наприклад \([0,\, 2\pi)\). Перша умова обмежує увагу проміжком \([0,\, \pi]\). Друга умова на цьому проміжку виконується там, де \(x &gt; \pi/3\). Перетин протягом одного періоду, отже, становить \((\pi/3,\, \pi]\), і загальне розв'язання є наступним.</p>
+<p>\[\frac{\pi}{3} + 2k\pi &lt; x \leq \pi + 2k\pi\]
+\[k \in \mathbb{Z}\]</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="trigonometric-inequalities.html">algebrica.org/trigonometric-inequalities</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

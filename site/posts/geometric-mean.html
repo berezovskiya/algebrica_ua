@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Середнє геометричне — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Теорія ймовірностей та статистика</span>
+    </nav>
+    <article>
+        <h1>Середнє геометричне</h1>
+        <time>2025-05-01</time>
+        <div class="content">
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown alignCenterMathjax mb-x-30"><h2>Що таке середнє геометричне?</h2>
+<p><strong>Середнє геометричне</strong> належить до родини степеневих середніх. На відміну від простого <a href="arithmetic-mean.html">середнього арифметичного</a>, воно засноване на добутку елементів, а не на їх сумі, що робить його особливо корисним для вимірювання середніх темпів зростання, прибутковості в часі або величин, що змінюються мультиплікативно. Воно відображає центральну тенденцію даних, що розвиваються через пропорційні або відсоткові зміни, забезпечуючи точніше представлення, ніж середнє арифметичне, при роботі з відношеннями, індексами або складними явищами.</p>
+<hr>
+<p>У загальній формі середнє геометричне виражається як:</p>
+<p>\[
+M_g = \left( \prod_{i=1}^{n} x_i \right)^{\frac{1}{n}}
+\]</p>
+<p>де \( x_1, x_2, \dots, x_n \) — додатні значення, а \( n \) — загальна кількість елементів.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-steps"><ul>
+<li>Середнє геометричне може бути застосоване лише до множини значень, загальний добуток яких є додатним, оскільки обчислення передбачає як множення, так і добування <a href="radicals.html">кореня</a>.</li>
+<li>Оскільки воно оперує добутками, середнє геометричне тісно пов'язане з <a href="exponential-function.html">експоненціальним зростанням</a>.</li>
+<li>Середнє геометричне завжди менше або дорівнює середньому арифметичному.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Логарифмічна форма середнього геометричного</h2>
+<p>Інший корисний спосіб виразити середнє геометричне — через його <a href="logarithms.html">логарифмічну</a> форму. У цьому представленні середнє геометричне множини додатних значень \( x_1, x_2, \ldots, x_n \) може бути записане як:</p>
+<p>\[
+M_g = \exp\left(\frac{1}{n} \sum_{i=1}^{n} \ln x_i \right)
+\]</p>
+<ul>
+<li>При логарифмуванні добутки перетворюються на суми, а степені — на множники, що значно спрощує як обчислення, так і інтерпретацію.</li>
+<li>Ця формула показує, що середнє геометричне є експонентою <a href="arithmetic-mean.html">середнього арифметичного</a> логарифмів значень даних.</li>
+<li>Логарифмічна форма особливо зручна при роботі з числами, що охоплюють кілька порядків величини, або коли пряме множення може спричинити обчислювальні проблеми.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline pb-table-to-content"><h2>Приклад 1</h2>
+<p>Розглянемо наступний набір даних з п'яти додатних значень:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">\(\mathbf{x_i}\)</th>
+<th style="text-align:center">Значення</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\(x_1\)</td>
+<td style="text-align:center">2.0</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_2\)</td>
+<td style="text-align:center">3.5</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_3\)</td>
+<td style="text-align:center">4.0</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_4\)</td>
+<td style="text-align:center">5.5</td>
+</tr>
+<tr>
+<td style="text-align:center">\(x_5\)</td>
+<td style="text-align:center">6.0</td>
+</tr>
+</tbody>
+</table>
+<p>У цьому випадку \( n = 5 \). Підставляючи значення, отримаємо:</p>
+<p>\[
+M_g = (2.0 \times 3.5 \times 4.0 \times 5.5 \times 6.0)^{\frac{1}{5}}
+\]</p>
+<p>\[
+M_g = (924)^{\frac{1}{5}} \approx 3.93
+\]</p>
+<h5>Середнє геометричне дає уявлення про типове мультиплікативне значення в наборі даних. Тоді як середнє арифметичне цих чисел становить \( (2.0 + 3.5 + 4.0 + 5.5 + 6.0)/5 = 4.2 \), середнє геометричне дещо менше (\( 3.93 \)), оскільки воно надає менше ваги більшим значенням і більше — меншим.</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, середнє геометричне ряду приблизно дорівнює:</p>
+<p>\[M_g \approx 3.93\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-outline pb-table-to-content alignCenterMathjax"><h2>Приклад 2</h2>
+<p>Розглянемо, як середнє геометричне може бути застосоване для визначення загальної середньої прибутковості акцій за певний період. У фінансах інвестиційна прибутковість комбінується мультиплікативно, а не адитивно — результат кожного місяця нараховується на попередні, впливаючи на загальний результат нелінійно. Середнє геометричне природно відображає цей ефект складних відсотків, пропонуючи точнішу міру справжнього середнього темпу зростання активу, ніж середнє арифметичне.</p>
+<hr>
+<p>У наступному прикладі ми обчислимо середнє геометричне місячних прибутковостей Tesla за перші п'ять місяців 2025 року для оцінки середньої місячної ефективності за цей період.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Місяць (2025)</th>
+<th style="text-align:center">Прибутковість</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Січень</td>
+<td style="text-align:center">+12.4%</td>
+</tr>
+<tr>
+<td style="text-align:left">Лютий</td>
+<td style="text-align:center">–3.8%</td>
+</tr>
+<tr>
+<td style="text-align:left">Березень</td>
+<td style="text-align:center">+7.6%</td>
+</tr>
+<tr>
+<td style="text-align:left">Квітень</td>
+<td style="text-align:center">+2.1%</td>
+</tr>
+<tr>
+<td style="text-align:left">Травень</td>
+<td style="text-align:center">+4.5%</td>
+</tr>
+</tbody>
+</table>
+<p>При роботі з відсотковими прибутковостями пряме множення може швидко призвести до дуже малих або хибних значень, особливо коли є від'ємні прибутковості. Щоб правильно це обробити, кожна відсоткова прибутковість \( x_i \) спочатку перетворюється на фактор зростання шляхом додавання \(1\) (тобто \( 1 + x_i \)). Потім ці фактори перемножуються, добувається корінь \( n \)-го степеня, і нарешті віднімається 1, щоб повернути результат до відсоткової форми.</p>
+<p>\[
+M_g = \left[ \prod_{i=1}^{n} (1 + x_i) \right]^{\frac{1}{n}} &#8211; 1
+\]</p>
+<hr>
+<p>Розглядаючи значення для п'яти періодів, отримаємо:</p>
+<p>\[
+\begin{align}
+M_g &amp;= \left[(1.124) \times (0.962) \times (1.076) \times (1.021) \times (1.045)\right]^{\tfrac{1}{5}} &#8211; 1 \\[3pt]
+&amp;= 1.0442 &#8211; 1 \\[3pt]
+&amp;= 0.0442 \\[3pt]
+&amp;= 4.42\%
+\end{align}
+\]</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, середня місячна прибутковість акцій Tesla за перші п'ять місяців 2025 року становила приблизно \(4.4\%\).</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax pb-steps"><h2>Зважене середнє геометричне</h2>
+<p>У деяких випадках не всі точки даних роблять однаковий внесок у загальний результат. Зважене середнє геометричне розширює ідею стандартного середнього геометричного, призначаючи вагу \( w_i \) кожному спостереженню \( x_i \), що відображає його відносну важливість або частоту в наборі даних. Воно визначається як:</p>
+<p>\[
+M_{gw} = \left( \prod_{i=1}^{n} x_i^{w_i} \right)^{\frac{1}{\sum_{i=1}^{n} w_i}}
+\]</p>
+<p>де \( x_i &gt; 0 \) — спостережувані значення, а \( w_i &gt; 0 \) — відповідні ваги.</p>
+<ul>
+<li>Зважене середнє геометричне узагальнює просте середнє геометричне шляхом введення факторів важливості \( w_i \).</li>
+<li>Воно забезпечує, що більші або більш значущі спостереження мають сильніший вплив на кінцевий результат.</li>
+<li>Коли всі ваги рівні, зважене середнє геометричне зводиться до стандартного середнього геометричного.</li>
+</ul>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section pb-table-to-content"><h2>Приклад 3</h2>
+<p>Розглянемо той самий приклад з Tesla, цього разу застосовуючи набір довільних ваг, обраних відповідно до обґрунтування, наведеного у примітці.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Місяць</th>
+<th style="text-align:center">Прибутковість</th>
+<th style="text-align:left">Вага</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Січень</td>
+<td style="text-align:center">+12.4%</td>
+<td style="text-align:left">3</td>
+</tr>
+<tr>
+<td style="text-align:left">Лютий</td>
+<td style="text-align:center">–3.8%</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">Березень</td>
+<td style="text-align:center">+7.6%</td>
+<td style="text-align:left">2</td>
+</tr>
+<tr>
+<td style="text-align:left">Квітень</td>
+<td style="text-align:center">+2.1%</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">Травень</td>
+<td style="text-align:center">+4.5%</td>
+<td style="text-align:left">3</td>
+</tr>
+</tbody>
+</table>
+<h5>Січень — період сильного зростання, вища важливість. Лютий — від'ємний місяць, нижча важливість. Березень — часткове відновлення, середня вага. Квітень — стабільний місяць, обмежений вплив. Травень — позитивна динаміка, вища важливість.</h5>
+<hr>
+<p>Тепер обчислимо зважене середнє геометричне, враховуючи фактори зростання \((1 + x_i)\) та відповідні ваги \(w_i\), призначені кожному спостереженню. Отримаємо:</p>
+<p>\[
+\begin{align}
+M_{gw} &amp;= \left[(1.124)^3 \times (0.962)^1 \times (1.076)^2 \times (1.021)^1 \times (1.045)^3\right]^{\tfrac{1}{10}} &#8211; 1 \\[3pt]
+&amp;= (1.5566)^{0.1} &#8211; 1 \\[3pt]
+&amp;= 1.0455 &#8211; 1 \\[3pt]
+&amp;= 0.0455 \\[3pt]
+&amp;= 4.55\%
+\end{align}
+\]</p>
+<h5>У цьому випадку показник \( \tfrac{1}{10} \) отримано як обернене значення суми всіх ваг. Оскільки ваги, призначені кожному місяцю, становлять \( w_i = {3, 1, 2, 1, 3} \), їх сума дорівнює \( \sum w_i = 10 \).</h5>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-solution"><p>Отже, після застосування обраних ваг, зважена середня місячна прибутковість Tesla за перші п'ять місяців 2025 року становила приблизно \(4.55\%\) — дещо вище незваженого значення через більший вплив місяців з позитивною динамікою.</p>
+</div>
+</div></div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://algebrica.org/geometric-mean/#faq",
+  "inLanguage": "en",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке середнє геометричне?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Середнє геометричне — це тип середнього, який перемножує всі додатні значення в наборі даних, а потім добуває корінь n-го степеня з добутку. Воно особливо корисне для вимірювання середніх темпів зростання або величин, що змінюються пропорційно в часі."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як обчислити середнє геометричне для відсоткових прибутковостей?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Перетворіть кожну відсоткову прибутковість у фактор зростання, додавши одиницю, перемножте всі фактори, добудьте корінь n-го степеня з результату, а потім відніміть одиницю. Цей метод коректно враховує складні відсотки та дає справжній середній темп прибутковості."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Що таке зважене середнє геометричне і коли його слід використовувати?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Зважене середнє геометричне призначає відносну вагу кожному спостереженню для відображення його важливості або частоти. Воно корисне при усередненні темпів зростання або прибутковостей з різних джерел, наприклад фінансових активів з різними обсягами капіталу."
+      }
+    }
+  ]
+}
+</script>
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="geometric-mean.html">algebrica.org/geometric-mean</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

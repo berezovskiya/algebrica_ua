@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Множини — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Множини та числа</span>
+    </nav>
+    <article>
+        <h1>Множини</h1>
+        <time>2025-02-01</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-11" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті показана на концептуальній карті, де кожна гілка представляє основний компонент, а підвузли виділяють конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-2"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Середній рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">7</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-11");
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"означення"},{"name":"належність"},{"name":"порожня множина"},{"name":"позначення"},{"name":"універсальна множина"},{"name":"потужність"}]},{"name":"операції","children":[{"name":"об'єднання"},{"name":"перетин"},{"name":"доповнення"},{"name":"різниця"},{"name":"симетрична різниця"},{"name":"закони де Моргана"},{"name":"тотожності"}]},{"name":"структури","children":[{"name":"підмножини"},{"name":"булеан"},{"name":"розбиття"},{"name":"еквівалентність"},{"name":"декартовий добуток"},{"name":"впорядкована пара"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Вступ</h2>
+<p>Множина вважається одним із найфундаментальніших понять у математиці. Замість того, щоб бути визначеною через простіші поняття, вона розглядається як первинна ідея. Множина — це чітко визначена сукупність відмінних об'єктів, які називаються елементами або членами. Термін «чітко визначена» означає, що для будь-якого заданого об'єкта можна однозначно визначити, чи належить цей об'єкт до сукупності. Множини зазвичай позначаються великими літерами, такими як \( A \), \( B \) або \( C \), тоді як їхні елементи позначаються малими літерами. Запис \( x \in A \) вказує на те, що об'єкт \( x \) є елементом множини \( A \). Заперечення, що записується як \( x \notin A, \) означає, що \( x \) не є елементом \( A \). Існує два стандартних методи опису множини. Перший передбачає пряме перелічення її елементів у фігурних дужках:</p>
+<p>\[ A = \{1, 2, 3, 4\} \]</p>
+<p>Другий, більш гнучкий підхід — це нотація побудови множини, яка вказує властивість, що характеризує всі елементи множини. Вертикальна риска ( \mid ) читається як «такий, що», а вираз праворуч від неї визначає умови, яким має задовольняти елемент для належності до множини.</p>
+<p>\[
+A = \{ x \in \mathbb{Z} \mid x &gt; 0, \; x \leq 4 \}
+\]</p>
+<p>Цей запис визначає \( A \) як множину всіх <a href="integers.html">цілих чисел</a> \( x \) таких, що \( x &gt; 0 \) і \( x \leq 4 \), тобто:</p>
+<p>\[
+A = \{1, 2, 3, 4\}
+\]</p>
+<p>Множина, що не містить жодного елемента, називається порожньою множиною і позначається \( \emptyset \) або еквівалентно \( \{\} \). Порожня множина відіграє в теорії множин роль, аналогічну ролі нуля в арифметиці.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Універсальна множина</h2>
+<p>Часто ми визначаємо головну сукупність, що містить усі об'єкти, які ми розглядаємо. Ця сукупність називається універсальною множиною, або універсумом, і позначається як \( U \). Усі множини в цьому контексті є підмножинами \( U \). Вибір \( U \) залежить від ситуації; наприклад, в елементарній теорії чисел часто \( U = \mathbb{Z} \), тоді як у реальному аналізі зазвичай обирають \( U = \mathbb{R} \).</p>
+<blockquote>
+<p>Універсальна множина забезпечує основу для однозначного визначення поняття доповнення множини, як показано в розділі про операції над множинами.</p>
+</blockquote>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Потужність скінченних множин</h2>
+<p>Потужність множини \( A \), що позначається \( |A| \), означає кількість елементів, які вона містить. Для порожньої множини \( |\emptyset| = 0 \). Дві скінченні множини мають однакову потужність тоді і тільки тоді, коли вони містять однакову кількість елементів. Потужність тісно пов'язана з операціями над множинами, розглянутими в цьому розділі. Потужність булеана (множини всіх підмножин) скінченної множини \( A \) з \( n \) елементами визначається як:</p>
+<p>\[ |\mathcal{P}(A)| = 2^n \]</p>
+<p>Цей результат встановлено в розділі про підмножини та булеани нижче. Для декартового добутку двох скінченних множин \( A \) та \( B \) потужність становить:</p>
+<p>\[ |A \times B| = |A| \cdot |B| \]</p>
+<p>Це випливає з того, що кожен елемент \( A \) утворює пару з кожним елементом \( B \), в результаті чого отримуємо \( |A| \cdot |B| \) відмінних впорядкованих пар.</p>
+<hr>
+<p>При формуванні об'єднання двох скінченних множин пряме додавання їхніх потужностей призводить до надлишкового підрахунку елементів, що належать обом множинам. Принцип включення-виключення забезпечує правильний підрахунок:</p>
+<p>\[ |A \cup B| = |A| + |B| - |A \cap B| \]</p>
+<p>Це можна перевірити, зауваживши, що кожен елемент \( A \cup B \) підраховується один раз у \( |A| + |B| \), за винятком елементів у \( A \cap B \), які підраховуються двічі. Віднімання \( |A \cap B| \) виправляє цей надлишок. Принцип включення-виключення поширюється на три множини, де чергування додавання та віднімання стає складнішим:</p>
+<p>\[ |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| &#8211; |A \cap C| - |B \cap C| + |A \cap B \cap C| \]</p>
+<p>Елементи, що належать рівно одній множині, підраховуються один раз. Елементи, що належать рівно двом множинам, додаються двічі та віднімаються один раз. Елементи, що належать усім трьом множинам, додаються тричі, віднімаються тричі та додаються ще один раз, що в результаті дає підрахунок одиниці для кожного випадку.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Підмножини та булеани</h2>
+<p>Множина \( A \) визначається як підмножина \( B \), що позначається \( A \subseteq B \), якщо кожен елемент \( A \) також є елементом \( B \). Формально:</p>
+<p>\[ A \subseteq B \iff \forall x, \, x \in A \Rightarrow x \in B \]</p>
+<p>Дві множини рівні тоді і тільки тоді, коли кожна з них є підмножиною іншої. Цей критерій подвійного включення є стандартним підходом для встановлення рівності множин у математиці:</p>
+<p>\[ A = B \iff A \subseteq B \text{ та } B \subseteq A \]</p>
+<p>Якщо \( A \subseteq B \) і \( A \neq B \), то \( A \) називається строгою підмножиною \( B \), що позначається \( A \subsetneq B \). У цій ситуації в \( B \) існує принаймні один елемент, який не належить до \( A \). Порожня множина є підмножиною будь-якої множини. Включення \( \emptyset \subseteq A \) виконується для будь-якої множини \( A \), оскільки імплікація \( x \in \emptyset \Rightarrow x \in A \) є тривіально істинною.</p>
+<hr>
+<p>Булеан множини \( A \), що позначається \( \mathcal{P}(A) \), складається з усіх підмножин \( A \), включаючи як \( \emptyset \), так і саму множину \( A \). Коли \( A \) містить \( n \) елементів, булеан \( \mathcal{P}(A) \) містить рівно \( 2^n \) елементів. Наприклад, якщо \( A = \{a, b, c\} \), то:</p>
+<p>\[ \mathcal{P}(A) = \{\emptyset,\, \{a\},\, \{b\},\, \{c\},\, \{a,b\},\, \{a,c\},\, \{b,c\},\, \{a,b,c\}\} \]</p>
+<p>У цьому випадку булеан містить \( 2^3 = 8 \) елементів, що відповідає загальній формулі.</p>
+</div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Розподіли</h2>
+<p>Розподілом множини \( A \) називають сім'ю непорожніх підмножин \( A \), які є попарно розрізними і чиє об'єднання дорівнює \( A \). Формально, сім'я множин \( {A_i}_{i \in I} \) є розподілом \( A \), якщо виконуються наступні три умови:</p>
+<p>\[
+\begin{align}
+A_i \neq \emptyset &amp; \quad \forall \,  i \in I \\[6pt]
+A_i \cap A_j = \emptyset &amp; \quad \forall \, i \neq j \\[6pt]
+\bigcup_{i \in I} A_i &amp;= A
+\end{align}
+\]</p>
+<p>Підмножини \( A_i \) називають блоками або клітинами розподілу. Кожен елемент \( A \) належить рівно одному блоку. Як конкретний приклад, множина цілих чисел \( \mathbb{Z} \) розподіляється на множину парних цілих чисел і множину непарних цілих чисел. Ці два блоки є розрізними, обидва непорожні, а їхнє об'єднання становить всю множину \( \mathbb{Z} \).</p>
+<p>Розподіли тісно пов'язані з відношеннями еквівалентності. Для заданого відношення еквівалентності на \( A \) класи еквівалентності, які воно породжує, утворюють розподіл \( A \). І навпаки, будь-який розподіл \( A \) визначає відношення еквівалентності, якщо оголосити два елементи еквівалентними тоді, коли вони належать до одного блоку. Цей зв'язок між розподілами та відношеннями еквівалентності детально розглянуто в статті про відношення еквівалентності.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Операції над множинами</h2>
+<p>Для двох заданих множин, \( A \) та \( B \), класичні операції теорії множин генерують нові множини шляхом систематичного комбінування або протиставлення їхніх елементів.</p>
+<p>Об'єднанням \( A \) та \( B \) є множина всіх елементів, які належать принаймні одній із двох множин:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="400" height="400" src="../images/sets-1.png" alt="" class="wp-image-25676" style="width:200px" srcset="../images/sets-1.png 400w, https://algebrica.org/wp-content/uploads/resources/images/sets-1-300x300.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sets-1-150x150.png 150w" sizes="(max-width: 400px) 100vw, 400px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>\[ A \cup B = \{x \mid x \in A \text{ або } x \in B\} \]</p>
+<blockquote>
+<p>У цьому контексті термін «або» є невиключним. Елемент, що належить і до \( A \), і до \( B \), включається лише один раз, оскільки множини не містять повторюваних елементів.</p>
+</blockquote>
+<hr>
+<p>Перетином \( A \) та \( B \) називають множину елементів, які є членами обох множин:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="400" height="400" src="../images/sets-2.png" alt="" class="wp-image-25688" style="width:200px" srcset="../images/sets-2.png 400w, https://algebrica.org/wp-content/uploads/resources/images/sets-2-300x300.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sets-2-150x150.png 150w" sizes="(max-width: 400px) 100vw, 400px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>\[ A \cap B = \{x \mid x \in A \text{ та } x \in B\} \]</p>
+<p>Якщо \( A \cap B = \emptyset \), то множини є розрізними, тобто вони не мають спільних елементів.</p>
+<hr>
+<p>Доповненням \( A \) відносно універсальної множини \( U \) є множина всіх елементів у \( U \), які не є членами \( A \):</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="400" height="400" src="../images/sets-3-2.png" alt="" class="wp-image-27258" style="width:200px" srcset="../images/sets-3-2.png 400w, https://algebrica.org/wp-content/uploads/resources/images/sets-3-2-300x300.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sets-3-2-150x150.png 150w" sizes="(max-width: 400px) 100vw, 400px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>\[ A^c = \{x \in U \mid x \notin A\} \]</p>
+<p>У деяких текстах доповнення позначають як \( \overline{A} \) або \( U \setminus A \). Доповнення визначається вибором \( U \), тому одна й та сама множина \( A \) може мати різні доповнення в різних універсальних множинах.</p>
+<hr>
+<p>Різницею \( A \) та \( B \), що записується як \( A \setminus B \), є множина елементів, які належать до \( A \), але не належать до \( B \):</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="400" height="400" src="../images/sets-4.png" alt="" class="wp-image-25700" style="width:200px" srcset="../images/sets-4.png 400w, https://algebrica.org/wp-content/uploads/resources/images/sets-4-300x300.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sets-4-150x150.png 150w" sizes="(max-width: 400px) 100vw, 400px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>\[ A \setminus B = \{x \mid x \in A \text{ та } x \notin B\} \]</p>
+<p>Операція різниці не є симетричною. Взагалі, \( A \setminus B \neq B \setminus A \). Ця операція пов'язана з доповненням тотожністю \( A \setminus B = A \cap B^c \), яка виконується в будь-якій універсальній множині, що містить і \( A \), і \( B \).</p>
+<hr>
+<p>Симетричною різницею \( A \) та \( B \), що позначається \( A \triangle B \), є множина елементів, які належать рівно одній із двох множин, але не обом одночасно.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="400" height="400" src="../images/sets-7-1.png" alt="" class="wp-image-27265" style="width:200px" srcset="../images/sets-7-1.png 400w, https://algebrica.org/wp-content/uploads/resources/images/sets-7-1-300x300.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sets-7-1-150x150.png 150w" sizes="(max-width: 400px) 100vw, 400px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>\[
+A \triangle B = (A \setminus B) \cup (B \setminus A)
+\]</p>
+<p>Еквівалентна характеристика задається наступним виразом, який явно показує зв'язок з об'єднанням та перетином.</p>
+<p>\[
+A \triangle B = (A \cup B) \setminus (A \cap B)
+\]</p>
+<p>Симетрична різниця є комутативною та асоціативною, а також задовольняє рівності \( A \triangle A = \emptyset \) та \( A \triangle \emptyset = A \). Разом із перетином вона наділяє сукупність усіх підмножин заданої множини структурою булевого кільця.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Властивості операцій над множинами</h2>
+<p>Операції, визначені вище, задовольняють сукупність алгебраїчних тотожностей, які виконуються для будь-яких множин \( A \), \( B \) та \( C \) усередині універсальної множини \( U \).</p>
+<p>Об'єднання та перетин є комутативними операціями: порядок, у якому дві множини об'єднуються, не впливає на результат.</p>
+<p>\[\begin{align} A \cup B &amp;= B \cup A \\[6pt] A \cap B &amp;= B \cap A \end{align}\]</p>
+<p>Обидві операції також є асоціативними, що означає, що при об'єднанні трьох множин групування операндів не має значення.</p>
+<p>\[\begin{align} (A \cup B) \cup C &amp;= A \cup (B \cup C) \\[6pt] (A \cap B) \cap C &amp;= A \cap (B \cap C) \end{align}\]</p>
+<p>Об'єднання та перетин дистрибутивні відносно один одного, подібно до дистрибутивного закону арифметики.</p>
+<p>\[\begin{align} A \cap (B \cup C) &amp;= (A \cap B) \cup (A \cap C) \\[6pt] A \cup (B \cap C) &amp;= (A \cup B) \cap (A \cup C) \end{align}\]</p>
+<p>Порожня множина виступає як нейтральний елемент для об'єднання, а універсальна множина виступає як нейтральний елемент для перетину: об'єднання будь-якої множини з одним із цих елементів залишає вихідну множину незмінною.</p>
+<p>\[\begin{align} A \cup \emptyset &amp;= A \\[6pt] A \cap U &amp;= A \end{align}\]</p>
+<p>Двоїсто, порожня множина обнуляє перетин, а універсальна множина обнуляє об'єднання в тому сенсі, що об'єднання будь-якої множини з цими елементами дає поглинаючий елемент, а не вихідну множину.</p>
+<p>\[
+\begin{align}
+A \cap \emptyset &amp;= \emptyset \\[6pt]
+A \cup U &amp;= U
+\end{align}
+\]</p>
+<p>Доповнення множини взаємодіє з об'єднанням та перетином згідно з наступними законами. Кожен елемент \( U \) належить або \( A \), або її доповненню, і жоден елемент не належить обом одночасно. Подвійне взяття доповнення повертає вихідну множину.</p>
+<p>\[\begin{align} A \cup A^c &amp;= U \\[6pt] A \cap A^c &amp;= \emptyset \\[6pt] (A^c)^c &amp;= A \end{align}\]</p>
+<p>Ці тотожності становлять основу булевої алгебри та зустрічаються в логіці, комбінаториці та інформатиці з по суті такою самою структурою.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Закони де Моргана</h2>
+<p>Серед раніше розглянутих властивостей дві є особливо помітними, оскільки вони характеризують взаємодію між доповненням, об'єднанням та перетином. Вони відомі як закони де Моргана, названі на честь британського математика Августуса де Моргана:</p>
+<p>\[\begin{align} (A \cup B)^c &amp;= A^c \cap B^c \\[6pt] (A \cap B)^c &amp;= A^c \cup B^c \end{align}\]</p>
+<p>Перший закон стверджує, що доповнення об'єднання дорівнює перетину доповнень. Зокрема, елемент не належить до \( A \cup B \) тоді і тільки тоді, коли він не належить ні до \( A \), ні до \( B \), що еквівалентно належності як до \( A^c \), так і до \( B^c \).</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="854" height="400" src="../images/sets-5-1.png" alt="" class="wp-image-27260" style="width:427px" srcset="../images/sets-5-1.png 854w, https://algebrica.org/wp-content/uploads/resources/images/sets-5-1-300x141.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sets-5-1-768x360.png 768w" sizes="(max-width: 854px) 100vw, 854px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Другий закон є аналогічним: елемент не входить у перетин \( A \cap B \) тоді і тільки тоді, коли він відсутній принаймні в одній із множин, що поміщає його в \( A^c \cup B^c \).</p>
+<hr>
+<p>Ці закони природно узагальнюються на довільні скінченні колекції множин. Для множин \( A_1, A_2, \ldots, A_n \):</p>
+<p>\[\begin{align} \left(\bigcup_{i=1}^{n} A_i\right)^c &amp;= \bigcap_{i=1}^{n} A_i^c \\[6pt] \left(\bigcap_{i=1}^{n} A_i\right)^c &amp;= \bigcup_{i=1}^{n} A_i^c \end{align}\]</p>
+<p>Закони де Моргана є фундаментальними як у математиці, так і в логіці. У <a href="propositional-logic.html">логіці висловлювань</a> вони відповідають еквівалентностям:</p>
+<p>\[ \neg(P \lor Q) \equiv \neg P \land \neg Q \]
+\[ \neg(P \land Q) \equiv \neg P \lor \neg Q \]</p>
+<p>що демонструє тісний зв'язок між алгебраїчною структурою множин та структурою логічних зв'язок.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Приклад</h2>
+<p>Нехай \( U = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\} \) — універсальна множина, та визначимо наступні дві підмножини:</p>
+<p>\[
+\begin{align}
+A &amp;= \{1, 2, 3, 4, 6\} \\[6pt]
+B &amp;= \{2, 4, 6, 8, 10\}
+\end{align}
+\]</p>
+<p>Об'єднання та перетин обчислюються безпосередньо з означень:</p>
+<p>\[
+\begin{align}
+A \cup B &amp;= \{1, 2, 3, 4, 6, 8, 10\} \\[6pt]
+A \cap B &amp;= \{2, 4, 6\}
+\end{align}
+\]</p>
+<p>Доповнення відносно \( U \) — це елементи, що виключені з кожної множини:</p>
+<p>\[
+\begin{align}
+A^c &amp;= \{5, 7, 8, 9, 10\} \\[6pt]
+B^c &amp;= \{1, 3, 5, 7, 9\}
+\end{align}
+\]</p>
+<p>Тепер перевіримо перший закон Де Моргана. Доповнення об'єднання дорівнює:</p>
+<p>\[
+(A \cup B)^c = U \setminus (A \cup B) = \{5, 7, 9\}
+\]</p>
+<p>Обчислення перетину доповнень дає:</p>
+<p>\[
+\begin{align}
+A^c \cap B^c &amp;= \{5, 7, 8, 9, 10\} \cap \{1, 3, 5, 7, 9\} \\[6pt]
+&amp;= \{5, 7, 9\}
+\end{align}
+\]</p>
+<p>Дві множини збігаються, що підтверджує перший закон Де Моргана.</p>
+<p>Перевіримо принцип включення-виключення, використовуючи потужності множин.</p>
+<p>\[
+|A| = 5 \quad |B| = 5 \quad |A \cap B| = 3
+\]</p>
+<p>\[
+|A \cup B| = 5 + 5 &#8211; 3 = 7
+\]</p>
+<p>Підрахунок елементів \( A \cup B = \{1, 2, 3, 4, 6, 8, 10\} \) безпосередньо підтверджує, що \( |A \cup B| = 7 \).</p>
+<p>Нарешті, обчислимо симетричну різницю та перевіримо її зв'язок з іншими операціями.</p>
+<p>\[
+A \triangle B = (A \setminus B) \cup (B \setminus A)
+\]</p>
+<p>Дві різниці дорівнюють \( A \setminus B = \{1, 3\} \) та \( B \setminus A = \{8, 10\} \), отже:</p>
+<p>\[
+A \triangle B = \{1, 3, 8, 10\}
+\]</p>
+<p>Еквівалентна характеристика через об'єднання та перетин дає:</p>
+<p>\[
+\begin{align}
+(A \cup B) \setminus (A \cap B) &amp;= \{1, 2, 3, 4, 6, 8, 10\} \setminus \{2, 4, 6\} \\[6pt]
+&amp;= \{1, 3, 8, 10\}
+\end{align}
+\]</p>
+<p>Два вирази збігаються, як і очікувалося.</p>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30 alignCenterMathjax"><h2>Декартів добуток</h2>
+<p>Дано дві множини \( A \) та \( B \), тоді Декартів добуток, що позначається \( A \times B \), визначається як множина всіх впорядкованих пар \( (a, b) \), таких що \( a \) належить до \( A \) і \( b \) належить до \( B \):</p>
+<p>\[ A \times B = \{(a, b) \mid a \in A,\, b \in B\} \]</p>
+<p>Поняття впорядкованої пари підкреслює фундаментальну асиметрію: \( (a, b) \) та \( (b, a) \) є різними, якщо тільки \( a \) не дорівнює \( b \). Дві впорядковані пари рівні тоді і тільки тоді, коли їхні відповідні компоненти рівні:</p>
+<p>\[ (a, b) = (a’, b’) \iff a = a’ \text{ та } b = b’ \]</p>
+<p>Відповідно, загалом \( A \times B \neq B \times A \). Якщо множина \( A \) містить \( m \) елементів, а множина \( B \) містить \( n \) елементів, то \( A \times B \) містить \( mn \) елементів. Поширеним прикладом є \( \mathbb{R} \times \mathbb{R} \), що часто позначається \( \mathbb{R}^2 \), що представляє множину всіх пар дійсних чисел і відповідає Декартовій площині.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-10"><img loading="lazy" width="660" height="662" src="../images/sets-6.png" alt="" class="wp-image-25708" style="width:330px" srcset="../images/sets-6.png 660w, https://algebrica.org/wp-content/uploads/resources/images/sets-6-300x300.png 300w, https://algebrica.org/wp-content/uploads/resources/images/sets-6-150x150.png 150w" sizes="(max-width: 660px) 100vw, 660px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown alignCenterMathjax"><p>Декартів добуток узагальнюється на будь-яку скінченну колекцію множин. Для множин \( A_1, A_2, \ldots, A_n \) їхній Декартів добуток — це множина всіх впорядкованих \( n \)-кортежів:</p>
+<p>\[ A_1 \times A_2 \times \cdots \times A_n = \{(a_1, a_2, \ldots, a_n) \mid a_i \in A_i \,  \text{для кожного } \, i = 1, \ldots, n\} \]</p>
+<p>\( n \)-кортеж \( (a_1, \ldots, a_n) \) — це впорядкована <a href="sequences.html">послідовність</a> з \( n \) елементів, і два \( n \)-кортежі рівні тоді і тільки тоді, коли всі відповідні компоненти рівні. Якщо всі множини ідентичні, тобто \( A_i = A \) для кожного \( i \), добуток позначається \( A^n \). Простір \( \mathbb{R}^n \), який є фундаментальним у лінійній алгебрі та реальному аналізі, є \( n \)-кратним Декартовим добутком \( \mathbb{R} \) самої на себе, а його елементами є \( n \)-кортежі дійских чисел.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Впорядкована пара</h2>
+<p>Попереднє обговорення використовувало впорядковану пару як інтуїтивне поняття. Для більшості цілей цього достатньо, але формально повний виклад теорії множин вимагає, щоб кожен математичний об'єкт, включаючи впорядковані пари, міг бути виражений виключно через множини. Неформально, впорядкована пара \( (a, b) \) позначає пару об'єктів, де перша компонента — це \( a \), а друга — \( b \). Однак це інтуїтивне розуміння не є формальним означенням, оскільки воно розглядає порядок як примітивне поняття, а не виводить його з аксіом теорії множин. Суворий підхід вимагає означення впорядкованої пари виключно через множини. Куратовський запропонував стандартне розв'язання, запропонувавши наступне означення:</p>
+<p>\[ (a, b) = \{\{a\},\, \{a, b\}\} \]</p>
+<p>У цьому означенні впорядкована пара \( (a, b) \) представлена як множина, що містить два елементи: однелементну множину \( \{a\} \) та невпорядковану пару \( \{a, b\} \). Різниця між двома компонентами закодована в структурі множини: \( a \) з'являється в обох елементах, тоді як \( b \) з'являється лише в одному.</p>
+<p>Це означення обґрунтоване наступним результатом, який підтверджує, що воно точно відображає передбачені властивості впорядкованих пар.</p>
+<p>\[ (a, b) = (c, d) \implies a = c \text{ та } b = d \]</p>
+<p>Щоб перевірити цю властивість, припустимо, що \( \{\{a\}, \{a, b\}\} = \{\{c\}, \{c, d\}\} \). Слід розглянути два випадки: або \( a = b \), або \( a \neq b \).</p>
+<p>Якщо \( a = b \), то \( \{a, b\} = \{a\} \), отже ліва частина стає \( \{\{a\}\} \), одноелементною множиною. Для рівності права частина також має бути одноелементною, що вимагає \( \{c\} = \{c, d\} \), звідси \( c = d \). Єдиний елемент з кожного боку має збігатися, отже \( \{a\} = \{c\} \), і таким чином \( a = c \). Отже, оскільки \( b = a = c = d \), звідси випливає, що \( a = c \) та \( b = d \).</p>
+<p>Якщо \( a \neq b \), то ліва частина містить два різні елементи: \( \{a\} \) та \( \{a, b\} \). Однелементна множина \( \{a\} \) має відповідати або \( \{c\} \), або \( \{c, d\} \) у правій частині. Якщо \( \{a\} = \{c, d\} \), то \( c = d = a \), що призвело б до \( \{c\} = \{c, d\} \), в результаті чого справа була б одноелементна множина, що суперечить наявності двох різних елементів зліва. Отже, \( \{a\} = \{c\} \), тому \( a = c \). Звідси випливає, що \( \{a, b\} = \{c, d\} = \{a, d\} \), і оскільки \( a \neq b \), має бути \( b = d \).</p>
+<p>В обох випадках \( a = c \) та \( b = d \), як і вимагалося. Обернене твердження є очевидним: якщо \( a = c \) та \( b = d \), то дві множини є ідентичними шляхом підстановки.</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="sets.html">algebrica.org/sets</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

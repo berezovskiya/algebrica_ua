@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algebrica — Онтологічний граф</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0d1117; color: #e6edf3;
+        }
+        .top-bar {
+            padding: 12px 20px;
+            border-bottom: 1px solid #30363d;
+            display: flex; align-items: center; gap: 20px;
+            background: #161b22;
+        }
+        .top-bar a { color: #58a6ff; text-decoration: none; font-weight: bold; }
+        .top-bar a:hover { text-decoration: underline; }
+        .top-bar h1 { font-size: 18px; color: #79c0ff; }
+
+        .graph-page-search { padding: 12px 20px; background: #161b22; border-bottom: 1px solid #30363d; }
+        .graph-page-search__input {
+            width: 100%; max-width: 400px; padding: 8px 12px;
+            font-size: 14px; border: 1px solid #30363d; border-radius: 4px;
+            background: #0d1117; color: #e6edf3;
+        }
+        .graph-page-search__input:focus { outline: none; border-color: #58a6ff; box-shadow: 0 0 0 2px rgba(88,166,255,0.2); }
+        .graph-page-search__input::placeholder { color: #484f58; }
+        
+        .site-column-main-graph { width:100% }
+
+.post-graph { margin-top:30px;padding:0;font-size:14px }
+
+.post-graph h2 { padding:14px 20px;border-bottom:solid 1px #e1e1e1;font-size:14px;font-weight:500;color:#000 }
+
+a.graph-more { text-decoration:underline;text-underline-offset:3px;color:#999 }
+
+.graph-tag { color:#fff;font-weight:500;background:#bfbfbf;padding:2px 6px;border-radius:3px }
+
+.page-graph-paths { padding-bottom:0 }
+
+.algebrica-graph-paths__entry-noborder { border-bottom:none !important;margin-bottom:0 !important }
+
+.graph-relationship { display:flex;justify-content:flex-start;align-items:flex-start;column-gap:80px;margin:20px 0 20px 0 }
+
+.graph-relationship-item { display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;min-width:0;gap:6px;position:relative }
+
+.graph-relationship-item:first-child::after { content:"";position:absolute;top:13px;left:12px;width:calc(100% + 80px);height:1px;background-color:#ccc;z-index:0 }
+
+.graph-relationship-circle { display:flex;align-items:center;justify-content:center;padding:0;background-color:#888;color:#fff;font-weight:bold;border-radius:100%;width:26px;height:26px;position:relative;z-index:1;line-height:26px }
+
+.graph-relationship-circle-value { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;width:100%;text-align:center;font-size:13px;line-height:1;font-weight:bold;color:#fff }
+
+.graph-relationship-desc { display:flex;align-items:center;justify-content:flex-start;font-size:12px;min-width:0;max-width:11ch;text-align:left;white-space:normal;word-break:normal;overflow-wrap:normal;line-height:13px;color:#888 }
+
+a.post-grap-btn-graph { border:solid 1px #dadada;box-sizing:border-box;font-size:13px;background:#e1e1e1;background-image:url("images/new/icon-graph.svg");background-repeat:no-repeat;background-position:left 10px top 6px;margin-right:10px;height:38px;line-height:38px;border-radius:3px;padding:0 14px 0 40px;transition:background-color .25s cubic-bezier(0.2, 0, 0.3, 1);color:#000;text-decoration:none }
+
+a.post-grap-btn-graph:hover { background-color:#d1d1d1;cursor:pointer }
+
+.footer-paragraph { font-size:15px;line-height:1.5 }
+
+.icon-graph { background:url("images/new/icon-graph.svg") }
+
+.algebrica-graph__canvas { height:640px;width:100%;position:relative;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-tap-highlight-color:rgba(0,0,0,0) }
+
+.algebrica-graph-paths { margin:20px 0 30px 0 }
+
+.algebrica-graph-paths ul:not(:last-child) { margin-bottom:5px }
+
+.algebrica-graph-paths ul li { background-position:top 8px left 0 !important }
+
+.algebrica-graph-paths__entry:not(:last-child) { margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid #e9e9e9 }
+
+.algebrica-graph-paths__entry-title { font-size:16px;margin-bottom:10px }
+
+.algebrica-graph-paths__entry-title a { color:#000;text-decoration:none;border-bottom:1px solid #000 }
+
+.algebrica-graph-path-header { display:flex;align-items:center;gap:10px;margin-bottom:4px;line-height:20px }
+
+.algebrica-graph-path-header-item { display:flex;align-items:center }
+
+.algebrica-graph__canvas svg { display:block;width:100%;height:100% }
+
+.algebrica-graph__node { fill:#777;transition:fill .2s ease-in-out,r .2s ease-in-out }
+
+.algebrica-graph__node:hover { fill:#ddd;r:5.5px }
+
+.algebrica-graph__label { fill:#ddd;opacity:0 }
+
+.algebrica-graph__canvas { height:640px }
+
+.algebrica-graph-head { display:flex;gap:20px;align-items:stretch;margin-bottom:60px }
+
+.algebrica-graph-head-item { flex:1 1 0;min-width:0 }
+
+.algebrica-graph-head-item h2 { color:#ddd;font-size:15px;font-weight:500 }
+
+.algebrica-graph-head-item p { font-size:13px;color:#aaa;line-height:16px }
+
+.algebrica-graph-big-number { font-size:26px;padding:10px 0 10px 0;color:#ddd }
+
+a.explore-the-graph,.placeholder-graph,a.explore-the-graph-mobile { font-size:13px;margin-right:10px;background:#dadada;height:38px;line-height:38px;background-image:url("images/new/icon-graph.svg");background-repeat:no-repeat;background-position:left 15px top 6px;border-radius:24px;padding:0 20px 0 47px;transition:background-color .25s cubic-bezier(0.2, 0, 0.3, 1);color:#000 }
+
+a.explore-the-graph:hover,.placeholder-graph:hover,a.explore-the-graph-mobile:hover { background-color:#d1d1d1;cursor:pointer }
+
+a.explore-the-graph-mobile { font-size:14px;height:46px !important;line-height:46px !important;display:block;margin:0;background-position:left 10px top 11px }
+
+.page-graph-placeholder { margin-bottom:-10px }
+
+.page-graph-placeholder-text { text-align:center;width:360px;margin:0 auto;color:#666 }
+
+.page-graph-placeholder-text p { position:relative;font-size:14px;margin-bottom:20px }
+
+.page-graph-placeholder-text a { color:#000;text-decoration:underline;text-underline-offset:4px }
+
+.placeholder-graph { margin-top:60px !important;margin-bottom:20px !important;font-weight:500;background-color:#fff;font-size:15px;display:block;width:fit-content;margin:0 auto;transition:none }
+
+.placeholder-graph:hover { background-color:rgba(0,0,0,0);cursor:default }
+
+.graph-page-search { margin:0 auto;width:400px;margin-bottom:20px }
+
+.graph-page-search__field { flex:1 1 auto;min-width:0 }
+
+.graph-page-search__input { width:100%;height:42px;border-radius:999px;background-color:rgba(0,0,0,.2);color:#bbb;font-size:14px;padding:0 18px;box-sizing:border-box;transition:background-color .2s ease-in-out,r .2s ease-in-out;background-image:url("images/new/search-graph.svg");background-position:10px 9px;background-repeat:no-repeat;padding-left:40px }
+
+.graph-page-search__input::placeholder { color:#777 }
+
+.graph-page-search__input:focus { outline:none;background-color:rgba(0,0,0,.3) }
+
+.graph-page-search__clear { flex:0 0 auto;height:42px;padding:0 16px;border:1px solid #666;border-radius:999px;background:rgba(0,0,0,0);color:#d7d7d7;font-size:13px;cursor:pointer }
+
+.graph-page-search__clear:hover,.graph-page-search__clear:focus { border-color:#d7d7d7;color:#fff }
+
+.graph-page-search__status { flex:0 0 auto;min-width:120px;color:#9a9a9a;font-size:12px;text-align:right }
+
+.graph-page-search__input::-webkit-search-decoration,.graph-page-search__input::-webkit-search-cancel-button,.graph-page-search__input::-webkit-search-results-button,.graph-page-search__input::-webkit-search-results-decoration { -webkit-appearance:none;appearance:none;display:none }
+        
+        .algebrica-graph__canvas { 
+            height: calc(100vh - 120px) !important; 
+            width: 100% !important;
+        }
+        
+        /* D3 graph styles */
+        .algebrica-graph { background: #0d1117; }
+        .algebrica-graph__canvas svg { width: 100%; height: 100%; background: #0d1117; }
+        .graph-node circle { cursor: pointer; }
+        .graph-node text {
+            font-size: 11px; pointer-events: none;
+            fill: #c9d1d9; font-family: -apple-system, sans-serif;
+        }
+        .graph-link { stroke: #30363d; stroke-opacity: 0.8; }
+
+        .footer-info {
+            padding: 10px 20px; text-align: center;
+            font-size: 12px; color: #484f58; border-top: 1px solid #30363d;
+            background: #161b22;
+        }
+        .footer-info a { color: #58a6ff; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <h1>Онтологічний граф</h1>
+    </div>
+    <div class="graph-page-search">
+        <label class="graph-page-search__field" for="graph-node-search">
+            <input type="search" id="graph-node-search" class="graph-page-search__input" 
+                   placeholder="Пошук вузла" autocomplete="off" />
+        </label>
+    </div>
+    <div class="algebrica-graph">
+        <div class="algebrica-graph__canvas" id="algebrica-graph-canvas"></div>
+    </div>
+    <div class="footer-info">
+        Source: <a href="https://algebrica.org/graph/">algebrica.org/graph</a> — 
+        Author: Antonio Lupetti — License: CC BY-NC 4.0
+    </div>
+    <script src="d3.min.js"></script>
+    <script>
+(function() {
+ var container = document.getElementById('algebrica-graph-canvas');
+ var searchInput = document.getElementById('graph-node-search');
+ if (!container || typeof d3 === 'undefined') {
+ return;
+ }
+ var dataset = {"nodes":[{"id":28423,"title":"Sigmoid Function","url":"../posts/sigmoid-function.html","difficulty":"advanced"},{"id":5571,"title":"Exponential Function","url":"../posts/exponential-function.html","difficulty":"intermediate"},{"id":13909,"title":"Functions","url":"../posts/functions.html","difficulty":"intermediate"},{"id":28332,"title":"The Backpropagation Algorithm","url":"../posts/backpropagation.html","difficulty":""},{"id":6176,"title":"Derivative of Composite Power Functions","url":"../posts/derivative-of-composite-power-functions.html","difficulty":""},{"id":6100,"title":"Derivatives","url":"../posts/derivatives.html","difficulty":"intermediate"},{"id":11183,"title":"Matrices","url":"../posts/matrices.html","difficulty":"intermediate"},{"id":24739,"title":"Partial Derivatives","url":"../posts/partial-derivatives.html","difficulty":"advanced"},{"id":27359,"title":"Vectors","url":"../posts/vectors.html","difficulty":"intermediate"},{"id":28302,"title":"Matrix Diagonalization","url":"../posts/matrix-diagonalization.html","difficulty":"intermediate"},{"id":28225,"title":"Eigenvalues and Eigenvectors","url":"../posts/eigenvalues-and-eigenvectors.html","difficulty":"advanced"},{"id":28134,"title":"Vector Spaces","url":"../posts/vector-spaces.html","difficulty":"intermediate"},{"id":11589,"title":"Determinant of a Square Matrix","url":"../posts/determinant.html","difficulty":"intermediate"},{"id":26028,"title":"Polynomial Equations","url":"../posts/polynomial-equations.html","difficulty":"easy"},{"id":28167,"title":"Hyperbolic Tangent and Cotangent","url":"../posts/hyperbolic-tangent-and-cotangent.html","difficulty":""},{"id":12884,"title":"Hyperbola","url":"../posts/hyperbola.html","difficulty":"easy"},{"id":20895,"title":"Hyperbolic Sine and Cosine","url":"../posts/hyperbolic-sine-and-cosine.html","difficulty":"intermediate"},{"id":28106,"title":"Fields","url":"../posts/fields.html","difficulty":"intermediate"},{"id":27667,"title":"Groups","url":"../posts/groups.html","difficulty":"intermediate"},{"id":27974,"title":"Rings","url":"../posts/rings.html","difficulty":"intermediate"},{"id":25636,"title":"Sets","url":"../posts/sets.html","difficulty":"intermediate"},{"id":15487,"title":"Composite Functions","url":"../posts/composite-functions.html","difficulty":"intermediate"},{"id":23455,"title":"Riemann Integrability Criteria","url":"../posts/riemann-integrability-criteria.html","difficulty":"advanced"},{"id":17006,"title":"Continuous Functions","url":"../posts/continuous-functions.html","difficulty":"intermediate"},{"id":9267,"title":"Definite Integrals","url":"../posts/definite-integrals.html","difficulty":"advanced"},{"id":8841,"title":"Limits","url":"../posts/limits.html","difficulty":"intermediate"},{"id":22762,"title":"Improper Integrals","url":"../posts/improper-integrals.html","difficulty":"advanced"},{"id":22458,"title":"Trigonometric Substitution for Integrals","url":"../posts/trigonometric-substitution-for-integrals.html","difficulty":"advanced"},{"id":7797,"title":"Indefinite Integrals","url":"../posts/indefinite-integrals.html","difficulty":"advanced"},{"id":7914,"title":"Integration by Substitution","url":"../posts/integration-by-substitution.html","difficulty":"advanced"},{"id":7040,"title":"Pythagorean Identity","url":"../posts/pythagorean-identity.html","difficulty":"intermediate"},{"id":8704,"title":"Integral of Rational Functions","url":"../posts/integral-of-rational-functions.html","difficulty":"advanced"},{"id":21912,"title":"Partial Fraction Decomposition","url":"../posts/partial-fraction-decomposition.html","difficulty":"intermediate"},{"id":2326,"title":"Polynomials","url":"../posts/polynomials.html","difficulty":"easy"},{"id":21621,"title":"Integral of Trigonometric Functions","url":"../posts/integral-of-trigonometric-functions.html","difficulty":"advanced"},{"id":8073,"title":"Integral of the Exponential Function","url":"../posts/integral-of-the-exponential-function.html","difficulty":"advanced"},{"id":10340,"title":"Finding Areas by Integration","url":"../posts/finding-areas-by-integration.html","difficulty":"advanced"},{"id":23007,"title":"Fundamental Theorem of Calculus","url":"../posts/fundamental-theorem-of-calculus.html","difficulty":"advanced"},{"id":8037,"title":"Integration by Parts","url":"../posts/integration-by-parts.html","difficulty":"advanced"},{"id":6132,"title":"Derivative of a Composite Function","url":"../posts/the-derivative-of-a-composite-function.html","difficulty":"intermediate"},{"id":25215,"title":"Dirichlet Function","url":"../posts/dirichlet-function.html","difficulty":"advanced"},{"id":24269,"title":"Discontinuities of Real Functions","url":"../posts/discontinuities-of-real-functions.html","difficulty":"intermediate"},{"id":25483,"title":"Sign Function","url":"../posts/sign-function.html","difficulty":"easy"},{"id":14326,"title":"Absolute Value","url":"../posts/absolute-value.html","difficulty":"easy"},{"id":10388,"title":"Absolute Value Function","url":"../posts/absolute-value-function.html","difficulty":"intermediate"},{"id":27108,"title":"Polynomial Function","url":"../posts/polynomial-function.html","difficulty":"easy"},{"id":24413,"title":"Uniform Continuity","url":"../posts/uniform-continuity.html","difficulty":"intermediate"},{"id":7996,"title":"Types of Numbers","url":"../posts/types-of-numbers.html","difficulty":"easy"},{"id":8358,"title":"L&#8217;H\u00f4pital&#8217;s Rule","url":"../posts/hopital-rule.html","difficulty":"intermediate"},{"id":6206,"title":"Cauchy&#8217;s Theorem","url":"../posts/cauchy-theorem.html","difficulty":"intermediate"},{"id":6158,"title":"Rolle&#8217;s Theorem","url":"../posts/rolles-theorem.html","difficulty":"intermediate"},{"id":6193,"title":"Lagrange&#8217;s Theorem","url":"../posts/lagrange-theorem.html","difficulty":"intermediate"},{"id":15277,"title":"Fermat\u2019s Theorem","url":"../posts/fermat-theorem.html","difficulty":"intermediate"},{"id":23668,"title":"Weierstrass Theorem","url":"../posts/weierstrass-theorem.html","difficulty":"intermediate"},{"id":17698,"title":"Big O Notation","url":"../posts/big-o-notation.html","difficulty":"advanced"},{"id":17481,"title":"Little-o Notation","url":"../posts/little-o-notation.html","difficulty":"advanced"},{"id":23730,"title":"Indeterminate Forms of Limits","url":"../posts/indeterminate-forms.html","difficulty":"intermediate"},{"id":17110,"title":"Asymptotes","url":"../posts/asymptotes.html","difficulty":"intermediate"},{"id":23976,"title":"Remarkable Limits","url":"../posts/remarkable-limits.html","difficulty":"intermediate"},{"id":17277,"title":"Squeeze Theorem","url":"../posts/squeeze-theorem.html","difficulty":"intermediate"},{"id":9581,"title":"Linear Inequalities","url":"../posts/linear-inequalities.html","difficulty":"intermediate"},{"id":24043,"title":"Algebra of Limits","url":"../posts/algebra-of-limits.html","difficulty":"intermediate"},{"id":22580,"title":"Properties of Real Numbers","url":"../posts/properties-of-real-numbers.html","difficulty":"easy"},{"id":15726,"title":"Euler\u2019s Number as the Limit of a Sequence","url":"../posts/euler-number-limit-sequence.html","difficulty":"intermediate"},{"id":3582,"title":"Binomial Theorem","url":"../posts/binomial-theorem.html","difficulty":"intermediate"},{"id":16443,"title":"Geometric Series","url":"../posts/geometric-series.html","difficulty":"advanced"},{"id":13906,"title":"Sequences","url":"../posts/sequences.html","difficulty":"easy"},{"id":26224,"title":"Monotone Sequences","url":"../posts/monotone-sequences.html","difficulty":"intermediate"},{"id":25375,"title":"Supremum and Infimum","url":"../posts/supremum-and-infimum.html","difficulty":"intermediate"},{"id":11896,"title":"Systems of Linear Equations","url":"../posts/systems-of-linear-equations.html","difficulty":"intermediate"},{"id":22382,"title":"Linear Combinations","url":"../posts/linear-combinations.html","difficulty":"advanced"},{"id":12652,"title":"Rank of a Matrix","url":"../posts/rank-of-a-matrix.html","difficulty":"advanced"},{"id":11787,"title":"Inverse Matrix","url":"../posts/inverse-matrix.html","difficulty":"intermediate"},{"id":13280,"title":"Vector and Parametric Equations of a Line","url":"../posts/vector-and-parametric-equations-of-a-line.html","difficulty":"intermediate"},{"id":25869,"title":"Trigonometric Inequalities","url":"../posts/trigonometric-inequalities.html","difficulty":"intermediate"},{"id":3918,"title":"Trigonometric Equations: Part 1","url":"../posts/trigonometric-equations.html","difficulty":""},{"id":6821,"title":"Unit Circle","url":"../posts/unit-circle.html","difficulty":"intermediate"},{"id":26405,"title":"Inequalities with Absolute Value","url":"../posts/inequalities-with-absolute-value.html","difficulty":"easy"},{"id":9739,"title":"Systems of Inequalities","url":"../posts/systems-of-inequalities.html","difficulty":"easy"},{"id":26490,"title":"Irrational Inequalities","url":"../posts/irrational-inequalities.html","difficulty":"easy"},{"id":19880,"title":"Determining the Domain of a Function","url":"../posts/determining-the-domain-of-a-function.html","difficulty":"easy"},{"id":2523,"title":"Quadratic Inequalities","url":"../posts/quadratic-inequalities.html","difficulty":"easy"},{"id":4727,"title":"Radicals","url":"../posts/radicals.html","difficulty":"easy"},{"id":9819,"title":"Sign Analysis in Inequalities","url":"../posts/sign-analysis-in-inequalities.html","difficulty":"intermediate"},{"id":10672,"title":"Rational Inequalities","url":"../posts/rational-inequalities.html","difficulty":"easy"},{"id":2425,"title":"Factoring Polynomials: AC Method","url":"../posts/factoring-ac-method.html","difficulty":"intermediate"},{"id":472,"title":"Quadratic Equations","url":"../posts/quadratic-equations.html","difficulty":"easy"},{"id":20674,"title":"Linear Equations with Parameters","url":"../posts/linear-equations-with-parameters.html","difficulty":"easy"},{"id":1241,"title":"Equations","url":"../posts/equations.html","difficulty":"easy"},{"id":3910,"title":"Linear Equations","url":"../posts/linear-equations.html","difficulty":"intermediate"},{"id":25734,"title":"Equations with Parameters","url":"../posts/equations-with-parameters.html","difficulty":"easy"},{"id":2125,"title":"Irrational Equations","url":"../posts/irrational-equations.html","difficulty":"easy"},{"id":4637,"title":"Powers","url":"../posts/powers.html","difficulty":"easy"},{"id":4327,"title":"Trinomial Equations","url":"../posts/trinomial-equations.html","difficulty":"easy"},{"id":25278,"title":"Roots of a Polynomial","url":"../posts/roots-of-a-polynomial.html","difficulty":"easy"},{"id":7479,"title":"Quadratic Equations with Complex Solutions","url":"../posts/quadratic-equations-with-complex-solutions.html","difficulty":"easy"},{"id":697,"title":"Loss of Roots","url":"../posts/loss-of-roots.html","difficulty":"easy"},{"id":478,"title":"Quadratic Formula","url":"../posts/quadratic-formula.html","difficulty":"easy"},{"id":2498,"title":"Completing the Square","url":"../posts/completing-the-square.html","difficulty":"easy"},{"id":777,"title":"Notable Products","url":"../posts/notable-products.html","difficulty":"easy"},{"id":3783,"title":"Binomials","url":"../posts/binomials.html","difficulty":"easy"},{"id":3781,"title":"Monomials","url":"../posts/monomials.html","difficulty":"easy"},{"id":3785,"title":"Trinomials","url":"../posts/trinomials.html","difficulty":"easy"},{"id":1546,"title":"Binomial Coefficient","url":"../posts/binomial-coefficient.html","difficulty":"intermediate"},{"id":1411,"title":"Factorial","url":"../posts/factorial.html","difficulty":"easy"},{"id":5063,"title":"The Synthetic Division Method","url":"../posts/syntetic-division.html","difficulty":"easy"},{"id":25059,"title":"Polynomial Division","url":"../posts/polynomial-division.html","difficulty":"easy"},{"id":3804,"title":"Adding and Subtracting Polynomials","url":"../posts/adding-and-subtracting-polynomials.html","difficulty":"easy"},{"id":21277,"title":"Integers","url":"../posts/integers.html","difficulty":"easy"},{"id":7152,"title":"The Law of Cosines","url":"../posts/law-of-cosines.html","difficulty":"intermediate"},{"id":8175,"title":"Right Triangle Trigonometry","url":"../posts/right-triangle-trigonometry.html","difficulty":"easy"},{"id":6309,"title":"Sine and Cosine","url":"../posts/sine-and-cosine.html","difficulty":"intermediate"},{"id":6669,"title":"The Law of Sines","url":"../posts/law-of-sines.html","difficulty":"intermediate"},{"id":16586,"title":"Pythagorean Theorem","url":"../posts/pythagorean-theorem.html","difficulty":"easy"},{"id":6908,"title":"Arctangent and Arccotangent","url":"../posts/arctangent-and-arccotangent.html","difficulty":"intermediate"},{"id":6450,"title":"Tangent and Cotangent","url":"../posts/tangent-and-cotangent.html","difficulty":"easy"},{"id":6905,"title":"Arcsine and Arccosine","url":"../posts/arcsine-and-arccosine.html","difficulty":"easy"},{"id":14110,"title":"Inverse Function","url":"../posts/inverse-function.html","difficulty":"intermediate"},{"id":6624,"title":"Secant and Cosecant","url":"../posts/secant-and-cosecant.html","difficulty":"easy"},{"id":10954,"title":"Circumference","url":"../posts/circumference.html","difficulty":"easy"},{"id":11083,"title":"De Moivre\u2019s Theorem","url":"../posts/de-moivre-theorem.html","difficulty":"intermediate"},{"id":7256,"title":"Complex Numbers","url":"../posts/complex-numbers-introduction.html","difficulty":"intermediate"},{"id":7355,"title":"Complex Numbers in Trigonometric Form","url":"../posts/complex-numbers-trigonometric-form.html","difficulty":"intermediate"},{"id":7556,"title":"Complex Numbers in Exponential Form","url":"../posts/complex-numbers-exponential-form.html","difficulty":"intermediate"},{"id":7437,"title":"Operations with Complex Numbers","url":"../posts/complex-number-operations.html","difficulty":"intermediate"},{"id":4693,"title":"Logarithms","url":"../posts/logarithms.html","difficulty":"easy"},{"id":26820,"title":"Roots of Unity","url":"../posts/roots-of-unity.html","difficulty":"expert"},{"id":27010,"title":"Intervals","url":"../posts/intervals.html","difficulty":"easy"},{"id":5852,"title":"Propositional Logic","url":"../posts/propositional-logic.html","difficulty":"intermediate"},{"id":5613,"title":"Cosine Similarity","url":"../posts/cosine-similarity.html","difficulty":"advanced"},{"id":6430,"title":"Cosine Function","url":"../posts/cosine-function.html","difficulty":"intermediate"}],"links":[{"source":5571,"target":28423},{"source":13909,"target":28423},{"source":6176,"target":28332},{"source":6100,"target":28332},{"source":11183,"target":28332},{"source":24739,"target":28332},{"source":27359,"target":28332},{"source":28225,"target":28302},{"source":11183,"target":28302},{"source":28134,"target":28302},{"source":11589,"target":28225},{"source":11183,"target":28225},{"source":26028,"target":28225},{"source":27359,"target":28225},{"source":5571,"target":28167},{"source":12884,"target":28167},{"source":20895,"target":28167},{"source":28106,"target":28134},{"source":27667,"target":28134},{"source":27359,"target":28134},{"source":27667,"target":28106},{"source":27974,"target":28106},{"source":25636,"target":28106},{"source":27667,"target":27974},{"source":25636,"target":27974},{"source":15487,"target":27667},{"source":25636,"target":27667},{"source":17006,"target":23455},{"source":9267,"target":23455},{"source":8841,"target":23455},{"source":9267,"target":22762},{"source":8841,"target":22762},{"source":7797,"target":22458},{"source":7914,"target":22458},{"source":7040,"target":22458},{"source":7797,"target":8704},{"source":21912,"target":8704},{"source":2326,"target":8704},{"source":7797,"target":21621},{"source":6100,"target":8073},{"source":5571,"target":8073},{"source":7797,"target":8073},{"source":9267,"target":10340},{"source":23007,"target":10340},{"source":6100,"target":8037},{"source":7797,"target":8037},{"source":6132,"target":7914},{"source":7797,"target":7914},{"source":9267,"target":23007},{"source":7797,"target":23007},{"source":17006,"target":9267},{"source":8841,"target":9267},{"source":6100,"target":7797},{"source":24269,"target":25215},{"source":13909,"target":25215},{"source":8841,"target":25215},{"source":23455,"target":25215},{"source":14326,"target":25483},{"source":13909,"target":25483},{"source":25483,"target":10388},{"source":13909,"target":5571},{"source":13909,"target":27108},{"source":2326,"target":27108},{"source":17006,"target":24269},{"source":8841,"target":24269},{"source":17006,"target":24413},{"source":13909,"target":24413},{"source":8841,"target":24413},{"source":8841,"target":17006},{"source":7996,"target":13909},{"source":6100,"target":8358},{"source":13909,"target":8358},{"source":8841,"target":8358},{"source":7996,"target":8358},{"source":17006,"target":6206},{"source":6100,"target":6206},{"source":13909,"target":6206},{"source":6158,"target":6206},{"source":17006,"target":6193},{"source":6100,"target":6193},{"source":6158,"target":6193},{"source":17006,"target":6158},{"source":6100,"target":6158},{"source":13909,"target":6158},{"source":8841,"target":6158},{"source":6100,"target":15277},{"source":13909,"target":15277},{"source":7996,"target":15277},{"source":17006,"target":23668},{"source":13909,"target":23668},{"source":6100,"target":24739},{"source":13909,"target":24739},{"source":8841,"target":24739},{"source":11183,"target":24739},{"source":15487,"target":6132},{"source":6100,"target":6132},{"source":8841,"target":6100},{"source":13909,"target":17698},{"source":8841,"target":17698},{"source":13909,"target":17481},{"source":8841,"target":17481},{"source":13909,"target":23730},{"source":8841,"target":23730},{"source":13909,"target":17110},{"source":8841,"target":17110},{"source":8841,"target":23976},{"source":13909,"target":17277},{"source":8841,"target":17277},{"source":9581,"target":17277},{"source":17006,"target":24043},{"source":8841,"target":24043},{"source":22580,"target":24043},{"source":23976,"target":24043},{"source":13909,"target":8841},{"source":3582,"target":15726},{"source":16443,"target":15726},{"source":13906,"target":15726},{"source":22580,"target":26224},{"source":13906,"target":26224},{"source":25375,"target":26224},{"source":27359,"target":11896},{"source":11183,"target":22382},{"source":28134,"target":22382},{"source":27359,"target":22382},{"source":11589,"target":12652},{"source":11183,"target":12652},{"source":27359,"target":12652},{"source":11183,"target":11787},{"source":27359,"target":11787},{"source":11183,"target":11589},{"source":22580,"target":11589},{"source":13909,"target":11183},{"source":22580,"target":11183},{"source":25636,"target":11183},{"source":27359,"target":11183},{"source":22382,"target":27359},{"source":22580,"target":27359},{"source":27359,"target":13280},{"source":3918,"target":25869},{"source":6821,"target":25869},{"source":14326,"target":26405},{"source":9581,"target":26405},{"source":22580,"target":26405},{"source":9739,"target":26405},{"source":19880,"target":26490},{"source":2523,"target":26490},{"source":4727,"target":26490},{"source":9819,"target":26490},{"source":2326,"target":10672},{"source":9819,"target":10672},{"source":2425,"target":9819},{"source":2326,"target":9819},{"source":22580,"target":9819},{"source":2326,"target":2523},{"source":472,"target":2523},{"source":1241,"target":20674},{"source":3910,"target":20674},{"source":1241,"target":25734},{"source":3910,"target":25734},{"source":472,"target":25734},{"source":1241,"target":2125},{"source":4637,"target":2125},{"source":4727,"target":2125},{"source":9739,"target":2125},{"source":25278,"target":4327},{"source":25278,"target":7479},{"source":1241,"target":697},{"source":472,"target":697},{"source":25278,"target":697},{"source":2498,"target":478},{"source":2326,"target":478},{"source":472,"target":478},{"source":25278,"target":472},{"source":2326,"target":26028},{"source":25278,"target":26028},{"source":2326,"target":1241},{"source":25278,"target":1241},{"source":7996,"target":1241},{"source":3582,"target":777},{"source":3783,"target":777},{"source":3781,"target":777},{"source":3783,"target":2425},{"source":3781,"target":2425},{"source":2326,"target":2425},{"source":25278,"target":2425},{"source":777,"target":2498},{"source":3785,"target":2498},{"source":1546,"target":3582},{"source":1411,"target":3582},{"source":4637,"target":3582},{"source":2326,"target":25278},{"source":25278,"target":5063},{"source":3781,"target":25059},{"source":2326,"target":25059},{"source":4637,"target":25059},{"source":22580,"target":25059},{"source":25278,"target":25059},{"source":21277,"target":3804},{"source":3781,"target":3804},{"source":3785,"target":3804},{"source":3783,"target":3785},{"source":3781,"target":3785},{"source":2326,"target":3785},{"source":4637,"target":3785},{"source":3781,"target":3783},{"source":2326,"target":3783},{"source":4637,"target":3783},{"source":7996,"target":3783},{"source":21277,"target":3781},{"source":4637,"target":3781},{"source":22580,"target":3781},{"source":21277,"target":2326},{"source":7996,"target":2326},{"source":8175,"target":7152},{"source":6309,"target":7152},{"source":8175,"target":6669},{"source":6309,"target":6669},{"source":16586,"target":7040},{"source":6309,"target":7040},{"source":6821,"target":7040},{"source":5571,"target":20895},{"source":12884,"target":20895},{"source":16586,"target":6908},{"source":6450,"target":6908},{"source":6821,"target":6908},{"source":14110,"target":6905},{"source":6309,"target":6905},{"source":6821,"target":6905},{"source":6309,"target":6624},{"source":6821,"target":6624},{"source":6309,"target":6450},{"source":6821,"target":6450},{"source":6821,"target":6309},{"source":10954,"target":6821},{"source":6309,"target":6821},{"source":7256,"target":11083},{"source":7355,"target":11083},{"source":7256,"target":7556},{"source":7355,"target":7556},{"source":7256,"target":7355},{"source":7437,"target":7355},{"source":16586,"target":7355},{"source":6309,"target":7355},{"source":7256,"target":7437},{"source":22580,"target":7437},{"source":472,"target":7256},{"source":7996,"target":7256},{"source":4637,"target":4693},{"source":4637,"target":4727},{"source":22580,"target":4727},{"source":5571,"target":4637},{"source":4693,"target":4637},{"source":7996,"target":4637},{"source":7256,"target":26820},{"source":7556,"target":26820},{"source":11083,"target":26820},{"source":1411,"target":1546},{"source":22580,"target":25375},{"source":7996,"target":25375},{"source":22580,"target":27010},{"source":25636,"target":27010},{"source":22580,"target":14326},{"source":7996,"target":14326},{"source":7996,"target":22580},{"source":7996,"target":21277},{"source":25636,"target":7996},{"source":13909,"target":5852},{"source":25636,"target":5852},{"source":6430,"target":5613},{"source":28134,"target":5613},{"source":27359,"target":5613}]};
+ var nodes = Array.isArray(dataset.nodes) ? dataset.nodes.slice() : [];
+ var links = Array.isArray(dataset.links) ? dataset.links.slice() : [];
+ function decodeGraphText(value) {
+ var raw = String(value || '');
+ // Normalize known bad apostrophe entity before generic decoding.
+ raw = raw.replace(/&#8271;/g, '&#8217;');
+ raw = raw.replace(/&#8217;/g, "'");
+ var textarea = document.createElement('textarea');
+ textarea.innerHTML = raw;
+ return textarea.value;
+ }
+ nodes = nodes.map(function(nodeItem) {
+ var updated = Object.assign({}, nodeItem);
+ updated.title = decodeGraphText(nodeItem.title);
+ return updated;
+ });
+ if (!nodes.length) {
+ container.textContent = 'No graph data available.';
+ return;
+ }
+ function getNodeId(value) {
+ if (value && typeof value === 'object' && value.id !== undefined) {
+ return String(value.id);
+ }
+ return String(value);
+ }
+ var nodeIds = nodes.map(function(n) { return String(n.id); });
+ var outgoingByNode = new Map();
+ nodeIds.forEach(function(id) {
+ outgoingByNode.set(id, []);
+ });
+ links.forEach(function(linkItem) {
+ var sourceId = getNodeId(linkItem.source);
+ var targetId = getNodeId(linkItem.target);
+ if (!outgoingByNode.has(sourceId)) {
+ outgoingByNode.set(sourceId, []);
+ }
+ outgoingByNode.get(sourceId).push(targetId);
+ });
+ var width = container.clientWidth || 640;
+ var baseHeight = container.clientHeight || 640;
+ var autoHeight = Math.max(baseHeight, Math.min(700, 760 + (nodes.length * 18)));
+ container.style.height = autoHeight + 'px';
+ var height = autoHeight;
+ var nodeRadius = 4.5;
+ var edgePadding = 18;
+ var labelVerticalOffset = 12;
+ var baseLinkDistance = Math.round((width / Math.max(8, Math.sqrt(nodes.length))) + 34);
+ var linkDistance = Math.max(84, Math.min(148, baseLinkDistance - 2));
+ var chargeStrength = -Math.max(260, Math.min(520, 200 + Math.round(nodes.length * 2.4)));
+ var collisionRadius = nodes.length > 80 ? 34 : (nodes.length > 45 ? 30 : 26);
+ var radialInnerRadius = 16;
+ var forcePerfectCircle = true;
+ nodes.forEach(function(nodeItem) {
+ var labelText = String(nodeItem.title || '');
+ var estimatedLabelWidth = Math.max(28, Math.min(220, (labelText.length * 6.4) + 12));
+ nodeItem.__labelWidth = estimatedLabelWidth;
+ nodeItem.__labelHalfWidth = estimatedLabelWidth / 2;
+ nodeItem.__collisionRadius = Math.max(collisionRadius, Math.min(120, (estimatedLabelWidth / 2) + 8));
+ nodeItem.__radialTarget = radialInnerRadius;
+ nodeItem.__selectionTargetX = null;
+ nodeItem.__selectionTargetY = null;
+ nodeItem.__userPinned = false;
+ });
+ var controlClearanceTop = 0;
+ function updateControlClearanceTop() {
+ controlClearanceTop = 0;
+ }
+ function getSimulationCenterY(currentHeight) {
+ var minCenterY = controlClearanceTop + 40;
+ var dynamicCenterY = controlClearanceTop + ((currentHeight - controlClearanceTop) / 2);
+ return Math.max(minCenterY, dynamicCenterY);
+ }
+ function getSphericalOuterRadius(currentWidth, currentHeight) {
+ var centerX = currentWidth / 2;
+ var centerY = getSimulationCenterY(currentHeight);
+ var maxBorderGap = 40;
+ var horizontalRadius = Math.max(84, Math.min(centerX, currentWidth - centerX) - maxBorderGap);
+ var verticalRadius = Math.max(84, Math.min(centerY - controlClearanceTop, currentHeight - centerY) - maxBorderGap);
+ return Math.max(84, Math.min(horizontalRadius, verticalRadius));
+ }
+ function updateRadialTargets(currentWidth, currentHeight) {
+ var sphericalOuterRadius = getSphericalOuterRadius(currentWidth, currentHeight);
+ var centerX = currentWidth / 2;
+ var centerY = getSimulationCenterY(currentHeight);
+ var sortedNodes = nodes.slice().sort(function(a, b) {
+ var aId = String(a.id || '');
+ var bId = String(b.id || '');
+ if (aId < bId) {
+ return -1;
+ }
+ if (aId > bId) {
+ return 1;
+ }
+ return 0;
+ });
+ var totalNodes = Math.max(1, sortedNodes.length);
+ var goldenAngle = Math.PI * (3 - Math.sqrt(5));
+ var usableRadius = Math.max(72, sphericalOuterRadius - Math.max(nodeRadius, collisionRadius * 0.12));
+ sortedNodes.forEach(function(nodeItem, nodeIndex) {
+ var normalizedRadius = totalNodes === 1 ? 0 : Math.sqrt((nodeIndex + 0.5) / totalNodes);
+ var radialTarget = normalizedRadius * usableRadius;
+ var theta = (nodeIndex * goldenAngle) - (Math.PI / 2);
+ nodeItem.__radialTarget = radialTarget;
+ nodeItem.__targetX = centerX + (Math.cos(theta) * radialTarget);
+ nodeItem.__targetY = centerY + (Math.sin(theta) * radialTarget);
+ if (forcePerfectCircle && !nodeItem.__userPinned && nodeItem.__selectionTargetX === null && nodeItem.__selectionTargetY === null) {
+ nodeItem.x = nodeItem.__targetX;
+ nodeItem.y = nodeItem.__targetY;
+ nodeItem.fx = nodeItem.__targetX;
+ nodeItem.fy = nodeItem.__targetY;
+ }
+ });
+ }
+ updateControlClearanceTop();
+ requestAnimationFrame(updateControlClearanceTop);
+ updateRadialTargets(width, height);
+ var svg = d3.select(container)
+ .append('svg')
+ .attr('viewBox', '0 0 ' + width + ' ' + height)
+ .attr('preserveAspectRatio', 'xMidYMid meet');
+ var link = svg.append('g')
+ .attr('stroke', '#666')
+ .attr('stroke-opacity', 0.6)
+ .selectAll('line')
+ .data(links)
+ .join('line')
+ .attr('stroke-width', 0.9)
+ .attr('stroke-linecap', 'round');
+ var node = svg.append('g')
+ //.attr('stroke', '#fff')
+ //.attr('stroke-width', 1.3)
+ .selectAll('circle')
+ .data(nodes)
+ .join('circle')
+ .attr('class', 'algebrica-graph__node')
+ .attr('r', nodeRadius)
+ .style('cursor', 'pointer')
+ .call(
+ d3.drag()
+ .on('start', dragstarted)
+ .on('drag', dragged)
+ .on('end', dragended)
+ );
+ node.append('title').text(function(d) {
+ return d.title || '';
+ });
+ var labels = svg.append('g')
+ .attr('font-size', 11)
+ .selectAll('text')
+ .data(nodes)
+ .join('text')
+ .attr('class', 'algebrica-graph__label')
+ .attr('text-anchor', 'middle')
+ .style('cursor', 'pointer')
+ .style('pointer-events', 'none')
+ .text(function(d) {
+ return d.title || '';
+ });
+ labels.on('click', function(event, d) {
+ if (!d || d.id === undefined) {
+ return;
+ }
+ if (searchQuery) {
+ event.preventDefault();
+ event.stopPropagation();
+ clearSearchState();
+ activateNodeSelection(d.id);
+ return;
+ }
+ if (d.url) {
+ window.location.href = d.url;
+ }
+ });
+ var hoverFocusNodeId = null;
+ var hoverFocusNodeIds = new Set();
+ var persistentSelectionNodeId = null;
+ var persistentSelectionNodeIds = new Set();
+ var persistentSelectionLinkKeys = new Set();
+ var searchMatchedNodeIds = new Set();
+ var searchMatchedLinkKeys = new Set();
+ var searchQuery = '';
+ var renderedLabelNodeIds = new Set();
+ var dependencyMoveTimer = null;
+ var simulation = d3.forceSimulation(nodes)
+ .force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(linkDistance).strength(0.72))
+ .force('charge', d3.forceManyBody().strength(chargeStrength))
+ .force('center', d3.forceCenter(width / 2, getSimulationCenterY(height)))
+ .force('x', d3.forceX(function(d) { return d.__targetX; }).strength(0.14))
+ .force('y', d3.forceY(function(d) { return d.__targetY; }).strength(0.14))
+ .force('radial', d3.forceRadial(function(d) { return d.__radialTarget; }, width / 2, getSimulationCenterY(height)).strength(0.2))
+ .force('collision', d3.forceCollide().radius(function(d) { return d.__collisionRadius; }).iterations(2))
+ .velocityDecay(0.9)
+ .alphaDecay(0.18)
+ .alphaMin(0.002)
+ .on('tick', ticked);
+ // Warm-up: pre-run physics before first paint to avoid jumpy start.
+ simulation.stop();
+ var warmupTicks = Math.min(260, Math.max(80, nodes.length * 3));
+ for (var i = 0; i < warmupTicks; i += 1) {
+ simulation.tick();
+ }
+ ticked();
+ simulation.alpha(0.06).restart();
+ var activeDragNodeId = null;
+ var activeDragNodeIds = new Set();
+ var activeDragLinkKeys = new Set();
+ function getConnectedNodeIds(nodeId) {
+ var connectedNodeIds = new Set();
+ var normalizedNodeId = nodeId ? String(nodeId) : null;
+ if (!normalizedNodeId) {
+ return connectedNodeIds;
+ }
+ connectedNodeIds.add(normalizedNodeId);
+ links.forEach(function(linkItem) {
+ var sourceId = getNodeId(linkItem.source);
+ var targetId = getNodeId(linkItem.target);
+ if (sourceId === normalizedNodeId || targetId === normalizedNodeId) {
+ connectedNodeIds.add(sourceId);
+ connectedNodeIds.add(targetId);
+ }
+ });
+ return connectedNodeIds;
+ }
+ function getDependentNodeIds(nodeId) {
+ var dependentNodeIds = new Set();
+ var normalizedNodeId = nodeId ? String(nodeId) : null;
+ if (!normalizedNodeId) {
+ return dependentNodeIds;
+ }
+ (outgoingByNode.get(normalizedNodeId) || []).forEach(function(targetId) {
+ dependentNodeIds.add(String(targetId));
+ });
+ return dependentNodeIds;
+ }
+ function animateDependentNodesToward(nodeId) {
+ var normalizedNodeId = nodeId ? String(nodeId) : null;
+ if (!normalizedNodeId) {
+ return;
+ }
+ if (dependencyMoveTimer) {
+ dependencyMoveTimer.stop();
+ dependencyMoveTimer = null;
+ }
+ var selectedNode = nodes.find(function(nodeItem) {
+ return String(nodeItem.id) === normalizedNodeId;
+ });
+ if (!selectedNode) {
+ return;
+ }
+ var dependentNodeIds = getDependentNodeIds(normalizedNodeId);
+ var dependentNodes = nodes.filter(function(nodeItem) {
+ return dependentNodeIds.has(String(nodeItem.id));
+ });
+ if (!dependentNodes.length) {
+ return;
+ }
+ var anchorX = Number.isFinite(selectedNode.x) ? selectedNode.x : selectedNode.__targetX;
+ var anchorY = Number.isFinite(selectedNode.y) ? selectedNode.y : selectedNode.__targetY;
+ var orbitRadius = 86 + Math.min(30, dependentNodes.length * 3);
+ var durationMs = 520;
+ var animatedEntries = dependentNodes.map(function(nodeItem, index) {
+ var theta = (-Math.PI / 2) + ((Math.PI * 2 * index) / Math.max(1, dependentNodes.length));
+ return {
+ node: nodeItem,
+ startX: Number.isFinite(nodeItem.x) ? nodeItem.x : nodeItem.__targetX,
+ startY: Number.isFinite(nodeItem.y) ? nodeItem.y : nodeItem.__targetY,
+ endX: anchorX + (Math.cos(theta) * orbitRadius),
+ endY: anchorY + (Math.sin(theta) * orbitRadius)
+ };
+ });
+ dependencyMoveTimer = d3.timer(function(elapsed) {
+ var progress = Math.min(1, elapsed / durationMs);
+ var eased = d3.easeCubicOut(progress);
+ animatedEntries.forEach(function(entry) {
+ var nextX = entry.startX + ((entry.endX - entry.startX) * eased);
+ var nextY = entry.startY + ((entry.endY - entry.startY) * eased);
+ var bounds = getNodeBounds(entry.node);
+ entry.node.__userPinned = true;
+ entry.node.fx = clamp(nextX, bounds.minX, bounds.maxX);
+ entry.node.fy = clamp(nextY, bounds.minY, bounds.maxY);
+ });
+ ticked();
+ if (progress >= 1) {
+ dependencyMoveTimer.stop();
+ dependencyMoveTimer = null;
+ }
+ });
+ }
+ function updateHoverFocus(nodeId) {
+ if (persistentSelectionNodeId !== null) {
+ return;
+ }
+ hoverFocusNodeId = nodeId ? String(nodeId) : null;
+ hoverFocusNodeIds = new Set();
+ if (hoverFocusNodeId !== null) {
+ hoverFocusNodeIds.add(hoverFocusNodeId);
+ }
+ applyGraphFilters();
+ }
+ function clearSearchState() {
+ searchQuery = '';
+ searchMatchedNodeIds = new Set();
+ searchMatchedLinkKeys = new Set();
+ if (searchInput) {
+ searchInput.value = '';
+ }
+ }
+ function activateNodeSelection(nodeId) {
+ animateDependentNodesToward(nodeId);
+ updatePersistentSelection(nodeId);
+ applyGraphFilters();
+ }
+ node
+ .on('mouseenter', function(event, d) {
+ updateHoverFocus(d.id);
+ })
+ .on('mouseleave', function() {
+ updateHoverFocus(null);
+ });
+ node.on('click', function(event, d) {
+ event.preventDefault();
+ event.stopPropagation();
+ if (!d || d.id === undefined) {
+ return;
+ }
+ if (searchQuery) {
+ clearSearchState();
+ }
+ activateNodeSelection(d.id);
+ });
+ function updateDragFocus(nodeId) {
+ activeDragNodeId = nodeId ? String(nodeId) : null;
+ activeDragNodeIds = new Set();
+ activeDragLinkKeys = new Set();
+ if (!activeDragNodeId) {
+ return;
+ }
+ activeDragNodeIds = getConnectedNodeIds(activeDragNodeId);
+ links.forEach(function(linkItem) {
+ var sourceId = getNodeId(linkItem.source);
+ var targetId = getNodeId(linkItem.target);
+ var key = sourceId + '->' + targetId;
+ if (sourceId === activeDragNodeId || targetId === activeDragNodeId) {
+ activeDragLinkKeys.add(key);
+ activeDragNodeIds.add(sourceId);
+ activeDragNodeIds.add(targetId);
+ }
+ });
+ }
+ function updatePersistentSelection(nodeId) {
+ persistentSelectionNodeId = nodeId ? String(nodeId) : null;
+ persistentSelectionNodeIds = new Set();
+ persistentSelectionLinkKeys = new Set();
+ if (!persistentSelectionNodeId) {
+ return;
+ }
+ persistentSelectionNodeIds = getConnectedNodeIds(persistentSelectionNodeId);
+ links.forEach(function(linkItem) {
+ var sourceId = getNodeId(linkItem.source);
+ var targetId = getNodeId(linkItem.target);
+ var key = sourceId + '->' + targetId;
+ if (sourceId === persistentSelectionNodeId || targetId === persistentSelectionNodeId) {
+ persistentSelectionLinkKeys.add(key);
+ }
+ });
+ }
+ function updateSearchMatches(rawValue) {
+ searchQuery = String(rawValue || '').trim().toLowerCase();
+ searchMatchedNodeIds = new Set();
+ searchMatchedLinkKeys = new Set();
+ if (!searchQuery) {
+ return;
+ }
+ nodes.forEach(function(nodeItem) {
+ var searchableTitle = String(nodeItem.title || '').trim().toLowerCase();
+ if (searchableTitle.indexOf(searchQuery) !== -1) {
+ searchMatchedNodeIds.add(String(nodeItem.id));
+ }
+ });
+ links.forEach(function(linkItem) {
+ var sourceId = getNodeId(linkItem.source);
+ var targetId = getNodeId(linkItem.target);
+ var key = sourceId + '->' + targetId;
+ if (searchMatchedNodeIds.has(sourceId) || searchMatchedNodeIds.has(targetId)) {
+ searchMatchedLinkKeys.add(key);
+ }
+ });
+ }
+ function getPreferredSearchMatchId() {
+ var preferredNodeId = null;
+ if (!searchQuery || !searchMatchedNodeIds.size) {
+ return preferredNodeId;
+ }
+ nodes.some(function(nodeItem) {
+ var nodeId = String(nodeItem.id);
+ var searchableTitle = String(nodeItem.title || '').trim().toLowerCase();
+ if (searchMatchedNodeIds.has(nodeId) && searchableTitle === searchQuery) {
+ preferredNodeId = nodeId;
+ return true;
+ }
+ return false;
+ });
+ if (preferredNodeId !== null) {
+ return preferredNodeId;
+ }
+ return searchMatchedNodeIds.values().next().value || null;
+ }
+ function clearPersistentSelection() {
+ updatePersistentSelection(null);
+ }
+ function resetNodePositionsToInitialLayout() {
+ if (dependencyMoveTimer) {
+ dependencyMoveTimer.stop();
+ dependencyMoveTimer = null;
+ }
+ updateRadialTargets(width, height);
+ var animatedEntries = nodes.map(function(nodeItem) {
+ return {
+ node: nodeItem,
+ startX: Number.isFinite(nodeItem.x) ? nodeItem.x : nodeItem.__targetX,
+ startY: Number.isFinite(nodeItem.y) ? nodeItem.y : nodeItem.__targetY,
+ endX: nodeItem.__targetX,
+ endY: nodeItem.__targetY
+ };
+ });
+ dependencyMoveTimer = d3.timer(function(elapsed) {
+ var progress = Math.min(1, elapsed / 700);
+ var eased = d3.easeElasticOut.amplitude(1).period(0.45)(progress);
+ animatedEntries.forEach(function(entry) {
+ entry.node.__userPinned = false;
+ entry.node.__selectionTargetX = null;
+ entry.node.__selectionTargetY = null;
+ entry.node.x = entry.startX + ((entry.endX - entry.startX) * eased);
+ entry.node.y = entry.startY + ((entry.endY - entry.startY) * eased);
+ entry.node.fx = entry.node.x;
+ entry.node.fy = entry.node.y;
+ });
+ ticked();
+ if (progress >= 1) {
+ animatedEntries.forEach(function(entry) {
+ entry.node.x = entry.endX;
+ entry.node.y = entry.endY;
+ entry.node.fx = entry.endX;
+ entry.node.fy = entry.endY;
+ });
+ ticked();
+ dependencyMoveTimer.stop();
+ dependencyMoveTimer = null;
+ simulation.alpha(0.02).restart();
+ }
+ });
+ }
+ function applyGraphFilters() {
+ renderedLabelNodeIds = new Set();
+ link.style('opacity', function(d) {
+ var sourceId = getNodeId(d.source);
+ var targetId = getNodeId(d.target);
+ var key = sourceId + '->' + targetId;
+ if (searchQuery && !searchMatchedLinkKeys.has(key)) {
+ return 0.1;
+ }
+ if (searchQuery && searchMatchedLinkKeys.has(key)) {
+ return 0.6;
+ }
+ if (activeDragNodeId !== null && !activeDragLinkKeys.has(key)) {
+ return 0.3;
+ }
+ if (persistentSelectionNodeId !== null && !persistentSelectionLinkKeys.has(key)) {
+ return 0.3;
+ }
+ return 1;
+ });
+ node.style('opacity', function(d) {
+ var nodeId = String(d.id);
+ if (searchQuery && !searchMatchedNodeIds.has(nodeId)) {
+ return 0.16;
+ }
+ if (searchQuery && searchMatchedNodeIds.has(nodeId)) {
+ return 1;
+ }
+ if (activeDragNodeId !== null && !activeDragNodeIds.has(nodeId)) {
+ return 0.3;
+ }
+ if (persistentSelectionNodeId !== null && !persistentSelectionNodeIds.has(nodeId)) {
+ return 0.3;
+ }
+ return 1;
+ }).style('fill', function(d) {
+ var nodeId = String(d.id);
+ if (searchQuery && searchMatchedNodeIds.has(nodeId)) {
+ return '#fff';
+ }
+ if (persistentSelectionNodeId !== null && persistentSelectionNodeId === nodeId) {
+ return '#fff';
+ }
+ return '#777';
+ });
+ labels.style('opacity', function(d) {
+ var nodeId = String(d.id);
+ if (searchQuery) {
+ if (searchMatchedNodeIds.has(nodeId)) {
+ renderedLabelNodeIds.add(nodeId);
+ return 1;
+ }
+ return 0;
+ }
+ var hasInteractionFocus = activeDragNodeId !== null
+ ? activeDragNodeIds.has(nodeId)
+ : (persistentSelectionNodeId !== null
+ ? persistentSelectionNodeIds.has(nodeId)
+ : hoverFocusNodeIds.has(nodeId));
+ if (hasInteractionFocus) {
+ renderedLabelNodeIds.add(nodeId);
+ }
+ return hasInteractionFocus ? 1 : 0;
+ }).style('pointer-events', function(d) {
+ return renderedLabelNodeIds.has(String(d.id)) ? 'auto' : 'none';
+ });
+ }
+ function clamp(value, min, max) {
+ return Math.max(min, Math.min(max, value));
+ }
+ function getNodeBounds(nodeItem) {
+ var labelHalfWidth = nodeItem.__labelHalfWidth || 20;
+ return {
+ minX: edgePadding + Math.max(nodeRadius, labelHalfWidth),
+ maxX: width - edgePadding - Math.max(nodeRadius, labelHalfWidth),
+ minY: Math.max(
+ edgePadding + nodeRadius + labelVerticalOffset,
+ controlClearanceTop + Math.max(nodeRadius, labelVerticalOffset)
+ ),
+ maxY: height - edgePadding - nodeRadius
+ };
+ }
+ function ticked() {
+ updateControlClearanceTop();
+ nodes.forEach(function(d) {
+ if (forcePerfectCircle) {
+ if (d.fx === null && d.fy === null && d.__selectionTargetX === null && d.__selectionTargetY === null) {
+ d.x = d.__targetX;
+ d.y = d.__targetY;
+ }
+ if (d.__selectionTargetX === null && d.__selectionTargetY === null) {
+ return;
+ }
+ }
+ var bounds = getNodeBounds(d);
+ d.x = clamp(d.x, bounds.minX, bounds.maxX);
+ d.y = clamp(d.y, bounds.minY, bounds.maxY);
+ });
+ link
+ .attr('x1', function(d) { return d.source.x; })
+ .attr('y1', function(d) { return d.source.y; })
+ .attr('x2', function(d) { return d.target.x; })
+ .attr('y2', function(d) { return d.target.y; });
+ node
+ .attr('cx', function(d) { return d.x; })
+ .attr('cy', function(d) { return d.y; });
+ var positionedLabels = [];
+ nodes.forEach(function(nodeItem) {
+ var nodeId = String(nodeItem.id);
+ var renderX = nodeItem.x;
+ var renderY = nodeItem.y - labelVerticalOffset;
+ if (!renderedLabelNodeIds.has(nodeId)) {
+ nodeItem.__labelRenderX = renderX;
+ nodeItem.__labelRenderY = renderY;
+ return;
+ }
+ var labelWidth = nodeItem.__labelWidth || 40;
+ var labelHeight = 16;
+ var labelLeft = renderX - (labelWidth / 2);
+ var labelRight = renderX + (labelWidth / 2);
+ var hasOverlap = true;
+ var safetyCounter = 0;
+ while (hasOverlap && safetyCounter < 12) {
+ hasOverlap = false;
+ for (var labelIndex = 0; labelIndex < positionedLabels.length; labelIndex += 1) {
+ var placedLabel = positionedLabels[labelIndex];
+ var overlapsHorizontally = !(labelRight < placedLabel.left || labelLeft > placedLabel.right);
+ var overlapsVertically = Math.abs(renderY - placedLabel.y) < labelHeight;
+ if (overlapsHorizontally && overlapsVertically) {
+ renderY = placedLabel.y - labelHeight;
+ hasOverlap = true;
+ break;
+ }
+ }
+ safetyCounter += 1;
+ }
+ nodeItem.__labelRenderX = renderX;
+ nodeItem.__labelRenderY = renderY;
+ positionedLabels.push({
+ left: labelLeft,
+ right: labelRight,
+ y: renderY
+ });
+ });
+ labels
+ .attr('x', function(d) { return d.__labelRenderX || d.x; })
+ .attr('y', function(d) { return d.__labelRenderY || (d.y - labelVerticalOffset); });
+ }
+ function dragstarted(event, d) {
+ if (!event.active) {
+ simulation.alphaTarget(0.08).restart();
+ }
+ updateDragFocus(d.id);
+ applyGraphFilters();
+ d.fx = d.x;
+ d.fy = d.y;
+ }
+ function dragged(event, d) {
+ var bounds = getNodeBounds(d);
+ d.fx = clamp(event.x, bounds.minX, bounds.maxX);
+ d.fy = clamp(event.y, bounds.minY, bounds.maxY);
+ }
+ function dragended(event, d) {
+ if (!event.active) {
+ simulation.alphaTarget(0.01);
+ }
+ updateDragFocus(null);
+ var bounds = getNodeBounds(d);
+ d.__userPinned = true;
+ d.fx = clamp(event.x, bounds.minX, bounds.maxX);
+ d.fy = clamp(event.y, bounds.minY, bounds.maxY);
+ updatePersistentSelection(d.id);
+ applyGraphFilters();
+ }
+ svg.on('click', function(event) {
+ if (persistentSelectionNodeId === null) {
+ return;
+ }
+ resetGraphFocusState();
+ applyGraphFilters();
+ });
+ window.addEventListener('resize', function() {
+ var newWidth = container.clientWidth || width;
+ var newHeight = container.clientHeight || height;
+ var newLinkDistanceBase = Math.round((newWidth / Math.max(8, Math.sqrt(nodes.length))) + 34);
+ var newLinkDistance = Math.max(84, Math.min(148, newLinkDistanceBase - 2));
+ width = newWidth;
+ height = newHeight;
+ updateControlClearanceTop();
+ updateRadialTargets(newWidth, newHeight);
+ svg.attr('viewBox', '0 0 ' + newWidth + ' ' + newHeight);
+ simulation.force('link', d3.forceLink(links).id(function(d) { return d.id; }).distance(newLinkDistance).strength(0.72));
+ simulation.force('center', d3.forceCenter(newWidth / 2, getSimulationCenterY(newHeight)));
+ simulation.force('x', d3.forceX(function(d) { return d.__targetX; }).strength(0.14));
+ simulation.force('y', d3.forceY(function(d) { return d.__targetY; }).strength(0.14));
+ simulation.force('radial', d3.forceRadial(function(d) { return d.__radialTarget; }, newWidth / 2, getSimulationCenterY(newHeight)).strength(0.2));
+ simulation.alpha(0.1).restart();
+ });
+ function resetGraphFocusState() {
+ clearPersistentSelection();
+ hoverFocusNodeId = null;
+ hoverFocusNodeIds = new Set();
+ resetNodePositionsToInitialLayout();
+ }
+ function focusInitialNode() {
+ var initialNode = nodes.find(function(nodeItem) {
+ return String(nodeItem.title || '').trim().toLowerCase() === 'functions';
+ });
+ if (!initialNode) {
+ return;
+ }
+ animateDependentNodesToward(initialNode.id);
+ updatePersistentSelection(initialNode.id);
+ }
+ focusInitialNode();
+ applyGraphFilters();
+ if (searchInput) {
+ searchInput.addEventListener('input', function(event) {
+ updateSearchMatches(event.target.value);
+ applyGraphFilters();
+ });
+ searchInput.addEventListener('keydown', function(event) {
+ if (event.key !== 'Enter') {
+ return;
+ }
+ var preferredNodeId = getPreferredSearchMatchId();
+ if (!preferredNodeId) {
+ return;
+ }
+ event.preventDefault();
+ clearSearchState();
+ activateNodeSelection(preferredNodeId);
+ });
+ }
+ })();
+    </script>
+</body>
+</html>

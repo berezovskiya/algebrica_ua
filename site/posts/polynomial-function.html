@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Поліноміальна функція — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Поліноміальна функція</h1>
+        <time>2025-02-24</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-3" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">2</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="functions.html">Функції</a>, <a href="polynomials.html">Поліноми</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-3");
+            var dataset = {"name":"root","children":[{"name":"structure","children":[{"name":"general form"},{"name":"coefficients"},{"name":"degree"},{"name":"leading coefficient"},{"name":"terms"},{"name":"standard form"}]},{"name":"graph","children":[{"name":"end behavior"},{"name":"symmetry"},{"name":"turning points"},{"name":"intercepts"},{"name":"zeros"},{"name":"shape"}]},{"name":"analysis","children":[{"name":"continuity"},{"name":"differentiability"},{"name":"derivative"},{"name":"integral"},{"name":"roots"},{"name":"extrema"},{"name":"growth"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section pb-steps mb-x-30 alignCenterMathjax"><h2>Вступ</h2>
+<p>Поліноміальна функція — це <a href="functions.html">функція</a>, що складається з <a href="polynomials.html">поліномів</a>, виражених у наступному вигляді:</p>
+<p>\[
+f(x) = a_n x^n + a_{n-1} x^{n-1} + \dotsb + a_1 x + a_0
+\]</p>
+<ul>
+<li>\( n \) — це невипадкове ціле <a href="integers.html">число</a>.</li>
+<li>Коефіцієнти \( a_0, a_1, \ldots, a_n \) є <a href="properties-of-real-numbers.html">дійсними числами</a>, при цьому \( a_n \neq 0 \).</li>
+<li>Ціле число \( n \) є степенем поліноміальної функції</li>
+<li>\( a_n \) — це провідний коефіцієнт. Член \( a_0 \) є сталою частиною і збігається зі значенням функції в початку координат, оскільки \( f(0) = a_0 \).</li>
+</ul>
+<h6>Поліноміальні функції становлять найпростіший і найбільш структурно регулярний клас дійсних функцій. Вони визначені для кожного дійсного числа, мають похідні всіх порядків, а їхні графіки є гладкими кривими без кутів, гострих вершків або розривів будь-якого виду.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-steps mb-x-30 alignCenterMathjax"><h2>Властивості</h2>
+<p>Область визначення будь-якої поліноміальної функції — це вся дійсна пряма \( \mathbb{R} \), оскільки вираз \( a_n x^n + \dotsb + a_0 \) містить лише додавання та множення дійсних чисел, жодне з яких не накладає жодних обмежень на аргумент. Область значень залежить від степеня та знака провідного коефіцієнта \(a_n\), і вона може бути всією \( \mathbb{R} \) або <a href="intervals.html">проміжком</a> вигляду \( [m, +\infty) \) або \( (-\infty, M] \).</p>
+<p>Наступні властивості виконуються для будь-якої поліноміальної функції, незалежно від її степеня.</p>
+<ul>
+<li>Область визначення: \( \mathbb{R} \).</li>
+<li>Поліноміальна функція є <a href="continuous-functions.html">неперервною</a> на всій \( \mathbb{R} \).</li>
+<li>Поліноміальна функція є диференційовною на всій \( \mathbb{R} \), з <a href="derivatives.html">похідними</a> будь-якого порядку.</li>
+<li>Поліноміальна функція не має <a href="asymptotes.html">асимптот</a> будь-якого виду, оскільки вона визначена і скінченна для кожного скінченного значення \( x \), і розбігається до нескінченності при \( |x| \to +\infty \).</li>
+<li>Графік поліноміальної функції не має кутів, гострих вершків або <a href="discontinuities-of-real-functions.html">розривів</a>.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Дослідник поліноміальних функцій</h2>
+<p>Цей інтерактивний графік ілюструє, як форма поліноміальної функції залежить від її степеня та знака її старшого коефіцієнта. Вибираючи різні конфігурації, можна спостерігати відповідні зміни в поведінці на кінцях, симетрії та кількості точок перегину, що забезпечує пряму візуальну інтерпретацію базової алгебраїчної структури.</p>
+<hr>
+</div>
+
+
+
+<div id="pf-widget">
+
+<style>
+#pf-widget {
+  font-family: Algebrica, Arial, helvetica neue, helvetica, sans-serif;
+  color: #000;
+  // max-width: 780px;
+  box-sizing: border-box;
+}
+
+#pf-widget *, #pf-widget *::before, #pf-widget *::after {
+  box-sizing: border-box;
+}
+#pf-widget .pf-controls-wrap {
+  display: flex; flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1rem;
+  gap: 10px;
+}
+
+#pf-widget .pf-controls-wrap span {
+  font-size: 13px; color: #666;
+}
+
+#pf-widget .pf-controls {
+  display: flex; flex-wrap: wrap;
+  align-items: center;
+}
+
+#pf-widget .deg-btn {
+  padding: 5px 14px; font-size: 13px; 
+  border-top: 1px solid rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  background: transparent;
+  color: #73726c; cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+
+#pf-widget .deg-btn:first-child {
+  border-left: 1px solid rgba(0,0,0,0.25);
+  border-radius: 3px 0 0 3px;
+}
+#pf-widget .deg-btn:last-child {
+  border-right: 1px solid rgba(0,0,0,0.25);
+  border-radius: 0 3px 03px 0;
+}
+
+#pf-widget .deg-btn.active {
+  background: rgba(0,0,0,0.07); color: #1a1a18; border-color: rgba(0,0,0,0.35);
+}
+#pf-widget .pf-sign-wrap {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: #73726c; margin-left: auto;
+}
+
+#pf-widget .pf-sign {
+  display: flex; align-items: center;
+}
+
+#pf-widget .sign-btn{
+  padding: 5px 14px; font-size: 13px; 
+  border-top: 1px solid rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  background: transparent;
+  color: #73726c; cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+
+#pf-widget .sign-btn:first-child {
+  border-left: 1px solid rgba(0,0,0,0.25);
+  border-radius: 3px 0 0 3px;
+}
+#pf-widget .sign-btn:last-child {
+  border-right: 1px solid rgba(0,0,0,0.25);
+  border-radius: 0 3px 03px 0;
+}
+
+#pf-widget .sign-btn.active {
+  background: rgba(0,0,0,0.07); color: #1a1a18; border-color: rgba(0,0,0,0.35);
+}
+
+#pf-widget .pf-canvas-wrap {
+  position: relative; width: 100%; height: 320px;
+}
+#pf-widget .pf-info {
+  margin-top: 0.75rem; font-size: 13px;
+  color: #73726c; line-height: 1.6; min-height: 40px;
+}
+#pf-widget .pf-formula {
+  font-size: 14px; color: #1a1a18;
+  font-family: "Courier New", monospace; margin-bottom: 4px;
+}
+</style>
+
+<div class="pf-controls-wrap">
+<span>Степінь</span>
+
+<div class="pf-controls">
+  <button class="deg-btn" data-deg="1">1</button>
+  <button class="deg-btn" data-deg="2">2</button>
+  <button class="deg-btn active" data-deg="3">3</button>
+  <button class="deg-btn" data-deg="4">4</button>
+  <button class="deg-btn" data-deg="5">5</button>
+</div>
+
+<div class="pf-sign-wrap no-mobile">
+<span class="no-mobile">Старший коефіцієнт</span>
+  <div class="pf-sign">
+    <button class="sign-btn active" data-sign="1">a &gt; 0</button>
+    <button class="sign-btn" data-sign="-1">a &lt; 0</button>
+  </div>
+</div>
+</div>
+
+<div class="pf-canvas-wrap">
+  <canvas id="pfChart"></canvas>
+</div>
+
+<div class="pf-info">
+  <div class="pf-formula" id="pfFormula"></div>
+  <div id="pfDesc"></div>
+</div>
+
+</div>
+
+<script src="https://algebrica.org/wp-content/themes/algebrica/js/chart.umd.js"></script>
+
+<script>
+(function() {
+
+const gridColor  = '#ddd';
+const axisColor  = '#ddd';
+const textColor  = '#666';
+const curveColor = '#000';
+
+const infos = {
+  1: {
+    pos: { 
+      f: 'y = x + 1', 
+      d: 'Поліном першого степеня є лінійною функцією. Його графіком є пряма з постійним кутовим коефіцієнтом. Область визначення та область значень — вся множина \u211d.' 
+    },
+    neg: { 
+      f: 'y = \u2212x + 1', 
+      d: 'При від\'ємному старшому коефіцієнті пряма має від\'ємний кутовий коефіцієнт, спадаючи зліва направо.' 
+    }
+  },
+  2: {
+    pos: { 
+      f: 'y = x\u00b2 \u2212 1', 
+      d: 'Поліном другого степеня визначає параболу, гілки якої спрямовані вгору, якщо старший коефіцієнт додатній. Вона має глобальний мінімум у своїй вершині та є симетричною відносно вертикальної осі, що проходить через цю точку.' 
+    },
+    neg: { 
+      f: 'y = \u2212x\u00b2 + 1', 
+      d: 'При від\'ємному старшому коефіцієнті парабола спрямована вниз і має глобальний максимум у вершині.' 
+    }
+  },
+  3: {
+    pos: { 
+      f: 'y = x\u00b3 \u2212 3x', 
+      d: 'Кубічна функція з додатнім старшим коефіцієнтом прямує до \u2212\u221e при x\u2192\u2212\u221e і зростає до +\u221e при x\u2192+\u221e. Це поліном непарного степеня, тому його кінці спрямовані в протилежні сторони.' 
+    },
+    neg: { 
+      f: 'y = \u2212x\u00b3 + 3x', 
+      d: 'При від\'ємному старшому коефіцієнті напрямок змінюється: графік зростає зліва і спадає справа.' 
+    }
+  },
+  4: {
+    pos: { 
+      f: 'y = x\u2074 \u2212 5x\u00b2 + 4', 
+      d: 'Поліном четвертого степеня з додатнім старшим коефіцієнтом має обидва кінці, спрямовані вгору (парний степінь). Він може мати до трьох локальних екстремумів і дві точки перегину.' 
+    },
+    neg: { 
+      f: 'y = \u2212x\u2074 + 5x\u00b2 \u2212 4', 
+      d: 'При від\'ємному старшому коефіцієнті обидва кінці спрямовані вниз. Функція не має глобального мінімуму.' 
+    }
+  },
+  5: {
+    pos: { 
+      f: 'y = x\u2075 \u2212 5x\u00b3 + 4x', 
+      d: 'Поліном п\'ятого степеня (непарний степінь, додатній старший коефіцієнт) спадає до \u2212\u221e зліва і зростає до +\u221e справа, маючи до чотирьох локальних екстремумів.' 
+    },
+    neg: { 
+      f: 'y = \u2212x\u2075 + 5x\u00b3 \u2212 4x', 
+      d: 'При від\'ємному старшому коефіцієнті поведінка на кінцях змінюється: графік зростає зліва і спадає справа.' 
+    }
+  }
+};
+
+function evalPoly(x, deg, sign) {
+  switch(deg) {
+    case 1: return sign * (x + 1);
+    case 2: return sign === 1 ? x*x - 1 : -(x*x) + 1;
+    case 3: return sign * (x*x*x - 3*x);
+    case 4: return sign === 1 ? Math.pow(x,4) - 5*x*x + 4 : -Math.pow(x,4) + 5*x*x - 4;
+    case 5: return sign * (Math.pow(x,5) - 5*x*x*x + 4*x);
+  }
+}
+
+function getRange(deg) {
+  if (deg <= 2) return [-3, 3];
+  if (deg === 3) return [-2.5, 2.5];
+  if (deg === 4) return [-2.5, 2.5];
+  if (deg === 5) return [-2.35, 2.35];
+}
+let currentDeg = 3, currentSign = 1, chart;
+
+function buildChart() {
+
+  const ctx = document.getElementById('pfChart').getContext('2d');
+  const [xMin, xMax] = getRange(currentDeg);
+
+  const steps = 200;
+  const data = [];
+
+  for (let i = 0; i <= steps; i++) {
+    const x = xMin + (xMax - xMin) * i / steps;
+    const y = evalPoly(x, currentDeg, currentSign);
+    data.push({ x: x, y: y });
+  }
+
+  const info = infos[currentDeg][currentSign === 1 ? 'pos' : 'neg'];
+  document.getElementById('pfFormula').textContent = info.f;
+  document.getElementById('pfDesc').textContent = info.d;
+
+  if (chart) chart.destroy();
+
+  chart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [{
+        data,
+        borderColor: curveColor,
+        borderWidth: 2,
+        pointRadius: 0,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+
+        x: {
+          type: 'linear',
+          ticks: {
+            color: textColor,
+            maxTicksLimit: 7,
+            callback: v => Number.isInteger(v) ? v : ''
+          },
+          grid: { color: gridColor },
+          border: { color: axisColor }
+        },
+
+        y: {
+          min: -8,
+          max: 8,
+          crossing: 0,
+          ticks: {
+            color: textColor
+          },
+          grid: { color: gridColor },
+          border: { color: axisColor },
+          afterBuildTicks: (axis) => {
+            axis.ticks = [-8, -4, 0, 4, 8].map(v => ({ value: v }));
+          }
+        }
+
+      }
+    }
+  });
+}
+
+document.querySelectorAll('#pf-widget .deg-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.deg-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentDeg = +btn.dataset.deg;
+    buildChart();
+  };
+});
+
+document.querySelectorAll('#pf-widget .sign-btn').forEach(btn => {
+  btn.onclick = () => {
+    document.querySelectorAll('.sign-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSign = +btn.dataset.sign;
+    buildChart();
+  };
+});
+
+buildChart();
+
+})();
+</script>
+</div></div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Степ 1: лінійні функції</h2>
+<p>Поліноміальна функція 1-го степеня має вигляд:</p>
+<p>\[
+f(x) = mx + q
+\]</p>
+<p>де \( m \neq 0 \) — кутовий коефіцієнт (нахил), а \( q \) — перетин з віссю y. Її графіком є пряма. Функція є <a href="increasing-and-decreasing-functions.html">суворо зростаючою</a>, коли \( m &gt; 0 \), і суворо спадаючою, коли \( m &lt; 0 \).</p>
+<ul>
+<li>Область визначення: \( \mathbb{R} \).</li>
+<li>Область значень: \( \mathbb{R} \).</li>
+<li>Монотонність: суворо монотонна на \( \mathbb{R} \).</li>
+<li>Функція є бієктивною з \( \mathbb{R} \) в \( \mathbb{R} \).</li>
+<li>Вона не має точок максимуму або мінімуму.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Степ 2: квадратичні функції</h2>
+<p>Поліноміальна функція 2-го степеня має вигляд:</p>
+<p>\[
+f(x) = ax^2 + bx + c
+\]</p>
+<p>де \( a \neq 0 \). Її графіком є <a href="parabola.html">парабола</a> з вертикальною віссю симетрії. Вершина параболи розташована в точці:</p>
+<p>\[x_v = -\frac{b}{2a}\]
+\[ \qquad y_v = f(x_v) = c-\frac{b^2}{4a}\]</p>
+<ul>
+<li>Область визначення: \( \mathbb{R} \).</li>
+<li>Область значень: \( \left[ y_v, +\infty \right) \), якщо \( a &gt; 0 \); \( \left( -\infty, y_v \right] \), якщо \( a &lt; 0 \).</li>
+<li>Коли \( a &gt; 0 \), парабола відкривається вгору і вершина є глобальним мінімумом.</li>
+<li>Коли \( a &lt; 0 \), парабола відкривається вниз і вершина є глобальним максимумом.</li>
+<li>Функція не є монотонною на всій \( \mathbb{R} \), але вона суворо монотонна на кожній із двох півпрямих, розділених вершиною.</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Степ 3: кубічні функції</h2>
+<p>Поліноміальна функція 3-го степеня має вигляд:</p>
+<p>\[
+f(x) = ax^3 + bx^2 + cx + d
+\]</p>
+<p>де \( a \neq 0 \). На відміну від квадратичного випадку, кубічна функція не має <a href="maximum-minimum-and-inflection-points.html">глобального максимуму або мінімуму</a>.</p>
+<ul>
+<li>Область визначення: \( \mathbb{R} \).</li>
+<li>Область значень: \( \mathbb{R} \).</li>
+<li>Функція є бієктивною з \( \mathbb{R} \) в \( \mathbb{R} \) тоді і тільки тоді, коли вона не має локальних екстремумів, тобто, якщо її похідна не має дійсних коренів.</li>
+<li>Вона може мати один або два локальні екстремуми та рівно одну <a href="maximum-minimum-and-inflection-points.html">точку перегину</a>.</li>
+<li>Границі на нескінченності:
+\[
+\begin{align}
+\lim_{x \to -\infty} f(x) &amp;= -\infty \quad \text{якщо } a &gt; 0 \\[6pt]
+\lim_{x \to +\infty} f(x) &amp;= +\infty \quad \text{якщо } a &gt; 0
+\end{align}
+\]</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-table-to-content alignCenterTable"><h2>Поведінка на нескінченності</h2>
+<p>Поведінка поліноміальної функції на нескінченності визначається виключно її старшим членом \( a_n x^n \). Коли \( |x| \) необмежено зростає, внески всіх членів нижчого степеня стають незначними в порівнянні, і поведінка \( f(x) \) наближається до поведінки степеневої функції \( a_n x^n \). Результат залежить від двох параметрів: парності \( n \) та знака \( a_n \).</p>
+<p>Коли степінь парний, \( x^n \) є невід'ємним для всіх \( x \), тому обидва кінці графіка спрямовані в одному вертикальному напрямку. Коли степінь непарний, \( x^n \) змінює знак разом із \( x \), і два кінці графіка спрямовані в протилежних напрямках. Точніше:</p>
+<table>
+<thead>
+<tr>
+<th>Степ \( n \)</th>
+<th>\( a_n \)</th>
+<th>\( \lim_{x \to -\infty} f(x) \)</th>
+<th>\( \lim_{x \to +\infty} f(x) \)</th>
+<th>\(x \to -\infty\)</th>
+<th>\(x \to +\infty\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>парний</td>
+<td>\( &gt;0 \)</td>
+<td>\( +\infty \)</td>
+<td>\( +\infty \)</td>
+<td>\(\nwarrow\)</td>
+<td>\(\nearrow\)</td>
+</tr>
+<tr>
+<td>парний</td>
+<td>\( &lt;0 \)</td>
+<td>\( -\infty \)</td>
+<td>\( -\infty \)</td>
+<td>\(\swarrow\)</td>
+<td>\(\searrow\)</td>
+</tr>
+<tr>
+<td>непарний</td>
+<td>\( &gt;0 \)</td>
+<td>\( -\infty \)</td>
+<td>\( +\infty \)</td>
+<td>\(\swarrow\)</td>
+<td>\(\nearrow\)</td>
+</tr>
+<tr>
+<td>непарний</td>
+<td>\( &lt;0 \)</td>
+<td>\( +\infty \)</td>
+<td>\( -\infty \)</td>
+<td>\(\nwarrow\)</td>
+<td>\(\searrow\)</td>
+</tr>
+</tbody>
+</table>
+<h6>Цей зв'язок між старшим членом і загальною формою графіка є особливо корисним при вивченні поведінки функцій, оскільки він дозволяє передбачити якісний вигляд кривої без проведення повного аналізу.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Симетрія</h2>
+<p>Поліноміальні функції можуть виявляти симетрію відносно осі y або відносно початку координат, залежно від парності їхніх членів.</p>
+<ul>
+<li>Поліноміальна функція є <a href="even-and-odd-functions.html">парною</a>, якщо всі її члени мають парний степінь, що означає, що \( f(-x) = f(x) \) для всіх \( x \). У цьому випадку графік симетричний відносно осі y.</li>
+<li>Поліноміальна функція є непарною, якщо всі її члени мають непарний степінь, що означає, що \( f(-x) = -f(x) \) для всіх \( x \), і її графік симетричний відносно початку координат.</li>
+</ul>
+<p>Більшість поліноміальних функцій не є ні парними, ні непарними, оскільки вони містять члени змішаної парності. Наприклад, \( f(x) = x^3 + x^2 \) не є ні парною, ні непарною.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Корені та перетини з осями</h2>
+<p>Коренем поліноміальної функції є значення \( \alpha \in \mathbb{R} \), таке що \( f(\alpha) = 0 \). Геометрично корені відповідають точкам, де графік перетинає або торкається осі x. <a href="roots-of-a-polynomial.html">Основна теорема алгебри</a> гарантує, що кожен непостійний поліном має рівно \( n \) коренів у \( \mathbb{C} \), враховуючи кратність. У \( \mathbb{R} \) може бути менше дійсних коренів, оскільки деякі корені можуть бути комплексними спряженими парами.</p>
+<p>Корінь \( \alpha \) має кратність \( k \), якщо \( (x-\alpha)^k \) ділить \( P(x) \), але \( (x-\alpha)^{k+1} \) не ділить. Кратність визначає локальну поведінку графіка біля кореня.</p>
+<ul>
+<li>Якщо \( k \) є непарним, графік перетинає вісь x у точці \( x = \alpha \).</li>
+<li>Якщо \( k \) є парним, графік є дотичним до осі x у точці \( x = \alpha \) і не перетинає її.</li>
+</ul>
+<p>Перетин з віссю y завжди становить \( (0, a_0) \), оскільки \( f(0) = a_0 \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax pb-steps"><h2>Похідна та інтеграл поліноміальної функції</h2>
+<p> <a href="derivatives.html">Похідна</a> поліноміальної функції обчислюється почленно шляхом застосування степеневого правила. Для загального одночлена \( a_k x^k \) це правило дає:</p>
+<p>\[
+\frac{d}{dx}\left( a_k x^k \right) = k\,a_k\,x^{k-1}
+\]</p>
+<p>Застосування цього до повного полінома дає:</p>
+<p>\[
+f’(x) = n\,a_n x^{n-1} + (n-1)\,a_{n-1} x^{n-2} + \dotsb + a_1
+\]</p>
+<p>Похідна є поліномом степеня \( n-1 \), а стала частина зникає, оскільки похідна від сталої дорівнює нулю. Поліноміальна функція є нескінченно диференційовною в \( \mathbb{R} \). Похідна поліноміальної функції степеня \( n \) сама є поліноміальною функцією степеня \( n-1 \), і цю операцію можна повторювати, доки не буде досягнуто нульового полінома.</p>
+<hr>
+<p> <a href="indefinite-integrals.html">Невизначений інтеграл</a> поліноміальної функції обчислюється шляхом застосування степеневого правила інтегрування до кожного члена:</p>
+<p>\[
+\int x^k \,dx = \frac{x^{k+1}}{k+1} + c
+\]</p>
+<p>Інтегрування повного полінома дає:</p>
+<p>\[
+\int f(x) \,dx = \frac{a_n}{n+1}\,x^{n+1} + \frac{a_{n-1}}{n}\,x^n + \dotsb + a_1 x + a_0 x + c
+\]</p>
+<p>де \( c \in \mathbb{R} \) є сталою інтегрування. Результатом є поліном степеня \( n+1 \).</p>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="polynomial-function.html">algebrica.org/polynomial-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

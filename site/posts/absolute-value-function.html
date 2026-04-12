@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функція модуля — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Функція модуля</h1>
+        <time>2025-02-25</time>
+        <div class="content">
+            
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown mb-x-30"><h2>Вступ</h2>
+<p><a href="absolute-value.html">Модуль</a> числа визначається наступним чином:</p>
+<p>\[
+|x| =
+\begin{cases}
++x &amp; \text{if } x \geq 0 \\[0.5em]
+-x &amp; \text{if } x &lt; 0
+\end{cases}
+\quad \forall \, x \in \mathbb{R}
+\]</p>
+<p>Функція модуля ставить у відповідність кожному дійсному числу його відстань від нуля на числовій прямій. Це означає, що від'ємні числа відображаються у їхні додатні аналоги, тоді як додатні числа залишаються незмінними, оскільки відстань завжди невід'ємна.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="612" height="344" src="../images/absolute-value-1.png" alt="Геометрично модуль числа x, що записується |x|, означає відстань між x та 0 на числовій прямій." class="wp-image-10394" style="width:306px" srcset="../images/absolute-value-1.png 612w, https://algebrica.org/wp-content/uploads/resources/images/absolute-value-1-300x169.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Більш загально, вираз модуля \(|x - a|\) можна інтерпретувати як відстань між точкою \(x\) та точкою \(a\) на числовій прямій. Маємо:</p>
+<p>\[|x-a| = |a-x| \]</p>
+<p>Фактично, можемо спостерігати, що \( a - x \) є просто протилежним до \( x - a \); іншими словами \(a - x = -(x - a)\). З цього випливає, що \(|a - x| = |- (x - a)| = |x - a|\). Це показує, що обидва вирази мають однаковий модуль, навіть якщо члени всередині дужок записані у зворотному порядку.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30 alignCenterMathjax"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Графік та симетрія функції модуля</h2>
+<p>Функція модуля має вигляд:</p>
+<p>\[
+y = |x| =
+\begin{cases}
++x &amp; \text{if } x \geq 0 \\[0.5em]
+-x &amp; \text{if } x &lt; 0
+\end{cases}
+\]</p>
+<p>Графік \(y= |x|\) має вигляд:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="658" height="662" src="../images/absolute-value-6.png" alt="Графік функції модуля симетричний відносно осі y. Ця симетрія означає, що функція є парною." class="wp-image-21617" style="width:329px" srcset="../images/absolute-value-6.png 658w, https://algebrica.org/wp-content/uploads/resources/images/absolute-value-6-298x300.png 298w, https://algebrica.org/wp-content/uploads/resources/images/absolute-value-6-150x150.png 150w" sizes="(max-width: 658px) 100vw, 658px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><hr>
+<p>Графік функції модуля \( |x| \) симетричний відносно осі y. Ця симетрія означає, що функція є <a href="even-and-odd-functions.html">парною</a>, тобто вона задовольняє тотожність:</p>
+<p>\[|{-x}| = |x| \quad \text{for all } x \in \mathbb{R}\]</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30 pb-section-inverse pb-steps"><h2>Властивості</h2>
+<ul>
+<li><a href="determining-the-domain-of-a-function.html">Область визначення</a>: \( \mathbb{R} \).</li>
+<li>Область значень: \( \mathbb{R}^+_0 \).</li>
+<li>Функція є <a href="increasing-and-decreasing-functions.html">спадною</a> на \( (-\infty, 0] \) та зростаючою на \( [0, +\infty) \).</li>
+<li>Функція є <a href="even-and-odd-functions.html">парною</a>, оскільки \( |{-x}| = |x| \).</li>
+<li>Функція є <a href="continuous-functions.html">неперервною</a> на всій дійсній прямій \( \mathbb{R} \).</li>
+<li>Функція є диференційовною всюди, крім точки \( x = 0 \), де вона має <a href="points-of-non-differentiability.html">кутову точку</a>.</li>
+<li>Функція має <a href="maximum-minimum-and-inflection-points.html">абсолютний мінімум</a> у точці \( x = 0 \), де \( |x| = 0 \), і не має максимуму.</li>
+<li>Границі при \( x \), що прямує до крайніх значень області визначення:
+\[
+\begin{align}
+\lim_{x \to -\infty} |x| &amp;= +\infty \\[0.5em]
+\lim_{x \to +\infty} |x| &amp;= +\infty
+\end{align}
+\]</li>
+</ul>
+</div>
+
+
+
+<div class="wp-block-group pb-section mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown"><h2>Як побудувати графік модуля функції: відображення від'ємної частини</h2>
+<p>Розглянемо <a href="parabola.html">параболу</a>, задану рівнянням</p>
+<p>\[
+y = x^2 - 1
+\]</p>
+<p>Цей графік містить частину кривої, що лежить нижче осі x, а саме на інтервалі, де функція набуває від'ємних значень.</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized"><img loading="lazy" width="612" height="596" src="../images/absolute-value-3.png" alt="" class="wp-image-10449" style="width:306px" srcset="../images/absolute-value-3.png 612w, https://algebrica.org/wp-content/uploads/resources/images/absolute-value-3-300x292.png 300w" sizes="(max-width: 612px) 100vw, 612px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown mb-x-30"><p>Щоб знайти цей інтервал, розв'яжемо:</p>
+<p>\[
+x^2 - 1 &lt; 0 \rightarrow -1 &lt; x &lt; 1.
+\]</p>
+<p>Отже, функція \( y = x^2 &#8211; 1 \) є від'ємною на відкритому інтервалі \( (-1, 1) \), і графік опускається нижче осі x у цій області.</p>
+<hr>
+<p>Щоб побудувати графік функції \( f(x) = |x^2 &#8211; 1| \), починаємо з графіка \( y = x^2 &#8211; 1 \). Залишаємо без змін ті частини графіка, що лежать на осі x або вище неї, і відображаємо відносно осі x усі частини, що спочатку були нижче. Отримуємо:</p>
+</div>
+
+
+
+<figure class="wp-block-image size-full is-resized mb-x-30"><img loading="lazy" width="664" height="580" src="../images/absolute-value-4.png" alt="" class="wp-image-10455" style="width:332px" srcset="../images/absolute-value-4.png 664w, https://algebrica.org/wp-content/uploads/resources/images/absolute-value-4-300x262.png 300w" sizes="(max-width: 664px) 100vw, 664px" /></figure>
+
+
+
+<div class="wp-block-jetpack-markdown"><p>Це перетворення забезпечує, що всі значення функції стають невід'ємними, як того вимагає модуль.</p>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section"><h2>Границі, похідні та інтеграли функції модуля</h2>
+<p>Фундаментальна <a href="limits.html">границя</a>, пов'язана з функцією модуля:
+\[
+\lim_{x \to 0} \frac{|x|}{x}
+\]
+Ця границя не існує, оскільки лівобічна та правобічна границі різні:
+\[
+\lim_{x \to 0^-} \frac{|x|}{x} = -1 \quad \text{and} \quad \lim_{x \to 0^+} \frac{|x|}{x} = 1
+\]
+Така поведінка підкреслює недиференційовність \( |x| \) у точці \( x = 0 \).</p>
+<hr>
+<p><a href="derivatives.html">Похідна</a> функції модуля визначається кусково:
+\[
+\frac{d}{dx} |x| =
+\begin{cases}
+1 &amp; \text{if } x &gt; 0 \\[0.5em]
+-1 &amp; \text{if } x &lt; 0
+\end{cases}
+\]
+Похідна не існує у точці \( x = 0 \), оскільки функція має <a href="points-of-non-differentiability.html">кутову точку</a> в цій точці.</p>
+<hr>
+<p><a href="indefinite-integrals.html">Невизначений інтеграл</a> функції модуля:
+\[
+\int |x| \, dx = \frac{x^2 \cdot \operatorname{sgn}(x)}{2} + c
+\]
+де \( \operatorname{sgn}(x) \) — це <a href="sign-function.html">функція знака</a>, що визначається як:
+\[
+\operatorname{sgn}(x) =
+\begin{cases}
+-1 &amp; \text{if } x &lt; 0 \\[0.5em]
+0 &amp; \text{if } x = 0 \\[0.5em]
+1 &amp; \text{if } x &gt; 0
+\end{cases}
+\]</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Що таке функція модуля?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функція модуля повертає відстань числа від нуля на числовій прямій, завжди даючи невід'ємний результат. Зазвичай записується як f(x) = |x|."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Який вигляд має графік функції модуля?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Графік f(x) = |x| має V-подібну форму з вершиною в початку координат (0,0). Він симетричний відносно осі y."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Чи є функція модуля диференційовною в точці x = 0?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ні, функція модуля не є диференційовною в точці x = 0, оскільки вона має кутову точку в цій точці."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Функція модуля є парною чи непарною?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функція модуля є парною, оскільки вона задовольняє умову f(-x) = f(x) для всіх x."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Як можна виразити функцію модуля як кусково-задану функцію?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Функцію модуля можна записати як кусково-задану функцію: f(x) = x, якщо x ≥ 0, та f(x) = -x, якщо x < 0."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Яка область визначення та область значень функції модуля?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Область визначення функції модуля — всі дійсні числа (−∞, ∞), а область значень — всі невід'ємні дійсні числа [0, ∞)."
+      }
+    }
+  ]
+}
+</script>
+
+        </div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="absolute-value-function.html">algebrica.org/absolute-value-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

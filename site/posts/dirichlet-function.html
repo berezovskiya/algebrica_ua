@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Функція Діріхле — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Функції</span>
+    </nav>
+    <article>
+        <h1>Функція Діріхле</h1>
+        <time>2025-02-25</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-1" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-3"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Просунутий рівень</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">4</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">0</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="discontinuities-of-real-functions.html">Точки розриву дійсних функцій</a>, <a href="functions.html">Функції</a>, <a href="limits.html">Границі</a>, <a href="riemann-integrability-criteria.html">Критерії інтегрованості за Ріманом</a>, є необхідними передумовами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-1");
+            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"rational values"},{"name":"irrational values"},{"name":"indicator rule"},{"name":"real domain"},{"name":"piecewise definition"},{"name":"function values"}]},{"name":"behavior","children":[{"name":"everywhere discontinuous"},{"name":"density argument"},{"name":"sequence oscillation"},{"name":"limit nonexistence"},{"name":"oscillating behavior"},{"name":"pointwise analysis"}]},{"name":"analysis","children":[{"name":"riemann integrability"},{"name":"darboux sums"},{"name":"lebesgue measure"},{"name":"thomae function"},{"name":"function comparison"},{"name":"zero integral"},{"name":"measure properties"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });
+
+                var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);
+
+                    node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Означення</h2>
+<p>Функція Діріхле визначена на \(\mathbb{R}\) за наступним правилом:</p>
+<p>\[
+D(x) =
+\begin{cases}
+1 &amp; \text{якщо } x \in \mathbb{Q} \\[6pt]
+0 &amp; \text{якщо } x \in \mathbb{R} \setminus \mathbb{Q}
+\end{cases}
+\]</p>
+<p>На перший погляд це здається майже тривіальним означенням, простим розмежуванням між раціональними та ірраціональними числами. Проте саме ця простота приховує надзвичайно неправильну аналітичну поведінку, що зробило цю функцію ключовим об'єктом у теорії <a href="definite-integrals.html">інтегрування</a> та реальному аналізі.</p>
+<hr>
+<p>Помітною властивістю \(D\) є її <a href="discontinuities-of-real-functions.html">розривність</a> у кожній точці \(\mathbb{R}\). Цей результат випливає з взаємної щільності \(\mathbb{Q}\) та \(\mathbb{R} \setminus \mathbb{Q}\) на дійсній прямій.</p>
+<p>Для будь-якої фіксованої точки \(x_0 \in \mathbb{R}\) та будь-якого \(\varepsilon &gt; 0\), <a href="intervals.html">проміжок</a> \((x_0 &#8211; \varepsilon, x_0 + \varepsilon)\) містить як раціональні, так і ірраціональні числа. Отже, не існує такого околу \(x_0\), на якому \(D\) була б сталою, і будь-яку послідовність, що збігається до \(x_0\), можна побудувати так, щоб значення \(D\) нескінченно чергувалися між \(0\) та \(1\). Як результат, наступна <a href="limits.html">границя</a>:</p>
+<p>\[\lim_{x \to x_0} D(x)\]</p>
+<p>не існує для будь-якого \(x_0\), що встановлює розривність у кожній точці. Оскільки функція, яка є розривною всюди, не може бути <a href="riemann-integrability-criteria.html">інтегруемою за Ріманом</a> на будь-якому невиродженому проміжку, це можна підтвердити, зауваживши, що верхні та нижні суми Дарбу залишаються фіксованими на рівні \(1\) та \(0\) відповідно для будь-якого поділу проміжку.</p>
+<h6>Суми Дарбу — це суми, отримані шляхом множення максимального або мінімального значення функції на кожному підпроміжку поділу на ширину цього підпроміжку. Ці суми використовуються для наближення інтеграла зверху та знизу.</h6>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Неінтегруальність у сенсі Рімана</h2>
+<p>Розглянемо проміжок \([a, b]\) з \(a &lt; b\) та будь-який поділ \(\mathcal{P}\), такий що:</p>
+<p>\[\mathcal{P} = {a = x_0 &lt; x_1 &lt; \cdots &lt; x_n = b}\]</p>
+<p>На кожному підпроміжку \([x_{i-1}, x_i]\) супремум \(D\) дорівнює \(1\) через щільність раціональних чисел, тоді як інфімум дорівнює \(0\) через щільність ірраціональних чисел. Отже:</p>
+<p>\[U(D, \mathcal{P}) = \sum_{i=1}^{n} 1 \cdot (x_i &#8211; x_{i-1}) = b &#8211; a\]
+\[L(D, \mathcal{P}) = \sum_{i=1}^{n} 0 \cdot (x_i - x_{i-1}) = 0\]</p>
+<p>Оскільки \(U(D, \mathcal{P}) &#8211; L(D, \mathcal{P}) = b - a &gt; 0\) для будь-якого поділу \(\mathcal{P}\), критерій Рімана не виконується. Таким чином, функція не є інтегруемою у класичному сенсі на будь-якому нетривіальному проміжку.</p>
+<hr>
+<p>Теорія інтегрування Лебега вносить значне зрушення в перспективу. Множина \(\mathbb{Q}\) є зліченною і, отже, має міру Лебега нуль: \(\lambda(\mathbb{Q}) = 0\). Звідси випливає, що \(D(x) = 0\) майже всюди відносно міри Лебега, і оскільки функція, що дорівнює нулю майже всюди, має нульовий інтеграл, отримаємо</p>
+<p>\[
+\int_{a}^{b} D(x) \, d\lambda = 0
+\]</p>
+<p>для будь-якого проміжку \([a, b]\). Це одна з найбільш наочних ілюстрацій ширших можливостей теорії Лебега порівняно з теорією Рімана: за визначенням, вона не надає ваги множинам з мірою нуль, навіть якщо ці множини є щільними на дійсній прямій.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Диференційовність</h2>
+<p>Питання про те, чи має \(D\) <a href="derivatives.html">похідну</a> в будь-якій точці, має однозначну відповідь: \(D\) ніде не є диференційовною. Похідна \(D\) у точці \(x_0\) визначається як границя:</p>
+<p>\[
+D’(x_0) = \lim_{h \to 0} \frac{D(x_0 + h) - D(x_0)}{h}
+\]</p>
+<p>за умови, що ця границя існує. Оскільки диференційовність передбачає <a href="continuous-functions.html">неперервність</a>, а \(D\) є розривною в кожній точці \(\mathbb{R}\), звідси негайно випливає, що \(D\) не може бути диференційовною ніде.</p>
+<p>Цей висновок також можна побачити безпосередньо через <a href="difference-quotient.html">різницеві частки</a>. Зафіксуємо будь-яке \(x_0\) та розглянемо дві послідовності \((r_n)\) та \((s_n)\), що збігаються до \(x_0\), де \(r_n \in \mathbb{Q}\) та \(s_n \in \mathbb{R} \setminus \mathbb{Q}\) для всіх \(n\). Якщо \(x_0 \in \mathbb{Q}\), то:</p>
+<p>\[\frac{D(r_n) - D(x_0)}{r_n - x_0} = \frac{1 &#8211; 1}{r_n &#8211; x_0} = 0\]
+\[\frac{D(s_n) - D(x_0)}{s_n - x_0} = \frac{0 &#8211; 1}{s_n &#8211; x_0} = \frac{-1}{s_n - x_0}\]</p>
+<p>Другий вираз є необмеженим при \(s_n \to x_0\). Якщо натомість \(x_0 \in \mathbb{R} \setminus \mathbb{Q}\), то:</p>
+<p>\[\frac{D(r_n) - D(x_0)}{r_n - x_0} = \frac{1 &#8211; 0}{r_n &#8211; x_0} = \frac{1}{r_n - x_0}\]
+\[\frac{D(s_n) &#8211; D(x_0)}{s_n &#8211; x_0} = \frac{0 - 0}{s_n - x_0} = 0\]</p>
+<p>Тепер саме перший вираз зростає без обмеження при \(r_n \to x_0\). У будь-якому випадку різницева частка не має скінченної границі, що підтверджує, що \(D’(x_0)\) не існує.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Функція Томе</h2>
+<p>Функція, тісно пов'язана з функцією Діріхле, відома як функція Томе або «попкорн-функція», визначається наступним чином:</p>
+<p>\[
+T(x) =
+\begin{cases}
+\dfrac{1}{q} &amp; \text{якщо } x = \dfrac{p}{q} \\[6pt]
+0 &amp; \text{якщо } x \in \mathbb{R} \setminus \mathbb{Q}
+\end{cases}
+\]</p>
+<p>Маємо \(p \in \mathbb{Z}\), \(q \in \mathbb{N}_{&gt;0}\) та \(\gcd(|p|, q) = 1\), тобто дріб \(p/q\) є нескороченим.</p>
+<p>На відміну від функції Діріхле, функція Томе є неперервною в кожній ірраціональній точці та розривною в кожній раціональній точці. Така поведінка ілюструє граничний випадок, що допускається критерієм Лебега для інтегрування за Ріманом: функція, інтегруюча за Ріманом, може мати розриви на множині міри нуль, і раціональні числа, хоча вони й є щільними, становлять саме таку множину.</p>
+<p>Відповідно, функція Томе є інтегруючою за Ріманом, з інтегралом, що дорівнює нулю на кожному проміжку, і слугує «добре помірним» аналогом функції Діріхле.</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрані ресурси</h2>
+<ul>
+<li>
+<p><strong>Гарвардський університет, C. T. McMullen</strong>. <a href="https://people.math.harvard.edu/~ctm/home/text/class/harvard/55b/10/html/home/course/course.pdf">Math 55b Course Notes</a></p>
+</li>
+<li>
+<p><strong>Гарвардський університет, A. Varilly</strong>. <a href="https://people.math.harvard.edu/~ctm/home/text/class/harvard/112/02/html/home/solns/sol11.pdf">Thomae Function and Riemann Integrability</a></p>
+</li>
+<li>
+<p><strong>MIT, R. B. Melrose</strong>. <a href="https://math.mit.edu/~rbm/18.100B/HW8-solved.pdf">Dirichlet Function and Darboux Sums</a></p>
+</li>
+<li>
+<p><strong>Принстонський університет, J. Shapiro</strong>. <a href="https://web.math.princeton.edu/~js129/PDFs/teaching/MAT425_spring_2025/MAT425_Lecture_Notes.pdf">Lebesgue’s Theorem and the Dirichlet Function</a></p>
+</li>
+<li>
+<p><strong>UC Davis J. K. Hunter</strong>. <a href="https://www.math.ucdavis.edu/~hunter/m125b/ch1.pdf">The Riemann Integral</a></p>
+</li>
+</ul>
+</div></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="dirichlet-function.html">algebrica.org/dirichlet-function</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>

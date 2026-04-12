@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Степені — Algebrica</title>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['\\(', '\\)'], ['$', '$']],
+            displayMath: [['\\[', '\\]'], ['$$', '$$']],
+            processEscapes: true
+        },
+        svg: { fontCache: 'global' },
+        loader: { load: ['input/tex', 'output/svg'] }
+    };
+    </script>
+    <script id="MathJax-script" src="../mathjax/es5/tex-svg.js"></script>
+    <script src="../d3.min.js"></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#1a5276">
+    <link rel="apple-touch-icon" href="../icon-192.png">
+</head>
+<body>
+    <nav class="top-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+        <span class="categories">Степені, радикали та логарифми</span>
+    </nav>
+    <article>
+        <h1>Степені</h1>
+        <time>2025-02-03</time>
+        <div class="content">
+            
+<div class="wp-block-jetpack-markdown"><section class="collapsible-tree no-mobile">
+        <div class="collapsible-tree__content">
+            <div class="collapsible-tree__canvas" id="collapsible-tree-1" style="height:440px;min-height:440px;max-height:440px;"></div>
+            <div class="collapsible-tree__canvas-wrap" style="height:440px;">
+
+                <div class="shrt-coll-three-cols mb-x-30">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-node-type">
+                            Концепція                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapsible-tree-description">
+                    Структура статті представлена на концептуальній карті, де кожна гілка відображає основний компонент, а підвузли підсвічують конкретні поняття, що розглядаються.
+                </div>
+
+                        <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+
+            <div class="difficult-level">
+            <div class="difficulty-level dl-1"><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div><div class="difficulty-level-item"></div>Легко</div>        </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">3</div>
+                            <div class="s-c-t-c-label">Потребує</div>
+                            <div class="s-c-t-c-icon-requires"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shrt-coll-three-cols">
+                    <div class="shrt-coll-three-col">
+                        <div class="s-c-t-c-item">
+                            <div class="s-c-t-c-item-count">8</div>
+                                <div class="s-c-t-c-label">Дозволяє</div>
+                                <div class="s-c-t-c-icon-enables"></div>
+                        </div>
+                    </div>
+                </div>
+<div class="s-c-t-c-node-requires-list">
+    Наступні концепції, <a href="exponential-function.html">Показникова функція</a>, <a href="logarithms.html">Логарифми</a>, <a href="types-of-numbers.html">Типи чисел</a>, є необхідними попередніми вимогами для цієї статті.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function() {
+            var container = document.getElementById("collapsible-tree-1");
+            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"definition"},{"name":"base and exponent"},{"name":"repeated multiplication"},{"name":"geometric meaning"},{"name":"sign and parity"}]},{"name":"extensions","children":[{"name":"zero exponent"},{"name":"negative exponent"},{"name":"rational exponent"},{"name":"real exponent"},{"name":"complex exponent"}]},{"name":"operations","children":[{"name":"product same base"},{"name":"quotient same base"},{"name":"product same exponent"},{"name":"power of a power"},{"name":"power rules"},{"name":"indeterminate forms"}]}]};
+            var attempts = 0;
+            var fixedCanvasHeight = 440;
+            var hasRenderedTree = false;
+
+            function renderWhenReady() {
+                if (!container || !dataset || !dataset.name) {
+                    return;
+                }
+
+                if (fixedCanvasHeight > 0) {
+                    container.style.setProperty('height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('max-height', fixedCanvasHeight + 'px', 'important');
+                    container.style.setProperty('min-height', fixedCanvasHeight + 'px', 'important');
+                    container.classList.add('has-fixed-height');
+                } else {
+                    container.style.removeProperty('height');
+                    container.style.removeProperty('max-height');
+                    container.style.removeProperty('min-height');
+                    container.classList.remove('has-fixed-height');
+                }
+
+                if (container.dataset.rendered === 'true') {
+                    return;
+                }
+
+                if (typeof d3 === 'undefined') {
+                    if (attempts >= 80) {
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
+                        return;
+                    }
+
+                    attempts += 1;
+                    window.setTimeout(renderWhenReady, 120);
+                    return;
+                }
+
+                container.dataset.rendered = 'true';
+
+                var root = d3.hierarchy(dataset);
+                var dx = 20;
+                var dy = 116;
+                var marginTop = 28;
+                var marginRight = 140;
+                var marginBottom = 28;
+                var marginLeft = 60;
+                var horizontalOffset = 8;
+                var nodeRadius = 2.5;
+                var duration = 260;
+
+                root.x0 = 0;
+                root.y0 = 0;
+
+                root.descendants().forEach(function(node, i) {
+                    node.id = i;
+                    node._children = node.children;
+                });
+
+                var tree = d3.tree().nodeSize([dx, dy]);
+                var diagonal = d3.linkHorizontal()
+                    .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
+                    .append('svg')
+                    .attr('viewBox', [0, 0, 960, 480])
+                    .attr('width', 960)
+                    .attr('height', 480)
+                    .attr('class', 'collapsible-tree__svg');
+
+                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');
+
+                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__nodes')
+                    .attr('pointer-events', 'all');
+
+                function update(source) {
+                    var transitionDuration = hasRenderedTree ? duration : 0;
+                    var containerWidth = Math.max(container.clientWidth || 0, 0);
+                    var nodes = root.descendants().reverse();
+                    var links = root.links();
+                    tree(root);
+
+                    var left = root;
+                    var right = root;
+
+                    root.eachBefore(function(node) {
+                        if (node.x < left.x) {
+                            left = node;
+                        }
+                        if (node.x > right.x) {
+                            right = node;
+                        }
+                    });
+
+                    var intrinsicWidth = root.height * dy + marginLeft + marginRight + horizontalOffset;
+                    var width = Math.max(640, containerWidth, intrinsicWidth);
+                    var treeHeight = right.x - left.x + marginTop + marginBottom;
+                    var height = fixedCanvasHeight > 0 ? fixedCanvasHeight : treeHeight;
+                    var layoutOffsetX = marginLeft;
+                    var layoutOffsetY = marginTop - left.x;
+
+                    nodes.forEach(function(node) {
+                        node.layoutOffsetX = layoutOffsetX;
+                        node.layoutOffsetY = layoutOffsetY;
+                    });
+
+                    svg.transition()
+                        .duration(transitionDuration)
+                        .attr('width', width)
+                        .attr('height', height)
+                        .attr('viewBox', [0, 0, width, height]);
+
+                    if (fixedCanvasHeight > 0) {
+                        svg.style('height', fixedCanvasHeight + 'px');
+                    } else {
+                        svg.style('height', null);
+                    }
+
+                    var node = nodeGroup.selectAll('g')
+                        .data(nodes, function(d) { return d.id; });
+
+                    var nodeEnter = node.enter()
+                        .append('g')
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y0 + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x0 + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0)
+                        .on('click', function(event, d) {
+                            if (d.depth === 0) {
+                                return;
+                            }
+
+                            if (!d.children && !d._children) {
+                                return;
+                            }
+
+                            d.children = d.children ? null : d._children;
+                            update(d);
+                        });
+
+                    nodeEnter.append('circle')
+                        .attr('class', 'collapsible-tree__node-dot')
+                        .attr('r', nodeRadius)
+                        .classed('is-collapsed', function(d) { return !!d._children; })
+                        .classed('is-leaf', function(d) { return !d._children; });
+
+                    nodeEnter.append('text')
+                        .attr('class', 'collapsible-tree__node-label')
+                        .attr('dy', '0.32em')
+                        .attr('x', function(d) {
+                            if (d.depth === 0) {
+                                return 10;
+                            }
+
+                            return d._children ? -10 : 10;
+                        })
+                        .attr('text-anchor', function(d) {
+                            if (d.depth === 0) {
+                                return 'start';
+                            }
+
+                            return d._children ? 'end' : 'start';
+                        })
+                        .text(function(d) {
+                            if (d.depth === 0) {
+                                return '';
+                            }
+
+                            return d.data.name;
+                        })
+                        .classed('is-root', function(d) { return d.depth === 0; });
+
+                    var nodeUpdate = node.merge(nodeEnter)
+                        .attr('class', function(d) {
+                            if (d.depth === 0) {
+                                return 'is-root';
+                            }
+
+                            return d._children ? 'is-expandable' : 'is-leaf';
+                        })
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('transform', function(d) {
+                            return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
+                        })
+                        .attr('fill-opacity', 1)
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('class', function(d) {
+                            return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
+                        });
+
+                    node.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('transform', function() {
+                            return 'translate(' + (source.y + (source.layoutOffsetX || layoutOffsetX) + horizontalOffset) + ',' + (source.x + (source.layoutOffsetY || layoutOffsetY)) + ')';
+                        })
+                        .attr('fill-opacity', 0)
+                        .attr('stroke-opacity', 0);
+
+                    var link = linkGroup.selectAll('path')
+                        .data(links, function(d) { return d.target.id; });
+
+                    var linkEnter = link.enter()
+                        .append('path')
+                        .attr('class', 'collapsible-tree__link')
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x0,
+                                y: source.y0,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    link.merge(linkEnter)
+                        .transition()
+                        .duration(transitionDuration)
+                        .attr('d', diagonal);
+
+                    link.exit()
+                        .transition()
+                        .duration(transitionDuration)
+                        .remove()
+                        .attr('d', function() {
+                            var origin = {
+                                x: source.x,
+                                y: source.y,
+                                layoutOffsetX: source.layoutOffsetX || layoutOffsetX,
+                                layoutOffsetY: source.layoutOffsetY || layoutOffsetY
+                            };
+                            return diagonal({ source: origin, target: origin });
+                        });
+
+                    root.eachBefore(function(node) {
+                        node.x0 = node.x;
+                        node.y0 = node.y;
+                    });
+
+                    hasRenderedTree = true;
+                }
+
+                update(root);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', renderWhenReady, { once: true });
+            } else {
+                renderWhenReady();
+            }
+        })();
+    </script>
+    
+</div><div class="wp-block-jetpack-markdown mb-x-30 pb-section pb-steps alignCenterMathjax pb-table-to-content alignCenterTable"><h2>Вступ до степенів</h2>
+<p>Степені — це математичні операції, які показують, скільки разів <a href="types-of-numbers.html">число</a> має бути помножене саме на себе. Стандартний спосіб запису степеня — \(a^{\large{n}}\), де \(a\) — основа, а \(n\) — показник степеня:
+\[a^n = \underbrace{a \cdot a \cdot a \cdots a}_{n \text{ разів}} \quad \text{при} \quad a \in \mathbb{R}, \quad n \in \mathbb{Z}^+ \tag{1}\]</p>
+<blockquote>
+<p>З геометричної точки зору, якщо розглянемо додатне число \( a \), можна помітити, що вирази \( a^2 \) та \( a^3 \) відповідно позначають площу квадрата зі стороною \( a \) та об'єм куба з ребром \( a \).</p>
+</blockquote>
+<hr>
+<p>Значення показника \( n \) може бути додатним, від'ємним або дорівнювати нулю. Коли показник є від'ємним, це вказує на обернену залежність між степенями, що виражається наступним чином:
+\[a^{-n} = \frac{1}{a^{n}}\]
+Це означає, що піднесення числа до від'ємного степеня еквівалентне взяттю оберненого значення того самого числа, піднесеного до відповідного додатного степеня. Якщо показник є дробовим, наприклад \( n = \frac{1}{m} \), степінь можна переписати у вигляді <a href="radicals.html">ірраціонального виразу (кореня)</a> наступним чином:
+\[a^{\frac{1}{m}} = \sqrt[m]{a}\]
+Цей вираз представляє \(m\)-й корінь з \( a \). Поєднуючи обидва поняття, від'ємний дробовий показник можна інтерпретувати як обернений корінь:
+\[a^{-\frac{1}{m}} = \frac{1}{\sqrt[m]{a}}\]
+Таке уніфіковане позначення дозволяє показникам представляти як степені, так і корені, що спрощує багато алгебраїчних виразів і робить правила степенів узгодженими для різних випадків.</p>
+<hr>
+<p>У таблиці нижче наведено вибрані значення \(a^n\). Кожен рядок відповідає фіксованій основі \(a\), а кожен стовпець — фіксованому показнику \(n\).</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">\( a^{-2} \)</th>
+<th style="text-align:center">\( a^{-1} \)</th>
+<th style="text-align:center">\( a^{0} \)</th>
+<th style="text-align:center">\( a^{1} \)</th>
+<th style="text-align:center">\( a^{2} \)</th>
+<th style="text-align:center">…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\(-2\)</td>
+<td style="text-align:center">\( \dfrac{1}{4} \)</td>
+<td style="text-align:center">\( -\dfrac{1}{2} \)</td>
+<td style="text-align:center">\( 1 \)</td>
+<td style="text-align:center">\( -2 \)</td>
+<td style="text-align:center">\( 4 \)</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">\(-1\)</td>
+<td style="text-align:center">\( 1 \)</td>
+<td style="text-align:center">\( -1 \)</td>
+<td style="text-align:center">\( 1 \)</td>
+<td style="text-align:center">\( -1 \)</td>
+<td style="text-align:center">\( 1 \)</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">\(0\)</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">—</td>
+<td style="text-align:center">\( 0 \)</td>
+<td style="text-align:center">\( 0 \)</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">\(1\)</td>
+<td style="text-align:center">\( 1 \)</td>
+<td style="text-align:center">\( 1 \)</td>
+<td style="text-align:center">\( 1 \)</td>
+<td style="text-align:center">\( 1 \)</td>
+<td style="text-align:center">\( 1 \)</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">\(2\)</td>
+<td style="text-align:center">\( \dfrac{1}{4} \)</td>
+<td style="text-align:center">\( \dfrac{1}{2} \)</td>
+<td style="text-align:center">\( 1 \)</td>
+<td style="text-align:center">\( 2 \)</td>
+<td style="text-align:center">\( 4 \)</td>
+<td style="text-align:center">…</td>
+</tr>
+<tr>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+<td style="text-align:center">…</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Символ — вказує на те, що вираз не визначений: від'ємні степені нуля передбачають ділення на нуль, а \(0^0\) є <a href="indeterminate-forms.html">невизначеністю</a>.</p>
+</blockquote>
+<p>Якщо основа \( a \) є від'ємною, знак \( a^n \) змінюється залежно від парності \( n \). Наприклад, \( (-1)^n = 1 \), коли \( n \) парне, і \( (-1)^n = -1 \), коли \( n \) непарне. Така поведінка зі зміною знака є особливо важливою при аналізі послідовностей та granic. Крім того, з від'ємними основами та дробовими показниками слід поводитися обережно, оскільки такі вирази, як \( (-1)^{1/2} \), не визначені в \( \mathbb{R} \).</p>
+</div><h2>Степені з дійсними показниками</h2>
+<p>Означення \( a^n \) у \(1\) є дійсним лише для додатних <a href="integers.html">цілих чисел</a> \( n \), але ідея повторюваного множення не працює, коли показник не є цілим числом. Розширення цієї концепції на <a href="properties-of-real-numbers.html">дійсні</a> показники потребує іншого підходу, що ґрунтується на <a href="exponential-function.html">показниковій функції</a> та <a href="logarithms.html">натуральному логарифмі</a>. Для будь-якої додатної основи \( a &gt; 0 \) та дійсного показника \( x \in \mathbb{R} \), степінь \( a^x \) визначається наступним чином:
+\[a^x = e^{x \ln a}\]
+Коли \( x \) є додатним цілим числом, це дає повторюване множення. Для раціональних \( x \) це узгоджується з інтерпретацією через корінь. Щоб перевірити це, нехай \( x = \frac{p}{q} \), де \( p, q \in \mathbb{Z} \) та \( q \neq 0 \). Застосування означення дає наступне:</p>
+<p>\[e^{\frac{p}{q} \ln a} = \left(e^{\ln a}\right)^{\frac{p}{q}} = a^{\frac{p}{q}}\]</p>
+<p>Це підтверджує, що показникове означення зводиться до звичайної інтерпретації через корінь, коли показник є раціональним, і ці два позначення повністю узгоджені. Необхідність такого розширення можна проілюструвати, розглянувши \( 2^{\sqrt{2}} \). Оскільки \( \sqrt{2} \) є ірраціональним і не може бути записаним у вигляді дробу \( \frac{m}{n} \), означення через корінь незастосовне. Застосування означення для дійсного показника дає наступне:
+\[2^{\sqrt{2}} = e^{\sqrt{2} \ln 2} \approx e^{0.9803} \approx 2.665\]
+Це значення є добре визначеним і може бути наближене з будь-якою заданою точністю. Це означення також пояснює, чому основа має задовольняти умову \( a &gt; 0 \). Якщо \( a \leq 0 \), вираз \( \ln a \) не визначений у \( \mathbb{R} \), і розширення неможливе. Це узгоджується з попереднім зауваженням про те, що від'ємні основи з дробовими показниками не дають дійсних чисел. Як результат, функція \( f(x) = a^x \) є <a href="continuous-functions.html">неперервною</a> та <a href="derivatives.html">диференційовною</a> для всіх дійсних чисел, коли \( a &gt; 0 \).</p>
+</div>
+
+
+
+<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Основні правила степенів</h2>
+<p>Наступні правила регулюють маніпуляції з виразами, що містять степені. Вони виконуються для дійсних основ і показників за умов, зазначених у кожному випадку.</p>
+<p>Піднесення будь-якої основи, що не дорівнює нулю, до степеня нуль завжди дає \(1\). Значення \(a\) обмежене, оскільки операція \(0^0\) не має сенсу і вважається невизначеною формою.
+\[a^0 = 1 \quad \text{якщо} \quad a \neq 0\]</p>
+<hr>
+<p>Будь-який степінь нуля завжди дорівнює нулю, оскільки він відповідає добутку \( n \) нулів, де \( n \) — це показник степеня:
+\[0^n = 0 \quad \text{для } n &gt; 0\]
+Умова \( n &gt; 0 \) є необхідною, оскільки \( 0^0 \) є <a href="indeterminate-forms.html">невизначеною формою</a>. Залежно від контексту, до неї можна підійти як до <a href="limits.html">границі</a> двома способами:
+\[\lim_{x \to 0^+} 0^x = 0\]
+\[\lim_{x \to 0} x^0 = 1\]
+Таким чином, форма \( 0^0 \) залишається невизначеною в контексті granic. Загалом, наступні вирази є невизначеними формами, що означає, що їхнє значення не може бути визначене без подальшого аналізу конкретної границі: \( 0^0 \), \( 1^{\infty} \), та \( \infty^0 \).</p>
+<blockquote>
+<p>Однак у комбінаториці та алгебрі їй зазвичай приписують значення \( 1 \), оскільки вона природно виникає у таких виразах, як <a href="binomial-theorem.html">біноміальна теорема</a>.</p>
+</blockquote>
+<hr>
+<p>Добуток двох або більше степенів з однаковою основою \(a\) є степенем з тією ж основою та показником, що дорівнює сумі показників:
+\[a^n \cdot a^m = a^{n+m}\]
+Щоб зрозуміти, чому це так, зауважимо, що \( a^n \) представляє добуток \( n \) множників, що дорівнюють \( a \), а \( a^m \) представляє добуток \( m \) таких множників. Поєднання цих двох добутків дає всього \( n+m \) множників, що є саме \( a^{n+m} \). Формально аргумент виглядає так:
+\[a^n \cdot a^m = \underbrace{a \cdot a \cdots a}_{n \text{ разів}} \cdot \underbrace{a \cdot a \cdots a}_{m \text{ разів}} = \underbrace{a \cdot a \cdots a}_{n+m \text{ разів}} = a^{n+m}\]
+Це міркування безпосередньо застосовується до додатних цілих показників, оскільки воно ґрунтується на підрахунку множників. Для цілих, раціональних або дійсних показників той самий результат випливає з означення \( a^x = e^{x \ln a} \). Оскільки покажчикова функція задовольняє рівності \( e^u \cdot e^v = e^{u+v} \), ми маємо наступне:
+\[a^n \cdot a^m = e^{n \ln a} \cdot e^{m \ln a} = e^{(n+m) \ln a} = a^{n+m}\]</p>
+<hr>
+<p>Добуток степенів з різними основами \(a\) та \(b\), але з однаковим показником \(n\), є степенем, основою якого є добуток початкових основ.
+\[a^{n} \cdot b^n = (ab)^n\]</p>
+<blockquote>
+<p>Розглянемо вираз \(2^3 \cdot 5^3\). Оскільки обидва множники мають однаковий показник, їх можна об'єднати в один степінь добутку основ, що дає \(2^3 \cdot 5^3 = (2 \cdot 5)^3 = 10^3\).</p>
+</blockquote>
+<hr>
+<p>Частка двох степенів з однаковою основою \(a\) є степенем з тією ж основою та показником, що дорівнює різниці показників.
+\[\frac{a^n}{a^m} = a^{n-m}\]
+Це безпосередньо випливає з уже встановленого правила добутку. Ділення на \(a^m\) еквівалентне множенню на \(a^{-m}\), тому частку можна переписати наступним чином:
+\[\frac{a^n}{a^m} = a^n \cdot a^{-m} = a^{n+(-m)} = a^{n-m}\]
+Умова \(a \neq 0\) необхідна для того, щоб \(a^{-m}\) було визначеним.</p>
+<hr>
+<p>Частка степенів з різними основами \(a\) та \(b\), але з однаковим показником \(n\), є степенем, основою якого є частка початкових основ.
+\[\frac{a^n}{b^n} = \left(\frac{a}{b}\right)^n\]</p>
+<blockquote>
+<p>Розглянемо вираз \(\dfrac{6^3}{2^3}\). Оскільки обидва члени мають однаковий показник, частку можна переписати як один степінь відношення основ, що дає \(\dfrac{6^3}{2^3} = \left(\dfrac{6}{2}\right)^3 = 3^3 = 27\).</p>
+</blockquote>
+<hr>
+<p>Степінь степеня — це степінь з тією ж основою та показником, що дорівнює добутку двох показників.
+\[(a^m)^n = a^{m \cdot n}\]</p>
+<blockquote>
+<p>Розглянемо вираз \((2^3)^4\). Застосовуючи правило степеня степеня, два показники перемножуються, що дає \((2^3)^4 = 2^{3 \cdot 4} = 2^{12}\).</p>
+</blockquote>
+<hr>
+<p>Коли основа \(a\) підноситься до від'ємного показника, результатом є обернена величина тієї самої основи, піднесеної до відповідного додатного показника.
+\[a^{-n} = \frac{1}{a^n} \quad \text{за умови} \quad a \neq 0 \quad \text{та} \quad n &gt; 0\]</p>
+<hr>
+<p>Коли показник є раціональним числом вигляду \( \frac{m}{n} \), степінь можна виразити як корінь.
+\[a^{\frac{m}{n}} = \sqrt[n]{a^m} \quad \text{де} \quad m, n \in \mathbb{N} \quad \text{та} \quad n \neq 0\]</p>
+<blockquote>
+<p>Властивості степенів перетворюють множення та ділення чисел, піднесених до степеня, на простіші операції, що робить обчислення швидшими та зручнішими, особливо в алгебраїчних виразах.</p>
+</blockquote>
+</div>
+</div></div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-table-recap mb-x-30"><h2>Підсумок</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:center"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Нульовий показник</td>
+<td style="text-align:center">\[ a^0 = 1 \]</td>
+<td style="text-align:left">\[ a \neq 0 \]</td>
+</tr>
+<tr>
+<td style="text-align:left">Степінь нуля</td>
+<td style="text-align:center">\[ 0^n = 0 \]</td>
+<td style="text-align:left">\[ n &gt; 0 \]</td>
+</tr>
+<tr>
+<td style="text-align:left">Добуток (однакова основа)</td>
+<td style="text-align:center">\[ a^n \cdot a^m = a^{n+m} \]</td>
+<td style="text-align:left">\[ a \in \mathbb{R} \]</td>
+</tr>
+<tr>
+<td style="text-align:left">Добуток (однаковий показник)</td>
+<td style="text-align:center">\[ a^n \cdot b^n = (ab)^n \]</td>
+<td style="text-align:left">\[ a, b \in \mathbb{R} \]</td>
+</tr>
+<tr>
+<td style="text-align:left">Частка (однакова основа)</td>
+<td style="text-align:center">\[ \dfrac{a^n}{a^m} = a^{n-m} \]</td>
+<td style="text-align:left">\[ a \neq 0 \]</td>
+</tr>
+<tr>
+<td style="text-align:left">Частка (однаковий показник)</td>
+<td style="text-align:center">\[ \dfrac{a^n}{b^n} = \left(\dfrac{a}{b}\right)^n \]</td>
+<td style="text-align:left">\[ b \neq 0 \]</td>
+</tr>
+<tr>
+<td style="text-align:left">Степінь степеня</td>
+<td style="text-align:center">\[ (a^m)^n = a^{mn} \]</td>
+<td style="text-align:left">\[ a \in \mathbb{R} \]</td>
+</tr>
+<tr>
+<td style="text-align:left">Від'ємний показник</td>
+<td style="text-align:center">\[ a^{-n} = \dfrac{1}{a^n} \]</td>
+<td style="text-align:left">\[ a \neq 0,\ n &gt; 0 \]</td>
+</tr>
+<tr>
+<td style="text-align:left">Раціональний показник</td>
+<td style="text-align:center">\[ a^{\frac{m}{n}} = \sqrt[n]{a^m} \]</td>
+<td style="text-align:left">\[ a &gt; 0,\ n \neq 0 \]</td>
+</tr>
+<tr>
+<td style="text-align:left">Дійсний показник</td>
+<td style="text-align:center">\[ a^x = e^{x \ln a} \]</td>
+<td style="text-align:left">\[ a &gt; 0,\ x \in \mathbb{R} \]</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Чому \( a^0 = 1 \)?</h2>
+<p>Серед властивостей степенів результат \(a^0 = 1\) спочатку може здатися контрінтуїтивним, але цей результат прямо випливає з правила ділення, згідно з яким ділення будь-якого степеня на самого себе дає \(1\).
+\[\frac{a^n}{a^n} = 1\]
+Застосування правила ділення до лівої частини дає наступне:
+\[\frac{a^n}{a^n} = a^{n-n} = a^0\]
+Це міркування встановлює, що \( a^0 = 1 \). Умова \( a \neq 0 \) є прямим наслідком аргументу, оскільки вираз \( \frac{a^n}{a^n} \) визначений лише тоді, коли \( a \neq 0 \).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-formula mb-x-30 pb-radius"><p>Іноді люди помилково плутають поняття степеня та показникової функції. Степінь — це арифметична операція, при якій основа \(a\) множиться на саму себе \(n\) разів, де \(n\) називається показником. <a href="exponential-function.html">Показникова функція</a>, навпаки, є функцією, в якій змінна з'являється в показнику, а не в основі, і має вигляд:
+\[f(x) = e^x \quad \text{або} \quad f(x) = a^x\]
+де \(a &gt; 0\) та \(a \neq 1\).</p>
+</div>
+
+
+
+<div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax"><h2>Степені з комплексними показниками</h2>
+<p>Означення \( a^x = e^{x \ln a} \) природним чином поширюється на випадки, коли показник є комплексним. Коли показник є чисто уявним, тобто коли \( x = i\theta \) при \( \theta \in \mathbb{R} \), вираз \( e^{i\theta} \) є визначеним, якщо інтерпретувати експоненту через її розклад у ряд Тейлора. Нагадаємо, що:
+\[e^z = \sum_{n=0}^{\infty} \frac{z^n}{n!}\]
+і підставивши \( z = i\theta \), ряд розпадається на дійсну та уявну частини завдяки періодичності степенів \( i \), що дає формулу Ейлера.
+\[e^{i\theta} = \cos\theta + i\sin\theta\]
+Цей результат встановлює глибокий зв'язок між експоненціальною функцією та тригонометрією, показуючи, що ці дві є, фактично, різними виразами однієї й тієї ж базової структури над комплексними числами. Це дозволяє представити будь-яке комплексне число в експоненціальній формі як \( z = re^{i\theta} \), де \( r \) позначає модуль, а \( \theta \) — аргумент. Помітним наслідком є одна з найвідоміших тотожностей у математиці, отримана при \( \theta = \pi \).
+\[e^{i\pi} + 1 = 0\]
+Це рівняння, відоме як тотожність Ейлера, об'єднує п'ять фундаментальних математичних сталих в одному виразі. Вичерпне обговорення комплексних показників, включаючи методи обчислення степенів і коренів комплексних чисел, наведено на сторінці <a href="complex-numbers-exponential-form.html">комплексні числа в експоненціальній формі</a>.</p>
+</div>
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+
+    {
+      "@type": "Question",
+      "name": "Що таке степінь у математиці?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Степінь — це математичний вираз вигляду aⁿ, де 'a' є основою, а 'n' — показником степеня. Він представляє повторне множення основи: aⁿ означає множення 'a' самого на себе 'n' разів."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Яка різниця між степенем і показниковою функцією?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Степінь має сталу основу та змінну показник, як-от aⁿ. Показникова функція має сталий показник і змінну в основі або навпаки, як-от f(x) = a^x. Ключова різниця полягає в тому, яка частина є змінною: основа чи показник."
+      }
+    },
+
+    {
+      "@type": "Question",
+      "name": "Що відбувається, коли показник дорівнює нулю або є від'ємним?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Будь-яке ненульове число в степені нуль дорівнює 1: a⁰ = 1. Від'ємний показник означає обернене значення до позитивного степеня: a⁻ⁿ = 1/aⁿ."
+      }
+    }
+
+  ]
+}
+</script></div>
+    </article>
+    <nav class="bottom-nav">
+        <a href="../index.html">&larr; Повернутися до змісту</a>
+    </nav>
+    <footer>
+        <p>Джерело: <a href="powers.html">algebrica.org/powers</a> —
+Автор: Antonio Lupetti — Ліцензія: CC BY-NC 4.0</p>
+    </footer>
+</body>
+</html>
