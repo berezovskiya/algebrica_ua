@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-6");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"real line subset"},{"name":"convexity property"},{"name":"points between endpoints"},{"name":"interval notation"},{"name":"open and closed"},{"name":"half-open intervals"}]},{"name":"operations","children":[{"name":"intersection"},{"name":"union"},{"name":"set difference"},{"name":"interval inclusion"},{"name":"overlapping intervals"},{"name":"disjoint intervals"},{"name":"interval relations"}]},{"name":"analysis","children":[{"name":"neighborhoods"},{"name":"epsilon neighborhood"},{"name":"interior points"},{"name":"interval length"},{"name":"connected subsets"},{"name":"interval theorem"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"підмножина дійсної прямої"},{"name":"властивість випуклості"},{"name":"точки між кінцевими точками"},{"name":"запис інтервалів"},{"name":"відкриті та закриті"},{"name":"напіввідкриті інтервали"}]},{"name":"операції","children":[{"name":"перетин"},{"name":"об'єднання"},{"name":"різниця множин"},{"name":"включення інтервалів"},{"name":"інтервали, що перекриваються"},{"name":"розрізні інтервали"},{"name":"відносини між інтервалами"}]},{"name":"аналіз","children":[{"name":"околи"},{"name":"епсилон-окіл"},{"name":"внутрішні точки"},{"name":"довжина інтервалу"},{"name":"зв'язні підмножини"},{"name":"теорема про інтервали"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)
@@ -493,7 +489,7 @@
 <div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax table-domain"><h2>Необмежені проміжки</h2>
 <p>Необмежений проміжок продовжується нескінченно принаймні в одному напрямку. Оскільки нескінченність не є
 дійсним числом, символи \( +\infty \) та \( -\infty \) використовуються суто як нотаційні
-умовності, щоб indicated, що проміжок не має скінченної межі у відповідному напрямку.
+умовності, щоб вказати, що проміжок не має скінченної межі у відповідному напрямку.
 Відповідно, кінцеві точки \( +\infty \) та \( -\infty \) завжди виключені, а
 відповідна дужка завжди є круглою. Чотири необмежені проміжки визначаються наступним чином.
 \[
@@ -603,7 +599,7 @@
 
 <div class="wp-block-jetpack-markdown pb-section mb-x-30 alignCenterMathjax table-domain"><h2>Операції над проміжками</h2>
 <p>Дано два проміжки, можна утворити нові множини, комбінуючи їх за допомогою стандартних
-множинних операцій перетину та об'єднання. Перетин \( I \cap J \) — це множина всіх точок, що належать обом проміжимам одночасно. Перетин двох проміжків завжди є проміжком, можливо, порожнім або виродженим. Розглянемо, наприклад, \( I = (1, 5) \) та \( J = (3, 7) \). Значення, що належать обом, — це саме ті, що знаходяться в \( (3, 5) \).</p>
+множинних операцій перетину та об'єднання. Перетин \( I \cap J \) — це множина всіх точок, що належать обом проміжкам одночасно. Перетин двох проміжків завжди є проміжком, можливо, порожнім або виродженим. Розглянемо, наприклад, \( I = (1, 5) \) та \( J = (3, 7) \). Значення, що належать обом, — це саме ті, що знаходяться в \( (3, 5) \).</p>
 
 <table>
 <thead>

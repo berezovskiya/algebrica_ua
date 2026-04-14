@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-2");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"nth roots"},{"name":"exponential form"},{"name":"unit circle"},{"name":"complex roots"},{"name":"principal root"},{"name":"angle spacing"}]},{"name":"structure","children":[{"name":"cyclic group"},{"name":"subgroups"},{"name":"generators"},{"name":"primitive roots"},{"name":"group order"},{"name":"closure"}]},{"name":"properties","children":[{"name":"sum of roots"},{"name":"product of roots"},{"name":"regular polygon"},{"name":"angular spacing"},{"name":"symmetry"},{"name":"cyclotomic polynomials"},{"name":"totient function"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"корені n-го степеня"},{"name":"експоненціальна форма"},{"name":"одиничне коло"},{"name":"комплексні корені"},{"name":"головний корінь"},{"name":"кутовий інтервал"}]},{"name":"структура","children":[{"name":"циклічна група"},{"name":"підгрупи"},{"name":"твірці"},{"name":"примітивні корені"},{"name":"порядок групи"},{"name":"замкненість"}]},{"name":"властивості","children":[{"name":"сума коренів"},{"name":"добуток коренів"},{"name":"правильний багатокутник"},{"name":"кутовий інтервал"},{"name":"симетрія"},{"name":"циклотомічні поліноми"},{"name":"функція Ейлера"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)
@@ -352,13 +348,13 @@
     </script>
     
 </div><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Означення</h2>
-<p>Дано натуральне число \(n\), тоді коренем одиниці порядку \(n\) називається <a href="complex-numbers-introduction.html">комплексне число</a> \(z\), що задовольняє <a href="equations.html">рівняння</a> \[ z^n = 1 \]</p>
+<p>Нехай задано натуральне число \(n\), тоді коренем одиниці порядку \(n\) називається <a href="complex-numbers-introduction.html">комплексне число</a> \(z\), що задовольняє <a href="equations.html">рівняння</a> \[ z^n = 1 \]</p>
 <p>На комплексній площині існує рівно \(n\) таких чисел, і їх можна описати цілком явно за допомогою формули Ейлера, яка стверджує, що:
 \[
 e^{i\theta} = \cos\theta + i\,\sin\theta
 \]
-для будь-якого дійсного \(\theta\). Існування рівно \(n\) розв'язків випливає з <a href="roots-of-a-polynomial.html">основної теореми алгебри</a>: поліном \(z^n &#8211; 1\) має ступінь \(n\) і, отже, має не більше \(n\) коренів у \(\mathbb{C}\), і можна безпосередньо перевірити, що всі \(n\) сконструйованих нижче кандидатів є відмінними.</p>
-<p>Щоб вивести явну форму коренів, запишуть комплексне число одиничного модуля як \(z = e^{i\theta}\) і накладуть умову \(e^{in\theta} = 1\). Оскільки комплексна експонента є періодичною з періодом \(2\pi\), це вимагає, щоб \(n\theta = 2\pi k\) для деякого цілого \(k\), звідси \(\theta = 2\pi k/n\). Коли \(k\) набуває будь-яких \(n\) послідовних <a href="integers.html">цілих чисел</a>, отримані значення \(\theta\) дають \(n\) відмінних точок на одиничному колі. Зазвичай беруть \(k = 0, 1, \ldots, n-1\), що дає \(n\)-ті корені одиниці у вигляді:</p>
+для будь-якого дійсного \(\theta\). Існування рівно \(n\) розв'язань випливає з <a href="roots-of-a-polynomial.html">основної теореми алгебри</a>: поліном \(z^n &#8211; 1\) має ступінь \(n\) і, отже, має не більше \(n\) коренів у \(\mathbb{C}\), і можна безпосередньо перевірити, що всі \(n\) сконструйованих нижче кандидатів є відмінними.</p>
+<p>Щоб вивести явну форму коренів, розглянемо комплексне число одиничного модуля як \(z = e^{i\theta}\) і накладемо умову \(e^{in\theta} = 1\). Оскільки комплексна експонента є періодичною з періодом \(2\pi\), це вимагає, щоб \(n\theta = 2\pi k\) для деякого цілого \(k\), звідси \(\theta = 2\pi k/n\). Коли \(k\) набуває будь-яких \(n\) послідовних <a href="integers.html">цілих чисел</a>, отримані значення \(\theta\) дають \(n\) відмінних точок на одиничному колі. Зазвичай беруть \(k = 0, 1, \ldots, n-1\), що дає \(n\)-ті корені одиниці у вигляді:</p>
 <p>\[z_k = e^{2\pi i k/n}\]
 \[k = 0, 1, \ldots, n-1\]</p>
 <p>Розкладаючи за формулою Ейлера, кожен корінь можна записати в прямокутних координатах як:</p>

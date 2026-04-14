@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-10");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"absolute value"},{"name":"distance on real line"},{"name":"distance from a point"},{"name":"absolute expression"},{"name":"non-negative property"},{"name":"symmetry property"}]},{"name":"cases","children":[{"name":"less than case"},{"name":"greater than case"},{"name":"non-positive bound"},{"name":"compound inequalities"},{"name":"interval solutions"},{"name":"piecewise form"}]},{"name":"methods","children":[{"name":"solution steps"},{"name":"case splitting"},{"name":"interval representation"},{"name":"multiple absolute values"},{"name":"parameter cases"},{"name":"variable bound"},{"name":"solution check"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"модуль числа"},{"name":"відстань на дійсній прямій"},{"name":"відстань від точки"},{"name":"вираз з модулем"},{"name":"властивість невід'ємності"},{"name":"властивість симетрії"}]},{"name":"випадки","children":[{"name":"випадок менше"},{"name":"випадок більше"},{"name":"недодатня межа"},{"name":"складені нерівності"},{"name":"розв'язання у вигляді інтервалів"},{"name":"кусочно-задана форма"}]},{"name":"методи","children":[{"name":"кроки розв'язання"},{"name":"розподіл на випадки"},{"name":"представлення інтервалом"},{"name":"кілька модулів"},{"name":"параметричні випадки"},{"name":"змінна межа"},{"name":"перевірка розв'язання"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -145,9 +145,7 @@
                 });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
-                    .y(function(d) { return d.x + d.layoutOffsetY; });
-
-                var svg = d3.select(container)
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
                     .append('svg')
                     .attr('viewBox', [0, 0, 960, 480])
                     .attr('width', 960)
@@ -278,9 +276,7 @@
                             return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
                         })
                         .attr('fill-opacity', 1)
-                        .attr('stroke-opacity', 1);
-
-                    node.merge(nodeEnter).select('circle')
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
                         .transition()
                         .duration(transitionDuration)
                         .attr('class', function(d) {

@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-8");
-            var dataset = {"name":"root","children":[{"name":"structure","children":[{"name":"definition"},{"name":"additive structure"},{"name":"multiplicative structure"},{"name":"distributivity"},{"name":"commutative ring"},{"name":"ring with unity"},{"name":"integral domain"}]},{"name":"properties","children":[{"name":"zero element"},{"name":"additive inverse"},{"name":"multiplication rules"},{"name":"zero divisors"},{"name":"sign identities"},{"name":"cancellation"}]},{"name":"substructures","children":[{"name":"subrings"},{"name":"ideals"},{"name":"two-sided ideal"},{"name":"homomorphisms"},{"name":"isomorphisms"}]}]};
+            var dataset = {"name":"root","children":[{"name":"структура","children":[{"name":"означення"},{"name":"адитивна структура"},{"name":"мультиплікативна структура"},{"name":"дистрибутивність"},{"name":"комутативне кільце"},{"name":"кільце з одиницею"},{"name":"цілісна область"}]},{"name":"властивості","children":[{"name":"нульовий елемент"},{"name":"адитивний обернений елемент"},{"name":"правила множення"},{"name":"дільники нуля"},{"name":"тотожності знаків"},{"name":"скорочення"}]},{"name":"підструктури","children":[{"name":"підкільця"},{"name":"ідеали"},{"name":"двосторонній ідеал"},{"name":"гомоморфізми"},{"name":"ізоморфізми"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 430;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

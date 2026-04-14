@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-1");
-            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"definition"},{"name":"base and exponent"},{"name":"repeated multiplication"},{"name":"geometric meaning"},{"name":"sign and parity"}]},{"name":"extensions","children":[{"name":"zero exponent"},{"name":"negative exponent"},{"name":"rational exponent"},{"name":"real exponent"},{"name":"complex exponent"}]},{"name":"operations","children":[{"name":"product same base"},{"name":"quotient same base"},{"name":"product same exponent"},{"name":"power of a power"},{"name":"power rules"},{"name":"indeterminate forms"}]}]};
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"означення"},{"name":"основа та показник"},{"name":"повторне множення"},{"name":"геометричний зміст"},{"name":"знак і парність"}]},{"name":"розширення","children":[{"name":"нульовий показник"},{"name":"від'ємний показник"},{"name":"раціональний показник"},{"name":"дійсний показник"},{"name":"комплексний показник"}]},{"name":"операції","children":[{"name":"добуток з однаковою основою"},{"name":"частка з однаковою основою"},{"name":"добуток з однаковим показником"},{"name":"степінь степеня"},{"name":"правила степеню"},{"name":"невизначеності"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)
@@ -448,11 +444,7 @@
 <p>Це підтверджує, що показникове означення зводиться до звичайної інтерпретації через корінь, коли показник є раціональним, і ці два позначення повністю узгоджені. Необхідність такого розширення можна проілюструвати, розглянувши \( 2^{\sqrt{2}} \). Оскільки \( \sqrt{2} \) є ірраціональним і не може бути записаним у вигляді дробу \( \frac{m}{n} \), означення через корінь незастосовне. Застосування означення для дійсного показника дає наступне:
 \[2^{\sqrt{2}} = e^{\sqrt{2} \ln 2} \approx e^{0.9803} \approx 2.665\]
 Це значення є добре визначеним і може бути наближене з будь-якою заданою точністю. Це означення також пояснює, чому основа має задовольняти умову \( a &gt; 0 \). Якщо \( a \leq 0 \), вираз \( \ln a \) не визначений у \( \mathbb{R} \), і розширення неможливе. Це узгоджується з попереднім зауваженням про те, що від'ємні основи з дробовими показниками не дають дійсних чисел. Як результат, функція \( f(x) = a^x \) є <a href="continuous-functions.html">неперервною</a> та <a href="derivatives.html">диференційовною</a> для всіх дійсних чисел, коли \( a &gt; 0 \).</p>
-</div>
-
-
-
-<div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
+</div><div class="wp-block-group mb-x-30"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
 <div class="wp-block-jetpack-markdown pb-section alignCenterMathjax"><h2>Основні правила степенів</h2>
 <p>Наступні правила регулюють маніпуляції з виразами, що містять степені. Вони виконуються для дійсних основ і показників за умов, зазначених у кожному випадку.</p>
 <p>Піднесення будь-якої основи, що не дорівнює нулю, до степеня нуль завжди дає \(1\). Значення \(a\) обмежене, оскільки операція \(0^0\) не має сенсу і вважається невизначеною формою.

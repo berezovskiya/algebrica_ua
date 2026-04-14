@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-25");
-            var dataset = {"name":"root","children":[{"name":"construction","children":[{"name":"imaginary unit"},{"name":"cartesian product"},{"name":"ordered pairs"},{"name":"addition rule"},{"name":"multiplication rule"},{"name":"closure properties"}]},{"name":"representation","children":[{"name":"algebraic form"},{"name":"real part"},{"name":"imaginary part"},{"name":"purely imaginary"},{"name":"complex conjugate"},{"name":"argument"}]},{"name":"geometry and properties","children":[{"name":"argand plane"},{"name":"modulus"},{"name":"pythagorean relation"},{"name":"field structure"},{"name":"identities and inverses"},{"name":"non orderability"}]}]};
+            var dataset = {"name":"root","children":[{"name":"побудова","children":[{"name":"уявна одиниця"},{"name":"декартовий добуток"},{"name":"впорядковані пари"},{"name":"правило додавання"},{"name":"правило множення"},{"name":"властивості замкненості"}]},{"name":"представлення","children":[{"name":"алгебраїчна форма"},{"name":"дійна частина"},{"name":"уявна частина"},{"name":"чисто уявне число"},{"name":"комплексно-спряжене число"},{"name":"аргумент"}]},{"name":"геометрія та властивості","children":[{"name":"площина Арганда"},{"name":"модуль"},{"name":"відношення Піфагора"},{"name":"структура поля"},{"name":"одиничні елементи та обернені"},{"name":"відсутність впорядкованості"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 420;
             var hasRenderedTree = false;
@@ -142,8 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
+                });```javascript
                 var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
@@ -270,9 +269,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

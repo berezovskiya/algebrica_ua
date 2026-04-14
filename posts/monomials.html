@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-9");
-            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"definition"},{"name":"coefficient"},{"name":"variables"},{"name":"exponents"},{"name":"notation"},{"name":"zero monomial"},{"name":"degree"}]},{"name":"operations","children":[{"name":"addition"},{"name":"subtraction"},{"name":"product"},{"name":"division"},{"name":"powers"},{"name":"exponent rules"},{"name":"closure"}]},{"name":"structures","children":[{"name":"similar monomials"},{"name":"opposite monomials"},{"name":"equal monomials"},{"name":"polynomial relation"},{"name":"homogeneous"}]}]};
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"означення"},{"name":"коефіцієнт"},{"name":"змінні"},{"name":"показники степеня"},{"name":"позначення"},{"name":"нульовий одночлен"},{"name":"степінь"}]},{"name":"операції","children":[{"name":"додавання"},{"name":"віднімання"},{"name":"добуток"},{"name":"ділення"},{"name":"степені"},{"name":"правила степенів"},{"name":"замкненість"}]},{"name":"структури","children":[{"name":"подібні одночлени"},{"name":"протилежні одночлени"},{"name":"рівні одночлени"},{"name":"відношення поліномів"},{"name":"однорідні"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

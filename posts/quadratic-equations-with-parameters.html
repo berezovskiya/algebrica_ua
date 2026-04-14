@@ -145,9 +145,7 @@
                 var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
-                    .y(function(d) { return d.x + d.layoutOffsetY; });
-
-                var svg = d3.select(container)
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
                     .append('svg')
                     .attr('viewBox', [0, 0, 960, 480])
                     .attr('width', 960)
@@ -278,9 +276,7 @@
                             return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
                         })
                         .attr('fill-opacity', 1)
-                        .attr('stroke-opacity', 1);
-
-                    node.merge(nodeEnter).select('circle')
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
                         .transition()
                         .duration(transitionDuration)
                         .attr('class', function(d) {

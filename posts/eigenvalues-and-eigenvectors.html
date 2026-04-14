@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-4");
-            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"linear transformation"},{"name":"eigenvector"},{"name":"eigenvalue"},{"name":"invariant directions"},{"name":"scaling factor"},{"name":"non-zero condition"}]},{"name":"construction","children":[{"name":"eigen equation"},{"name":"characteristic equation"},{"name":"characteristic polynomial"},{"name":"determinant condition"},{"name":"roots and multiplicity"},{"name":"complex eigenvalues"}]},{"name":"structure","children":[{"name":"eigenspaces"},{"name":"geometric multiplicity"},{"name":"algebraic multiplicity"},{"name":"linear independence"},{"name":"diagonalization"},{"name":"jordan form"},{"name":"trace and determinant"}]}]};
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"лінійне перетворення"},{"name":"власний вектор"},{"name":"власне значення"},{"name":"інваріантні напрямки"},{"name":"коефіцієнт масштабування"},{"name":"умова ненульового вектора"}]},{"name":"побудова","children":[{"name":"власне рівняння"},{"name":"характеристичне рівняння"},{"name":"характеристичний поліном"},{"name":"умова визначника"},{"name":"корені та кратність"},{"name":"комплексні власні значення"}]},{"name":"структура","children":[{"name":"власні підпростори"},{"name":"геометрична кратність"},{"name":"алгебраїчна кратність"},{"name":"лінійна незалежність"},{"name":"діагоналізація"},{"name":"форма Жордана"},{"name":"слід та визначник"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -145,9 +145,7 @@
                 });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
-                    .y(function(d) { return d.x + d.layoutOffsetY; });
-
-                var svg = d3.select(container)
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
                     .append('svg')
                     .attr('viewBox', [0, 0, 960, 480])
                     .attr('width', 960)
@@ -278,9 +276,7 @@
                             return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
                         })
                         .attr('fill-opacity', 1)
-                        .attr('stroke-opacity', 1);
-
-                    node.merge(nodeEnter).select('circle')
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
                         .transition()
                         .duration(transitionDuration)
                         .attr('class', function(d) {

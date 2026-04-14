@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-1");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"radicals"},{"name":"fractional powers"},{"name":"root notation"},{"name":"index of root"},{"name":"radicand"},{"name":"principal root"}]},{"name":"forms and methods","children":[{"name":"polynomial root"},{"name":"constant root"},{"name":"rational root"},{"name":"domain check"},{"name":"power step"},{"name":"solution check"},{"name":"spurious roots"}]},{"name":"properties","children":[{"name":"even roots"},{"name":"odd roots"},{"name":"domain restriction"},{"name":"non-negative values"},{"name":"rational equations"},{"name":"extraneous solutions"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"коріння"},{"name":"дробові степені"},{"name":"позначення кореня"},{"name":"показник кореня"},{"name":"підкореневий вираз"},{"name":"головне значення кореня"}]},{"name":"форми та методи","children":[{"name":"поліномний корінь"},{"name":"сталий корінь"},{"name":"раціональний корінь"},{"name":"перевірка області визначення"},{"name":"піднесення до степеня"},{"name":"перевірка розв'язання"},{"name":"сторонні корені"}]},{"name":"властивості","children":[{"name":"парні корені"},{"name":"непарні корені"},{"name":"обмеження області визначення"},{"name":"невід'ємні значення"},{"name":"раціональні рівняння"},{"name":"сторонні розв'язки"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

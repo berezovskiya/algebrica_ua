@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-5");
-            var dataset = {"name":"root","children":[{"name":"definitions","children":[{"name":"tanh definition"},{"name":"coth definition"},{"name":"hyperbolic ratio"},{"name":"geometric interpretation"},{"name":"unit hyperbola"}]},{"name":"identities","children":[{"name":"fundamental identity"},{"name":"tanh identity"},{"name":"coth identity"},{"name":"addition formulas"},{"name":"reciprocal relation"},{"name":"algebraic relations"}]},{"name":"analysis","children":[{"name":"exponential form"},{"name":"limits"},{"name":"asymptotes"},{"name":"monotonicity"},{"name":"parity"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"означення tanh"},{"name":"означення coth"},{"name":"гіперболічне відношення"},{"name":"геометрична інтерпретація"},{"name":"одинична гіпербола"}]},{"name":"тотожності","children":[{"name":"фундаментальна тотожність"},{"name":"тотожність tanh"},{"name":"тотожність coth"},{"name":"формули додавання"},{"name":"реципрокний зв'язок"},{"name":"алгебраїчні відношення"}]},{"name":"аналіз","children":[{"name":"показникова форма"},{"name":"границі"},{"name":"асимптоти"},{"name":"монотонність"},{"name":"парність"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 390;
             var hasRenderedTree = false;
@@ -155,8 +155,7 @@
                     .attr('width', 960)
                     .attr('height', 480)
                     .attr('class', 'collapsible-tree__svg');var linkGroup = svg.append('g')
-                    .attr('class', 'collapsible-tree__links');
-
+                    .attr('class', 'collapsible-tree__links');```javascript
                 var nodeGroup = svg.append('g')
                     .attr('class', 'collapsible-tree__nodes')
                     .attr('pointer-events', 'all');
@@ -280,9 +279,7 @@
                             return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
                         })
                         .attr('fill-opacity', 1)
-                        .attr('stroke-opacity', 1);
-
-                    node.merge(nodeEnter).select('circle')
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
                         .transition()
                         .duration(transitionDuration)
                         .attr('class', function(d) {

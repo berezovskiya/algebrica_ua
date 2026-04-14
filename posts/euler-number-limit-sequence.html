@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-1");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"sequence definition"},{"name":"natural index"},{"name":"limit definition"},{"name":"decimal approximation"},{"name":"exponential base"},{"name":"growth constant"}]},{"name":"properties","children":[{"name":"monotonicity"},{"name":"boundedness"},{"name":"convergence"},{"name":"limit existence"},{"name":"monotone theorem"},{"name":"limit value"}]},{"name":"connections","children":[{"name":"binomial theorem"},{"name":"factorial bounds"},{"name":"term comparison"},{"name":"geometric bound"},{"name":"partial sums"},{"name":"taylor series"},{"name":"exponential series"},{"name":"definition equivalence"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"означення послідовності"},{"name":"натуральний індекс"},{"name":"означення границі"},{"name":"десяткове наближення"},{"name":"основа експоненти"},{"name":"стала зросту"}]},{"name":"властивості","children":[{"name":"монотонність"},{"name":"обмеженість"},{"name":"збіжність"},{"name":"існування границі"},{"name":"теорема про монотонність"},{"name":"значення границі"}]},{"name":"зв'язки","children":[{"name":"біноміальна теорема"},{"name":"обмеження факторіала"},{"name":"порівняння членів"},{"name":"геометричне обмеження"},{"name":"часткові суми"},{"name":"ряд Тейлора"},{"name":"експоненціальний ряд"},{"name":"еквівалентність означень"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 460;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

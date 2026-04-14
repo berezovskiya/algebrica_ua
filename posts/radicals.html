@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-27");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"nth root"},{"name":"radicand"},{"name":"index"},{"name":"principal root"},{"name":"even vs odd"},{"name":"inverse of powers"},{"name":"irrational roots"}]},{"name":"algebra","children":[{"name":"rational exponents"},{"name":"product rule"},{"name":"quotient rule"},{"name":"power of a root"},{"name":"nested radicals"},{"name":"simplification"},{"name":"like radicals"}]},{"name":"applications","children":[{"name":"irrationality of sqrt2"},{"name":"rationalization"},{"name":"conjugate method"},{"name":"limits and derivatives"},{"name":"indeterminate forms"},{"name":"geometric construction"},{"name":"euclid theorem"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"корінь n-го степеня"},{"name":"підкореневий вираз"},{"name":"показник кореня"},{"name":"головне значення кореня"},{"name":"парний та непарний показники"},{"name":"обернена операція до піднесення до степеня"},{"name":"ірраціональні корені"}]},{"name":"алгебра","children":[{"name":"раціональні показники"},{"name":"правило добутку"},{"name":"правило частки"},{"name":"степінь кореня"},{"name":"вкладені радикали"},{"name":"спрощення"},{"name":"подібні радикали"}]},{"name":"застосування","children":[{"name":"ірраціональність sqrt2"},{"name":"раціоналізація"},{"name":"метод спряжених"},{"name":"границі та похідні"},{"name":"невизначеності"},{"name":"геометричне побудування"},{"name":"теорема Евкліда"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -114,7 +114,7 @@
 
                 if (typeof d3 === 'undefined') {
                     if (attempts >= 80) {
-                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
                         return;
                     }
 
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

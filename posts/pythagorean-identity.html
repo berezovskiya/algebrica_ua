@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-13");
-            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"right triangle"},{"name":"pythagorean theorem"},{"name":"unit circle"},{"name":"sine coordinate"},{"name":"cosine coordinate"},{"name":"angle definition"}]},{"name":"identity","children":[{"name":"sin\u00b2\u03b8 + cos\u00b2\u03b8 = 1"},{"name":"solve for sine"},{"name":"solve for cosine"},{"name":"quadrant signs"},{"name":"unit circle relation"},{"name":"distance relation"}]},{"name":"applications","children":[{"name":"derived identities"},{"name":"tangent secant"},{"name":"cotangent cosecant"},{"name":"expression simplification"},{"name":"function rewriting"},{"name":"trigonometric substitution"},{"name":"analytic interpretation"}]}]};
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"прямокутний трикутник"},{"name":"теорема Піфагора"},{"name":"одиничне коло"},{"name":"координата синуса"},{"name":"координата косинуса"},{"name":"означення кута"}]},{"name":"тотожність","children":[{"name":"sin\u00b2\u03b8 + cos\u00b2\u03b8 = 1"},{"name":"розв'язати для синуса"},{"name":"розв'язати для косинуса"},{"name":"знаки квадрантів"},{"name":"зв'язок з одиничним колом"},{"name":"зв'язок з відстанню"}]},{"name":"застосування","children":[{"name":"похідні тотожності"},{"name":"тангенс і секанс"},{"name":"котангенс і косеканс"},{"name":"спрощення виразу"},{"name":"перезапис функції"},{"name":"тригонометрична підстановка"},{"name":"аналітична інтерпретація"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -114,7 +114,7 @@
 
                 if (typeof d3 === 'undefined') {
                     if (attempts >= 80) {
-                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
                         return;
                     }
 
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

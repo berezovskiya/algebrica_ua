@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-15");
-            var dataset = {"name":"root","children":[{"name":"definitions","children":[{"name":"arctangent"},{"name":"arccotangent"},{"name":"principal interval arctan"},{"name":"principal interval arccot"},{"name":"inverse tangent"},{"name":"inverse cotangent"}]},{"name":"functions","children":[{"name":"arctangent function"},{"name":"arccotangent function"},{"name":"domain arctan"},{"name":"range arctan"},{"name":"domain arccot"},{"name":"range arccot"}]},{"name":"properties","children":[{"name":"reference values"},{"name":"addition formula"},{"name":"complement identity"},{"name":"symmetry properties"},{"name":"relations between functions"},{"name":"expressions with arcsin"},{"name":"expressions with arccos"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"арктангенс"},{"name":"арккотангенс"},{"name":"головний проміжок arctan"},{"name":"головний проміжок arccot"},{"name":"обернений тангенс"},{"name":"обернений котангенс"}]},{"name":"функції","children":[{"name":"функція арктангенс"},{"name":"функція арккотангенс"},{"name":"область визначення arctan"},{"name":"область значень arctan"},{"name":"область визначення arccot"},{"name":"область значень arccot"}]},{"name":"властивості","children":[{"name":"табличні значення"},{"name":"формула додавання"},{"name":"тотожність доповнення"},{"name":"властивості симетрії"},{"name":"зв'язки між функціями"},{"name":"вирази з arcsin"},{"name":"вирази з arccos"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -137,14 +137,10 @@
                 var duration = 260;
 
                 root.x0 = 0;
-                root.y0 = 0;
-
-                root.descendants().forEach(function(node, i) {
+                root.y0 = 0;root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -264,15 +260,11 @@
 
                             return d.data.name;
                         })
-                        .classed('is-root', function(d) { return d.depth === 0; });
-
-                    var nodeUpdate = node.merge(nodeEnter)
+                        .classed('is-root', function(d) { return d.depth === 0; });var nodeUpdate = node.merge(nodeEnter)
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

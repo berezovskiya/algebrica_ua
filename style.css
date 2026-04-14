@@ -54,6 +54,15 @@ article time { display: block; color: #888; font-size: 0.9rem; margin-bottom: 1.
 
 .content h2 { font-size: 1.5rem; color: var(--accent); margin: 2rem 0 0.8rem; }
 .content h3 { font-size: 1.2rem; margin: 1.5rem 0 0.6rem; }
+.content h5 {
+    font-size: 0.95rem; font-weight: normal; font-style: italic;
+    color: var(--text); background: #f0f4f8; border-left: 3px solid var(--accent);
+    padding: 0.8rem 1rem; margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content h6 {
+    font-size: 0.9rem; font-weight: normal; font-style: italic;
+    color: #555; margin: 0.8rem 0;
+}
 .content p { margin-bottom: 1rem; text-align: justify; }
 .content img { max-width: 100%; height: auto; display: block; margin: 1.5rem auto; border-radius: 4px; }
 .content ul, .content ol { margin: 0.8rem 0 1rem 1.5rem; }
@@ -137,13 +146,20 @@ nav a:hover { text-decoration: underline; }
     padding: 14px 20px 20px 20px; border-radius: 12px;
 }
 .pb-section:not(:last-child) { margin-bottom: 20px !important; }
-.pb-section h2 { color: #666; font-weight: normal; margin-bottom: 20px; border-bottom: 1px solid #dadada; padding-bottom: 18px; padding-top: 4px; font-size: 17px; }
-.pb-section h2 a { color: #666; }
-.pb-section-inverse { background: #555; color: #ccc; border: none; }
+.pb-section h2 { color: var(--accent); font-weight: normal; margin-bottom: 20px; border-bottom: 1px solid #dadada; padding-bottom: 18px; padding-top: 4px; font-size: 17px; }
+.pb-section h2 a { color: var(--accent); }
+.pb-section-inverse {
+    background: var(--accent); color: #fff; border: none;
+}
+.pb-section-inverse h2 { color: #fff; border-bottom-color: rgba(255,255,255,0.3); }
+.pb-section-inverse a { color: #a8d8f0; }
+.pb-section-inverse h5, .pb-section-inverse h6 { color: rgba(255,255,255,0.85); }
 
 .pb-formula {
-    background: #e5e5e5 url("images/icon-formula.svg") no-repeat 20px 18px;
+    background: #f0f4f8 url("images/icon-formula.svg") no-repeat 20px 18px;
     padding: 18px 20px 18px 60px;
+    border: 1px solid #d0dce6;
+    color: var(--text);
 }
 .pb-formula:nth-child(1) { border-radius: 12px 12px 0 0; }
 .pb-formula:nth-child(2) { border-radius: 0 0 12px 12px; }
@@ -156,8 +172,8 @@ nav a:hover { text-decoration: underline; }
 }
 .pb-outline:nth-child(1) { border-radius: 12px 12px 0 0; border-bottom: none; }
 .pb-outline:nth-child(2) { border-radius: 0 0 12px 12px; }
-.pb-outline h2 { color: #666; font-weight: normal; margin-bottom: 20px; border-bottom: 1px solid #dadada; padding-bottom: 14px; padding-top: 4px; font-size: 15px; }
-.pb-outline h2 a { color: #666; }
+.pb-outline h2 { color: var(--accent); font-weight: normal; margin-bottom: 20px; border-bottom: 1px solid #dadada; padding-bottom: 14px; padding-top: 4px; font-size: 15px; }
+.pb-outline h2 a { color: var(--accent); }
 .pb-outline ul:last-child { margin-bottom: 0; }
 
 .pb-steps ul {

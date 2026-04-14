@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-6");
-            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"determinant"},{"name":"square matrix"},{"name":"notation"},{"name":"function"},{"name":"invertibility"},{"name":"volume scaling"}]},{"name":"computation","children":[{"name":"1\u00d71 determinant"},{"name":"2\u00d72 determinant"},{"name":"triangular matrices"},{"name":"diagonal matrices"},{"name":"laplace expansion"},{"name":"sarrus rule"}]},{"name":"properties","children":[{"name":"linearity"},{"name":"multiplicativity"},{"name":"transpose invariance"},{"name":"zero determinant"},{"name":"scaling factor"},{"name":"singular matrix"},{"name":"invertible matrix"}]}]};
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"визначник"},{"name":"квадратна матриця"},{"name":"позначення"},{"name":"функція"},{"name":"обратність"},{"name":"масштабування об'єму"}]},{"name":"обчислення","children":[{"name":"визначник 1\u00d71"},{"name":"визначник 2\u00d72"},{"name":"трикутні матриці"},{"name":"діагональні матриці"},{"name":"розклад Лапласа"},{"name":"правило Саррюса"}]},{"name":"властивості","children":[{"name":"лінійність"},{"name":"мультиплікативність"},{"name":"інваріантність транспонування"},{"name":"нульовий визначник"},{"name":"коефіцієнт масштабування"},{"name":"вироджена матриця"},{"name":"обратна матриця"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 450;
             var hasRenderedTree = false;
@@ -114,7 +114,7 @@
 
                 if (typeof d3 === 'undefined') {
                     if (attempts >= 80) {
-                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
                         return;
                     }
 
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

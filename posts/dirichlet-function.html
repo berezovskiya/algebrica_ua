@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-1");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"rational values"},{"name":"irrational values"},{"name":"indicator rule"},{"name":"real domain"},{"name":"piecewise definition"},{"name":"function values"}]},{"name":"behavior","children":[{"name":"everywhere discontinuous"},{"name":"density argument"},{"name":"sequence oscillation"},{"name":"limit nonexistence"},{"name":"oscillating behavior"},{"name":"pointwise analysis"}]},{"name":"analysis","children":[{"name":"riemann integrability"},{"name":"darboux sums"},{"name":"lebesgue measure"},{"name":"thomae function"},{"name":"function comparison"},{"name":"zero integral"},{"name":"measure properties"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"раціональні значення"},{"name":"ірраціональні значення"},{"name":"індикаторне правило"},{"name":"дійсний домен"},{"name":"кусочне означення"},{"name":"значення функції"}]},{"name":"поведінка","children":[{"name":"розривна всюди"},{"name":"аргумент щільності"},{"name":"осциляція послідовності"},{"name":"відсутність границі"},{"name":"осцилююча поведінка"},{"name":"поточковий аналіз"}]},{"name":"аналіз","children":[{"name":"інтегрованість за Ріманом"},{"name":"суми Дарбу"},{"name":"міра Лебега"},{"name":"функція Томе"},{"name":"порівняння функцій"},{"name":"нульовий інтеграл"},{"name":"властивості міри"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -137,9 +137,7 @@
                 var duration = 260;
 
                 root.x0 = 0;
-                root.y0 = 0;
-
-                root.descendants().forEach(function(node, i) {
+                root.y0 = 0;root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
                 });var tree = d3.tree().nodeSize([dx, dy]);
@@ -264,9 +262,7 @@
 
                             return d.data.name;
                         })
-                        .classed('is-root', function(d) { return d.depth === 0; });
-
-                    var nodeUpdate = node.merge(nodeEnter)
+                        .classed('is-root', function(d) { return d.depth === 0; });var nodeUpdate = node.merge(nodeEnter)
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';

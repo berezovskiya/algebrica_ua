@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-22");
-            var dataset = {"name":"root","children":[{"name":"representation","children":[{"name":"algebraic form"},{"name":"trigonometric form"},{"name":"exponential form"},{"name":"modulus"},{"name":"argument"},{"name":"principal argument"}]},{"name":"foundations","children":[{"name":"euler formula"},{"name":"euler number"},{"name":"taylor series"},{"name":"complex exponential"},{"name":"unit circle"},{"name":"angle representation"}]},{"name":"operations","children":[{"name":"conversion steps"},{"name":"modulus computation"},{"name":"argument determination"},{"name":"multiplication"},{"name":"division"},{"name":"powers"},{"name":"de moivre theorem"},{"name":"complex conjugate"}]}]};
+            var dataset = {"name":"root","children":[{"name":"представлення","children":[{"name":"алгебраїчна форма"},{"name":"тригонометрична форма"},{"name":"показникова форма"},{"name":"модуль"},{"name":"аргумент"},{"name":"головний аргумент"}]},{"name":"основи","children":[{"name":"формула Ейлера"},{"name":"число Ейлера"},{"name":"ряд Тейлора"},{"name":"комплексна експонента"},{"name":"одиничне коло"},{"name":"кутове представлення"}]},{"name":"операції","children":[{"name":"кроки перетворення"},{"name":"обчислення модуля"},{"name":"визначення аргументу"},{"name":"множення"},{"name":"ділення"},{"name":"піднесення до степеня"},{"name":"теорема де Муавра"},{"name":"комплексно-спряжений елемент"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 460;
             var hasRenderedTree = false;
@@ -114,7 +114,7 @@
 
                 if (typeof d3 === 'undefined') {
                     if (attempts >= 80) {
-                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
                         return;
                     }
 
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)
@@ -479,7 +475,7 @@ r = |z| &amp;= \sqrt{(-1)^2 + 1^2} \\[6pt]
 &amp;= \sqrt{2}
 \end{align}
 \]</p>
-<p>З визначенням аргументу потрібно бути обережнішим. Оскільки \( a = -1 &lt; 0 \) та \( b = 1 &gt; 0 \), число лежить у другій чверті. Використання лише формули арктангенса дало б:
+<p>З означенням аргументу потрібно бути обережнішим. Оскільки \( a = -1 &lt; 0 \) та \( b = 1 &gt; 0 \), число лежить у другій чверті. Використання лише формули арктангенса дало б:
 \[
 \tan^{-1}!\left(\frac{b}{a}\right) = \tan^{-1}\!\left(\frac{1}{-1}\right) = \tan^{-1}(-1) = -\frac{\pi}{4}
 \]

@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-4");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"asymptotic comparison"},{"name":"limit ratio"},{"name":"negligible growth"},{"name":"landau symbols"},{"name":"little-o notation"},{"name":"big-O relation"}]},{"name":"contexts","children":[{"name":"limit at point"},{"name":"limit at infinity"},{"name":"sequences"},{"name":"relative growth"},{"name":"infinitesimals"},{"name":"divergent behavior"}]},{"name":"properties","children":[{"name":"scaling invariance"},{"name":"addition rule"},{"name":"transitivity"},{"name":"composition"},{"name":"nested little-o"},{"name":"asymptotic hierarchy"},{"name":"taylor remainder"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"асимптотичне порівняння"},{"name":"границя відношення"},{"name":"незначне зростання"},{"name":"символи Ландау"},{"name":"символіка o-мале"},{"name":"відношення O-велике"}]},{"name":"контексти","children":[{"name":"границя в точці"},{"name":"границя на нескінченності"},{"name":"послідовності"},{"name":"відносне зростання"},{"name":"нескінченно малі"},{"name":"розбіжність"}]},{"name":"властивості","children":[{"name":"інваріантність масштабування"},{"name":"правило додавання"},{"name":"транзитивність"},{"name":"композиція"},{"name":"вкладене o-мале"},{"name":"асимптотична ієрархія"},{"name":"залишок Тейлора"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)
@@ -365,7 +361,7 @@
 
 <div class="wp-block-group pb-section mb-x-30 alignCenterMathjax pb-steps"><div class="wp-block-group__inner-container is-layout-constrained wp-block-group-is-layout-constrained">
 <div class="wp-block-jetpack-markdown mb-x-30"><h2>Приклад 1</h2>
-<p>Щоб зробити концепцію зрозумілішою, розглянемо простий приклад, заданий наступною границію:</p>
+<p>Щоб зробити концепцію зрозумілішою, розглянемо простий приклад, заданий наступною граникою:</p>
 <p>\[
 \lim_{x \to 0} \frac{x^2}{x} = \lim_{x \to 0} x = 0
 \]</p>

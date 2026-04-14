@@ -253,147 +253,141 @@ f(x + T) = f(x)
 <div class="wp-block-jetpack-markdown pb-section-inverse mb-x-30 alignCenterMathjax"><h2>Область визначення основних функцій</h2>
 <p>Нижче ми розглянемо області визначення найпоширеніших елементарних функцій. Однак на практиці багато функцій, що зустрічаються в реальних задачах, є значно складнішими, і їхні області визначення не можна визначити з першого погляду. Для всіх таких ситуацій, у яких структура виразу робить аналіз менш очевидним, ми посилаємось на <a href="determining-the-domain-of-a-function.html">цей метод</a>, який надає систематичний спосіб визначення області визначення більш складних функцій.</p>
 <hr>
-<p>Polynomial functions are defined by expressions of the form:</p>
+<p>Поліноміальні функції задаються виразами вигляду:</p>
 <p>\[
 y = a_0 x^n + a_1 x^{n-1} + \dots + a_n
 \]</p>
-<p>where \( a_0, a_1, \dots, a_n \) are real coefficients and \( n \in \mathbb{N} \). The domain of a polynomial function is the entire set of real numbers, \( \mathbb{R} \), since it does not involve any operations that could restrict its definition. An example of a polynomial function is:</p>
+<p>де \( a_0, a_1, \dots, a_n \) — дійсні коефіцієнти та \( n \in \mathbb{N} \). Областю визначення поліноміальної функції є вся множина дійсних чисел, \( \mathbb{R} \), оскільки вона не містить жодних операцій, які могли б обмежити її визначення. Прикладом поліноміальної функції є:</p>
 <p>\[
 y = 2x^3 - 5x^2 + 3x - 1
 \]</p>
-<p>This expression can be viewed as a linear combination of powers of \( x \), where each term \( a_i x^i \) has a real coefficient \( a_i \). Polynomial functions of this type are defined for every real number \( x \in \mathbb{R} \), since no operation in their form imposes any restriction on the domain.</p>
+<p>Цей вираз можна розглядати як лінійну комбінацію степенів \( x \), де кожен доданок \( a_i x^i \) має дійсний коефіцієнт \( a_i \). Поліноміальні функції такого типу визначені для кожного дійсного числа \( x \in \mathbb{R} \), оскільки жодна операція в їхній формі не накладає жодних обмежень на область визначення.</p>
 <hr>
-<p><a href="rational-functions.html">Rational functions</a> are expressed in the form:</p>
+<p><a href="rational-functions.html">Раціональні функції</a> мають вигляд:</p>
 <p>\[
 y = \frac{N(x)}{D(x)}
 \]</p>
-<p>where \( N(x) \) and \( D(x) \) are polynomials. These functions are defined for all real numbers \( x \) such that \( D(x) \neq 0 \). The domain is therefore \( \mathbb{R} \) excluding the values that make the denominator zero. An example of a rational function is:</p>
+<p>де \( N(x) \) та \( D(x) \) — поліноми. Ці функції визначені для всіх дійсних чисел \( x \), таких що \( D(x) \neq 0 \). Отже, областю визначення є \( \mathbb{R} \), за виключенням значень, які обнуляють знаменник. Прикладом раціональної функції є:</p>
 <p>\[
 y = \frac{x^2 - 4}{x - 2}
 \]</p>
-<p>This expression represents the ratio of two polynomials and can be interpreted as a linear combination of powers of \( x \) in both the numerator and denominator. Rational functions of this type are defined for all real values of \( x \) except those that make the denominator equal to zero. In this example, the function is undefined at \( x = 2 \), since it would make the denominator vanish.</p>
+<p>Цей вираз представляє відношення двох поліномів і може бути інтерпретований як лінійна комбінація степенів \( x \) як у чисельнику, так і в знаменнику. Раціональні функції такого типу визначені для всіх дійсних значень \( x \), крім тих, що роблять знаменник рівним нулю. У цьому прикладі функція не визначена при \( x = 2 \), оскільки це призвело б до зникнення знаменника.</p>
 <hr>
-<p>Irrational functions are expressions of the form:</p>
+<p>Ірраціональні функції — це вирази вигляду:</p>
 <p>\[
 y = \sqrt[n]{f(x)}
 \]</p>
-<p>The domain depends on the parity of the index \( n \). If \( n \) is even, the function is defined only when \( f(x) \geq 0 \), so the domain is:</p>
+<p>Область визначення залежить від парності показника \( n \). Якщо \( n \) парне, функція визначена лише тоді, коли \( f(x) \geq 0 \), тому область визначення така:</p>
 <p>\[
 { x \in \mathbb{R} \mid f(x) \geq 0 }
 \]</p>
-<p>An example of an irrational function with an even index is:</p>
+<p>Прикладом ірраціональної функції з парним показником є:</p>
 <p>\[
 y = \sqrt{x &#8211; 2}
 \]</p>
-<p>In this case, the expression under the radical must be non-negative, so the domain is given by \( x \ge 2 \). The function is therefore defined only for values of \( x \) that make the radicand \( x - 2 \) greater than or equal to zero. If \( n \) is odd, the function is defined for every value in the domain of \( f(x) \). An example with an odd index is:</p>
+<p>У цьому випадку вираз під радикалом має бути невід'ємним, тому область визначення задається як \( x \ge 2 \). Таким чином, функція визначена лише для тих значень \( x \), які роблять підкореневий вираз \( x - 2 \) більшим або рівним нулю. Якщо \( n \) непарне, функція визначена для кожного значення в області визначення \( f(x) \). Прикладом з непарним показником є:</p>
 <p>\[
 y = \sqrt[3]{x &#8211; 2}
 \]</p>
-<p>Here, the cube root is defined for every real value of \( x \), since odd roots can also take negative arguments. Thus, the domain of the function is the entire set of real numbers, \( \mathbb{R} \).</p>
+<p>Тут кубічний корінь визначений для кожного дійсного значення \( x \), оскільки корені непарного степеня можуть мати від'ємні аргументи. Таким чином, областю визначення функції є вся множина дійсних чисел, \( \mathbb{R} \).</p>
 <hr>
-<p><a href="logarithmic-function.html">Logarithmic functions</a> are defined as:</p>
+<p><a href="logarithmic-function.html">Логарифмічні функції</a> визначаються як:</p>
 <p>\[
-y = \log_a{f(x)} \quad \text{with} \quad a &gt; 0,\; a \ne 1
+y = \log_a{f(x)} \quad \text{при} \quad a &gt; 0,\; a \ne 1
 \]</p>
-<p>They are defined only when the argument of the <a href="logarithms.html">logarithm</a> is strictly positive. Therefore, their domain is:</p>
+<p>Вони визначені лише тоді, коли аргумент <a href="logarithms.html">логарифма</a> є строго додатним. Отже, їхня область визначення така:</p>
 <p>\[
 {x \in \mathbb{R} \mid f(x) &gt; 0 }
 \]</p>
-<p>An example of a logarithmic function is:</p>
+<p>Прикладом логарифмічної функції є:</p>
 <p>\[
 y = \log_2(x - 1)
 \]</p>
-<p>This function is defined only when the argument of the logarithm, \( x - 1 \), is strictly positive. Therefore, the domain is \( x &gt; 1 \). For any value of \( x \) less than or equal to \(1\), the expression becomes undefined because the <a href="logarithms.html">logarithm</a> of a non-positive number does not exist in the real domain. Another example is:</p>
+<p>Ця функція визначена лише тоді, коли аргумент логарифма, \( x - 1 \), є строго додатним. Отже, область визначення \( x &gt; 1 \). Для будь-якого значення \( x \), меншого або рівного \(1\), вираз стає невизначеним, оскільки <a href="logarithms.html">логарифм</a> невід'ємного числа не існує в області дійсних чисел. Іншим прикладом є:</p>
 <p>\[
 y = \ln(3x + 6)
 \]</p>
-<p>In this case, the argument \( 3x + 6 \) must also be positive, so the domain is \( x &gt; -2 \). The same principle applies to all logarithmic functions: the argument of the logarithm must always be greater than zero for the function to be defined.</p>
+<p>У цьому випадку аргумент \( 3x + 6 \) також має бути додатним, тому область визначення \( x &gt; -2 \). Той самий принцип застосовується до всіх логарифмічних функцій: аргумент логарифма завжди має бути більшим за нуль, щоб функція була визначеною.</p>
 <hr>
-<p><a href="exponential-function.html">Exponential functions</a> of the form:</p>
+<p><a href="exponential-function.html">Показникові функції</a> вигляду:</p>
 <p>\[
-y = a^{f(x)} \quad \text{with} \quad a &gt; 0,\; a \ne 1
+y = a^{f(x)} \quad \text{при} \quad a &gt; 0,\; a \ne 1
 \]</p>
-<p>are defined for all values in the domain of \( f(x) \). An example of an exponential function is:</p>
+<p>визначені для всіх значень в області визначення \( f(x) \). Прикладом показникової функції є:</p>
 <p>\[
 y = 2^x
 \]</p>
-<p>This function is defined for every real value of \( x \), since the base \( a = 2 \) is positive and different from \(1\). Its domain is therefore the entire set of real numbers, \( \mathbb{R} \), while the range is strictly positive, \( y &gt; 0 \).</p>
+<p>Ця функція визначена для кожного дійсного значення \( x \), оскільки основа \( a = 2 \) є додатною і відмінною від \(1\). Її область визначення, таким чином, є всією множиною дійсних чисел, \( \mathbb{R} \), тоді як область значень є строго додатною, \( y &gt; 0 \).</p>
 <hr>
-<p>Exponential functions of the form:</p>
+<p>Показникові функції вигляду:</p>
 <p>\[
 y = [f(x)]^{g(x)}
 \]</p>
-<p>are defined only when the base \( f(x) &gt; 0 \), since real-valued exponentiation requires a positive base. Therefore, their domain is the intersection of:</p>
+<p>визначені лише тоді, коли основа \( f(x) &gt; 0 \), оскільки піднесення до степеня з дійсним показником вимагає додатної основи. Отже, їхня область визначення є перетином:</p>
 <p>\[
-\{ x \in \mathbb{R} \mid f(x) &gt; 0 \} \, \cap \, \text{domain of } g(x)
+\{ x \in \mathbb{R} \mid f(x) &gt; 0 \} \, \cap \, \text{області визначення } g(x)
 \]</p>
 <hr>
-<p>Exponential functions of the form:</p>
+<p>Показникові функції вигляду:</p>
 <p>\[
 f(x)^{\alpha}
 \]</p>
-<p>where \( \alpha \in \mathbb{R} \setminus \mathbb{Q} \) are defined under the following conditions:</p>
+<p>де \( \alpha \in \mathbb{R} \setminus \mathbb{Q} \), визначені за наступних умов:</p>
 <p>\[
-\{ x \in \mathbb{R} \mid f(x) \geq 0 \}, \quad \text{if } \alpha &gt; 0
+\{ x \in \mathbb{R} \mid f(x) \geq 0 \}, \quad \text{якщо } \alpha &gt; 0
 \]
 \[
-\{ x \in \mathbb{R} \mid f(x) &gt; 0 \}, \quad \text{if } \alpha &lt; 0
+\{ x \in \mathbb{R} \mid f(x) &gt; 0 \}, \quad \text{якщо } \alpha &lt; 0
 \]</p>
-<p>This ensures that the result of the expression remains within the set of real numbers.</p>
+<p>Це гарантує, що результат виразу залишається в множині дійсних чисел.</p>
 <hr>
-<p>For trigonometric functions, the following domains apply:</p>
+<p>Для тригонометричних функцій застосовуються такі області визначення:</p>
 <p>\( y = \sin x, \quad y = \cos x \)<br>
-Domain: \( \mathbb{R} \)</p>
+Область визначення: \( \mathbb{R} \)</p>
 <p>\( y = \tan x \)<br>
-Domain: \( \mathbb{R} \setminus \left\lbrace \dfrac{\pi}{2} + k\pi \right\rbrace, \quad k \in \mathbb{Z} \)</p>
+Область визначення: \( \mathbb{R} \setminus \left\lbrace \dfrac{\pi}{2} + k\pi \right\rbrace, \quad k \in \mathbb{Z} \)</p>
 <p>\( y = \cot x \)<br>
-Domain: \( \mathbb{R} \setminus \left\lbrace k\pi \right\rbrace, \quad k \in \mathbb{Z} \)</p>
+Область визначення: \( \mathbb{R} \setminus \left\lbrace k\pi \right\rbrace, \quad k \in \mathbb{Z} \)</p>
 <p>\( y = \arcsin x, \quad y = \arccos x \)<br>
-Domain: \( [-1, 1] \)</p>
+Область визначення: \( [-1, 1] \)</p>
 <p>\( y = \arctan x, \quad y = \text{arccot}\,x \)<br>
-Domain: \( \mathbb{R} \)</p>
-<h5>As mentioned above, understanding all these cases is essential, as they play a crucial role in many areas of mathematics and their applications.</h5>
-</div>
-</div></div>
-
-
-
-<div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Operations between functions</h2>
-<p>When two real functions are defined on the same domain, it is possible to combine them through the usual algebraic operations, obtaining new functions derived from the original ones. This generalizes the basic arithmetic of real numbers to the context of functions, where each operation is applied point by point for every value of \( x \) in the domain. In formal terms, if</p>
+Область визначення: \( \mathbb{R} \)</p>
+<h5>Як було зазначено вище, розуміння всіх цих випадків є важливим, оскільки вони відіграють вирішальну роль у багатьох областях математики та їхніх застосуваннях.</h5><div class="wp-block-jetpack-markdown pb-section alignCenterMathjax mb-x-30"><h2>Операції над функціями</h2>
+<p>Коли дві дійсні функції визначені на одній і тій самій області визначення, їх можна комбінувати за допомогою звичайних алгебраїчних операцій, отримуючи нові функції, похідні від вихідних. Це узагальнює базову арифметику дійсних чисел на контекст функцій, де кожна операція застосовується поточково для кожного значення \( x \) в області визначення. У формальних термінах, якщо</p>
 <p>\[
-f : X_1 \subseteq \mathbb{R} \to \mathbb{R} \quad \text{and} \quad g : X_2 \subseteq \mathbb{R} \to \mathbb{R}
+f : X_1 \subseteq \mathbb{R} \to \mathbb{R} \quad \text{та} \quad g : X_2 \subseteq \mathbb{R} \to \mathbb{R}
 \]</p>
-<p>are two functions, we define: \(X = X_1 \cap X_2\) as the common domain on which the following operations can be performed.</p>
+<p>є двома функціями, ми визначаємо: \(X = X_1 \cap X_2\) як спільну область визначення, на якій можуть бути виконані наступні операції.</p>
 <hr>
-<p>The sum of two functions \( f \) and \( g \) is defined by:</p>
+<p>Сума двох функцій \( f \) та \( g \) визначається як:</p>
 <p>\[
 (f + g)(x) = f(x) + g(x)
 \]</p>
-<p>The resulting function assigns to each \( x \in X \) the sum of the corresponding values of \( f \) and \( g \).</p>
+<p>Отримана функція присвоює кожному \( x \in X \) суму відповідних значень \( f \) та \( g \).</p>
 <hr>
-<p>The difference of two functions is given by:</p>
+<p>Різниця двох функцій задається як:</p>
 <p>\[
 (f - g)(x) = f(x) - g(x)
 \]</p>
 <hr>
-<p>The product of two functions is defined as:</p>
+<p>Добуток двох функцій визначається як:</p>
 <p>\[
 (f \cdot g)(x) = f(x) \, g(x)
 \]</p>
-<p>The resulting function represents the pointwise multiplication of the two values.</p>
+<p>Отримана функція представляє поточкове множення двох значень.</p>
 <hr>
-<p>The quotient of two functions is expressed by</p>
+<p>Частка двох функцій виражається як</p>
 <p>\[
 \left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)}
 \]</p>
-<p>but it is defined only for those values of \( x \in X \) where \( g(x) \neq 0 \). The domain of this function is therefore obtained by excluding from \( X \) all points that make the denominator vanish.</p>
+<p>але вона визначена лише для тих значень \( x \in X \), де \( g(x) \neq 0 \). Таким чином, область визначення цієї функції отримують, виключивши з \( X \) усі точки, при яких знаменник перетворюється на нуль.</p>
 <hr>
-<p>The composition of two functions, written \( (g \circ f)(x) = g(f(x)) \), is another fundamental operation and is treated in detail on the dedicated page on <a href="composite-functions.html">composite functions</a>.</p>
+<p>Композиція двох функцій, що записується як \( (g \circ f)(x) = g(f(x)) \), є іншою фундаментальною операцією і детально розглядається на спеціальній сторінці про <a href="composite-functions.html">складені функції</a>.</p>
 </div>
 
 
 
-<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Selected references</h2>
+<div class="wp-block-jetpack-markdown pb-section pb-references"><h2>Вибрана література</h2>
 <ul>
 <li>
 <p><strong>University of California S. B., H. McGahagan</strong>. <a href="https://web.math.ucsb.edu/~helena/teaching/math8/handouts/functions.pdf">Functions: Definitions and Properties</a></p>
@@ -419,25 +413,23 @@ f : X_1 \subseteq \mathbb{R} \to \mathbb{R} \quad \text{and} \quad g : X_2 \subs
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is a function in mathematics?",
+      "name": "Що таке функція в математиці?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A function is a relation that assigns exactly one output to each input in a given domain. It is commonly written as f(x), where x is the input and f(x) is the corresponding output."
+        "text": "Функція — це відношення, яке присвоює рівно один вихідний результат кожному вхідному значенню в заданій області визначення. Зазвичай вона записується як f(x), де x — це вхідне значення, а f(x) — відповідний результат."
       }
     },
     {
       "@type": "Question",
-      "name": "How are functions classified?",
+      "name": "Як класифікуються функції?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Functions can be classified into algebraic and transcendental types. Algebraic functions include polynomial, rational, and irrational forms, while transcendental functions include exponential, logarithmic, and trigonometric functions."
+        "text": "Функції можна класифікувати на алгебраїчні та трансцендентні типи. Алгебраїчні функції включають поліноми, раціональні та ірраціональні форми, тоді як трансцендентні функції включають показникові, логарифмічні та тригонометричні функції."
       }
     }
   ]
 }
-</script>
-
-        </div>
+</script></div>
     </article>
     <nav class="bottom-nav">
         <a href="../index.html">&larr; Повернутися до змісту</a>

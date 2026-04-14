@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-3");
-            var dataset = {"name":"root","children":[{"name":"structure","children":[{"name":"general form"},{"name":"coefficients"},{"name":"degree"},{"name":"leading coefficient"},{"name":"terms"},{"name":"standard form"}]},{"name":"graph","children":[{"name":"end behavior"},{"name":"symmetry"},{"name":"turning points"},{"name":"intercepts"},{"name":"zeros"},{"name":"shape"}]},{"name":"analysis","children":[{"name":"continuity"},{"name":"differentiability"},{"name":"derivative"},{"name":"integral"},{"name":"roots"},{"name":"extrema"},{"name":"growth"}]}]};
+            var dataset = {"name":"root","children":[{"name":"структура","children":[{"name":"загальний вигляд"},{"name":"коефіцієнти"},{"name":"ступінь"},{"name":"провідний коефіцієнт"},{"name":"доданки"},{"name":"стандартна форма"}]},{"name":"графік","children":[{"name":"поведінка на кінцях"},{"name":"симетрія"},{"name":"точки перегину"},{"name":"перетини з осями"},{"name":"нулі"},{"name":"форма"}]},{"name":"аналіз","children":[{"name":"неперервність"},{"name":"диференційовність"},{"name":"похідна"},{"name":"інтеграл"},{"name":"корені"},{"name":"екстремуми"},{"name":"зростання"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -114,7 +114,7 @@
 
                 if (typeof d3 === 'undefined') {
                     if (attempts >= 80) {
-                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
                         return;
                     }
 
@@ -147,9 +147,7 @@
                 var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
-                    .y(function(d) { return d.x + d.layoutOffsetY; });
-
-                var svg = d3.select(container)
+                    .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
                     .append('svg')
                     .attr('viewBox', [0, 0, 960, 480])
                     .attr('width', 960)
@@ -280,9 +278,7 @@
                             return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
                         })
                         .attr('fill-opacity', 1)
-                        .attr('stroke-opacity', 1);
-
-                    node.merge(nodeEnter).select('circle')
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
                         .transition()
                         .duration(transitionDuration)
                         .attr('class', function(d) {

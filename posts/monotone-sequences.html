@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-2");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"increasing sequence"},{"name":"decreasing sequence"},{"name":"strict monotonicity"},{"name":"constant sequence"}]},{"name":"theorem","children":[{"name":"monotone convergence"},{"name":"bounded increasing sequence"},{"name":"bounded decreasing sequence"},{"name":"supremum as limit"},{"name":"infimum as limit"}]},{"name":"behavior","children":[{"name":"unbounded sequences"},{"name":"divergence"},{"name":"eventual monotonicity","children":[{"name":"eventually increasing"},{"name":"eventually decreasing"}]}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"збіжний ряд"},{"name":"розбіжний ряд"},{"name":"сувора монотонність"},{"name":"стала послідовність"}]},{"name":"теорема","children":[{"name":"збіжність монотонних послідовностей"},{"name":"обмежена зростаюча послідовність"},{"name":"обмежена спадаюча послідовність"},{"name":"супремум як границя"},{"name":"інфімум як границя"}]},{"name":"поведінка","children":[{"name":"необмежені послідовності"},{"name":"розбіжність"},{"name":"кінцева монотонність","children":[{"name":"зростаюча на певному проміжку"},{"name":"спадаюча на певному проміжку"}]}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 310;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

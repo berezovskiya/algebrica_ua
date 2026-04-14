@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-18");
-            var dataset = {"name":"root","children":[{"name":"definitions","children":[{"name":"tangent"},{"name":"cotangent"},{"name":"ratio of sine and cosine"},{"name":"reciprocal relation"},{"name":"domain restrictions"},{"name":"undefined values"}]},{"name":"geometry","children":[{"name":"unit circle"},{"name":"tangent line"},{"name":"geometric construction"},{"name":"similar triangles"},{"name":"segment interpretation"},{"name":"angle representation"}]},{"name":"properties","children":[{"name":"trigonometric identities"},{"name":"periodicity"},{"name":"asymptotes"},{"name":"parity"},{"name":"function graphs"},{"name":"complex setting"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"тангенс"},{"name":"котангенс"},{"name":"відношення синуса і косинуса"},{"name":"обернена залежність"},{"name":"обмеження області визначення"},{"name":"невизначені значення"}]},{"name":"геометрія","children":[{"name":"одиничне коло"},{"name":"дотична"},{"name":"геометричне побудування"},{"name":"подібні трикутники"},{"name":"інтерпретація відрізка"},{"name":"представлення кута"}]},{"name":"властивості","children":[{"name":"тригонометричні тотожності"},{"name":"періодичність"},{"name":"асимптоти"},{"name":"парність"},{"name":"графіки функцій"},{"name":"комплексна область"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 420;
             var hasRenderedTree = false;
@@ -142,8 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
+                });```javascript
                 var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
@@ -270,9 +269,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

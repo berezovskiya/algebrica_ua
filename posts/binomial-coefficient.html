@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-3");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"combinations"},{"name":"factorial formula"},{"name":"selection without order"},{"name":"permutations relation"},{"name":"notation n choose k"}]},{"name":"properties","children":[{"name":"edge"},{"name":"symmetry"},{"name":"additive"},{"name":"recursive"},{"name":"pascal triangle"},{"name":"boundary values"}]},{"name":"identities","children":[{"name":"row sum"},{"name":"alternating sum"},{"name":"vandermonde"},{"name":"upper summation"},{"name":"binomial theorem"},{"name":"central binomial coefficient"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"сполучення"},{"name":"формула факторіала"},{"name":"вибір без урахування порядку"},{"name":"зв'язок з перестановками"},{"name":"позначення n над k"}]},{"name":"властивості","children":[{"name":"крайні випадки"},{"name":"симетрія"},{"name":"адитивність"},{"name":"рекурсія"},{"name":"трикутник Паскаля"},{"name":"граничні значення"}]},{"name":"тотожності","children":[{"name":"сума рядка"},{"name":"знакоперемінна сума"},{"name":"Вандермонде"},{"name":"верхня сума"},{"name":"біномна теорема"},{"name":"центральний біномний коефіцієнт"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 400;
             var hasRenderedTree = false;
@@ -152,9 +152,7 @@
                     .attr('viewBox', [0, 0, 960, 480])
                     .attr('width', 960)
                     .attr('height', 480)
-                    .attr('class', 'collapsible-tree__svg');
-
-                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__svg');var linkGroup = svg.append('g')
                     .attr('class', 'collapsible-tree__links');
 
                 var nodeGroup = svg.append('g')
@@ -285,9 +283,7 @@
                         .duration(transitionDuration)
                         .attr('class', function(d) {
                             return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
-                        });
-
-                    node.exit()
+                        });node.exit()
                         .transition()
                         .duration(transitionDuration)
                         .remove()

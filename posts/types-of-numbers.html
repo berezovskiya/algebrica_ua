@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-10");
-            var dataset = {"name":"root","children":[{"name":"hierarchy","children":[{"name":"natural numbers"},{"name":"integers"},{"name":"rational numbers"},{"name":"irrational numbers"},{"name":"real numbers"},{"name":"complex numbers"}]},{"name":"properties","children":[{"name":"closure"},{"name":"ordering"},{"name":"completeness"},{"name":"cardinality"},{"name":"density"}]},{"name":"representations","children":[{"name":"decimal expansion"},{"name":"number line"},{"name":"algebraic form"},{"name":"complex plane"}]}]};
+            var dataset = {"name":"root","children":[{"name":"ієрархія","children":[{"name":"натуральні числа"},{"name":"цілі числа"},{"name":"раціональні числа"},{"name":"ірраціональні числа"},{"name":"дійсні числа"},{"name":"комплексні числа"}]},{"name":"властивості","children":[{"name":"замкненість"},{"name":"впорядкування"},{"name":"повнота"},{"name":"потужність"},{"name":"щільність"}]},{"name":"представлення","children":[{"name":"десятковий розклад"},{"name":"числова пряма"},{"name":"алгебраїчна форма"},{"name":"комплексна площина"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 400;
             var hasRenderedTree = false;
@@ -114,7 +114,7 @@
 
                 if (typeof d3 === 'undefined') {
                     if (attempts >= 80) {
-                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
                         return;
                     }
 
@@ -155,9 +155,7 @@
                     .attr('width', 960)
                     .attr('height', 480)
                     .attr('class', 'collapsible-tree__svg');var linkGroup = svg.append('g')
-                    .attr('class', 'collapsible-tree__links');
-
-                var nodeGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__links');var nodeGroup = svg.append('g')
                     .attr('class', 'collapsible-tree__nodes')
                     .attr('pointer-events', 'all');
 
@@ -280,9 +278,7 @@
                             return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
                         })
                         .attr('fill-opacity', 1)
-                        .attr('stroke-opacity', 1);
-
-                    node.merge(nodeEnter).select('circle')
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
                         .transition()
                         .duration(transitionDuration)
                         .attr('class', function(d) {
@@ -456,8 +452,8 @@
 
 <div class="wp-block-jetpack-markdown"><p>Повнота — це те, що відрізняє \(\mathbb{R}\) від \(\mathbb{Q}\): наприклад, послідовність раціональних наближень до \(\sqrt{2}\) не має границі в \(\mathbb{Q}\), але її границя існує в \(\mathbb{R}\). Тема найменших верхніх меж розглянута в статті про <a href="supremum-and-infimum.html">супремум та інфімум</a>.</p>
 <p>Множина \(\mathbb{R}\) також є повністю впорядкованою: для будь-яких двох дійсних чисел \(x\) та \(y\) виконується рівно одне з відношень \(x &lt; y\), \(x = y\) або \(x &gt; y\). Більше того, \(\mathbb{R}\) задовольняє архімедову властивість: для кожного дійсного числа \(x\) існує натуральне число \(n\), таке що \(n &gt; x\). Це виключає існування нескінченно великих або нескінченно малих елементів у \(\mathbb{R}\).</p>
-<p>Подальша структурна відмінність відокремлює \(\mathbb{Q}\) від \(\mathbb{R}\) на рівні потужності. Раціональні числа утворюють зліченну множину, що означає, що їхні елементи можна встановити в однозначне відповідності з \(\mathbb{N}\). Дійсні числа, навпаки, є незліченними: такої відповідності не існує, що було доведено діагональним методом Кантора. У цьому точному сенсі ірраціональні числа становлять переважну більшість дійсної прямої. Властивості системи дійсних чисел детальніше обговорюються в статті про <a href="properties-of-real-numbers.html">властивості дійсних чисел</a>.</p>
-<p>Оскільки нуль не має знака, він не належить ні до додатних, ні до від'ємних дійсних чисел. З цієї причини стандартною є наступна термінологія: неотрицальне дійсне число задовольняє умову \(x \geq 0\), тоді як недодатне дійсне число задовольняє \(x \leq 0\).</p>
+<p>Подальша структурна відмінність відокремлює \(\mathbb{Q}\) від \(\mathbb{R}\) на рівні потужності. Раціональні числа утворюють зліченну множину, що означає, що їхні елементи можна встановити в однозначну відповідність з \(\mathbb{N}\). Дійсні числа, навпаки, є незліченними: такої відповідності не існує, що було доведено діагональним методом Кантора. У цьому точному сенсі ірраціональні числа становлять переважну більшість дійсної прямої. Властивості системи дійсних чисел детальніше обговорюються в статті про <a href="properties-of-real-numbers.html">властивості дійсних чисел</a>.</p>
+<p>Оскільки нуль не має знака, він не належить ні до додатних, ні до від'ємних дійсних чисел. З цієї причини стандартною є наступна термінологія: невід'ємне дійсне число задовольняє умову \(x \geq 0\), тоді як недодатне дійсне число задовольняє \(x \leq 0\).</p>
 </div>
 </div></div>
 
@@ -484,7 +480,7 @@ z = a + bi
       "name": "Чи включають натуральні числа нуль?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Так, натуральні числа включають нуль. Це множина неотрицательных цілих чисел: 0, 1, 2, 3 і т.д."
+        "text": "Так, натуральні числа включають нуль. Це множина невід'ємних цілих чисел: 0, 1, 2, 3 і т.д."
       }
     },
     {

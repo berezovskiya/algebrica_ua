@@ -330,9 +330,7 @@ n! \approx \sqrt{2\pi n} \left(\frac{n}{e}\right)^n \left(1 + \frac{1}{12n}\righ
                     .attr('viewBox', [0, 0, 960, 480])
                     .attr('width', 960)
                     .attr('height', 480)
-                    .attr('class', 'collapsible-tree__svg');
-
-                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__svg');var linkGroup = svg.append('g')
                     .attr('class', 'collapsible-tree__links');var nodeGroup = svg.append('g')
                     .attr('class', 'collapsible-tree__nodes')
                     .attr('pointer-events', 'all');
@@ -456,9 +454,7 @@ n! \approx \sqrt{2\pi n} \left(\frac{n}{e}\right)^n \left(1 + \frac{1}{12n}\righ
                             return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
                         })
                         .attr('fill-opacity', 1)
-                        .attr('stroke-opacity', 1);
-
-                    node.merge(nodeEnter).select('circle')
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
                         .transition()
                         .duration(transitionDuration)
                         .attr('class', function(d) {

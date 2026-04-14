@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-6");
-            var dataset = {"name":"root","children":[{"name":"definition","children":[{"name":"polynomial zero"},{"name":"evaluation p\u00ae=0"},{"name":"x-intercepts"},{"name":"root multiplicity"},{"name":"simple roots"},{"name":"repeated roots"}]},{"name":"theorems","children":[{"name":"fundamental theorem"},{"name":"number of roots"},{"name":"complex roots"},{"name":"rational root theorem"},{"name":"constant divisors"},{"name":"leading divisors"}]},{"name":"properties","children":[{"name":"factorization"},{"name":"even multiplicity"},{"name":"odd multiplicity"},{"name":"sign behavior"},{"name":"axis crossing"},{"name":"axis touching"}]}]};
+            var dataset = {"name":"root","children":[{"name":"означення","children":[{"name":"нуль полінома"},{"name":"обчислення p\u00ae=0"},{"name":"перетини з віссю x"},{"name":"кратність кореня"},{"name":"прості корені"},{"name":"кратні корені"}]},{"name":"теореми","children":[{"name":"основна теорема"},{"name":"кількість коренів"},{"name":"комплексні корені"},{"name":"теорема про раціональні корені"},{"name":"дільники вільного члена"},{"name":"дільники старшого коефіцієнта"}]},{"name":"властивості","children":[{"name":"розкладання на множники"},{"name":"парна кратність"},{"name":"непарна кратність"},{"name":"поведінка знака"},{"name":"перетин осі"},{"name":"доторкання до осі"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 420;
             var hasRenderedTree = false;
@@ -114,7 +114,7 @@
 
                 if (typeof d3 === 'undefined') {
                     if (attempts >= 80) {
-                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
                         return;
                     }
 
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)
@@ -427,7 +423,7 @@
 <p>це дає формули Вієта, які виражають кожен коефіцієнт як елементарний симетричний поліном від коренів. Зокрема:</p>
 <p>\[ r_1 + r_2 + \cdots + r_n = \frac{-a_{n-1}}{a_n} \]
 \[ r_1 r_2 \cdots r_n = \frac{(-1)^n a_0}{a_n} \]</p>
-<p>Квадратний випадок детально розглянуто на сторінці про <a href="trinomials.html">трикутники (квадратні тричлени)</a>.</p>
+<p>Квадратний випадок детально розглянуто на сторінці про <a href="trinomials.html">квадратні тричлени</a>.</p>
 </div>
 
 

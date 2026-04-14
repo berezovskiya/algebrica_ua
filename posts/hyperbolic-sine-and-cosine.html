@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-14");
-            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"hyperbolic definition"},{"name":"geometric model"},{"name":"hyperbola"}]},{"name":"properties","children":[{"name":"fundamental identity"},{"name":"addition formulas"},{"name":"double angle"},{"name":"parity"},{"name":"monotonicity"},{"name":"domain range"},{"name":"non periodic"}]},{"name":"analytic forms","children":[{"name":"exp definition"},{"name":"sinh formula"},{"name":"cosh formula"},{"name":"derivation"},{"name":"graph behavior"}]}]};
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"гіперболічне означення"},{"name":"геометрична модель"},{"name":"гіпербола"}]},{"name":"властивості","children":[{"name":"основна тотожність"},{"name":"формули додавання"},{"name":"подвійний кут"},{"name":"парність"},{"name":"монотонність"},{"name":"область визначення та значень"},{"name":"відсутність періодичності"}]},{"name":"аналітичні форми","children":[{"name":"визначення через exp"},{"name":"формула sinh"},{"name":"формула cosh"},{"name":"диференціювання"},{"name":"поведінка графіка"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 370;
             var hasRenderedTree = false;
@@ -114,7 +114,7 @@
 
                 if (typeof d3 === 'undefined') {
                     if (attempts >= 80) {
-                        container.innerHTML = '<div class="collapsible-tree__empty">D3 not available.</div>';
+                        container.innerHTML = '<div class="collapsible-tree__empty">D3 недоступний.</div>';
                         return;
                     }
 
@@ -152,9 +152,7 @@
                     .attr('viewBox', [0, 0, 960, 480])
                     .attr('width', 960)
                     .attr('height', 480)
-                    .attr('class', 'collapsible-tree__svg');
-
-                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__svg');var linkGroup = svg.append('g')
                     .attr('class', 'collapsible-tree__links');
 
                 var nodeGroup = svg.append('g')
@@ -285,9 +283,7 @@
                         .duration(transitionDuration)
                         .attr('class', function(d) {
                             return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
-                        });
-
-                    node.exit()
+                        });node.exit()
                         .transition()
                         .duration(transitionDuration)
                         .remove()

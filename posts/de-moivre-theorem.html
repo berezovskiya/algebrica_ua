@@ -142,8 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
+                });```javascript
                 var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
@@ -270,9 +269,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)
@@ -602,7 +599,7 @@ z_2 = e^{i \cdot \frac{4\pi}{3}} = \cos\left(\frac{4\pi}{3}\right) + i\sin\left(
       "name": "Як застосувати теорему де Муавра?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Щоб застосувати теорему де Муавра, виразіть комплексне число в полярній формі, піднесіть модуль до степеня та помножте кут на показник степеня."
+        "text": "Щоб застосувати теорему де Муавра, виразити комплексне число в полярній формі, піднести модуль до степеня та помножити кут на показник степеня."
       }
     },
     {

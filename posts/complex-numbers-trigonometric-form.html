@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-23");
-            var dataset = {"name":"root","children":[{"name":"representation","children":[{"name":"algebraic form"},{"name":"trigonometric form"},{"name":"modulus"},{"name":"argument"},{"name":"polar interpretation"},{"name":"unit circle"}]},{"name":"geometry","children":[{"name":"complex plane"},{"name":"polar coordinates"},{"name":"cosine projection"},{"name":"sine projection"},{"name":"complex conjugate"},{"name":"rotation"}]},{"name":"operations","children":[{"name":"multiplication"},{"name":"division"},{"name":"powers"},{"name":"roots"},{"name":"sum via algebraic form"},{"name":"modulus of sum"},{"name":"argument of sum"},{"name":"conversion steps"}]}]};
+            var dataset = {"name":"root","children":[{"name":"представлення","children":[{"name":"алгебраїчна форма"},{"name":"тригонометрична форма"},{"name":"модуль"},{"name":"аргумент"},{"name":"полярна інтерпретація"},{"name":"одиничне коло"}]},{"name":"геометрія","children":[{"name":"комплексна площина"},{"name":"полярні координати"},{"name":"проекція на косинус"},{"name":"проекція на синус"},{"name":"комплексно-спряжене число"},{"name":"поворот"}]},{"name":"операції","children":[{"name":"множення"},{"name":"ділення"},{"name":"піднесення до степеня"},{"name":"добування кореня"},{"name":"сума через алгебраїчну форму"},{"name":"модуль суми"},{"name":"аргумент суми"},{"name":"кроки перетворення"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 460;
             var hasRenderedTree = false;
@@ -145,8 +145,7 @@
                 });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
-                    .y(function(d) { return d.x + d.layoutOffsetY; });
-
+                    .y(function(d) { return d.x + d.layoutOffsetY; });```javascript
                 var svg = d3.select(container)
                     .append('svg')
                     .attr('viewBox', [0, 0, 960, 480])
@@ -278,9 +277,7 @@
                             return 'translate(' + (d.y + d.layoutOffsetX + horizontalOffset) + ',' + (d.x + d.layoutOffsetY) + ')';
                         })
                         .attr('fill-opacity', 1)
-                        .attr('stroke-opacity', 1);
-
-                    node.merge(nodeEnter).select('circle')
+                        .attr('stroke-opacity', 1);node.merge(nodeEnter).select('circle')
                         .transition()
                         .duration(transitionDuration)
                         .attr('class', function(d) {

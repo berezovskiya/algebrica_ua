@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-3");
-            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"diagonalization definition"},{"name":"eigenvectors basis"},{"name":"eigenvalues"},{"name":"change of basis"},{"name":"matrix similarity"},{"name":"diagonal form"},{"name":"invertible matrix"}]},{"name":"conditions","children":[{"name":"characteristic polynomial"},{"name":"eigenvalues computation"},{"name":"eigenspaces"},{"name":"geometric multiplicity"},{"name":"algebraic multiplicity"},{"name":"diagonalizable criterion"},{"name":"distinct eigenvalues"}]},{"name":"applications","children":[{"name":"powers of matrices"},{"name":"diagonal powers"},{"name":"non diagonalizable case"},{"name":"jordan form"},{"name":"linear transformations"}]}]};
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"означення діагоналізації"},{"name":"базис власних векторів"},{"name":"власні значення"},{"name":"зміна базису"},{"name":"подібність матриць"},{"name":"діагональна форма"},{"name":"обернена матриця"}]},{"name":"умови","children":[{"name":"характеристичний поліном"},{"name":"обчислення власних значень"},{"name":"власні підпростори"},{"name":"геометрична кратність"},{"name":"алгебраїчна кратність"},{"name":"критерій діагоналізуємості"},{"name":"різні власні значення"}]},{"name":"застосування","children":[{"name":"степені матриць"},{"name":"діагональні степені"},{"name":"випадок недіагоналізуємості"},{"name":"форма Жордана"},{"name":"лінійні перетворення"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

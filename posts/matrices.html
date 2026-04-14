@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-7");
-            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"matrix"},{"name":"dimensions"},{"name":"entries"},{"name":"notation"},{"name":"row vector"},{"name":"column vector"},{"name":"zero matrix"}]},{"name":"types","children":[{"name":"square matrix"},{"name":"diagonal matrix"},{"name":"triangular matrix"},{"name":"symmetric matrix"},{"name":"main diagonal"},{"name":"transpose"},{"name":"identity matrix"}]},{"name":"operations","children":[{"name":"matrix addition"},{"name":"matrix subtraction"},{"name":"scalar multiplication"},{"name":"matrix multiplication"},{"name":"additive inverse"},{"name":"dot product"},{"name":"determinant"}]}]};
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"матриця"},{"name":"розмірності"},{"name":"елементи"},{"name":"позначення"},{"name":"рядок-вектор"},{"name":"стовпець-вектор"},{"name":"нульова матриця"}]},{"name":"типи","children":[{"name":"квадратна матриця"},{"name":"діагональна матриця"},{"name":"трикутна матриця"},{"name":"симетрична матриця"},{"name":"головна діагональ"},{"name":"транспонування"},{"name":"одинична матриця"}]},{"name":"операції","children":[{"name":"додавання матриць"},{"name":"віднімання матриць"},{"name":"множення на скаляр"},{"name":"множення матриць"},{"name":"адитивний обернений елемент"},{"name":"скалярний добуток"},{"name":"визначник"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 480;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)
@@ -564,7 +560,7 @@ B = \begin{pmatrix}
 4 &amp; -3
 \end{pmatrix}
 \]</p>
-<p>Елементи \( c_{ij} \) матриці-добутку \( AB \) отримуємо, множачи кожен рядок \( A \) на кожен стовпець \( B \):</p>
+<p>Елементи \( c_{ij} \) матриці-добутку \( AB \) отримаємо, множачи кожен рядок \( A \) на кожен стовпець \( B \):</p>
 <p>\[
 \begin{aligned}
 c_{11} &amp;= (1)(2)+(-2)(-1)+(3)(4) = 16 \\[6pt]
@@ -608,12 +604,12 @@ A \cdot I = I \cdot A = A
 <p>Множення матриць задовольняє наступні властивості для матриць сумісних розмірів:</p>
 <ul>
 <li>Асоціативність: \( (AB)C = A(BC) \). Порядок, у якому обчислюються послідовні добутки, не впливає на результат.</li>
-<li>Лівий розподільний закон: \( A(B+C) = AB+AC \). Множення розподіляється відліво щодо додавання.</li>
+<li>Лівий розподільний закон: \( A(B+C) = AB+AC \). Множення розподіляється зліва щодо додавання.</li>
 <li>Правий розподільний закон: \( (B+C)A = BA+CA \). Множення розподіляється справа щодо додавання.</li>
 <li>Некомутативність: загалом \( AB \neq BA \), навіть якщо обидва добутки визначені.</li>
 </ul>
 <hr>
-<p>Кожній квадратній матриці порядку \( n \) ставлять у відповідність дійсне число, яке називають <a href="determinant.html">визначником</a> матриці, що позначається \( \det(A) \). Визначник містить фундаментальну інформацію про матрицю, зокрема про те, чи є вона оберненою, як обговорюється в розділі про <a href="inverse-matrix.html">обернену матрицю</a>.</p>
+<p>Кожній квадратній матриці порядку \( n \) ставлять у відповідність дійсне число, яке називають <a href="determinant.html">визначником</a> матриці, що позначається \( \det(A) \). Визначник містить фундаментальну інформацію про матрицю, зокрема про те, чи є вона обернею, як обговорюється в розділі про <a href="inverse-matrix.html">обернену матрицю</a>.</p>
 </div>
 
 

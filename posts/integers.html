@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-9");
-            var dataset = {"name":"root","children":[{"name":"foundations","children":[{"name":"definition"},{"name":"extension of naturals"},{"name":"notation Z"},{"name":"number line"},{"name":"construction pairs"},{"name":"equivalence relation"},{"name":"additive opposites"}]},{"name":"operations","children":[{"name":"addition"},{"name":"multiplication"},{"name":"closure"},{"name":"associativity"},{"name":"commutativity"},{"name":"distributivity"},{"name":"identities"},{"name":"additive inverse"}]},{"name":"structures","children":[{"name":"ring structure"},{"name":"order"},{"name":"decimal system"},{"name":"binary system"}]}]};
+            var dataset = {"name":"root","children":[{"name":"основи","children":[{"name":"означення"},{"name":"розширення натуральних чисел"},{"name":"позначення Z"},{"name":"числова пряма"},{"name":"побудова пар"},{"name":"відношення еквівалентності"},{"name":"адитивні протилежні"}]},{"name":"операції","children":[{"name":"додавання"},{"name":"множення"},{"name":"замкненість"},{"name":"асоціативність"},{"name":"комутативність"},{"name":"дистрибутивність"},{"name":"одиничні елементи"},{"name":"адитивний обернений елемент"}]},{"name":"структури","children":[{"name":"структура кільця"},{"name":"порядок"},{"name":"десяткова система"},{"name":"двійкова система"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)
@@ -612,7 +608,7 @@ System.out.println(result);  // Вивід: 1  (Січень)
 <li>\( p(0) \) є істинним, тобто \( 0 \in A. \)</li>
 <li>\( p(n) \rightarrow p(n+1) \,\forall \ n \in \mathbb{N}.\) Якщо \( n \in A \), то \( n+1 \in A.\)</li>
 </ul>
-<p>Таким чином, \( p(n) \) є істинним для кожного \( n \in \mathbb{N}.\) Конкретна ілюстрація показує, як це переноситься на цілі числа. Розглянемо твердження, що сума перших \( n \) додатних цілих чисел дорівнює:</p>
+<p>Таким чином, \( p(n) \) є істинним для кожного \( n \in \mathbb{N}.\) Конкретний приклад показує, як це переноситься на цілі числа. Розглянемо твердження, що сума перших \( n \) додатних цілих чисел дорівнює:</p>
 <p>\[ \frac{n(n+1)}{2} \]</p>
 <p>Базовий випадок \( n = 1 \) є очевидним: обидві частини дорівнюють \( 1 \). Для індуктивного кроку, припустимо, що тотожність виконується для деякого \( n \), додамо \( n+1 \) до обох частин і перевіримо, що результат відповідає формулі, обчисленій для \( n+1 \). Оскільки натуральні числа вбудовуються в \( \mathbb{Z} \) як невивідні цілі числа, ця тотожність виконується і в \(\mathbb{Z}\), і той самий метод поширюється на будь-яке твердження про \(\mathbb{Z}\), яке можна звести до властивості \(\mathbb{N}\) через побудову цілих чисел з впорядкованих пар натуральних чисел.</p>
 </div>

@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-24");
-            var dataset = {"name":"root","children":[{"name":"operations","children":[{"name":"addition"},{"name":"subtraction"},{"name":"multiplication"},{"name":"division"},{"name":"reciprocal"},{"name":"conjugate division"},{"name":"closure"}]},{"name":"tools","children":[{"name":"complex conjugate"},{"name":"modulus"},{"name":"argument"},{"name":"absolute value"},{"name":"inverse"},{"name":"norm"}]},{"name":"geometry","children":[{"name":"vector form"},{"name":"polar form"},{"name":"rotation"},{"name":"scaling"},{"name":"angle"},{"name":"distance"}]}]};
+            var dataset = {"name":"root","children":[{"name":"операції","children":[{"name":"додавання"},{"name":"віднімання"},{"name":"множення"},{"name":"ділення"},{"name":"обернена величина"},{"name":"ділення з використанням спряженого"},{"name":"замкненість"}]},{"name":"інструменти","children":[{"name":"комплексно-спряжене число"},{"name":"модуль"},{"name":"аргумент"},{"name":"абсолютне значення"},{"name":"обернена функція"},{"name":"норми"}]},{"name":"геометрія","children":[{"name":"векторна форма"},{"name":"полярна форма"},{"name":"поворот"},{"name":"масштабування"},{"name":"кут"},{"name":"відстань"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 440;
             var hasRenderedTree = false;
@@ -142,9 +142,7 @@
                 root.descendants().forEach(function(node, i) {
                     node.id = i;
                     node._children = node.children;
-                });
-
-                var tree = d3.tree().nodeSize([dx, dy]);
+                });var tree = d3.tree().nodeSize([dx, dy]);
                 var diagonal = d3.linkHorizontal()
                     .x(function(d) { return d.y + d.layoutOffsetX + horizontalOffset; })
                     .y(function(d) { return d.x + d.layoutOffsetY; });var svg = d3.select(container)
@@ -270,9 +268,7 @@
                         .attr('class', function(d) {
                             if (d.depth === 0) {
                                 return 'is-root';
-                            }
-
-                            return d._children ? 'is-expandable' : 'is-leaf';
+                            }return d._children ? 'is-expandable' : 'is-leaf';
                         })
                         .transition()
                         .duration(transitionDuration)

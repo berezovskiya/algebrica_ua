@@ -86,7 +86,7 @@
     <script>
         (function() {
             var container = document.getElementById("collapsible-tree-8");
-            var dataset = {"name":"root","children":[{"name":"representation","children":[{"name":"geometric view"},{"name":"components"},{"name":"basis"},{"name":"coordinate form"},{"name":"dimension"}]},{"name":"operations","children":[{"name":"addition"},{"name":"scalar multiplication"},{"name":"subtraction"},{"name":"dot product"},{"name":"cross product"}]},{"name":"properties","children":[{"name":"algebraic properties"},{"name":"norm"},{"name":"unit vector"},{"name":"orthogonality"},{"name":"vector space"}]}]};
+            var dataset = {"name":"root","children":[{"name":"представлення","children":[{"name":"геометричний вигляд"},{"name":"компоненти"},{"name":"базис"},{"name":"координатна форма"},{"name":"розмірність"}]},{"name":"операції","children":[{"name":"додавання"},{"name":"множення на скаляр"},{"name":"віднімання"},{"name":"скалярний добуток"},{"name":"векторний добуток"}]},{"name":"властивості","children":[{"name":"алгебраїчні властивості"},{"name":"норма"},{"name":"одиничний вектор"},{"name":"ортогональність"},{"name":"векторний простір"}]}]};
             var attempts = 0;
             var fixedCanvasHeight = 380;
             var hasRenderedTree = false;
@@ -152,9 +152,7 @@
                     .attr('viewBox', [0, 0, 960, 480])
                     .attr('width', 960)
                     .attr('height', 480)
-                    .attr('class', 'collapsible-tree__svg');
-
-                var linkGroup = svg.append('g')
+                    .attr('class', 'collapsible-tree__svg');var linkGroup = svg.append('g')
                     .attr('class', 'collapsible-tree__links');
 
                 var nodeGroup = svg.append('g')
@@ -285,9 +283,7 @@
                         .duration(transitionDuration)
                         .attr('class', function(d) {
                             return 'collapsible-tree__node-dot ' + (d._children ? 'is-collapsed' : 'is-leaf');
-                        });
-
-                    node.exit()
+                        });node.exit()
                         .transition()
                         .duration(transitionDuration)
                         .remove()
